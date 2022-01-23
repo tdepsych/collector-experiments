@@ -5,12 +5,13 @@
       position: relative;
       top: 50%;
       transform: translateY(25%);
+      /*display: none;*/
     }
   </style>
 <body>
   <div id="container">
 <center>
-  <video id="video" src="../../collector-experiments/User/Assets/LOP/bristol.mp4" autoplay></video>
+  <video id="video" src="../../collector-experiments/User/Assets/LOP/bristol.mp4" ></video>
 </center>
   <!--<br/><br/>-->
   <!--<div style="text-align:center;">-->
@@ -18,7 +19,7 @@
   <!--</div>-->
 </div>
 <script>
-
+Phase.set_timer(function(){$('#video').get(0).play()},'1');
     //--------------------------------//
     // DISPLAY BUTTON & REFRESH VIDEO //
     //--------------------------------//

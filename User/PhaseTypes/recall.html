@@ -55,6 +55,7 @@ body{
   width:100%;
   z-index:0;
   display:none;
+  text-transform: uppercase;
 }
 #too_slow{
   position:absolute;
@@ -187,7 +188,7 @@ body{
 <div id='trial_contents'>
   <button id='instruction' value='' class=' update_name' style='border:0; background-color:transparent'><span style='width:100%;height:100%'>Do you recognise the following word?</b><br><br></span></button>
   <button id='ready' value='' class=' update_name' style='border:0; background-color:transparent'><span style='width:100%;height:100%'>Ready?</span></button>
-  <button id='word' value='' class=' update_name' style='border:0; background-color:transparent'><span style='width:100%;height:100%'><b>{{recall}}</b></span></button>
+  <button id='word' value='' class=' update_name' style='border:0; background-color:transparent'><span style='width:100%;height:100%'><b>{{word}}</b></span></button>
   <input id='No' class='button_response update_name' type='button' value='0'/>
   <input id='Yes' class='button_response update_name' type='button' value='1'/>
   <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>

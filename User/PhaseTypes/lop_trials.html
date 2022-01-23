@@ -55,6 +55,7 @@ body{
   width:100%;
   z-index:0;
   display:none;
+  /*text-transform: uppercase;*/
 }
 #too_slow{
   position:absolute;
@@ -185,9 +186,9 @@ body{
 </style>
 <input type='hidden' id='keyboard_response' name='keyboard_response' value="-1"/>
 <div id='trial_contents'>
-  <button id='instruction' value='' class=' update_name' style='border:0; background-color:transparent'><span style='width:100%;height:100%'>Does the following word rhym with<br><br><b>{{cue}}</b><br><br></span></button>
+  <button id='instruction' value='' class=' update_name' style='border:0; background-color:transparent'><span style='width:100%;height:100%'>{{text}}{{rhyme}}</span></b><br><br></span></button>
   <button id='ready' value='' class=' update_name' style='border:0; background-color:transparent'><span style='width:100%;height:100%'>Ready?</span></button>
-  <button id='word' value='' class=' update_name' style='border:0; background-color:transparent'><span style='width:100%;height:100%'><b>{{recall}}</b></span></button>
+  <button id='word' value='' class=' update_name' style='border:0; background-color:transparent'><span style='width:100%;height:100%'><b>{{word}}</b></span></button>
   <input id='No' class='button_response update_name' type='button' value='0'/>
   <input id='Yes' class='button_response update_name' type='button' value='1'/>
   <button id='too_slow' value='' class=' update_name' style='border:0; background-color:transparent'><div id="stimulus">Too Slow ⏳</div></button>
