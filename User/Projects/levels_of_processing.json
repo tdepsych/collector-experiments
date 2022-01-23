@@ -1,0 +1,114 @@
+{
+  "all_procs": {
+    "procedure_1.csv": "item,phasetype,max_time,text,shuffle_1,survey,\r\n0,instruct,user,This is the start of a new experiment.,off,,\r\n0,survey,user,,,demographics.csv,\r\n0,instruct,user,Thank you for doing the study,,,"
+  },
+  "conditions": "name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,age_check,skip_quality,zoom_check,\r\ncondition_1,You can put more detailed notes in this field,stimuli_1.csv,procedure_1.csv,on,,random,,,5,,no,yes,no,",
+  "all_stims": {
+    "stimuli_1.csv": "cue,answer,\r\nA,Apple,\r\nB,Banana,\r\n,,"
+  },
+  "location": "tdepsych/collector-experiments/levels_of_processing",
+  "public_key": "ZIEuVRKYOLO6WwFULPPZwTRcHAjIYAjbIaCzNwwNLWc=",
+  "surveys": {
+    "demographics.csv": [
+      [
+        "item_name",
+        "text",
+        "Type",
+        "Answers",
+        "Optional",
+        "Values",
+        "side_by_side",
+        "btn_width"
+      ],
+      [
+        "Gender",
+        "Gender",
+        "likert",
+        "Female|Male|Other",
+        "No",
+        "",
+        "yes",
+        "100px"
+      ],
+      [
+        "Age",
+        "Age",
+        "Number",
+        "",
+        "No",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Education",
+        "Education (which level are you currently in, or is the highest you've completed)",
+        "Dropdown",
+        "Some high school| High school graduate| Some college, no degree| Associate's degree| Bachelor's degree|Graduate degree (Master's, Doctorate, etc.)",
+        "No",
+        "",
+        "",
+        ""
+      ],
+      [
+        "English_Fluency",
+        "Do you speak English fluently?",
+        "likert",
+        "Yes|No",
+        "No",
+        "",
+        "yes",
+        "200px"
+      ],
+      [
+        "English_Age",
+        "At what age did you start learning English? (write \"0\" if from birth)",
+        "Number",
+        "",
+        "No",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Country",
+        "What is your country of residence?",
+        "Text",
+        "",
+        "No",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Handedness",
+        "What is your preferred hand?",
+        "Likert",
+        "Left|Right|Both",
+        "No",
+        "",
+        "yes",
+        "100px"
+      ],
+      [
+        "ethnicity",
+        "If you would like to please state your ethnicity",
+        "Text",
+        "",
+        "Yes",
+        "",
+        "",
+        ""
+      ],
+      [
+        ""
+      ]
+    ]
+  },
+  "phasetypes": {
+    "instruct": "[[[LOCATION]]]../Default/DefaultPhaseTypes/instruct.html",
+    "survey": "[[[LOCATION]]]../Default/DefaultPhaseTypes/survey.html"
+  },
+  "procs_csv": {},
+  "stims_csv": {}
+}

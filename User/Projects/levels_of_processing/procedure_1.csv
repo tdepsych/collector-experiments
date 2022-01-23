@@ -1,0 +1,4 @@
+item,phasetype,max_time,text,shuffle_1,survey,
+0,instruct,user,This is the start of a new experiment.,off,,
+0,survey,user,,,demographics.csv,
+0,instruct,user,Thank you for doing the study,,,
