@@ -1,6 +1,6 @@
 {
   "all_procs": {
-    "procedure_1.csv": "item,phasetype,max_time,text,shuffle_1,weight,\r\n0,start,user,\"<b>Welcome to our study</b><br><br>When you are ready to begin, press start.\",,,\r\n0,start,user,\"<b>Rhymes</b><br><br>The following screen displays a word, as part of a question, for 2 seconds. You will then have a short pause before being presented with a new word. You then have 4 seconds to answer whether the 2nd word rhymed with the first.<br><br>When you are ready, press start.\",,,\r\n2 to 30,lop_trials,user,,yes,,\r\n0,end,user,\"<b>Thank you for completing the study</b><br><br>When you are ready to leave, press finish.\",,,"
+    "procedure_1.csv": "item,phasetype,max_time,text,shuffle_1,weight,\r\n0,start,user,\"<b>Welcome to our study</b><br><br>When you are ready to begin, press start.\",,,\r\n0,start,user,\"<b>Rhymes</b><br><br>The following screen displays a word, as part of a question, for 2 seconds. You will then have a short pause before being presented with a new word. You then have 4 seconds to answer whether the 2nd word rhymed with the first.<br><br>When you are ready, press start.\",,,\r\n2 to 30,lop_trials,user,,yes,0,\r\n0,video-play,user,\"<b>Thank you for completing the previous task.</b><br><br>You will now watch a video, lasting a couple of minutes. The video has sound. Please make sure you volume is low enough not to disturb those around you. You may mute your speakers if you wish.<br><br>When you are ready to begin watching, press play.\",,,\r\n0,video,user,,,,\r\n0,start,user,\"<b>Recall</b><br><br>The following task requires you to recall as many of the words from the previous 'Rhyming' task as you can. Each word will be displayed in term along with 'Yes/No' response buttons. Simply indicate whether you recognise the word or not.<br><br>When you are ready, press start.\",,,\r\n2 to 50,recall,user,,,,\r\n0,end,user,\"<b>Thank you for completing the study</b><br><br>We're collecting data across all three seminars and you'll get to see the results next week.<br><br>When you are ready to leave, press finish.\",,,"
   },
   "conditions": "name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,age_check,skip_quality,zoom_check,\r\ncondition_1,You can put more detailed notes in this field,stimuli_1.csv,procedure_1.csv,on,,random,,,5,,no,yes,no,",
   "all_stims": {
@@ -108,6 +108,9 @@
   "phasetypes": {
     "start": "[[[LOCATION]]]../User/PhaseTypes/start.html",
     "lop_trials": "[[[LOCATION]]]../User/PhaseTypes/lop_trials.html",
+    "video-play": "[[[LOCATION]]]../User/PhaseTypes/video-play.html",
+    "video": "[[[LOCATION]]]../User/PhaseTypes/video.html",
+    "recall": "[[[LOCATION]]]../User/PhaseTypes/recall.html",
     "end": "[[[LOCATION]]]../User/PhaseTypes/end.html"
   },
   "procs_csv": {},
