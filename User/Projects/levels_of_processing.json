@@ -1,10 +1,10 @@
 {
   "all_procs": {
-    "procedure_1.csv": "item,phasetype,max_time,text,shuffle_1,survey,\r\n0,instruct,user,This is the start of a new experiment.,off,,\r\n0,survey,user,,,demographics.csv,\r\n0,instruct,user,Thank you for doing the study,,,"
+    "procedure_1.csv": "item,phasetype,max_time,text,shuffle_1,image,\r\n0,start,user,\"<b>Welcome to our study</b><br><br>When you are ready to begin, press start.\",,start,\r\n2 to 30,lop_trials,user,,yes,,\r\n0,start,user,\"<b>Thank you for completing the study</b><br><br>When you are ready to leave, press finish.\",,finish,"
   },
   "conditions": "name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,age_check,skip_quality,zoom_check,\r\ncondition_1,You can put more detailed notes in this field,stimuli_1.csv,procedure_1.csv,on,,random,,,5,,no,yes,no,",
   "all_stims": {
-    "stimuli_1.csv": "cue,answer,\r\nA,Apple,\r\nB,Banana,\r\n,,"
+    "stimuli_1.csv": "cue,recall,\r\nA,1,\r\nB,2,\r\nC,3,\r\nD,4,\r\nE,5,\r\nF,6,\r\nG,7,\r\nH,8,\r\nI,9,\r\nJ,10,\r\nK,11,\r\nL,12,\r\nM,13,\r\nN,14,\r\nO,15,\r\nP,16,\r\nQ,17,\r\nR,18,\r\nS,19,\r\nT,20,\r\nU,21,\r\nV,22,\r\nW,23,\r\nX,24,\r\nY,25,\r\nZ,26,\r\nAA,27,\r\nBB,28,\r\nCC,29,\r\nDD,30,\r\n,31,\r\n,32,\r\n,33,\r\n,34,\r\n,35,\r\n,36,\r\n,37,\r\n,38,\r\n,39,\r\n,40,\r\n,41,\r\n,42,\r\n,43,\r\n,44,\r\n,45,\r\n,46,\r\n,47,\r\n,48,\r\n,49,\r\n,50,\r\n,,"
   },
   "location": "tdepsych/collector-experiments/levels_of_processing",
   "public_key": "ZIEuVRKYOLO6WwFULPPZwTRcHAjIYAjbIaCzNwwNLWc=",
@@ -106,8 +106,8 @@
     ]
   },
   "phasetypes": {
-    "instruct": "[[[LOCATION]]]../Default/DefaultPhaseTypes/instruct.html",
-    "survey": "[[[LOCATION]]]../Default/DefaultPhaseTypes/survey.html"
+    "start": "[[[LOCATION]]]../User/PhaseTypes/start.html",
+    "lop_trials": "[[[LOCATION]]]../User/PhaseTypes/lop_trials.html"
   },
   "procs_csv": {},
   "stims_csv": {}

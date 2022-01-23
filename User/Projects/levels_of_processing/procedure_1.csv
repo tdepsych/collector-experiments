@@ -1,4 +1,4 @@
-item,phasetype,max_time,text,shuffle_1,survey,
-0,instruct,user,This is the start of a new experiment.,off,,
-0,survey,user,,,demographics.csv,
-0,instruct,user,Thank you for doing the study,,,
+item,phasetype,max_time,text,shuffle_1,image,
+0,start,user,"<b>Welcome to our study</b><br><br>When you are ready to begin, press start.",,start,
+2 to 30,lop_trials,user,,yes,,
+0,start,user,"<b>Thank you for completing the study</b><br><br>When you are ready to leave, press finish.",,finish,

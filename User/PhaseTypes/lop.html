@@ -1,0 +1,131 @@
+<style>
+.update_name:focus{
+  border:0;
+}
+#trial_contents{
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin:auto;
+  width:600;
+  height:600;
+}
+body{
+  background-color:white;
+}
+#instruction{
+  position:absolute;
+  background-color:transparent;
+  border-color:;
+  border-radius:;
+  border-style:;
+  border-width:;
+  color:black;
+  font-size:20px;
+  height:50px;
+  left:278px;
+  top:279px;
+  width:50px;
+  z-index:0;
+}
+#ready{
+  position:absolute;
+  display:none;
+  background-color:transparent;
+  border-color:;
+  border-radius:;
+  border-style:;
+  border-width:;
+  color:black;
+  font-size:20px;
+  height:50px;
+  left:280px;
+  top:276px;
+  width:50px;
+  z-index:0;
+}
+#word{
+  position:absolute;
+  display:none;
+  background-color:transparent;
+  border-color:;
+  border-radius:;
+  border-style:;
+  border-width:;
+  color:black;
+  font-size:20px;
+  height:50px;
+  left:279px;
+  top:276px;
+  width:50px;
+  z-index:0;
+}
+#No{
+  position:absolute;
+  display:none;
+  background-color:transparent;
+  border-color:;
+  border-radius:;
+  border-style:;
+  border-width:;
+  color:black;
+  font-size:12px;
+  height:100px;
+  left:211px;
+  top:343px;
+  width:100px;
+  z-index:0;
+}
+#Yes{
+  position:absolute;
+  display:none;
+  background-color:transparent;
+  border-color:;
+  border-radius:;
+  border-style:;
+  border-width:;
+  color:black;
+  font-size:12px;
+  height:100px;
+  left:410px;
+  top:374px;
+  width:100px;
+  z-index:0;
+}
+</style>
+<input type='hidden' id='keyboard_response' name='keyboard_response'/>
+<div id='trial_contents'>
+  <button id='instruction' value='' class=' update_name' style='border:0; background-color:transparent'><span style='width:100%;height:100%'>does this word rhyme with {{cue}}?</span></button>
+  <button id='ready' value='' class=' update_name' style='border:0; background-color:transparent'><span style='width:100%;height:100%'>Ready?</span></button>
+  <button id='word' value='' class=' update_name' style='border:0; background-color:transparent'><span style='width:100%;height:100%'>{{word}}</span></button>
+  <input id='No' class='button_response update_name' type='button' value='No' />
+  <input id='Yes' class='button_response update_name' type='button' value='Yes' />
+</div>
+<input type='hidden' name='' />
+<input type='hidden' name='button_response' />
+<script>
+$('.update_name').on('click',function(){
+  var class_list = this.className.split(' ');
+  var end_trial = false;
+  if(class_list.indexOf('end_trial') !== -1){
+    end_trial = true;
+	 }
+  class_list.splice(class_list.indexOf('end_trial'),1);
+  class_list.splice(class_list.indexOf('update_name'),1);
+  $('input[name = "' + class_list + '"]').val(this.value);
+  if(end_trial){
+    Phase.submit();
+  }
+});
+Phase.set_timer(function(){$('#instruction').hide()},'2000'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+Phase.set_timer(function(){$('#ready').show()},'2000'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+Phase.set_timer(function(){$('#ready').hide()},'3000'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+Phase.set_timer(function(){$('#word').show()},'3000'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+Phase.set_timer(function(){$('#word').hide()},'7000'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+Phase.set_timer(function(){$('#No').show()},'3000'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+Phase.set_timer(function(){$('#No').hide()},'7000'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+Phase.set_timer(function(){$('#Yes').show()},'3000'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+Phase.set_timer(function(){$('#Yes').hide()},'7000'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+</script>
