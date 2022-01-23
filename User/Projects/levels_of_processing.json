@@ -1,6 +1,6 @@
 {
   "all_procs": {
-    "procedure_1.csv": "item,phasetype,max_time,text,shuffle_1,image,\r\n0,start,user,\"<b>Welcome to our study</b><br><br>When you are ready to begin, press start.\",,start,\r\n2 to 30,lop_trials,user,,yes,,\r\n0,start,user,\"<b>Thank you for completing the study</b><br><br>When you are ready to leave, press finish.\",,finish,"
+    "procedure_1.csv": "item,phasetype,max_time,text,shuffle_1,weight,\r\n0,start,user,\"<b>Welcome to our study</b><br><br>When you are ready to begin, press start.\",,,\r\n0,start,user,\"<b>Rhymes</b><br><br>The following screen displays a word, as part of a question, for 2 seconds. You will then have a short pause before being presented with a new word. You then have 4 seconds to answer whether the 2nd word rhymed with the first.<br><br>When you are ready, press start.\",,,\r\n2 to 30,lop_trials,user,,yes,,\r\n0,end,user,\"<b>Thank you for completing the study</b><br><br>When you are ready to leave, press finish.\",,,"
   },
   "conditions": "name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,age_check,skip_quality,zoom_check,\r\ncondition_1,You can put more detailed notes in this field,stimuli_1.csv,procedure_1.csv,on,,random,,,5,,no,yes,no,",
   "all_stims": {
@@ -107,7 +107,8 @@
   },
   "phasetypes": {
     "start": "[[[LOCATION]]]../User/PhaseTypes/start.html",
-    "lop_trials": "[[[LOCATION]]]../User/PhaseTypes/lop_trials.html"
+    "lop_trials": "[[[LOCATION]]]../User/PhaseTypes/lop_trials.html",
+    "end": "[[[LOCATION]]]../User/PhaseTypes/end.html"
   },
   "procs_csv": {},
   "stims_csv": {}

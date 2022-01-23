@@ -1,4 +1,5 @@
-item,phasetype,max_time,text,shuffle_1,image,
-0,start,user,"<b>Welcome to our study</b><br><br>When you are ready to begin, press start.",,start,
+item,phasetype,max_time,text,shuffle_1,weight,
+0,start,user,"<b>Welcome to our study</b><br><br>When you are ready to begin, press start.",,,
+0,start,user,"<b>Rhymes</b><br><br>The following screen displays a word, as part of a question, for 2 seconds. You will then have a short pause before being presented with a new word. You then have 4 seconds to answer whether the 2nd word rhymed with the first.<br><br>When you are ready, press start.",,,
 2 to 30,lop_trials,user,,yes,,
-0,start,user,"<b>Thank you for completing the study</b><br><br>When you are ready to leave, press finish.",,finish,
+0,end,user,"<b>Thank you for completing the study</b><br><br>When you are ready to leave, press finish.",,,
