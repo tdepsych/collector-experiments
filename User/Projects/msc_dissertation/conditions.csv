@@ -1,3 +1,3 @@
 name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,age_check,skip_quality,zoom_check,mobile,
-pre_screen,demographics,taboo_ldt.csv,text_taboo.csv,on,,random,,,5,,no,yes,no,no,
+pre_screen,demographics,taboo_ldt.csv,pre_screen.csv,on,,random,,,5,,no,yes,no,no,
 text_taboo,text instructions,taboo_ldt.csv,text_taboo.csv,on,,random,,,5,,no,yes,no,no,
