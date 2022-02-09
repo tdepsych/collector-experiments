@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
+    <script src="https://tdepsych.github.io/gorilla-materials/wordsearch.js"></script>
+    <style>
+      #collector_phase_timer {
+        display: none;
+      }
+      .ws-area {
+        background: #FFF;
+        border-style: solid;
+        border-color: #000!important;
+      }
+      #ws-score {
+        font-weight: bold;
+        padding-bottom: 25px;
+      }
+      /* Moving New Game Button */
+      .ws-new-game {
+        transform: translate(255px, -55px);
+      }
+      /* Styling Below Manages the Progress Bar */
+      .progressbar {
+        position: fixed;
+        top: 95%;
+        width: 50%;
+        margin: auto;
+        border: solid 1px #000;
+      }
+      .progressbar .inner {
+        height: 15px;
+        animation: progressbar-countdown;
+        /* Placeholder, this will be updated using javascript */ 
+        animation-duration: 40s;
+        /* We stop in the end */
+        animation-iteration-count: 1;
+        /* Stay on pause when the animation is finished finished */
+        animation-fill-mode: forwards;
+        /* We start paused, we start the animation using javascript */
+        animation-play-state: paused;
+        /* We want a linear animation, ease-out is standard */
+        animation-timing-function: linear;
+      }
+      @keyframes progressbar-countdown {
+        0% {
+          width: 100%;
+          background: #d2fcd2;
+        }
+        100% {
+          width: 0%;
+          background: #fcd2d2; 
+        }
+      } 
+    </style>
+  </head>
+  <body>
+    <!--<input type="hidden" name="ws_Score" id="ws_Score" />-->
+    <!--<input type="hidden" name="ws_Remaining" id="ws_Score" />-->
+    <!--<input type="hidden" name="ws_Timings" id="ws_Score" />-->
+    <button id="zoomOut" tabindex="-1"></button>
+    <button id="zoomIn" tabindex="-1"></button>
+    <div id="container">
+      <div id="mysearchtask"></div>
+      <div id='progressbar1'></div>
+      
+      <script>
+        // This code was adapted from a Qualtrics Wordsearch created by QuentinAndre - https://github.com/QuentinAndre/WordSearchJS
+        // Wordsearch puzzle from https://www.puzzles.ca/word-search
+        // This creates the progress bar
+        Phase.set_timer(function(){
+          function createProgressbar(id, duration, callback) {
+            // We select the div that we want to turn into a progressbar
+            var progressbar = document.getElementById(id);
+            progressbar.className = 'progressbar';
+            // We create the div that changes width to show progress
+            var progressbarinner = document.createElement('div');
+            progressbarinner.className = 'inner';
+            // Now we set the animation parameters
+            progressbarinner.style.animationDuration = duration;
+            // Eventually couple a callback
+            if (typeof(callback) === 'function') {
+              progressbarinner.addEventListener('animationend', callback);
+            }   
+            // Append the progressbar to the main progressbardiv
+            progressbar.appendChild(progressbarinner);
+            // When everything is set up we start the animation
+            progressbarinner.style.animationPlayState = 'running';
+          }
+          createProgressbar('progressbar1', '180s'); // If you want to change how long the bar lasts, alter the '180s' (it's total seconds)
+        },1);
+        
+        var countrygrid = [
+        ['O', 'T', 'A', 'I', 'H', 'C', 'C', 'A', 'M', 'K', 'P', 'R', 'R', 'K', 'C', 'R', 'M', 'V', 'I'],
+        ['N', 'J', 'P', 'M', 'L', 'T', 'W', 'E', 'L', 'E', 'G', 'I', 'L', 'A', 'M', 'N', 'O', 'U', 'K'],
+        ['A', 'J', 'D', 'I', 'A', 'X', 'C', 'T', 'N', 'I', 'C', 'I', 'M', 'Q', 'A', 'H', 'T', 'T', 'G'],
+        ['C', 'S', 'K', 'C', 'H', 'N', 'N', 'G', 'N', 'H', 'M', 'O', 'M', 'G', 'D', 'N', 'T', 'S', 'W'],
+        ['I', 'N', 'B', 'O', 'N', 'C', 'U', 'G', 'T', 'D', 'M', 'V', 'Q', 'F', 'Q', 'F', 'Y', 'D', 'N'],
+        ['R', 'T', 'T', 'O', 'T', 'I', 'E', 'E', 'E', 'I', 'D', 'H', 'O', 'D', 'F', 'B', 'R', 'M', 'S'],
+        ['E', 'R', 'T', 'R', 'N', 'R', 'A', 'T', 'L', 'O', 'N', 'I', 'C', 'C', 'U', 'P', 'P', 'A', 'C'],
+        ['M', 'E', 'D', 'E', 'N', 'B', 'L', 'E', 'A', 'R', 'L', 'G', 'R', 'E', 'Y', 'V', 'Q', 'E', 'G'],
+        ['A', 'G', 'M', 'U', 'R', 'A', 'O', 'L', 'Y', 'L', 'U', 'V', 'S', 'B', 'V', 'G', 'T', 'R', 'A'],
+        ['B', 'D', 'T', 'V', 'M', 'A', 'E', 'H', 'M', 'M', 'O', 'E', 'G', 'L', 'M', 'A', 'B', 'C', 'R'],
+        ['G', 'O', 'E', 'R', 'B', 'R', 'M', 'Q', 'P', 'E', 'V', 'C', 'S', 'D', 'K', 'M', 'R', 'D', 'I'],
+        ['H', 'D', 'U', 'S', 'S', 'D', 'A', 'A', 'B', 'I', 'S', 'C', 'O', 'T', 'T', 'I', 'E', 'R', 'B'],
+        ['D', 'E', 'J', 'R', 'P', 'Q', 'V', 'N', 'T', 'J', 'N', 'T', 'I', 'H', 'Z', 'O', 'A', 'A', 'A'],
+        ['N', 'I', 'C', 'E', 'B', 'R', 'J', 'S', 'Q', 'O', 'B', 'K', 'V', 'R', 'C', 'D', 'K', 'T', 'L'],
+        ['L', 'M', 'V', 'K', 'Z', 'O', 'E', 'T', 'R', 'U', 'O', 'K', 'W', 'A', 'S', 'F', 'F', 'S', 'D'],
+        ['F', 'M', 'C', 'I', 'E', 'G', 'N', 'S', 'L', 'J', 'Y', 'L', 'F', 'A', 'L', 'O', 'A', 'U', 'I'],
+        ['D', 'A', 'H', 'X', 'I', 'R', 'G', 'C', 'S', 'J', 'X', 'E', 'O', 'Z', 'F', 'R', 'S', 'C', 'P'],
+        ['E', 'J', 'Q', 'D', 'M', 'D', 'K', 'W', 'S', 'O', 'Z', 'D', 'E', 'N', 'B', 'E', 'T', 'J', 'O'],
+        ['A', 'E', 'T', 'N', 'E', 'E', 'R', 'G', 'L', 'A', 'T', 'T', 'E', 'Q', 'G', 'O', 'R', 'A', 'R']];
+
+        // Then we set up the list of words (countries) to find    
+        var countrynames = ['AMARETTI', 'AMERICANO', 'BISCOTTI', 'BOURBON', 'BREAKFAST', 'CAMOMILE', 'CAPPUCCINO', 'CHOCOLATECHIP', 'CLUB', 'CUSTARDCREAM', 'DIGESTIVES',
+        'EARLGREY', 'ESPRESSO', 'GARIBALDI', 'GINGERNUT', 'GREENTEA', 'HOBNOBS', 'JAMMIEDODGER', 'KITKAT', 'LATTE', 'MACCHIATO', 'MALTEDMILE', 'NICE', 'OOLONG',
+        'OREO', 'PENGUIN', 'PINKWAFER', 'RICHTEA'];
+        
+        var script = document.createElement('script'); 
+        script.src = "https://tdepsych.github.io/gorilla-materials/wordsearch.js"
+        
+        // Set a load of actions to run when the script above is run
+        // (I'm not 100% sure what the random array stuff is doing beyond monitoring for correct responses & time taken)
+        
+        script.onload = function() {
+          //alert("Script loaded and ready");
+          function getRandom(arr, n) {
+            var result = new Array(n),
+            len = arr.length,
+            taken = new Array(len);
+            if (n > len)
+            throw new RangeError("getRandom: more elements taken than available");
+            while (n--) {
+              var x = Math.floor(Math.random() * len);
+              result[n] = arr[x in taken ? taken[x] : x];
+              taken[x] = --len in taken ? taken[len] : len;
+            }
+            return result;
+          }
+        }
+    Phase.set_timer(function(){
+        ws = new WordSearch({
+          "grid": countrygrid,        // Your grid to search
+          "words": countrynames,      // The list of words to find
+          "numberOfWordsToFind": 10,   // The number of words to show from words for each game, defaults to all of them
+          "parentId": "mysearchtask", // The name of the HTML div to replace with the wordsearch
+          "onFindWord": function() {  // When a word is found...
+              var array = this.getTiming(); // This assigns the response times to a variable
+              array = array.filter(function(x){ return x > -1 }); // This removes any value of -1 from the array
+              var lrgst = Math.max(...array)
+              array2 = array.filter(e => e != lrgst);
+              var secLrgst = Math.max(...array2);
+              if (this.getRemaining()==19){
+              var indTime = lrgst;
+              } else {
+                var indTime = lrgst - secLrgst;
+              }
+              var ws_Score = this.getScore();
+              console.log(ws_Score);
+              parent.parent.wordsFound = ws_Score;
+          Phase.add_response({
+                ws_Score: this.getScore(),
+                ws_Remaining: this.getRemaining(),
+                ws_Total_Time: Math.max(lrgst),
+                // ws_Timings2: this.getTiming(), 
+                ws_Individual_Time: Math.max(indTime)
+              })
+            if (this.getRemaining()==0){
+              //  Put whatever you want ppt. to do next below...
+              var script;
+            }
+            
+          }   // This closes the "OnFindWord" command
+        });
+        
+    },10);    
+        // This part says that if all words are found, move to the next page
+        
+        document.head.appendChild(script)
+  </script>
+<script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>      
+    </div>
+  </body>
+</html>

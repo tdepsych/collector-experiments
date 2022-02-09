@@ -1,0 +1,83 @@
+/********************/
+/* STYLING THE PAGE */
+/********************/
+#container {
+    margin: auto;
+    width: 50%;
+    padding-top: 2%;
+    position: relative;
+    transform-origin: top center;
+    /* z-index: -999; */
+}
+.minor {
+    font-size: 12px;
+    font-style:italic;
+}
+
+#proceed_button {
+    margin-bottom: 20px;
+    /* position: relative;
+    display: inline-block;
+    transform: translate(360px, 35px); */
+}
+
+/* ******************** */
+/* STYLING ZOOM BUTTONS */
+/* ******************** */
+#zoomOut {
+    background: url(zoom-out.svg) no-repeat;
+    background-position: 4px 4px;
+    background-size: 65%;
+    background-color: #ADD8E6;
+    cursor: pointer;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border: 2px solid #ADD8E6;
+    border-radius: 25px;
+    position: fixed;
+    bottom: 5px;
+    right: 40px;
+}
+      
+#zoomOut:hover {
+    background-color: #006599;
+    border: 2px solid #006599;
+}
+      
+#zoomIn {
+    background: url(zoom-in.svg) no-repeat;
+    background-position: 4px 4px;
+    background-size: 65%;
+    background-color: #ADD8E6;
+    cursor: pointer;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border: 2px solid #ADD8E6;
+    border-radius: 25px;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+}
+
+#zoomIn:hover {
+    background-color: #006599;
+    border: 2px solid #006599;
+}  
+
+/**************************/
+/* REPEATED PAGE ELEMENTS */
+/**************************/
+
+#uorLogo{
+    width: 300px;
+}
+
+#bookendImg {
+    margin-left: 45px;
+    display: inline;
+    width: 165px;
+    float: right;
+    transform: translate(-5px, 5px);
+  }

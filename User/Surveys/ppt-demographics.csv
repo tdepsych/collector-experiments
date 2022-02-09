@@ -1,0 +1,13 @@
+item_name,text,type,answers,optional,values,side_by_side,
+Instructions,"<h2>Demographic Information</h2><hr>
+<span class=""instruc"">Please could you help us better understand the diversity and inclusivity of your participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (it would help us if you could select the ""Prefer not to sau"" option, if that is the case). Answers for questions 6, 7, and 8 are required, as you will be unable to take part without supplying that information. Finally, we are collecting your demographic information before you begin any testing session to ensure that each session has an identical procedure (which increases the validity of our final results.</span><br/><br/>",instruct,,,,,
+Age,"1. Please enter your age (in years)<br><span class=""minor""><em>(the input only accepts numbers e.g., 21)</em></span>",number,,Yes,,,
+Gender,2. Which gender identity do you identify most with,radio,Male | Female | Non-binary | Prefer to self-identify | Prefer not to say,Yes,1 | 2 | 3 | 4 | 0,,
+Ethnicity,3. I identify my ethnicity as:,radio,White | Mixed/Multiple | Asian | Black/African/Caribbean | Chinese | Arab | Other | Prefer not to say,Yes,1 | 2 | 3 | 4 | 5 | 6 | 7 | 0,,
+Education,4. What is the highest level of education you have completed?,radio,"GCSEs or equivalent | A-Levels or equivalent | University undergraduate programme (e.g., BSc) | University postgraduate programme (e.g., MSc) | Doctoral degree | Other | Prefer not to say",Yes,1 | 2 | 3 | 4 | 5 | 6 | 0,,
+Emplyoment,5. What is your current employment status,radio,Full-time employment | Part-time employment | Unemployed | Self-employed | Prefer not to say,Yes,1 | 2 | 3 | 4 | 0,,
+NativeSpeaker,"6. Are you a native British English Speaker<br><span class=""minor""><em>(defined as someone who was born and raised in the UK, <br/>or moved to the UK before the age of 2)</em></span>",radio,Yes|No,No,1 | 2,,
+AmazonSona,"7. Please indicate whether, upon completion of the study, you wish to be awarded SONA credits, enter the draw to win a Â£75 Amazon gift voucher, or neither",radio,0.75 Sona Credits | Amazon Gift Card Draw | Neither,No,sona | amazon | neither,,
+HorizontalRule,<hr>,instruct,,,,,
+Email,"8. Please enter your email address<br><span class=""minor""><em>This is purely to allow the Researchers to contact you regarding each testing session and is not stored with your experimental data</em></span>",text,,no,,,
+,,,,,,,

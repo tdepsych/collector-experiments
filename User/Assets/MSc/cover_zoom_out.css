@@ -1,0 +1,98 @@
+<style>
+#aniCont {
+  overflow: hidden;
+}
+#collector_phase_timer {
+  display: none;
+}
+.animation-container {
+  width: 100%;
+  height: 99vh;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+.image-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 2;
+  
+  img {
+    -webkit-animation: image-slide 4s cubic-bezier(.5,.5,0,1);
+    animation: image-slide 4s cubic-bezier(.5,.5,0,1);
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-filter: drop-shadow(-4px 5px 5px rgba(0,0,0,0.6));
+    filter: drop-shadow(-4px 5px 5px rgba(0,0,0,0.6));
+    height: 200px;
+  }
+}
+.image-container img {
+  /*-webkit-filter: drop-shadow(-4px 5px 5px rgba(0,0,0,0.6));*/
+  /*filter: drop-shadow(-4px 5px 5px rgba(0,0,0,0.6));*/
+  /*height: 200px;*/
+  transform: scale(0);
+}
+
+.text-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  z-index: 1;
+  margin-left: -100px;
+}
+.text-container h1 {
+  text-transform: uppercase;
+  font-size: 50px;
+  font-family: sans-serif;
+  color: #006599;
+  font-weight: bolder;
+  letter-spacing: 15px;
+  transform: translateX(65px);
+}
+
+.fading-effect {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background: white;
+  transform: translateX(55px);
+  -webkit-animation: text-slide 3s cubic-bezier(.16,.28,0,1);
+  animation: text-slide 3s cubic-bezier(.16,.28,0,1);
+  animation-fill-mode: backwards;
+  -webkit-animation-fill-mode: backwards;
+  animation-delay: 1s;
+}
+
+
+/*************/
+/* ANIMATION */
+/*************/
+@keyframes image-slide {
+  0% { transform: translate(-50px, -150px) scale(1); }
+  60% { transform: translate(-50px, -150px) scale(1); }
+  90% { transform: translateX(-50px) scale(1); }
+  100% { transform: translateX(-50px) scale(0); }   
+}
+@keyframes text-slide {
+  0% { width: 0; }
+  60% { width: 100%; }
+  100% { width: 100%; }
+}
+.image-container img {
+   [animation name] [animation duration] [animation transition function] 
+  animation: image-slide 4s cubic-bezier(.5,.5,0,1);
+  /* animation-delay: 1s; */
+}
+.image-container img {
+  animation: image-slide 4s cubic-bezier(.5,.5,0,1);
+  animation-fill-mode: forwards;
+  /* animation-delay: 1s; */
+}

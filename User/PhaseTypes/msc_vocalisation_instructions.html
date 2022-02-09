@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
+  <script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>
+  <style>
+   #container h4 {
+    text-align: center;
+   }
+   #proceed_button {
+     display: block;
+     margin: auto;
+     position: relative;
+     top: 25px;
+   /*}*/
+  </style>
+ </head>
+ <body>
+  <button id="zoomOut" tabindex="-1"></button>
+  <button id="zoomIn" tabindex="-1"></button>
+  <div id="container">
+   <h2><b>Vocalisation Task</b></h2>
+   <hr>
+   <p>However, before you undertake the Balloon Analogue Risk Task, you are required complete a vocalisation task by repeating the following word out loud for 20 seconds:</p><br><h4><b>{{text}}</b></h4><br><p>When you are ready to speak, please click 'Start' below. This will move you to another page which displays a 20 second countdown timer. Please repeat {{text}}, at your <em>normal speaking rate and volume</em> until the countdown ends.
+   <div>
+     <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()" >Start</button>
+   </div>
+  </div>
+<script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>
+ </body>
+</html>

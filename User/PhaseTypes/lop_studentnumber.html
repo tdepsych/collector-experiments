@@ -22,7 +22,7 @@
 <style>
   #instruct_text {
     margin: auto;
-    /*width: 850px;*/
+    width: 800px;
     padding: 0px;
     max-height: 600px;
     text-align: center;
@@ -36,7 +36,7 @@
     background-position: 50% 50%;
     height: 260px;
     width: 536px;
-    transform: translateY(50px) scale(25%);
+    transform: translate(0px, 50px) scale(25%);
     border: none;
     opacity: .25;
     margin: 0 auto;
@@ -52,13 +52,29 @@
     left: 0;
     right: 0;
     margin: auto;
-    width: 600;
-    height: 600;
-    transform: translate(-25px, 150px);
+    width: 800;
+    height: 800;
+    text-align: center;
   }
+  #studentNumber{
+    margin-top: 50px;
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 10px;
+    padding: 10px;
+    border: 5px #78bce9 solid;
+    border-radius: 35px;
+    text-align: center;
+  }
+  ::placeholder {
+    opacity: .25;
+}
 </style>
+
+<input type='hidden' id='ppt_studentNumber' name='ppt_studentNumber' value="-1"/>
 <div id="trial_contents">
   <div id="instruct_text">{{text}}</div>
+    <input type="text" id="studentNumber" placeholder="e.g. 12345678" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
   <div>
     <button
       class="btn btn-primary"
@@ -67,3 +83,11 @@
     ></button>
   </div>
 </div>
+
+<script>
+var Form = document.getElementById("trial_contents");
+    Form.onchange = function() {
+var ppt_studentNumber = studentNumber.value
+document.getElementById("ppt_studentNumber").value = ppt_studentNumber;
+}
+</script>

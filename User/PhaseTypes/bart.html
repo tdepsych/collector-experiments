@@ -1,0 +1,450 @@
+<! -- to do: set up storing scores (look for "metric" for where gorilla stored values --!>
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preload" as="image" href="../../collector-experiments/User/Assets/MSc/bart_balloon_inflate.jpg">
+    <link rel="preload" as="image" href="../../collector-experiments/User/Assets/MSc/bart_balloon_burst.jpg">
+    <link rel="preload" as="image" href="../../collector-experiments/User/Assets/MSc/bart_balloon_happy.jpg">
+    <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
+    <style>
+    body {
+      -webkit-user-select: none;
+         -moz-user-select: -moz-none;
+          -ms-user-select: none;
+              user-select: none;
+    height:0!important;
+    }
+    #container{
+      margin-top:5%;
+      position: relative;
+      z-index: -999;
+    }
+    #zoomOut {
+      background: url(../../collector-experiments/User/Assets/MSc/zoom-out.svg) no-repeat;
+      background-position: 4px 4px;
+      background-size: 65%;
+      background-color: #ADD8E6;
+      cursor: pointer;
+      display: inline-block;
+      height: 30px;
+      width: 30px;
+      border: 2px solid #ADD8E6;
+      border-radius: 25px;
+      position: fixed;
+      bottom: 5px;
+      right: 40px;
+  }
+    }
+    #zoomOut:hover {
+      background-color: #006599;
+      border: 2px solid #006599;
+    }
+    
+    #zoomIn {
+      background: url(../../collector-experiments/User/Assets/MSc/zoom-in.svg) no-repeat;
+      background-position: 4px 4px;
+      background-size: 65%;
+      background-color: #ADD8E6;
+      cursor: pointer;
+      display: inline-block;
+      height: 30px;
+      width: 30px;
+      border: 2px solid #ADD8E6;
+      border-radius: 25px;
+      position: fixed;
+      bottom: 5px;
+      right: 5px;
+    }
+    #zoomIn:hover {
+      background-color: #006599;
+      border: 2px solid #006599;
+    }
+    
+    #round {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 135%;
+    }
+    
+    #message {
+      margin-top: 20px;
+      padding: 10px;
+      line-height: 1.3;
+      font-size: 110%;
+    }
+    
+    #round h2 {
+      margin-bottom: 0px;
+      padding: 1px;
+    }
+    
+    
+    #bigwrap {
+      text-align: center;
+      width: 550px;
+      font-size: 135%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 15px;
+    
+    }
+    
+    #ballonwrap {
+      height: 420px;
+      border: solid black 1px;
+      border-radius: 5px;
+      width: 100%;
+      background: #fff;
+    }
+    
+    #ballon {
+      height: 10px;
+      width: 100px;
+      margin-right: auto;
+      margin-left: auto;
+      margin-bottom: -300px;
+    }
+    
+    
+    #total, #current_round_pumps, #current_round_points {
+      display: table;
+      width: 100%;
+      margin-top: 4px;
+      margin-bottom: 4px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      background: #fff;
+      border-radius: 5px;
+    }
+    
+    #press, #goOn, #collect {
+      font-size:110%;
+      width: 100%;
+    }
+    
+    #total_term, #total_value, #current_points_label, #current_pumps_label, #current_pumps_value, #current_points_value {
+      display: table-cell;
+      width: 50%;
+    }
+    
+    #total_term, #current_points_label, #current_pumps_label{
+      text-align: right;
+    }
+    
+    #press, #collect, #goOn, #gonext {
+      cursor: pointer;
+      background: #006599;
+      color: #fff;
+      border-radius: 5px;
+      margin-top: 3px;
+      border-width: 1px;
+    }
+    
+    #press:hover, #collect:hover, #goOn:hover, #gonext:hover {
+      background-color: #275fda;
+    }
+    
+    #gonext {
+      font-size: 110%;
+      border-radius: 10px;
+      width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 12px;
+    }
+    
+    #goOn {
+      display: none;
+    }
+
+    .balloon_burst{
+      padding-bottom: 28px;
+      margin-top: 14px;
+    }
+    
+    .balloon_happy{
+      width: 150px;
+    }
+
+  </style>
+    </head>
+ <body>
+    <input type="hidden" name="bart_pumps" id="bart_collect_pumps" />
+    <input type="hidden" name="bart_round" id="bart_collect_round" />
+    <input type="hidden" name="bart_exploded" id="bart_collect_exploded" />
+    <input type="hidden" name="bart_risk" id="bart_collect_risk" />
+    <input type="hidden" name="bart_event" id="bart_collect_event" />
+
+   <div id="container">
+    <div id="round"></div>
+        <div id="bigwrap">
+            <div id="ballonwrap">
+                <div id="message"></div>
+                <div id="gonext"></div>
+                <img src="../../collector-experiments/User/Assets/MSc/bart_balloon_inflate.jpg" id="ballon" alt="Ballon">
+            </div>
+          
+            <button type="button" id="press"></button>
+            <button type="button" id="collect"></button>
+        
+            <div id="current_round_points">
+                <div id="current_points_label"></div>
+                <div id="current_points_value"></div>
+            </div>
+        
+            <div id="current_round_pumps">
+                <div id="current_pumps_label"></div>
+                <div id="current_pumps_value"></div>
+            </div>
+        
+            <div id="total">
+                <div id="total_term"></div>
+                <div id="total_value"></div>
+            </div>
+        
+            <div id="continue_button"></div>
+        </div></div>
+        <button id="zoomOut" tabindex="-1"></button>
+        <button id="zoomIn" tabindex="-1"></button>
+   
+   <script>
+        function appropriate_message(this_message) {
+          bootbox.alert(this_message);
+        }
+        
+        //audio 
+        
+        var explosion_audio = new Audio('../../collector-experiments/User/Assets/MSc/bart_inflate.mp3');
+        var collection_audio = new Audio('../../collector-experiments/User/Assets/MSc/bart_collect.mp3');
+      
+        // initialize values
+        var round = 0;
+        var start_size = 100; // start value of widht & height of the image; must correspond to the value that is specified for the #ballon id in style.css
+        var increase = 5; // number of pixels by which balloon is increased each pump
+        var size; // start_size incremented by 'increase'
+        var pumps; 
+        var total = 0; // money that has been earned in total
+        var rounds_played = 10;
+        var explode_array =  Array.from({length: 10}, () => Math.floor(Math.random() * (70 - 40) + 30));
+        var maximal_pumps = 100;
+        var pumpmeup; // number pumps in a given round; is updated each round
+        var number_pumps = []; // arrays for saving number of pumps
+        var exploded = []; // array for saving whether ballon has exploded
+        var explosion; // will an explosion occur? 1 = yes, 0 = no
+        var last_win = 0; // initialize variable that contains the win of the previous round
+        var current_value = 0;
+        
+        // initialize language
+        var noOfTrials = 10;
+        var label_press = 'Inflate Balloon';
+        var label_collect = 'Collect Points';
+        var label_balance = 'Total Points Earned:';
+        var label_currency = ' Points';
+        var label_header = 'Balloon Number ';
+        var label_gonext1 = 'Start next round';
+        var label_gonext2 = 'End game';
+        var msg_explosion1 = '<p>The balloon burst at ';
+        var msg_explosion2 = ' <p> You did not collect any points this round.</p>';
+        var img_explosion = "<img class= 'balloon_burst' src= '../../collector-experiments/User/Assets/MSc/bart_balloon_burst.jpg'/>";
+        var img_happy = "<img class= 'balloon_happy' src= '../../collector-experiments/User/Assets/MSc/bart_balloon_happy.jpg'/>";
+        
+        var label_current_points = 'Points Earned: ';
+        var label_current_pumps = 'Number of pumps: '
+        
+        var msg_collect1 = '<p>The balloon did not burst!</p><p>You have collected ';
+        var msg_collect2 = ' points.</p><p> Your points are added to your total score.</p>';
+        
+        var msg_end1 = '<p>Well done, you earned ';
+        var msg_end2 = ' points in total! </p><br/><br/><p>When you are ready,<br/>click Continue to start the next task</p>';
+        
+        var err_msg = "You need to inflate the balloon at least once in order to earn points. Press the 'Inflate Balloon' button below";
+        
+        var collector_button = '<div><button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()">Continue</button></div>';
+      
+        
+        // initialize labels
+        $('#press').html(label_press); 
+        $('#collect').html(label_collect);
+        $('#total_term').html(label_balance);
+        $('#total_value').html(total+label_currency);
+        
+        $('#current_points_label').html(label_current_points);
+        $('#current_points_value').html(current_value+label_currency);
+        
+        $('#current_pumps_label').html(label_current_pumps);
+        $('#current_pumps_value').html(pumps);
+        
+        // below: create functions that define game functionality
+        
+        // what happens when a new round starts
+        var new_round = function() {
+            console.log(number_pumps);
+            console.log(exploded);
+            $('#gonext').hide();
+            $('#message').hide();  
+            $('#collect').show();
+            $('#press').show();
+            round += 1;
+            size = start_size;
+            pumps = 0;
+            $('#current_pumps_value').html(pumps);
+            $('#ballon').width(size); 
+            $('#ballon').height(size);
+            $('#ballon').show();
+            $('#round').html('<h2>'+label_header+round+' of 10<h2>');
+        };
+      
+        // what happens when the game ends
+        var end_game = function() {
+            $('#total').remove();
+            $('#collect').remove();
+            $('#ballon').remove();
+            $('#press').remove();
+            $('#gonext').remove();
+            $('#round').remove();
+            $('#last_round').remove();
+            $('#current_pumps_label').remove();
+            $('#current_pumps_value').remove();
+            $('#current_points_label').remove();
+            $('#current_points_value').remove();
+            $('#message').html(msg_end1+total+msg_end2).show();
+            $('#continue_button').html(collector_button)
+        };
+        
+        // message shown if balloon explodes
+        var explosion_message = function() {
+            $('#collect').hide();
+            $('#press').hide();
+            $('#message').html(img_explosion+msg_explosion1+pumpmeup+' pumps'+msg_explosion2).show();
+        };
+        
+        // message shown if balloon does not explode
+        var collected_message = function() {
+            $('#collect').hide();
+            $('#press').hide();    
+            $('#message').html(img_happy+msg_collect1+(pumpmeup*5)+msg_collect2).show();
+        };  
+        
+        // animate explosion using jQuery UI explosion
+        var balloon_explode = function() {
+    
+          Phase.add_response({
+                bart_pumps: pumps,
+                bart_round: round,
+                bart_exploded: explosion,
+                bart_risk: explode_array[round-1],
+                bart_event: "Exploded",
+              })
+           
+           
+            // activate this if you have a sound file to play a sound
+            // when the balloon explodes:
+            
+            explosion_audio.play();
+        };  
+        
+        // show button that starts next round
+        var gonext_message = function() {
+            $('#ballon').hide();
+            if (round < rounds_played) {
+                $('#gonext').html(label_gonext1).show();
+            } else {
+                $('#gonext').html(label_gonext2).show();
+            }
+        };
+        
+        // add money to bank
+        var increase_value = function() {
+            $('#total_value').html(total+label_currency);
+        };
+        
+        var show_last = function() {
+            $('#last_value').html(last_win+label_currency);
+        };
+        
+      // button functionalities
+        
+        // pump button functionality
+        $('#press').click(function() {
+            if (pumps >= 0 && pumps < maximal_pumps) { // interacts with the collect function, which sets pumps to -1, making the button temporarily unclickable
+                explosion = 0; // is set to one if pumping goes beyond explosion point; see below
+                pumps += 1;
+                $('#current_pumps_value').html(pumps);
+                
+                current_value = (pumps*5);
+                $('#current_points_value').html(current_value+label_currency);
+                
+                //inflate_audio.play();
+                
+                if (pumps < explode_array[round-1]) {
+                    size +=increase;
+                    $('#ballon').width(size); 
+                    $('#ballon').height(size);
+                } else {
+                    last_win = 0;
+                    pumpmeup = pumps;
+                    pumps = -1; // makes pumping button unclickable until new round starts
+                    explosion = 1; // save that balloon has exploded this round
+                    balloon_explode();
+                    exploded.push(explosion); // save whether balloon has exploded or not
+                    number_pumps.push(pumpmeup); // save number of pumps
+                    setTimeout(explosion_message, 1200);
+                    setTimeout(gonext_message, 1200);
+                    setTimeout(show_last, 1200);
+                }
+            }
+        })
+      
+      
+        // collect button: release pressure and hope for money
+        $('#collect').click(function() {
+            if (pumps === 0) {
+            //alert(err_msg);
+            appropriate_message(err_msg);
+            } else if (pumps > 0) { // only works after at least one pump has been made
+              Phase.add_response({
+                bart_pumps: pumps,
+                bart_round: round,
+                bart_exploded: explosion,
+                bart_risk: explode_array[round-1],
+                bart_event: "Banked",
+              })
+                
+            exploded.push(explosion); // save whether balloon has exploded or not
+                // activate this if you have a sound file to play a sound
+                // when the balloon does not explode:
+                
+            collection_audio.play();
+            number_pumps.push(pumps); // save number of pumps
+            pumpmeup = pumps;
+            pumps = -1; // makes pumping button unclickable until new round starts
+            $('#ballon').hide();
+            collected_message();
+            gonext_message();
+            total += (pumpmeup * 5);
+            last_win = pumpmeup;
+            increase_value();
+            show_last();
+            }
+        });
+        
+        // click this button to start the next round (or end game when all rounds are played)
+        $('#gonext').click(function() {
+            // GORILLA SUPPORT - Amended to use noOfTrials rather than rounds played
+            if (round < noOfTrials) {
+                new_round();
+            } else {
+                end_game();
+            }
+        });
+        
+       // start the game!
+        new_round();
+
+    </script>
+    <script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>
+
+ </body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <link rel="stylesheet" href="{{task_title}}">
+  </style>
+ </head>
+ <body>
+   <div id="aniCont"></div>
+    <script>
+      Phase.set_timer(function(){
+        $('#aniCont').html('<div class="animation-container"><div class="image-container"><img src="../../collector-experiments/User/Assets/MSc/uor.svg" /></div><div class="text-container"><h1>{{text}}</h1><div class="fading-effect"></div></div></di>');
+      },'10');
+      Phase.set_timer(function(){Phase.submit()}, 6500);
+    </script>
+ </body>
+</html>
