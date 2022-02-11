@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preload" as="image" href="../../collector-experiments/User/Assets/MSc/uor.png">
     <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
+    <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/radio_buttons.css">
     <style>
     
       /********************/
@@ -152,80 +153,9 @@
         margin-top: 2px;
       }
       
-      /****************/
-      /* STYLING FORM */
-      /****************/
-      
-      @keyframes click-wave {
-        0% {
-          height: 40px;
-          width: 40px;
-          opacity: 0.35;
-          position: relative;
-        }
-        100% {
-          height: 200px;
-          width: 200px;
-          margin-left: -80px;
-          margin-top: -80px;
-          opacity: 0;
-        }
-      }
-
-      .option-input {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        -ms-appearance: none;
-        -o-appearance: none;
-        appearance: none;
-        position: relative;
-        top: 13.33333px;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        height: 20px;
-        width: 20px;
-        transition: all 0.15s ease-out 0s;
-        background: #eee;
-        border: none;
-        color: #fff;
-        cursor: pointer;
-        display: inline-block;
-        float: left;
-        margin-right: 0.5rem;
-        outline: none;
-        position: relative;
-        z-index: 1000;
-      }
-      .option-input.radio:hover {
-          background-color: #ccc;
-          cursor: pointer;
-      }
-      .option-input.radio:checked {
-          background: #3f97f6;
-          background-image: url(../../collector-experiments/User/Assets/MSc/checked.svg);
-          background-size: 12px;
-          background-repeat: no-repeat;
-          background-position: center;
-          cursor: default;
-      }
-      .option-input:checked::after {
-        -webkit-animation: click-wave 0.65s;
-        -moz-animation: click-wave 0.65s;
-        animation: click-wave 0.65s;
-        content: '';
-        position: relative;
-        z-index: 100;
-      }
-      .option-input.radio {
-          border-radius: 0;
-          transform: translateY(-12px);
-      }
-      
-      .radioLabel {
-          transform: translateX(5px);
-          cursor: pointer;
-      }
+      /* *********************** */
+      /* ADDITIONAL FORM STYLING */
+      /* *********************** */
       
       #radioLabelHolder {
           padding-bottom: 15px;
@@ -280,13 +210,13 @@
           Supervisor: Dr Anthony Haffey (anthony.haffey@reading.ac.uk - 0118 378 8850)<br/>
           Experimenter: Christopher Dobson (c.g.dobson@student.reading.ac.uk)
           <br/><br/>
-          We would be grateful if you could assist us by participating in our study <b>‘Investigating the impact of online disinhibition on the behavioural effects of swearing’</b>. Previous research has shown that swearing can have interesting behavioural effects. For instance, it has been found to alter a person’s pain tolerance and physical strength. However, the strength of any effect appears dependent on the testing location. One potential explanation for this confound in result is online disinhibition; the idea that there is increased anonymity in online interactions. We are, therefore, interested in understanding the role online disinhibition has in altering the behavioural effects of swearing.  
+          We would be grateful if you could assist us by participating in our study <b>‘Investigating the impact of online disinhibition on the behavioural effects of swearing’</b>. Online disinhibition is the psychological phenomenon whereby increased anonymity in online interactions reduces the level of accountability felt. It is suggested that this phenomenon may explain why behavioural effects of swearing (e.g., an increase in pain tolerance and physical strength) do not appear to replicate using online testing methodologies. We are, therefore, interested in understanding how methodological changes may alter levels of online disinhibition, altering subsequent behavioural effects of swearing..  
           <br/><br/>
-          The study comprises three testing sessions and each session will take approximately 10 - 15 minutes. Each session comprises the same set of tasks starting with a short demographic questionnaire. After that, you then undertake a balloon inflation task where you collect points each time you pump up the balloon without it bursting. During this task you will have to repeat either a swearword (fuck) or a non-swearword (flat) out loud. After completing the balloon inflation task, you will provide an offensiveness rating for the word you have to repeat, as well as completing a lexical decision task where you respond by stating whether a displayed word rhymes with the previously repeated word or not. After this, you will then repeat these three tasks but repeating the other possible word during the balloon inflation task. Lastly, you will complete a questionnaire measuring state-anxiety.  
+          The study comprises <b>three</b> testing sessions, each taking approximately <b>10 - 15 minutes</b>. Each session is online, differing only in how present the researchers are, and uses the same procedure. Initially, you will be asked to repeat either a swearword (Fuck) or a non-swearword (Flat) out loud, at your normal speaking volume and rate, for 20 seconds. After this, you will undertake a computerise ‘balloon inflation’ task where you collect points each time you pump up a balloon without it bursting. Upon completion of the balloon inflation task, you will complete a lexical decision task, responding to whether a displayed word rhymes with the previously repeated word. You will then provide ratings of how offensive the repeated word is to you and how humorous you found repeating it. Next you will complete a self-report emotional questionnaire. After this, you will be given a short break in which you can solve a wordsearch puzzle. You will then repeat all the tasks except the wordsearch, vocalising the other word for 20 seconds before the balloon inflation task. We are also collecting basic demographic information to monitor the diversity and inclusivity of those who take part.
           <br/><br/>
           Your data will be kept confidential and securely stored, with only an anonymous number identifying it. No information linking that number to you will be stored.
           <br/><br/>
-          Taking part in this study is completely voluntary and you may withdraw at any time and without reason. No financial payment is available for taking part, unless you were recruited through SONA whereby 0.75 SONA credits are available for your participation once all three sessions are complete. You are free to contact the Experimenter (using the details provide above) to ask any questions you may have about this study before you begin.
+          Taking part in this study is completely voluntary and you may withdraw at any time, without reason or penalty, by closing your browser. Upon completion of all three sessions, you can enter a draw to win a £75 Amazon gift voucher, should you wish. If you were recruited through SONA, you can claim 0.75 SONA credits instead of entering the draw. You are free to contact the Experimenter (using the details provide above) to ask any questions you may have about this study before you begin.
           <br/><br/>
           This study has been reviewed by the University Research Ethics Committee and has been given a favourable ethical opinion for conduct (########; expiry date: ##/##/####).
           <br/><br/>

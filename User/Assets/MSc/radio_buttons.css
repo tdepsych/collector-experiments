@@ -28,8 +28,9 @@
   height: 20px;
   width: 20px;
   transition: all 0.15s ease-out 0s;
-  background: #eee;
-  border: none;
+  background: #FFF;
+  border: 1px solid #3f97f6;
+  border-radius: 15px!important;
   color: #fff;
   cursor: pointer;
   display: inline-block;
@@ -40,7 +41,7 @@
   z-index: 1000;
 }
 .option-input.radio:hover {
-    background-color: #ccc;
+    background-color: #a7d4ef;
     cursor: pointer;
 }
 .option-input.radio:checked {
