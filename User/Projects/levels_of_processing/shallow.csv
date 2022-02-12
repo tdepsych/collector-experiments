@@ -1,5 +1,6 @@
 item,phasetype,max_time,text,shuffle_1,weight,
-0,lop_studentnumber,user,"<b>Welcome to our study</b><br><br>Before you begin, please enter your student number in the box below. Once you have entered your student number, please press start to begin the study.",,,
+0,uor_intro,user,,,,
+0,lop_studentnumber,user,<b>Welcome to the study</b>,,,
 0,start,user,"<b>Type Case</b><br><br>The following screen displays a question for 2 seconds. There will then be a short pause before you are presented with a word. You then have 4 seconds to answer whether that word correctly answers the original question.<br><br>When you are ready, press start.",,,
 2 to 31,lop_trials,user,Is the word written in&nbsp;,encode_only,,
 0,video-play,user,"<b>Thank you for completing the previous task.</b><br><br>You will now watch a video, lasting a couple of minutes. The video has sound. Please make sure you volume is low enough not to disturb those around you. You may mute your speakers if you wish.<br><br>When you are ready to begin watching, press play.",,,

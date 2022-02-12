@@ -210,10 +210,10 @@ $('.update_name').on('click',function(){
     Phase.submit();
   }
 });
-Phase.set_timer(function(){$('#instruction').hide()},'2000'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
-Phase.set_timer(function(){$('#ready').show()},'2000');
-Phase.set_timer(function(){$('#ready').hide()},'3000');
-Phase.set_timer(function(){$('#word').show()},'3000');
+Phase.set_timer(function(){$('#instruction').hide()},'1500'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+Phase.set_timer(function(){$('#ready').show()},'1500');
+Phase.set_timer(function(){$('#ready').hide()},'2500');
+Phase.set_timer(function(){$('#word').show()},'2500');
 Phase.set_timer(function(){$('#word').hide()},'7000');
 Phase.set_timer(function(){$('#No').show()},'3000');
 Phase.set_timer(function(){$('#Yes').show()},'3000')
