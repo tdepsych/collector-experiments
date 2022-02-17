@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link rel="preload" as="image" href="../../collector-experiments/User/Assets/MSc/correct.svg">
+    <link rel="preload" as="image" href="../../collector-experiments/User/Assets/MSc/incorrect.svg">
+    <link rel="preload" as="image" href="../../collector-experiments/User/Assets/MSc/too-slow.svg">
+    <link rel="preload" as="image" href="../../collector-experiments/User/Assets/MSc/wait.svg">
 <style>
 .update_name:focus{
   border:0;
@@ -106,6 +113,8 @@ transform: translateY(40px);
     width: 75px;
 }
 </style>
+</head>
+<body>
 <input type='hidden' id='keyboard_response' name='keyboard_response'/>
 <input type='hidden' id='ldt_correct' name='ldt_correct'/>
 <div id='trial_contents'>
@@ -180,3 +189,5 @@ $(window).bind('keydown', function(event) {
   }
 });
 </script>
+</body>
+</html>

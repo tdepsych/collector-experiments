@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link rel="preload" as="image" href="../../collector-experiments/User/Assets/MSc/too-slow.svg">
 <style>
 .update_name:focus{
   border:0;
@@ -42,7 +46,7 @@ body{
 }
 #too_slow{
   position:absolute;
-  /*display:none;*/
+  display:none;
   background-color:transparent;
   border-color:;
   border-radius:;
@@ -72,6 +76,7 @@ body{
     width: 50px;
 }
 </style>
+</head>
 <input type='hidden' id='keyboard_response' name='keyboard_response'/>
 <input type='hidden' id='ldt_correct' name='ldt_correct'/>
 <div id='trial_contents'>
@@ -81,6 +86,7 @@ body{
 </div></div>
 <input type='hidden' name='fixation_cross' />
 <input type='hidden' name='' />
+</body>
 <script>
 var feedback = "{{answer}}";
 $('.update_name').on('click',function(){
@@ -119,3 +125,5 @@ $(window).bind('keydown', function(event) {
   }
 });
 </script>
+ </body>
+</html>
