@@ -44,8 +44,8 @@ display:none!important;
 0,msc_vas_humour,,,{VAS},FUCK,,Taboo,,,,
 0,msc_videos,,,{CDQ},cdq,,Taboo,Task Evaluation Questionnaire,Please watch the video below to understand what is required of you.,,
 0,tde_survey,cognitive_dissonance.csv,,{COG DIS} 10.2147/PRBM.S150494 & 10.1002/(SICI)1520-6793(200005)17:53.3.CO;2-7,2,,Taboo,,,,
-0,msc_videos,,,-,wordsearch,,Taboo,Time for a break...,Please watch the video below to understand what is required of you.,,
-0,wordsearch_teabiscuits,,30,-,,,,,,,
+0,msc_videos,,,-,wordsearch,,,Time for a break...,Please watch the video below to understand what is required of you.,,
+0,wordsearch_teabiscuits,,180,-,,,,,,,
 0,wordsearch_feedback,,,-,,,,Wordsearch Task Complete,,,
 0,msc_videos,,,{BART},bart,,Non-Taboo,Balloon Inflation Task,Please watch the video below to understand what is required of you.,,
 0,msc_videos,,,{VOCAL},flat_vocal,,Non-Taboo,Word Vocalisation: Flat,Please watch the video below to understand what is required of you.,,
@@ -57,7 +57,11 @@ $(document).off('keypress');
    Phase.submit()
   } // closes if (event.which)
  }) // Closes function(event)
-</script>",,
+</script><style>
+#proceed_button {
+display:none!important;
+}
+</style>",,
 92 to 101,ldt_with_practice,,,{LDT},,block2p,Non-Taboo,,,,
 0,task_bookend,,,{LDT},,,Non-Taboo,End Of Practice Trials,"<p>That completes the practice trials. You will now complete the experimental trials. Once again, all you have to do is decide whether it rhymes with <em>FLAT</em> (the word you repeated during the previous balloon analogue risk task). <br><br> • If the word <span style=""color:blue;""><em>rhymes</em> press <b>P</b></span><br><br> • If the word <span style=""color:red;""><em>does not rhyme </em> press <b>Q</b></span><br> <br>Position your fingers over the required keys as shown below. <br><br><b>Please note: </b>These trials <span style=""text-decoration: underline;""><em>do not</em></span> provide you with feedback as to whether you response was correct or not. <br><br>When you are ready, press the <b>Spacebar</b> to start the task.</p><br><br><img src=""../../collector-experiments/User/Assets/MSc/ldt_keyboard.jpg"" id=""ldt_img""/>
 <script>
