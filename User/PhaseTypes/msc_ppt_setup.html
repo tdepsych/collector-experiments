@@ -371,6 +371,9 @@
           document.getElementById("tooltiptext").innerHTML = "Sorry. Your Participant ID is not correctly formatted.<br/><em>(have you entered the last 4 digits of your mobiel number?)";
           output.innerHTML = "";
         }
+         if (preScreen == "Pre_Screen") {
+          document.getElementById("testingSession").value = 0;
+        }
     }
     //-----------------//
     // PAGE TABS STUFF //
