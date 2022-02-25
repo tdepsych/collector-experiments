@@ -314,7 +314,7 @@
 
       </form>
     </div>
-    <input type="hidden" name="uniqueID" id="uniqueID" />
+    <input type="hidden" name="uniqueid" id="uniqueid" />
     <input type="hidden" name="testingSession" id="testingSession" />
     <!-- --------------------------------- -->
     <!-- Only Javascript beyond this point -->
@@ -354,7 +354,7 @@
           document.getElementById("tooltiptext").setAttribute("class", "tooltipHidden");
           output.innerHTML = pptID
           document.getElementById("idMsgIcon").src="../../collector-experiments/User/Assets/MSc/idPos.svg";
-          document.getElementById("uniqueID").value = pptID;
+          document.getElementById("uniqueid").value = pptID;
           document.getElementById("testingSession").value = parent.parent.sessionNumber;
           console.log($('input[name="SessionNumber"]:checked').val());
         } else if (pptID.length > 5 && $('input:radio[name="SessionNumber"]').not(':checked')) {
@@ -363,7 +363,7 @@
           document.getElementById("tooltiptext").innerHTML = "Please complete the form above by indicating which testing session you are completing today</em>";
           output.innerHTML = pptID
           document.getElementById("idMsgIcon").src="../../collector-experiments/User/Assets/MSc/idPos.svg";
-          document.getElementById("uniqueID").value = pptID;
+          document.getElementById("uniqueid").value = pptID;
         } else {
           document.getElementById("tooltiptext").setAttribute("class", "tooltiptext");
           document.getElementById("nextBtn").setAttribute("class", "submitBtn");
