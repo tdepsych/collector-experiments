@@ -398,13 +398,7 @@
             //alert(err_msg);
             appropriate_message(err_msg);
             } else if (pumps > 0) { // only works after at least one pump has been made
-              Phase.add_response({
-                bart_pumps: pumps,
-                bart_round: round,
-                bart_exploded: explosion,
-                bart_risk: explode_array[round-1],
-                bart_event: "Banked",
-              })
+              Phase.add_response({bart_pumps: pumps,bart_round: round,bart_exploded: explosion,bart_risk: explode_array[round-1],bart_event: "Banked",})
                 
             exploded.push(explosion); // save whether balloon has exploded or not
                 // activate this if you have a sound file to play a sound
