@@ -176,17 +176,17 @@
     </style>
  </head>
  <body style="display:hidden;">
-    <input type="hidden" name="c1_readinfo" id="c1_readinfo" class="pptConsent"/>
-    <input type="hidden" name="c2_swear" id="c2_swear" class="pptConsent"/>
-    <input type="hidden" name="c3_understandprocedure" id="c3_understandprocedure" class="pptConsent"/>
-    <input type="hidden" name="c4_understandrights" id="c4_understandrights" class="pptConsent"/>
-    <input type="hidden" name="c5_rightwithdraw" id="c5_rightwithdraw" class="pptConsent"/>
-    <input type="hidden" name="c6_closebrowser" id="c6_closebrowser" class="pptConsent"/>
-    <input type="hidden" name="c7_anonymousdata" id="c7_anonymousdata" class="pptConsent"/>
-    <input type="hidden" name="c8_downloadinfo" id="c8_downloadinfo"class="pptConsent"/>
-    <input type="hidden" name="c9_over18" id="c9_over18" class="pptConsent"/>
-    <input type="hidden" name="c10_nativeenlish" id="c10_nativeenlish" class="pptConsent"/>
-    <input type="hidden" name="c11_InformedConsent" id="c11_InformedConsent" class="pptConsent"/>
+    <!--<input type="hidden" name="c1_readinfo" id="c1_readinfo" class="pptConsent"/>-->
+    <!--<input type="hidden" name="c2_swear" id="c2_swear" class="pptConsent"/>-->
+    <!--<input type="hidden" name="c3_understandrights" id="c3_understandrights" class="pptConsent"/>-->
+    <!--<input type="hidden" name="c4_rightwithdraw" id="c4_rightwithdraw" class="pptConsent"/>-->
+    <!--<input type="hidden" name="c5_closebrowser" id="c5_closebrowser" class="pptConsent"/>-->
+    <!--<input type="hidden" name="c6_anonymousdata" id="c6_anonymousdata" class="pptConsent"/>-->
+    <!--<input type="hidden" name="c7_downloadinfo" id="c7_downloadinfo" class="pptConsent"/>-->
+    <!--<input type="hidden" name="c8_over18" id="c8_over18" class="pptConsent"/>-->
+    <!--<input type="hidden" name="c9_nativeenlish" id="c9_nativeenlish" class="pptConsent"/>-->
+    <!--<input type="hidden" name="c10_opendata" id="c10_opendata" class="pptConsent"/>-->
+    <!--<input type="hidden" name="c11_informedconsent" id="c11_informedconsent" class="pptConsent"/>-->
     <button id="zoomOut" class="zoomBtn" tabindex="-1"></button>
     <button id="zoomIn" class="zoomBtn" tabindex="-1"></button>
     <div id="container">
@@ -251,52 +251,52 @@
           <div id="consentForm">
             <div class="checkboxes">
               <label id="radioLabelHolder">
-                <input type="checkbox" class="option-input radio consent" name="SessionNumber" id="sessionNumber" required />
+                <input type="checkbox" class="option-input radio consent pptConsent" name="c1_readinfo" id="c1_readinfo" />
                 <span class="radioLabel">I have read the information sheet regarding the project: <em>Investigating the impact of online disinhibition on the behavioural effects of swearing.</em></span>
               </label>
               <label id="radioLabelHolder">
-                <input type="checkbox" class="option-input radio consent" name="SessionNumber" id="sessionNumber" required />
+                <input type="checkbox" class="option-input radio consent pptConsent" name="c2_swear" id="c2_swear" />
                 <span class="radioLabel">I understand the experimental procedure as explained on the information sheet and that it will involve repeating out loud the swearword ‘Fuck’ for 20 seconds.</span>
               </label>
               <label id="radioLabelHolder">
-                <input type="checkbox" class="option-input radio consent" name="SessionNumber" id="sessionNumber" required />
+                <input type="checkbox" class="option-input radio consent pptConsent" name="c3_understandrights" id="c3_understandrights" />
                 <span class="radioLabel">I understand what information is collected about me, how it will be used in relation to the study, how it will be kept safe, and my rights in relation to my data.</span>
               </label>
               <label id="radioLabelHolder">
-                <input type="checkbox" class="option-input radio consent" name="SessionNumber" id="sessionNumber" required />
+                <input type="checkbox" class="option-input radio consent pptConsent" name="c4_rightwithdraw" id="c4_rightwithdraw" />
                 <span class="radioLabel">I understand participation is entirely voluntary and that I have the right to withdraw from the study at any time without detriment.</span>
               </label>
               <label id="radioLabelHolder">
-                <input type="checkbox" class="option-input radio consent" name="SessionNumber" id="sessionNumber" required />
+                <input type="checkbox" class="option-input radio consent pptConsent" name="c5_closebrowser" id="c5_closebrowser" />
                 <span class="radioLabel">I understand that I can withdraw at any time by simply closing my browser window.</span>
               </label>
               <label id="radioLabelHolder">
-                <input type="checkbox" class="option-input radio consent" name="SessionNumber" id="sessionNumber" required />
+                <input type="checkbox" class="option-input radio consent pptConsent" name="c6_anonymousdata" id="c6_anonymousdata" />
                 <span class="radioLabel">I understand that the data I provide will be anonymous and cannot be linked back to me.</span>
               </label>
               <label id="radioLabelHolder">
-                <input type="checkbox" class="option-input radio consent" name="SessionNumber" id="sessionNumber" required />
+                <input type="checkbox" class="option-input radio consent pptConsent" name="c7_downloadinfo" id="c7_downloadinfo" />
                 <span class="radioLabel">I understand that I can download copies of the study ‘Information Sheet’ and this ‘Consent Form’ by clicking the link at the bottom of the previous page, or by requesting copies by emailing the experimenter listed above.</span>
               </label>
               <label id="radioLabelHolder">
-                <input type="checkbox" class="option-input radio consentCheck" name="SessionNumber" id="sessionNumber" required />
+                <input type="checkbox" class="option-input radio consentCheck" />
                 <span class="radioLabel">To confirm that you are reading each item before agreeing, please leave this unticked.</span>
               </label>
               <label id="radioLabelHolder">
-                <input type="checkbox" class="option-input radio consent" name="SessionNumber" id="sessionNumber" required />
+                <input type="checkbox" class="option-input radio consent pptConsent" name="c8_over18" id="c8_over18" />
                 <span class="radioLabel">I confirm that I am over the age of 18.</span>
               </label>
               <label id="radioLabelHolder">
-                <input type="checkbox" class="option-input radio consent" name="SessionNumber" id="sessionNumber" required />
+                <input type="checkbox" class="option-input radio consent pptConsent" name="c9_nativeenlish" id="c9_nativeenlish" />
                 <span class="radioLabel">I confirm that I am a native English speaker. <br><span style="font-size:14px; color:#808080;"><em>(defined as someone born in a native English speaking country (e.g., the UK or USA), or moved there before the age of 2)</em></span>
                 </span>
               </label>
               <label id="radioLabelHolder">
-                <input type="checkbox" class="option-input radio consent" name="SessionNumber" id="sessionNumber" required />
+                <input type="checkbox" class="option-input radio consent pptConsent" name="c10_opendata" id="c10_open data" />
                 <span class="radioLabel">I understand that the data collected as part of this study will be preserved and made openly available in an anonymized form, so that they can be consulted and re-used by others.</span>
                 </label>
               <label id="radioLabelHolder">
-                <input type="checkbox" class="option-input radio consent" name="SessionNumber" id="sessionNumber" required />
+                <input type="checkbox" class="option-input radio consent pptConsent" name="c11_informedconsent" id="c11_informedconsent"/>
                 <span class="radioLabel">I understand that by clicking <b>Continue</b> (which begins the study) that I am providing <b>informed consent</b> to take part in to this study.</span>
               </label>
             </div>
