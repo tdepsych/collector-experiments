@@ -7,7 +7,7 @@ Ethnicity,3. I identify my ethnicity as:,radio,White | Mixed/Multiple | Asian | 
 Education,4. What is the highest level of education you have completed?,radio,"GCSEs or equivalent | A-Levels or equivalent | University undergraduate programme (e.g., BSc) | University postgraduate programme (e.g., MSc) | Doctoral degree | Other | Prefer not to say",Yes,1 | 2 | 3 | 4 | 5 | 6 | 0,,
 Emplyoment,5. What is your current employment status,radio,Full-time employment | Part-time employment | Unemployed | Self-employed | Prefer not to say,Yes,1 | 2 | 3 | 4 | 0,,
 NativeSpeaker,"6. Are you a native British English Speaker<br><span class=""minor""><em>(defined as someone who was born and raised in the UK, <br/>or moved to the UK before the age of 2)</em></span>",radio,Yes|No,No,1 | 2,,
-AmazonSona,"7. Please indicate whether, upon completion of the study, you wish to be awarded SONA credits, enter the draw to win a Â£75 Amazon gift voucher, or neither",radio,0.75 Sona Credits | Amazon Gift Card Draw | Neither,No,sona | amazon | neither,,
+AmazonSona,"7. Please indicate whether, upon completion of the study, you wish to be awarded SONA credits, enter the draw to win a £75 Amazon gift voucher, or neither",radio,0.75 Sona Credits | Amazon Gift Card Draw | Neither,No,sona | amazon | neither,,
 HorizontalRule,<hr>,instruct,,,,,
 Email,"8. Please enter your email address<br><span class=""minor""><em>This is purely to allow the Researchers to contact you regarding each testing session and is not stored with your experimental data</em></span>",text,,no,,,
 ,,,,,,,
