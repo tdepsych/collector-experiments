@@ -1,7 +1,7 @@
 item,phasetype,survey,max_time,notes,text,shuffle_1,shuffle_2,task_title,task_body_text,weight,
-0,uor_cover,,,-,Welcome,,,../../collector-experiments/User/Assets/MSc/cover_zoom_in.css,,,
-0,msc_ppt_setup,,,-,,,,,,,
-0,msc_info_consent,,,-,,,,,,,
+0,uor_cover,,,-,Welcome,,,../../collector-experiments/User/Assets/MSc/cover_zoom_in.css,,0,
+0,msc_ppt_setup,,,-,,,,,,0,
+0,msc_info_consent,,,-,,,,,,0,
 0,task_bookend,,,{BART},Start,,Taboo,Balloon Inflation Task,"<p>During the next task, you will be presented with <b>10 balloons</b>, one at a time, as shown below. For each balloon you can click on the button labelled 'Inflate Balloon' to increase its size. You will accumulate 5 points for each pump. At any point, you can stop pumping up the balloon and click on the button labelled 'Collect Points'. Clicking this button will start you on the next balloon and will transfer the accumulated points into your 'Total Points Earned'. At the start of each balloon, until you start pumping, the amount earnt on the previous balloon is shown as labelled 'Points Earned'. It is your choice to determine how much to pump up the balloon, but be aware that at some point the balloon will explode. The explosion point varies across balloons, ranging from the first pump to enough pumps to make the balloon fill its entire box. <br><br><img src=""../../collector-experiments/User/Assets/MSc/balloon-analog-risk-task.jpg"" id=""bart_img""/>
 <br/><br/> <b>If the balloon explodes before you click on 'Collect Points', then you move on to the next balloon and all points in 'Points Earned' for that round are lost.</b> Exploded balloons do not affect the points accumulated overall and the speed at which you pump does not affect the likelihood of the balloon bursting.</p>
 
@@ -11,9 +11,9 @@ item,phasetype,survey,max_time,notes,text,shuffle_1,shuffle_2,task_title,task_bo
  display: block;
  margin: auto;
 }
-</style>",,
-0,msc_vocalisation_instructions,,,{BART},FUCK,,Taboo,,,,
-0,msc_vocalisation,,21,{BART},FUCK,,Taboo,,,,
+</style>",0,
+0,msc_vocalisation_instructions,,,{BART},FUCK,,Taboo,,,0,
+0,msc_vocalisation,,21,{BART},FUCK,,Taboo,,,0,
 0,bart,,,{BART},,,Taboo,,,,
 0,task_bookend,,,{BART},Continue,,Taboo,Balloon Inflation Task Complete,"<p>Thank you for completing the previous task. Your response has been correctly saved. When you are ready to continue, please click below.</p>",,
 0,task_bookend,,,{LDT},,,Taboo,Lexical Decision Task,"<p>On the next page you will see a word presented on screen. All you have to do is decide whether it rhymes with <em>FUCK</em> (the word you repeated during the previous balloon analogue risk task). <br><br> • If the word <span style=""color:blue;""><em>rhymes</em> press <b>P</b></span><br><br> • If the word <span style=""color:red;""><em>does not rhyme </em> press <b>Q</b></span><br> <br>Position your fingers over the required keys as shown below. <br><br> To start, you will have <b>10 practice trials</b>. Each trial will provide you with feedback as to whether you response was correct or not. <br><br>When you are ready, press the <b>Spacebar</b> to start the task.</p><br><br><img src=""../../collector-experiments/User/Assets/MSc/ldt_keyboard.jpg"" id=""ldt_img""/>
