@@ -56,9 +56,6 @@
     </style>
   </head>
   <body>
-    <!--<input type="hidden" name="ws_Score" id="ws_Score" />-->
-    <!--<input type="hidden" name="ws_Remaining" id="ws_Score" />-->
-    <!--<input type="hidden" name="ws_Timings" id="ws_Score" />-->
     <button id="zoomOut" tabindex="-1"></button>
     <button id="zoomIn" tabindex="-1"></button>
     <div id="container">
@@ -139,6 +136,7 @@
             return result;
           }
         }
+        var rounds = 0;
     Phase.set_timer(function(){
         ws = new WordSearch({
           "grid": countrygrid,        // Your grid to search
@@ -158,7 +156,7 @@
               }
               var ws_Score = this.getScore();
               console.log(ws_Score);
-              parent.parent.wordsFound = ws_Score;
+              parent.parent.wordsFound = ws_Score + rounds;
             if (this.getScore() == 1) {
           Phase.add_response({
                 ws_score: this.getScore(),
@@ -177,6 +175,7 @@
             if (this.getRemaining()==0){
               //  Put whatever you want ppt. to do next below...
               var script;
+              rounds += 10;
             }
             
           }   // This closes the "OnFindWord" command
