@@ -355,7 +355,7 @@
           output.innerHTML = pptID
           document.getElementById("idMsgIcon").src="../../collector-experiments/User/Assets/MSc/idPos.svg";
           document.getElementById("uniqueid").value = pptID;
-          document.getElementById("testingSession").value = parent.parent.sessionnumber;
+          document.getElementById("testingsession").value = parent.parent.sessionnumber;
           console.log($('input[name="sessionnumber"]:checked').val());
         } else if (pptID.length > 5 && $('input:radio[name="sessionnumber"]').not(':checked')) {
           document.getElementById("nextBtn").setAttribute("class", "submitBtn");
@@ -372,7 +372,7 @@
           output.innerHTML = "";
         }
          if (preScreen == "Pre_Screen") {
-          document.getElementById("testingSession").value = 0;
+          document.getElementById("testingsession").value = 0;
         }
     }
     //-----------------//
