@@ -159,13 +159,21 @@
               var ws_Score = this.getScore();
               console.log(ws_Score);
               parent.parent.wordsFound = ws_Score;
+            if (this.getScore() == 1) {
           Phase.add_response({
-                ws_Score: this.getScore(),
-                ws_Remaining: this.getRemaining(),
-                ws_Total_Time: Math.max(lrgst),
-                // ws_Timings2: this.getTiming(), 
-                ws_Individual_Time: Math.max(indTime)
+                ws_score: this.getScore(),
+                ws_remaining: this.getRemaining(),
+                ws_total_time: Math.max(lrgst),
+                ws_individual_time: Math.max(lrgst)
               })
+            } else {
+              Phase.add_response({
+                ws_score: this.getScore(),
+                ws_remaining: this.getRemaining(),
+                ws_total_time: Math.max(lrgst),
+                ws_individual_time: Math.max(indTime)
+              })
+            }
             if (this.getRemaining()==0){
               //  Put whatever you want ppt. to do next below...
               var script;
