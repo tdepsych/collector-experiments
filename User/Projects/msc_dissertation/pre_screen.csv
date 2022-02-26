@@ -7,4 +7,4 @@ item,phasetype,survey,max_time,notes,condition,text,shuffle_1,task_title,task_bo
 0,msc_midsession_debrief_sheet,,user,-,-,"document.addEventListener(""DOMContentLoaded"", function(){
 $('#replaceText').text('. This was not one of them and is purely a brief pre-session task to allow you to submit your demographic information and confirm whether you are completing the study for SONA credits, to enter the draw for the Amazon voucher, or neither.');
 });",,first,,,
-0,exit,,,,,You may now close your browser,,,,,
+0,exit,,,,,"<b>Thank you for pilot testing the 'pre screening' study.</b><hr style=""width:66%;""><br/><em>Please provide feedback on your experience by clicking the link below. It's a short, 10-item questionnaire that allows me to ensure everything works smoothly before I start collecting data for real.</em><br/><a href=""https://forms.office.com/r/kgcd2tMduG"" target=""_blank"">https://forms.office.com/r/kgcd2tMduG</a><br/>Thank you. Chris",,,,,

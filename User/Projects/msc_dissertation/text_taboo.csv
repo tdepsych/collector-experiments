@@ -120,4 +120,4 @@ display:none!important;
 0,task_bookend,,,{SURVEYS},Continue,,Non-Taboo,Questionnaire Complete,"<p>Thank you for completing the previous task. Your response has been correctly saved. When you are ready to continue, please click below.</p>",,
 0,uor_cover_end,,,,Session Complete,,,../../collector-experiments/User/Assets/MSc/cover_zoom_out.css,,,
 0,uor_end,,,-,,,,,,,
-0,exit,,,,You may now close your browser,,,,,,
+0,exit,,,You may now close your browser,"<b>Thank you for pilot testing the 'text instructions' study.</b><hr style=""width:66%;""><br/><em>Please provide feedback on your experience by clicking the link below. It's a short, 10-item questionnaire that allows me to ensure everything works smoothly before I start collecting data for real.</em><br/><a href=""https://forms.office.com/r/kgcd2tMduG"" target=""_blank"">https://forms.office.com/r/kgcd2tMduG</a><br/>Thank you. Chris",,,,,,
