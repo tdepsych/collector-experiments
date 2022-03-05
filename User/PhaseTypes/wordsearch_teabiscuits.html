@@ -142,7 +142,7 @@
         }
         var rounds = 0;
         var username = $("#participant_code").val();
-        var phaseNo = 1;
+        parent.parent.phaseNo = 1;
     Phase.set_timer(function(){
         ws = new WordSearch({
           "grid": countrygrid,        // Your grid to search
@@ -167,7 +167,7 @@
               $("#ws_score").val("1")
           Phase.add_response({
                 username: parent.parent.$("#participant_code").val(),
-                phase_number: phaseNo,
+                phase_number: parent.parent.phaseNo,
                 ws_score: this.getScore(),
                 ws_remaining: this.getRemaining(),
                 ws_total_time: Math.max(lrgst),
@@ -175,10 +175,10 @@
               })
             } else {
               $("#ws_score").val(ws_Score)
-              phaseNo += 1;
+              parent.parent.phaseNo += 1;
               Phase.add_response({
                 username: parent.parent.$("#participant_code").val(),
-                phase_number: phaseNo,
+                phase_number: parent.parent.phaseNo,
                 ws_score: this.getScore(),
                 ws_remaining: this.getRemaining(),
                 ws_total_time: Math.max(lrgst),

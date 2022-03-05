@@ -210,7 +210,7 @@
         
         // Variable for REDCap repeat function
         var username = $("#participant_code").val();
-        var phaseNo = 0;
+        parent.parent.phaseNo = 0;
         
         //audio 
         
@@ -327,10 +327,10 @@
         
         // animate explosion using jQuery UI explosion
         var balloon_explode = function() {
-          phaseNo += 1;
+          parent.parent.phaseNo += 1;
           Phase.add_response({
             username: parent.parent.$("#participant_code").val(),
-            phase_number: phaseNo,
+            phase_number: parent.parent.phaseNo,
             bart_pumps: pumps,
             bart_round: round,
             bart_exploded: explosion,
@@ -404,10 +404,10 @@
             //alert(err_msg);
             appropriate_message(err_msg);
             } else if (pumps > 0) { // only works after at least one pump has been made
-              phaseNo += 1;
+              parent.parent.phaseNo += 1;
               Phase.add_response({
                 username: parent.parent.$("#participant_code").val(),
-                phase_number: phaseNo,
+                phase_number: parent.parent.phaseNo,
                 bart_pumps: pumps,
                 bart_round: round,
                 bart_exploded: explosion,
