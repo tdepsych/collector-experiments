@@ -56,7 +56,9 @@
     </style>
   </head>
   <body>
-    <input type='hidden' id='ws_score' name='ws_score'/>
+    <!--<input type="hidden" name="ws_score" id="ws_score"/>-->
+    <!--<input type="hidden" name="ws_remaining" id="ws_remaining"/>-->
+    <!--<input type="hidden" name="ws_total_time" id="ws_total_time"/>-->
     <button id="zoomOut" tabindex="-1"></button>
     <button id="zoomIn" tabindex="-1"></button>
     <div id="container">
@@ -64,6 +66,7 @@
       <div id='progressbar1'></div>
       
       <script>
+      Phase.set_timer(function(){Phase.submit()},180000);
         // This code was adapted from a Qualtrics Wordsearch created by QuentinAndre - https://github.com/QuentinAndre/WordSearchJS
         // Wordsearch puzzle from https://www.puzzles.ca/word-search
         // This creates the progress bar
@@ -138,6 +141,8 @@
           }
         }
         var rounds = 0;
+        var username = $("#participant_code").val();
+        var phaseNo = 1;
     Phase.set_timer(function(){
         ws = new WordSearch({
           "grid": countrygrid,        // Your grid to search
@@ -159,14 +164,21 @@
               console.log(ws_Score);
               parent.parent.wordsFound = ws_Score + rounds;
             if (this.getScore() == 1) {
+              $("#ws_score").val("1")
           Phase.add_response({
+                username: parent.parent.$("#participant_code").val(),
+                phase_number: phaseNo,
                 ws_score: this.getScore(),
                 ws_remaining: this.getRemaining(),
                 ws_total_time: Math.max(lrgst),
                 ws_individual_time: Math.max(lrgst)
               })
             } else {
+              $("#ws_score").val(ws_Score)
+              phaseNo += 1;
               Phase.add_response({
+                username: parent.parent.$("#participant_code").val(),
+                phase_number: phaseNo,
                 ws_score: this.getScore(),
                 ws_remaining: this.getRemaining(),
                 ws_total_time: Math.max(lrgst),

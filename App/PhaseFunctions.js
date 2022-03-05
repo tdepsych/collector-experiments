@@ -19,9 +19,93 @@
 */
 if (typeof Phase !== "undefined") {
   Phase.add_response = function (response_obj) {
-    response_obj.inserted_time_ms = new Date().getTime();
-    response_obj.inserted_time_date = new Date().toString("MM/dd/yy HH:mm:ss");
+    // response_obj.inserted_time_ms = new Date().getTime();
+    // response_obj.inserted_time_date = new Date().toString("MM/dd/yy HH:mm:ss");
     parent.parent.project_json.responses.push(response_obj);
+
+    /*
+     * Submit response if there's an online data thing.
+     */
+   if(typeof(parent.parent.project_json.this_condition.redcap_url) !== "undefined"){
+
+       var phase_responses = response_obj;
+
+       console.log("phase_responses");
+       var this_location = parent.parent.project_json.location.split("/")[0].replaceAll("-","") + "_" + parent.parent.project_json.location.split("/")[1].replaceAll("-","");
+       //phase_responses.location;
+       /*
+       * update all the keys to have the "location_" before them
+       */
+
+       var clean_phase_responses = {};
+
+       Object.keys(phase_responses).forEach(function(old_key){
+
+         //if(phase_responses[old_key].toLowerCase() !== "condition_redcap_url" & phase_responses[old_key] !== ""){
+
+
+           clean_phase_responses[this_location + "_" + old_key] =
+           phase_responses[old_key]
+         //}
+       });
+       delete(clean_phase_responses[
+         this_location + "_condition_redcap_url"
+       ]);
+       delete(clean_phase_responses[
+         this_location + "_"
+       ]);
+
+       console.log("clean_phase_responses");
+       console.log(clean_phase_responses);
+       clean_phase_responses.record_id = phase_responses.username;
+
+
+       //clean_phase_responses['redcap_repeat_instance'] = parent.parent.project_json.phase_no;
+       clean_phase_responses['redcap_repeat_instance'] = phase_responses.phase_number;
+       clean_phase_responses['redcap_repeat_instrument'] = this_location;
+
+
+       /*
+       Object.keys(phase_responses).forEach(function(old_key){
+
+         Object.defineProperty(
+           phase_responses,
+           this_location + "_" + old_key,
+           Object.getOwnPropertyDescriptor(
+             phase_responses,
+             old_key
+           )
+         );
+         delete phase_responses[old_key];
+       });
+       */
+
+
+       console.log("just before the ajax");
+       $.ajax({
+         type: "POST",
+         url: parent.parent.project_json.this_condition.redcap_url,
+         crossDomain: true,
+         data: clean_phase_responses
+
+         /*
+         {
+           "record_id": parent.parent.$("#prehashed_code").val(),
+           "participant_code": $("#participant_code").val(),
+           "trial_no" : parent.parent.project_json.trial_no,
+           //"participant_confirm": parent.parent.$("#prehashed_code").val(),
+           "shape_response_time": this_rt,
+           "color_response": $("#color_response").val(),
+           "shape_response_complete": 2
+         }
+         */,
+         success: function(result){
+           console.log("result");
+           console.log(result);
+           //Phase.submit();
+         }
+       });
+     }
   };
 
   Phase.elapsed = function () {

@@ -1368,7 +1368,7 @@ function post_welcome_data(returned_data) {
           $("#welcome_div").hide();
           $("#post_welcome").show();
           $("#project_div").show();
-          //full_screen();
+          full_screen();
         }
       });
     }
@@ -1919,6 +1919,23 @@ function write_phase_iframe(index) {
               '<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id="progress_bar"></div>' +
             '</div>'
           )
+          /*
+          .replace(
+            "#collector_phase_timer{",
+            "#collector_phase_timer{" +
+            "position: absolute;"+
+            "right: 0px;"+
+            "padding: 5px;"+
+            "border-radius: 50px;"+
+            "border-width: 5px;"+
+            //"border-color: #006688;"+
+            "border-style: solid;"+
+            "opacity: 0;"+
+            "width : 100px;" +
+            "height : 100px;" +
+            "color: #006688;"
+          )
+          */
           .replace(
             "var time_format;",
             "var time_format = 'progress'"
@@ -1926,15 +1943,12 @@ function write_phase_iframe(index) {
         } else {
           timer_code = timer_code
           .replace(
-            "[[TIMER_HERE]]",
-            '<h1 id="collector_phase_timer" class="bg-white"></h1>'
-          )
-          .replace(
             "#collector_phase_timer{",
             "#collector_phase_timer{" + this_proc.timer_style + ";"
           );
         }
       } else {
+        timer_code = timer_code
         timer_code = timer_code
         .replace(
           "[[TIMER_HERE]]",
@@ -2047,28 +2061,33 @@ $(window).bind("keydown", function (event) {
 
 //prevent closing without warning
 window.onbeforeunload = function () {
-  switch (Project.get_vars.platform) {
-    case "simulateonline":
-    case "localhost":
-      break;
-    default:
-      if (online_data_obj.finished_and_stored === false) {
-        bootbox.confirm(
-          "Would you like to leave the experiment early? If you didn't just download your data there's a risk of you losing your progress.",
-          function (result) {
-            if (result) {
-              online_data_obj.finished_and_stored = true; //even though it's not
+  var leave_early = project_json.this_condition.leave_early;
+  if (
+    typeof(leave_early) !== "undefined" && leave_early === "no"
+  ){
+    switch (Project.get_vars.platform) {
+      case "simulateonline":
+      case "localhost":
+        break;
+      default:
+        if (online_data_obj.finished_and_stored === false) {
+          bootbox.confirm(
+            "Would you like to leave the experiment early? If you didn't just download your data there's a risk of you losing your progress.",
+            function (result) {
+              if (result) {
+                online_data_obj.finished_and_stored = true; //even though it's not
+              }
             }
-          }
-        );
-        precrypted_data(
-          project_json,
-          "It looks like you're trying to leave the experiment before you're finished (or at least before the data has been e-mailed to the researcher. Please choose a filename to save your data as and e-mail it to the researcher. It should appear in your downloads folder."
-        );
+          );
+          precrypted_data(
+            project_json,
+            "It looks like you're trying to leave the experiment before you're finished (or at least before the data has been e-mailed to the researcher. Please choose a filename to save your data as and e-mail it to the researcher. It should appear in your downloads folder."
+          );
 
-        return "Please do not try to refresh - you will have to restart if you do so.";
-      }
-      break;
+          return "Please do not try to refresh - you will have to restart if you do so.";
+        }
+        break;
+    }
   }
 };
 $("body").css("text-align", "center");

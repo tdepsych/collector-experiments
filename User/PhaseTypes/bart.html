@@ -208,6 +208,10 @@
           bootbox.alert(this_message);
         }
         
+        // Variable for REDCap repeat function
+        var username = $("#participant_code").val();
+        var phaseNo = 0;
+        
         //audio 
         
         var explosion_audio = new Audio('../../collector-experiments/User/Assets/MSc/bart_inflate.mp3');
@@ -323,14 +327,16 @@
         
         // animate explosion using jQuery UI explosion
         var balloon_explode = function() {
-    
+          phaseNo += 1;
           Phase.add_response({
-                bart_pumps: pumps,
-                bart_round: round,
-                bart_exploded: explosion,
-                bart_risk: explode_array[round-1],
-                bart_event: "Exploded"
-              })
+            username: parent.parent.$("#participant_code").val(),
+            phase_number: phaseNo,
+            bart_pumps: pumps,
+            bart_round: round,
+            bart_exploded: explosion,
+            bart_risk: explode_array[round-1],
+            bart_event: "Exploded"
+          })
            
            
             // activate this if you have a sound file to play a sound
@@ -398,7 +404,10 @@
             //alert(err_msg);
             appropriate_message(err_msg);
             } else if (pumps > 0) { // only works after at least one pump has been made
+              phaseNo += 1;
               Phase.add_response({
+                username: parent.parent.$("#participant_code").val(),
+                phase_number: phaseNo,
                 bart_pumps: pumps,
                 bart_round: round,
                 bart_exploded: explosion,
