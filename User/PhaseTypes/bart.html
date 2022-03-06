@@ -210,7 +210,7 @@
         
         // Variable for REDCap repeat function
         var username = $("#participant_code").val();
-        // if (typeof myVar !== 'undefined') {
+        var word = "{{shuffle_2}}";
           parent.parent.phaseNo = 0;
         
         //audio 
@@ -336,7 +336,8 @@
             bart_round: round,
             bart_exploded: explosion,
             bart_risk: explode_array[round-1],
-            bart_event: "Exploded"
+            bart_event: "Exploded",
+            bart_word: word
           })
            
            
@@ -413,7 +414,8 @@
                 bart_round: round,
                 bart_exploded: explosion,
                 bart_risk: explode_array[round-1],
-                bart_event: "Banked"
+                bart_event: "Banked",
+                bart_word: word
               })
                 
             exploded.push(explosion); // save whether balloon has exploded or not
