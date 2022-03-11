@@ -25,7 +25,7 @@
       ],
       [
         "Instructions",
-        "<h2>Demographic Information</h2><hr>\n<span class=\"instruc\">Please could you help us better understand the diversity and inclusivity of your participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (it would help us if you could select the \"Prefer not to sau\" option, if that is the case). Answers for questions 6, 7, and 8 are required, as you will be unable to take part without supplying that information. Finally, we are collecting your demographic information before you begin any testing session to ensure that each session has an identical procedure (which increases the validity of our final results.</span><br/><br/>",
+        "<h2>Demographic Information</h2><hr>\r\n<span class=\"instruc\">Please could you help us better understand the diversity and inclusivity of your participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (it would help us if you could select the \"Prefer not to sau\" option, if that is the case). Answers for questions 6, 7, and 8 are required, as you will be unable to take part without supplying that information. Finally, we are collecting your demographic information before you begin any testing session to ensure that each session has an identical procedure (which increases the validity of our final results.</span><br/><br/>",
         "instruct",
         "",
         "",
@@ -148,7 +148,7 @@
       ],
       [
         "Instructions1",
-        "<h2>Self-Evaluation Questionnaire</h2><hr>\n<span class=\"instruc\">Please think back to the last word you repeated aloud for 20 second. Take a moment to think how you felt <span style=\"text-decoration: underline;\">after</span> repeating the word? To respond, please rate each question below using the response buttons underneath.<br/><br/>",
+        "<h2>Self-Evaluation Questionnaire</h2><hr>\r\n<span class=\"instruc\">Please think back to the last word you repeated aloud for 20 second. Take a moment to think how you felt <span style=\"text-decoration: underline;\">after</span> repeating the word? To respond, please rate each question below using the response buttons underneath.<br/><br/>",
         "instruct",
         "",
         "",
