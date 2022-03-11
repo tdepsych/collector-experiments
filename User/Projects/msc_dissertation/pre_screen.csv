@@ -1,5 +1,5 @@
 item,phasetype,survey,max_time,notes,condition,text,shuffle_1,task_title,task_body_text,weight,
-0,uor_cover,,user,,,Welcome,,../../collector-experiments/User/Assets/MSc/cover_zoom_in.css,,,
+0,uor_cover,,user,,,Welcome,,../../collector-experiments/User/Assets/MSc/cover_zoom_in.css,,0,
 0,msc_ppt_setup,,user,-,-,,,,Pre_Screen,,
 0,msc_info_consent,,user,-,-,,,,Pre_Screen,,
 0,tde_survey,ppt-demographics.csv,user,{DEMO},-,,,,,,
