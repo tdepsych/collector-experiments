@@ -1360,7 +1360,7 @@ function post_welcome_data(returned_data) {
       $("#welcome_div").hide();
       $("#post_welcome").show();
       $("#project_div").show();
-      full_screen();
+      //full_screen();
     } else if (id_error === "random") {
       var this_code = Math.random().toString(36).substr(2, 16);
       post_welcome(this_code, "random");
