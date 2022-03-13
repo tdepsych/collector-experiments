@@ -229,13 +229,20 @@ input:focus{
 <script src="../../collector-experiments/User/Assets/LOP/select_javascript.js"></script>
 <script>
 var Form = document.getElementById("trial_contents");
-    Form.onchange = function() {
-var ppt_studentNumber = studentNumber.value
-var ppt_studentAge = studentAge.value
-// var ppt_studentGender = studentGender.value
-document.getElementById("ppt_studentNumber").value = ppt_studentNumber;
-document.getElementById("ppt_studentAge").value = ppt_studentAge;
-// document.getElementById("ppt_studentGender").value = ppt_studentGender;
+$('#proceed_button').css('pointer-events','none');
+Form.onchange = function() {
+  var ppt_studentNumber = studentNumber.value
+  var ppt_studentAge = studentAge.value
+  // var ppt_studentGender = studentGender.value
+  document.getElementById("ppt_studentNumber").value = ppt_studentNumber;
+  document.getElementById("ppt_studentAge").value = ppt_studentAge;
+  // document.getElementById("ppt_studentGender").value = ppt_studentGender;
+  if (ppt_studentNumber.length == 8) {
+    $('#proceed_button').css('pointer-events','auto');
+  } else {
+    $('#proceed_button').css('pointer-events','none');
+  }
 }
+
 </script>
 </html>

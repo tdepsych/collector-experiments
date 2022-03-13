@@ -197,6 +197,7 @@ body{
   }
 </style>
 <input type='hidden' id='keyboard_response' name='keyboard_response' value="-1"/>
+<input type='hidden' id='lop_rt' name='lop_rt'/>
 <div id='trial_contents'>
   <button id='instruction' value='' class=' update_name' style='border:0; background-color:transparent'><span style='width:100%;height:100%'>{{text}}{{rhyme}}</span></b><br><br></span></button>
   <button id='ready' value='' class=' update_name' style='border:0; background-color:transparent'><span style='width:100%;height:100%'>Ready?</span></button>
@@ -227,6 +228,7 @@ Phase.set_timer(function(){$('#ready').show()},'1500');
 Phase.set_timer(function(){$('#ready').hide()},'2500');
 Phase.set_timer(function(){$('#word').show()},'2500');
 Phase.set_timer(function(){$('#word').hide()},'7000');
+var baselineTime = Phase.elapsed() + 3000;
 Phase.set_timer(function(){$('#No').show()},'3000');
 Phase.set_timer(function(){$('#Yes').show()},'3000')
 Phase.set_timer(function(){$('#No').hide()},'7000');;
@@ -236,9 +238,12 @@ Phase.set_timer(function(){Phase.submit()},'9000');
 
 
 $('.button_response').on('click',function(){
+  var responseTime = Phase.elapsed();
    if (this.id == 'Yes') {
+     document.getElementById("lop_rt").value = responseTime - baselineTime;
   $("#keyboard_response").val("1");  
   } else {
+    document.getElementById("lop_rt").value = responseTime - baselineTime;
   $("#keyboard_response").val("0");  
   }
   $('#Yes').hide();

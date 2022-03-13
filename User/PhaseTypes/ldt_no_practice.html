@@ -79,6 +79,7 @@ body{
 </head>
 <input type='hidden' id='keyboard_response' name='keyboard_response'/>
 <input type='hidden' id='ldt_correct' name='ldt_correct'/>
+<input type='hidden' id='ldt_rt' name='ldt_rt'/>
 <div id='trial_contents'>
   <button id='fixation_cross' value='' class='fixation_cross update_name' style='border:0; background-color:transparent'><div id="stimulus">+</div></button>
   <button id='cue_word' value='' class=' update_name' style='border:0; background-color:transparent'><div id="stimulus">{{cue}}</div></button>
@@ -103,12 +104,14 @@ $('.update_name').on('click',function(){
   }
 });
 Phase.set_timer(function(){$('#fixation_cross').hide()},'500'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+var baselineTime = Phase.elapsed() + 500;
 Phase.set_timer(function(){$('#cue_word').show()},'500'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout)
 Phase.set_timer(function(){$('#cue_word').hide()},'2000'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
 Phase.set_timer(function(){$('#too_slow').show()},'2100'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
 Phase.set_timer(function(){Phase.submit()},'2500'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
 $(window).bind('keydown', function(event) {
   var response = String.fromCharCode(event.which).toLowerCase()
+  var responseTime = Phase.elapsed();
     if (response === feedback) {
     $('#ldt_correct').val('1');
   } else {
@@ -117,9 +120,11 @@ $(window).bind('keydown', function(event) {
   switch (String.fromCharCode(event.which).toLowerCase()) {
     case 'p':
       $("#keyboard_response").val(String.fromCharCode(event.which).toLowerCase());
+      document.getElementById("ldt_rt").value = responseTime - baselineTime;
       Phase.submit();
       break;case 'q':
       $("#keyboard_response").val(String.fromCharCode(event.which).toLowerCase());
+      document.getElementById("ldt_rt").value = responseTime - baselineTime;
       Phase.submit();
       break;
   }
