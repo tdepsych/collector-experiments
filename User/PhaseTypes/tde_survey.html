@@ -461,7 +461,7 @@ $("#proceed_button").on("click", function () {
     $("#tab_" + current_tab + "_button").click();
   } else if (proceed === false) {
     appropriate_message(
-      "You're missing some responses. Please fill in all the answers for the questions in red above."
+      "You're missing some responses.<br> Please provide an answer to all the questions."
     );
   } else if (current_tab > survey_obj.tabs) {
     appropriate_message(
