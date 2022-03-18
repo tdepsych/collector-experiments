@@ -886,6 +886,7 @@ function process_question(row, row_no) {
           $("<tr>").append(
             $("<td>")
               .attr("colspan", 2)
+              .attr("name", "label")
               .attr("align", "center")
               .html(question_td)
           )[0].outerHTML;
