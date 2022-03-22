@@ -164,9 +164,9 @@
 <!----------->
     <script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>
 <script>
-$(".email_item").prop("pattern", '[^@]+@[^@]+\.[a-zA-Z]{2,6}');
 </script>
 <script>
+
 /*
  * Load survey
  */
@@ -484,6 +484,24 @@ String.prototype.replaceAll = function (str1, str2, ignore) {
 /*
  * Functions
  */
+ 
+ // Basic function for validating email fields {CGD}
+ function validateEmail() {
+  var email_input = $('input[type=email]').val();
+    if (row["optional"].toLowerCase() === "no") {
+      if(email_input == '' || email_input.indexOf('@') == -1 || email_input.indexOf('.') == -1) {
+        appropriate_message("Sorry your email address is not valid<br>The proceed button will not work until your correct this");
+        $("#proceed_button").css('pointer-events','none');
+        $("#proceed_button").css('opacity','0.25');
+      } else {
+        $("#proceed_button").css('pointer-events','auto');
+        $("#proceed_button").css('opacity','1');
+      }
+    } else {
+      console.log("don't validate email field");
+    }
+}
+
 
 function clean_item(this_item) {
   if ((this_item.indexOf("'") !== -1) | (this_item.indexOf('"') !== -1)) {
@@ -1045,6 +1063,7 @@ function row_perc(this_rat) {
   return [row_ques_perc, row_resp_perc];
 }
 
+
 function response_check(submitted_element) {
   switch (submitted_element.type) {
     case "checkbox":
@@ -1072,6 +1091,7 @@ function response_check(submitted_element) {
       break;
 
     case "number":
+    case "email":
     case "radio":
     case "select-one":
     case "text":
@@ -1436,7 +1456,10 @@ function write(type, row) {
       .addClass("response")
       .addClass(row["item_name"] + "_item row_" + row["row_no"])
       .attr("type", "email")
-      .attr("name", "survey_" + row["item_name"]);
+      .attr("name", "survey_" + row["item_name"])
+      .attr("onblur", "validateEmail()")
+      .prop("id", "survey_" + row["item_name"] + "_response" + " emailInput");
+      this_html += this_input[0].outerHTML;
   } else if (type === "instruct") {
     this_html += "<td colspan='2'>" + row["text"] + "</td>";
   } else if (type === "jumbled") {

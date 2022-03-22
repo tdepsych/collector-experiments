@@ -38,7 +38,7 @@
         "1. Please enter your age (in years)<br><span class=\"minor\"><em>(the input only accepts numbers e.g., 21)</em></span>",
         "number",
         "",
-        "Yes",
+        "No",
         "",
         "",
         ""
@@ -116,7 +116,7 @@
       [
         "Email",
         "8. Please enter your email address<br><span class=\"minor\"><em>This is purely to allow the Researchers to contact you regarding each testing session and is not stored with your experimental data</em></span>",
-        "text",
+        "email",
         "",
         "no",
         "",
