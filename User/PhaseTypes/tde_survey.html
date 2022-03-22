@@ -461,7 +461,7 @@ $("#proceed_button").on("click", function () {
     $("#tab_" + current_tab + "_button").click();
   } else if (proceed === false) {
     appropriate_message(
-      "You're missing some responses.<br> Please provide an answer to all the questions."
+      "You're missing some responses.<br> Please provide an answer to all the questions highlighted in red."
     );
   } else if (current_tab > survey_obj.tabs) {
     appropriate_message(
@@ -655,7 +655,7 @@ function process_question(row, row_no) {
 
     [feedback_array, feedback_color] = get_feedback(row);
 
-    var survey_id = "survey_" + row["item_name"].toLowerCase();
+    var survey_id = "survey_" + row["item_name"].toLowerCase();  //cgd
 
     question_td =
       $("<input>")
@@ -881,7 +881,7 @@ function process_question(row, row_no) {
             )[0].outerHTML + $("<td>").html(question_td)[0].outerHTML;
       } else {
         var row_html =
-          $("<tr>").append($("<td>").attr("colspan", 2).html(row["text"]))[0]
+          $("<tr>").append($("<td>").attr("colspan", 2).html(row["text"]).attr("class", "text-primary").attr("id", survey_id + "_question"))[0]
             .outerHTML +
           $("<tr>").append(
             $("<td>")
