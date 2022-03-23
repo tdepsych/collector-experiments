@@ -545,7 +545,7 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
           //} else {
             this_iframe_style.width = "100%";
             this_iframe_style.height = "100%";
-          }
+          //}
         }
       } catch (error) {
         //lazy fix for now
