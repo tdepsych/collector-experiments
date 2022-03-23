@@ -3,7 +3,6 @@
  <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{{task_title}}">
-   
  </head>
  <body>
    <div id="aniCont"></div>
@@ -17,7 +16,6 @@ function pageAdvance() {
   setTimeout(function(){
     Phase.submit()
   }, 6500);
-  console.log("hello");
 }
       $(document).add(parent.parent.document).mouseup(function(e) {
         $('#aniCont').html('<div class="animation-container"><div class="image-container"><img src="' + img.src + '" /></div><div class="text-container"><h1>' + messageText + '</h1><div class="fading-effect"></div></div></div>');

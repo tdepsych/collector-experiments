@@ -38,7 +38,7 @@
         "1. Please enter your age (in years)<br><span class=\"minor\"><em>(the input only accepts numbers e.g., 21)</em></span>",
         "number",
         "",
-        "No",
+        "Yes",
         "",
         "",
         ""
