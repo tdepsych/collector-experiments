@@ -533,19 +533,19 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
           var this_iframe = these_iframes[i];
           this_iframe_style = this_iframe.contentWindow.document.body.style;
           this_iframe_style.zoom = parent.parent.current_zoom;
-          //this_iframe_style.MozTransform =
-            //"scale(" + parent.parent.current_zoom + ")";
+          this_iframe_style.MozTransform =
+            "scale(" + parent.parent.current_zoom + ")";
 
-          //if (isFirefox) {
-            //this_iframe_style.width =
-              //window.innerWidth / parent.parent.current_zoom;
-            //this_iframe_style.height =
-              //window.innerHeight / parent.parent.current_zoom;
-            //this_iframe_style.transformOrigin = "left top";
-          //} else {
+          if (isFirefox) {
+            this_iframe_style.width =
+              window.innerWidth / parent.parent.current_zoom;
+            this_iframe_style.height =
+              window.innerHeight / parent.parent.current_zoom;
+            this_iframe_style.transformOrigin = "left top";
+          } else {
             this_iframe_style.width = "100%";
             this_iframe_style.height = "100%";
-          //}
+          }
         }
       } catch (error) {
         //lazy fix for now
