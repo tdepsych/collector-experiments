@@ -1,6 +1,7 @@
 <style>
 #aniCont {
   overflow: hidden;
+  backface-visibility: hidden;
 }
 #collector_phase_timer {
   display: none;
@@ -11,6 +12,7 @@
   display: block;
   position: relative;
   overflow: hidden;
+  backface-visibility: hidden;
 }
 .image-container {
   position: absolute;
@@ -28,6 +30,7 @@
     -webkit-filter: drop-shadow(-4px 5px 5px rgba(0,0,0,0.6));
     filter: drop-shadow(-4px 5px 5px rgba(0,0,0,0.6));
     height: 200px;
+    backface-visibility: hidden;
   }
 }
 .image-container img {
@@ -35,6 +38,7 @@
   /*filter: drop-shadow(-4px 5px 5px rgba(0,0,0,0.6));*/
   /*height: 200px;*/
   transform: scale(0);
+  backface-visibility: hidden;
 }
 
 .text-container {
@@ -98,9 +102,11 @@
    [animation name] [animation duration] [animation transition function] 
   animation: image-slide 4s cubic-bezier(.5,.5,0,1);
   animation-delay: 1s;
+  backface-visibility: hidden;
 }
 .image-container img {
   animation: image-slide 4s cubic-bezier(.5,.5,0,1);
   animation-fill-mode: forwards;
   animation-delay: 1s;
+  backface-visibility: hidden;
 }
