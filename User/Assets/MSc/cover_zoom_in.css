@@ -19,7 +19,7 @@
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
   z-index: 2;
-  
+  backface-visibility: hidden;
   img {
     -webkit-animation: image-slide 4s cubic-bezier(.5,.5,0,1);
     animation: image-slide 4s cubic-bezier(.5,.5,0,1);
