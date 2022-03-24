@@ -539,9 +539,9 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
 
           if (isFirefox) {
             this_iframe_style.width =
-              "99%" / parent.parent.current_zoom;
+            (window.innerWidth * 0.99) / parent.parent.current_zoom;
             this_iframe_style.height =
-              "99%"  / parent.parent.current_zoom;
+            (window.innerHeight * 0.99)  / parent.parent.current_zoom;
             this_iframe_style.transformOrigin = "left top";
           } else {
             this_iframe_style.width = "100%";
