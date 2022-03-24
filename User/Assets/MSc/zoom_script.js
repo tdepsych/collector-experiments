@@ -9,6 +9,7 @@ function zoom_in() {
   document.body.style.height =
     window.innerHeight / parent.parent.current_zoom;
   document.body.style.transformOrigin = "left top";
+  document.body.style.overflowX = "hidden";
 }
 function zoom_out() {
   parent.parent.current_zoom -= 0.1;
@@ -19,6 +20,7 @@ function zoom_out() {
   document.body.style.height =
     window.innerHeight / parent.parent.current_zoom;
   document.body.style.transformOrigin = "left top";
+  document.body.style.overflowX = "hidden";
 }
 
 document.getElementById("zoomIn").onclick = zoom_in;
