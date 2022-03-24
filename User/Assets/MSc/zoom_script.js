@@ -11,9 +11,13 @@ function zoom_in() {
     "scale(" + parent.parent.current_zoom + ")";
     if (isFirefox) {
       this_iframe_style.width =
-      (window.innerWidth * 0.98) / parent.parent.current_zoom;
+      (window.innerWidth * 0.97) / parent.parent.current_zoom;
       this_iframe_style.height =
-      (window.innerHeight * 0.98)  / parent.parent.current_zoom;
+      (window.innerHeight * 0.97)  / parent.parent.current_zoom;
+      this_iframe_style.maxWidth =
+      (window.innerWidth * 0.97) / parent.parent.current_zoom;
+      this_iframe_style.maxHeight =
+      (window.innerHeight * 0.97)  / parent.parent.current_zoom;
       this_iframe_style.transformOrigin = "left top";
     } else {
       this_iframe_style.width = "100%";
@@ -29,9 +33,13 @@ function zoom_out() {
     "scale(" + parent.parent.current_zoom + ")";
     if (isFirefox) {
       this_iframe_style.width =
-      (window.innerWidth * 0.98) / parent.parent.current_zoom;
+      (window.innerWidth * 0.97) / parent.parent.current_zoom;
       this_iframe_style.height =
-      (window.innerHeight * 0.98)  / parent.parent.current_zoom;
+      (window.innerHeight * 0.97)  / parent.parent.current_zoom;
+      this_iframe_style.maxWidth =
+      (window.innerWidth * 0.97) / parent.parent.current_zoom;
+      this_iframe_style.maxHeight =
+      (window.innerHeight * 0.97)  / parent.parent.current_zoom;
       this_iframe_style.transformOrigin = "left top";
     } else {
       this_iframe_style.width = "100%";
