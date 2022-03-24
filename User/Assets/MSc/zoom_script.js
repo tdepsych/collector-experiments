@@ -1,12 +1,24 @@
-parent.parent.current_zoom = 1;
+if (parent.parent.current_zoom == null){
+  parent.parent.current_zoom = 1;
+}else {
+  parent.parent.current_zoom = parent.parent.current_zoom;
+}
 
 function zoom_in() {
   parent.parent.current_zoom += 0.1;
   document.body.style.zoom = parent.parent.current_zoom;
   document.body.style.MozTransform =
     "scale(" + parent.parent.current_zoom + ")";
-  document.body.style.width = (window.innerWidth * 0.99) / parent.parent.current_zoom;
-  document.body.style.height = (window.innerHeight * 0.99) / parent.parent.current_zoom;
+    if (isFirefox) {
+      this_iframe_style.width =
+      (window.innerWidth * 0.98) / parent.parent.current_zoom;
+      this_iframe_style.height =
+      (window.innerHeight * 0.98)  / parent.parent.current_zoom;
+      this_iframe_style.transformOrigin = "left top";
+    } else {
+      this_iframe_style.width = "100%";
+      this_iframe_style.height = "100%";
+    }
   document.body.style.transformOrigin = "left top";
   document.body.style.overflowX = "hidden";
 }
@@ -15,8 +27,16 @@ function zoom_out() {
   document.body.style.zoom = parent.parent.current_zoom;
   document.body.style.MozTransform =
     "scale(" + parent.parent.current_zoom + ")";
-  document.body.style.width = window.innerWidth / parent.parent.current_zoom;
-  document.body.style.height = window.innerHeight / parent.parent.current_zoom;
+    if (isFirefox) {
+      this_iframe_style.width =
+      (window.innerWidth * 0.98) / parent.parent.current_zoom;
+      this_iframe_style.height =
+      (window.innerHeight * 0.98)  / parent.parent.current_zoom;
+      this_iframe_style.transformOrigin = "left top";
+    } else {
+      this_iframe_style.width = "100%";
+      this_iframe_style.height = "100%";
+    }
   document.body.style.transformOrigin = "left top";
   document.body.style.overflowX = "hidden";
 }
