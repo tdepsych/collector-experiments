@@ -526,6 +526,7 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
         .find(".post_iframe")
         .contents()
         .find("body")
+        .css("overflown-x", "hidden")
         .css("transform-origin", "top");
 
       try {
@@ -545,7 +546,6 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
           //} else {
             this_iframe_style.width = "100%";
             this_iframe_style.height = "100%";
-            //this_iframe_style.overflow-x = "hidden";
           //}
         }
       } catch (error) {
