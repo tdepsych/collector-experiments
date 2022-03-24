@@ -539,10 +539,10 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
 
           if (isFirefox) {
             this_iframe_style.width =
-              window.innerWidth / parent.parent.current_zoom;
+              "99%" / parent.parent.current_zoom;
             this_iframe_style.height =
-              window.innerHeight / parent.parent.current_zoom;
-            this_iframe_style.transformOrigin = "center top";
+              "99%"  / parent.parent.current_zoom;
+            this_iframe_style.transformOrigin = "left top";
           } else {
             this_iframe_style.width = "100%";
             this_iframe_style.height = "100%";

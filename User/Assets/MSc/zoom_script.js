@@ -5,10 +5,9 @@ function zoom_in() {
   document.body.style.zoom = parent.parent.current_zoom;
   document.body.style.MozTransform =
     "scale(" + parent.parent.current_zoom + ")";
-  document.body.style.width = window.innerWidth / parent.parent.current_zoom;
-  document.body.style.height =
-    window.innerHeight / parent.parent.current_zoom;
-  document.body.style.transformOrigin = "center top";
+  document.body.style.width = "99%" / parent.parent.current_zoom;
+  document.body.style.height = "99%" / parent.parent.current_zoom;
+  document.body.style.transformOrigin = "left top";
   document.body.style.overflowX = "hidden";
 }
 function zoom_out() {
@@ -17,9 +16,8 @@ function zoom_out() {
   document.body.style.MozTransform =
     "scale(" + parent.parent.current_zoom + ")";
   document.body.style.width = window.innerWidth / parent.parent.current_zoom;
-  document.body.style.height =
-    window.innerHeight / parent.parent.current_zoom;
-  document.body.style.transformOrigin = "center top";
+  document.body.style.height = window.innerHeight / parent.parent.current_zoom;
+  document.body.style.transformOrigin = "left top";
   document.body.style.overflowX = "hidden";
 }
 

@@ -88,9 +88,9 @@
 /* ~ appear off screen, crashing the study ~~~~~~ */
 /**************************************************/
 
-  /* .modal-dialog{
+  .modal-dialog{
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%)!important;
     position: absolute;
-} */
+}
