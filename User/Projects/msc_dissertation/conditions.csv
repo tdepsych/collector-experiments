@@ -1,4 +1,4 @@
 name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,age_check,skip_quality,zoom_check,mobile,redcap_url,
 pre_screen,demographics,taboo_ldt.csv,pre_screen.csv,on,,random,,,5,,no,yes,no,no,https://haffeyprojects.reading.ac.uk/redcap/redcapChrisMSc.php,
-text_taboo,text instructions,taboo_ldt.csv,text_taboo.csv,on,,random,,,5,,no,yes,no,no,https://haffeyprojects.reading.ac.uk/redcap/redcapChrisMSc.php,
+text_taboo,text instructions,taboo_ldt.csv,text_taboo.csv,on,,random,,,5,,no,yes,no,no,,
 video_taboo,video instructions,taboo_ldt.csv,video_taboo.csv,on,,random,,,5,,no,yes,no,no,https://haffeyprojects.reading.ac.uk/redcap/redcapChrisMSc.php,

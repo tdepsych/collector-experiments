@@ -81,3 +81,16 @@
     float: right;
     transform: translate(-5px, 5px);
   }
+
+/**************************************************/
+/* CENTERING WARNING TO GUARD AGAINST PPT ZOOMING */
+/* ~ this is needed as zooming can cause it to ~~ */
+/* ~ appear off screen, crashing the study ~~~~~~ */
+/**************************************************/
+
+  .modal-dialog{
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%)!important;
+    position: absolute;
+}
