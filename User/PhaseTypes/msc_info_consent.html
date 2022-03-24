@@ -176,18 +176,8 @@
     </style>
  </head>
  <body style="display:hidden;">
-    <!--<input type="hidden" name="c1_readinfo" id="c1_readinfo" class="pptConsent"/>-->
-    <!--<input type="hidden" name="c2_swear" id="c2_swear" class="pptConsent"/>-->
-    <!--<input type="hidden" name="c3_understandrights" id="c3_understandrights" class="pptConsent"/>-->
-    <!--<input type="hidden" name="c4_rightwithdraw" id="c4_rightwithdraw" class="pptConsent"/>-->
-    <!--<input type="hidden" name="c5_closebrowser" id="c5_closebrowser" class="pptConsent"/>-->
-    <!--<input type="hidden" name="c6_anonymousdata" id="c6_anonymousdata" class="pptConsent"/>-->
-    <!--<input type="hidden" name="c7_downloadinfo" id="c7_downloadinfo" class="pptConsent"/>-->
-    <!--<input type="hidden" name="c8_over18" id="c8_over18" class="pptConsent"/>-->
-    <!--<input type="hidden" name="c9_nativeenlish" id="c9_nativeenlish" class="pptConsent"/>-->
-    <!--<input type="hidden" name="c10_opendata" id="c10_opendata" class="pptConsent"/>-->
-    <!--<input type="hidden" name="c11_informedconsent" id="c11_informedconsent" class="pptConsent"/>-->
     <input type="hidden" id="uniqueid" name="uniqueid" />
+    <input type="hidden" id="testingsession" name="testingsession" />
     <button id="zoomOut" class="zoomBtn" tabindex="-1"></button>
     <button id="zoomIn" class="zoomBtn" tabindex="-1"></button>
     <div id="container">
@@ -395,6 +385,7 @@
       });
       $(".consent").change(function() {
         document.getElementById("uniqueid").value = parent.parent.pptID;
+        document.getElementById("testingsession").value = parent.parent.sessionnumber;
         if ($('.consentCheck').is(':checked')) {
           return;
         } else if ($('.consent:checked').length == $('.consent').length) {
