@@ -28,7 +28,7 @@
     background: url(zoom-out.svg) no-repeat;
     background-position: 4px 4px;
     background-size: 65%;
-    background-color: #ADD8E6;
+    background-color: #FFFFFF;
     cursor: pointer;
     display: inline-block;
     height: 30px;
@@ -41,15 +41,18 @@
 }
       
 #zoomOut:hover {
-    background-color: #006599;
-    border: 2px solid #006599;
+    background-color: #006599!important;
+    border: 2px solid #006599!important;
+    background-position: 4px!important;
+    background-size: 70%!important;
+    background: url(zoom-out-hover.svg) no-repeat;
 }
       
 #zoomIn {
     background: url(zoom-in.svg) no-repeat;
     background-position: 4px 4px;
     background-size: 65%;
-    background-color: #ADD8E6;
+    background-color: #FFFFFF;
     cursor: pointer;
     display: inline-block;
     height: 30px;
@@ -62,8 +65,11 @@
 }
 
 #zoomIn:hover {
-    background-color: #006599;
-    border: 2px solid #006599;
+    background-color: #006599!important;
+    border: 2px solid #006599!important;
+    background-position: 4px!important;
+    background-size: 70%!important;
+    background: url(zoom-in-hover.svg) no-repeat;
 }  
 
 /**************************/
