@@ -308,6 +308,23 @@ String.prototype.replaceAll = function (str1, str2, ignore) {
  * Functions
  */
 
+   // Basic function for validating email fields {CGD}
+   function validateEmail() {
+    var email_input = $('input[type=email]').val();
+      if (row["optional"].toLowerCase() === "no") {
+        if(email_input == '' || email_input.indexOf('@') == -1 || email_input.indexOf('.') == -1) {
+          appropriate_message("Sorry your email address is not valid<br>The proceed button will not work until your correct this");
+          $("#proceed_button").css('pointer-events','none');
+          $("#proceed_button").css('opacity','0.25');
+        } else {
+          $("#proceed_button").css('pointer-events','auto');
+          $("#proceed_button").css('opacity','1');
+        }
+      } else {
+        console.log("don't validate email field");
+      }
+  }
+
 function clean_item(this_item) {
   if ((this_item.indexOf("'") !== -1) | (this_item.indexOf('"') !== -1)) {
     appropriate_message(
@@ -894,6 +911,7 @@ function response_check(submitted_element) {
       break;
 
     case "number":
+    case "email":
     case "radio":
     case "select-one":
     case "text":
@@ -1155,11 +1173,8 @@ function write(type, row) {
         feedback_color,
         row
       );
-      var this_div = $("<div>")
-        .addClass("custom-control")
-        .addClass("custom-checkbox")
-        .addClass("form-inline")
-        .css("margin", "20px");
+      var this_div = $("<div>");
+      this_div.addClass("custom-control").addClass("custom-checkbox");
       var this_checkbox = $("<input>");
       this_checkbox[0].id = row["item_name"] + i;
       this_checkbox[0].value = options[i];
@@ -1171,8 +1186,7 @@ function write(type, row) {
         .addClass("custom-control")
         .addClass("custom-checkbox")
         .addClass("response")
-        .addClass(row["item_name"] + "_item_row")
-        .css("margin", "5px");
+        .addClass(row["item_name"] + "_item_row");
       var this_label = $("<label>");
       this_label[0].htmlFor = row["item_name"] + i;
       this_label[0].innerHTML = options[i];
@@ -1262,7 +1276,10 @@ function write(type, row) {
       .addClass("response")
       .addClass(row["item_name"] + "_item row_" + row["row_no"])
       .attr("type", "email")
-      .attr("name", "survey_" + row["item_name"]);
+      .attr("name", "survey_" + row["item_name"])
+      .attr("onblur", "validateEmail()")
+      .prop("id", "survey_" + row["item_name"] + "_response" + " emailInput");
+      this_html += this_input[0].outerHTML;
   } else if (type === "instruct") {
     this_html += "<td colspan='2'>" + row["text"] + "</td>";
   } else if (type === "jumbled") {
@@ -1568,3 +1585,4 @@ if (typeof module !== "undefined") {
     load_survey(current_survey, "survey_outline");
   }
 }
+

@@ -82,12 +82,12 @@ body{
 <input type='hidden' id='ldt_correct' name='ldt_correct'/>
 <input type='hidden' id='ldt_rt' name='ldt_rt'/>
 <div id='trial_contents'>
-  <button id='fixation_cross' value='' class='fixation_cross update_name' style='border:0; background-color:transparent'><div id="stimulus">+</div></button>
+  <button id='fixation_cross' value='' class='fixation_cross update_name' style='border:0; background-color:transparent' autofocus><div id="stimulus">+</div></button>
   <button id='cue_word' value='' class=' update_name' style='border:0; background-color:transparent'><div id="stimulus">{{cue}}</div></button>
     <button id='too_slow' value='' class=' update_name' style='border:0; background-color:transparent'><div id="stimulus">Too Slow</div><span class="too-slow-icon"></span></button>
 </div></div>
-<input type='hidden' name='fixation_cross' />
-<input type='hidden' name='' />
+<!--<input type='hidden' name='fixation_cross' />-->
+<!--<input type='hidden' name='' />-->
 </body>
 <script>
 var feedback = "{{answer}}";

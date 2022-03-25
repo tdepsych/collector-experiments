@@ -120,15 +120,15 @@ transform: translateY(40px);
 <input type='hidden' id='ldt_correct' name='ldt_correct'/>
 <input type='hidden' id='ldt_rt' name='ldt_rt'/>
 <div id='trial_contents'>
-  <button id='fixation_cross' value='' class='fixation_cross update_name' style='border:0; background-color:transparent'><div id="stimulus">+</div></button>
+  <button id='fixation_cross' value='' class='fixation_cross update_name' style='border:0; background-color:transparent' ><div id="stimulus">+</div></button>
   <button id='cue_word' value='' class=' update_name' style='border:0; background-color:transparent'><div id="stimulus">{{cue}}</div></button>
     <button id='too_slow' value='' class=' update_name' style='border:0; background-color:transparent'><div id="stimulus">Too Slow</div><span class="too-slow-icon"></span></button>
     <div id="correct"><span id="stimulus" style="text-align:center;">Correct</span><span class="correct-icon"></span></div>
     <div id="incorrect"><span id="stimulus" style="text-align:center;">Incorrect</span><span class="incorrect-icon"></span></div>
     <div id="too_fast"><span id="stimulus" style="text-align:center;">Wait For The Word</span><span class="wait-icon"></span></div>
 </div></div>
-<input type='hidden' name='fixation_cross' />
-<input type='hidden' name='' />
+<!--<input type='hidden' name='fixation_cross' />-->
+<!--<input type='hidden' name='' />-->
 <script>
 var feedback = "{{answer}}";
 $('.update_name').on('click',function(){
