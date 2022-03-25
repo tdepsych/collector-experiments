@@ -704,7 +704,7 @@ function process_question(row, row_no) {
             )[0].outerHTML + $("<td>").html(question_td)[0].outerHTML;
       } else {
         var row_html =
-          $("<tr>").append($("<td>").attr("colspan", 2).html(row["text"]))[0]
+          $("<tr>").append($("<td>").attr("colspan", 2).html(row["text"]).attr("class", "text-primary").attr("id", survey_id + "_question"))[0]
             .outerHTML +
           $("<tr>").append(
             $("<td>")

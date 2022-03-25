@@ -1,14 +1,12 @@
-function online_save(
-  experiment_id,
-  participant_id,
-  completion_code,
-  prehashed_code,
-  encrypted_data,
-  storage_scripts,
-  after_function,
-	trial_all,
-	trial_no
-){
+function online_save(experiment_id,
+                     participant_id,
+                     completion_code,
+                     prehashed_code,
+                     encrypted_data,
+                     storage_scripts,
+                     after_function,
+										 trial_all,
+										 trial_no){
 	if(typeof(trial_all) == "undefined"){
 		trial_all = "all";
 	}
@@ -47,7 +45,7 @@ function online_save(
           console.dir("sending data...");
           $.ajax({
             type: 'POST',
-            url: save_script_url,
+            url: save_script_url, //"https://script.google.com/macros/s/AKfycbyuUWN7Jc1j62OuUh1JrJFuHn7e2VXLZdZ9FJs4dvwX_D6JI7M7/exec",
             data: data,
             crossDomain: true,
             timeout: 120000,
