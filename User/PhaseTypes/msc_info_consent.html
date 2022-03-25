@@ -178,7 +178,7 @@
  <body style="display:hidden;">
     <input type="hidden" id="uniqueid" name="uniqueid" />
     <input type="hidden" id="testingsession" name="testingsession" />
-    <button id="zoomOut" class="zoomBtn" tabindex="100"></button>
+    <button id="zoomOut" class="zoomBtn" tabindex="-1"></button>
     <button id="zoomIn" class="zoomBtn" tabindex="-1"></button>
     <div id="container">
       <form id="regForm" action="">
@@ -450,8 +450,9 @@
         //... and adds the "active" class on the current step:
         x[n].className += " active";
       }
-if (document.activeElement != document.body) document.activeElement.blur();
-    Phase.set_timer(function() {$("body").show()},'0');
+      $(window).on('load', function() {
+        Phase.set_timer(function() {$("body").focus()},'0');
+      }
     </script>
     <script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>
  </body>

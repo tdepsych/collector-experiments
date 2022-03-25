@@ -467,6 +467,9 @@
         //... and adds the "active" class on the current step:
         x[n].className += " active";
       }
+      $(window).on('load', function() {
+        Phase.set_timer(function() {$("body").focus()},'0');
+      }
     </script>
     <script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>
  </body>
