@@ -565,7 +565,7 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
         .find("#post" + project_json.post_no)
         .contents()
         .find("#zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz")
-        .focus(); //or anything that no-one would accidentally create.
+        //.focus(); //or anything that no-one would accidentally create.
 
       //detect if max_time exists and start timer
       var post_val;
