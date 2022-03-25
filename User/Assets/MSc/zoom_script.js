@@ -18,7 +18,8 @@ function zoom_in() {
       (window.innerWidth * 0.97) / parent.parent.current_zoom;
       this_iframe_style.maxHeight =
       (window.innerHeight * 0.97)  / parent.parent.current_zoom;
-      this_iframe_style.transformOrigin = "500px 0px";
+      this_iframe_style.transformOrigin = "center top";
+      this_iframe_style.transformBox = "fill-box";
     } else {
       this_iframe_style.width = "100%";
       this_iframe_style.height = "100%";
