@@ -403,22 +403,12 @@
         $('.consent').prop("checked", false);
         $('.consentCheck').prop("checked", false);
         document.getElementById("tooltiptext").setAttribute("class", "tooltipHidden");
-        // document.body.scrollTop = 0; // For Safari
-  	    // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
       });
       
       // Scroll Back To Top
       $("#nextBtn, #prevBtn").click(function() {
-	     // document.body.scrollTop = 0; // For Safari
-  	   // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
   	    $(window).scrollTop(0);
       });
-      
-       // Set Scroll Position On Load
-      // $(document).ready(function() {
-	     // document.body.scrollTop = 0; // For Safari
-  	   // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-      // });
       
       function validateForm() {
         // This function deals with validation of the form fields

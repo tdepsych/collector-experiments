@@ -2047,31 +2047,31 @@ $(window).bind("keydown", function (event) {
 });
 
 //prevent closing without warning
-window.onbeforeunload = function () {
-  switch (Project.get_vars.platform) {
-    case "simulateonline":
-    case "localhost":
-      break;
-    default:
-      if (online_data_obj.finished_and_stored === false) {
-        bootbox.confirm(
-          "Would you like to leave the experiment early? If you didn't just download your data there's a risk of you losing your progress.",
-          function (result) {
-            if (result) {
-              online_data_obj.finished_and_stored = true; //even though it's not
-            }
-          }
-        );
-        precrypted_data(
-          project_json,
-          "It looks like you're trying to leave the experiment before you're finished (or at least before the data has been e-mailed to the researcher. Please choose a filename to save your data as and e-mail it to the researcher. It should appear in your downloads folder."
-        );
+// window.onbeforeunload = function () {
+//   switch (Project.get_vars.platform) {
+//     case "simulateonline":
+//     case "localhost":
+//       break;
+//     default:
+//       if (online_data_obj.finished_and_stored === false) {
+//         bootbox.confirm(
+//           "Would you like to leave the experiment early? If you didn't just download your data there's a risk of you losing your progress.",
+//           function (result) {
+//             if (result) {
+//               online_data_obj.finished_and_stored = true; //even though it's not
+//             }
+//           }
+//         );
+//         precrypted_data(
+//           project_json,
+//           "It looks like you're trying to leave the experiment before you're finished (or at least before the data has been e-mailed to the researcher. Please choose a filename to save your data as and e-mail it to the researcher. It should appear in your downloads folder."
+//         );
 
-        return "Please do not try to refresh - you will have to restart if you do so.";
-      }
-      break;
-  }
-};
+//         return "Please do not try to refresh - you will have to restart if you do so.";
+//       }
+//       break;
+//   }
+// };
 $("body").css("text-align", "center");
 $("body").css("margin", "auto");
 

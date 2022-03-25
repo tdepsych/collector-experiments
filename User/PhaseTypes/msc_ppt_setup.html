@@ -423,16 +423,17 @@
         document.getElementById("regForm").reset();
         output.innerHTML = "";
         document.getElementById("tooltiptext").setAttribute("class", "tooltipHidden");
-        document.body.scrollTop = 0; // For Safari
-  	    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
       });
       
       // Scroll Back To Top
       $("#nextBtn").click(function() {
         document.getElementById("idMsgIcon").src="../../collector-experiments/User/Assets/MSc/idNeg.svg";
         display_sessionnumber()
-	      document.body.scrollTop = 0; // For Safari
-  	    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      });
+      
+      // Scroll Back To Top
+      $("#nextBtn, #prevBtn").click(function() {
+  	    $(window).scrollTop(0);
       });
       
       
