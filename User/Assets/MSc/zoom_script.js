@@ -52,3 +52,8 @@ function zoom_out() {
 
 document.getElementById("zoomIn").onclick = zoom_in;
 document.getElementById("zoomOut").onclick = zoom_out;
+
+var elelist = document.getElementsByTagName("input");
+for(var i = 0; i < elelist.length; i++){
+    elelist[i].blur();
+}
