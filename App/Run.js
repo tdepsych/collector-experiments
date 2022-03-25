@@ -546,7 +546,7 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
             (window.innerWidth * 0.97) / parent.parent.current_zoom;
             this_iframe_style.maxHeight =
             (window.innerHeight * 0.97)  / parent.parent.current_zoom;
-            this_iframe_style.transformOrigin = "left top";
+            // this_iframe_style.transformOrigin = "left top";
           } else {
             this_iframe_style.width = "100%";
             this_iframe_style.height = "100%";
