@@ -4,7 +4,7 @@
   <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
   <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
  </head>
- <body>
+ <body style="display:hidden;">
     <button id="zoomOut" tabindex="-1"></button>
     <button id="zoomIn" tabindex="-1"></button>
   <div id="container">
@@ -16,5 +16,9 @@
   </div>
   </div>
 <script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>
+<script>
+  if (document.activeElement != document.body) document.activeElement.blur();
+    Phase.set_timer(function() {$("body").show()},'0');
+</script>
  </body>
 </html>
