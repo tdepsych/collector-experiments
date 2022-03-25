@@ -405,20 +405,20 @@
         document.getElementById("tooltiptext").setAttribute("class", "tooltipHidden");
         // document.body.scrollTop = 0; // For Safari
   	    // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-  	    $(window).scrollTop(0);
       });
       
       // Scroll Back To Top
-      $("#nextBtn").click(function() {
-	      document.body.scrollTop = 0; // For Safari
-  	    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      $("#nextBtn, #prevBtn").click(function() {
+	     // document.body.scrollTop = 0; // For Safari
+  	   // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  	    $(window).scrollTop(0);
       });
       
        // Set Scroll Position On Load
-      $(document).ready(function() {
-	      document.body.scrollTop = 0; // For Safari
-  	    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-      });
+      // $(document).ready(function() {
+	     // document.body.scrollTop = 0; // For Safari
+  	   // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      // });
       
       function validateForm() {
         // This function deals with validation of the form fields
