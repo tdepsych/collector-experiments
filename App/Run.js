@@ -269,6 +269,7 @@ Project = {
       console.log("clean_phase_responses");
       console.log(clean_phase_responses);
       clean_phase_responses.record_id = phase_responses.username;
+      clean_phase_responses.complete = '1'; //{CGD} This should mark record in REDCap complete
 
 
       clean_phase_responses['redcap_repeat_instance'] = project_json.phase_no;
