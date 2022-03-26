@@ -44,6 +44,9 @@
     background-color: #a7d4ef;
     cursor: pointer;
 }
+.option-input.radio:focus {
+  background-color: #a7d4ef;
+}
 .option-input.radio:checked {
     background: #3f97f6;
     background-image: url(checked.svg);
