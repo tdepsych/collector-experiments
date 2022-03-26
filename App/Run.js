@@ -269,7 +269,6 @@ Project = {
       console.log("clean_phase_responses");
       console.log(clean_phase_responses);
       clean_phase_responses.record_id = phase_responses.username;
-      // clean_phase_responses.complete = '1'; //{CGD} This should mark record in REDCap complete
 
 
       clean_phase_responses['redcap_repeat_instance'] = project_json.phase_no;
@@ -562,6 +561,7 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
         .find("#post" + project_json.post_no)
         .contents()
         .find("#nt906822")
+        .append("<input type='hidden' name='complete' />")
         .focus() //or anything that no-one would accidentally create.
         .css('outline', 'none');
 
