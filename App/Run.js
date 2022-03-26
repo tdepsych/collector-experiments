@@ -526,6 +526,7 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
         .find(".post_iframe")
         .contents()
         .find("body")
+        .prepend('<button style="opacity:0; filter: alpha(opacity=0)" id="nt906822"></button>') // {CGD} Do not move, needs to prepend displayed HTML or autofocus scrolls to bottom on load
         .css("transform-origin", "top");
 
       try {
@@ -555,11 +556,11 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
       $("#phase" + project_json.phase_no).css("width", "100%");
       $("#phase" + project_json.phase_no).css("height", "100%");
       $("#phase" + project_json.phase_no).css("visibility", "visible");
-      $("#phase" + project_json.phase_no)
+      $("#phase" + project_json.phase_no) 
         .contents()
         .find("#post" + project_json.post_no)
         .contents()
-        .find("#fixation_cross, #zoomOut")
+        .find("#nt906822")
         .focus() //or anything that no-one would accidentally create.
         .css('outline', 'none');
 
@@ -1888,9 +1889,8 @@ function write_phase_iframe(index) {
 
   for (let i = 0; i < phase_events.length; i++) {
     var phase_content = Project.generate_phase(index, i);
-      phase_content +=
-      "<button style='opacity:0; filter: alpha(opacity=0)' id='zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz'></button>";
-
+      // phase_content +=
+      '<button style="opacity:0; filter: alpha(opacity=0)" id="zzz"></button>' + phase_content;
     doc = document
       .getElementById("phase" + index)
       .contentWindow.document.getElementById("post" + i).contentWindow;
