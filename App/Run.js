@@ -538,7 +538,7 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
             "scale(" + parent.parent.current_zoom + ")";
 
           if (isFirefox) {
-            this_iframe_style.width = (window.innerWidth * 0.98) / parent.parent.current_zoom;  // {CGD} adjusted to just under full width to counter scroll bar issue
+            this_iframe_style.width = (window.innerWidth * 0.98) / parent.parent.current_zoom;  // {CGD} adjusted all width/height to just under fullscreen to counter scroll bar issue
             this_iframe_style.height = (window.innerHeight * 0.98)  / parent.parent.current_zoom;
             this_iframe_style.maxWidth = (window.innerWidth * 0.97) / parent.parent.current_zoom;
             this_iframe_style.maxHeight = (window.innerHeight * 0.97)  / parent.parent.current_zoom;
@@ -561,7 +561,7 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
         .find("#post" + project_json.post_no)
         .contents()
         .find("#nt906822")
-        .append("<input type='hidden' name='complete' />")
+        .append("<input type='hidden' name='complete' value='2' />") // {CGD} used to set REDCap completion value so records are green on data input
         .focus() //or anything that no-one would accidentally create.
         .css('outline', 'none');
 
