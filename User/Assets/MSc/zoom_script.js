@@ -50,5 +50,7 @@ function zoom_out() {
   document.body.style.overflowX = "hidden";
 }
 
-document.getElementById("zoomIn").onclick = zoom_in;
-document.getElementById("zoomOut").onclick = zoom_out;
+window.onload = function(){ 
+  document.getElementById("zoomIn").onclick = zoom_in;
+  document.getElementById("zoomOut").onclick = zoom_out;
+}
