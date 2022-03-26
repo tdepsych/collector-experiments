@@ -397,12 +397,7 @@ Project = {
         .prop("id", "window_switch")[0].outerHTML +
       $("<script>").html(
         "window.addEventListener('blur', function(){ var focus_val = $('#window_switch').val();  $('#window_switch').val(focus_val + 'leave-' + (new Date()).getTime() + ';')}); window.addEventListener('focus', function(){ var focus_val = $('#window_switch').val(); $('#window_switch').val(focus_val + 'focus-' + (new Date()).getTime() + ';')}); "
-      )[0].outerHTML +
-      $("<input>")
-        .attr("name", "complete")
-        .css("display", "none")
-        .prop("id", "complete")
-        .val("1")[0].outerHTML;
+      )[0].outerHTML;
 
     /*
 project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new Date()).getTime();

@@ -78,7 +78,6 @@ if (typeof Phase !== "undefined") {
        console.log("clean_phase_responses");
        console.log(clean_phase_responses);
        clean_phase_responses.record_id = parent.parent.$("#participant_code").val();
-       clean_phase_responses.complete = '1'; //{CGD} This should mark record in REDCap complete
 
        clean_phase_responses['redcap_repeat_instance'] = parent.parent.project_json.repeat_no;
        // parent.parent.project_json.phase_no + "-" + parent.parent.project_json.phase_resp_no;
