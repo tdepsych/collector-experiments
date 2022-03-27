@@ -16,6 +16,7 @@
 
 #proceed_button {
     margin-bottom: 20px;
+    min-width: 95px;
     /* position: relative;
     display: inline-block;
     transform: translate(360px, 35px); */
@@ -88,15 +89,25 @@
     transform: translate(-5px, 5px);
   }
 
-/**************************************************/
-/* CENTERING WARNING TO GUARD AGAINST PPT ZOOMING */
-/* ~ this is needed as zooming can cause it to ~~ */
-/* ~ appear off screen, crashing the study ~~~~~~ */
-/**************************************************/
+/*******************/
+/* DEBRIEF BUTTONS */
+/*******************/
 
-  /* .modal-dialog{
-    top: 40%;
+  /* #endSession_btn {
+    margin-bottom: 25px;
     left: 50%;
-    transform: translate(-50%, -50%)!important;
+    transform: translateX(-50%);
     position: absolute;
-} */
+    margin-top: 20px;
+    display: none;
+  }
+  #endSession_btn_redcap {
+    margin-bottom: 25px;
+    left: 50%;
+    pointer-events: none;
+    background-color: #a1d4ee;
+    border-color: #a1d4ee;
+    transform: translateX(-50%);
+    position: absolute;
+    margin-top: 20px;
+  } */

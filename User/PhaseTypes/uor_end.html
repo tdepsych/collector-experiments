@@ -1,9 +1,52 @@
 <!DOCTYPE html>
 <html>
  <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
   <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
-<script>
+  <style>
+    #endSession_btn {
+    margin-bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    margin-top: 20px;
+    display: none;
+  }
+  #endSession_btn_redcap {
+    margin-bottom: 25px;
+    left: 50%;
+    pointer-events: none;
+    background-color: #a1d4ee;
+    border-color: #a1d4ee;
+    transform: translateX(-50%);
+    position: absolute;
+    margin-top: 20px;
+    display: none;
+  }
+  </style>
+ </head>
+ <body>
+<div id="page"></div>
+<div id="endButtons">
+  <button class="btn btn-primary" id="endSession_btn" onclick="Phase.submit()">Finish Session</button>
+  <button class="btn btn-primary" id="endSession_btn_redcap" >Submitting Data... </button>
+  </div>
+ </body>
+ <script>
+  function REDCap_Markers() {
+    for (let i = 0; i <= parent.parent.project_json.phase_no; i++) {
+      parent.parent.project_json.repeat_no = i;
+  	  Phase.add_response({
+    		phase_number: i,
+    		username: parent.parent.$("#participant_code").val(),
+    		complete: 2
+  	  });
+      if(parent.parent.project_json.phase_no === i) {
+      console.log('loop ends');
+      }
+    }
+  }
+
 Phase.set_timer(function(){
   if (parent.parent.sessionnumber == "3") {
     $("#page").load("../../collector-experiments/User/PhaseTypes/msc_debrief_sheet.html");
@@ -12,10 +55,30 @@ Phase.set_timer(function(){
       $("#page").load("../../collector-experiments/User/PhaseTypes/msc_midsession_debrief_sheet.html");
       // alert("1 or 2");
   }
+  REDCap_Markers();
 },0);
+
+var x = document.getElementById('endSession_btn_redcap'),
+label_text = x.innerHTML,
+  // dictionary of all the languages
+  time = ['(10)','(9)','(8)','(7)','(6)','(5)','(4)','(3)','(2)','(1)'],
+  // hold the spot in the dictionary
+  i = 0;  
+
+Phase.set_timer(function(){
+  $('#endSession_btn_redcap').show();
+  setInterval(function (){
+  // change the text using the dictionary
+  // i++ go to the next language
+  x.innerHTML = label_text + time[i++];
+  i = time.length === i ? 0 : i;
+}, 1000);
+}, 0);
+
+
+Phase.set_timer(function(){
+  $('#endSession_btn').show();
+  $('#endSession_btn_redcap').hide();
+},11000);  
 </script>
- </head>
- <body>
-<div id="page"></div>
- </body>
 </html>

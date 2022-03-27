@@ -526,7 +526,7 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
         .find(".post_iframe")
         .contents()
         .find("body")
-        .prepend('<button style="opacity:0; filter: alpha(opacity=0)" id="nt906822"></button>') // {CGD} Do not move, needs to prepend displayed HTML or autofocus scrolls to bottom on load
+        .prepend('<button style="opacity:0; filter: alpha(opacity=0)" id="keyresponse_autofocus"></button>') // {CGD} Do not move, needs to prepend displayed HTML or autofocus scrolls to bottom on load
         .css("transform-origin", "top");
 
       try {
@@ -560,8 +560,7 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
         .contents()
         .find("#post" + project_json.post_no)
         .contents()
-        .find("#nt906822")
-        .append("<input type='hidden' name='complete' value='0' />") // {CGD} used to set REDCap completion value so records are green on data input
+        .find("#keyresponse_autofocus") //.append("<input type='hidden' name='complete' value='0' />") // {CGD} used to set REDCap completion value so records are green on data input
         .focus() //or anything that no-one would accidentally create.
         .css('outline', 'none');
 
