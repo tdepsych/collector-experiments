@@ -561,7 +561,7 @@ project_json.this_phase["post_"+project_json.post_no+"_phase_start_ms"] = (new D
         .find("#post" + project_json.post_no)
         .contents()
         .find("#nt906822")
-        .append("<input type='hidden' name='complete' value='2' />") // {CGD} used to set REDCap completion value so records are green on data input
+        .append("<input type='hidden' name='complete' value='0' />") // {CGD} used to set REDCap completion value so records are green on data input
         .focus() //or anything that no-one would accidentally create.
         .css('outline', 'none');
 
