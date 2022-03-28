@@ -19,7 +19,7 @@
   <br/><br/>
   <div id="continueBtn" style="text-align:center;">
     <p id="ldt_instruction" style="visibility:hidden;">Please press space to begin</p>
-    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()" style="visibility:hidden; transform: translate(0, 0);">Start</button>
+    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()" style="visibility:hidden; transform: translate(0, -50px);">Start</button>
   </div>
 </div>
 <script>
@@ -41,14 +41,6 @@
      video.load();
     };
    
-    //---------------//
-    // SCROLL TO TOP //
-    //---------------//
-    
-    $("#proceed_button").click(function() {
-      document.body.scrollTop = 0; // For Safari
-      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    });
 </script>
 <script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>
 </body>
