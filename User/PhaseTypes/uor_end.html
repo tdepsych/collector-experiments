@@ -29,23 +29,23 @@
 <div id="page"></div>
 <div id="endButtons">
   <button class="btn btn-primary" id="endSession_btn" onclick="Phase.submit()">Finish Session</button>
-  <button class="btn btn-primary" id="endSession_btn_redcap" >Submitting Data... </button>
+  <button class="btn btn-primary" id="endSession_btn_redcap" >Submitting Data </button>
   </div>
  </body>
  <script>
   function REDCap_Markers() {
-    for (var i = 0; i <= parent.parent.project_json.phase_no; i++) {
+    for (let i = 0; i <= parent.parent.project_json.phase_no; i++) {
       parent.parent.project_json.repeat_no = i;
-  	  Phase.add_response({
-    		phase_number: i,
-    		username: parent.parent.$("#participant_code").val(),
-    		complete: 2
-  	  });
-    }
-    if(parent.parent.project_json.phase_no === i) {
-      console.log('loop ends');
-      buttonSwap();
+    	  Phase.add_response({
+      		phase_number: i,
+      		username: parent.parent.$("#participant_code").val(),
+      		complete: 2
+    	  });
+      if(parent.parent.project_json.phase_no === i) {
+        console.log('loop ends');
+        buttonSwap();
       }
+    }
   }
 
 Phase.set_timer(function(){
