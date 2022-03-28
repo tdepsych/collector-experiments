@@ -22,6 +22,8 @@
     position: absolute;
     margin-top: 20px;
     display: none;
+    text-align: left;
+    width: 185px;
   }
   </style>
  </head>
@@ -43,6 +45,7 @@
     	  });
       if(parent.parent.project_json.phase_no === i) {
         console.log('loop ends');
+        alert("button swap fired")
         buttonSwap();
       }
     }
@@ -78,10 +81,10 @@ Phase.set_timer(function(){
 }, 0);
 
 function buttonSwap() {
-  Phase.set_timer(function(){
-  $('#endSession_btn').show();
-  $('#endSession_btn_redcap').hide();
-},10000); 
+  setTimeout(function(){
+    $('#endSession_btn').show();
+    $('#endSession_btn_redcap').hide();
+  },10000); 
 }
 
 // Phase.set_timer(function(){
