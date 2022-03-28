@@ -34,17 +34,18 @@
  </body>
  <script>
   function REDCap_Markers() {
-    for (let i = 0; i <= parent.parent.project_json.phase_no; i++) {
+    for (var i = 0; i <= parent.parent.project_json.phase_no; i++) {
       parent.parent.project_json.repeat_no = i;
   	  Phase.add_response({
     		phase_number: i,
     		username: parent.parent.$("#participant_code").val(),
     		complete: 2
   	  });
-      if(parent.parent.project_json.phase_no === i) {
-      console.log('loop ends');
-      }
     }
+    if(parent.parent.project_json.phase_no === i) {
+      console.log('loop ends');
+      buttonSwap();
+      }
   }
 
 Phase.set_timer(function(){
@@ -61,7 +62,8 @@ Phase.set_timer(function(){
 var x = document.getElementById('endSession_btn_redcap'),
 label_text = x.innerHTML,
   // dictionary of all the languages
-  time = ['(10)','(9)','(8)','(7)','(6)','(5)','(4)','(3)','(2)','(1)'],
+  // time = ['(10)','(9)','(8)','(7)','(6)','(5)','(4)','(3)','(2)','(1)'],
+  time = ['.','..','...','....','.....'],
   // hold the spot in the dictionary
   i = 0;  
 
@@ -75,10 +77,16 @@ Phase.set_timer(function(){
 }, 1000);
 }, 0);
 
+function buttonSwap() {
+  Phase.set_timer(function(){
+  $('#endSession_btn').show();
+  $('#endSession_btn_redcap').hide();
+},6000); 
+}
 
 Phase.set_timer(function(){
   $('#endSession_btn').show();
   $('#endSession_btn_redcap').hide();
-},11000);  
+},11100);  
 </script>
 </html>
