@@ -43,10 +43,10 @@
       		username: parent.parent.$("#participant_code").val(),
       		complete: 2
     	  });
-      if(parent.parent.project_json.phase_no === i) {
-        console.log('loop ends');
-        buttonSwap();
-      }
+      // if(parent.parent.project_json.phase_no === i) {
+      //   console.log('loop ends');
+      //   buttonSwap();
+      // }
     }
   }
 
@@ -79,16 +79,16 @@ Phase.set_timer(function(){
 }, 1000);
 }, 0);
 
-function buttonSwap() {
-  setTimeout(function(){
-    $('#endSession_btn').show();
-    $('#endSession_btn_redcap').hide();
-  },10000); 
-}
+// function buttonSwap() {
+//   setTimeout(function(){
+//     $('#endSession_btn').show();
+//     $('#endSession_btn_redcap').hide();
+//   },10000); 
+// }
 
-// Phase.set_timer(function(){
-//   $('#endSession_btn').show();
-//   $('#endSession_btn_redcap').hide();
-// },11100);  
+Phase.set_timer(function(){
+  $('#endSession_btn').show();
+  $('#endSession_btn_redcap').hide();
+},11100);  
 </script>
 </html>
