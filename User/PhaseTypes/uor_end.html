@@ -63,7 +63,7 @@ var x = document.getElementById('endSession_btn_redcap'),
 label_text = x.innerHTML,
   // dictionary of all the languages
   // time = ['(10)','(9)','(8)','(7)','(6)','(5)','(4)','(3)','(2)','(1)'],
-  time = ['.','..','...','....','.....'],
+  time = ['.','. .','. . .','. . . .','. . . . .'],
   // hold the spot in the dictionary
   i = 0;  
 
@@ -81,12 +81,12 @@ function buttonSwap() {
   Phase.set_timer(function(){
   $('#endSession_btn').show();
   $('#endSession_btn_redcap').hide();
-},6000); 
+},10000); 
 }
 
-Phase.set_timer(function(){
-  $('#endSession_btn').show();
-  $('#endSession_btn_redcap').hide();
-},11100);  
+// Phase.set_timer(function(){
+//   $('#endSession_btn').show();
+//   $('#endSession_btn_redcap').hide();
+// },11100);  
 </script>
 </html>
