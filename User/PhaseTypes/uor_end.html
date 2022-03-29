@@ -35,6 +35,7 @@
   </div>
  </body>
  <script>
+ var x = document.getElementById('endSession_btn_redcap')
   function REDCap_Markers() {
     for (i = 0; i <= parent.parent.project_json.phase_no; i++) {
       parent.parent.project_json.repeat_no = i;
@@ -43,8 +44,7 @@
       		username: parent.parent.$("#participant_code").val(),
       		complete: 2
     	  });
-      if (i > parent.parent.project_json.phase_number -1){
-        var x = document.getElementById('endSession_btn_redcap'),
+      if (i == parent.parent.project_json.phase_number){
         label_text = x.innerHTML,
           // create array to cycle through
           time = ['(10)','(9)','(8)','(7)','(6)','(5)','(4)','(3)','(2)','(1)'],
