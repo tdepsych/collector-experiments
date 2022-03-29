@@ -35,33 +35,7 @@
   </div>
  </body>
  <script>
-  function REDCap_Markers() {
-    for (let i = 0; i <= parent.parent.project_json.phase_no; i++) {
-      parent.parent.project_json.repeat_no = i;
-    	  Phase.add_response({
-      		phase_number: i,
-      		username: parent.parent.$("#participant_code").val(),
-      		complete: 2
-    	  });
-    	  if (parent.parent.project_json.phase_no == i){
-    	    console.log("For Loop Finished")
-    	    buttonSwap()
-    	  }
-    }
-  }
-
-Phase.set_timer(function(){
-  if (parent.parent.sessionnumber == "3") {
-    $("#page").load("../../collector-experiments/User/PhaseTypes/msc_debrief_sheet.html");
-    console.log("This was Session 3");
-  } else {
-    $("#page").load("../../collector-experiments/User/PhaseTypes/msc_midsession_debrief_sheet.html");
-    console.log("This was Session 1 or 2");
-  }
-  REDCap_Markers();
-},0);
-
-function buttonSwap() {
+ function buttonSwap() {
   var x = document.getElementById('endSession_btn_redcap'),
   label_text = x.innerHTML,
   // create array to cycle through
@@ -84,5 +58,32 @@ function buttonSwap() {
     $('#endSession_btn_redcap').hide();
   },15000); 
 }
+ 
+  function REDCap_Markers() {
+    for (let i = 0; i <= parent.parent.project_json.phase_no; i++) {
+      parent.parent.project_json.repeat_no = i;
+    	  Phase.add_response({
+      		phase_number: i,
+      		username: parent.parent.$("#participant_code").val(),
+      		complete: 2
+    	  });
+    	  if (parent.parent.project_json.phase_no == i){
+    	    console.log("For Loop Finished");
+    	    buttonSwap();
+    	  }
+    }
+  }
+
+Phase.set_timer(function(){
+  if (parent.parent.sessionnumber == "3") {
+    $("#page").load("../../collector-experiments/User/PhaseTypes/msc_debrief_sheet.html");
+    console.log("This was Session 3");
+  } else {
+    $("#page").load("../../collector-experiments/User/PhaseTypes/msc_midsession_debrief_sheet.html");
+    console.log("This was Session 1 or 2");
+  }
+  REDCap_Markers();
+},0);
+
 </script>
 </html>
