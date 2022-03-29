@@ -96,7 +96,7 @@ Once again, thank you for your participation.
 
 function buttonSwap() {
   if (preScreen == "Pre_Screen") {
-    var x = document.getElementById('endSession_btn_redcap'),
+    var x = document.getElementById('endSession_pre_redcap'),
     label_text = x.innerHTML,
     // create array to cycle through
     time = ['.','. .','. . .','. . . .','. . . . .'],
@@ -104,7 +104,7 @@ function buttonSwap() {
     i = 0;  
             
     setTimeout(function(){
-      $('#endSession_btn_redcap').show();
+      $('#endSession_pre_redcap').show();
       setInterval(function (){
         // change the text using the array
         // i++ go to the next number in array
@@ -114,8 +114,8 @@ function buttonSwap() {
     }, 0);
     
     setTimeout(function(){
-      $('#endSession_btn').show();
-      $('#endSession_btn_redcap').hide();
+      $('#endSession_pre').show();
+      $('#endSession_pre_redcap').hide();
     },10000); 
     
   } else if (preScreen == null) {
