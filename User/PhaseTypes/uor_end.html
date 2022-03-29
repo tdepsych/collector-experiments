@@ -43,20 +43,20 @@
   // set start point in array
   i = 0;  
           
-  Phase.set_timer(function(){
+  setTimeout(function(){
     $('#endSession_btn_redcap').show();
     setInterval(function (){
       // change the text using the array
       // i++ go to the next number in array
       x.innerHTML = label_text + time[i++];
       i = time.length === i ? 0 : i;
-    }, 1500);
+    }, 1250);
   }, 0);
           
-  Phase.set_timer(function(){
+  setTimeout(function(){
     $('#endSession_btn').show();
     $('#endSession_btn_redcap').hide();
-  },15000); 
+  },12500); 
 }
  
   function REDCap_Markers() {
