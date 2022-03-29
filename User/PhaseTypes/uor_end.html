@@ -31,22 +31,41 @@
 <div id="page"></div>
 <div id="endButtons">
   <button class="btn btn-primary" id="endSession_btn" onclick="Phase.submit()">Finish Session</button>
-  <button class="btn btn-primary" id="endSession_btn_redcap" >Submitting Data </button>
+  <button class="btn btn-primary" id="endSession_btn_redcap" >Submitting Data... </button>
   </div>
  </body>
  <script>
   function REDCap_Markers() {
-    for (let i = 0; i <= parent.parent.project_json.phase_no; i++) {
+    for (i = 0; i <= parent.parent.project_json.phase_no; i++) {
       parent.parent.project_json.repeat_no = i;
     	  Phase.add_response({
       		phase_number: i,
       		username: parent.parent.$("#participant_code").val(),
       		complete: 2
     	  });
-      // if(parent.parent.project_json.phase_no === i) {
-      //   console.log('loop ends');
-      //   buttonSwap();
-      // }
+      if (i > parent.parent.project_json.phase_number -1){
+        var x = document.getElementById('endSession_btn_redcap'),
+        label_text = x.innerHTML,
+          // create array to cycle through
+          time = ['(10)','(9)','(8)','(7)','(6)','(5)','(4)','(3)','(2)','(1)'],
+          // set start point in array
+          i = 0;  
+        
+        Phase.set_timer(function(){
+          $('#endSession_btn_redcap').show();
+          setInterval(function (){
+            // change the text using the array
+            // i++ go to the next number in array
+            x.innerHTML = label_text + time[i++];
+            i = time.length === i ? 0 : i;
+          }, 1500);
+        }, 0);
+        
+        Phase.set_timer(function(){
+          $('#endSession_btn').show();
+          $('#endSession_btn_redcap').hide();
+        },15000); 
+      }
     }
   }
 
@@ -61,34 +80,6 @@ Phase.set_timer(function(){
   REDCap_Markers();
 },0);
 
-var x = document.getElementById('endSession_btn_redcap'),
-label_text = x.innerHTML,
-  // dictionary of all the languages
-  // time = ['(10)','(9)','(8)','(7)','(6)','(5)','(4)','(3)','(2)','(1)'],
-  time = ['.','. .','. . .','. . . .','. . . . .'],
-  // hold the spot in the dictionary
-  i = 0;  
 
-Phase.set_timer(function(){
-  $('#endSession_btn_redcap').show();
-  setInterval(function (){
-  // change the text using the dictionary
-  // i++ go to the next language
-  x.innerHTML = label_text + time[i++];
-  i = time.length === i ? 0 : i;
-}, 1000);
-}, 0);
-
-// function buttonSwap() {
-//   setTimeout(function(){
-//     $('#endSession_btn').show();
-//     $('#endSession_btn_redcap').hide();
-//   },10000); 
-// }
-
-Phase.set_timer(function(){
-  $('#endSession_btn').show();
-  $('#endSession_btn_redcap').hide();
-},11100);  
 </script>
 </html>
