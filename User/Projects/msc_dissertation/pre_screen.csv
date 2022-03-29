@@ -1,9 +1,9 @@
 item,phasetype,survey,max_time,notes,condition,text,shuffle_1,task_title,task_body_text,weight,
 0,uor_cover,,user,,,Welcome,,../../collector-experiments/User/Assets/MSc/cover_zoom_in.css,,,
-0,msc_ppt_setup,,user,-,-,,,,Pre_Screen,,
-0,msc_info_consent,,user,-,-,,,,Pre_Screen,,
+0,msc_ppt_setup,,user,{PPT ID},-,,,,Pre_Screen,,
+0,msc_info_consent,,user,{CONSENT},-,,,,Pre_Screen,,
 0,tde_survey,ppt-demographics.csv,user,{DEMO},-,,,,,,
-0,uor_cover_end,,,,-,Session Complete,,../../collector-experiments/User/Assets/MSc/cover_zoom_out.css,,,
+0,uor_cover_end,,,-,-,Session Complete,,../../collector-experiments/User/Assets/MSc/cover_zoom_out.css,,,
 0,msc_midsession_debrief_sheet,,user,-,-,"document.addEventListener(""DOMContentLoaded"", function(){
 $('#replaceText').text('. This was not one of them and is purely a brief pre-session task to allow you to submit your demographic information and confirm whether you are completing the study for SONA credits, to enter the draw for the Amazon voucher, or neither.');
 $('#replaceText2').text('first');
