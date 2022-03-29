@@ -87,53 +87,59 @@ Once again, thank you for your participation.
 <hr>
   <div>
     <button class="btn btn-primary" id="endSession_pre" onclick="Phase.submit()">Finish Session</button>
-    <button class="btn btn-primary" id="endSession_pre_redcap" >Submitting Data... </button>
+    <button class="btn btn-primary" id="endSession_pre_redcap" >Submitting Data </button>
   </div>
 </div>
 </div>
 <script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>
 <script>
-  function REDCap_Markers() {
-    for (let i = 0; i <= parent.parent.project_json.phase_no; i++) {
-      parent.parent.project_json.repeat_no = i;
-  	  Phase.add_response({
-    		phase_number: i,
-    		username: parent.parent.$("#participant_code").val(),
-    		complete: 2
-  	  });
-    }
-  }
-  Phase.set_timer(function(){REDCap_Markers();},0);
-  
-if (preScreen == "Pre_Screen") {
-  
-  var x = document.getElementById('endSession_pre_redcap'),
-  label_text = x.innerHTML,
-  // dictionary of all the languages
-  time = ['(3)','(2)','(1)'],
-  // hold the spot in the dictionary
-  i = 0;  
 
-  Phase.set_timer(function(){
-   $('#endSession_pre_redcap').show();
-   setInterval(function (){
-   // change the text using the dictionary
-   // i++ go to the next language
-   x.innerHTML = label_text + time[i++];
-   i = time.length === i ? 0 : i;
-  }, 1000);
-  }, 0);
-
-  Phase.set_timer(function(){
-    $('#endSession_pre').show();
+function buttonSwap() {
+  if (preScreen == "Pre_Screen") {
+    var x = document.getElementById('endSession_btn_redcap'),
+    label_text = x.innerHTML,
+    // create array to cycle through
+    time = ['.','. .','. . .','. . . .','. . . . .'],
+    // set start point in array
+    i = 0;  
+            
+    setTimeout(function(){
+      $('#endSession_btn_redcap').show();
+      setInterval(function (){
+        // change the text using the array
+        // i++ go to the next number in array
+        x.innerHTML = label_text + time[i++];
+        i = time.length === i ? 0 : i;
+      }, 1000);
+    }, 0);
+    
+    setTimeout(function(){
+      $('#endSession_btn').show();
+      $('#endSession_btn_redcap').hide();
+    },10000); 
+    
+  } else if (preScreen == null) {
+    $('#endSession_pre').hide();
     $('#endSession_pre_redcap').hide();
-  },4000);
-
-} else if (preScreen == null) {
-$('#endSession_pre').hide();
-$('#endSession_pre_redcap').hide();
+  }
 }
 
+function REDCap_Markers() {
+  for (let i = 0; i <= parent.parent.project_json.phase_no; i++) {
+    parent.parent.project_json.repeat_no = i;
+    Phase.add_response({
+      phase_number: i,
+      username: parent.parent.$("#participant_code").val(),
+      complete: 2
+    });
+    if (parent.parent.project_json.phase_no == i){
+      console.log("For Loop Finished");
+      buttonSwap();
+    }
+  }
+}
+
+Phase.set_timer(function(){REDCap_Markers();},0);
 </script>
 </body>
 </html>
