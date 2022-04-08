@@ -47,7 +47,7 @@ Project = {
     "detect_exe",
     "get_htmls",
     "get_gets",
-    "start_restart",
+    //"start_restart",
     "start_project",
     "load_phases",
     "select_condition",
