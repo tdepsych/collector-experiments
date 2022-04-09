@@ -1,12 +1,12 @@
-item,phasetype,survey,max_time,notes,video_btn,text,shuffle_1,shuffle_2,task_title,task_body_text,weight,
-0,uor_cover,,,-,,Welcome,,,../../collector-experiments/User/Assets/MSc/cover_zoom_in.css,,,
-0,msc_ppt_setup,,,-,,,,,,,,
-0,msc_info_consent,,,-,,,,,,,,
-0,msc_videos,,,{Welcome},Start,welcome,,,Welcome to the study,"This sessions uses video messages, please make sure your speakers are not muted so you can hear the task instructions presented.",,
-0,msc_videos,,,{BART},Start,bart,,Taboo,Balloon Inflation Task,Please watch the video below to understand what is required of you.,,
-0,msc_videos,,,{VOCAL},,fuck_vocal,,Taboo,Word Vocalisation: Fuck,Please watch the video below to understand what is required of you.,,
-0,bart,,,{BART},,,,Taboo,,,,
-0,msc_videos,,,{LDT},,ldt,,Taboo,Lexical Decision Task,"Please watch the video below to understand what is required of you.<script>
+item,phasetype,survey,notes,text,shuffle_1,shuffle_2,task_title,task_body_text,weight,
+0,uor_cover,,-,Welcome,,,../../collector-experiments/User/Assets/MSc/cover_zoom_in.css,,,
+0,msc_ppt_setup,,-,,,,,,,
+0,msc_info_consent,,-,,,,,,,
+0,msc_videos,,{Welcome},welcome,,,Welcome to the study,"This sessions uses video messages, please make sure your speakers are not muted so you can hear the task instructions presented.",,
+0,msc_videos,,{BART},bart,,Taboo,Balloon Inflation Task,Please watch the video below to understand what is required of you.,,
+0,msc_videos,,{VOCAL},fuck_vocal,,Taboo,Word Vocalisation: Fuck,Please watch the video below to understand what is required of you.,,
+0,bart,,{BART},,,Taboo,,,,
+0,msc_videos,,{LDT},ldt,,Taboo,Lexical Decision Task,"Please watch the video below to understand what is required of you.<script>
  $(document).on('keydown', function(event){
 $(document).off('keypress');
   if(event.which == 32) {
@@ -18,8 +18,8 @@ $(document).off('keypress');
 display:none!important;
 }
 </style>",,
-82 to 91,ldt_with_practice,,,{LDT},,,,Taboo,,,,
-0,task_bookend,,,{LDT},,,,Taboo,End Of Practice Trials,"<p>That completes the practice trials. You will now complete the experimental trials. Once again, all you have to do is decide whether it rhymes with <em>FUCK</em> (the word you repeated during the previous balloon analogue risk task). <br><br> • If the word <span style=""color:blue;""><em>rhymes</em> press <b>P</b></span><br><br> • If the word <span style=""color:red;""><em>does not rhyme </em> press <b>Q</b></span><br> <br>Position your fingers over the required keys as shown below. <br><br><b>Please note: </b>These trials <span style=""text-decoration: underline;""><em>do not</em></span> provide you with feedback as to whether you response was correct or not. <br><br>When you are ready, press the <b>Spacebar</b> to start the task.</p><br><br><img src=""../../collector-experiments/User/Assets/MSc/ldt_keyboard3.jpg"" id=""ldt_img""/>
+82 to 91,ldt_with_practice,,{LDT},,,Taboo,,,,
+0,task_bookend,,{LDT},,,Taboo,End Of Practice Trials,"<p>That completes the practice trials. You will now complete the experimental trials. Once again, all you have to do is decide whether the word displayed in the centre of the screen <b><u>rhymes</u> with the word you repeated during the previous balloon inflation task.</b> <br><br> <b>&bull; If the word <span style=""color:blue;""><em><u>rhymes</u></em> press P</span><br><br>&bull; If the word <span style=""color:red;""><u><em>does not rhyme</em></u> press Q</b></span><br> <br>Please position your index fingers over the required P and Q keys, as shown below before starting.<br><b>Please note: </b>The following experimental trials <span style=""text-decoration: underline;""><em>do not</em></span> provide you with feedback as to whether your response was correct or not. <br><br>When you are ready and positioned your fingers as shown, press the <b>Spacebar</b> with your thumb to start the task.</p><br><br><img src=""../../collector-experiments/User/Assets/MSc/ldt_keyboard3.jpg"" id=""ldt_img""/>
 <script>
  $(document).on('keydown', function(event){
   //$(document).off('keydown');
@@ -37,21 +37,21 @@ display:none!important;
 display:none!important;
 }
 </style>",,
-2 to 41,ldt_no_practice,,,{LDT},,,,Taboo,,,,
-0,msc_videos,,,{VAS},,vas_offensive,,Taboo,Word Rating 1,Please watch the video below to understand what is required of you.,,
-0,msc_vas_offensiveness,,,{VAS},,FUCK,,Taboo,,,,
-0,msc_videos,,,{VAS},,vas_humour,,Taboo,Word Rating 2,Please watch the video below to understand what is required of you.,,
-0,msc_vas_humour,,,{VAS},,FUCK,,Taboo,,,,
-0,msc_videos,,,{CDQ},,cdq,,Taboo,Task Evaluation Questionnaire,Please watch the video below to understand what is required of you.,,
-0,tde_survey,cognitive_dissonance.csv,,{COG DIS},,2,,Taboo,,,,
-0,task_bookend,,,{SURVEYS},,Continue,,Taboo,Questionnaire Complete,"<p>Thank you for completing the previous task. Your response has been correctly saved. When you are ready to continue, please click below.</p>",,
-0,msc_videos,,,-,,wordsearch,,,Time for a break...,Please watch the video below to understand what is required of you.,,
-0,wordsearch_teabiscuits,,180,-,,,,,,,,
-0,wordsearch_feedback,,,-,,,,,Wordsearch Task Complete,,,
-0,msc_videos,,,{BART},,bart,,Non-Taboo,Balloon Inflation Task,Please watch the video below to understand what is required of you.,,
-0,msc_videos,,,{VOCAL},,flat_vocal,,Non-Taboo,Word Vocalisation: Flat,Please watch the video below to understand what is required of you.,,
-0,bart,,,{BART},,,,Non-Taboo,,,,
-0,msc_videos,,,{LDT},,ldt,,Non-Taboo,Lexical Decision Task,"Please watch the video below to understand what is required of you.<script>
+2 to 41,ldt_no_practice,,{LDT},,,Taboo,,,,
+0,msc_videos,,{VAS},vas_offensive,,Taboo,Word Rating 1,Please watch the video below to understand what is required of you.,,
+0,msc_vas_offensiveness,,{VAS},FUCK,,Taboo,,,,
+0,msc_videos,,{VAS},vas_humour,,Taboo,Word Rating 2,Please watch the video below to understand what is required of you.,,
+0,msc_vas_humour,,{VAS},FUCK,,Taboo,,,,
+0,msc_videos,,{CDQ},cdq,,Taboo,Task Evaluation Questionnaire,Please watch the video below to understand what is required of you.,,
+0,tde_survey,cognitive_dissonance.csv,{COG DIS},2,,Taboo,,,,
+0,task_bookend,,{SURVEYS},Continue,,Taboo,Questionnaire Complete,"<p>Thank you for completing the previous task. Your response has been correctly saved. When you are ready to continue, please click below.</p>",,
+0,msc_videos,,-,wordsearch,,,Time for a break...,Please watch the video below to understand what is required of you.,,
+0,wordsearch_teabiscuits,,-,,,,,,,
+0,wordsearch_feedback,,-,,,,Wordsearch Task Complete,,,
+0,msc_videos,,{BART},bart,,Non-Taboo,Balloon Inflation Task,Please watch the video below to understand what is required of you.,,
+0,msc_videos,,{VOCAL},flat_vocal,,Non-Taboo,Word Vocalisation: Flat,Please watch the video below to understand what is required of you.,,
+0,bart,,{BART},,,Non-Taboo,,,,
+0,msc_videos,,{LDT},ldt,,Non-Taboo,Lexical Decision Task,"Please watch the video below to understand what is required of you.<script>
  $(document).on('keydown', function(event){
 $(document).off('keypress');
   if(event.which == 32) {
@@ -63,10 +63,11 @@ $(document).off('keypress');
 display:none!important;
 }
 </style>",,
-92 to 101,ldt_with_practice,,,{LDT},,,,Non-Taboo,,,,
-0,task_bookend,,,{LDT},,,,Non-Taboo,End Of Practice Trials,"<p>That completes the practice trials. You will now complete the experimental trials. Once again, all you have to do is decide whether it rhymes with <em>FLAT</em> (the word you repeated during the previous balloon analogue risk task). <br><br> • If the word <span style=""color:blue;""><em>rhymes</em> press <b>P</b></span><br><br> • If the word <span style=""color:red;""><em>does not rhyme </em> press <b>Q</b></span><br> <br>Position your fingers over the required keys as shown below. <br><br><b>Please note: </b>These trials <span style=""text-decoration: underline;""><em>do not</em></span> provide you with feedback as to whether you response was correct or not. <br><br>When you are ready, press the <b>Spacebar</b> to start the task.</p><br><br><img src=""../../collector-experiments/User/Assets/MSc/ldt_keyboard2.jpg"" id=""ldt_img""/>
+92 to 101,ldt_with_practice,,{LDT},,,Non-Taboo,,,,
+0,task_bookend,,{LDT},,,Non-Taboo,End Of Practice Trials,"<p>That completes the practice trials. You will now complete the experimental trials. Once again, all you have to do is decide whether the word displayed in the centre of the screen <b><u>rhymes</u> with the word you repeated during the previous balloon inflation task.</b> <br><br> <b>&bull; If the word <span style=""color:blue;""><em><u>rhymes</u></em> press P</span><br><br>&bull; If the word <span style=""color:red;""><u><em>does not rhyme</em></u> press Q</b></span><br> <br>Please position your index fingers over the required P and Q keys, as shown below before starting.<br><b>Please note: </b>The following experimental trials <span style=""text-decoration: underline;""><em>do not</em></span> provide you with feedback as to whether your response was correct or not. <br><br>When you are ready and positioned your fingers as shown, press the <b>Spacebar</b> with your thumb to start the task.</p><br><br><img src=""../../collector-experiments/User/Assets/MSc/ldt_keyboard3.jpg"" id=""ldt_img""/>
 <script>
  $(document).on('keydown', function(event){
+  //$(document).off('keydown');
   if(event.which == 32) {
    Phase.submit()
   } // closes if (event.which)
@@ -81,14 +82,14 @@ display:none!important;
 display:none!important;
 }
 </style>",,
-42 to 81,ldt_no_practice,,,{LDT},,,,Non-Taboo,,,,
-0,msc_videos,,,{VAS},,vas_offensive,,Non-Taboo,Word Rating 1,Please watch the video below to understand what is required of you.,,
-0,msc_vas_offensiveness,,,{VAS},,FLAT,,Non-Taboo,,,,
-0,msc_videos,,,{VAS},,vas_humour,,Non-Taboo,Word Rating 2,Please watch the video below to understand what is required of you.,,
-0,msc_vas_humour,,,{VAS},,FLAT,,Non-Taboo,,,,
-0,msc_videos,,,{CDQ},,cdq,,Non-Taboo,Task Evaluation Questionnaire,Please watch the video below to understand what is required of you.,,
-0,tde_survey,cognitive_dissonance.csv,,{COG DIS},,3,,Non-Taboo,,,,
-0,task_bookend,,,{SURVEYS},,Continue,,Non-Taboo,Questionnaire Complete,"<p>Thank you for completing the previous task. Your response has been correctly saved. When you are ready to continue, please click below.</p>",,
-0,uor_cover_end,,,,,Session Complete,,,../../collector-experiments/User/Assets/MSc/cover_zoom_out.css,,,
-0,uor_end,,,-,,,,,,,,
-0,exit,,,,,<b>You may now close your browser</b>,,,,,,
+42 to 81,ldt_no_practice,,{LDT},,,Non-Taboo,,,,
+0,msc_videos,,{VAS},vas_offensive,,Non-Taboo,Word Rating 1,Please watch the video below to understand what is required of you.,,
+0,msc_vas_offensiveness,,{VAS},FLAT,,Non-Taboo,,,,
+0,msc_videos,,{VAS},vas_humour,,Non-Taboo,Word Rating 2,Please watch the video below to understand what is required of you.,,
+0,msc_vas_humour,,{VAS},FLAT,,Non-Taboo,,,,
+0,msc_videos,,{CDQ},cdq,,Non-Taboo,Task Evaluation Questionnaire,Please watch the video below to understand what is required of you.,,
+0,tde_survey,cognitive_dissonance.csv,{COG DIS},3,,Non-Taboo,,,,
+0,task_bookend,,{SURVEYS},Continue,,Non-Taboo,Questionnaire Complete,"<p>Thank you for completing the previous task. Your response has been correctly saved. When you are ready to continue, please click below.</p>",,
+0,uor_cover_end,,,Session Complete,,,../../collector-experiments/User/Assets/MSc/cover_zoom_out.css,,,
+0,uor_end,,-,,,,,,,
+0,exit,,,<b>You may now close your browser</b>,,,,,,
