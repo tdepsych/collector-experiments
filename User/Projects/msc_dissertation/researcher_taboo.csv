@@ -13,12 +13,12 @@ item,phasetype,survey,max_time,notes,text,shuffle_1,shuffle_2,task_title,task_bo
 }
 </style>",,
 0,msc_vocalisation_instructions,,,{BART},FUCK,,Taboo,,,,
-0,exit,,,{BART},"<b>Please speak to the researcher</b><br>The word to repeat is FUCK
+0,exit,,,{BART},"<b>Please wait for the researcher to ask you to speak</b><br>The word to repeat is FUCK
 
 <script>
  $(document).on('keydown', function(event){
   //$(document).off('keydown');
-  if(event.which == 75) {
+  if(event.which == 70) {
    Phase.submit()
   } // closes if (event.which)
  }) // Closes function(event)
@@ -82,12 +82,12 @@ display:none!important;
 }
 </style>",,
 0,msc_vocalisation_instructions,,,{BART},FLAT,,Non-Taboo,,,,
-0,exit,,,{BART},"<b>Please speak to the researcher</b><br>The word to repeat is FLAT
+0,exit,,,{BART},"<b>Please wait for the researcher to ask you to speak</b><br>The word to repeat is FLAT
 
 <script>
  $(document).on('keydown', function(event){
   //$(document).off('keydown');
-  if(event.which == 84) {
+  if(event.which == 70) {
    Phase.submit()
   } // closes if (event.which)
  }) // Closes function(event)
