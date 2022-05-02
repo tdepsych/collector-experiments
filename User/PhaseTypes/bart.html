@@ -225,7 +225,7 @@
         var img_happy = "<img class= 'balloon_happy' src= '../../collector-experiments/User/Assets/MSc/bart_balloon_happy.jpg'/>";
         
         var label_current_points = 'Points Earned: ';
-        var label_current_pumps = 'Number of pumps: '
+       // var label_current_pumps = 'Number of pumps: '
         
         var msg_collect1 = '<p>The balloon did not burst!</p><p>You have collected ';
         var msg_collect2 = ' points.</p><p> Your points are added to your total score.</p>';
@@ -247,8 +247,8 @@
         $('#current_points_label').html(label_current_points);
         $('#current_points_value').html(current_value+label_currency);
         
-        $('#current_pumps_label').html(label_current_pumps);
-        $('#current_pumps_value').html(pumps);
+        //$('#current_pumps_label').html(label_current_pumps);
+        //$('#current_pumps_value').html(pumps);
         
         // below: create functions that define game functionality
         
@@ -263,7 +263,7 @@
             round += 1;
             size = start_size;
             pumps = 0;
-            $('#current_pumps_value').html(pumps);
+            //$('#current_pumps_value').html(pumps);
             $('#ballon').width(size); 
             $('#ballon').height(size);
             $('#ballon').show();
@@ -349,7 +349,7 @@
             if (pumps >= 0 && pumps < maximal_pumps) { // interacts with the collect function, which sets pumps to -1, making the button temporarily unclickable
                 explosion = 0; // is set to one if pumping goes beyond explosion point; see below
                 pumps += 1;
-                $('#current_pumps_value').html(pumps);
+                //$('#current_pumps_value').html(pumps);
                 
                 current_value = (pumps*5);
                 $('#current_points_value').html(current_value+label_currency);
