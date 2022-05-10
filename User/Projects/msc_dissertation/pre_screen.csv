@@ -1,4 +1,5 @@
 item,phasetype,survey,max_time,notes,condition,text,shuffle_1,task_title,task_body_text,weight,
+0,exit,,,,🤬<br><b>Study offline due to a software update</b><br>Please try again after 7.30pm,,,,,,
 0,uor_cover,,user,,,Welcome,,../../collector-experiments/User/Assets/MSc/cover_zoom_in.css,,,
 0,msc_ppt_setup,,user,{PPT ID},-,,,,Pre_Screen,,
 0,msc_info_consent,,user,{CONSENT},-,,,,Pre_Screen,,

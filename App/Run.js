@@ -1676,7 +1676,7 @@ function shuffle_start_exp() {
 function start_restart() {
   if (isSafari) {
     bootbox.alert(
-      "This experiment will not run in safari. Please close and use another browser"
+      "Please do not use Safari to complete this study. It is likely that your data will not save correctly if you do. Please close Safari and use another browser"
     );
   } else if (
     (window.localStorage.getItem("project_json") !== null) &
