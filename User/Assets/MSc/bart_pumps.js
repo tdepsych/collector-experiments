@@ -1,7 +1,7 @@
 var list = createListOfNNumbersBetweenAAndB(10, 1, 60);
 var burstPoint = transfomListToExactMeanAndSd(list, 30, 13);
 
-console.log('transformed list, mean and sd', burstPoint, computeMeanSdAndItervalRangeMinMax(burstPoint));
+//console.log('transformed list, mean and sd', burstPoint, computeMeanSdAndItervalRangeMinMax(burstPoint));
 //console.log('original list, mean and sd', list, computeMeanSdAndItervalRangeMinMax(list));
 
 function createListOfNNumbersBetweenAAndB(n, a, b) {
