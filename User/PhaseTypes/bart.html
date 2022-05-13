@@ -177,7 +177,7 @@
         </div>
    </div>        
         
-
+<script src="../../collector-experiments/User/Assets/MSc/bart_pumps.js"></script>
    <script>
         function appropriate_message(this_message) {
           bootbox.alert(this_message);
@@ -201,7 +201,8 @@
         var pumps; 
         var total = 0; // money that has been earned in total
         var rounds_played = 10;
-        var explode_array =  Array.from({length: 10}, () => Math.floor(Math.random() * (60 - 5) + 5));
+        //var explode_array =  Array.from({length: 10}, () => Math.floor(Math.random() * (60 - 5) + 5));
+        var explode_array =  burstPoint;
         var maximal_pumps = 100;
         var pumpmeup; // number pumps in a given round; is updated each round
         var number_pumps = []; // arrays for saving number of pumps
@@ -218,7 +219,7 @@
         var label_currency = ' Points';
         var label_header = 'Balloon Number ';
         var label_gonext1 = 'Start next round';
-        var label_gonext2 = 'End game';
+        var label_gonext2 = 'End task';
         var msg_explosion1 = '<p>The balloon burst at ';
         var msg_explosion2 = ' <p> You did not collect any points this round.</p>';
         var img_explosion = "<img class= 'balloon_burst' src= '../../collector-experiments/User/Assets/MSc/bart_balloon_burst.jpg'/>";
