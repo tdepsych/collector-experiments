@@ -325,11 +325,7 @@
        function appropriate_message(this_message) { // This just sets up a popup message that doesn't break full screen
           bootbox.alert(this_message);
       }
-      $(document).ready(function(){
-        var save_msg = "Please make sure you follow all the instructions that appear after you click 'finish session' on the debrief page about saving your data and emailing it to researcher.";
-        appropriate_message(save_msg);
-      });
-      
+
       var checkBox = document.getElementById("consent");  
       var currentTab = 0; // Current tab is set to be the first tab (0)
       showTab(currentTab); // Display the current tab

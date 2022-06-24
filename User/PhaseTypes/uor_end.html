@@ -35,6 +35,13 @@
   </div>
  </body>
  <script>
+   function appropriate_message(this_message) { // This just sets up a popup message that doesn't break full screen
+    bootbox.alert(this_message);
+  }
+  $(document).ready(function(){
+    var save_msg = "Once the data has uploaded, please make sure you click 'finish session/study' and follow the instructions about saving your data and emailing it to researcher.";
+    appropriate_message(save_msg);
+  });
  function buttonSwap() {
   var x = document.getElementById('endSession_btn_redcap'),
   label_text = x.innerHTML,
