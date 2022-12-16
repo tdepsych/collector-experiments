@@ -1,0 +1,17 @@
+{
+  "all_procs": {
+    "procedure_1.csv": "item,phasetype,max_time,text,shuffle_1,\r\n0,wordsearch_taboo,,,off,"
+  },
+  "conditions": "name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,\r\ncondition_1,You can put more detailed notes in this field,stimuli_1.csv,procedure_1.csv,off,,on,,,5,,",
+  "all_stims": {
+    "stimuli_1.csv": "cue,answer,\r\nA,Apple,\r\nB,Banana,\r\n,,"
+  },
+  "location": "tdepsych/collector-experiments/taboo_wordsearch",
+  "public_key": "ZIEuVRKYOLO6WwFULPPZwTRcHAjIYAjbIaCzNwwNLWc=",
+  "surveys": {},
+  "phasetypes": {
+    "wordsearch_taboo": "[[[LOCATION]]]../User/PhaseTypes/wordsearch_taboo.html"
+  },
+  "procs_csv": {},
+  "stims_csv": {}
+}
