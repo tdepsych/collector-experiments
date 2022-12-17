@@ -121,7 +121,7 @@ if (typeof Phase !== "undefined") {
          */,
          success: function(result){
            console.log("result");
-           console.log(result);
+           //console.log(result);
            //Phase.submit();
          }
        });

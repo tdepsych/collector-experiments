@@ -144,6 +144,7 @@
             return result;
           }
         }
+        var first = '';
         var rounds = 0;
         var username = $("#participant_code").val();
         // parent.parent.phaseNo = 1;
@@ -165,10 +166,19 @@
                 var indTime = lrgst - secLrgst;
               }
               var ws_Score = this.getScore();
-              var ws_arrayScore = ws_Score - 1;
               console.log(ws_Score);
               parent.parent.wordsFound = ws_Score + rounds;
-              var word_found = $(".ws-word-found").map(function(){return $(this).attr("id");}).get().sort();
+              //var word_found = $(".ws-word-found").map(function(){return $(this).attr("id");}).get();
+              
+              var second = $(".ws-word-found").map(function(){return $(this).html();}).get();
+              var word_found = second.filter(function (item) {return first.indexOf(item) === -1;});
+              first = second;
+              console.log(first);
+              console.log(second);
+              console.log(word_found);
+              
+              
+              
             if (this.getScore() == 1) {
               $("#ws_score").val("1")
           Phase.add_response({
@@ -178,7 +188,8 @@
                 ws_remaining: this.getRemaining(),
                 ws_total_time: Math.max(lrgst),
                 ws_individual_time: Math.max(lrgst),
-                ws_word: word_found
+                ws_word: word_found,
+                ws_allWord: second
               })
             } else {
               $("#ws_score").val(ws_Score)
@@ -190,9 +201,11 @@
                 ws_remaining: this.getRemaining(),
                 ws_total_time: Math.max(lrgst),
                 ws_individual_time: Math.max(indTime),
-                ws_word: word_found
+                ws_word: word_found,
+                ws_allWord: second
               })
             }
+            
             if (this.getRemaining()==0){
               //  Put whatever you want ppt. to do next below...
               //var script;
