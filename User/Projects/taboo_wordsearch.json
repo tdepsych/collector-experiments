@@ -1,8 +1,8 @@
 {
   "all_procs": {
-    "procedure_1.csv": "item,phasetype,max_time,text,shuffle_1,\r\n0,wordsearch_taboo,,,off,"
+    "procedure_1.csv": "item,phasetype,survey,max_time,notes,condition,text,shuffle_1,task_title,task_body_text,weight,\r\n0,uor_cover,,user,,,Welcome,,../../collector-experiments/User/Assets/MSc/cover_zoom_in.css,,,\r\n0,task_bookend,,,-,,Start,Taboo,👩‍✈️ Word search 👨‍✈️,\"<p><b>Thank you for pilot testing the task.</b><br><br>On the next screen you will see a grid of letters. Within that grid, there are <b>40 hidden words, none of which are less than 4 letters long</b>. When you find an word, use your mouse to click and drag across the corresponding letters (a yellow block-line will appear where you drag). If you correctly identify a hidden word, the block-line will turn green and remain in place<br><br>You have <b>5 minutes</b> to find as many words as you can. A sliding timer bar below the word search indicates how long you have left. If you find all the words before the time is up, the task will automatically end.<br><br> When you are ready, please press <b>Start</b> below to begin. Good luck!</p><br><br>\",,\r\n0,wordsearch_taboo,,,,,,,,,,\r\n0,save,,,\"<b>Thank you for pilot testing the 'text instructions' study.</b><hr style=\"\"width:66%;\"\"><br/><em>Please provide feedback on your experience by clicking the link below. It's a short, 10-item questionnaire that allows me to ensure everything works smoothly before I start collecting data for real.</em><br/><a href=\"\"https://forms.office.com/r/kgcd2tMduG\"\" target=\"\"_blank\"\">https://forms.office.com/r/kgcd2tMduG</a><br/>Thank you. Chris\",,Save your data,,💾 Please Save Your Data 💾,\"Thank you for completing the wordsearch task. You now need to save your data.<br/><br/>Please click the button below and save the .csv file to your computer - you can rename the file if you wish.<br/><br>If the button doesn't work for any reason, you can save your data by pressing Ctrl+S (Cmd+S on a Mac) too.<br/><br/>Thank you again for taking part. Once you have saved you data, please close your browser to exit the experiment.\",,"
   },
-  "conditions": "name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,\r\ncondition_1,You can put more detailed notes in this field,stimuli_1.csv,procedure_1.csv,off,,on,,,5,,",
+  "conditions": "name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,age_check,skip_quality,zoom_check,mobile,redcap_url,\r\ncondition_1,,stimuli_1.csv,procedure_1.csv,on,,random,,,5,,no,yes,no,no,,",
   "all_stims": {
     "stimuli_1.csv": "cue,answer,\r\nA,Apple,\r\nB,Banana,\r\n,,"
   },
@@ -10,7 +10,10 @@
   "public_key": "ZIEuVRKYOLO6WwFULPPZwTRcHAjIYAjbIaCzNwwNLWc=",
   "surveys": {},
   "phasetypes": {
-    "wordsearch_taboo": "[[[LOCATION]]]../User/PhaseTypes/wordsearch_taboo.html"
+    "uor_cover": "[[[LOCATION]]]../User/PhaseTypes/uor_cover.html",
+    "task_bookend": "[[[LOCATION]]]../User/PhaseTypes/task_bookend.html",
+    "wordsearch_taboo": "[[[LOCATION]]]../User/PhaseTypes/wordsearch_taboo.html",
+    "save": "[[[LOCATION]]]../User/PhaseTypes/save.html"
   },
   "procs_csv": {},
   "stims_csv": {}

@@ -27,7 +27,7 @@
         position: relative;
         top: 95%;
         width: 55%;
-        margin-left: 45px;
+        margin-left: 218px;
         border: solid 1px #000;
       }
       .progressbar .inner {
@@ -54,6 +54,9 @@
           background: #fcd2d2; 
         }
       } 
+      .ws-words {
+        display: none!important;
+      }
     </style>
   </head>
   <body>
@@ -67,7 +70,7 @@
       <div id='progressbar1'></div>
       
       <script>
-      Phase.set_timer(function(){Phase.submit()},180000);
+      Phase.set_timer(function(){Phase.submit()},300000);
         // This code was adapted from a Qualtrics Wordsearch created by QuentinAndre - https://github.com/QuentinAndre/WordSearchJS
         // Wordsearch puzzle from https://www.puzzles.ca/word-search
         // This creates the progress bar
@@ -90,33 +93,34 @@
             // When everything is set up we start the animation
             progressbarinner.style.animationPlayState = 'running';
           }
-          createProgressbar('progressbar1', '180s'); // If you want to change how long the bar lasts, alter the '180s' (it's total seconds)
+          createProgressbar('progressbar1', '300s'); // If you want to change how long the bar lasts, alter the '180s' (it's total seconds)
         },1);
         
         var countrygrid = [
-        ['O', 'U', 'S', 'B', 'A', 'K', 'E', 'H', 'J', 'X', 'N', 'O', 'S', 'H', 'H', 'M', 'Y', 'M', 'N'],
-        ['J', 'H', 'V', 'H', 'V', 'C', 'C', 'J', 'Q', 'T', 'G', 'K', 'M', 'S', 'E', 'A', 'N', 'U', 'K'],
-        ['F', 'U', 'C', 'K', 'I', 'K', 'H', 'B', 'B', 'F', 'M', 'G', 'K', 'E', 'V', 'G', 'P', 'O', 'Y'],
-        ['L', 'J', 'O', 'O', 'B', 'T', 'S', 'T', 'A', 'R', 'B', 'O', 'X', 'V', 'I', 'G', 'T', 'D', 'W'],
-        ['H', 'X', 'G', 'W', 'X', 'E', 'V', 'X', 'L', 'V', 'O', 'B', 'P', 'E', 'L', 'V', 'S', 'B', 'R'],
-        ['R', 'T', 'N', 'D', 'Y', 'T', 'E', 'U', 'C', 'B', 'L', 'P', 'Q', 'V', 'K', 'F', 'U', 'A', 'L'],
-        ['W', 'M', 'S', 'R', 'T', 'Z', 'R', 'U', 'K', 'H', 'T', 'R', 'L', 'P', 'U', 'O', 'L', 'L', 'Z'],
-        ['X', 'U', 'Y', 'P', 'R', 'L', 'O', 'P', 'I', 'O', 'A', 'A', 'W', 'M', 'H', 'W', 'J', 'B', 'T'],
-        ['E', 'W', 'H', 'T', 'A', 'I', 'H', 'I', 'J', 'I', 'A', 'I', 'A', 'L', 'Y', 'N', 'F', 'H', 'P'],
-        ['P', 'Q', 'M', 'X', 'R', 'L', 'W', 'S', 'G', 'E', 'K', 'E', 'R', 'I', 'Z', 'O', 'C', 'R', 'T'],
-        ['F', 'O', 'O', 'I', 'G', 'N', 'S', 'N', 'K', 'X', 'D', 'W', 'Y', 'Q', 'U', 'O', 'P', 'U', 'R'],
-        ['S', 'W', 'N', 'G', 'L', 'V', 'Y', 'F', 'I', 'U', 'X', 'F', 'G', 'C', 'C', 'U', 'T', 'X', 'H'],
-        ['E', 'S', 'T', 'E', 'A', 'Q', 'U', 'U', 'N', 'S', 'I', 'U', 'V', 'K', 'D', 'I', 'L', 'Q', 'J'],
-        ['E', 'D', 'V', 'F', 'S', 'Z', 'D', 'O', 'G', 'R', 'M', 'H', 'J', 'W', 'X', 'E', 'N', 'B', 'V'],
-        ['B', 'U', 'L', 'X', 'S', 'R', 'B', 'M', 'E', 'J', 'M', 'G', 'V', 'Q', 'J', 'E', 'B', 'Z', 'B'],
-        ['I', 'V', 'H', 'Z', 'L', 'H', 'X', 'S', 'D', 'F', 'Z', 'D', 'U', 'L', 'C', 'O', 'A', 'T', 'T'],
-        ['T', 'V', 'B', 'N', 'R', 'R', 'U', 'S', 'W', 'T', 'S', 'Z', 'A', 'H', 'S', 'I', 'F', 'Q', 'R'],
-        ['C', 'Z', 'A', 'I', 'B', 'Y', 'F', 'L', 'I', 'R', 'T', 'B', 'B', 'E', 'D', 'M', 'V', 'O', 'E'],
-        ['H', 'K', 'N', 'N', 'J', 'H', 'O', 'W', 'F', 'W', 'N', 'R', 'A', 'G', 'E', 'Z', 'C', 'A', 'T']];
+        ['J', 'O', 'I', 'X', 'O', 'R', 'H', 'F', 'Y', 'B', 'K', 'L', 'L', 'Y', 'D', 'N', 'W', 'T', 'W', 'F'],
+        ['U', 'A', 'L', 'V', 'M', 'I', 'X', 'G', 'U', 'N', 'V', 'P', 'T', 'O', 'O', 'H', 'S', 'N', 'E', 'S'],
+        ['G', 'X', 'E', 'T', 'A', 'A', 'F', 'Z', 'O', 'C', 'E', 'B', 'T', 'U', 'U', 'A', 'D', 'C', 'F', 'N'],
+        ['O', 'H', 'K', 'M', 'F', 'H', 'D', 'T', 'D', 'K', 'K', 'T', 'L', 'D', 'F', 'T', 'K', 'I', 'U', 'Y'],
+        ['J', 'I', 'L', 'Y', 'I', 'C', 'C', 'X', 'O', 'U', 'Z', 'C', 'A', 'K', 'E', 'T', 'K', 'X', 'D', 'H'],
+        ['T', 'Y', 'I', 'J', 'N', 'R', 'A', 'J', 'S', 'P', 'C', 'D', 'I', 'O', 'G', 'R', 'R', 'L', 'G', 'V'],
+        ['P', 'A', 'S', 'Z', 'C', 'R', 'C', 'V', 'T', 'D', 'J', 'X', 'Y', 'V', 'V', 'I', 'T', 'E', 'E', 'A'],
+        ['L', 'X', 'G', 'I', 'E', 'H', 'L', 'S', 'A', 'K', 'A', 'M', 'V', 'I', 'Q', 'D', 'C', 'T', 'A', 'X'],
+        ['N', 'T', 'K', 'K', 'D', 'S', 'I', 'Y', 'R', 'K', 'T', 'X', 'S', 'Z', 'I', 'I', 'U', 'R', 'F', 'H'],
+        ['S', 'L', 'A', 'P', 'B', 'H', 'P', 'N', 'L', 'U', 'S', 'T', 'S', 'C', 'P', 'H', 'N', 'I', 'I', 'O'],
+        ['T', 'J', 'E', 'I', 'H', 'I', 'D', 'E', 'B', 'T', 'N', 'S', 'M', 'O', 'X', 'I', 'R', 'L', 'R', 'K'],
+        ['T', 'Y', 'R', 'C', 'P', 'T', 'K', 'O', 'O', 'B', 'A', 'U', 'E', 'R', 'E', 'D', 'H', 'F', 'E', 'R'],
+        ['K', 'D', 'T', 'R', 'I', 'N', 'S', 'E', 'N', 'L', 'J', 'S', 'D', 'K', 'Q', 'V', 'L', 'S', 'A', 'I'],
+        ['N', 'I', 'Y', 'J', 'E', 'F', 'J', 'P', 'G', 'I', 'I', 'P', 'L', 'E', 'A', 'U', 'I', 'G', 'L', 'W'],
+        ['B', 'C', 'O', 'C', 'K', 'K', 'H', 'P', 'Y', 'W', 'R', 'P', 'K', 'C', 'O', 'X', 'E', 'L', 'H', 'E'],
+        ['C', 'G', 'D', 'W', 'R', 'Q', 'A', 'V', 'C', 'P', 'B', 'G', 'T', 'F', 'Y', 'Z', 'V', 'O', 'Z', 'B'],
+        ['A', 'I', 'J', 'C', 'W', 'U', 'U', 'B', 'U', 'U', 'R', 'Z', 'W', 'R', 'P', 'E', 'R', 'A', 'T', 'H'],
+        ['X', 'E', 'Z', 'M', 'Q', 'R', 'D', 'E', 'W', 'X', 'Q', 'I', 'T', 'R', 'A', 'E', 'F', 'T', 'L', 'Q'],
+        ['P', 'X', 'L', 'S', 'I', 'C', 'K', 'D', 'U', 'U', 'N', 'I', 'A', 'R', 'T', 'S', 'M', 'I', 'U', 'L'],
+        ['N', 'R', 'A', 'D', 'Z', 'U', 'U', 'K', 'Y', 'V', 'F', 'T', 'Y', 'G', 'U', 'V', 'H', 'X', 'F', 'W']];
 
         // Then we set up the list of words (countries) to find    
-        var countrynames = ['BAKE', 'BITCH', 'BOOK', 'CHAIR', 'COCK', 'DEBT', 'EVIL', 'FIRE', 'FLIRT', 'FUCK', 'GLASS',
-        'JOKE', 'LUST', 'NUDE', 'RAGE', 'RINSE', 'SHIT', 'SLAP', 'STAR', 'WHORE'];
+        var countrynames = ['BAKE', 'BIRD', 'BITCH', 'BOOK', 'CAKE', 'CHAIR', 'CHIN', 'COCK', 'CORK', 'CRIME', 'DEBT', 'DIRT', 'EVIL', 'FIRE', 'FLIRT', 'FOUL', 'FUCK', 'GLASS',
+        'GRIN', 'JOKE', 'KNOT', 'LUST', 'NUDE', 'RAGE', 'RAIN', 'RINSE', 'SHIP', 'SHIT', 'SICK', 'SILK', 'SLAP', 'STAR', 'TRASH', 'WHORE', 'WISE', 'DARN', 'FECK', 'FUDGE', 'RUDDY', 'SHOOT'];
         
         var script = document.createElement('script'); 
         script.src = "https://tdepsych.github.io/gorilla-materials/wordsearch.js"
@@ -147,7 +151,7 @@
         ws = new WordSearch({
           "grid": countrygrid,        // Your grid to search
           "words": countrynames,      // The list of words to find
-          "numberOfWordsToFind": 20,   // The number of words to show from words for each game, defaults to all of them
+          "numberOfWordsToFind": 40,   // The number of words to show from words for each game, defaults to all of them
           "parentId": "mysearchtask", // The name of the HTML div to replace with the wordsearch
           "onFindWord": function() {  // When a word is found...
               var array = this.getTiming(); // This assigns the response times to a variable
@@ -161,8 +165,10 @@
                 var indTime = lrgst - secLrgst;
               }
               var ws_Score = this.getScore();
+              var ws_arrayScore = ws_Score - 1;
               console.log(ws_Score);
               parent.parent.wordsFound = ws_Score + rounds;
+              var word_found = $(".ws-word-found").map(function(){return $(this).attr("id");}).get().sort();
             if (this.getScore() == 1) {
               $("#ws_score").val("1")
           Phase.add_response({
@@ -171,7 +177,8 @@
                 ws_score: this.getScore(),
                 ws_remaining: this.getRemaining(),
                 ws_total_time: Math.max(lrgst),
-                ws_individual_time: Math.max(lrgst)
+                ws_individual_time: Math.max(lrgst),
+                ws_word: word_found
               })
             } else {
               $("#ws_score").val(ws_Score)
@@ -182,13 +189,15 @@
                 ws_score: this.getScore(),
                 ws_remaining: this.getRemaining(),
                 ws_total_time: Math.max(lrgst),
-                ws_individual_time: Math.max(indTime)
+                ws_individual_time: Math.max(indTime),
+                ws_word: word_found
               })
             }
             if (this.getRemaining()==0){
               //  Put whatever you want ppt. to do next below...
-              var script;
-              rounds += 10;
+              //var script;
+              //rounds += 10;
+              Phase.submit()
             }
             
           }   // This closes the "OnFindWord" command
