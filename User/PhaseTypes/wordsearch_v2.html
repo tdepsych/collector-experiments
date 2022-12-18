@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
+    <style>
+      #collector_phase_timer {
+        display: none;
+      }
+      /* CSS reset */
+      body, h1 {
+        margin: 0;
+        padding: 0;
+        }
+      h1 {
+        /* text-transform: uppercase; */
+        transform: translateX(-46px);
+        padding-bottom: 25px;
+      }
+      
+      body {
+        color: #333;
+      }
+      
+      /* Common */
+      
+      /*.fix {*/
+      /*  *zoom: 1;*/
+      /*}*/
+      
+      .fix:after {
+        display: table;
+        clear: both;
+        content: '';
+      }
+      
+      /* Home */
+      
+      .wrap {
+        width: 960px;
+        margin: 0 auto;
+        padding: 40px 0;
+        text-align: center;
+        position:relative;
+      }
+      
+      .logo, #gameArea {
+        margin-bottom: 40px;
+      }
+      
+      .ws-area, .ws-words {
+        display: inline-block;
+        vertical-align: top;
+      }
+      
+      .ws-words {
+        margin-left: 20px;
+        text-align: left;
+        list-style-type: none;
+      }
+      
+      .ws-word {
+        margin-bottom: 4px;
+      }
+      
+      .ws-words ::first-letter{
+          text-transform : capitalize;
+      }
+      /* Wordsearch */
+      
+      .ws-area {
+        /*background: #fafafa;*/
+        display: inline-block;
+        padding: 15px;
+        border-radius: 10px;
+        -moz-user-select: -moz-none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        border: 5px black solid;
+        transform: translateX(-50px);
+      }
+      
+      .ws-row {
+        line-height: 0;
+      }
+      
+      .ws-col {
+        cursor: pointer;
+      }
+      
+      .ws-col.ws-selected {
+        background: yellow;
+      }
+      
+      .ws-found {
+        background: lime;
+      }
+      
+      .ws-game-over-outer {
+        background: rgba(0, 0, 0, 0.85);
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+      
+      .ws-game-over-inner {
+        width:100%;
+        height:100%;
+        padding:0;
+        margin:0;
+        display:table;
+      }
+      
+      .ws-game-over {
+        display:table-cell;
+        vertical-align:middle;
+      }
+      
+      .ws-game-over h2 {
+        color:#FFFFFF;
+        font-size:1em;
+        text-transform:uppercase;
+        padding:0;
+        margin:0 0 9px 0;
+      }
+      
+      .ws-game-over p {
+        color:#FFFFFF;
+        font-size:1em;
+        padding:0;
+        margin:0;
+      }
+      del {
+        color: lightgrey;
+      }
+      /* Styling Below Manages the Progress Bar */
+      .progressbar {
+        position: relative;
+        top: 95%;
+        width: 55%;
+        margin-left: 170px;
+        border: solid 1px #000;
+      }
+      .progressbar .inner {
+        height: 15px;
+        animation: progressbar-countdown;
+        /* Placeholder, this will be updated using javascript */ 
+        animation-duration: 40s;
+        /* We stop in the end */
+        animation-iteration-count: 1;
+        /* Stay on pause when the animation is finished finished */
+        animation-fill-mode: forwards;
+        /* We start paused, we start the animation using javascript */
+        animation-play-state: paused;
+        /* We want a linear animation, ease-out is standard */
+        animation-timing-function: linear;
+      }
+      @keyframes progressbar-countdown {
+        0% {
+          width: 100%;
+          background: #d2fcd2;
+        }
+        100% {
+          width: 0%;
+          background: #fcd2d2; 
+        }
+      } 
+      .ws-words {
+        display: none!important;
+      }
+    </style>
+  </head>
+  <body>
+    <!--<input type="hidden" name="ws_score" id="ws_score"/>-->
+    <!--<input type="hidden" name="ws_remaining" id="ws_remaining"/>-->
+    <!--<input type="hidden" name="ws_total_time" id="ws_total_time"/>-->
+    <button id="zoomOut" tabindex="-1"></button>
+    <button id="zoomIn" tabindex="-1"></button>
+    <div id="container">
+      <div class="wrap">
+      <h1 class="ws_title"></h1>
+      <section id="ws-area"></section>
+      <ul class="ws-words"></ul>
+    </div>
+      <div id='progressbar1'></div>
+      
+<script>
+// Creating a variable function to reverse the word - needed to check both forward and backwards highlighting
+const reverse = s => [].reduceRight.call(s, (a, b) => a + b)
+
+Phase.set_timer(function(){Phase.submit()},300000);
+
+        // This code was adapted from Li Zhineng's Word Search Puzzle (https://github.com/lizhineng/word-search-game)
+        // Additional functionality was adapted from code written by QuentinAndre - https://github.com/QuentinAndre/WordSearchJS 
+
+//============ //
+//PROGRESS BAR //
+//============ //
+        
+// This creates the progress bar
+        Phase.set_timer(function(){
+          function createProgressbar(id, duration, callback) {
+            // We select the div that we want to turn into a progressbar
+            var progressbar = document.getElementById(id);
+            progressbar.className = 'progressbar';
+            // We create the div that changes width to show progress
+            var progressbarinner = document.createElement('div');
+            progressbarinner.className = 'inner';
+            // Now we set the animation parameters
+            progressbarinner.style.animationDuration = duration;
+            // Eventually couple a callback
+            if (typeof(callback) === 'function') {
+              progressbarinner.addEventListener('animationend', callback);
+            }   
+            // Append the progressbar to the main progressbardiv
+            progressbar.appendChild(progressbarinner);
+            // When everything is set up we start the animation
+            progressbarinner.style.animationPlayState = 'running';
+          }
+          createProgressbar('progressbar1', '300s'); // If you want to change how long the bar lasts, alter the '180s' (it's total seconds)
+        },1);
+
+// ========== //        
+// WORDSEARCH //
+// ========== //
+
+// We just need to define a empty variable to allow it to be filled later - you can ignore this
+var first = '';
+var old_word_time = '';
+
+/* ------------------- */
+/* IGNORE THIS SECTION */
+/* ------------------- */
+
+  /* Returns a random integer between min and max
+     @param {Number} min
+     @param {Number} max
+     return {Number}
+  */
+        if (typeof Math.rangeInt != 'function') {
+            Math.rangeInt = function(min, max){
+              if (max == undefined) {
+                  max = min;
+                  min = 0;
+              }
+              return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+        }
+  
+  /*
+    Mege two objects
+    @param {Object} o1 Object 1
+    @param {Object} o2 Object 2
+    @return {Object}
+  */
+  
+  if (typeof Object.merge != 'function') {
+    Object.merge = function(o1, o2) {
+      for (var i in o1) {
+        o2[i] = o1[i];
+      }
+      return o2;
+    }
+  }
+  (function(){
+    'use strict';
+  
+    // Extend the element method
+    Element.prototype.wordSearch = function(settings) {
+      return new WordSearch(this, settings);
+    }
+  
+    /**
+    * Word seach
+    *
+    * @param {Element} wrapWl the game's wrap element
+    * @param {Array} settings
+    * constructor
+    */
+    function WordSearch(wrapEl, settings) {
+      this.wrapEl = wrapEl;
+  
+      // Add `.ws-area` to wrap element
+      this.wrapEl.classList.add('ws-area');
+  
+      //Words solved.
+      this.solved = 0;
+  
+/* ---------------- */
+/* DEFAULT SETTINGS */
+/* ---------------- */
+
+/*  These settings allow you to change the direction the words are placed in, the overall size of the wordsearch grid, and what the words included are
+    By using {{text}}, you can dynamically set the list from the procedure spreadsheet by including the words in an array in the "text" column.
+*/
+      var default_settings = {
+        'directions': ['W', 'N', 'WN', 'EN'],
+        'gridSize': 16,
+        'words': {{text}},
+        'wordsList' : [],
+        'debug': false
+      }
+
+/* ------------------- */
+/* IGNORE THIS SECTION */
+/* ------------------- */
+
+      this.settings = Object.merge(settings, default_settings);
+      // Check the words' length if it is overflow the grid
+      if (this.parseWords(this.settings.gridSize)) {
+        // Add words into the matrix data
+        var isWorked = false;
+  
+        while (isWorked == false) {
+          // initialize the application
+          this.initialize();
+  
+          isWorked = this.addWords();
+        }
+  
+        // Fill up the remaining blank items
+        if (!this.settings.debug) {
+          this.fillUpFools();
+        }
+  
+        // Draw the matrix into wrap element
+        this.drawmatrix();
+      }
+    }
+  
+/* Anything this.settings.words ... needs to go after this point  */  
+
+    /*
+      Parse words
+      @param {Number} Max size
+      @return {Boolean}
+    */
+    WordSearch.prototype.parseWords = function(maxSize) {
+      var itWorked = true;
+  
+      for (var i = 0; i < this.settings.words.length; i++) {
+        // Convert all the letters to upper case      
+        this.settings.wordsList[i] =  this.settings.words[i].trim();
+        this.settings.words[i] =  removeDiacritics(this.settings.wordsList[i].trim().toUpperCase());
+  
+        var word = this.settings.words[i];
+        if (word.length > maxSize) {
+          alert('The length of word `' + word + '` is overflow the gridSize.');
+          console.error('The length of word `' + word + '` is overflow the gridSize.');
+          itWorked = false;
+        }
+      }
+      return itWorked;
+    }
+  
+    /* Put the words into the matrix */
+    WordSearch.prototype.addWords = function() {
+        var keepGoing = true,
+          counter = 0,
+          isWorked = true;
+  
+        while (keepGoing) {
+          // Getting random direction
+          var dir = this.settings.directions[Math.rangeInt(this.settings.directions.length - 1)],
+            result = this.addWord(this.settings.words[counter], dir),
+            isWorked = true;
+  
+          if (result == false) {
+            keepGoing = false;
+            isWorked = false;
+          }
+  
+          counter++;
+          if (counter >= this.settings.words.length) {
+            keepGoing = false;
+          }
+        }
+  
+        return isWorked;
+    }
+    
+  
+/* ------------------------------------- */
+/* SETTINGS FOR POSSIBLE WORD DIRECTIONS */
+/* ------------------------------------- */
+
+    /* Add word into the matrix 
+       @param {String} word
+       @param {Number} direction
+    */
+    WordSearch.prototype.addWord = function(word, direction) {
+      var itWorked = true,
+        directions = {
+          'W': [0, 1], // Horizontal (From left to right)
+          'N': [1, 0], // Vertical (From top to bottom)
+          'WN': [1, 1], // From top left to bottom right
+          'EN': [1, -1] // From top right to bottom left
+        },
+        row, col; // y, x
+  
+      switch (direction) {
+        case 'W': // Horizontal (From left to right)
+          var row = Math.rangeInt(this.settings.gridSize  - 1),
+            col = Math.rangeInt(this.settings.gridSize - word.length);
+          break;
+  
+        case 'N': // Vertical (From top to bottom)
+          var row = Math.rangeInt(this.settings.gridSize - word.length),
+            col = Math.rangeInt(this.settings.gridSize  - 1);
+          break;
+  
+        case 'WN': // From top left to bottom right
+          var row = Math.rangeInt(this.settings.gridSize - word.length),
+            col = Math.rangeInt(this.settings.gridSize - word.length);
+          break;
+  
+        case 'EN': // From top right to bottom left
+          var row = Math.rangeInt(this.settings.gridSize - word.length),
+            col = Math.rangeInt(word.length - 1, this.settings.gridSize - 1);
+          break;
+  
+        default:
+          var error = 'UNKNOWN DIRECTION ' + direction + '!';
+          alert(error);
+          console.log(error);
+          break;
+      }
+      
+/* ------------------- */
+/* IGNORE THIS SECTION */
+/* ------------------- */
+  
+      // Add words to the matrix
+      for (var i = 0; i < word.length; i++) {
+        var newRow = row + i * directions[direction][0],
+          newCol = col + i * directions[direction][1];
+  
+        // The letter on the board
+        var origin = this.matrix[newRow][newCol].letter;
+  
+        if (origin == '.' || origin == word[i]) {
+          this.matrix[newRow][newCol].letter = word[i];
+        } else {
+          itWorked = false;
+        }
+      }
+  
+      return itWorked;
+    }
+  
+    /** Initialize the application **/
+    
+    WordSearch.prototype.initialize = function() {
+      /**
+      * Letter matrix
+      *
+      * param {Array}
+      */
+      this.matrix = [];
+  
+      /**
+      * Selection from
+      * @Param {Object}
+      */
+      this.selectFrom = null;
+  
+      /**
+      * Selected items
+      */
+      this.selected = [];
+  
+      this.initmatrix(this.settings.gridSize);
+    }
+  
+    /**
+    * Fill default items into the matrix
+    * @param {Number} size Grid size
+    */
+    WordSearch.prototype.initmatrix = function(size) {
+      for (var row = 0; row < size; row++) {
+        for (var col = 0; col < size; col++) {
+          var item = {
+            letter: '.', // Default value
+            row: row,
+            col: col
+          }
+  
+          if (!this.matrix[row]) {
+            this.matrix[row] = [];
+          }
+  
+          this.matrix[row][col] = item;
+        }
+      }
+    }
+  
+  
+/* ------------------- */
+/* LETTER GRID STYLING */
+/* ------------------- */
+
+/* Draw the matrix */
+    WordSearch.prototype.drawmatrix = function() {
+      $(".ws_title").html("Found " + this.solved + " out of " + this.settings.words.length + " words so far" );
+      for (var row = 0; row < this.settings.gridSize; row++) {
+        // New row
+        var divEl = document.createElement('div');
+        divEl.setAttribute('class', 'ws-row');
+        this.wrapEl.appendChild(divEl);
+  
+        for (var col = 0; col < this.settings.gridSize; col++) {
+          var cvEl = document.createElement('canvas');
+          cvEl.setAttribute('class', 'ws-col');
+// These lines control the sizes of the spacing around the indivudal letters
+          cvEl.setAttribute('width', 30);
+          cvEl.setAttribute('height', 30);
+  
+          // Fill text in middle center
+          var x = cvEl.width / 2,
+            y = cvEl.height / 2;
+  
+          var ctx = cvEl.getContext('2d');
+// These values change the appearence of each individual letter
+          ctx.font = '400 20px Calibri';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillStyle = '#333'; // Text color
+          ctx.fillText(this.matrix[row][col].letter, x, y);
+  
+          // Add event listeners
+          cvEl.addEventListener('mousedown', this.onMousedown(this.matrix[row][col]));
+          cvEl.addEventListener('mouseover', this.onMouseover(this.matrix[row][col]));
+          cvEl.addEventListener('mouseup', this.onMouseup());
+  
+          divEl.appendChild(cvEl);
+        }
+      }
+    }
+  
+/* ------------------- */
+/* IGNORE THIS SECTION */
+/* ------------------- */
+  
+    /* Fill up the remaining items */
+    WordSearch.prototype.fillUpFools = function() {
+      var rangeLanguage = searchLanguage(this.settings.words[0].split('')[0]);
+      for (var row = 0; row < this.settings.gridSize; row++) {
+        for (var col = 0; col < this.settings.gridSize; col++) {
+          if (this.matrix[row][col].letter == '.') {
+            // Math.rangeInt(65, 90) => A ~ Z
+            this.matrix[row][col].letter = String.fromCharCode(Math.rangeInt(rangeLanguage[0], rangeLanguage[1]));
+          }
+        }
+      }
+    }
+  
+    /* Returns matrix items
+       @param rowFrom
+       @param colFrom
+       @param rowTo
+       @param colTo
+       @return {Array}
+    */
+    WordSearch.prototype.getItems = function(rowFrom, colFrom, rowTo, colTo) {
+      var items = [];
+  
+      if ( rowFrom === rowTo || colFrom === colTo || Math.abs(rowTo - rowFrom) == Math.abs(colTo - colFrom) ) {
+        var shiftY = (rowFrom === rowTo) ? 0 : (rowTo > rowFrom) ? 1 : -1,
+          shiftX = (colFrom === colTo) ? 0 : (colTo > colFrom) ? 1 : -1,
+          row = rowFrom,
+          col = colFrom;
+  
+        items.push(this.getItem(row, col));
+        do {
+          row += shiftY;
+          col += shiftX;
+          items.push(this.getItem(row, col));
+        } while( row !== rowTo || col !== colTo );
+      }
+  
+      return items;
+    }
+  
+    /**
+    * Returns matrix item
+    * @param {Number} row
+    * @param {Number} col
+    * @return {*}
+    */
+    WordSearch.prototype.getItem = function(row, col) {
+      return (this.matrix[row] ? this.matrix[row][col] : undefined);
+    }
+  
+    /**
+    * Clear the exist highlights
+    */
+    WordSearch.prototype.clearHighlight = function() {
+      var selectedEls = document.querySelectorAll('.ws-selected');
+      for (var i = 0; i < selectedEls.length; i++) {
+        selectedEls[i].classList.remove('ws-selected');
+      }
+    }
+  
+/* --------------------- */
+/* MARKING CORRECT WORDS */
+/* --------------------- */
+    /**
+    * Lookup if the wordlist contains the selected
+    * @param {Array} selected
+    */
+    WordSearch.prototype.lookup = function(selected) {
+      
+      var words = [''];
+  
+      for (var i = 0; i < selected.length; i++) {
+        words[0] += selected[i].letter;
+      }
+      words.push(words[0].split('').reverse().join(''));
+  
+  // This section changes the yellow blocks to green by adding a css class (ws-found)
+      if (this.settings.words.indexOf(words[0]) > -1 ||
+          this.settings.words.indexOf(words[1]) > -1) {
+        for (var i = 0; i < selected.length; i++) {
+          var row = selected[i].row + 1,
+            col = selected[i].col + 1,
+            el = document.querySelector('.ws-area .ws-row:nth-child(' + row + ') .ws-col:nth-child(' + col + ')');
+          el.classList.add('ws-found');
+        }
+
+  // These sections crosses the word off list by adding a <del> tag to it
+        var wordList = document.querySelector(".ws-words");
+        var wordListItems = wordList.getElementsByTagName("li");
+        
+        for(var i=0; i<wordListItems.length; i++){
+          if(words[0] == removeDiacritics(wordListItems[i].innerHTML.toUpperCase())){         
+            if(wordListItems[i].innerHTML != "<del>"+wordListItems[i].innerHTML+"</del>") { //Check the word is never found
+              wordListItems[i].innerHTML = "<del>"+wordListItems[i].innerHTML+"</del>";
+              //Increment solved words.
+              this.solved++;
+              console.log(this.solved);
+              // var time_elapsed = Phase.elapsed();
+              // console.log(time_elapsed);
+              $(".ws_title").html("Found " + this.solved + " out of " + this.settings.words.length + " words so far" );
+            }
+          }
+          
+          if(reverse(words[0]) == removeDiacritics(wordListItems[i].innerHTML.toUpperCase())){         
+            if(wordListItems[i].innerHTML != "<del>"+wordListItems[i].innerHTML+"</del>") { //Check the word is never found
+              wordListItems[i].innerHTML = "<del>"+wordListItems[i].innerHTML+"</del>";
+              //Increment solved words.
+              this.solved++;
+              console.log(this.solved);
+              // var time_elapsed = Phase.elapsed();
+              // console.log(time_elapsed);
+              $(".ws_title").html("Found " + this.solved + " out of " + this.settings.words.length + " words so far" );
+            }
+          }
+        }
+
+/* ------------------------------------ */
+/* ADDING DATA TO COLLECTOR SPREADSHEET */
+/* ------------------------------------ */
+
+
+
+/* This is where we grab and store the word just found so we can save it to the spreadsheet.  
+   It works by getting a list of all the words that have been found to that point and storing it to a variabele
+   When a word is found, it refreshes that list, and stores it in a second variabele
+   It then compares the first and second variables, removing any duplicate items. What's left is the word we want.
+*/    
+              var second = $("del").map(function(){return $(this).html();}).get();
+              var word_found = second.filter(function (item) {return first.indexOf(item) === -1;});
+              first = second;
+              console.log(word_found);
+              
+              var new_word_time = Phase.elapsed();
+              var timetoFind = new_word_time - old_word_time
+              old_word_time = new_word_time;
+              console.log("time to find:" + timetoFind);
+              console.log(new_word_time);
+              
+                Phase.add_response({
+                username: parent.parent.$("#participant_code").val(),
+                ws_score: this.solved,
+                ws_word: word_found,
+                ws_time: timetoFind
+              })
+
+/* -------------------- */
+/* END OF GAME SETTINGS */
+/* -------------------- */
+
+        //Game over?
+        if(this.solved == this.settings.words.length){
+          Phase.submit() // this code ends the task
+        }
+      }
+    }
+  
+/* ----------------------- */
+/* IGNORE EVERYTHING BELOW */
+/* ----------------------- */
+  
+    /**
+    * Mouse event - Mouse down
+    * @param {Object} item
+    */
+    WordSearch.prototype.onMousedown = function(item) {
+      var _this = this;
+      return function() {
+        _this.selectFrom = item;
+      }
+    }
+  
+    /**
+    * Mouse event - Mouse move
+    * @param {Object}
+    */
+    WordSearch.prototype.onMouseover = function(item) {
+      var _this = this;
+      return function() {
+        if (_this.selectFrom) {
+          _this.selected = _this.getItems(_this.selectFrom.row, _this.selectFrom.col, item.row, item.col);
+  
+          _this.clearHighlight();
+  
+          for (var i = 0; i < _this.selected.length; i ++) {
+            var current = _this.selected[i],
+              row = current.row + 1,
+              col = current.col + 1,
+              el = document.querySelector('.ws-area .ws-row:nth-child(' + row + ') .ws-col:nth-child(' + col + ')');
+  
+            el.className += ' ws-selected';
+          }
+        }
+      }
+    }
+  
+    /* Mouse event - Mouse up */
+    
+    WordSearch.prototype.onMouseup = function() {
+      var _this = this;
+      return function() {
+        _this.selectFrom = null;
+        _this.clearHighlight();
+        _this.lookup(_this.selected);
+        _this.selected = [];
+      }
+    }
+  
+  })();
+  $.getScript("../../collector-experiments/User/Assets/Wordsearch/wordsearch_js_end.js");
+  $.getScript("../../collector-experiments/User/Assets/MSc/zoom_script.js");
+
+</script>
+    </div>
+  </body>
+</html>
