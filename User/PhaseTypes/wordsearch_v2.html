@@ -3,7 +3,11 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=0.5">
     <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
+    <script src="../../collector-experiments/User/Assets/Wordsearch/shuffle_function.js"></script>
     <style>
+    .spinner {
+      transform: translateY(-421px);
+    }
       #collector_phase_timer {
         display: none;
       }
@@ -168,13 +172,14 @@
           background: #fcd2d2; 
         }
       } 
-      .ws-words {
-        display: none!important;
-      }
+      /*.ws-words {*/
+      /*  display: none!important;*/
+      /*}*/
+
     </style>
   </head>
   <body>
-    <!--<input type="hidden" name="ws_score" id="ws_score"/>-->
+    <input type="hidden" name="ws_wordList" id="ws_wordList"/>
     <!--<input type="hidden" name="ws_remaining" id="ws_remaining"/>-->
     <!--<input type="hidden" name="ws_total_time" id="ws_total_time"/>-->
     <button id="zoomOut" tabindex="-1"></button>
@@ -188,20 +193,92 @@
       <div id='progressbar1'></div>
       
 <script>
-// Creating a variable function to reverse the word - needed to check both forward and backwards highlighting
+/* ******************************************************************************************************************************* 
+   The base code for the wordsearch was taken from Li Zhineng's Word Search Puzzle (https://github.com/lizhineng/word-search-game) 
+   This has then been heavily adapted to make it a behavioural task with scoring, and random-without-replacement stimuli          
+   ******************************************************************************************************************************* */ 
+
+// First, work out if this is the first wordsearch attempted. This is needed as it dictates where to select the stimuli words from later
+if (parent.parent.global_count == null) {
+  parent.parent.global_count = 1;
+} else {
+  parent.parent.global_count = parent.parent.global_count
+}
+
+//================= //
+// TASK LENGTH (MS) //
+//================= //
+
+// This sets how long the task lasts before ending automatically. The timing is in ms (300,000 = 5min)
+Phase.set_timer(function(){Phase.submit(parent.parent.global_count++)},300000);
+
+// This is just a variable function to reverse the highleted word - needed to check both forward and backwards highlighting ←  {IGNORE} 
 const reverse = s => [].reduceRight.call(s, (a, b) => a + b)
 
-Phase.set_timer(function(){Phase.submit()},300000);
+// This is just an empty variable needed for the randomisation of the stimuli ←  {IGNORE} 
+var source_array = '';
 
-        // This code was adapted from Li Zhineng's Word Search Puzzle (https://github.com/lizhineng/word-search-game)
-        // Additional functionality was adapted from code written by QuentinAndre - https://github.com/QuentinAndre/WordSearchJS 
+
+// This just stops the javascript running until the page has actually appeared on screen - needed to ensure the timer doesn't start early etc.
+Phase.set_timer(function(){ 
+
+//================ //
+// STIMULI SORTING //
+//================ // 
+
+/* First we just check if the stimuli list have been generated before, if not, this is the first wordsearch and we use the whole list
+   if it does exist, we use the existing list, as that will have had the previously used words removed. */
+
+if (parent.parent.global_count == 1) {
+  // Get the source words from the procedure sheet  
+  var source_words = '{{text}}';
+  // Change the words into a useable array  
+  var source_word_array = source_words.split(',');
+      console.log("start1: " + source_word_array);
+    
+  // Shuffle the stimuli array  
+  var shuffled_stimuli = shuffle(source_word_array); // Shuffle the whole array
+      console.log("shuffled1: " + shuffled_stimuli);
+  
+  // Select the required number of stimuli (set from the "stimuli number" column of the procedure sheet       
+  var grid_stimuli = shuffled_stimuli.slice(0, {{stimuli_number}});
+      console.log("final1: " + grid_stimuli);                        
+     
+  // Get the length of the remaining unused stimuli words 
+  var word_length = shuffled_stimuli.length;
+     
+  // Assign the remaining usused stimuli words to a global variable - this allows us to access them next time round 
+  parent.parent.stimuli_array = shuffled_stimuli.slice({{stimuli_number}},word_length);
+      console.log("rest1: " + parent.parent.stimuli_array)
+     
+  // Set the value of a hidden input to be the stimuli words. 
+  document.getElementById("ws_wordList").value = grid_stimuli; // this saves them in our data spreadsheet meaning we know what words were on what wordsearch puzzle
+     
+} else {
+/* This else is an exact replica of the above if, it just takes the stimuli array from the global variable, rather than from the procedure spreadsheet  */
+  var source_array = parent.parent.stimuli_array;
+      console.log("start" + parent.parent.global_count + ": "  + source_array);
+    
+  var shuffled_stimuli = shuffle(source_array);
+      console.log("shuffled" + parent.parent.global_count + ": "  + shuffled_stimuli);  
+    
+  var word_length = shuffled_stimuli.length;
+  var grid_stimuli = shuffled_stimuli.slice(0, {{stimuli_number}});  // Select the required number of stimuli to the task
+      console.log("final" + parent.parent.global_count + ": "  + grid_stimuli);
+
+  parent.parent.stimuli_array = shuffled_stimuli.slice({{stimuli_number}},word_length);
+  console.log("rest" + parent.parent.global_count + ": "  + parent.parent.stimuli_array)
+     
+  document.getElementById("ws_wordList").value = grid_stimuli;
+}
+
 
 //============ //
 //PROGRESS BAR //
 //============ //
         
 // This creates the progress bar
-        Phase.set_timer(function(){
+        //Phase.set_timer(function(){
           function createProgressbar(id, duration, callback) {
             // We select the div that we want to turn into a progressbar
             var progressbar = document.getElementById(id);
@@ -221,7 +298,7 @@ Phase.set_timer(function(){Phase.submit()},300000);
             progressbarinner.style.animationPlayState = 'running';
           }
           createProgressbar('progressbar1', '300s'); // If you want to change how long the bar lasts, alter the '180s' (it's total seconds)
-        },1);
+        //},1);
 
 // ========== //        
 // WORDSEARCH //
@@ -298,8 +375,8 @@ var old_word_time = '';
 */
       var default_settings = {
         'directions': ['W', 'N', 'WN', 'EN'],
-        'gridSize': 16,
-        'words': {{text}},
+        'gridSize': 20,
+        'words': grid_stimuli,
         'wordsList' : [],
         'debug': false
       }
@@ -695,7 +772,7 @@ var old_word_time = '';
 
         //Game over?
         if(this.solved == this.settings.words.length){
-          Phase.submit() // this code ends the task
+          Phase.submit(parent.parent.global_count++) // this code ends the task
         }
       }
     }
@@ -754,7 +831,7 @@ var old_word_time = '';
   })();
   $.getScript("../../collector-experiments/User/Assets/Wordsearch/wordsearch_js_end.js");
   $.getScript("../../collector-experiments/User/Assets/MSc/zoom_script.js");
-
+},1);
 </script>
     </div>
   </body>
