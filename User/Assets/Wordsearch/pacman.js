@@ -1,6 +1,6 @@
 window.onload = function() {
 	var node = document.getElementById("canvasTetris");
-	canvasTetris(node);
+	canvasTetris(node);	
 };
 
 var canvasTetris = function(parentNode) {
@@ -309,7 +309,6 @@ var canvasTetris = function(parentNode) {
 		this.next.tetromino = this.collection[tetNum][tetDir];
 		this.next.number = tetNum;
 		this.next.direction = tetDir;
-
 		canvas.draw();
 	};
 
@@ -453,7 +452,6 @@ var canvasTetris = function(parentNode) {
 				this.blocks[i][j] = 1;
 			}
 		}
-
 		canvas.drawBackground();
 		canvas.drawBlocks();
 		canvas.drawNextBlocks();
@@ -479,7 +477,6 @@ var canvasTetris = function(parentNode) {
 
 		tetromino.chooseNext();
 		tetromino.chooseNext();
-		
         game.speed = 1000;
         game.timer = setInterval(game.move, game.speed);
 	};
