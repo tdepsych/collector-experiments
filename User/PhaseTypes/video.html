@@ -1,22 +1,16 @@
 <!DOCTYPE html>
 <html>
   <style>
-    video{
-      position: relative;
-      top: 50%;
-      transform: translateY(25%);
-      /*display: none;*/
-    }
+  #container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
   </style>
 <body>
   <div id="container">
-<center>
   <video id="video" src="../../collector-experiments/User/Assets/LOP/bristol.mp4" ></video>
-</center>
-  <!--<br/><br/>-->
-  <!--<div style="text-align:center;">-->
-  <!--  <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()" style="visibility:hidden; transform: translate(0, 0);">Start</button>-->
-  <!--</div>-->
 </div>
 <script>
 Phase.set_timer(function(){$('#video').get(0).play()},'1');
