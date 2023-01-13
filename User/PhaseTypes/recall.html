@@ -198,6 +198,7 @@ body{
 </div>
 
 <script>
+var baselineTime = Phase.elapsed() + 3000;
 $('.update_name').on('click',function(){
   var class_list = this.className.split(' ');
   var end_trial = false;
@@ -215,7 +216,6 @@ Phase.set_timer(function(){$('#instruction').hide()},'2000'); //Phase.set_timer 
 Phase.set_timer(function(){$('#ready').show()},'2000');
 Phase.set_timer(function(){$('#ready').hide()},'3000');
 Phase.set_timer(function(){$('#word').show()},'3000');
-var baselineTime = Phase.elapsed() + 3000;
 Phase.set_timer(function(){$('#No').show()},'3000');
 Phase.set_timer(function(){$('#Yes').show()},'3000');
 

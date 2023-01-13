@@ -211,6 +211,7 @@ body{
   <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>
 <script>
+var baselineTime = Phase.elapsed() + 3000;
 $('.update_name').on('click',function(){
   var class_list = this.className.split(' ');
   var end_trial = false;
@@ -229,7 +230,6 @@ Phase.set_timer(function(){$('#ready').show()},'1500');
 Phase.set_timer(function(){$('#ready').hide()},'2500');
 Phase.set_timer(function(){$('#word').show()},'2500');
 Phase.set_timer(function(){$('#word').hide()},'7000');
-var baselineTime = Phase.elapsed() + 3000;
 Phase.set_timer(function(){$('#No').show()},'3000');
 Phase.set_timer(function(){$('#Yes').show()},'3000')
 Phase.set_timer(function(){$('#No').hide()},'7000');;
