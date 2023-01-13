@@ -40,7 +40,7 @@
     height: 800;
     text-align: center;
   }
-  #studentNumber, #studentAge {
+  #studentnumber, #studentage {
     height: 65px;
     width: 300px;
     font-size: 20px;
@@ -70,7 +70,7 @@
   text-align: left;
 }
 
-input#studentAge {
+input#studentage {
   margin-bottom: 5px;
 }
 
@@ -197,19 +197,19 @@ input:focus{
 </style>
 </head>
 <body>
-<input type='hidden' id='ppt_studentNumber' name='ppt_studentNumber' value="-1"/>
-<input type='hidden' id='ppt_studentAge' name='ppt_studentAge' value="-1"/>
-<input type='hidden' id='ppt_studentGender' name='ppt_studentGender' value="-1"/>
+<input type='hidden' id='ppt_studentnumber' name='ppt_studentnumber' value="-1"/>
+<input type='hidden' id='ppt_studentage' name='ppt_studentage' value="-1"/>
+<input type='hidden' id='ppt_studentgender' name='ppt_studentgender' value="-1"/>
 <div id="trial_contents">
   <div id="instruct_text">{{text}}
   <br><br>Before you begin, please complete the short demographics questionnaire below. Once completed, please press start to begin the study.<br>
     <div id='grid'>
       <span id="label">Please enter your student number:</span>
-        <input type="text" id="studentNumber" placeholder="e.g. 12345678" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+        <input type="text" id="studentnumber" placeholder="e.g. 12345678" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
         <span id="label">Please enter your age:</span>
-        <input type="text" id="studentAge" placeholder="in years" maxlength="2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+        <input type="text" id="studentage" placeholder="in years" maxlength="2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
         <span id="label">Please select the gender you identify with:</span>
-          <select id="studentGender" class="custom-select" placeholder="options" >
+          <select id="studentgender" class="custom-select" placeholder="options" >
             <option value="1">Male</option>
             <option value="2">Female</option>
             <option value="3">Non-Binary</option>
@@ -231,13 +231,13 @@ input:focus{
 var Form = document.getElementById("trial_contents");
 $('#proceed_button').css('pointer-events','none');
 Form.onchange = function() {
-  var ppt_studentNumber = studentNumber.value
-  var ppt_studentAge = studentAge.value
-  // var ppt_studentGender = studentGender.value
-  document.getElementById("ppt_studentNumber").value = ppt_studentNumber;
-  document.getElementById("ppt_studentAge").value = ppt_studentAge;
-  // document.getElementById("ppt_studentGender").value = ppt_studentGender;
-  if (ppt_studentNumber.length == 8) {
+  var ppt_studentnumber = studentnumber.value
+  var ppt_studentage = studentage.value
+  // var ppt_studentgender = studentgender.value
+  document.getElementById("ppt_studentnumber").value = ppt_studentnumber;
+  document.getElementById("ppt_studentage").value = ppt_studentage;
+  // document.getElementById("ppt_studentgender").value = ppt_studentgender;
+  if (ppt_studentnumber.length == 8) {
     $('#proceed_button').css('pointer-events','auto');
   } else {
     $('#proceed_button').css('pointer-events','none');
