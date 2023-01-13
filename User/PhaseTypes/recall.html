@@ -32,7 +32,7 @@ body{
   /*height:500px;*/
   width:100%;
   z-index:0;
-  /*display:none;*/
+  display:none;
 }
 #ready{
   position:absolute;
@@ -57,17 +57,17 @@ body{
   display:none;
   text-transform: uppercase;
 }
-#too_slow{
-  position:absolute;
-  background-color:transparent;
-  color:black;
-  cursor: default;
-  font-size:40px;
+/*#too_slow{*/
+/*  position:absolute;*/
+/*  background-color:transparent;*/
+/*  color:black;*/
+/*  cursor: default;*/
+/*  font-size:40px;*/
   /*height:500px;*/
-  width:100%;
-  z-index:0;
-  display:none;
-}
+/*  width:100%;*/
+/*  z-index:0;*/
+  /*display:none;*/
+/*}*/
 #No{
   background-color: transparent;
   z-index: 0;
@@ -194,8 +194,7 @@ body{
   <input id='Yes' class='button_response update_name' type='button' value='1'/>
   <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>
-<input type='hidden' name='' />
-<input type='hidden' name='button_response' />
+
 <script>
 $('.update_name').on('click',function(){
   var class_list = this.className.split(' ');
