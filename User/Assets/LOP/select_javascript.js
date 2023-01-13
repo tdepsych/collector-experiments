@@ -32,6 +32,6 @@ $(".custom-option").on("click", function() {
   $(this).addClass("selection");
   $(this).parents(".custom-select").removeClass("opened");
   $(this).parents(".custom-select").find(".custom-select-trigger").text($(this).text());
-  var ppt_studentGender = studentGender.value
-  document.getElementById("ppt_studentGender").value = ppt_studentGender;
+  var ppt_studentgender = studentgender.value
+  document.getElementById("ppt_studentgender").value = ppt_studentgender;
 });

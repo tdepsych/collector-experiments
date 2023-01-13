@@ -230,13 +230,16 @@ input:focus{
 <script>
 var Form = document.getElementById("trial_contents");
 $('#proceed_button').css('pointer-events','none');
+
+
 Form.onchange = function() {
   var ppt_studentnumber = studentnumber.value
   var ppt_studentage = studentage.value
-  // var ppt_studentgender = studentgender.value
+  var ppt_studentgender = $('#studentgender').val();
+      
   document.getElementById("ppt_studentnumber").value = ppt_studentnumber;
   document.getElementById("ppt_studentage").value = ppt_studentage;
-  // document.getElementById("ppt_studentgender").value = ppt_studentgender;
+  document.getElementById("ppt_studentgender").value = ppt_studentgender;
   if (ppt_studentnumber.length == 8) {
     $('#proceed_button').css('pointer-events','auto');
   } else {
