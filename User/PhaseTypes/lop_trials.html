@@ -43,7 +43,7 @@ body{
   /*height:500px;*/
   width:100%;
   z-index:0;
-  display:none;
+  /*display:none;*/
 }
 #word{
   position:absolute;
@@ -54,7 +54,7 @@ body{
   /*height:500px;*/
   width:100%;
   z-index:0;
-  display:none;
+  /*display:none;*/
   /*text-transform: uppercase;*/
 }
 #too_slow{
@@ -66,7 +66,7 @@ body{
   height:500px;
   width:100%;
   z-index:0;
-  display:none;
+  /*display:none;*/
   transform: translate(-30px, -0px);
 }
 #No{
@@ -80,7 +80,7 @@ body{
   transform: translateX(-35%) scale(15%);
   border: none;
   opacity: 0.25;
-  display:none;
+  /*display:none;*/
   color: transparent;
 }
 #Yes {
@@ -95,7 +95,7 @@ body{
   transform: translate(20%, -600px) scale(15%);
   border: none;
   opacity: 0.25;
-  display:none;
+  /*display:none;*/
   color: transparent;
 }
 #No:hover, #Yes:hover {
@@ -222,18 +222,18 @@ $('.update_name').on('click',function(){
     Phase.submit();
   }
 });
-Phase.set_timer(function(){$('#instruction').hide()},'1500'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
-Phase.set_timer(function(){$('#ready').show()},'1500');
-Phase.set_timer(function(){$('#ready').hide()},'2500');
-Phase.set_timer(function(){$('#word').show()},'2500');
-Phase.set_timer(function(){$('#word').hide()},'7000');
-var baselineTime = Phase.elapsed() + 3000;
-Phase.set_timer(function(){$('#No').show()},'3000');
-Phase.set_timer(function(){$('#Yes').show()},'3000')
-Phase.set_timer(function(){$('#No').hide()},'7000');;
-Phase.set_timer(function(){$('#Yes').hide()},'7000');
-Phase.set_timer(function(){$('#too_slow').show()},'7000');
-Phase.set_timer(function(){Phase.submit()},'9000');
+// Phase.set_timer(function(){$('#instruction').hide()},'1500'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+// Phase.set_timer(function(){$('#ready').show()},'1500');
+// Phase.set_timer(function(){$('#ready').hide()},'2500');
+// Phase.set_timer(function(){$('#word').show()},'2500');
+// Phase.set_timer(function(){$('#word').hide()},'7000');
+// var baselineTime = Phase.elapsed() + 3000;
+// Phase.set_timer(function(){$('#No').show()},'3000');
+// Phase.set_timer(function(){$('#Yes').show()},'3000')
+// Phase.set_timer(function(){$('#No').hide()},'7000');;
+// Phase.set_timer(function(){$('#Yes').hide()},'7000');
+// Phase.set_timer(function(){$('#too_slow').show()},'7000');
+// Phase.set_timer(function(){Phase.submit()},'9000');
 
 
 $('.button_response').on('click',function(){
