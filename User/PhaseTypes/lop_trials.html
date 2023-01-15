@@ -21,7 +21,6 @@ body{
   background-color:white;
 }
 #instruction{
-  position:absolute;
   background-color:transparent;
   color:black;
   cursor: default;
@@ -30,9 +29,9 @@ body{
   width:100%;
   z-index:0;
   /*display:none;*/
+  position:absolute;
 }
 #ready{
-  position:absolute;
   background-color:transparent;
   color:black;
   cursor: default;
@@ -42,9 +41,9 @@ body{
   z-index:0;
   display:none;
   transform: translateY(-25px);
+  position:absolute;
 }
 #word{
-  position:absolute;
   background-color:transparent;
   color:black;
   cursor: default;
@@ -55,9 +54,10 @@ body{
   display:none;
   /*text-transform: uppercase;*/
   transform: translateY(-25px);
+  position:absolute;
 }
 #too_slow{
-  position:inherit;
+  position:absolute;
   background-color:transparent;
   color:black;
   cursor: default;
@@ -69,25 +69,26 @@ body{
   transform: translate(-30px, -25px);
 }
 #No{
+  position:absolute;
   background-color: transparent;
   z-index: 0;
   background-image: url(../../collector-experiments/User/Assets/LOP/no.svg);
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  transform: translate(-1000%, 230px) scale(450%);
+  transform: translate(-1000%, 600%) scale(450%);
   border: none;
   opacity: 0.25;
   display:none;
   color: transparent;
 }
 #Yes {
-  position: relative;
+  position:absolute;
   background-color: transparent;
   z-index: 0;
   background-image: url(../../collector-experiments/User/Assets/LOP/yes.svg);
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  transform: translate(1000%, 230px) scale(450%);
+  transform: translate(1000%, 600%) scale(450%);
   border: none;
   opacity: 0.25;
   display:none;
@@ -115,6 +116,8 @@ body{
 .spinner {
   transform: translate(-40px,-60px);
     display: none;
+    position:absolute;
+    z-index: 999;
 }
   .spinner div {
     transform-origin: 40px 40px;

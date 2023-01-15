@@ -26,7 +26,6 @@ body{
   color:black;
   cursor: default;
   font-size:40px;
-  /*height:500px;*/
   width:100%;
   z-index:0;
   /*display:none;*/
@@ -37,7 +36,6 @@ body{
   color:black;
   cursor: default;
   font-size:40px;
-  /*height:500px;*/
   width:100%;
   z-index:0;
   display:none;
@@ -48,32 +46,33 @@ body{
   color:black;
   cursor: default;
   font-size:40px;
-  /*height:500px;*/
   width:100%;
-  z-index:0;
+  z-index:888;
   display:none;
   text-transform: uppercase;
 }
 
 #No{
+  position:absolute;
   background-color: transparent;
   z-index: 0;
   background-image: url(../../collector-experiments/User/Assets/LOP/no.svg);
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  transform: translate(-1000%, 230px) scale(450%);
+  transform: translate(-1000%, 600%) scale(450%);
   border: none;
   opacity: 0.25;
   display:none;
   color: transparent;
 }
 #Yes{
+  position:absolute;
   background-color: transparent;
   z-index: 0;
   background-image: url(../../collector-experiments/User/Assets/LOP/yes.svg);
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  transform: translate(1000%, 230px) scale(450%);
+  transform: translate(1000%, 600%) scale(450%);
   border: none;
   opacity: 0.25;
   display:none;
@@ -88,8 +87,10 @@ body{
 /* --------------------- */
 
   .spinner {
-    transform: translate(-50px, -35px);
+    transform: translate(-50px, -65px);
     display: none;
+    position:absolute;
+    z-index: 999;
   }
   .spinner div {
     transform-origin: 40px 40px;
