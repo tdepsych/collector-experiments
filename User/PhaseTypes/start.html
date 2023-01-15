@@ -23,10 +23,11 @@
   #instruct_text {
     margin: auto;
     width: 800px;
-    padding: 0px;
-    max-height: 600px;
+    /*padding: 15%;*/
+    /*max-height: 600px;*/
     text-align: center;
     font-size: 30px;
+
   }
   #proceed_button {
     background-color: transparent;
@@ -34,9 +35,9 @@
     background-image: url(../../collector-experiments/User/Assets/LOP/start.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    height: 260px;
-    width: 536px;
-    transform: translate(0px, 50px) scale(25%);
+    height: 250px;
+    width: 100%;
+    transform: scale(25%);
     border: none;
     opacity: .25;
     margin: 0 auto;
@@ -46,23 +47,16 @@
     opacity: 1;
   }
   #trial_contents {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 800;
-    height: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 99vh;
   }
 </style>
 <div id="trial_contents">
-  <div id="instruct_text">{{text}}</div>
-  <div>
-    <button
-      class="btn btn-primary"
-      id="proceed_button"
-      onclick="Phase.submit()"
-    ></button>
+  <div id="instruct_text">
+    {{text}}
+    <div> <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button> </div>
   </div>
 </div>

@@ -46,24 +46,15 @@
     opacity: 1;
   }
   #trial_contents {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 800;
-    height: 800;
-    /*transform: translate(-25px, 150px);*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 99vh;
   }
 </style>
 <div id="trial_contents">
-  <div id="instruct_text">{{text}}</div>
-  <div>
-    <button
-      class="btn btn-primary"
-      id="proceed_button"
-      onclick="Phase.submit()"
-    ></button>
+  <div id="instruct_text">{{text}}
+    <div><button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button></div>
   </div>
 </div>

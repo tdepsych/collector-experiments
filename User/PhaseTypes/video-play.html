@@ -21,10 +21,10 @@
 -->
 <style>
   #instruct_text {
-    margin: auto;
+    /*margin: auto;*/
     width: 800px;
-    padding-top: 15%px;
-    max-height: 600px;
+    /*padding-top: 15%;*/
+    /*max-height: 600px;*/
     text-align: center;
     font-size: 30px;
   }
@@ -45,14 +45,11 @@
     opacity: 1;
   }
   #trial_contents {
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*bottom: 0;*/
-    /*left: 0;*/
-    /*right: 0;*/
-    margin: 2% auto;
-    width: 800px;
-    /*height: 800;*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 99vh;
   }
   #btnFlex {
     display: flex;
@@ -67,8 +64,6 @@
 <div id="trial_contents">
   <div id="instruct_text">
     {{text}}
-  </div>
-  <div id="btnFlex">
-    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
+    <div id="btnFlex"> <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button> </div>
   </div>
 </div>

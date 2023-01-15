@@ -10,16 +10,13 @@
 .update_name:focus{
   border:0;
 }
-#trial_contents{
-  position: absolute;
-  top:0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin:auto;
-  width:480;
-  height:600;
-}
+  #trial_contents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 99vh;
+  }
 body{
   background-color:white;
 }
@@ -44,6 +41,7 @@ body{
   width:100%;
   z-index:0;
   display:none;
+  transform: translateY(-25px);
 }
 #word{
   position:absolute;
@@ -56,6 +54,7 @@ body{
   z-index:0;
   display:none;
   /*text-transform: uppercase;*/
+  transform: translateY(-25px);
 }
 #too_slow{
   position:inherit;
@@ -67,7 +66,7 @@ body{
   width:100%;
   z-index:0;
   display:none;
-  transform: translate(-30px, -0px);
+  transform: translate(-30px, -25px);
 }
 #No{
   background-color: transparent;
@@ -75,10 +74,7 @@ body{
   background-image: url(../../collector-experiments/User/Assets/LOP/no.svg);
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  /*height: 100%;*/
-  /*width: 120%;*/
-  /*transform: translateX(-35%) scale(15%);*/
-  transform: translate(50px, 230px) scale(450%);
+  transform: translate(-1000%, 230px) scale(450%);
   border: none;
   opacity: 0.25;
   display:none;
@@ -91,10 +87,7 @@ body{
   background-image: url(../../collector-experiments/User/Assets/LOP/yes.svg);
   background-repeat: no-repeat;
   background-position: 50% 50%;
-  /*height: 100%;*/
-  /*width: 120%;*/
-  /*transform: translate(20%, -600px) scale(15%);*/
-  transform: translate(400px, 230px) scale(450%);
+  transform: translate(1000%, 230px) scale(450%);
   border: none;
   opacity: 0.25;
   display:none;
@@ -120,11 +113,7 @@ body{
 /* --------------------- */
 
 .spinner {
-    color: official;
-    position: relative;
-    width: 16%;
-    height: 80px;
-    margin: auto;
+  transform: translate(-40px,-60px);
     display: none;
 }
   .spinner div {
