@@ -13,7 +13,7 @@
     </style>
     <!--mobile css-->
     <style>
-      video.mobile {
+      #video.mobile {
         transform: scale(75%);
       }
     </style>
@@ -23,7 +23,7 @@
       <video id="video" src="../../collector-experiments/User/Assets/LOP/bristol.mp4" ></video>
     </div>
     <script>
-      if(isMobile.any()) {$('video').addClass('mobile');}
+      if(isMobile.any()) {$('#video').addClass('mobile');}
       
       Phase.set_timer(function(){$('#video').get(0).play()},'1');
       
