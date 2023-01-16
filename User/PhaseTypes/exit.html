@@ -2,6 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
+    <link rel="stylesheet" href="../../collector-experiments/User/Assets/LOP/uploading_dots.css">
     <script src="../../collector-experiments/User/Assets/Global/redcap_markers.js"></script>
     <style>
       #instruct_text {
@@ -27,13 +28,26 @@
         height: 800;
         text-align: center;
       }
+      #instruct_text.startHidden {
+        display: none;
+      }
+      #instruct_text.startVisible {
+        /*display: none;*/
+      }
     </style>
   </head>
   <body>
     <div id="trial_contents">
-      <div id="instruct_text">{{text}}</div>
+      <div id="instruct_text" class="startHidden">{{text}}</div>
+      <div id="instruct_text" class="startVisible">
+        Uploading Data <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+      </div>
     </div>
     <script>
+      setTimeout(function(){
+        $('.startHidden').show();
+        $('.startVisible').hide();
+      },5000);
       Phase.set_timer(function(){
         REDCap_Markers();
       },1);

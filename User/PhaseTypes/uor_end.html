@@ -36,35 +36,36 @@
  </body>
  <script>
    function appropriate_message(this_message) { // This just sets up a popup message that doesn't break full screen
-    bootbox.alert(this_message);
+      bootbox.alert(this_message);
+    }
+    $(document).ready(function(){
+      var save_msg = "Once the data has uploaded, please make sure you click 'finish session/study' and follow the instructions about saving your data and emailing it to researcher.";
+      appropriate_message(save_msg);
+    });
+ 
+    function buttonSwap() {
+      var x = document.getElementById('endSession_btn_redcap'),
+      label_text = x.innerHTML,
+      // create array to cycle through
+      time = ['.','. .','. . .','. . . .','. . . . .'],
+      // set start point in array
+      i = 0;  
+      
+      setTimeout(function(){
+        $('#endSession_btn_redcap').show();
+        setInterval(function (){
+          // change the text using the array
+          // i++ go to the next number in array
+          x.innerHTML = label_text + time[i++];
+          i = time.length === i ? 0 : i;
+        }, 1000);
+      }, 0);
+          
+    setTimeout(function(){
+      $('#endSession_btn').show();
+      $('#endSession_btn_redcap').hide();
+    },25000); 
   }
-  $(document).ready(function(){
-    var save_msg = "Once the data has uploaded, please make sure you click 'finish session/study' and follow the instructions about saving your data and emailing it to researcher.";
-    appropriate_message(save_msg);
-  });
- function buttonSwap() {
-  var x = document.getElementById('endSession_btn_redcap'),
-  label_text = x.innerHTML,
-  // create array to cycle through
-  time = ['.','. .','. . .','. . . .','. . . . .'],
-  // set start point in array
-  i = 0;  
-          
-  setTimeout(function(){
-    $('#endSession_btn_redcap').show();
-    setInterval(function (){
-      // change the text using the array
-      // i++ go to the next number in array
-      x.innerHTML = label_text + time[i++];
-      i = time.length === i ? 0 : i;
-    }, 1000);
-  }, 0);
-          
-  setTimeout(function(){
-    $('#endSession_btn').show();
-    $('#endSession_btn_redcap').hide();
-  },25000); 
-}
  
   function REDCap_Markers() {
     for (let i = 0; i <= parent.parent.project_json.phase_no; i++) {
