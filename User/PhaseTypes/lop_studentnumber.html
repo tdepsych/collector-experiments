@@ -2,32 +2,10 @@
 
 <html>
 <head>
-  <script>
-  // Detect if user is on a phone
-    var isMobile = {
-        Android: function() {
-            return navigator.userAgent.match(/Android/i);
-        },
-        BlackBerry: function() {
-            return navigator.userAgent.match(/BlackBerry/i);
-        },
-        iOS: function() {
-            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-        },
-        Opera: function() {
-            return navigator.userAgent.match(/Opera Mini/i);
-        },
-        Windows: function() {
-            return navigator.userAgent.match(/IEMobile/i);
-        },
-        any: function() {
-            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-        }
-    };
-  </script>
+<script src="../../collector-experiments/User/Assets/LOP/detect_mobile.js"></script>
 <meta name="viewport" content="device-width, initial-scale=1">
-<style>
-
+<!--General CSS-->
+  <style>
   #instruct_text {
     margin: auto;
     width: 800px;
@@ -44,7 +22,7 @@
     background-position: 50% 50%;
     height: 260px;
     width: 536px;
-    transform: translate(0px, 50px) scale(25%);
+    transform: scale(25%);
     border: none;
     opacity: .25;
     margin: 0 auto;
@@ -65,21 +43,6 @@
     text-align: center;
   }
   
-  
-  #trial_contents.mobile { /* Android devices */
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 800;
-  height: 80%;
-  text-align: center;
-  transform: scale(0.75);
-}
-  
-  
   #studentnumber, #studentage {
     height: 65px;
     width: 300px;
@@ -94,8 +57,6 @@
 ::placeholder {
     opacity: .25;
 }
-
-
 #grid {
   margin-top: 50px;
   display: grid;
@@ -117,7 +78,9 @@ input#studentage {
 input:focus{
     outline: none;
 }
-
+</style>
+<!--Dropdown CSS -->
+  <style>
   /********************* Custom Select **********************/
   /** Adapted from Yusuf (https://codepen.io/yy/pen/vOYqYV) */
   /**********************************************************/
@@ -235,6 +198,21 @@ input:focus{
 }
 
 </style>
+<!--Mobile CSS-->
+<style>
+#trial_contents.mobile {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 800;
+    height: 80%;
+    text-align: center;
+    transform: scale(0.75);
+}
+</style>
 </head>
 <body>
 <input type='hidden' id='ppt_studentnumber' name='ppt_studentnumber' value="-1"/>
@@ -256,13 +234,7 @@ input:focus{
             <option value="0">Prefer to not say</option>
           </select>
     </div>
-  </div>
-<div>
-    <button
-      class="btn btn-primary"
-      id="proceed_button"
-      onclick="Phase.submit()"
-    ></button>
+    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
   </div>
 </div>
 </body>
@@ -271,9 +243,9 @@ input:focus{
 var Form = document.getElementById("trial_contents");
 $('#proceed_button').css('pointer-events','none');
 
-    if(isMobile.any()) {
-      $('#trial_contents').addClass('mobile');
-    } 
+if(isMobile.any()) {
+  $('#trial_contents').addClass('mobile');
+} 
 
 Form.onchange = function() {
   var ppt_studentnumber = studentnumber.value

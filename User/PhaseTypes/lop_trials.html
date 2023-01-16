@@ -1,12 +1,6 @@
-<style>
-/*@media screen and (min-width: 768px) {*/
-/* body {transform: scale(100%);}*/
-/*}*/
-
-/*@media screen and (max-width: 767px) {*/
-/*    body{transform: translateY(25%) scale(50%);}*/
-/*    #No, #Yes {opacity: 1;}*/
-/*}*/
+<script src="../../collector-experiments/User/Assets/LOP/detect_mobile.js"></script>
+<!--General CSS-->
+  <style>
 .update_name:focus{
   border:0;
 }
@@ -108,7 +102,9 @@ body{
     height: 50px;
     width: 50px;
 }
-
+</style>
+<!--Spinner Styling-->
+  <style>
 /* --------------------- */
 /* LOADING TRIAL SPINNER */
 /* --------------------- */
@@ -191,6 +187,35 @@ body{
     }
   }
 </style>
+<!--Mobiel Styling-->
+<style>
+  #No.mobile{
+  position:absolute;
+  background-color: transparent;
+  z-index: 0;
+  background-image: url(../../collector-experiments/User/Assets/LOP/no.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  transform: transform: translate(-1250%, -85%) scale(450%);
+  border: none;
+  opacity: 0.25;
+  display:none;
+  color: transparent;
+}
+#Yes.mobile {
+  position:absolute;
+  background-color: transparent;
+  z-index: 0;
+  background-image: url(../../collector-experiments/User/Assets/LOP/yes.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  transform: transform: translate(1250%, -85%) scale(450%);
+  border: none;
+  opacity: 0.25;
+  display:none;
+  color: transparent;
+}
+</style>
 <input type='hidden' id='keyboard_response' name='keyboard_response' value="-1"/>
 <input type='hidden' id='lop_rt' name='lop_rt'/>
 <div id='trial_contents'>
@@ -203,6 +228,10 @@ body{
   <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
 </div>
 <script>
+if(isMobile.any()) {
+	$('#Yes').addClass('mobile');
+	$('#No').addClass('mobile');
+}
 var baselineTime = Phase.elapsed() + 3000;
 $('.update_name').on('click',function(){
   var class_list = this.className.split(' ');
