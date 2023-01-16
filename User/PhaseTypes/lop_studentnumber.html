@@ -223,9 +223,9 @@ input:focus{
   <br><br>Before you begin, please complete the short demographics questionnaire below. Once completed, please press start to begin the study.<br>
     <div id='grid'>
       <span id="label">Please enter your 8-digit student number:</span>
-        <input type="text" id="studentnumber" placeholder="e.g. 12345678" maxlength="8" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+        <input type="text" id="studentnumber" placeholder="e.g. 12345678" maxlength="8" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
         <span id="label">Please enter your age:</span>
-        <input type="text" id="studentage" placeholder="in years" maxlength="2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+        <input type="text" id="studentage" placeholder="in years" maxlength="2" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
         <span id="label">Please select the gender you identify with:</span>
           <select id="studentgender" class="custom-select" placeholder="options" >
             <option value="1">Male</option>
