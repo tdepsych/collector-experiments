@@ -46,6 +46,7 @@
         text-align: center;
         min-height: 99vh;
         transform: scale(0.75);
+        opacity: 1;
       }
     </style>
   </head>
@@ -56,7 +57,10 @@
       </div>
     </div>
     <script>
-      if(isMobile.any()) {$('#trial_contents').addClass('mobile');}
+      if(isMobile.any()) {
+        $('#trial_contents').addClass('mobile');
+        $('#proceed_button').css('opacity', '1');
+      }
     </script>
   </body>
 </html>
