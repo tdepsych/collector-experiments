@@ -18,15 +18,11 @@
         position: relative;
       }
       #trial_contents {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-        width: 800;
-        height: 800;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         text-align: center;
+        min-height: 99vh;
       }
       #instruct_text.startHidden {
         display: none;
@@ -44,7 +40,7 @@
       </div>
     </div>
     <script>
-      setTimeout(function(){
+      Phase.set_timer(function(){
         $('.startHidden').show();
         $('.startVisible').hide();
       },5000);
