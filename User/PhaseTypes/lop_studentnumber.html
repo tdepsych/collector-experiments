@@ -24,10 +24,6 @@
             return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
         }
     };
-
-    if(isMobile.any()) {
-      $('#trial_contents').addClass('mobile');
-    } 
   </script>
 <meta name="viewport" content="device-width, initial-scale=1">
 <style>
@@ -70,7 +66,7 @@
   }
   
   
-  #trial_contents .mobile { /* Android devices */
+  #trial_contents.mobile { /* Android devices */
   position: absolute;
   top: 0;
   bottom: 0;
@@ -275,6 +271,9 @@ input:focus{
 var Form = document.getElementById("trial_contents");
 $('#proceed_button').css('pointer-events','none');
 
+    if(isMobile.any()) {
+      $('#trial_contents').addClass('mobile');
+    } 
 
 Form.onchange = function() {
   var ppt_studentnumber = studentnumber.value
