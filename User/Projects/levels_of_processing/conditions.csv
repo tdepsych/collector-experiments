@@ -1,4 +1,4 @@
 name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,age_check,skip_quality,zoom_check,mobile,redcap_url,
-rhyme,,rhymes_stimuli.csv,rhyme.csv,on,,random,,,5,,no,yes,no,no,https://haffeyprojects.reading.ac.uk/redcap/redcapChris.php,
+rhyme,1,rhymes_stimuli.csv,rhyme.csv,on,,random,,,5,,no,yes,no,no,https://haffeyprojects.reading.ac.uk/redcap/redcapChris.php,
 deep,,deep_process.csv,deep.csv,on,,random,,,5,,no,yes,no,no,https://haffeyprojects.reading.ac.uk/redcap/redcapChris.php,
 shallow,,shallow_stimuli.csv,shallow.csv,on,,random,,,5,,no,yes,no,no,https://haffeyprojects.reading.ac.uk/redcap/redcapChris.php,
