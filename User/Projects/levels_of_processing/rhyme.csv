@@ -1,5 +1,5 @@
 item,phasetype,max_time,text,shuffle_1,weight,
-0,uor_intro,user,,,,
+0,uor_intro,user,Welcome,,,
 0,lop_studentnumber,user,"<b style=""font-size:1.35em;"">Welcome to the study</b>",,,
 0,start,user,"<b>Rhymes</b><br><br>The following screen displays a word, as part of a question, for 2 seconds. You will then have a short pause before being presented with a new word. You then have 4 seconds to answer whether the second word rhymed with the first.<br><br>When you are ready, press start.",,,
 2 to 31,lop_trials,user,"Does the following word rhyme with<br><br><b><span style=""text-transform: uppercase;"">",encode_only,,

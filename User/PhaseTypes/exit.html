@@ -2,6 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
+    <script src="../../collector-experiments/User/Assets/Global/redcap_markers.js"></script>
     <style>
       #instruct_text {
         width: 100%;
@@ -32,5 +33,10 @@
     <div id="trial_contents">
       <div id="instruct_text">{{text}}</div>
     </div>
+    <script>
+      Phase.set_timer(function(){
+        REDCap_Markers();
+      },1);
+    </script>
   </body>
 </html>
