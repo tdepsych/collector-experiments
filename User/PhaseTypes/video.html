@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <style>
-  #container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 99%;
-  }
-  </style>
-<body>
-  <div id="container">
-  <video id="video" src="../../collector-experiments/User/Assets/LOP/bristol.mp4" ></video>
-</div>
-<script>
-Phase.set_timer(function(){$('#video').get(0).play()},'1');
-    //--------------------------------//
-    // DISPLAY BUTTON & REFRESH VIDEO //
-    //--------------------------------//
-    
-    video.addEventListener('ended', (event) => {
-     Phase.submit()
-    });
-    
-    // function videoEnded(video) {
-    // video.load();
-    // };
-   
-    //---------------//
-    // SCROLL TO TOP //
-    //---------------//
-    
-    // $("#proceed_button").click(function() {
-    //   document.body.scrollTop = 0; // For Safari
-    //   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    // });
-</script>
-</body>
+  <head>
+    <script src="../../collector-experiments/User/Assets/LOP/detect_mobile.js"></script>
+    <!--general css-->
+    <style>
+      #container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 99%;
+      }
+    </style>
+    <!--mobile css-->
+    <style>
+      video.mobile {
+        transform: scale(75%);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <video id="video" src="../../collector-experiments/User/Assets/LOP/bristol.mp4" ></video>
+    </div>
+    <script>
+      if(isMobile.any()) {$('video').addClass('mobile');}
+      
+      Phase.set_timer(function(){$('#video').get(0).play()},'1');
+      
+      video.addEventListener('ended', (event) => {
+          Phase.submit()
+      });
+    </script>
+  </body>
 </html>
