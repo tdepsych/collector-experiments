@@ -45,9 +45,9 @@
   // This runs when the user clicks there mouse (either on the screen or alert message). The if statements checks for mobiles, the elseif checks for safari and if neither is true, the else runs the animation
   $(document).add(parent.parent.document).mouseup(function(e) {
     if (isMobile.any()) {
-      $('#aniCont').html("<div id='container'><h2>Sorry, this study doesn't run using a mobile/tablet as it requires a physical keyboard.<br>Please restart the study using a desktop or laptop computer</h2></div>");
+      $('#aniCont').html("<div id='container'><h1>Sorry, this study doesn't run using a mobile/tablet as it requires a physical keyboard.<br>Please restart the study using a desktop or laptop computer</h1></div>");
     } else if (browser == "safari") {
-      $('#aniCont').html("<div id='container'><h2>Sorry, this study doesn't run using Safari.<br>Please restart the study using Chrome or Edge</h2></div>");
+      $('#aniCont').html("<div id='container'><h1>Sorry, this study doesn't run using Safari.<br>Please restart the study using Chrome or Edge</h1></div>");
     } else {
       $('#aniCont').html('<div class="animation-container"><div class="image-container"><img src="' + img.src + '" /></div><div class="text-container"><h1>' + messageText + '</h1><div class="fading-effect"></div></div></div>');
       pageAdvance();
