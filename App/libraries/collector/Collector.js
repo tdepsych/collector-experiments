@@ -1,8 +1,8 @@
 function correct_master(){
-  master = Collector.electron.fs.read_file("", "master.json");
+  master = CElectron.fs.read_file("", "master.json");
   if(master === ""){
     /* load from default */
-    master = Collector.electron.fs.read_default("", "master.json")
+    master = CElectron.fs.read_default("", "master.json")
   }
   master = JSON.parse(master);
 
@@ -131,7 +131,7 @@ function correct_user(){
   if(typeof(user.data_folder) === "undefined" || user.data_folder === ""){
     bootbox.confirm("You don't (yet) have a folder where we'll put your data <b>when you test participants <u>on this device</u></b>. You're about to be asked where you would like this data to go. Please think carefully about this to make sure that your participant data is secure.", function(result){
       if(result){
-        var data_folder = Collector.electron.find_path()[0];
+        var data_folder = CElectron.find_path()[0];
         if(data_folder){
           user.data_folder = data_folder;
           $("#local_data_folder").val(data_folder);
@@ -401,10 +401,10 @@ Collector.save_data = function(filename, data) {
   }
 };
 Collector.save_user = function(){
-  Collector.electron.fs.write_user(JSON.stringify(user, null, 2));
+  CElectron.fs.write_user(JSON.stringify(user, null, 2));
 };
 Collector.start = function(){
-  user = JSON.parse(Collector.electron.fs.load_user());
+  user = JSON.parse(CElectron.fs.load_user());
   if(typeof(user.current) === "undefined" || typeof(user.current.path) === "undefined"){
     var github_dialog_exists = setInterval(function(){
       if($("#github_dialog").length === 1){
@@ -423,7 +423,6 @@ Collector.start = function(){
     initiate_actions();
     list_keys();
     list_data_servers();
-    list_servers();
     list_surveys();
     //list_pathways();
   }

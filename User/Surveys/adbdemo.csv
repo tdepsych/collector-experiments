@@ -1,0 +1,12 @@
+item_name,text,type,answers,optional,values,side_by_side,
+Instructions,"<h2><span>Demographic Information</span></h2><br><br>
+<span id=""instruc"">Please could you help us better understand the diversity and inclusivity of your participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select ""Prefer not to say"", if that is the case). Answers for questions 6, 7, and 8 are required, however, as you will be unable to take part in the rest of the study without supplying that information. Finally, we are collecting your demographic information before you begin any testing session to ensure that each session has an identical procedure (as this increases the validity of our final results).</span><br/><br/>",instruct,,,,,
+Age,"1. Please enter your age (in years)<br><span class=""minor""><em>(the input only accepts numbers e.g., 21)</em></span>",number,,Yes,,,
+Gender,2. Which gender identity do you identify most with:,radio,Male|Female|Non-binary|Trans|Prefer to self-identify|Prefer not to say,No,1 | 2 | 3 | 4 | 5| 0,,
+Ethnicity,3. I identify my ethnicity as:,radio,White|Mixed/Multiple|Asian|Black/African/Caribbean|Chinese|Arab|Other|Prefer not to say,No,1 | 2 | 3 | 4 | 5 | 6 | 7 | 0,,
+Education,4. What is the highest level of education you have completed?,radio,"GCSEs or equivalent|A-Levels or equivalent|University undergraduate programme (e.g., BSc)|University postgraduate programme (e.g., MSc)|Doctoral degree|Other|Prefer not to say",No,1 | 2 | 3 | 4 | 5 | 6 | 0,,
+Emplyoment,5. What is your current employment status?,radio,Full-time employment|Part-time employment|Unemployed/Retired/Full-time education|Prefer not to say,No,1 | 2 | 3 | 0,,
+NativeSpeaker,"6. Are you a native British English Speaker<br><span class=""minor""><em>(defined as someone who was born and raised in the UK, <br/>or moved to the UK before the age of 2)</em></span>",radio,Yes|No,No,1 | 2,,
+Sona,"7. If you are completing this study for SONA credits, please enter your University Username (e.g. AB123456) so these can be awarded for completing the study.<br><span class=""minor""><em style=""transform: translate(319px, -35px);display: inline-block;"">(leave blank if not completing this study for SONA credits)</em></span>",text,,Yes,,,
+HorizontalRule,<hr>,instruct,,,,,
+,,,,,,,

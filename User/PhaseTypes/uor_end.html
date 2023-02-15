@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html>
- <head>
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
-  <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
-  <style>
-    #endSession_btn {
+<!--'msc_uor_end' PhaseType that claims to "upload data" while actually changing REDCap marker colours before chosing a debrief sheet to load based on the participants session number-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  #endSession_btn {
     margin-bottom: 25px;
     left: 50%;
     transform: translateX(-50%);
@@ -25,41 +22,41 @@
     text-align: left;
     width: 185px;
   }
-  </style>
- </head>
- <body>
+</style>
 <div id="page"></div>
 <div id="endButtons">
   <button class="btn btn-primary" id="endSession_btn" onclick="Phase.submit()">Finish Session</button>
   <button class="btn btn-primary" id="endSession_btn_redcap" >Uploading Data </button>
-  </div>
- </body>
- <script>
-   function appropriate_message(this_message) { // This just sets up a popup message that doesn't break full screen
-      bootbox.alert(this_message);
-    }
-    $(document).ready(function(){
-      var save_msg = "Once the data has uploaded, please make sure you click 'finish session/study' and follow the instructions about saving your data and emailing it to researcher.";
-      appropriate_message(save_msg);
-    });
+</div>
+
+<script>
+  function appropriate_message(this_message) { // This just sets up a popup message that doesn't break full screen
+    bootbox.alert(this_message);
+  }
+  
+  $(document).ready(function(){
+    var save_msg = "Once the data has uploaded, please make sure you click 'finish session/study' and follow the instructions about saving your data and emailing it to researcher.";
+    appropriate_message(save_msg);
+  });
  
-    function buttonSwap() {
-      var x = document.getElementById('endSession_btn_redcap'),
-      label_text = x.innerHTML,
-      // create array to cycle through
-      time = ['.','. .','. . .','. . . .','. . . . .'],
-      // set start point in array
-      i = 0;  
+  function buttonSwap() {
+    var x = document.getElementById('endSession_btn_redcap'),
+    label_text = x.innerHTML,
+    // create array to cycle through
+    time = ['.','. .','. . .','. . . .','. . . . .'],
+    // set start point in array
+    i = 0;  
       
-      setTimeout(function(){
-        $('#endSession_btn_redcap').show();
-        setInterval(function (){
-          // change the text using the array
-          // i++ go to the next number in array
-          x.innerHTML = label_text + time[i++];
-          i = time.length === i ? 0 : i;
-        }, 1000);
-      }, 0);
+    // The code below uses 'setTimeout' rather than 'Phase.set_timer()' because the Phase... calls dont work within other functions
+    setTimeout(function(){
+      $('#endSession_btn_redcap').show();
+      setInterval(function (){
+        // change the text using the array
+        // i++ go to the next number in array
+        x.innerHTML = label_text + time[i++];
+        i = time.length === i ? 0 : i;
+      }, 1000);
+    }, 0);
           
     setTimeout(function(){
       $('#endSession_btn').show();
@@ -70,28 +67,26 @@
   function REDCap_Markers() {
     for (let i = 0; i <= parent.parent.project_json.phase_no; i++) {
       parent.parent.project_json.repeat_no = i;
-    	  Phase.add_response({
-      		phase_number: i,
-      		username: parent.parent.$("#participant_code").val(),
-      		complete: 2
-    	  });
-    	  if (parent.parent.project_json.phase_no == i){
-    	    console.log("For Loop Finished");
-    	    buttonSwap();
-    	  }
+      Phase.add_response({
+        phase_number: i,
+        username: parent.parent.$("#participant_code").val(),
+        complete: 2
+      });
+      if (parent.parent.project_json.phase_no == i) {
+        console.log("For Loop Finished");
+        buttonSwap();
+      }
     }
   }
 
-Phase.set_timer(function(){
-  if (parent.parent.sessionnumber == "3") {
-    $("#page").load("../../collector-experiments/User/PhaseTypes/msc_debrief_sheet.html");
-    console.log("This was Session 3");
-  } else {
-    $("#page").load("../../collector-experiments/User/PhaseTypes/msc_midsession_debrief_sheet.html");
-    console.log("This was Session 1 or 2");
-  }
-  REDCap_Markers();
-},0);
-
+  Phase.set_timer(function(){
+    if (parent.parent.sessionnumber == "3") {
+      $("#page").load("../../collector-experiments/User/PhaseTypes/msc_debrief_sheet.html");
+      console.log("This was Session 3");
+    } else {
+      $("#page").load("../../collector-experiments/User/PhaseTypes/msc_midsession_debrief_sheet.html");
+      console.log("This was Session 1 or 2");
+    }
+    REDCap_Markers();
+  },0);
 </script>
-</html>

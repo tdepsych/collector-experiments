@@ -1,0 +1,51 @@
+<script src="../../collector-experiments/User/Assets/Global/js/detect_mobile.js"></script>
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  /* general css */
+  #instruct_text {
+    margin: auto;
+    width: 800px;
+    padding: 0px;
+    max-height: 600px;
+    text-align: center;
+    font-size: 30px;
+  }
+  #proceed_button {
+    background-color: transparent;
+    z-index: 0;
+    background-image: url(../../collector-experiments/User/Assets/LOP/finish.svg);
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    height: 100px;
+    width: 100px;
+    transform: translateY(50px);
+    border: none;
+    opacity: .25;
+    margin: 0 auto;
+    display: block;
+  }
+  #proceed_button:hover {
+    opacity: 1;
+  }
+  /* mobile css */
+  #container.mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 99vh;
+    transform: scale(0.75);
+    opacity: 1;
+    }
+</style>
+<div id="container">
+  <div id="instruct_text">{{text}}
+    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
+  </div>
+</div>
+<script>
+  if(isMobile.any()) {
+    $('#container').addClass('mobile');
+    $('#proceed_button').css('opacity', '1');
+  }
+</script>

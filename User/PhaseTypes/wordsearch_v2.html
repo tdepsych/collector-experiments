@@ -1,305 +1,283 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=0.5">
-    <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
-    <script src="../../collector-experiments/User/Assets/Wordsearch/shuffle_function.js"></script>
-    <style>
-    .spinner {
-      transform: translateY(-421px);
+<!--'wordsearch_dynamic' PhaseType-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<script src="../../collector-experiments/User/Assets/Wordsearch/shuffle_function.js"></script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
+<style>
+  .spinner {
+    transform: translateY(-421px);
+  }
+  #collector_phase_timer {
+    display: none;
+  }
+  /* CSS reset */
+  body, h1 {
+    margin: 0;
+    padding: 0;
     }
-      #collector_phase_timer {
-        display: none;
-      }
-      /* CSS reset */
-      body, h1 {
-        margin: 0;
-        padding: 0;
-        }
-      h1 {
-        /* text-transform: uppercase; */
-        transform: translateX(-46px);
-        padding-bottom: 25px;
-      }
-      
-      body {
-        color: #333;
-      }
-      
-      /* Common */
-      
-      /*.fix {*/
-      /*  *zoom: 1;*/
-      /*}*/
-      
-      .fix:after {
-        display: table;
-        clear: both;
-        content: '';
-      }
-      
-      /* Home */
-      
-      .wrap {
-        width: 960px;
-        margin: 0 auto;
-        padding: 40px 0;
-        text-align: center;
-        position:relative;
-      }
-      
-      .logo, #gameArea {
-        margin-bottom: 40px;
-      }
-      
-      .ws-area, .ws-words {
-        display: inline-block;
-        vertical-align: top;
-      }
-      
-      .ws-words {
-        margin-left: 20px;
-        text-align: left;
-        list-style-type: none;
-        display: none;
-      }
-      
-      .ws-word {
-        margin-bottom: 4px;
-      }
-      
-      .ws-words ::first-letter{
-          text-transform : capitalize;
-      }
-      /* Wordsearch */
-      
-      .ws-area {
-        /*background: #fafafa;*/
-        display: inline-block;
-        padding: 15px;
-        border-radius: 10px;
-        -moz-user-select: -moz-none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-        border: 5px black solid;
-        transform: translateX(-50px);
-      }
-      
-      .ws-row {
-        line-height: 0;
-      }
-      
-      .ws-col {
-        cursor: pointer;
-      }
-      
-      .ws-col.ws-selected {
-        background: yellow;
-      }
-      
-      .ws-found {
-        background: lime;
-      }
-      
-      .ws-game-over-outer {
-        background: rgba(0, 0, 0, 0.85);
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-      }
-      
-      .ws-game-over-inner {
-        width:100%;
-        height:100%;
-        padding:0;
-        margin:0;
-        display:table;
-      }
-      
-      .ws-game-over {
-        display:table-cell;
-        vertical-align:middle;
-      }
-      
-      .ws-game-over h2 {
-        color:#FFFFFF;
-        font-size:1em;
-        text-transform:uppercase;
-        padding:0;
-        margin:0 0 9px 0;
-      }
-      
-      .ws-game-over p {
-        color:#FFFFFF;
-        font-size:1em;
-        padding:0;
-        margin:0;
-      }
-      del {
-        color: lightgrey;
-      }
-      /* Styling Below Manages the Progress Bar */
-      .progressbar {
-        position: relative;
-        top: 95%;
-        width: 55%;
-        margin-left: 170px;
-        border: solid 1px #000;
-      }
-      .progressbar .inner {
-        height: 15px;
-        animation: progressbar-countdown;
-        /* Placeholder, this will be updated using javascript */ 
-        animation-duration: 40s;
-        /* We stop in the end */
-        animation-iteration-count: 1;
-        /* Stay on pause when the animation is finished finished */
-        animation-fill-mode: forwards;
-        /* We start paused, we start the animation using javascript */
-        animation-play-state: paused;
-        /* We want a linear animation, ease-out is standard */
-        animation-timing-function: linear;
-      }
-      @keyframes progressbar-countdown {
-        0% {
-          width: 100%;
-          background: #d2fcd2;
-        }
-        100% {
-          width: 0%;
-          background: #fcd2d2; 
-        }
-      } 
-      /*.ws-words {*/
-      /*  display: none!important;*/
-      /*}*/
-
-    </style>
-  </head>
-  <body>
-    <input type="hidden" name="ws_wordList" id="ws_wordList"/>
-    <!--<input type="hidden" name="ws_remaining" id="ws_remaining"/>-->
-    <!--<input type="hidden" name="ws_total_time" id="ws_total_time"/>-->
-    <button id="zoomOut" tabindex="-1"></button>
-    <button id="zoomIn" tabindex="-1"></button>
-    <div id="container">
-      <div class="wrap">
-      <h1 class="ws_title"></h1>
-      <section id="ws-area"></section>
-      <ul class="ws-words"></ul>
-    </div>
-      <div id='progressbar1'></div>
-      
-<script>
-/* ******************************************************************************************************************************* 
-   The base code for the wordsearch was taken from Li Zhineng's Word Search Puzzle (https://github.com/lizhineng/word-search-game) 
-   This has then been heavily adapted to make it a behavioural task with scoring, and random-without-replacement stimuli          
-   ******************************************************************************************************************************* */ 
-
-// First, work out if this is the first wordsearch attempted. This is needed as it dictates where to select the stimuli words from later
-if (parent.parent.global_count == null) {
-  parent.parent.global_count = 1;
-} else {
-  parent.parent.global_count = parent.parent.global_count
-}
-
-//================= //
-// TASK LENGTH (MS) //
-//================= //
-
-// This sets how long the task lasts before ending automatically. The timing is in ms (300,000 = 5min)
-Phase.set_timer(function(){Phase.submit(parent.parent.global_count++)},300000);
-
-// This is just a variable function to reverse the highleted word - needed to check both forward and backwards highlighting ←  {IGNORE} 
-const reverse = s => [].reduceRight.call(s, (a, b) => a + b)
-
-// This is just an empty variable needed for the randomisation of the stimuli ←  {IGNORE} 
-var source_array = '';
-
-
-// This just stops the javascript running until the page has actually appeared on screen - needed to ensure the timer doesn't start early etc.
-Phase.set_timer(function(){ 
-
-//================ //
-// STIMULI SORTING //
-//================ // 
-
-/* First we just check if the stimuli list have been generated before, if not, this is the first wordsearch and we use the whole list
-   if it does exist, we use the existing list, as that will have had the previously used words removed. */
-
-if (parent.parent.global_count == 1) {
-  // Get the source words from the procedure sheet  
-  var source_words = '{{text}}';
-  // Change the words into a useable array  
-  var source_word_array = source_words.split(',');
-      console.log("start1: " + source_word_array);
-    
-  // Shuffle the stimuli array  
-  var shuffled_stimuli = shuffle(source_word_array); // Shuffle the whole array
-      console.log("shuffled1: " + shuffled_stimuli);
+  h1 {
+    /* text-transform: uppercase; */
+    transform: translateX(-46px);
+    padding-bottom: 25px;
+  }
   
-  // Select the required number of stimuli (set from the "stimuli number" column of the procedure sheet       
-  var grid_stimuli = shuffled_stimuli.slice(0, {{stimuli_number}});
-      console.log("final1: " + grid_stimuli);                        
-     
-  // Get the length of the remaining unused stimuli words 
-  var word_length = shuffled_stimuli.length;
-     
-  // Assign the remaining usused stimuli words to a global variable - this allows us to access them next time round 
-  parent.parent.stimuli_array = shuffled_stimuli.slice({{stimuli_number}},word_length);
-      console.log("rest1: " + parent.parent.stimuli_array)
-     
-  // Set the value of a hidden input to be the stimuli words. 
-  document.getElementById("ws_wordList").value = grid_stimuli; // this saves them in our data spreadsheet meaning we know what words were on what wordsearch puzzle
-     
-} else {
-/* This else is an exact replica of the above if, it just takes the stimuli array from the global variable, rather than from the procedure spreadsheet  */
-  var source_array = parent.parent.stimuli_array;
-      console.log("start" + parent.parent.global_count + ": "  + source_array);
+  body {
+    color: #333;
+  }
+  .fix:after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+  .wrap {
+    width: 960px;
+    margin: 0 auto;
+    padding: 40px 0;
+    text-align: center;
+    position:relative;
+  }
+  .logo, #gameArea {
+    margin-bottom: 40px;
+  }
+  .ws-area, .ws-words {
+    display: inline-block;
+    vertical-align: top;
+  }
+  .ws-words {
+    margin-left: 20px;
+    text-align: left;
+    list-style-type: none;
+    /*display: none;*/
+    text-transform: uppercase;
+  }
+  .ws-word {
+    margin-bottom: 4px;
+  }
+  .ws-words ::first-letter{
+      text-transform : capitalize;
+  }
+  .ws-area {
+    /*background: #fafafa;*/
+    display: inline-block;
+    padding: 15px;
+    border-radius: 10px;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    border: 5px black solid;
+    transform: translateX(-50px);
+  }
+  .ws-row {
+    line-height: 0;
+  }
+  .ws-col {
+    cursor: pointer;
+  }
+  .ws-col.ws-selected {
+    background: yellow;
+  }
+  .ws-found {
+    background: lime;
+  }
+  .ws-game-over-outer {
+    background: rgba(0, 0, 0, 0.85);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .ws-game-over-inner {
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+    display:table;
+  }
+  .ws-game-over {
+    display:table-cell;
+    vertical-align:middle;
+  }
+  .ws-game-over h2 {
+    color:#FFFFFF;
+    font-size:1em;
+    text-transform:uppercase;
+    padding:0;
+    margin:0 0 9px 0;
+  }
+  .ws-game-over p {
+    color:#FFFFFF;
+    font-size:1em;
+    padding:0;
+    margin:0;
+  }
+  del {
+    color: lightgrey;
+  }
+  
+  /* Styling Below Manages the Progress Bar */
+  .progressbar {
+    position: inherit;
+    width: 88%;
+    margin: 0 auto;
+    border: solid 1px #000;
+  }
+  .progressbar .inner {
+    height: 15px;
+    animation: progressbar-countdown;
+    /* Placeholder, this will be updated using javascript */ 
+    animation-duration: 40s;
+    /* We stop in the end */
+    animation-iteration-count: 1;
+    /* Stay on pause when the animation is finished finished */
+    animation-fill-mode: forwards;
+    /* We start paused, we start the animation using javascript */
+    animation-play-state: paused;
+    /* We want a linear animation, ease-out is standard */
+    animation-timing-function: linear;
+  }
+  @keyframes progressbar-countdown {
+    0% {
+      width: 100%;
+      background: #d2fcd2;
+    }
+    100% {
+      width: 0%;
+      background: #fcd2d2; 
+    }
+  }
+</style>
+<input type="hidden" name="ws_wordList" id="ws_wordList"/>
+<input type="hidden" name="ws_remaining" id="ws_remaining"/>
+<input type="hidden" name="ws_total_time" id="ws_total_time"/>
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <div class="wrap">
+    <h1 class="ws_title"></h1>
+    <section id="ws-area"></section>
+    <ul class="ws-words"></ul>
+  </div>
+  <div id='progressbar1'></div>
+</div>      
+<script>
+
+  /* ******************************************************************************************************************************* 
+     The base code for the wordsearch was taken from Li Zhineng's Word Search Puzzle (https://github.com/lizhineng/word-search-game) 
+     This has then been heavily adapted to make it a behavioural task with scoring, and random-without-replacement stimuli          
+     ******************************************************************************************************************************* */ 
+
+  // First, work out if this is the first wordsearch attempted. This is needed as it dictates where to select the stimuli words from later
+  if (parent.parent.global_count == null) {
+    parent.parent.global_count = 1;
+  } else {
+    parent.parent.global_count = parent.parent.global_count
+  }
+  
+  //================= //
+  // TASK LENGTH (MS) //
+  //================= //
+  
+  // This sets how long the task lasts before ending automatically. The timing is in ms (300,000 = 5min)
+  Phase.set_timer(function(){Phase.submit(parent.parent.global_count++)},300000);
+  
+  // This is just a variable function to reverse the highleted word - needed to check both forward and backwards highlighting ←  {IGNORE} 
+  const reverse = s => [].reduceRight.call(s, (a, b) => a + b)
+  
+  // This is just an empty variable needed for the randomisation of the stimuli ←  {IGNORE} 
+  var source_array = '';
+  
+  
+  // This just stops the javascript running until the page has actually appeared on screen - needed to ensure the timer doesn't start early etc.
+  Phase.set_timer(function(){ 
     
-  var shuffled_stimuli = shuffle(source_array);
-      console.log("shuffled" + parent.parent.global_count + ": "  + shuffled_stimuli);  
+  var hideList = '{{task_body_text}}';
+  if (hideList == "Yes") {
+    $('.ws-words').hide();
+    // console.log("They get the word list");
+  } else {
+    console.log("They get the word list");
+  }
+
+  //================ //
+  // STIMULI SORTING //
+  //================ // 
+  
+  /* First we just check if the stimuli list have been generated before, if not, this is the first wordsearch and we use the whole list
+     if it does exist, we use the existing list, as that will have had the previously used words removed. */
+  
+  if (parent.parent.global_count == 1) {
+    // Get the source words from the procedure sheet  
+    var source_words = '{{text}}';
     
-  var word_length = shuffled_stimuli.length;
-  var grid_stimuli = shuffled_stimuli.slice(0, {{stimuli_number}});  // Select the required number of stimuli to the task
-      console.log("final" + parent.parent.global_count + ": "  + grid_stimuli);
+    
+    // Change the words into a useable array  
+    var source_word_array = source_words.split(',');
+        console.log("start1: " + source_word_array);
+      
+    // Shuffle the stimuli array  
+    var shuffled_stimuli = shuffle(source_word_array); // Shuffle the whole array
+        console.log("shuffled1: " + shuffled_stimuli);
+    
+    // Select the required number of stimuli (set from the "stimuli number" column of the procedure sheet       
+    var grid_stimuli = shuffled_stimuli.slice(0, {{stimuli_number}});
+        console.log("final1: " + grid_stimuli);                        
+       
+    // Get the length of the remaining unused stimuli words 
+    var word_length = shuffled_stimuli.length;
+       
+    // Assign the remaining usused stimuli words to a global variable - this allows us to access them next time round 
+    parent.parent.stimuli_array = shuffled_stimuli.slice({{stimuli_number}},word_length);
+        console.log("rest1: " + parent.parent.stimuli_array)
+       
+    // Set the value of a hidden input to be the stimuli words. 
+    document.getElementById("ws_wordList").value = grid_stimuli; // this saves them in our data spreadsheet meaning we know what words were on what wordsearch puzzle
+       
+  } else {
+  /* This else is an exact replica of the above if, it just takes the stimuli array from the global variable, rather than from the procedure spreadsheet  */
+    var source_array = parent.parent.stimuli_array;
+        console.log("start" + parent.parent.global_count + ": "  + source_array);
+      
+    var shuffled_stimuli = shuffle(source_array);
+        console.log("shuffled" + parent.parent.global_count + ": "  + shuffled_stimuli);  
+      
+    var word_length = shuffled_stimuli.length;
+    var grid_stimuli = shuffled_stimuli.slice(0, {{stimuli_number}});  // Select the required number of stimuli to the task
+        console.log("final" + parent.parent.global_count + ": "  + grid_stimuli);
+  
+    parent.parent.stimuli_array = shuffled_stimuli.slice({{stimuli_number}},word_length);
+    console.log("rest" + parent.parent.global_count + ": "  + parent.parent.stimuli_array)
+       
+    document.getElementById("ws_wordList").value = grid_stimuli;
+  }
 
-  parent.parent.stimuli_array = shuffled_stimuli.slice({{stimuli_number}},word_length);
-  console.log("rest" + parent.parent.global_count + ": "  + parent.parent.stimuli_array)
-     
-  document.getElementById("ws_wordList").value = grid_stimuli;
-}
 
-
-//============ //
-//PROGRESS BAR //
-//============ //
-        
-// This creates the progress bar
-        //Phase.set_timer(function(){
-          function createProgressbar(id, duration, callback) {
-            // We select the div that we want to turn into a progressbar
-            var progressbar = document.getElementById(id);
-            progressbar.className = 'progressbar';
-            // We create the div that changes width to show progress
-            var progressbarinner = document.createElement('div');
-            progressbarinner.className = 'inner';
-            // Now we set the animation parameters
-            progressbarinner.style.animationDuration = duration;
-            // Eventually couple a callback
-            if (typeof(callback) === 'function') {
-              progressbarinner.addEventListener('animationend', callback);
-            }   
-            // Append the progressbar to the main progressbardiv
-            progressbar.appendChild(progressbarinner);
-            // When everything is set up we start the animation
-            progressbarinner.style.animationPlayState = 'running';
-          }
-          createProgressbar('progressbar1', '300s'); // If you want to change how long the bar lasts, alter the '180s' (it's total seconds)
-        //},1);
+  //============ //
+  //PROGRESS BAR //
+  //============ //
+          
+  // This creates the progress bar
+  //Phase.set_timer(function(){
+  function createProgressbar(id, duration, callback) {
+    // We select the div that we want to turn into a progressbar
+    var progressbar = document.getElementById(id);
+    progressbar.className = 'progressbar';
+    // We create the div that changes width to show progress
+    var progressbarinner = document.createElement('div');
+    progressbarinner.className = 'inner';
+    // Now we set the animation parameters
+    progressbarinner.style.animationDuration = duration;
+    // Eventually couple a callback
+    if (typeof(callback) === 'function') {
+      progressbarinner.addEventListener('animationend', callback);
+    }   
+    // Append the progressbar to the main progressbardiv
+    progressbar.appendChild(progressbarinner);
+    // When everything is set up we start the animation
+    progressbarinner.style.animationPlayState = 'running';
+  }
+  createProgressbar('progressbar1', '300s'); // If you want to change how long the bar lasts, alter the '180s' (it's total seconds)
+  //},1);
 
 // ========== //        
 // WORDSEARCH //
@@ -376,7 +354,7 @@ var old_word_time = '';
 */
       var default_settings = {
         'directions': ['W', 'N', 'WN', 'EN'],
-        'gridSize': 20,
+        'gridSize': 16,
         'words': grid_stimuli,
         'wordsList' : [],
         'debug': false
@@ -742,8 +720,6 @@ var old_word_time = '';
 /* ADDING DATA TO COLLECTOR SPREADSHEET */
 /* ------------------------------------ */
 
-
-
 /* This is where we grab and store the word just found so we can save it to the spreadsheet.  
    It works by getting a list of all the words that have been found to that point and storing it to a variabele
    When a word is found, it refreshes that list, and stores it in a second variabele
@@ -831,9 +807,5 @@ var old_word_time = '';
   
   })();
   $.getScript("../../collector-experiments/User/Assets/Wordsearch/wordsearch_js_end.js");
-  $.getScript("../../collector-experiments/User/Assets/MSc/zoom_script.js");
 },1);
 </script>
-    </div>
-  </body>
-</html>

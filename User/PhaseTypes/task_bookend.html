@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html>
- <head>
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
-  <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
- </head>
- <body>
-    <button id="zoomOut" tabindex="-1"></button>
-    <button id="zoomIn" tabindex="-1"></button>
-  <div id="container">
-   <h2><b>{{task_title}}</b></h2>
-   <hr>
-   {{task_body_text}}
-     <div>
-    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()" style="position: relative; display: block; margin:auto">{{text}}</button>
-  </div>
-  </div>
-<script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>
-</body>
-</html>
+<!--'task_bookend' PhaseType-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <h2><span>{{task_title}}</span></h2><br>
+  {{task_body_text}}
+  <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()" >{{text}}</button>
+</div>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

@@ -1,28 +1,25 @@
-<!DOCTYPE html>
-<html>
- <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
-   <style>
-    h1 {
-     font-size: 150px;
-    }
-    #collector_phase_timer {
-      border: none!important;
-      display: flex!important;
-      justify-content: center!important;
-      position: relative!important;
-      width: 100%!important;
-    }
-   </style>
- </head>
- <body>
-  <button id="zoomOut" tabindex="-1"></button>
-  <button id="zoomIn" tabindex="-1"></button>
-  <div id="container">
-   <h2><b>Please repeat: {{text}} until the countdown below ends</b></h2>
-   <hr>
-  </div>
-<script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>
- </body>
-</html>
+<!--'msc_vocalisation' PhaseType - this displayed a countdown timer-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  h1 {
+    font-size: 150px;
+  }
+  #collector_phase_timer {
+    border: none!important;
+    display: flex!important;
+    justify-content: center!important;
+    position: relative!important;
+    width: 100%!important;
+  }
+  /* container needs resizng for the "auto added" collector timer disappears off the screen! */
+  #container {
+    min-height: 20vh!important;
+  }
+</style>
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <h2><b>Please repeat: {{text}} until the countdown below ends</b></h2>
+  <hr>
+</div>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

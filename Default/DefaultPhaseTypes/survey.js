@@ -26,7 +26,7 @@ if(typeof(parent.parent.Project) !== "undefined"){
     case "localhost":
     case "preview":
       org_repo = parent.parent.project_json.location.split("/");
-      home_dir = parent.parent.Collector.electron.git.locate_repo({
+      home_dir = parent.parent.CElectron.git.locate_repo({
         org: org_repo[0],
         repo: org_repo[1],
       });
@@ -144,9 +144,17 @@ if (
     );
 } else {
   appropriate_message(
-    "If you are the researcher, please check the 'settings for this survey. The input for 'tab_hor_vert' appears to be invalid. Please change it to 'horizontal' or 'vertical' or 'none' or remove 'tab_hot_vert' altogether from the settings, which will make the tabs invisible"
+    "If you are the researcher, please check the 'settings' for this survey. The input for 'tab_hor_vert' appears to be invalid. Please change it to 'horizontal' or 'vertical' or 'none' or remove 'tab_hot_vert' altogether from the settings, which will make the tabs invisible"
   );
 }
+
+$("#everything").append(
+  $("<input>")
+    .prop("id", "false_submit")
+    .prop("name", "false_submit")
+    .attr("type", "hidden")
+    .val(0)
+)
 
 /*
  * Defining objects
@@ -286,9 +294,17 @@ $("#proceed_button").on("click", function () {
     appropriate_message(
       "You're missing some responses. Please fill in all the answers for the questions in red above."
     );
+
+    /*
+     * count how many times the participant has tried to proceed
+     */
+    var submit_fails = $("#false_submit").val();
+        submit_fails++;
+        $("#false_submit").val(submit_fails);
+
   } else if (current_tab > survey_obj.tabs) {
     appropriate_message(
-      "Error - please contact Scientific Open Solutions about this problem, error 'Survey_001'."
+      "Error - please contact the researcher about this problem, error 'Survey_001'."
     );
   }
 });
@@ -504,12 +520,12 @@ function process_question(row, row_no) {
         .addClass("row_" + row_no)
         .prop("id", survey_id + "_response")
         .prop("name", survey_id + "_response")
-        .val("")[0].outerHTML +
-      $("<input>")
-        .attr("type", "hidden")
-        .prop("id", survey_id + "_value")
-        .prop("name", survey_id + "_value")
-        .val("")[0].outerHTML;
+        .val("")[0].outerHTML; // +
+      // $("<input>")
+      //   .attr("type", "hidden")
+      //   .prop("id", survey_id + "_value")
+      //   .prop("name", survey_id + "_value")
+      //   .val("")[0].outerHTML;
 
     /*
      * Survey settings
@@ -924,10 +940,12 @@ function response_check(submitted_element) {
   update_score();
 }
 
+var item_name;
+
 function retrieve_row_no_item_name(this_element) {
   var these_classes = this_element.className.split(" ");
   var row_no;
-  var item_name;
+  // var item_name;
   these_classes.forEach(function (this_class) {
     if (this_class.indexOf("row_") > -1) {
       row_no = this_class.replace("row_", "");

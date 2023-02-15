@@ -1,212 +1,221 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    <link rel="preload" as="image" href="../../collector-experiments/User/Assets/MSc/correct.svg">
-    <link rel="preload" as="image" href="../../collector-experiments/User/Assets/MSc/incorrect.svg">
-    <link rel="preload" as="image" href="../../collector-experiments/User/Assets/MSc/too-slow.svg">
-    <link rel="preload" as="image" href="../../collector-experiments/User/Assets/MSc/wait.svg">
+<!--'ldt_with_practice' PhaseType-->
+<link rel="preload" as="image" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/correct.svg">
+<link rel="preload" as="image" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/incorrect.svg">
+<link rel="preload" as="image" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/too-slow.svg">
+<link rel="preload" as="image" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/wait.svg">
 <style>
-.update_name:focus{
-  border:0;
-}
-
-#trial_contents{
-  position: absolute;
-  /* top:0; */
-  bottom: 50%;
-  left: 50%;
-  /* right: 0; */
-  margin:0;
-  /* width:600px; */
-  /* height:600px; */
+  .update_name:focus{
+    border:0;
+  }
+  #trial_contents{
+    position: absolute;
+    /* top:0; */
+    bottom: 50%;
+    left: 50%;
+    /* right: 0; */
+    margin:0;
+    /* width:600px; */
+    /* height:600px; */
+      cursor: none;
+  }
+  body{
+    background-color:white;
     cursor: none;
-}
-body{
-  background-color:white;
-  cursor: none;
-}
-#fixation_cross{
-  position:absolute;
-  background-color:transparent;
-  border-color:;
-  border-radius:;
-  border-style:;
-  border-width:;
-  color:black;
-  font-size:150px;
-  z-index:0;
-  /*display: none;*/
-  cursor: none;
-}
-#cue_word{
-  position:absolute;
-  display:none;
-  background-color:transparent;
-  border-color:;
-  border-radius:;
-  border-style:;
-  border-width:;
-  color:black;
-  font-size:100px;
-  z-index:0;
-  cursor: none;
-}
-#too_slow, #correct, #incorrect, #too_fast {
-  position:absolute;
-  display:none;
-  background-color:transparent;
-  border-color:;
-  border-radius:;
-  border-style:;
-  border-width:;
-  color:black;
-  font-size:50px;
-  z-index:0;
-  top:10px;
-  cursor: none;
-}
-#too_fast {
-transform: translateY(40px);
-}
-#stimulus{
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 275px;
-}
-.correct-icon {
-    background: url("../../collector-experiments/User/Assets/MSc/correct.svg") no-repeat;
+  }
+  #fixation_cross{
+    position:absolute;
+    background-color:transparent;
+    border-color:;
+    border-radius:;
+    border-style:;
+    border-width:;
+    color:black;
+    font-size:150px;
+    z-index:0;
+    /*display: none;*/
+    cursor: none;
+  }
+  #cue_word{
+    position:absolute;
+    display:none;
+    background-color:transparent;
+    border-color:;
+    border-radius:;
+    border-style:;
+    border-width:;
+    color:black;
+    font-size:100px;
+    z-index:0;
+    cursor: none;
+  }
+  #too_slow, #correct, #incorrect, #too_fast {
+    position:absolute;
+    display:none;
+    background-color:transparent;
+    border-color:;
+    border-radius:;
+    border-style:;
+    border-width:;
+    color:black;
+    font-size:50px;
+    z-index:0;
+    top:10px;
+    cursor: none;
+  }
+  #too_fast {
+  transform: translateY(40px);
+  }
+  #stimulus{
+    margin: 0;
     position: absolute;
-    background-position: 0;
-    background-size: 50px;
-    transform: translate(109px,-18px);
-    display: inline-block;
-    height: 50px;
-    width: 50px;
-}
-.incorrect-icon {
-    background: url("../../collector-experiments/User/Assets/MSc/incorrect.svg") no-repeat;
-    position: absolute;
-    background-position: 0;
-    background-size: 50px;
-    transform: translate(109px,-18px);
-    display: inline-block;
-    height: 50px;
-    width: 50px;
-}
-.too-slow-icon {
-    background: url("../../collector-experiments/User/Assets/MSc/too-slow.svg") no-repeat;
-    position: absolute;
-    background-position: 0;
-    background-size: 50px;
-    transform: translate(125px,-20px);
-    display: inline-block;
-    height: 50px;
-    width: 50px;
-}
-.wait-icon {
-    background: url("../../collector-experiments/User/Assets/MSc/wait.svg") no-repeat;
-    position: absolute;
-    background-position: 0;
-    background-size: 75px;
-    transform: translate(-30px,-160px);
-    display: inline-block;
-    height: 75px;
-    width: 75px;
-}
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 275px;
+  }
+  .correct-icon {
+      background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/correct.svg") no-repeat;
+      position: absolute;
+      background-position: 0;
+      background-size: 50px;
+      transform: translate(109px,-18px);
+      display: inline-block;
+      height: 50px;
+      width: 50px;
+  }
+  .incorrect-icon {
+      background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/incorrect.svg") no-repeat;
+      position: absolute;
+      background-position: 0;
+      background-size: 50px;
+      transform: translate(109px,-18px);
+      display: inline-block;
+      height: 50px;
+      width: 50px;
+  }
+  .too-slow-icon {
+      background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/too-slow.svg") no-repeat;
+      position: absolute;
+      background-position: 0;
+      background-size: 50px;
+      transform: translate(125px,-20px);
+      display: inline-block;
+      height: 50px;
+      width: 50px;
+  }
+  .wait-icon {
+      background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/wait.svg") no-repeat;
+      position: absolute;
+      background-position: 0;
+      background-size: 75px;
+      transform: translate(-30px,-160px);
+      display: inline-block;
+      height: 75px;
+      width: 75px;
+  }
 </style>
-</head>
-<body>
 <input type='hidden' id='keyboard_response' name='keyboard_response'/>
 <input type='hidden' id='ldt_correct' name='ldt_correct'/>
 <input type='hidden' id='ldt_rt' name='ldt_rt'/>
 <div id='trial_contents'>
   <button id='fixation_cross' value='' class='fixation_cross update_name' style='border:0; background-color:transparent' ><div id="stimulus">+</div></button>
-  <button id='cue_word' value='' class=' update_name' style='border:0; background-color:transparent'><div id="stimulus">{{cue}}</div></button>
-    <button id='too_slow' value='' class=' update_name' style='border:0; background-color:transparent'><div id="stimulus">Too Slow</div><span class="too-slow-icon"></span></button>
-    <div id="correct"><span id="stimulus" style="text-align:center;">Correct</span><span class="correct-icon"></span></div>
-    <div id="incorrect"><span id="stimulus" style="text-align:center;">Incorrect</span><span class="incorrect-icon"></span></div>
-    <div id="too_fast"><span id="stimulus" style="text-align:center;">Wait For The Word</span><span class="wait-icon"></span></div>
-</div></div>
-<!--<input type='hidden' name='complete' value='1' />-->
-<!--<input type='hidden' name='' />-->
+  <button id='cue_word' value='' class=' update_name' style='border:0; background-color:transparent'>
+    <div id="stimulus">{{cue}}</div>
+  </button>
+  <button id='too_slow' value='' class=' update_name' style='border:0; background-color:transparent'>
+    <div id="stimulus">Too Slow</div>
+    <span class="too-slow-icon"></span>
+  </button>
+  <div id="correct">
+    <span id="stimulus" style="text-align:center;">Correct</span
+    ><span class="correct-icon"></span>
+  </div>
+  <div id="incorrect">
+    <span id="stimulus" style="text-align:center;">Incorrect</span>
+    <span class="incorrect-icon"></span>
+  </div>
+  <div id="too_fast">
+    <span id="stimulus" style="text-align:center;">Wait For The Word</span>
+    <span class="wait-icon"></span>
+  </div>
+</div>
+<!-------------------------------->
+<!--Nothing but JavaScript below-->
+<!-------------------------------->
 <script>
-var feedback = "{{answer}}";
-$('.update_name').on('click',function(){
-  var class_list = this.className.split(' ');
-  var end_trial = false;
-  if(class_list.indexOf('end_trial') !== -1){
-    end_trial = true;
-	 }
-  class_list.splice(class_list.indexOf('end_trial'),1);
-  class_list.splice(class_list.indexOf('update_name'),1);
-  $('input[name = "' + class_list + '"]').val(this.value);
-  if(end_trial){
-    Phase.submit();
-  }
-});
-var baselineTime
-Phase.set_timer(function(){baselineTime = (new Date()).getTime();},'0');
-Phase.set_timer(function(){$('#fixation_cross').hide()},'500'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
-Phase.set_timer(function(){$('#cue_word').show(); baselineTime = (new Date()).getTime();},'500');
-Phase.set_timer(function(){$('#cue_word').show()},'500'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout)
-Phase.set_timer(function(){$('#cue_word').hide()},'2000');//Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
-Phase.set_timer(function(){$('#too_slow').show()},'2100');
-Phase.set_timer(function(){Phase.submit()},'2500');
-$(window).bind('keydown', function(event) {
-   if(event.which == 32) {
-     console.log("do nothing")
-   } else {
-  function timer(){Phase.submit()}
+  var feedback = "{{answer}}";
+  $('.update_name').on('click',function(){
+    var class_list = this.className.split(' ');
+    var end_trial = false;
+    if(class_list.indexOf('end_trial') !== -1){
+      end_trial = true;
+  	 }
+    class_list.splice(class_list.indexOf('end_trial'),1);
+    class_list.splice(class_list.indexOf('update_name'),1);
+    $('input[name = "' + class_list + '"]').val(this.value);
+    if(end_trial){
+      Phase.submit();
+    }
+  });
+  var baselineTime
+  Phase.set_timer(function(){baselineTime = (new Date()).getTime();},'0');
+  Phase.set_timer(function(){$('#fixation_cross').hide()},'500'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+  Phase.set_timer(function(){$('#cue_word').show(); baselineTime = (new Date()).getTime();},'500');
+  Phase.set_timer(function(){$('#cue_word').show()},'500'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout)
+  Phase.set_timer(function(){$('#cue_word').hide()},'2000');//Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+  Phase.set_timer(function(){$('#too_slow').show()},'2100');
+  Phase.set_timer(function(){Phase.submit()},'2500');
+  $(window).bind('keydown', function(event) {
+    if(event.which == 32) {
+      console.log("do nothing")
+    } else {
+      function timer(){Phase.submit()}
       setTimeout(timer,1000);
-  var response = String.fromCharCode(event.which).toLowerCase()
-  var responseTime = (new Date()).getTime();
-  //document.getElementById("ldt_rt").value = responseTime - baselineTime;
-  switch (String.fromCharCode(event.which).toLowerCase()) {
-    case 'p':
-      $("#keyboard_response").val(String.fromCharCode(event.which).toLowerCase());
-      $('#cue_word').hide()
-      break;
-      case 'q':
-      $("#keyboard_response").val(String.fromCharCode(event.which).toLowerCase());
-      $('#cue_word').hide()
-      break;
+      var response = String.fromCharCode(event.which).toLowerCase()
+      var responseTime = (new Date()).getTime();
+      //document.getElementById("ldt_rt").value = responseTime - baselineTime;
+      switch (String.fromCharCode(event.which).toLowerCase()) {
+        case 'p':
+          $("#keyboard_response").val(String.fromCharCode(event.which).toLowerCase());
+          $('#cue_word').hide()
+          break;
+          case 'q':
+          $("#keyboard_response").val(String.fromCharCode(event.which).toLowerCase());
+          $('#cue_word').hide()
+          break;
+      }
+      if ($('#fixation_cross').is(":visible")) {
+        $('#ldt_rt').val(responseTime - baselineTime); 
+        $('#too_fast').show();
+        $('#too_slow').remove();
+        $('#fixation_cross').remove();
+        $('#cue_word').remove();
+        $('#ldt_correct').val('-1');
+        $(window).unbind('keydown');
+      } else if (response === feedback) {
+        $('#ldt_rt').val(responseTime - baselineTime);
+        $('#correct').show();
+        $('#too_slow').remove();
+        $('#fixation_cross').remove();
+        $('#cue_word').remove();
+        $('#ldt_correct').val('1');
+        $(window).unbind('keydown');
+      } else {
+        $('#ldt_rt').val(responseTime - baselineTime);
+        //document.getElementById("ldt_rt").value = responseTime - baselineTime;
+        $('#incorrect').show();
+        $('#too_slow').remove();
+        $('#fixation_cross').remove();
+        $('#cue_word').remove();
+        $('#ldt_correct').val('0');
+        $(window).unbind('keydown');
+      }
+    }
+  });
+  // The lexical decision task has no zoom control, as participants don't have time to change zoom level during task. This ensures the page zoom is set to their current level (or it gets reset)
+  if (parent.parent.current_zoom == null){
+    parent.parent.current_zoom = 1;
+  }else {
+    parent.parent.current_zoom = parent.parent.current_zoom;
   }
-  if ($('#fixation_cross').is(":visible")) {
-    $('#ldt_rt').val(responseTime - baselineTime); 
-    $('#too_fast').show();
-    $('#too_slow').remove();
-    $('#fixation_cross').remove();
-    $('#cue_word').remove();
-    $('#ldt_correct').val('-1');
-    $(window).unbind('keydown');
-  } else if (response === feedback) {
-    $('#ldt_rt').val(responseTime - baselineTime);
-    $('#correct').show();
-    $('#too_slow').remove();
-    $('#fixation_cross').remove();
-    $('#cue_word').remove();
-    $('#ldt_correct').val('1');
-    $(window).unbind('keydown');
-  } else {
-    $('#ldt_rt').val(responseTime - baselineTime);
-    //document.getElementById("ldt_rt").value = responseTime - baselineTime;
-    $('#incorrect').show();
-    $('#too_slow').remove();
-    $('#fixation_cross').remove();
-    $('#cue_word').remove();
-    $('#ldt_correct').val('0');
-    $(window).unbind('keydown');
-  }
-  }
-});
-if (parent.parent.current_zoom == null){
-  parent.parent.current_zoom = 1;
-}else {
-  parent.parent.current_zoom = parent.parent.current_zoom;
-}
 </script>
-</body>
-</html>

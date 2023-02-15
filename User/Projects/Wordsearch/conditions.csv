@@ -1,2 +1,2 @@
-name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,age_check,skip_quality,zoom_check,mobile,redcap_url,
-condition_1,,stimuli_1.csv,procedure_1.csv,on,,random,,,5,,no,yes,no,no,,
+name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,age_check,skip_quality,zoom_check,redcap_url,
+adb_wordsearch,,words.csv,procedure_adb.csv,on,,random,,,5,,no,yes,no,,

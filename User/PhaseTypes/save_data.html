@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <h2><b>{{task_title}}</b></h2>
+  <hr>
+  {{task_body_text}}
+  <button class="btn btn-primary" id="Save">{{text}}</button>
+</div>
+<script>
+  $("#Save").click(function() {
+    e = $.Event("keydown");
+    e.which = 83; // S
+    e.ctrlKey = true; // CTRL
+    $(document).trigger(e);
+  });
+</script>

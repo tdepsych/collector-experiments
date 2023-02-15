@@ -1,296 +1,275 @@
-<!--<!DOCTYPE html>-->
-<html>
-  <head>
-    <!--These links simply connect to Google fonts to display a serif font to all users-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-      }
+<!--'uor_intro' Climate Stripes PhaseType. The subtitle is set by the 'text' field in the procedure sheet -->
+<!--These links simply connect to Google fonts to display a serif font to all users-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
       
-      body, html {
-         overflow: hidden;
-           background: #FFF;
-      }
-      
-      .container {
-        width: 100%;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        max-width: 100%!important;
-      }
-      .container .box {
-        width: 650px;
-        height: 250px;
-        position: relative;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-      }
-      .container .box .title {
-        width: 100%;
-        position: relative;
-        display: flex;
-        align-items: center;
-        height: 50px;
-      }
-      .container .box .title .block {
-        width: 0%;
-        height: inherit;
-        /*background: #ffb510;*/
-        background-image: url("../../collector-experiments/User/Assets/LOP/stripes.png");
-        position: absolute;
-        animation: mainBlock 2s cubic-bezier(.74, .06, .4, .92) forwards;
-        display: flex;
-      }
-      
-       h1 {
-        font-family: 'Libre Baskerville', serif;
-        color: #0B0B45;
-        font-size: 45px;
-        -webkit-animation: mainFadeIn 2s forwards;
-        -o-animation: mainFadeIn 2s forwards;
-        animation: mainFadeIn 2s forwards;
-        animation-delay: 1.6s;
-        opacity: 0;
-        display: flex;
-        align-items: baseline;
-        position: relative;
-      }
-      h1 span {
-        width:0px;
-        height: 0px;
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
-        border-radius: 50%;
-        background: #b80000;
-        -webkit-animation: load 0.6s cubic-bezier(.74, .06, .4, .92) forwards;
-        animation: popIn 0.8s cubic-bezier(.74, .06, .4, .92) forwards;
-        animation-delay: 2s;
-        margin-left: 5px;
-        margin-top: -10px;
-        position: absolute;
-        bottom: 25px;
-        right: -12px;
-      }
-      
-      .role {
-        width: 100%;
-        position: relative;
-        display: flex;
-        align-items: center;
-        height: 30px;
-        margin-top: 10px;
-      }
-      .role .block {
-        width: 0%;
-        height: inherit;
-        /*background: #e91e63;*/
-        background-image: url("../../collector-experiments/User/Assets/LOP/stripes.png");
-        position: absolute;
-        animation: secBlock 2s cubic-bezier(.74, .06, .4, .92) forwards;
-        animation-delay: 2s;
-        display: flex;
-      }
-      
-      .role p {
-        animation: secFadeIn 2s forwards;
-        animation-delay: 3.2s;
-        opacity: 0;
-        font-family: 'Libre Baskerville', serif;
-        font-weight: 400;
-        color: #0B0B45;
-        font-size: 25px;
-        text-transform: uppercase;
-        letter-spacing: 5px;
-      }
-      
-      @keyframes mainBlock {
-        0% {
-          width: 0%;
-          left: 0;
-      
-        }
-        50% {
-          width: 100%;
-          left: 0;
-      
-        }
-        100% {
-          width: 0;
-          left: 100%;
-        }
-      }
-      
-      @keyframes secBlock {
-        0% {
-          width: 0%;
-          left: 0;
-      
-        }
-        50% {
-          width: 100%;
-          left: 0;
-      
-        }
-        100% {
-          width: 0;
-          left: 100%;
-        }
-      }
-      
-      @keyframes mainFadeIn {
-        0% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
-      
-      
-      @keyframes popIn {
-        0% {
-          width: 0px;
-          height: 0px;
-          background: #78bce9;
-          border: 0px solid #ddd;
-          opacity: 0;
-        }
-        50% {
-          width: 10px;
-          height: 10px;
-          background: #345384;
-          opacity: 1;
-          bottom: 45px;
-        }
-         65% {
-            width: 7px;
-          height: 7px;
-            bottom: 0px;
-            width: 15px
-         }
-         80% {
-            width: 10px;
-          height: 10px;
-            bottom: 20px
-         }
-        100% {
-          width: 7px;
-          height: 7px;
-          /*background: #e9d856;*/
-          background: #b80000;
-          border: 0px solid #222;
-          bottom: 13px;
-      
-        }
-      }
-      
-      @keyframes secFadeIn {
-        0% {
-          opacity: 0;
-        }
-        100% {
-          opacity: 0.65;
-        }
-      }
-      
-      
-      footer {
-        width: 350px;
-        height: 80px;
-        position: absolute;
-        right: 0;
-        bottom: -80px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-         animation: top 0.8s forwards;
-          animation-delay: 4s;
-          transform: translateY(10px);
-      
-      } 
-        footer span {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 12px;
-          color: #232323;
-          font-family: 'Poppins';
-      
-      }
-        footer  i {
-            margin-right: 25px;
-            font-size: 22px;
-            color: #232323;
-            animation: icon 2s forwards;
-            animation-delay: 4s;
-            opacity: 0;
-          width: 250px;
-          }
-          
-          footer span img {
-                /*transform: translateY(-14px);*/
-          }
-      
-      @keyframes top {
-        0% {
-          opacity: 0;
-           bottom: 0px
-        }
-        100% {
-          opacity: 1;
-           bottom: 20px
-      
-        }
-      }
-      
-      @keyframes icon {
-        0% {
-          opacity: 0;
-           transform: scale(0.0);
-        }
-         50% {
-            opacity: 1;
-           transform: scale(1.3) rotate(-02deg);
-         }
-        100% {
-          opacity: 1;
-           bottom: 0px;
-        }
-      }
-      
-      #startMssge {
-          display: flex;
-          justify-content: center;
-          align-items: flex-start;
-          text-align: center;
-          margin: 100px;
-          color: #000;
-      }
-    </style>
-  </head>
-  <body>
-   <div id="aniCont"><div id="startMssge">Please ensure your browser is in full screen<br>& click the screen to start</div></div>
-  </body>
-  <script>
-    // This sets up a function to automatically advance the page when the animation finishes
-    function pageAdvance() {
-      setTimeout(function(){
-        Phase.submit()
-      }, 6500);
-    }
+  body, html {
+     overflow: hidden;
+       background: #FFF;
+  }
+  .container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%!important;
+  }
+  .container .box {
+    width: 650px;
+    height: 250px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .container .box .title {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 50px;
+  }
+  .container .box .title .block {
+    width: 0%;
+    height: inherit;
+    /*background: #ffb510;*/
+    background-image: url("../../collector-experiments/User/Assets/LOP/stripes.png");
+    position: absolute;
+    animation: mainBlock 2s cubic-bezier(.74, .06, .4, .92) forwards;
+    display: flex;
+  }
+   h1 {
+    font-family: 'Libre Baskerville', serif;
+    color: #0B0B45;
+    font-size: 45px;
+    -webkit-animation: mainFadeIn 2s forwards;
+    -o-animation: mainFadeIn 2s forwards;
+    animation: mainFadeIn 2s forwards;
+    animation-delay: 1.6s;
+    opacity: 0;
+    display: flex;
+    align-items: baseline;
+    position: relative;
+  }
+  h1 span {
+    width:0px;
+    height: 0px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background: #b80000;
+    -webkit-animation: load 0.6s cubic-bezier(.74, .06, .4, .92) forwards;
+    animation: popIn 0.8s cubic-bezier(.74, .06, .4, .92) forwards;
+    animation-delay: 2s;
+    margin-left: 5px;
+    margin-top: -10px;
+    position: absolute;
+    bottom: 25px;
+    right: -12px;
+  }
+  .role {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    margin-top: 10px;
+  }
+  .role .block {
+    width: 0%;
+    height: inherit;
+    /*background: #e91e63;*/
+    background-image: url("../../collector-experiments/User/Assets/LOP/stripes.png");
+    position: absolute;
+    animation: secBlock 2s cubic-bezier(.74, .06, .4, .92) forwards;
+    animation-delay: 2s;
+    display: flex;
+  }
+  .role p {
+    animation: secFadeIn 2s forwards;
+    animation-delay: 3.2s;
+    opacity: 0;
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 400;
+    color: #0B0B45;
+    font-size: 25px;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+  }
     
-    // This sets up to start the animation, by replacing an empty <div> when the user clicks their mouse on the screen
-    $(document).add(parent.parent.document).mouseup(function(e) {
-      $('#aniCont').html('<div class="container"><div class="box"><div class="title"><span class="block"></span><h1>Introduction to Psychology<span></span></h1></div><div class="role"><div class="block"></div><p>{{text}}</p></div></div></div><footer><div class="texto"><span><i class="fab fa-youtube"></i><img src="../../collector-experiments/User/Assets/LOP/uor.svg" /></span></div></footer>');
-      pageAdvance();
-      $(document).unbind('mouseup');
-    });
-  </script>
-</html>
+  @keyframes mainBlock {
+    0% {
+      width: 0%;
+      left: 0;
+    }
+    50% {
+      width: 100%;
+      left: 0;
+    }
+    100% {
+     width: 0;
+     left: 100%;
+    }
+  }
+      
+  @keyframes secBlock {
+    0% {
+      width: 0%;
+      left: 0;
+    }
+    50% {
+      width: 100%;
+      left: 0;
+    }
+    100% {
+      width: 0;
+      left: 100%;
+    }
+  }
+      
+  @keyframes mainFadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+      
+  @keyframes popIn {
+    0% {
+      width: 0px;
+      height: 0px;
+      background: #78bce9;
+      border: 0px solid #ddd;
+      opacity: 0;
+    }
+    50% {
+      width: 10px;
+      height: 10px;
+      background: #345384;
+      opacity: 1;
+      bottom: 45px;
+    }
+    65% {
+      width: 7px;
+      height: 7px;
+      bottom: 0px;
+      width: 15px
+    }
+    80% {
+      width: 10px;
+      height: 10px;
+      bottom: 20px
+    }
+    100% {
+      width: 7px;
+      height: 7px;
+      /*background: #e9d856;*/
+      background: #b80000;
+      border: 0px solid #222;
+      bottom: 13px;
+    }
+  }
+      
+  @keyframes secFadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0.65;
+    }
+  }
+      
+  footer {
+    width: 350px;
+    height: 80px;
+    position: absolute;
+    right: 0;
+    bottom: -80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: top 0.8s forwards;
+    animation-delay: 4s;
+    transform: translateY(10px);
+  } 
+  footer span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #232323;
+    font-family: 'Poppins';
+  }
+  footer  i {
+    margin-right: 25px;
+    font-size: 22px;
+    color: #232323;
+    animation: icon 2s forwards;
+    animation-delay: 4s;
+    opacity: 0;
+    width: 250px;
+  }
+  footer span img {
+    /*transform: translateY(-14px);*/
+  }
+      
+  @keyframes top {
+    0% {
+      opacity: 0;
+      bottom: 0px
+    }
+    100% {
+      opacity: 1;
+      bottom: 20px
+    }
+  }
+  @keyframes icon {
+    0% {
+      opacity: 0;
+      transform: scale(0.0);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.3) rotate(-02deg);
+    }
+    100% {
+      opacity: 1;
+      bottom: 0px;
+    }
+  }
+  #startMssge {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    margin: 100px;
+    color: #000;
+  }
+</style>
+<div id="aniCont">
+  <div id="startMssge">Please ensure your browser is in full screen<br>& click the screen to start</div>
+</div>
+<script>
+  // This sets up a function to automatically advance the page when the animation finishes
+  function pageAdvance() {
+    setTimeout(function(){
+      Phase.submit()
+    }, 6500);
+  }
+    
+  // This sets up to start the animation, by replacing an empty <div> when the user clicks their mouse on the screen
+  $(document).add(parent.parent.document).mouseup(function(e) {
+    $('#aniCont').html('<div class="container"><div class="box"><div class="title"><span class="block"></span><h1>Introduction to Psychology<span></span></h1></div><div class="role"><div class="block"></div><p>{{text}}</p></div></div></div><footer><div class="texto"><span><i class="fab fa-youtube"></i><img src="../../collector-experiments/User/Assets/LOP/uor.svg" /></span></div></footer>');
+    pageAdvance();
+    $(document).unbind('mouseup');
+  });
+</script>

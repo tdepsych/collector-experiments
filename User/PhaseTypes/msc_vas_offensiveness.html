@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <style>
-    /* This clears all formatting from the buttons to begin */
-    button, input[type="submit"], input[type="reset"] {
-    	background: none;
-    	color: inherit;
-    	border: none;
-    	padding: 0;
-    	font: inherit;
-    	cursor: pointer;
-    	outline: inherit;
-    }
+  /* This clears all formatting from the buttons to begin */
+  button, input[type="submit"], input[type="reset"] {
+  	background: none;
+  	color: inherit;
+  	border: none;
+  	padding: 0;
+  	font: inherit;
+  	cursor: pointer;
+  	outline: inherit;
+  }
+  #container{
+    /* This just overwrites the vertical centering */
+    min-height: 50vh!important;
+  }
   .slider {
     -webkit-appearance: none;
     width: 720px;
@@ -24,176 +24,168 @@
     opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
-    transform: translateX(43px);
+    /*transform: translateX(43px);*/
     position: relative
     z-index: 999;;
   }
-  
   .slider:hover {
     opacity: 1;
   }
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #20669b;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #20669b;
-  cursor: pointer;
-}
-.anchor-start{
-  text-align:left;
-  position:relative;
-   z-index: -9;
-  left:-4px;
-  bottom:10px;
-}
-.arrow-start {
-  background: url("https://github.com/tdepsych/gorilla-materials/raw/main/arrow-start.svg")  0 0 no-repeat;
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #20669b;
+    cursor: pointer;
+  }
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #20669b;
+    cursor: pointer;
+  }
+  .anchor-start{
+    text-align:left;
+    position:relative;
+    z-index: -9;
+    left:-66px;
+    bottom:10px;
+  }
+  .arrow-start {
+    background: url("../../collector-experiments/User/Assets/Global/img/arrow-start.svg")  0 0 no-repeat;
     background-size: 25px 58px;
     background-repeat: no-repeat;
     width: 35px;
     height: 50px;
     content: '';
-    transform: translate(12px, 48px);
-}
-.anchor-end{
-  text-align: right;
-  position: absolute;
-  z-index: -9;
-transform: translate(584px, -49px);
-}
+    transform: translate(-35px, 48px);
+  }
+  .anchor-end{
+    text-align: right;
+    position: absolute;
+    z-index: -9;
+    transform: translate(547px, -49px);
+  }
+  .arrow-end{
+    background: url(../../collector-experiments/User/Assets/Global/img/arrow-end.svg) 0 0 no-repeat;
+    background-size: 25px 58px;
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 50px;
+    content: '';
+    transform: translate(730px, -41px);
+  }
+      
+  /* ******************** */
+  /* CONTINUE BTN MESSAGE */
+  /* ******************** */
+      
+  .tooltipHidden {
+    visibility: hidden;
+    position: absolute;
+    width: 200px;
+  }
+  .tooltipCon .tooltiptext {
+    visibility: hidden;
+    width: 725px;
+    background-color: #006599;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    transform: translate(-410px, -64px);
+  }
+  .tooltipCon:hover .tooltiptext {
+    visibility: visible;
+  }
+  
+  /*This is the little arrow on the tooltip*/
+    .tooltipCon .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #006599 transparent transparent transparent;
+  }
+  #proceed_button {
+    color: #FFF;
+    background-color: #a1d4ee;
+    border-color: #a1d4ee;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    vertical-align: middle;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    cursor: default;
+    margin: auto;
+    position: relative;
+    pointer-events: none;
+  }
 
-.arrow-end{
-  background: url(https://github.com/tdepsych/gorilla-materials/raw/main/arrow-end.svg) 0 0 no-repeat;
-  background-size: 25px 58px;
-  background-repeat: no-repeat;
-  width: 35px;
-  height: 50px;
-  content: '';
-    transform: translate(770px, -41px);
-}
-      
-      /* ******************** */
-      /* CONTINUE BTN MESSAGE */
-      /* ******************** */
-      .tooltipCon {
-        position: relative;
-        display: inline-block;
-        transform: translateX(360px);
-      }
-      
-      .tooltipHidden {
-        visibility: hidden;
-        position: absolute;
-        width: 200px;
-      }
-      
-      .tooltipCon .tooltiptext {
-        visibility: hidden;
-        width: 725px;
-        background-color: #006599;
-        color: #fff;
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px 0;
-        position: absolute;
-        z-index: 1;
-        transform: translate(-410px, -64px);
-      }
-      
-      .tooltipCon:hover .tooltiptext {
-        visibility: visible;
-      }
-      
-      /*This is the little arrow on the tooltip*/
-      .tooltipCon .tooltiptext::after {
-        content: "";
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        margin-left: -5px;
-        border-width: 5px;
-        border-style: solid;
-        border-color: #006599 transparent transparent transparent;
-      }
-      
-      #proceed_button {
-        color: #FFF;
-        background-color: #a1d4ee;
-        border-color: #a1d4ee;
-        font-weight: 400;
-        line-height: 1.5;
-        text-align: center;
-        vertical-align: middle;
-        padding: .375rem .75rem;
-        font-size: 1rem;
-        border-radius: .25rem;
-        cursor: default;
-        margin: auto;
-        position: relative;
-        pointer-events: none;
-      }
-
-      #proceed_button.btnActive {
-        background-color: #006599;
-        border-color: #006599;
-        cursor: pointer;
-        pointer-events: auto;
-      }
-      
-      #proceed_button.btnActive:hover {
-          background-color: #275fda;
-      }
-      
-      .slidecontainer {
-        position: relative;
-        margin-top: -41px;
-      }
-      .valueHide {
-        display:none;
-      }
+  #proceed_button.btnActive {
+    background-color: #006599;
+    border-color: #006599;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+  
+  #proceed_button.btnActive:hover {
+      background-color: #275fda;
+  }
+  
+  .slidecontainer {
+    position: relative;
+    margin-top: -41px;
+  }
+  .valueHide {
+    display:none;
+  }
+  #container h2 {
+    text-align: left!important;
+    width: 100%;
+  }
 </style>
-</head>
-<body>
-    <input type="hidden" name="offensive_vas" id="offensive_vas" />
-    <button id="zoomOut" tabindex="-1"></button>
-    <button id="zoomIn" tabindex="-1"></button>
+<input type="hidden" name="offensive_vas" id="offensive_vas" />
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
 <div id="container">
-<h2>Offensiveness Rating</h2><hr>
-<p>Using the slider below, please rate how offensive the word <b>{{text}}</b> is to <b>you</b>.</p>
-<br>
-<div class="slidecontainer">
-  <div class="arrow-start"></div><div class="anchor-start">I am not offended by this word</div><input type="range" min="10" max="90" value="50" class="slider" id="vas"><div class="anchor-end">This word is very offensive to me</div><div class="arrow-end"></div>
-  <p class="valueHide">Value: <span id="value"></span></p>
-</div>
+  <h2>Offensiveness Rating</h2><hr>
+  <p>Using the slider below, please rate how offensive the word <b>{{text}}</b> is to <b>you</b>.</p>
+  <br>
+  <div class="slidecontainer">
+    <div class="arrow-start"></div>
+    <div class="anchor-start">I am not offended by this word</div><input type="range" min="10" max="90" value="50" class="slider" id="vas"><div class="anchor-end">This word is very offensive to me</div>
+    <div class="arrow-end"></div>
+    <p class="valueHide">Value: <span id="value"></span></p>
+  </div>
   <br/>
   <div id="tooltipCon" class="tooltipCon">
     <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()">Continue</button>
-    <span id="tooltiptext" class="tooltiptext">Sorry. You need to move the slider to make a rating before you can continue.<br/><span style="font-size:14px;"><em>(If you feel the slider's starting position correctly indicates your rating, simply move it slightly and then back again)</em></span></span>
+    <span id="tooltiptext" class="tooltiptext">Sorry. You need to move the slider to make a rating before you can continue.<br/>
+      <span style="font-size:14px;"><em>(If you feel the slider's starting position correctly indicates your rating, simply move it slightly and then back again)</em></span>
+    </span>
   </div>
-<script>
-    var slider = document.getElementById("vas");
-    var output = document.getElementById("value");
-    output.innerHTML = Math.ceil(slider.value / 10);
-    
-    slider.oninput = function() {
-      output.innerHTML = Math.ceil(this.value / 10);
-      document.getElementById("proceed_button").setAttribute("class", "btnActive");
-      document.getElementById("tooltiptext").setAttribute("class", "tooltipHidden");
-      document.getElementById("offensive_vas").value = slider.value;
-    }
-</script>
-<script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>
 </div>
-</body>
-</html>
+<script>
+  var slider = document.getElementById("vas");
+  var output = document.getElementById("value");
+  output.innerHTML = Math.ceil(slider.value / 10);
+    
+  slider.oninput = function() {
+    output.innerHTML = Math.ceil(this.value / 10);
+    document.getElementById("proceed_button").setAttribute("class", "btnActive");
+    document.getElementById("tooltiptext").setAttribute("class", "tooltipHidden");
+    document.getElementById("offensive_vas").value = slider.value;
+  }
+</script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

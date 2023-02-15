@@ -1,17 +1,15 @@
-<!DOCTYPE html>
-<html>
- <head>
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
-  <link rel="stylesheet" href="{{task_title}}">
-  <link rel="preload" as="image" href="../../collector-experiments/User/Assets/MSc/uor.svg">
- </head>
- <body>
-   <div id="aniCont"></div>
-    <script>
-      Phase.set_timer(function(){
-        $('#aniCont').html('<div class="animation-container"><div class="image-container"><img src="../../collector-experiments/User/Assets/MSc/uor.svg" /></div><div class="text-container"><h1>{{text}}</h1><div class="fading-effect"></div></div></di>');
-      },'10');
-      Phase.set_timer(function(){Phase.submit()}, 6500);
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/uor_cover_zoom_out.css">
+<link rel="preload" as="image" href="../../collector-experiments/User/Assets/Global/img/uor.svg">
+<style>
+  .animation-container {
+    height: 97vh!important;
+  }
+</style>
+<div id="aniCont"></div>
+<script>
+  Phase.set_timer(function(){
+    $('#aniCont').html('<div class="animation-container"><div class="image-container"><img src="../../collector-experiments/User/Assets/Global/img/uor.svg" /></div><div class="text-container"><h1>{{text}}</h1><div class="fading-effect"></div></div>');},'10');
+      Phase.set_timer(function(){Phase.submit()}, 650000);
     </script>
  </body>
 </html>

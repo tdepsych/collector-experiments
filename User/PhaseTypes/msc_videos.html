@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
+<!--'msc_videos' PhaseType-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <style>
   video {
     cursor: pointer;
   }
 </style>
-</head>
-<body><div id="test"></div>
-  <button id="zoomOut" class="zoomBtn"></button>
-  <button id="zoomIn" class="zoomBtn"></button>
-  <div id="container">
-<h1><b>{{task_title}}</b></h1><hr><br/>
-<p>{{task_body_text}}</p>
-<video id="video" src="../../collector-experiments/User/Assets/MSc/videos/{{text}}.mp4" width="100%" controls poster="../../collector-experiments/User/Assets/MSc/videos/posters/{{text}}.jpg" onended="videoEnded(this)" disablePictureInPicture></video><br><p style="font-style:italic">Note:<span style="font-style:italic;color:#808080;"> If you would like to watch the video again, simply click the video once it has finished</span></p>
+<!--<div id="test"></div>-->
+<button id="zoomOut" class="zoomBtn"></button>
+<button id="zoomIn" class="zoomBtn"></button>
+<div id="container">
+  <h1><b>{{task_title}}</b></h1><hr><br/>
+  <p>{{task_body_text}}</p>
+  <video id="video" src="../../collector-experiments/User/Assets/MSc/videos/{{text}}.mp4" width="100%" controls poster="../../collector-experiments/User/Assets/MSc/videos/posters/{{text}}.jpg" onended="videoEnded(this)" disablePictureInPicture>
+  </video><br>
+  <p style="font-style:italic">Note:<span style="font-style:italic;color:#808080;"> If you would like to watch the video again, simply click the video once it has finished</span></p>
   <br/><br/>
   <div id="continueBtn" style="text-align:center;">
     <p id="ldt_instruction" style="visibility:hidden;">Please press space to begin</p>
@@ -23,25 +21,21 @@
   </div>
 </div>
 <script>
-
-    //--------------------------------//
-    // DISPLAY BUTTON & REFRESH VIDEO //
-    //--------------------------------//
-    var text = "{{text}}";
-    video.addEventListener('ended', (event) => {
-     if (text == "ldt") {
-     var ldtInstruction = document.getElementById("ldt_instruction");
-     ldtInstruction.style.visibility = "visible";
-    } else {
-     const button = document.getElementById("proceed_button");
-     button.style.visibility = "visible";      
-    }});
-    
-    function videoEnded(video) {
-     video.load();
-    };
-   
+  //--------------------------------//
+  // DISPLAY BUTTON & REFRESH VIDEO //
+  //--------------------------------//
+  var text = "{{text}}";
+  video.addEventListener('ended', (event) => {
+   if (text == "ldt") {
+   var ldtInstruction = document.getElementById("ldt_instruction");
+   ldtInstruction.style.visibility = "visible";
+  } else {
+   const button = document.getElementById("proceed_button");
+   button.style.visibility = "visible";      
+  }});
+  
+  function videoEnded(video) {
+   video.load();
+  };
 </script>
 <script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>
-</body>
-</html>

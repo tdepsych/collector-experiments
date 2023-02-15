@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-
-<html>
-<head>
-<script src="../../collector-experiments/User/Assets/LOP/detect_mobile.js"></script>
-<meta name="viewport" content="device-width, initial-scale=1">
-<!--General CSS-->
-  <style>
+<!--'lop_studentnumber' PhaseType - this also collects age/gender demographcis-->
+<script src="../../collector-experiments/User/Assets/Global/js/detect_mobile.js"></script>
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<!--<meta name="viewport" content="device-width, initial-scale=1">-->
+<style>
+  /* General CSS */
   #instruct_text {
     margin: auto;
     width: 800px;
@@ -31,18 +29,6 @@
   #proceed_button:hover {
     opacity: 1;
   }
-  #trial_contents {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 800;
-    height: 800;
-    text-align: center;
-  }
-  
   #studentnumber, #studentage {
     height: 65px;
     width: 300px;
@@ -54,153 +40,144 @@
     border-radius: 35px;
     text-align: center;
   }
-::placeholder {
+  ::placeholder {
     opacity: .25;
-}
-#grid {
-  margin-top: 50px;
-  display: grid;
-  grid-template-columns: 300px 400px;
-  column-gap: 2rem;
-  row-gap: 2rem;
-  transform: translateX(11%);
-}
-
-#grid #label {
-  vertical-align: top;
-  text-align: left;
-}
-
-input#studentage {
-  margin-bottom: 5px;
-}
-
-input:focus{
+  }
+  #grid {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 300px 400px;
+    column-gap: 2rem;
+    row-gap: 2rem;
+    transform: translateX(11%);
+  }
+  #grid #label {
+    vertical-align: top;
+    text-align: left;
+  }
+  input#studentage {
+    margin-bottom: 5px;
+  }
+  input:focus{
     outline: none;
-}
-</style>
-<!--Dropdown CSS -->
-  <style>
+  }
+  /* Dropdown CSS */
+
   /********************* Custom Select **********************/
   /** Adapted from Yusuf (https://codepen.io/yy/pen/vOYqYV) */
   /**********************************************************/
-
-    .custom-select {
-      position: relative;
-      display: inline-block;
-      background-color: #FFFFFF;
-    }
-    .custom-select-wrapper {
-      text-align: left;
-    }
-      .custom-select-trigger {
-        position: relative;
-        display: block;
-        width: 300px;
-        padding: 10 50px 0 22px;
-        font-size: 20px;
-        font-weight: 500;
-        color: rgba(0, 0, 0);
-        text-align: center;
-        border-radius: 35px;
-        cursor: pointer;
-        border: 5px #78bce9 solid;
-        height: 65px;
-            letter-spacing: 3px;
-      }
- 
-        .custom-select-trigger:after {
-          position: absolute;
-          display: block;
-          content: '';
-          width: 10px; height: 10px;
-          top: 50%; right: 25px;
-          margin-top: -3px;
-          border-bottom: 1px solid #78bce9;
-          border-right: 1px solid #78bce9;
-          transform: rotate(45deg) translateY(-50%);
-          transition: all .4s ease-in-out;
-          transform-origin: 50% 0;
-        }
-        .custom-select.opened .custom-select-trigger:after {
-          margin-top: 3px;
-          transform: rotate(-135deg) translateY(-50%);
-        }
-    .custom-options {
-      position: absolute;
-      display: block;
-      top: 100%; left: 34.5%; right: 0;
-      margin: 15px 0;
-      border: 1px solid #b5b5b5;
-      border-radius: 25px;
-      box-sizing: border-box;
-      box-shadow: 0 2px 1px rgba(0,0,0,.07);
-      background: #fff;
-      transition: all .4s ease-in-out;
-      
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transform: translateY(-15px);
-    }
-    .custom-select.opened .custom-options {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: all;
-      transform: translateY(0);
-      width:200px
-    }
-      .custom-options:before {
-        position: absolute;
-        display: block;
-        content: '';
-        bottom: 98.5%;
-        right: 30px;
-        width: 15px;
-        height: 15px;
-        margin-bottom: -4px;
-        border-top: 1px solid #b5b5b5;
-        border-left: 1px solid #b5b5b5;
-        background: #fff;
-        transform: rotate(45deg);
-        transition: all .4s ease-in-out;
-      }
-      .option-hover:before {
-        background: #dfeefb;
-      }
-      .custom-option {
-        position: relative;
-        display: block;
-        padding: 0 22px;
-        border-bottom: 1px solid #b5b5b5;
-        font-size: 18px;
-        font-weight: 600;
-        color: #b5b5b5;
-        line-height: 47px;
-        cursor: pointer;
-        transition: all .4s ease-in-out;
-      }
-      .custom-option:first-of-type {
-        border-radius: 25px 25px 0 0;
-      }
-      .custom-option:last-of-type {
-        border-bottom: 0;
-        border-radius: 0 0 25px 25px;
-      }
-      .custom-option:hover,
-      .custom-option.selection {
-        background: #dfeefb;
-        color:000;
-      }
-.custom-select-placeholder {
-    opacity: 0.25;
-    letter-spacing: 10px;
-}
-
-</style>
-<!--Mobile CSS-->
-<style>
-#trial_contents.mobile {
+  .custom-select {
+    position: relative;
+    display: inline-block;
+    background-color: #FFFFFF;
+  }
+  .custom-select-wrapper {
+    text-align: left;
+  }
+  .custom-select-trigger {
+    position: relative;
+    display: block;
+    width: 300px;
+    padding: 10 50px 0 22px;
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(0, 0, 0);
+    text-align: center;
+    border-radius: 35px;
+    cursor: pointer;
+    border: 5px #78bce9 solid;
+    height: 65px;
+    letter-spacing: 3px;
+  }
+  .custom-select-trigger:after {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 10px; height: 10px;
+    top: 50%; right: 25px;
+    margin-top: -3px;
+    border-bottom: 1px solid #78bce9;
+    border-right: 1px solid #78bce9;
+    transform: rotate(45deg) translateY(-50%);
+    transition: all .4s ease-in-out;
+    transform-origin: 50% 0;
+  }
+  .custom-select.opened .custom-select-trigger:after {
+    margin-top: 3px;
+    transform: rotate(-135deg) translateY(-50%);
+  }
+  .custom-options {
+    position: absolute;
+    display: block;
+    top: 100%; left: 34.5%; right: 0;
+    margin: 15px 0;
+    border: 1px solid #b5b5b5;
+    border-radius: 25px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 1px rgba(0,0,0,.07);
+    background: #fff;
+    transition: all .4s ease-in-out;
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-15px);
+  }
+  .custom-select.opened .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: translateY(0);
+    width:200px
+  }
+  .custom-options:before {
+    position: absolute;
+    display: block;
+    content: '';
+    bottom: 98.5%;
+    right: 30px;
+    width: 15px;
+    height: 15px;
+    margin-bottom: -4px;
+    border-top: 1px solid #b5b5b5;
+    border-left: 1px solid #b5b5b5;
+    background: #fff;
+    transform: rotate(45deg);
+    transition: all .4s ease-in-out;
+  }
+  .option-hover:before {
+    background: #dfeefb;
+  }
+  .custom-option {
+    position: relative;
+    display: block;
+    padding: 0 22px;
+    border-bottom: 1px solid #b5b5b5;
+    font-size: 18px;
+    font-weight: 600;
+    color: #b5b5b5;
+    line-height: 47px;
+    cursor: pointer;
+    transition: all .4s ease-in-out;
+  }
+  .custom-option:first-of-type {
+    border-radius: 25px 25px 0 0;
+  }
+  .custom-option:last-of-type {
+    border-bottom: 0;
+    border-radius: 0 0 25px 25px;
+  }
+  .custom-option:hover,
+  .custom-option.selection {
+    background: #dfeefb;
+    color:000;
+  }
+  .custom-select-placeholder {
+      opacity: 0.25;
+      letter-spacing: 10px;
+  }
+  /* Mobile CSS */
+  #container.mobile {
     position: absolute;
     top: 0;
     bottom: 0;
@@ -211,57 +188,53 @@ input:focus{
     height: 80%;
     text-align: center;
     transform: scale(0.75);
-}
+  }
 </style>
-</head>
-<body>
 <input type='hidden' id='ppt_studentnumber' name='ppt_studentnumber' value="-1"/>
 <input type='hidden' id='ppt_studentage' name='ppt_studentage' value="-1"/>
 <input type='hidden' id='ppt_studentgender' name='ppt_studentgender' value="-1"/>
-<div id="trial_contents">
+<div id="container">
   <div id="instruct_text">{{text}}
-  <br><br>Before you begin, please complete the short demographics questionnaire below. Once completed, please press start to begin the study.<br>
+    <br><br>Before you begin, please complete the short demographics questionnaire below. Once completed, please press start to begin the study.<br>
     <div id='grid'>
       <span id="label">Please enter your 8-digit student number:</span>
-        <input type="text" id="studentnumber" placeholder="e.g. 12345678" maxlength="8" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-        <span id="label">Please enter your age:</span>
-        <input type="text" id="studentage" placeholder="in years" maxlength="2" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-        <span id="label">Please select the gender you identify with:</span>
-          <select id="studentgender" class="custom-select" placeholder="options" >
-            <option value="1">Male</option>
-            <option value="2">Female</option>
-            <option value="3">Non-Binary</option>
-            <option value="0">Prefer to not say</option>
-          </select>
+      <input type="text" id="studentnumber" placeholder="e.g. 12345678" maxlength="8" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+      <span id="label">Please enter your age:</span>
+      <input type="text" id="studentage" placeholder="in years" maxlength="2" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+      <span id="label">Please select the gender you identify with:</span>
+      <select id="studentgender" class="custom-select" placeholder="options" >
+        <option value="1">Male</option>
+        <option value="2">Female</option>
+        <option value="3">Non-Binary</option>
+        <option value="0">Prefer to not say</option>
+      </select>
     </div>
     <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
   </div>
 </div>
-</body>
-<script src="../../collector-experiments/User/Assets/LOP/select_javascript.js"></script>
 <script>
-var Form = document.getElementById("trial_contents");
-$('#proceed_button').css('pointer-events','none');
+  var Form = document.getElementById("container");
+  $('#proceed_button').css('pointer-events','none');
+  if(isMobile.any()) {
+    $('#container').addClass('mobile');
+    $('#proceed_button').css('opacity', '1');
+  } 
 
-if(isMobile.any()) {
-  $('#trial_contents').addClass('mobile');
-  $('#proceed_button').css('opacity', '1');
-} 
-
-Form.onchange = function() {
-  var ppt_studentnumber = studentnumber.value
-  var ppt_studentage = studentage.value
-  var ppt_studentgender = $('#studentgender').val();
-      
-  document.getElementById("ppt_studentnumber").value = ppt_studentnumber;
-  document.getElementById("ppt_studentage").value = ppt_studentage;
-  document.getElementById("ppt_studentgender").value = ppt_studentgender;
-  if (ppt_studentnumber.length == 8) {
-    $('#proceed_button').css('pointer-events','auto');
-  } else {
-    $('#proceed_button').css('pointer-events','none');
+  Form.onchange = function() {
+    var ppt_studentnumber = studentnumber.value
+    var ppt_studentage = studentage.value
+    var ppt_studentgender = $('#studentgender').val();
+        
+    document.getElementById("ppt_studentnumber").value = ppt_studentnumber;
+    document.getElementById("ppt_studentage").value = ppt_studentage;
+    document.getElementById("ppt_studentgender").value = ppt_studentgender;
+    if (ppt_studentnumber.length == 8) {
+      $('#proceed_button').css('pointer-events','auto');
+      console.log("hello");
+    } else {
+      $('#proceed_button').css('pointer-events','none');
+      console.log("goodbye");
+    }
   }
-}
-
 </script>
-</html>
+<script src="../../collector-experiments/User/Assets/LOP/select_javascript.js"></script>

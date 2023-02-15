@@ -1,41 +1,61 @@
-<!DOCTYPE html>
-<html>
- <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{{task_title}}">
-  <style>
-  html,
-  body {
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-  }
-
-  #chartdiv {
-    width: 100%;
-    height: 100%;
+<script>console.log("UoR Cover Started")</script>
+<!--'uor_cover' PhaseType (UoR logo fadein). Subtitle is set from the "text" field of the procedure sheet -->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/uor_cover_zoom_in.css">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<script src="../../collector-experiments/User/Assets/Global/js/detect_mobile.js"></script>
+<style>
+  #startMssge {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    margin: 100px;
+    color: #000;
   }
 </style>
- </head>
- <body>
-   <div id="aniCont"></div>
- </body>
- <script>
- 
-var img = new Image();
-    img.src="../../collector-experiments/User/Assets/MSc/uor.svg";
-var messageText = "{{text}}";
-function pageAdvance() {
-  setTimeout(function(){
-    Phase.submit()
-  }, 6500);
-}
-      $(document).add(parent.parent.document).mouseup(function(e) {
-        $('#aniCont').html('<div class="animation-container"><div class="image-container"><img src="' + img.src + '" /></div><div class="text-container"><h1>' + messageText + '</h1><div class="fading-effect"></div></div></div>');
-        pageAdvance();
-        $(document).unbind('mouseup');
-      });
-      
-parent.parent.global_count = 1;
+<div id="aniCont">
+  <div id="startMssge">Please ensure your browser is in full screen<br>& click the screen to start</div>
+</div>
+<script>
+  // This checks what browser the user is running the study in and stores it to a variable 'browser'
+  var browser = (function (agent) {
+    switch (true) {
+      case agent.indexOf("edge") > -1: return "MS Edge (EdgeHtml)";
+      case agent.indexOf("edg") > -1: return "MS Edge Chromium";
+      case agent.indexOf("opr") > -1 && !!window.opr: return "opera";
+      case agent.indexOf("chrome") > -1 && !!window.chrome: return "chrome";
+      case agent.indexOf("trident") > -1: return "Internet Explorer";
+      case agent.indexOf("firefox") > -1: return "firefox";
+      case agent.indexOf("safari") > -1: return "safari";
+      default: return "other";
+    }
+  })(window.navigator.userAgent.toLowerCase());
+  console.log("User is running " + browser);
+
+  // This loads in the UoR logo, the welcome message, and sets the page to automatically advance after 6.5 seconds (when the animation ends)
+  var img = new Image();
+  img.src="../../collector-experiments/User/Assets/Global/img/uor.svg";
+  var messageText = "{{text}}";
+  function pageAdvance() {
+    setTimeout(function(){
+      Phase.submit()
+    }, 6500);
+  }
+  
+  // This runs when the user clicks there mouse (either on the screen or alert message). The if statements checks for mobiles, the elseif checks for safari and if neither is true, the else runs the animation
+  $(document).add(parent.parent.document).mouseup(function(e) {
+    if (isMobile.any()) {
+      $('#aniCont').html("<div id='container'><h2>Sorry, this study doesn't run using a mobile/tablet as it requires a physical keyboard.<br>Please restart the study using a desktop or laptop computer</h2></div>");
+    } else if (browser == "safari") {
+      $('#aniCont').html("<div id='container'><h2>Sorry, this study doesn't run using Safari.<br>Please restart the study using Chrome or Edge</h2></div>");
+    } else {
+      $('#aniCont').html('<div class="animation-container"><div class="image-container"><img src="' + img.src + '" /></div><div class="text-container"><h1>' + messageText + '</h1><div class="fading-effect"></div></div></div>');
+      pageAdvance();
+      $(document).unbind('mouseup');
+    }
+  });
+     
+  // This is creating a global count value. I needed it in my MSc for something, but just leaving it here as it might be useful
+  // parent.parent.global_count = 1;
 </script>
 </html>

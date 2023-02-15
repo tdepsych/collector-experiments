@@ -1,134 +1,16 @@
-/*  Collector (Garcia, Kornell, Kerr, Blake & Haffey)
-    A program for running experiments on the web
-    Copyright 2012-2016 Mikey Garcia & Nate Kornell
-
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License version 3 as published by
-    the Free Software Foundation.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>
-
-		Kitten/Cat release (2019-2022) author: Dr. Anthony Haffey (team@someopen.solutions)
+/*  
+ *	PhaseFunctions.js
+ *	Collector Kitten/Cat release (2019-2023) © Dr. Anthony Haffey (team@someopen.solutions)
 */
 if (typeof Phase !== "undefined") {
   Phase.add_response = function (response_obj) {
-
-    /*
-     * Increase counter to reflect a new response
-     */
-    if(typeof(parent.parent.project_json.repeat_no) == "undefined"){
-      parent.parent.project_json.repeat_no = parent.parent.project_json.phase_no;
-    }
-
-    parent.parent.project_json.repeat_no++;
-
-    /*
-
-     * Add all the normal response information here!
-
-     */
-
-    //response_obj.inserted_time_ms = new Date().getTime();
-    //response_obj.inserted_time_date = new Date().toString("MM/dd/yy HH:mm:ss");
+    // response_obj.inserted_time_ms = new Date().getTime();
+    // response_obj.inserted_time_date = new Date().toString("MM/dd/yy HH:mm:ss");
     parent.parent.project_json.responses.push(response_obj);
-
-    parent.parent.project_json.phase_resp_no++;
-
-
-
-    /*
-     * Submit response if there's an online data thing.
-     */
-   if(typeof(parent.parent.project_json.this_condition.redcap_url) !== "undefined"){
-
-       var phase_responses = response_obj;
-
-       console.log("phase_responses");
-       var this_location = parent.parent.project_json.location.split("/")[0].replaceAll("-","") + "_" + parent.parent.project_json.location.split("/")[1].replaceAll("-","");
-       //phase_responses.location;
-       /*
-       * update all the keys to have the "location_" before them
-       */
-
-       var clean_phase_responses = {};
-
-       Object.keys(phase_responses).forEach(function(old_key){
-
-         //if(phase_responses[old_key].toLowerCase() !== "condition_redcap_url" & phase_responses[old_key] !== ""){
-
-
-           clean_phase_responses[this_location + "_" + old_key] =
-           phase_responses[old_key]
-         //}
-       });
-       delete(clean_phase_responses[
-         this_location + "_condition_redcap_url"
-       ]);
-       delete(clean_phase_responses[
-         this_location + "_"
-       ]);
-
-       console.log("clean_phase_responses");
-       console.log(clean_phase_responses);
-       clean_phase_responses.record_id = parent.parent.$("#participant_code").val();
-
-       clean_phase_responses['redcap_repeat_instance'] = parent.parent.project_json.repeat_no;
-       // parent.parent.project_json.phase_no + "-" + parent.parent.project_json.phase_resp_no;
-       clean_phase_responses['redcap_repeat_instrument'] = this_location;
-       
-
-
-       /*
-       Object.keys(phase_responses).forEach(function(old_key){
-
-         Object.defineProperty(
-           phase_responses,
-           this_location + "_" + old_key,
-           Object.getOwnPropertyDescriptor(
-             phase_responses,
-             old_key
-           )
-         );
-         delete phase_responses[old_key];
-       });
-       */
-
-
-       console.log("just before the ajax");
-       $.ajax({
-         type: "POST",
-         url: parent.parent.project_json.this_condition.redcap_url,
-         crossDomain: true,
-         data: clean_phase_responses
-
-         /*
-         {
-           "record_id": parent.parent.$("#prehashed_code").val(),
-           "participant_code": $("#participant_code").val(),
-           "trial_no" : parent.parent.project_json.trial_no,
-           //"participant_confirm": parent.parent.$("#prehashed_code").val(),
-           "shape_response_time": this_rt,
-           "color_response": $("#color_response").val(),
-           "shape_response_complete": 2
-         }
-         */,
-         success: function(result){
-           console.log("result");
-           //console.log(result);
-           //Phase.submit();
-         }
-       });
-     }
   };
 
   Phase.elapsed = function () {
+    alert("Don't use this function, as it has an average lag of 10-20ms. This code hasn't been deleted as this might be addressed in the future. Instead, you can use something like \n\n Phase.set_timer(function(){\nbaseline_time_manual = (new Date()).getTime();\n},0);\n\n to capture the time the phase started.");
     if (Phase.post_no == "") {
       Phase.post_no = 0;
     }
@@ -241,3 +123,10 @@ String.prototype.replaceAll = function (str1, str2, ignore) {
     typeof str2 == "string" ? str2.replace(/\$/g, "$$$$") : str2
   );
 };
+
+// Hidden phase submit
+$(window).bind("keydown", function (event) {
+  if(event.which == 88 && event.ctrlKey && event.shiftKey) {
+    Phase.submit();
+  }
+});

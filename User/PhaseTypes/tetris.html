@@ -1,0 +1,101 @@
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<script src="../../collector-experiments/User/Assets/Global/js/tetris.js"></script>
+<style>
+  #collector_phase_timer {
+    display: none;
+  }
+  #container p {
+     width: 100%; 
+  }
+  #movearrows {
+    margin: 0 20px;
+  }
+  .arrows {
+    display: inline-block;
+    transform: scale(1.5);
+  }
+  .description {
+  	margin-top: 20px;
+  	text-align: center;
+  }
+  .tetrisCanvas {
+  	outline: none;
+  	margin-top:75px;
+  	cursor: pointer;
+  }
+  
+  /*Progress Bar*/
+  .progressbar {
+    position: absolute;
+    width: 33%;
+    margin: 0px auto;
+    border: solid 1px #000;
+    border-radius: 10px;
+    transform: translateY(33px);
+  }
+
+  .progressbar .inner {
+    height: 15px;
+    border-radius: 10px;
+    animation: progressbar-countdown;
+    /* Placeholder, this will be updated using javascript */ 
+    animation-duration: 40s;
+    /* We stop in the end */
+    animation-iteration-count: 1;
+    /* Stay on pause when the animation is finished finished */
+    animation-fill-mode: forwards;
+    /* We start paused, we start the animation using javascript */
+    animation-play-state: paused;
+    /* We want a linear animation, ease-out is standard */
+    animation-timing-function: linear;
+  }
+  @keyframes progressbar-countdown {
+    0% {
+      width: 100%;
+      background: #d2fcd2;
+    }
+    100% {
+      width: 0%;
+      background: #fcd2d2; 
+    }
+  }
+</style>
+<input type="hidden" id="PlayerScore" name="PlayerScore" value=""/>
+<div id="container">
+	<h2><span>Tetris</span></h2><br>
+	<h6>(Press P to pause the game. The countdown timer cannot be paused. The game speed increases every 1000 points scored.)</h6>
+	<div id="canvasTetris"></div>
+	 <div class="description">
+	   <h4>Use<span id="movearrows" class="arrows">&#129064; &#129066;</span>to move the shape</h4>
+	   <h4>Use <span class="arrows">&#129065;</span> to rotate the shape</h4>
+	   <h4>Use <span class="arrows">&#129067;</span> to drop the shape</h4>
+	 	 <div id='progressbar1'></div>
+	 </div>
+</div>
+<script>
+  // This creates the progress bar
+  Phase.set_timer(function(){
+    function createProgressbar(id, duration, callback) {
+      // We select the div that we want to turn into a progressbar
+      var progressbar = document.getElementById(id);
+      progressbar.className = 'progressbar';
+      // We create the div that changes width to show progress
+      var progressbarinner = document.createElement('div');
+      progressbarinner.className = 'inner';
+      // Now we set the animation parameters
+      progressbarinner.style.animationDuration = duration;
+      // Eventually couple a callback
+      if (typeof(callback) === 'function') {
+        progressbarinner.addEventListener('animationend', callback);
+      }   
+      // Append the progressbar to the main progressbardiv
+      progressbar.appendChild(progressbarinner);
+      // When everything is set up we start the animation
+      progressbarinner.style.animationPlayState = 'running';
+    }
+    createProgressbar('progressbar1', '300s'); // If you want to change how long the bar lasts, alter the '300s' (it's total seconds)
+    },0);
+    
+    Phase.set_timer(function(){Phase.submit()},300000);
+  
+</script>
