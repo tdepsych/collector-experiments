@@ -1,0 +1,54 @@
+<!-- error_page.html used to stop access for safari or a mobile -->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  @font-face {
+    font-family: 'Montserrat-ExtraLight';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-ExtraLight.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Montserrat-ExtraBold';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-ExtraBold.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Montserrat-BlackItalic';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-BlackItalic.woff') format('woff');
+  }
+  * {
+    margin: 0;
+    padding: 0;
+  }
+      
+  body, html {
+     overflow: hidden;
+       background: #FFF;
+  }
+  #oops {
+    font-size: 150px!important;
+    font-family: Montserrat-BlackItalic!important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/mind.jpg);
+        background-repeat: repeat;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    background-position: 110px -55px;
+  }
+  #sub_head{
+    font-size: 50px;
+    font-family: Montserrat-ExtraBold;
+  }
+  #body_text{
+    font-size: 50px;
+    font-family: Montserrat-ExtraLight;
+  }
+</style>
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+    <p id="oops">Opps!</p>
+    <p id="sub_head">INCOMPATIBLE BROWSER OR DEVICE</p>
+    <p id="body_text">Sorry, this study cannot be run using a mobile/tablet or the Apple browser Safari.<br>Please restart the experiment in Google Chrome, using a desktop or laptop computer</p>
+    <button class="btn btn-outline-primary bi bi-browser-chrome" id="proceed_button" onclick="location.href='https://www.google.com/intl/en_uk/chrome/'"><b>CLICK TO DOWNLOAD GOOGLE CHROME</b></button>
+</div>
+<script>
+    <!-- put any page specific javascript here -->
+</script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

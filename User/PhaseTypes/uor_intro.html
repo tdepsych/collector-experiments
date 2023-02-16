@@ -1,9 +1,21 @@
 <!--'uor_intro' Climate Stripes PhaseType. The subtitle is set by the 'text' field in the procedure sheet -->
-<!--These links simply connect to Google fonts to display a serif font to all users-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <style>
+  /* Libre Baskerville - Regular */
+  @font-face {
+    font-family: 'Libre Baskerville';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../../collector-experiments/User/Assets/Fonts/LibreBaskerville-Regular.woff') format('woff');
+  }
+  /* Libre Baskerville - Bold1 */
+  @font-face {
+    font-family: 'Libre Baskerville';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../../collector-experiments/User/Assets/Fonts/LibreBaskerville-Bold.woff') format('woff');
+  }
   * {
     margin: 0;
     padding: 0;
@@ -96,7 +108,7 @@
     animation: secFadeIn 2s forwards;
     animation-delay: 3.2s;
     opacity: 0;
-    font-family: 'Libre Baskerville', serif;
+    font-family: 'Libre Baskerville', Sans-Serif;
     font-weight: 400;
     color: #0B0B45;
     font-size: 25px;
