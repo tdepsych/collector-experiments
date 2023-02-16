@@ -6,7 +6,7 @@
   "all_stims": {
     "stimuli_1.csv": "cue,answer,\r\nA,Apple,\r\nB,Banana,\r\n,,"
   },
-  "location": "tdepsych/collector-experiments/test_project",
+  "location": "tdepsych/collector-experiments/chris",
   "public_key": "ZIEuVRKYOLO6WwFULPPZwTRcHAjIYAjbIaCzNwwNLWc=",
   "phasetypes": {
     "instruct": "[[[LOCATION]]]../Default/DefaultPhaseTypes/instruct.html"
