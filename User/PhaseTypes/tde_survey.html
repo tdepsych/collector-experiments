@@ -1,6 +1,11 @@
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/radio_buttons.css">
 <script>
+  Phase.set_timer(function(){ 
+    $("input:radio").addClass('option-input radio cgd3');
+    $('.custom-control-label').addClass('radioLabelHolder'); 
+    $('.custom-radio').addClass('checkboxes'); 
+  },150);
 </script>
 <style>
   td {
@@ -26,9 +31,9 @@
     text-align: left;
     margin-top: 5px;
   }
-  /* .minor{
-    
-  } */
+  .minor{
+  //do nothing  
+  }
   .feedback_span_multiple {
     display: none;
     margin: 10px;
@@ -73,10 +78,3 @@ current_survey = "{{survey}}";
 </script>
 
 <script src="../Default/DefaultPhaseTypes/survey.js"></script>
-<script>
-Phase.set_timer(function(){ 
-  $("input:radio").addClass('option-input radio');
-  $('.custom-control-label').addClass('radioLabelHolder'); 
-  $('.custom-radio').addClass('checkboxes'); 
-},100);
-</script>

@@ -22,6 +22,15 @@
     z-index: 999;
     flex-direction: column;
   }
+  h2 {
+    border-bottom: 0!important;
+    line-height: 1em!important;
+    margin: 0!important; 
+  }
+  #container p {
+  font-size: 1em!important;
+  width: 100%!important;
+  }
   #round {
     text-align: center;
     margin-left: auto;
@@ -235,7 +244,7 @@
     $('#ballon').width(size); 
     $('#ballon').height(size);
     $('#ballon').show();
-    $('#round').html('<h2>'+label_header+round+' of 10<h2>');
+    $('#round').html('<h2>'+label_header+round+' of 10</h2>');
   };
     
   // what happens when the game ends

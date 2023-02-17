@@ -11,6 +11,10 @@
     width: 50%;
     margin: auto;
 }
+#container p {
+  width: 75%;
+  font-size: 1.15em;
+}
 h2 {
   width: 100%; 
   text-align: center; 
@@ -22,6 +26,7 @@ h2 span {
   background:#fff; 
   padding:0 25px; 
 }
+
 .minor {
     font-size: 12px;
     font-style:italic;
@@ -146,11 +151,6 @@ hr {
     position: absolute;
     margin-top: 20px;
   } */
-
-#container p {
-  width: 75%;
-  font-size: 1.15em;
-}
 
 /*
 * by Bora Alp Arat at https://stackoverflow.com/questions/21684101/css-vertical-scrollbar-padding-left-right-in-ul-possible

@@ -317,9 +317,9 @@
       <div class="radiogroup">
         <hr>
         <p>Finally, please indicate which testing session you are completing today by selecting an option below.<br><em><span style="color:#808080; class:minor">(Please note: the short, initial session where you completed a demographic questionnaire does not count as a testing session)</span></em></p>
-          <label id="radioLabelHolder" class="radioHide"><input type="radio" class="option-input radio checked" name="sessionnumber" id="sessionnumber" value="1"/><span class="radioLabel">First</span></label>
-          <label id="radioLabelHolder" class="radioHide"><input type="radio" class="option-input radio" name="sessionnumber" id="sessionnumber" value="2" /><span class="radioLabel">Second</span></label>
-          <label id="radioLabelHolder" class="radioHide"><input type="radio" class="option-input radio" name="sessionnumber" id="sessionnumber" value="3" /><span class="radioLabel">Third</span></label>
+          <label id="radioLabelHolder" class="radioHide"><input type="radio" class="option-input radio checked" name="sessionnumber" id="sessionnumber1" value="1"/><span class="radioLabel">First</span></label>
+          <label id="radioLabelHolder" class="radioHide"><input type="radio" class="option-input radio" name="sessionnumber" id="sessionnumber2" value="2" /><span class="radioLabel">Second</span></label>
+          <label id="radioLabelHolder" class="radioHide"><input type="radio" class="option-input radio" name="sessionnumber" id="sessionnumber3" value="3" /><span class="radioLabel">Third</span></label>
       </div>
     </div>
     <div>
@@ -341,6 +341,13 @@
 <!-- Only Javascript beyond this point -->
 <!-- --------------------------------- -->
 <script>
+
+ $("input").on('change', function () {
+    var s = $(this).val();
+    console.log("Session by variable: " +s);
+    console.log("Session by JQury "+$('input[name="sessionnumber"]:checked').val());
+  });
+
   function appropriate_message(this_message) { // This just sets up a popup message that doesn't break full screen
     bootbox.alert(this_message);
   }
@@ -348,12 +355,11 @@
   var preScreen = "{{task_body_text}}";
   function display_sessionnumber() {
     if (preScreen == "Pre_Screen") {
-      // appropriate_message("goodbye")
       $('.radiogroup').hide();
       $('#formButtons').css('transform', 'translateY(10px)');
       $(".checked").prop('checked',true);
     } else {
-      // appropriate_message("Hello");
+      // do nothing as it's a testing session and they need to select a value
     }
   }
   
@@ -367,19 +373,22 @@
   var output = document.getElementById("value");
   var session = document.getElementById("sessionnumber");
   
-  var idForm = document.getElementById("consentForm");
-  idForm.onchange = function() {
+  // $('#consentForm').on('change', function() {
+  $("#container").on('change', function () {
     parent.parent.sessionnumber = $('input[name="sessionnumber"]:checked').val();
     parent.parent.pptID = idChar.value + idNum.value + idVow.value;
+    console.log("Session 2 by JQury "+$('input[name="sessionnumber"]:checked').val());
    
-    if (parent.parent.pptID.length > 5 && $('input:radio[name="sessionnumber"]').is(':checked')) {
+   console.log("The Value is: "+ parent.parent.sessionnumber);
+   
+    if (parent.parent.pptID.length > 5 && $('input[name="sessionnumber"]:checked').val() > 0) {
       document.getElementById("nextBtn").setAttribute("class", "submitBtn_active");
       document.getElementById("tooltiptext").setAttribute("class", "tooltipHidden");
       output.innerHTML = parent.parent.pptID
       document.getElementById("idMsgIcon").src="../../collector-experiments/User/Assets/MSc/idPos.svg";
       document.getElementById("uniqueid").value = parent.parent.pptID;
       document.getElementById("testingsession").value = parent.parent.sessionnumber;
-      console.log($('input[name="sessionnumber"]:checked').val());
+      console.log("Should have worked "+$('input[name="sessionnumber"]:checked').val());
     } else if (parent.parent.pptID.length > 5 && $('input:radio[name="sessionnumber"]').not(':checked')) {
       document.getElementById("nextBtn").setAttribute("class", "submitBtn");
       document.getElementById("tooltiptext").setAttribute("class", "tooltiptext");
@@ -387,18 +396,20 @@
       output.innerHTML = parent.parent.pptID
       document.getElementById("idMsgIcon").src="../../collector-experiments/User/Assets/MSc/idPos.svg";
       document.getElementById("uniqueid").value = parent.parent.parent.parent.pptID;
+      console.log("Wrong Radio");
     } else {
       document.getElementById("tooltiptext").setAttribute("class", "tooltiptext");
       document.getElementById("nextBtn").setAttribute("class", "submitBtn");
       document.getElementById("idMsgIcon").src="../../collector-experiments/User/Assets/MSc/idNeg.svg";
       document.getElementById("tooltiptext").innerHTML = "Sorry. Your Participant ID is not correctly formatted.<br/><em>(have you entered the last 4 digits of your mobiel number?)";
       output.innerHTML = "";
+      console.log("Wrong ID");
     }
     if (preScreen == "Pre_Screen") {
       document.getElementById("testingsession").value = 0;
       parent.parent.sessionnumber = 0;
     }
-  }
+  });
   
   //-----------------//
   // PAGE TABS STUFF //

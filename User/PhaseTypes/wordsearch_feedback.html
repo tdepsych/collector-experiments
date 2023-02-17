@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html>
- <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="../../collector-experiments/User/Assets/MSc/global_css.css">
- </head>
- <body>
-    <button id="zoomOut" tabindex="-1"></button>
-    <button id="zoomIn" tabindex="-1"></button>
-  <div id="container">
-   <h2><b>{{task_title}}</b></h2>
-   <hr>
-   <p><span id="animals">0</span>
-   <br><br>
-   <p></p>You are about to start the second half of the experiment. This involves the same set of tasks as you've already completed but instead you'll be repeating a different word outloud for 20 seconds before the 'Balloon Inflation' task. When you are ready, please click 'Continue' below.<p/>
-      <div>
-          <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()" style="position: relative; display: inline-block; transform: translate(360px, 35px)">Continue</button>
-      </div>
+<!--wordsearch_feedback-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <h2><span>{{task_title}}</span></h2>
+  <br>
+  <p><span id="animals">0</span>
+  <br><br>
+  <p>You are about to start the second half of the experiment. This involves the same set of tasks as you've already completed but instead you'll be repeating a different word outloud for 20 seconds before the 'Balloon Inflation' task. When you are ready, please click 'Continue' below.<p/>
+  <div>
+    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()" style="position: relative; display: inline-block; transform: translate(360px, 35px)">Continue</button>
   </div>
-     <script>
+</div>
+<script>
   Phase.set_timer(function(){
     if (parent.parent.wordsFound > 0) {
       document.getElementById('animals').innerText = "We hope you enjoyed the wordsearch, you found: " + parent.parent.wordsFound + " of the hidden tea and biscuits.";
@@ -26,6 +21,4 @@
     }
   }, '0');
  </script>
-<script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>
- </body>
-</html>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
