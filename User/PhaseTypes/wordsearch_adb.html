@@ -177,6 +177,16 @@
      The base code for the wordsearch was taken from Li Zhineng's Word Search Puzzle (https://github.com/lizhineng/word-search-game) 
      This has then been heavily adapted to make it a behavioural task with scoring, and random-without-replacement stimuli          
      ******************************************************************************************************************************* */ 
+     
+  //================= //
+  // TASK LENGTH (MS) //
+  //================= //
+  
+  // This is set through the 'max_time' column in the procedure spreadsheet
+  
+  // Call in the trial time length (set in the max_time column of the procedure spreadsheet
+  var task_time_limit = {{max_time}};
+  var progress_time = ({{max_time}} + 's')
 
   // // First, work out if this is the first wordsearch attempted. This is needed as it dictates where to select the stimuli words from later
   var firstWordsearch = '';
@@ -291,7 +301,7 @@
     // When everything is set up we start the animation
     progressbarinner.style.animationPlayState = 'running';
   }
-  createProgressbar('progressbar1', '300s'); // If you want to change how long the bar lasts, alter the '300s' (it's total seconds)
+  createProgressbar('progressbar1', progress_time); // If you want to change how long the bar lasts, alter the '300s' (it's total seconds)
   },1);
 
 // ========== //        
@@ -853,19 +863,13 @@ var gridArray = [];
   
   })();
   
-  //================= //
-  // TASK LENGTH (MS) //
-  //================= //
-  
-  // This sets how long the task lasts before ending automatically. The timing is in ms (300,000 = 5min)
-  // Phase.set_timer(function(){Phase.submit(parent.parent.global_count++)},300000);
-  Phase.set_timer(function(){Phase.submit()},300000);
-  
+  // This just adjusts the position if the progress bar when the word list is hidden to keep it visually centered
   if( $('.ws-words').is(":hidden") ){
     $("#progressbar1" ).css('transform','translateX(50px)');
   } else {
-    // $("#progressbar1" ).css('transform','translateX(50px)');
+    // do nothing
   }
   
+  // This is just a script that converts foreign characters when filling the grid - ignore
   $.getScript("../../collector-experiments/User/Assets/Wordsearch/wordsearch_js_end.js");
 </script>

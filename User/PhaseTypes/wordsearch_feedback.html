@@ -5,19 +5,24 @@
 <div id="container">
   <h2><span>{{task_title}}</span></h2>
   <br>
-  <p><span id="animals">0</span>
+  <p><span id="task_feedback">11</span>
   <br><br>
   <p>You are about to start the second half of the experiment. This involves the same set of tasks as you've already completed but instead you'll be repeating a different word outloud for 20 seconds before the 'Balloon Inflation' task. When you are ready, please click 'Continue' below.<p/>
   <div>
-    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()" style="position: relative; display: inline-block; transform: translate(360px, 35px)">Continue</button>
+    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()">Continue</button>
   </div>
 </div>
 <script>
   Phase.set_timer(function(){
-    if (parent.parent.wordsFound > 0) {
-      document.getElementById('animals').innerText = "We hope you enjoyed the wordsearch, you found: " + parent.parent.wordsFound + " of the hidden tea and biscuits.";
+    var wordsFound = parent.parent.wordsFound;
+    var gamesPlayed = parent.parent.gamesPlayed;
+    var currentGame = gamesPlayed + 1;
+    if (wordsFound == 0) {
+      $("#task_feedback").html("You didn't find any of the hidden tea and biscuits, we're sorry if you didn't enjoy the wordsearch.");
+    } else if (gamesPlayed == 0) {
+      $("#task_feedback").html("We hope you enjoyed the wordsearch, you found " + wordsFound + " of the hidden tea and biscuits.");
     } else {
-      document.getElementById('animals').innerText = "You didn't find any of the hidden tea and biscuits, we're sorry if you didn't enjoy the wordsearch.";
+      $("#task_feedback").html("Well done! You completed " + gamesPlayed + " wordsearch(es) and found " + wordsFound + " of the hidden tea and biscuits in wordsearch " + currentGame + ".");
     }
   }, '0');
  </script>

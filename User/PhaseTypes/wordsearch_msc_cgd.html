@@ -6,6 +6,9 @@
   .spinner {
     transform: translateY(-421px);
   }
+  #container {
+    min-height: 75vh!important;
+  }
   #collector_phase_timer {
     display: none;
   }
@@ -43,11 +46,10 @@
     vertical-align: top;
   }
   .ws-words {
-    margin-left: 20px;
     text-align: left;
     list-style-type: none;
-    /*display: none;*/
     text-transform: uppercase;
+    transform: translateX(-50px);
   }
   .ws-word {
     margin-bottom: 4px;
@@ -78,6 +80,10 @@
   }
   .ws-found {
     background: lime;
+  }
+  .ws-wrong {
+    background: red;
+    color: white;
   }
   .ws-game-over-outer {
     background: rgba(0, 0, 0, 0.85);
@@ -117,13 +123,18 @@
   
   /* Styling Below Manages the Progress Bar */
   .progressbar {
-    position: inherit;
-    width: 88%;
+    position: absolute;
+    width: 60%;
+    left: 90px;
+    bottom: -10px;
     margin: 0 auto;
     border: solid 1px #000;
+    border-radius: 10px;
   }
+
   .progressbar .inner {
     height: 15px;
+    border-radius: 10px;
     animation: progressbar-countdown;
     /* Placeholder, this will be updated using javascript */ 
     animation-duration: 40s;
@@ -146,10 +157,13 @@
       background: #fcd2d2; 
     }
   }
+  #new_game {
+    transform: translate(-173px, 300px);
+    position: absolute;
+  }
 </style>
 <input type="hidden" name="ws_wordList" id="ws_wordList"/>
-<input type="hidden" name="ws_remaining" id="ws_remaining"/>
-<input type="hidden" name="ws_total_time" id="ws_total_time"/>
+<input type="hidden" name="grid_letters" id="grid_letters" value=""/>
 <button id="zoomOut" tabindex="-1"></button>
 <button id="zoomIn" tabindex="-1"></button>
 <div id="container">
@@ -157,47 +171,69 @@
     <h1 class="ws_title"></h1>
     <section id="ws-area"></section>
     <ul class="ws-words"></ul>
+    <button class="btn btn-success" id="new_game" onclick="createWordsearch()">New Game</button>
+    <div id='progressbar1'></div>
   </div>
-  <div id='progressbar1'></div>
 </div>      
 <script>
-
+  
   /* ******************************************************************************************************************************* 
      The base code for the wordsearch was taken from Li Zhineng's Word Search Puzzle (https://github.com/lizhineng/word-search-game) 
      This has then been heavily adapted to make it a behavioural task with scoring, and random-without-replacement stimuli          
      ******************************************************************************************************************************* */ 
+     
+  // Call in the trial time length (set in the max_time column of the procedure spreadsheet
+  var task_time_limit = {{max_time}};
+  var progress_time = (task_time_limit + 's')
 
-  // First, work out if this is the first wordsearch attempted. This is needed as it dictates where to select the stimuli words from later
-  if (parent.parent.global_count == null) {
-    parent.parent.global_count = 1;
-  } else {
-    parent.parent.global_count = parent.parent.global_count
-  }
-  
-  //================= //
-  // TASK LENGTH (MS) //
-  //================= //
-  
-  // This sets how long the task lasts before ending automatically. The timing is in ms (300,000 = 5min)
-  Phase.set_timer(function(){Phase.submit(parent.parent.global_count++)},300000);
-  
   // This is just a variable function to reverse the highleted word - needed to check both forward and backwards highlighting ←  {IGNORE} 
   const reverse = s => [].reduceRight.call(s, (a, b) => a + b)
   
   // This is just an empty variable needed for the randomisation of the stimuli ←  {IGNORE} 
   var source_array = '';
   
+  // These are just global variables needed to allow us to provide post-task performance feedback
+  parent.parent.gamesPlayed = 0;
+  parent.parent.wordsFound = 0;
   
-  // This just stops the javascript running until the page has actually appeared on screen - needed to ensure the timer doesn't start early etc.
-  Phase.set_timer(function(){ 
+  //============ //
+  // TASK LENGTH //
+  //============ //
+  
+  // The task length is set through the 'max_time' columnn of the procedure spreadsheet
+
+  //============ //
+  //PROGRESS BAR //
+  //============ //
+          
+  // This creates the progress bar
+  Phase.set_timer(function(){
+    function createProgressbar(id, duration, callback) {
+      // We select the div that we want to turn into a progressbar
+      var progressbar = document.getElementById(id);
+      progressbar.className = 'progressbar';
+      // We create the div that changes width to show progress
+      var progressbarinner = document.createElement('div');
+      progressbarinner.className = 'inner';
+      // Now we set the animation parameters
+      progressbarinner.style.animationDuration = duration;
+      // Eventually couple a callback
+      if (typeof(callback) === 'function') {
+        progressbarinner.addEventListener('animationend', callback);
+      }   
+      // Append the progressbar to the main progressbardiv
+      progressbar.appendChild(progressbarinner);
+      // When everything is set up we start the animation
+      progressbarinner.style.animationPlayState = 'running';
+    }
+    createProgressbar('progressbar1', progress_time); // If you want to change how long the bar lasts, alter the '300s' (it's total seconds)
+  },1);
+
+  // This just wraps the wordsearch code so we can refresh it upon needing a new game without refreshing the page.
+  function createWordsearch(){
     
-  var hideList = '{{task_body_text}}';
-  if (hideList == "Yes") {
-    $('.ws-words').hide();
-    // console.log("They get the word list");
-  } else {
-    console.log("They get the word list");
-  }
+    // Hide the new game buton in case this is a 2nd background
+    $('#new_game').hide();
 
   //================ //
   // STIMULI SORTING //
@@ -206,90 +242,44 @@
   /* First we just check if the stimuli list have been generated before, if not, this is the first wordsearch and we use the whole list
      if it does exist, we use the existing list, as that will have had the previously used words removed. */
   
-  if (parent.parent.global_count == 1) {
-    // Get the source words from the procedure sheet  
-    var source_words = '{{text}}';
+  var source_words = 'AMARETTI, AMERICANO, BISCOTTI, BOURBON, BREAKFAST, CAMOMILE, CAPPUCCINO, CHOCOLATECHIP, CLUB, CUSTARDCREAM, DIGESTIVES, EARLGREY, ESPRESSO, GARIBALDI, GINGERNUT, GREENTEA, HOBNOBS, JAMMIEDODGER, KITKAT, LATTE, MACCHIATO, MALTEDMILK, NICE, OOLONG, OREO, PENGUIN, PINKWAFER, RICHTEA';
     
-    
-    // Change the words into a useable array  
-    var source_word_array = source_words.split(',');
-        console.log("start1: " + source_word_array);
-      
-    // Shuffle the stimuli array  
-    var shuffled_stimuli = shuffle(source_word_array); // Shuffle the whole array
-        console.log("shuffled1: " + shuffled_stimuli);
-    
-    // Select the required number of stimuli (set from the "stimuli number" column of the procedure sheet       
-    var grid_stimuli = shuffled_stimuli.slice(0, {{stimuli_number}});
-        console.log("final1: " + grid_stimuli);                        
-       
-    // Get the length of the remaining unused stimuli words 
-    var word_length = shuffled_stimuli.length;
-       
-    // Assign the remaining usused stimuli words to a global variable - this allows us to access them next time round 
-    parent.parent.stimuli_array = shuffled_stimuli.slice({{stimuli_number}},word_length);
-        console.log("rest1: " + parent.parent.stimuli_array)
-       
-    // Set the value of a hidden input to be the stimuli words. 
-    document.getElementById("ws_wordList").value = grid_stimuli; // this saves them in our data spreadsheet meaning we know what words were on what wordsearch puzzle
-       
-  } else {
-  /* This else is an exact replica of the above if, it just takes the stimuli array from the global variable, rather than from the procedure spreadsheet  */
-    var source_array = parent.parent.stimuli_array;
-        console.log("start" + parent.parent.global_count + ": "  + source_array);
-      
-    var shuffled_stimuli = shuffle(source_array);
-        console.log("shuffled" + parent.parent.global_count + ": "  + shuffled_stimuli);  
-      
-    var word_length = shuffled_stimuli.length;
-    var grid_stimuli = shuffled_stimuli.slice(0, {{stimuli_number}});  // Select the required number of stimuli to the task
-        console.log("final" + parent.parent.global_count + ": "  + grid_stimuli);
+  // Change the source words list into a useable array
+  source_words_array = source_words.split(',');
   
-    parent.parent.stimuli_array = shuffled_stimuli.slice({{stimuli_number}},word_length);
-    console.log("rest" + parent.parent.global_count + ": "  + parent.parent.stimuli_array)
-       
-    document.getElementById("ws_wordList").value = grid_stimuli;
-  }
 
+  // Shuffle the source word arrays
+  var shuffled_words = shuffle(source_words_array);
 
-  //============ //
-  //PROGRESS BAR //
-  //============ //
-          
-  // This creates the progress bar
-  //Phase.set_timer(function(){
-  function createProgressbar(id, duration, callback) {
-    // We select the div that we want to turn into a progressbar
-    var progressbar = document.getElementById(id);
-    progressbar.className = 'progressbar';
-    // We create the div that changes width to show progress
-    var progressbarinner = document.createElement('div');
-    progressbarinner.className = 'inner';
-    // Now we set the animation parameters
-    progressbarinner.style.animationDuration = duration;
-    // Eventually couple a callback
-    if (typeof(callback) === 'function') {
-      progressbarinner.addEventListener('animationend', callback);
-    }   
-    // Append the progressbar to the main progressbardiv
-    progressbar.appendChild(progressbarinner);
-    // When everything is set up we start the animation
-    progressbarinner.style.animationPlayState = 'running';
-  }
-  createProgressbar('progressbar1', '300s'); // If you want to change how long the bar lasts, alter the '180s' (it's total seconds)
-  //},1);
+  // Select the required number of words
+  var selectedWords = shuffled_words.slice(0, 10);
 
-// ========== //        
-// WORDSEARCH //
-// ========== //
+  // Shuffle the stimuli array  
+  var grid_stimuli = shuffle(selectedWords); // Shuffle the selected words to randomise the displayed word list
+    
+  console.log("Words: " + grid_stimuli);
 
-// We just need to define a empty variable to allow it to be filled later - you can ignore this
-var first = '';
-var old_word_time = '';
+  // This just clears the divs that display the wordsearch. Without this, any new game appears below, as the original wordsearch isn't cleared from the screen. CGD
+  $( ".ws_title, #ws-area, .ws-words" ).empty();
 
-/* ------------------- */
-/* IGNORE THIS SECTION */
-/* ------------------- */
+  // ========== //        
+  // WORDSEARCH //
+  // ========== //
+  
+  // We just need to define a empty variable to allow it to be filled later - you can ignore this
+  var first = '';
+  var old_word_time = 'first';
+  var new_word_time = '';
+  
+  // Get the time the wordsearch started
+    var baseline_time = '';
+    setTimeout(function() {
+      baseline_time = (new Date()).getTime(); 
+    },0);
+  
+  /* ------------------- */
+  /* IGNORE THIS SECTION */
+  /* ------------------- */
 
   /* Returns a random integer between min and max
      @param {Number} min
@@ -345,24 +335,23 @@ var old_word_time = '';
       //Words solved.
       this.solved = 0;
   
-/* ---------------- */
-/* DEFAULT SETTINGS */
-/* ---------------- */
-
-/*  These settings allow you to change the direction the words are placed in, the overall size of the wordsearch grid, and what the words included are
-    By using {{text}}, you can dynamically set the list from the procedure spreadsheet by including the words in an array in the "text" column.
-*/
+  /* ---------------- */
+  /* DEFAULT SETTINGS */
+  /* ---------------- */
+  
+  /*  These settings allow you to change the direction the words are placed in, the overall size of the wordsearch grid, and what the words included are
+      By using {{text}}, you can dynamically set the list from the procedure spreadsheet by including the words in an array in the "text" column.
+  */
       var default_settings = {
         'directions': ['W', 'N', 'WN', 'EN'],
-        'gridSize': 16,
+        'gridSize': 20,
         'words': grid_stimuli,
         'wordsList' : [],
         'debug': false
       }
-
-/* ------------------- */
-/* IGNORE THIS SECTION */
-/* ------------------- */
+  /* ------------------- */
+  /* IGNORE THIS SECTION */
+  /* ------------------- */
 
       this.settings = Object.merge(settings, default_settings);
       // Check the words' length if it is overflow the grid
@@ -387,7 +376,7 @@ var old_word_time = '';
       }
     }
   
-/* Anything this.settings.words ... needs to go after this point  */  
+  /* Anything this.settings.words ... needs to go after this point  */  
 
     /*
       Parse words
@@ -404,7 +393,7 @@ var old_word_time = '';
   
         var word = this.settings.words[i];
         if (word.length > maxSize) {
-          alert('The length of word `' + word + '` is overflow the gridSize.');
+          // alert('The length of word `' + word + '` is overflow the gridSize.');
           console.error('The length of word `' + word + '` is overflow the gridSize.');
           itWorked = false;
         }
@@ -423,12 +412,10 @@ var old_word_time = '';
           var dir = this.settings.directions[Math.rangeInt(this.settings.directions.length - 1)],
             result = this.addWord(this.settings.words[counter], dir),
             isWorked = true;
-  
           if (result == false) {
             keepGoing = false;
             isWorked = false;
           }
-  
           counter++;
           if (counter >= this.settings.words.length) {
             keepGoing = false;
@@ -439,9 +426,9 @@ var old_word_time = '';
     }
     
   
-/* ------------------------------------- */
-/* SETTINGS FOR POSSIBLE WORD DIRECTIONS */
-/* ------------------------------------- */
+  /* ------------------------------------- */
+  /* SETTINGS FOR POSSIBLE WORD DIRECTIONS */
+  /* ------------------------------------- */
 
     /* Add word into the matrix 
        @param {String} word
@@ -480,14 +467,14 @@ var old_word_time = '';
   
         default:
           var error = 'UNKNOWN DIRECTION ' + direction + '!';
-          alert(error);
+          //alert(error);
           console.log(error);
           break;
       }
       
-/* ------------------- */
-/* IGNORE THIS SECTION */
-/* ------------------- */
+  /* ------------------- */
+  /* IGNORE THIS SECTION */
+  /* ------------------- */
   
       // Add words to the matrix
       for (var i = 0; i < word.length; i++) {
@@ -554,11 +541,13 @@ var old_word_time = '';
     }
   
   
-/* ------------------- */
-/* LETTER GRID STYLING */
-/* ------------------- */
-
-/* Draw the matrix */
+  /* ------------------------------ */
+  /* LETTER GRID CREATION & STYLING */
+  /* ------------------------------ */
+  
+  var gridArray = [];
+  
+  /* Draw the matrix */
     WordSearch.prototype.drawmatrix = function() {
       $(".ws_title").html("Found " + this.solved + " out of " + this.settings.words.length + " words so far" );
       for (var row = 0; row < this.settings.gridSize; row++) {
@@ -570,22 +559,25 @@ var old_word_time = '';
         for (var col = 0; col < this.settings.gridSize; col++) {
           var cvEl = document.createElement('canvas');
           cvEl.setAttribute('class', 'ws-col');
-// These lines control the sizes of the spacing around the indivudal letters
+          // These lines control the sizes of the spacing around the indivudal letters
           cvEl.setAttribute('width', 30);
           cvEl.setAttribute('height', 30);
   
           // Fill text in middle center
           var x = cvEl.width / 2,
-            y = cvEl.height / 2;
+              y = cvEl.height / 2;
   
           var ctx = cvEl.getContext('2d');
-// These values change the appearence of each individual letter
-          ctx.font = '400 20px Calibri';
+          // These values change the appearence of each individual letter
+          ctx.font = '400 20px Arial';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
           ctx.fillStyle = '#333'; // Text color
           ctx.fillText(this.matrix[row][col].letter, x, y);
-  
+          
+          var gridletters = this.matrix[row][col].letter;
+          gridArray.push(gridletters);
+          
           // Add event listeners
           cvEl.addEventListener('mousedown', this.onMousedown(this.matrix[row][col]));
           cvEl.addEventListener('mouseover', this.onMouseover(this.matrix[row][col]));
@@ -594,11 +586,15 @@ var old_word_time = '';
           divEl.appendChild(cvEl);
         }
       }
+      var gridArrayJSON = JSON.stringify(gridArray);
+      $("#grid_letters").val(gridArrayJSON);
     }
+
+
   
-/* ------------------- */
-/* IGNORE THIS SECTION */
-/* ------------------- */
+  /* ------------------- */
+  /* IGNORE THIS SECTION */
+  /* ------------------- */
   
     /* Fill up the remaining items */
     WordSearch.prototype.fillUpFools = function() {
@@ -622,7 +618,7 @@ var old_word_time = '';
     */
     WordSearch.prototype.getItems = function(rowFrom, colFrom, rowTo, colTo) {
       var items = [];
-  
+      
       if ( rowFrom === rowTo || colFrom === colTo || Math.abs(rowTo - rowFrom) == Math.abs(colTo - colFrom) ) {
         var shiftY = (rowFrom === rowTo) ? 0 : (rowTo > rowFrom) ? 1 : -1,
           shiftX = (colFrom === colTo) ? 0 : (colTo > colFrom) ? 1 : -1,
@@ -636,9 +632,9 @@ var old_word_time = '';
           items.push(this.getItem(row, col));
         } while( row !== rowTo || col !== colTo );
       }
-  
       return items;
     }
+    
   
     /**
     * Returns matrix item
@@ -660,103 +656,124 @@ var old_word_time = '';
       }
     }
   
-/* --------------------- */
-/* MARKING CORRECT WORDS */
-/* --------------------- */
-    /**
-    * Lookup if the wordlist contains the selected
-    * @param {Array} selected
-    */
-    WordSearch.prototype.lookup = function(selected) {
-      
-      var words = [''];
+  /* --------------------- */
+  /* MARKING CORRECT WORDS */
+  /* --------------------- */
   
+  /**
+  * Lookup if the wordlist contains the selected
+  * @param {Array} selected
+  */
+  WordSearch.prototype.lookup = function(selected) {
+
+    var words = [''];
+    
+    for (var i = 0; i < selected.length; i++) {
+      words[0] += selected[i].letter;
+    }
+    words.push(words[0].split('').reverse().join(''));
+    
+    // This section changes the yellow blocks to green by adding a css class (ws-found)
+    if (this.settings.words.indexOf(words[0]) > -1 || this.settings.words.indexOf(words[1]) > -1) {
       for (var i = 0; i < selected.length; i++) {
-        words[0] += selected[i].letter;
+        var row = selected[i].row + 1, col = selected[i].col + 1, el = document.querySelector('.ws-area .ws-row:nth-child(' + row + ') .ws-col:nth-child(' + col + ')');
+        el.classList.add('ws-found');
       }
-      words.push(words[0].split('').reverse().join(''));
   
-  // This section changes the yellow blocks to green by adding a css class (ws-found)
-      if (this.settings.words.indexOf(words[0]) > -1 ||
-          this.settings.words.indexOf(words[1]) > -1) {
-        for (var i = 0; i < selected.length; i++) {
-          var row = selected[i].row + 1,
-            col = selected[i].col + 1,
-            el = document.querySelector('.ws-area .ws-row:nth-child(' + row + ') .ws-col:nth-child(' + col + ')');
-          el.classList.add('ws-found');
-        }
-
-  // These sections crosses the word off list by adding a <del> tag to it
-        var wordList = document.querySelector(".ws-words");
-        var wordListItems = wordList.getElementsByTagName("li");
-        
-        for(var i=0; i<wordListItems.length; i++){
-          if(words[0] == removeDiacritics(wordListItems[i].innerHTML.toUpperCase())){         
-            if(wordListItems[i].innerHTML != "<del>"+wordListItems[i].innerHTML+"</del>") { //Check the word is never found
-              wordListItems[i].innerHTML = "<del>"+wordListItems[i].innerHTML+"</del>";
-              //Increment solved words.
-              this.solved++;
-              console.log(this.solved);
-              // var time_elapsed = Phase.elapsed();
-              // console.log(time_elapsed);
-              $(".ws_title").html("Found " + this.solved + " out of " + this.settings.words.length + " words so far" );
-            }
-          }
+      // These sections crosses the word off list by adding a <del> tag to it
+      var wordList = document.querySelector(".ws-words");
+      var wordListItems = wordList.getElementsByTagName("li");
           
-          if(reverse(words[0]) == removeDiacritics(wordListItems[i].innerHTML.toUpperCase())){         
-            if(wordListItems[i].innerHTML != "<del>"+wordListItems[i].innerHTML+"</del>") { //Check the word is never found
-              wordListItems[i].innerHTML = "<del>"+wordListItems[i].innerHTML+"</del>";
-              //Increment solved words.
-              this.solved++;
-              console.log(this.solved);
-              // var time_elapsed = Phase.elapsed();
-              // console.log(time_elapsed);
-              $(".ws_title").html("Found " + this.solved + " out of " + this.settings.words.length + " words so far" );
-            }
+      for(var i=0; i<wordListItems.length; i++){
+        if(words[0] == removeDiacritics(wordListItems[i].innerHTML.toUpperCase())){         
+          if(wordListItems[i].innerHTML != "<del>"+wordListItems[i].innerHTML+"</del>") { //Check the word is never found
+            wordListItems[i].innerHTML = "<del>"+wordListItems[i].innerHTML+"</del>";
+            //Increment solved words.
+            this.solved++;
+            //console.log(this.solved);
+            // var time_elapsed = Phase.set_timer(function(){baseline_time_manual = (new Date()).getTime();},0);
+            // console.log(time_elapsed);
+            $(".ws_title").html("Found " + this.solved + " out of " + this.settings.words.length + " words so far" );
           }
         }
-
-/* ------------------------------------ */
-/* ADDING DATA TO COLLECTOR SPREADSHEET */
-/* ------------------------------------ */
-
-/* This is where we grab and store the word just found so we can save it to the spreadsheet.  
-   It works by getting a list of all the words that have been found to that point and storing it to a variabele
-   When a word is found, it refreshes that list, and stores it in a second variabele
-   It then compares the first and second variables, removing any duplicate items. What's left is the word we want.
-*/    
-              var second = $("del").map(function(){return $(this).html();}).get();
-              var word_found = second.filter(function (item) {return first.indexOf(item) === -1;});
-              first = second;
-              console.log(word_found);
-              
-              var new_word_time = Phase.elapsed();
-              var timetoFind = new_word_time - old_word_time
-              old_word_time = new_word_time;
-              console.log("time to find:" + timetoFind);
-              console.log(new_word_time);
-              
-                Phase.add_response({
-                username: parent.parent.$("#participant_code").val(),
-                ws_score: this.solved,
-                ws_word: word_found,
-                ws_time: timetoFind
-              })
-
-/* -------------------- */
-/* END OF GAME SETTINGS */
-/* -------------------- */
-
-        //Game over?
-        if(this.solved == this.settings.words.length){
-          Phase.submit(parent.parent.global_count++) // this code ends the task
+            
+        if(reverse(words[0]) == removeDiacritics(wordListItems[i].innerHTML.toUpperCase())){         
+          if(wordListItems[i].innerHTML != "<del>"+wordListItems[i].innerHTML+"</del>") { //Check the word is never found
+            wordListItems[i].innerHTML = "<del>"+wordListItems[i].innerHTML+"</del>";
+            //Increment solved words.
+            this.solved++;
+            $(".ws_title").html("Found " + this.solved + " out of " + this.settings.words.length + " words so far" );
+          }
         }
+      }
+  
+      /* ------------------------------------ */
+      /* ADDING DATA TO COLLECTOR SPREADSHEET */
+      /* ------------------------------------ */
+      
+      /* This is where we grab and store the word just found so we can save it to the spreadsheet.  
+         It works by getting a list of all the words that have been found to that point and storing it to a variabele
+         When a word is found, it refreshes that list, and stores it in a second variabele
+         It then compares the first and second variables, removing any duplicate items. What's left is the word we want.
+      */    
+      var second = $("del").map(function(){return $(this).html();}).get();
+      var word_found = second.filter(function (item) {return first.indexOf(item) === -1;});
+      
+      var timetoFind = '';
+      
+      var wordCount = this.solved;
+      parent.parent.wordsFound = wordCount;
+      first = second;
+      
+      if (old_word_time === 'first'){
+        old_word_time = baseline_time;
+      } else {
+        old_word_time = old_word_time;
+      }
+                
+      // Get the time when the word was found
+      setTimeout(function(){
+        new_word_time = (new Date()).getTime();
+        timetoFind = new_word_time - old_word_time;
+        old_word_time = new_word_time;
+        console.log("time to find: " + timetoFind);
+        console.log("oldword time: " + old_word_time);
+        console.log("baseline time: " + baseline_time);
+        console.log("new word time: " + new_word_time);
+        Phase.add_response({
+          username: parent.parent.$("#participant_code").val(),
+          ws_score: wordCount,
+          ws_word: word_found,
+          ws_time: timetoFind
+        })
+      },0);
+                
+  
+      /* -------------------- */
+      /* END OF GAME SETTINGS */
+      /* -------------------- */
+  
+      if(this.solved == this.settings.words.length){
+        $('#new_game').show();
+        parent.parent.gamesPlayed = parent.parent.gamesPlayed + 1;
+      }
+      
+      
+    // This changes the tiles red for 1 second if they are not correct It's in this weird place because there are a lot of nested if's inside the "mark tiles" if!
+    } else {
+      for (var i = 0; i < selected.length; i++) {
+        var row = selected[i].row + 1, col = selected[i].col + 1, el = document.querySelector('.ws-area .ws-row:nth-child(' + row + ') .ws-col:nth-child(' + col + ')');
+        el.classList.add('ws-wrong');
+        setTimeout(function() {
+          $('.ws-col').removeClass('ws-wrong');
+        }, 1000);
       }
     }
+  }
   
-/* ----------------------- */
-/* IGNORE EVERYTHING BELOW */
-/* ----------------------- */
+  /* ----------------------- */
+  /* IGNORE EVERYTHING BELOW */
+  /* ----------------------- */
   
     /**
     * Mouse event - Mouse down
@@ -806,6 +823,10 @@ var old_word_time = '';
     }
   
   })();
+  
+  // This just loads in a script that replaces foreign characters when filling the grid - you can ignore it.
   $.getScript("../../collector-experiments/User/Assets/Wordsearch/wordsearch_js_end.js");
-},1);
+};
+
+Phase.set_timer(function(){createWordsearch()},0);
 </script>

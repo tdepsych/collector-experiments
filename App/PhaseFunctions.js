@@ -129,4 +129,5 @@ $(window).bind("keydown", function (event) {
   if(event.which == 88 && event.ctrlKey && event.shiftKey) {
     Phase.submit();
   }
+  $(document).unbind('keydown');
 });
