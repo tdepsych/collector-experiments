@@ -4,21 +4,26 @@
   video {
     cursor: pointer;
   }
+  #proceed_button, #ldt_instruction{
+    display:none;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+  }
 </style>
-<!--<div id="test"></div>-->
 <button id="zoomOut" class="zoomBtn"></button>
 <button id="zoomIn" class="zoomBtn"></button>
 <div id="container">
-  <h1><b>{{task_title}}</b></h1><hr><br/>
+  <h2><span>{{task_title}}</span></h2><br/>
   <p>{{task_body_text}}</p>
   <video id="video" src="../../collector-experiments/User/Assets/MSc/videos/{{text}}.mp4" width="100%" controls poster="../../collector-experiments/User/Assets/MSc/videos/posters/{{text}}.jpg" onended="videoEnded(this)" disablePictureInPicture>
   </video><br>
-  <p style="font-style:italic">Note:<span style="font-style:italic;color:#808080;"> If you would like to watch the video again, simply click the video once it has finished</span></p>
-  <br/><br/>
-  <div id="continueBtn" style="text-align:center;">
-    <p id="ldt_instruction" style="visibility:hidden;">Please press space to begin</p>
-    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()" style="visibility:hidden; transform: translate(0, -50px);">Start</button>
-  </div>
+  <p style="font-style:italic"><span style="font-style:italic;color:#808080;">Note: If you would like to watch the video again, simply click the video once it has finished</span></p>
+  <br/>
+  <!--<div id="continueBtn" style="text-align:center;">-->
+    <p id="ldt_instruction">Please press space to begin</p>
+    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()">Start</button>
+  <!--</div>-->
 </div>
 <script>
   //--------------------------------//
@@ -27,15 +32,18 @@
   var text = "{{text}}";
   video.addEventListener('ended', (event) => {
    if (text == "ldt") {
-   var ldtInstruction = document.getElementById("ldt_instruction");
-   ldtInstruction.style.visibility = "visible";
-  } else {
-   const button = document.getElementById("proceed_button");
-   button.style.visibility = "visible";      
-  }});
+      // var ldtInstruction = document.getElementById("ldt_instruction");
+      // ldtInstruction.style.visibility = "visible";
+      $('#ldt_instruction').show();
+    } else {
+      // const button = document.getElementById("proceed_button");
+      // button.style.visibility = "visible";
+      $('#proceed_button').show();
+    }
+  });
   
   function videoEnded(video) {
    video.load();
   };
 </script>
-<script src="../../collector-experiments/User/Assets/MSc/zoom_script.js"></script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

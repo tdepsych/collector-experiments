@@ -305,38 +305,17 @@
       fixStepIndicator(n)
     }
         
-    // $(".good-form > .actions a, .theButton").addClass('disabled');
+    // This function will figure out which tab to display
     function nextPrev(n) {
-      // This function will figure out which tab to display
-      var x = document.getElementsByClassName("tab");
-      // Exit the function if any field in the current tab is invalid:
-      if (n == 1 && !validateForm()) return false;
-      // Hide the current tab:
-      x[currentTab].style.display = "none";
-      // Increase or decrease the current tab by 1:
-      currentTab = currentTab + n;
-      // if you have reached the end of the form...
-      if (currentTab >= x.length) {
-        // ... the form gets submitted:
-        Phase.submit()
-      }
-      // Otherwise, display the correct tab:
-      showTab(currentTab);
-    }
-    
-    $(".consentCheck").change(function(){
-      if ($('.consentCheck').is(':checked')) {
-        document.getElementById("tooltiptext").setAttribute("class", "tooltiptext");
-        document.getElementById("nextBtn").setAttribute("class", "submitBtn");
-        document.getElementById("tooltiptext").innerHTML = "Please read each item carefully before accepting (ticking)<br><em>(Currently, you have incorrectly ticked an item)</em>";
-      } else if (!$('.consentCheck').is(':checked')) {
-        document.getElementById("tooltiptext").innerHTML = "Sorry. You can only start the experiment once you have ticked all the boxes above<br/><em>(indicating your happy and consenting to participate in this study)</em></em>";
-        if ($('.consent:checked').length == $('.consent').length) {
-          document.getElementById("nextBtn").setAttribute("class", "submitBtn_active");
-          document.getElementById("tooltiptext").setAttribute("class", "tooltipHidden");
+      var x = document.getElementsByClassName("tab"); // Create a variable 
+      if (n == 1 && !validateForm()) return false;    // Exit the function if any field in the current tab is invalid:
+        x[currentTab].style.display = "none";         // Hide the current tab:
+        currentTab = currentTab + n;                  // Increase or decrease the current tab by 1:
+        if (currentTab >= x.length) {                 // if you have reached the end of the form...
+          Phase.submit()                              // ... so the form gets submitted:
         }
+        showTab(currentTab); // Otherwise, display the correct tab:
       }
-    });
     
     $(".consent").change(function() {
       document.getElementById("uniqueid").value = parent.parent.pptID;
@@ -351,6 +330,20 @@
         document.getElementById("tooltiptext").setAttribute("class", "tooltiptext");
         document.getElementById("nextBtn").setAttribute("class", "submitBtn");
       }      
+    });
+    
+    $(".consentCheck").change(function(){
+      if ($('.consentCheck').is(':checked')) {
+        document.getElementById("tooltiptext").setAttribute("class", "tooltiptext");
+        document.getElementById("nextBtn").setAttribute("class", "submitBtn");
+        document.getElementById("tooltiptext").innerHTML = "Please read each item carefully before accepting (ticking)<br><em>(Currently, you have incorrectly ticked an item)</em>";
+      } else if (!$('.consentCheck').is(':checked')) {
+        document.getElementById("tooltiptext").innerHTML = "Sorry. You can only start the experiment once you have ticked all the boxes above<br/><em>(indicating your happy and consenting to participate in this study)</em></em>";
+        if ($('.consent:checked').length == $('.consent').length) {
+          document.getElementById("nextBtn").setAttribute("class", "submitBtn_active");
+          document.getElementById("tooltiptext").setAttribute("class", "tooltipHidden");
+        }
+      }
     });
         
     $("#prevBtn").click(function() {

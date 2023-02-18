@@ -24,12 +24,13 @@
   }
 </style>
 <div id="page" style="margin-top: -20px;"></div>
-<div id="endButtons" style="margin-top: -70px;">
+<div id="endButtons">
   <button class="btn btn-primary" id="endSession_btn" onclick="Phase.submit()">Finish Session</button>
   <button class="btn btn-primary" id="endSession_btn_redcap" >Uploading Data </button>
 </div>
 
 <script>
+
   function appropriate_message(this_message) { // This just sets up a popup message that doesn't break full screen
     bootbox.alert(this_message);
   }
@@ -61,7 +62,8 @@
     setTimeout(function(){
       $('#endSession_btn').show();
       $('#endSession_btn_redcap').hide();
-    },25000); 
+    // },25000); 
+  },10000); 
   }
  
   function REDCap_Markers() {
@@ -85,7 +87,8 @@
       console.log("This was Session 3");
     } else {
       $("#page").load("../../collector-experiments/User/PhaseTypes/msc_midsession_debrief_sheet.html");
-      console.log("This was Session 1 or 2");
+      console.log("This was the Pre Screen, or Session 1 or 2");
+      $('#endButtons').css('margin-top','-100px');
     }
     REDCap_Markers();
   },0);

@@ -12,15 +12,50 @@
     width: 100%!important;
   }
   /* container needs resizng for the "auto added" collector timer disappears off the screen! */
-  #container {
-    min-height: 20vh!important;
+  /*#container {*/
+  /*  min-height: 20vh!important;*/
+  /*}*/
+  #eyes{
+    transform: translateY(20px);
+  }
+  .adjust_container {
+    transform: translateY(-100px)!important;
+  }
+  .adjust_timer_eyes{
+    margin-top: -270px!important;
+  }
+  .adjust_timer_blank{
+    margin-top: -580px!important;
   }
 </style>
 <button id="zoomOut" tabindex="-1"></button>
 <button id="zoomIn" tabindex="-1"></button>
 <div id="container">
   <h2><span>Please repeat: {{task_title}} until the countdown below ends</span></h2>
-  <p>Please remember to speak at your normal rate, volume, and rhythm.</p>
+  <br>
+  {{task_body_text}}
+  <div id="eyes">Please contact the researchers if the image of a pair of eyes is not displaying</div>
   <br>
 </div>
+<script>
+  var eyes = '{{text}}';
+  console.log("EYES VARIABLE = "+eyes);
+  // var eyes = 'hello';
+  if (eyes == 'eyes') {
+    $('#eyes').html('<img src="../../collector-experiments/User/Assets/Msc/eyes.jpg" alt="A pair of male eyes" width="960" height="540">');
+    setTimeout(function(){
+      $('#collector_phase_timer').addClass('adjust_timer_eyes');
+      $('#container').addClass('adjust_container');
+    }, 0);
+    console.log("images of eyes showing");
+  } else {
+    console.log("No eyes text");
+    setTimeout(function(){
+      $('#collector_phase_timer').addClass('adjust_timer_blank');
+      $('#container').addClass('adjust_container');
+    }, 0);
+    $('#eyes').html('');
+  }
+  
+</script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

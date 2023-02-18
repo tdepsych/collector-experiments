@@ -78,7 +78,10 @@
 </div>
 <!--<span id="scales_span"></span>-->
 <script>
-current_survey = "{{survey}}";
+  current_survey = "{{survey}}";
+  Phase.set_timer(function(){ 
+    $(".sona_item").attr('maxlength','8');
+  },250);
 </script>
 
 <script src="../Default/DefaultPhaseTypes/survey.js"></script>
