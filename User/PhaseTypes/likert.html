@@ -1,0 +1,304 @@
+<!-- it can help to add a description between the --'s of what this code does -->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+/* Radio
+*********************/
+
+form.topLabel input[type="radio"] {
+  display :  none;
+}
+
+form.topLabel input[type="radio"] + label {
+  display : block;
+  /*margin  : 35px 0;*/
+  /*padding-left : 10px;*/
+  cursor  : pointer;
+  margin: 0 auto;
+/*}*/
+
+/*#Field3 label {*/
+  border: 1px solid #5dd6f5;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  vertical-align: middle;
+}
+
+/* Radio buttons ticked */
+form.topLabel input[type="radio"]:checked + label {
+  background-color: #20669b;
+  color: #fff;
+  border: 1px solid #20669b;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+}
+
+form.topLabel {
+  /*width  : 800px;*/
+  margin : 50px auto;
+  padding: 20px;
+  /*background-color: #f3f3f3;*/
+  position   : relative;
+}
+
+/* Form
+***************************/
+
+li {
+  font-family: 'Noto Sans', sans-serif;
+  font-style : italic;
+}
+
+li .title {
+  margin-bottom : 20px;
+  font-weight   : bold;
+  display       : block;
+}
+
+form li {
+  list-style : none;
+  clear      : both;
+  position   : relative;
+}
+
+form > ul > li {
+  
+}
+
+li div.item {
+  position: absolute;
+  top     : 0;
+  left    : -76px;
+  z-index : 2;
+  /*width   : 40px;*/
+  /*height  : 40px;*/
+  border-radius : 50%;
+  border  : 1px solid #fff;
+  background-color: #ed6b4d;
+  cursor  : pointer;
+}
+
+/* Table 
+**************************/
+
+.likert table {
+  margin: 0 0 1em 0;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+.likert caption {
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 20px;
+}
+.likert input {
+  margin: 0.25em 0;
+}
+.likert tbody td label {
+  display: block;
+}
+.likert thead td,
+.likert thead th {
+  background-color: #20669b;
+  color: #FFF;
+}
+.likert td {
+  border-left: 1px solid #ccc;
+  text-align: center;
+  padding: 0.25em;
+  width: 100px;
+}
+.likert thead td {
+  font-size: 85%;
+  padding: 10px 6px;
+}
+.likert th,
+.likert td { 
+  border-bottom: 1px solid #dedede;
+}
+.likert tbody th {
+  padding: 8px 8px;
+  text-align: left;
+}
+.likert tbody th label {
+  color: #222;
+  font-weight: bold
+}
+.likert tbody tr.alt td,
+.likert tbody tr.alt th {
+  /*background-color: #f5f5f5;*/
+}
+.nohover, .nohover:hover{
+  background-color:#fff!important;
+}
+.likert tbody tr:hover td,
+.likert tbody tr:hover th {
+  /*background-color:#FFFFCF;*/
+  background-color:#e1fbff;
+}
+
+</style>
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <h2><span>Self-Evaluation Questionnaire</span></h2>
+  <br>
+  <p>Thank you for making your word ratings. Please think back to the last word you repeated aloud for 20 second. Take a moment to think how you felt after repeating the word? To respond, please rate each statement below by clicking on a number from 1 to 7, whereby 1 = you strongly disagree with the statement, while 7 = you strongly agree with the statement.</p>
+  <form class="topLabel">
+    <ul>
+      <li id="form-field-3" class="likert">
+        <table cellspacing="0">
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <td>Strongly Disagree</td>
+              <td></td>
+              <td></td>
+              <td>Strongly Agree</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>
+                <label for="Field3">I felt furious with myself</label>
+              </th>
+              <td id="Field3">
+                <input id="Field3_1" name="Field3" type="radio" value="Didn&#039;t Like At All" />
+                <label for="Field3_1">1</label>
+              </td>
+              <td>
+                <input id="Field3_2" name="Field3" type="radio" value="Meh" />
+                <label for="Field3_2">2</label>
+              </td>
+              <td>
+                <input id="Field3_3" name="Field3" type="radio" value="Kinda Liked" />
+                <label for="Field3_3">3</label>
+              </td>
+              <td>
+                <input id="Field3_4" name="Field3" type="radio" value="Loved!" />
+                <label for="Field3_4">4</label>
+              </td>
+            </tr>
+          <tr>
+            <th><label for="Field4">Episode II - Attack of the Clones</label></th>
+            <td title="Didn&#039;t Like At All">
+              <input id="Field4_1" name="Field4" type="radio" value="Didn&#039;t Like At All" />
+              <label for="Field4_1">1</label>
+            </td>
+            <td title="Meh">
+              <input id="Field4_2" name="Field4" type="radio" value="Meh" />
+              <label for="Field4_2">2</label>
+            </td>
+            <td title="Kinda Liked">
+              <input id="Field4_3" name="Field4" type="radio" value="Kinda Liked" />
+              <label for="Field4_3">3</label>
+            </td>
+            <td title="Loved!">
+              <input id="Field4_4" name="Field4" type="radio" value="Loved!" />
+              <label for="Field4_4">4</label>
+            </td>
+          </tr>
+          <tr class="statement5">
+            <th><label for="Field5">Episode III - Revenge of the Sith</label></th>
+            <td title="Didn&#039;t Like At All">
+              <input id="Field5_1" name="Field5" type="radio" value="Didn&#039;t Like At All" />
+              <label for="Field5_1">1</label>
+            </td>
+            <td title="Meh">
+              <input id="Field5_2" name="Field5" type="radio" value="Meh" />
+              <label for="Field5_2">2</label>
+            </td>
+            <td title="Kinda Liked">
+              <input id="Field5_3" name="Field5" type="radio" value="Kinda Liked" />
+              <label for="Field5_3">3</label>
+            </td>
+            <td title="Loved!">
+              <input id="Field5_4" name="Field5" type="radio" value="Loved!" />
+              <label for="Field5_4">4</label>
+            </td>
+          </tr>
+          <tr class="nohover">
+              <th class="nohover">&nbsp;</th>
+              <td class="nohover">Strongly Disagree</td>
+              <td class="nohover"></td>
+              <td class="nohover"></td>
+              <td class="nohover">Strongly Agree</td>
+          </tr>
+          <tr class="alt statement6">
+            <th>
+              <label for="Field6">Episode IV - A New Hope</label>
+            </th>
+            <td title="Didn&#039;t Like At All">
+              <input id="Field6_1" name="Field6" type="radio" value="Didn&#039;t Like At All" />
+              <label for="Field6_1">1</label>
+            </td>
+            <td title="Meh">
+              <input id="Field6_2" name="Field6" type="radio" value="Meh" />
+              <label for="Field6_2">2</label>
+            </td>
+            <td title="Kinda Liked">
+              <input id="Field6_3" name="Field6" type="radio" value="Kinda Liked" />
+              <label for="Field6_3">3</label>
+            </td>
+            <td title="Loved!">
+              <input id="Field6_4" name="Field6" type="radio" value="Loved!" />
+              <label for="Field6_4">4</label>
+            </td>
+          </tr>
+          <tr class="statement7">
+            <th>
+              <label for="Field7">Episode V - The Empire Strikes Back</label>
+            </th>
+            <td title="Didn&#039;t Like At All">
+              <input id="Field7_1" name="Field7" type="radio" value="Didn&#039;t Like At All" />
+              <label for="Field7_1">1</label>
+            </td>
+            <td title="Meh">
+              <input id="Field7_2" name="Field7" type="radio" value="Meh" />
+              <label for="Field7_2">2</label>
+            </td>
+            <td title="Kinda Liked">
+              <input id="Field7_3" name="Field7" type="radio" value="Kinda Liked" />
+              <label for="Field7_3">3</label>
+            </td>
+            <td title="Loved!">
+              <input id="Field7_4" name="Field7" type="radio" value="Loved!" />
+              <label for="Field7_4">4</label>
+            </td>
+          </tr>
+          <tr class="alt statement8">
+            <th>
+              <label for="Field8">Episode VI - Return of the Jedi</label>
+            </th>
+            <td title="Didn&#039;t Like At All">
+              <input id="Field8_1" name="Field8" type="radio" value="Didn&#039;t Like At All" />
+              <label for="Field8_1">1</label>
+            </td>
+            <td title="Meh">
+              <input id="Field8_2" name="Field8" type="radio" value="Meh" />
+              <label for="Field8_2">2</label>
+            </td>
+            <td title="Kinda Liked">
+              <input id="Field8_3" name="Field8" type="radio" value="Kinda Liked" />
+              <label for="Field8_3">3</label>
+            </td>
+            <td title="Loved!">
+              <input id="Field8_4" name="Field8" type="radio" value="Loved!" />
+              <label for="Field8_4">4</label>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+  </ul>
+  
+</form>
+    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()">Next</button>
+</div>
+<script>
+    <!-- put any page specific javascript here -->
+</script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
