@@ -213,7 +213,7 @@ Collector.complete_csv= function(this_csv){
 Collector.custom_alert= function(msg, duration) {
 
   if(typeof(duration) === "undefined"){
-    duration = 2000;
+    duration = 1500;
   }
 
   var top_padding = parseFloat(
@@ -246,7 +246,8 @@ Collector.custom_alert= function(msg, duration) {
       padding:          "20px",
       position:         "fixed",
       right:            "10px",
-      top:              (top_padding + 20) + "px",
+      // top:              (top_padding + 20) + "px",
+      top:              "10%",
       "z-index":        1000
     })
     .html(msg + " (click to keep on screen and click again to hide)");

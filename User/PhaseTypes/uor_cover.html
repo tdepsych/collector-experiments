@@ -43,17 +43,15 @@
   }
   
   // This runs when the user clicks there mouse (either on the screen or alert message). The if statements checks for mobiles, the elseif checks for safari and if neither is true, the else runs the animation
+  var mobile = "{{notes}}"
   $(document).add(parent.parent.document).mouseup(function(e) {
-    var mobile = "{{notes}}"
     if (mobile == "no_mobile") {
       if (isMobile.any()) {
         $("#aniCont").load("../../collector-experiments/User/PhaseTypes/error_page.html");
       } else {
         console.log("Participant is not using a mobile")
       }
-    } 
-    
-    if (browser == "safari") {
+    } else if (browser == "safari") {
         $("#aniCont").load("../../collector-experiments/User/PhaseTypes/error_page.html");
     } else {
       $('#aniCont').html('<div class="animation-container"><div class="image-container"><img src="' + img.src + '" /></div><div class="text-container"><h1>' + messageText + '</h1><div class="fading-effect"></div></div></div>');
