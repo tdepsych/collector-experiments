@@ -1,10 +1,10 @@
 item,phasetype,survey,max_time,notes,text,shuffle_1,shuffle_2,task_title,task_body_text,weight,
-0,uor_cover,,user,no_mobile,Welcome,,,,,0,
-0,msc_ppt_setup,,user,,,,,,,0,
-0,msc_info_consent,,user,,Investigating the impact of online disinhibition on the behavioural effects of swearing,,,,,0,
+0,uor_cover,,user,no_mobile,Welcome,,,,,,
+0,msc_ppt_setup,,user,,,,,,,,
+0,msc_info_consent,,user,,Investigating the impact of online disinhibition on the behavioural effects of swearing,,,,,,
 0,task_bookend,,user,{BART INS},Start,,Non-Taboo,Balloon Inflation Task,"<p>During the next task, you will be presented with <b>10 balloons</b>, one at a time, as shown below. For each balloon you must repeatedly click on the button labelled 'Inflate Balloon' to increase its size, gaining 5 points for each click with which the balloon doesn't burst to score as many points as possible. <br><br>At any point, you can stop pumping up the balloon and click on 'Collect Points'. This will move you on the next balloon and will bank the points you scored from the previous balloon (under 'Total Points Earned'). It is your choice to determine how many clicks to make before banking your points, but remember  each balloon will burst at some point. This point varies across all balloons, ranging from the first click to the sixtieth (i.e., enough to fill its entire box). <br><br><img src=""../../collector-experiments/User/Assets/MSc/bart/balloon-analog-risk-task.jpg"" id=""bart_img""/><br/><br/> <b>If the balloon explodes before you click on 'Collect Points', then all points for that balloon are lost.</b> Burst balloons do not affect the points accumulated overall and the speed at which you pump does not affect the likelihood of the balloon bursting.</p>
-<style>#bart_img { border: 1px solid #808080!important; margin: 0 auto;}</style>",0,
-0,task_bookend,,user,{VOCAL INS},Continue,,Non-Taboo,Vocalisation Task,"<p>However, before you undertake the 'Balloon Inflation' Task, you are required to complete a vocalisation task by repeating the following word out loud for 20 seconds:</p><br><h4><b>'Flat'</b></h4><br><p>When you are ready to speak, please click 'Start' below. This will move you to another page which displays a 20 second countdown timer. Please repeat 'Flat', at your <em>normal speaking rate and volume</em> until the countdown ends.</p>",0,
+<style>#bart_img { border: 1px solid #808080!important; margin: 0 auto;}</style>",,
+0,task_bookend,,user,{VOCAL INS},Continue,,Non-Taboo,Vocalisation Task,"<p>However, before you undertake the 'Balloon Inflation' Task, you are required to complete a vocalisation task by repeating the following word out loud for 20 seconds:</p><br><h4><b>'Flat'</b></h4><br><p>When you are ready to speak, please click 'Start' below. This will move you to another page which displays a 20 second countdown timer. Please repeat 'Flat', at your <em>normal speaking rate and volume</em> until the countdown ends.</p>",,
 0,task_bookend,,user,{VOCAL},,,Non-Taboo,FLAT,"<style>#proceed_button{display:none;}</style>
 <p>Please wait for the researcher to ask you to speak</b><br>The word to repeat is FLAT</p>
 <script>
@@ -20,8 +20,8 @@ Phase.submit();
 console.log(""wrong key pressed"");
 }
 });
-</script>",0,
-0,bart,,user,{BART},,,Non-Taboo,,,0,
+</script>",,
+0,bart,,user,{BART},,,Non-Taboo,,,,
 0,task_bookend,,user,{LDT},,,Non-Taboo,Lexical Decision Task,"<p>Thank you for completing the BART task.  On the next page you will initially see a cross in the centre of the screen that will then be replaced with a word.<br>Once the word appears, you have <b>2 seconds</b> to decide whether the word <b>rhymes with the word you repeated out loud for 20 seconds before the previous balloon inflation task</b> and press a corresponding key. <br><br><b>&bull; If the
   word <span  style=""color:blue;""><u><em>rhymes</em></u> you should press P</b></span><br><b>&bull; If the word <span style=""color:red;""><u><em>does not   rhyme</em></u> press Q</b></span><br><br>Please position your index fingers over the required P and Q keys, as shown below before starting. <br><br>Initially, you will have
   <b>10 practice trials</b> which will provide you with feedback as to whether you response was correct or not. <br><br>When you are ready and positioned your fingers as shown, press the <b>Spacebar</b> with your thumb to start the task.</p><br><br><img
@@ -57,14 +57,14 @@ console.log(""wrong key pressed"");
     
     }
     
-    </style>",0,
-82 to 91,ldt_with_practice,,user,{LDT},,Shuffle1,Non-Taboo,,,0,
+    </style>",,
+82 to 91,ldt_with_practice,,user,{LDT},,Shuffle1,Non-Taboo,,,,
 0,task_bookend,,user,{LDT},,,Non-Taboo,End Of Practice Trials,"<p>That completes the practice trials. You will now complete the experimental trials. Once again, all you have to do is decide whether the word displayed in the centre of the screen  <b><u>rhymes</u> with the word you repeated out loud for 20 seconds before the previous balloon inflation task.</b> <br><br> <b>&bull; If the word <span   style=""color:blue;""><em><u>rhymes</u></em> press P</span><br><br>&bull; If the word <span style=""color:red;""><u><em>does not rhyme</em></u> press Q</b></span><br><br>Please position your index fingers over the required P and Q keys, as shown below before starting.<br><b>Please note: </b>The following experimental trials <span style=""text-decoration:   underline;""><em>do not</em></span> provide you with   feedback as to whether your response was correct or not. <br><br>When you are ready and positioned your fingers as shown, press the <b>Spacebar</b> with your thumb to start the  task.</p><img  src=""../../collector-experiments/User/Assets/Task_Stimuli/response_icons/pq_keys/ldt_keyboard3.jpg"" id=""ldt_img""/>
 <script>$(document).on('keydown',  function(event){ if(event.which == 32) { Phase.submit(); } }); </script>
-<style> #ldt_img { display: block; margin: 0 auto;} #proceed_button { display: none!important; }</style>",0,
-2 to 41,ldt_no_practice,,user,{LDT},,Shuffle2,Non-Taboo,,,0,
-0,msc_vas_offensiveness,,user,{VAS},FLAT,,Non-Taboo,,,0,
-0,msc_vas_humour,,user,{VAS},FLAT,,Non-Taboo,,,0,
+<style> #ldt_img { display: block; margin: 0 auto;} #proceed_button { display: none!important; }</style>",,
+2 to 41,ldt_no_practice,,user,{LDT},,Shuffle2,Non-Taboo,,,,
+0,msc_vas_offensiveness,,user,{VAS},FLAT,,Non-Taboo,,,,
+0,msc_vas_humour,,user,{VAS},FLAT,,Non-Taboo,,,,
 0,tde_survey,cognitive_dissonance.csv,user,{COG DIS},,,Non-Taboo,,,,
 0,task_bookend,,user,,Start,,,Wordsearch,"<p><b>Thank you for completing the first half of
   this experimental session.</b><br><br>Before starting the
@@ -85,12 +85,12 @@ console.log(""wrong key pressed"");
   to refresh the wordsearch and generate a new list of items so you can carry
   on searching.<br><br> When you are ready, please press
   <b>Start</b> below to begin. Good
-  luck!</p><br><br>",0,
-0,wordsearch_msc_cgd,,300,{WORDSEARCH},,,,,,0,
-0,wordsearch_feedback,,user,{WORDSEARCH},,,,Wordsearch Task Complete,,0,
+  luck!</p><br><br>",,
+0,wordsearch_msc_cgd,,300,{WORDSEARCH},,,,,,,
+0,wordsearch_feedback,,user,{WORDSEARCH},,,,Wordsearch Task Complete,,,
 0,task_bookend,,user,{BART},Start,,Taboo,Balloon Inflation Task,"<p>During the next task, you will be presented with <b>10 balloons</b>, one at a time, as shown below. For each balloon you must repeatedly click on the button labelled 'Inflate Balloon' to increase its size, gaining 5 points for each click with which the balloon doesn't burst to score as many points as possible. <br><br>At any point, you can stop pumping up the balloon and click on 'Collect Points'. This will move you on the next balloon and will bank the points you scored from the previous balloon (under 'Total Points Earned'). It is your choice to determine how many clicks to make before banking your points, but remember  each balloon will burst at some point. This point varies across all balloons, ranging from the first click to the sixtieth (i.e., enough to fill its entire box). <br><br><img src=""../../collector-experiments/User/Assets/MSc/bart/balloon-analog-risk-task.jpg"" id=""bart_img""/><br/><br/> <b>If the balloon explodes before you click on 'Collect Points', then all points for that balloon are lost.</b> Burst balloons do not affect the points accumulated overall and the speed at which you pump does not affect the likelihood of the balloon bursting.</p>
-<style>#bart_img { border: 1px solid #808080!important; margin: 0 auto;}</style>",0,
-0,task_bookend,,user,{VOCAL INS},Continue,,Taboo,Vocalisation Task,"<p>However, before you undertake the 'Balloon Inflation' Task, you are required to complete a vocalisation task by repeating the following word out loud for 20 seconds:</p><br><h4><b>'Fuck'</b></h4><br><p>When you are ready to speak, please click 'Start' below. This will move you to another page which displays a 20 second countdown timer. Please repeat 'Fuck', at your <em>normal speaking rate and volume</em> until the countdown ends.</p>",0,
+<style>#bart_img { border: 1px solid #808080!important; margin: 0 auto;}</style>",,
+0,task_bookend,,user,{VOCAL INS},Continue,,Taboo,Vocalisation Task,"<p>However, before you undertake the 'Balloon Inflation' Task, you are required to complete a vocalisation task by repeating the following word out loud for 20 seconds:</p><br><h4><b>'Fuck'</b></h4><br><p>When you are ready to speak, please click 'Start' below. This will move you to another page which displays a 20 second countdown timer. Please repeat 'Fuck', at your <em>normal speaking rate and volume</em> until the countdown ends.</p>",,
 0,task_bookend,,user,{BART},,,Taboo,FUCK,"<style>#proceed_button{display:none;}</style>
 <p>Please wait for the researcher to ask you to speak</b><br>The word to repeat is FUCK</p>
 <script>
@@ -106,20 +106,20 @@ Phase.submit();
 console.log(""wrong key pressed"");
 }
 });
-</script>",0,
-0,bart,,user,{BART},,,Taboo,,,0,
+</script>",,
+0,bart,,user,{BART},,,Taboo,,,,
 0,task_bookend,,user,{LDT},,,Taboo,Lexical Decision Task,"<p>Thank you for completing the BART task. On the next page you will initially see a cross in the centre of the screen that will then be replaced with a word.<br>Once the word appears, you have <b>2 seconds</b> to decide whether the word <b>rhymes with the word you repeated out loud for 20 seconds before the previous balloon inflation task</b> and press a corresponding key. <br><br><b>&bull; If the word <span style=""color:blue;""><u><em>rhymes</em></u> you should press P</b></span><br><b>&bull; If the word <span style=""color:red;""><u><em>does not rhyme</em></u> press Q</b></span><br><br>Please position your index fingers over the required P and Q keys, as shown below before starting. <br><br>Initially, you will have <b>10 practice trials</b> which will provide you with feedback as to whether you response was correct or not. <br><br>When you are ready and positioned your fingers as shown, press the <b>Spacebar</b> with your thumb to start the task.</p><img  src=""../../collector-experiments/User/Assets/Task_Stimuli/response_icons/pq_keys/ldt_keyboard2.jpg"" id=""ldt_img""/>
 <script>$(document).on('keydown',  function(event){ if(event.which == 32) { Phase.submit(); } }); </script>
-<style> #ldt_img { display: block; margin: 0 auto;} #proceed_button { display: none!important; }</style>",0,
-92 to 101,ldt_with_practice,,user,{LDT},,Shuffle 3,Taboo,,,0,
+<style> #ldt_img { display: block; margin: 0 auto;} #proceed_button { display: none!important; }</style>",,
+92 to 101,ldt_with_practice,,user,{LDT},,Shuffle 3,Taboo,,,,
 0,task_bookend,,user,{LDT},,,Taboo,End Of Practice Trials,"<p>That completes the practice trials. You will now complete the experimental trials. Once again, all you have to do is decide whether the word displayed in the centre of the screen <b><u>rhymes</u> with the word you repeated out loud for 20 seconds before the previous balloon inflation task.</b><br><br> <b>&bull; If the word <span   style=""color:blue;""><em><u>rhymes</u></em> press P</span><br><br>&bull; If the word <span style=""color:red;""><u><em>does not rhyme</em></u> press Q</b></span><br><br>Please position your index fingers over the required P and Q keys, as shown below before starting.<br><b>Please note: </b>The following experimental trials <span style=""text-decoration: underline;""><em>do not</em></span> provide you with
   feedback as to whether your response was correct or not. <br><br>When you are ready and positioned your fingers as shown, press the <b>Spacebar</b> with your thumb to start the task.</p><img  src=""../../collector-experiments/User/Assets/Task_Stimuli/response_icons/pq_keys/ldt_keyboard3.jpg"" id=""ldt_img""/>
 <script>$(document).on('keydown',  function(event){ if(event.which == 32) { Phase.submit(); } }); </script>
-<style> #ldt_img { display: block; margin: 0 auto;} #proceed_button { display: none!important; }</style>",0,
-42 to 81,ldt_no_practice,,user,{LDT},,Shuffle 4,Taboo,,,0,
-0,msc_vas_offensiveness,,user,{VAS},FUCK,,Taboo,,,0,
-0,msc_vas_humour,,user,{VAS},FUCK,,Taboo,,,0,
-0,tde_survey,cognitive_dissonance.csv,user,{COG DIS},,,Taboo,,,0,
-0,uor_cover_end,,,,Session Complete,,,,,0,
-0,uor_end,,user,,,,,,,0,
+<style> #ldt_img { display: block; margin: 0 auto;} #proceed_button { display: none!important; }</style>",,
+42 to 81,ldt_no_practice,,user,{LDT},,Shuffle 4,Taboo,,,,
+0,msc_vas_offensiveness,,user,{VAS},FUCK,,Taboo,,,,
+0,msc_vas_humour,,user,{VAS},FUCK,,Taboo,,,,
+0,tde_survey,cognitive_dissonance.csv,user,{COG DIS},,,Taboo,,,,
+0,uor_cover_end,,,,Session Complete,,,,,,
+0,uor_end,,user,,,,,,,,
 0,save_data,,user,,💾 Please Save Your Data 💾,,,Save Your Data,"<p>There have been some issues with data not correctly being sent to the server, even though the study claims to  have done so. I'm not 100% sure why this is  occurring though which is making  it  hard to fix.<br/><br/>As a result, please can you click the  button below and save the .csv file to your  computer. I'll send you an email  once  I've checked the server letting you know if there have been any problems  but, by saving your data, if there are any  issues, I can use the .csv file to   manually add anything that's missing, which means your time hasn't  been  wasted and/or my dissertation  results impacted by an issue outside our   control.<br/><br>If the button doesn't work for any  reason, you  can save your data by  pressing Ctrl+S (Cmd+S on a Mac) too. Obviously, please  don't delete this file from your computer  until I've sent you an email saying   all the data was correctly uploaded to the  server.<br/><br/>Finally, if  you could email <a href=""mailto:c.g.dobson@student.reading.ac.uk"">c.g.dobson@student.reading.ac.uk</a>  to let me know you've signed up that would  be great. There is currently a  chance  I won't be notified!</p>",,
