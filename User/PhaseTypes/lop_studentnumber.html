@@ -14,7 +14,6 @@
   }
   #proceed_button {
     background-color: transparent;
-    z-index: 0;
     background-image: url(../../collector-experiments/User/Assets/LOP/start.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -25,6 +24,8 @@
     opacity: .25;
     margin: 0 auto;
     display: block;
+    position: relative;
+    z-index: 999;
   }
   #proceed_button:hover {
     opacity: 1;
@@ -189,7 +190,7 @@
     width: 800;
     height: 80%;
     text-align: center;
-    transform: scale(0.75);
+    transform: scale(0.5);
   }
 </style>
 <input type='hidden' id='ppt_studentnumber' name='ppt_studentnumber' value="-1"/>
