@@ -40,12 +40,12 @@
     opacity: .25;
   }
   #grid {
-    margin-top: 50px;
     display: grid;
     grid-template-columns: 300px 400px;
     column-gap: 2rem;
     row-gap: 2rem;
-    transform: translateX(11%);
+    width: 61%;
+    margin: 50px auto 0;
   }
   #grid label {
     vertical-align: top;
@@ -80,18 +80,15 @@
   
   #number_tick {
     position: absolute;
-    top: 12px;
-    right: 275px;
+    transform: translate(640px, 10px);
   }
   #age_tick {
     position: absolute;
-    top: 120px;
-    right: 275px;
+    transform: translate(640px, 120px);
   }
   #gender_tick {
     position: absolute;
-    bottom: 28px;
-    right: 275px;
+    transform: translate(640px, 220px);
   }
   
   /* Mobile CSS */
@@ -107,10 +104,10 @@
   <div id='grid'>
     <label>Please enter your 8-digit student number:</label>
     <input type="text" id="studentnumber" placeholder="e.g. 12345678" maxlength="8" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-    <span id="number_tick" class="ticks" style="display:none;">✔</span>
+    <div id="number_tick" class="ticks" style="display:none;"></div>
     <label>Please enter your age:</label>
     <input type="text" id="studentage" placeholder="in years" maxlength="2" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-    <span id="age_tick" class="ticks" style="display:none;">✔</span>
+    <div id="age_tick" class="ticks" style="display:none;"></div>
     <label>Please select the gender you identify with:</label>
     <select id="studentgender" class="colorMeBlue noValue">
       <option class="grey" disabled selected>--Options--</option>
@@ -119,7 +116,7 @@
       <option value="3">Non-Binary</option>
       <option value="0">Prefer to not say</option>
     </select>
-    <span id="gender_tick" class="ticks" style="display:none;">✔</span>
+    <div id="gender_tick" class="ticks" style="display:none;"></div>
   </div>
   <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
 </div>
@@ -127,10 +124,10 @@
   $('select').on('change', function(){
     var $this = $(this);
     if (!$this.val()) {
-      $('#gender_tick').hide();
+      $('#gender_tick').html("❌").show();
     } else {
       $this.css('color','#000').css('text-transform','capitalize');
-      $('#gender_tick').show();
+      $('#gender_tick').html("✔").show();
     }
   });
   
@@ -145,16 +142,20 @@
 
   Form.onchange = function() {
     
-    if ($('#studentnumber').val().length == 8){
-      $('#number_tick').show();
+    if ($('#studentnumber').val().length == 0){
+      //do nothing 
+    } else if ($('#studentnumber').val().length == 8){
+      $('#number_tick').html("✔").show();
     } else {
-      $('#number_tick').hide();
+      $('#number_tick').html("❌").show()
     }
     
-    if ($('#studentage').val().length == 2){
-      $('#age_tick').show();
+    if ($('#studentage').val().length == 0){
+      //do nothing 
+    } else if ($('#studentage').val().length == 2){
+      $('#age_tick').html("✔").show();
     } else {
-      $('#age_tick').hide();
+      $('#age_tick').html("❌").show();
     }
     
     var ppt_studentnumber = studentnumber.value

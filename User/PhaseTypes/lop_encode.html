@@ -28,12 +28,12 @@
     position: relative;
     z-index: -1;
   }
-   #response_buttons{
-    background-color: transparent;
-    display: block;
-    position: relative;
-    z-index: 1;
-  }
+  /* #response_buttons{*/
+  /*  background-color: transparent;*/
+  /*  display: block;*/
+  /*  position: relative;*/
+  /*  z-index: 1;*/
+  /*}*/
   #word{
     background-color:transparent;
     color:black;
@@ -69,7 +69,7 @@
     background-image: url(../../collector-experiments/User/Assets/LOP/no.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    transform: translateX(-1270%) scale(450%);
+    transform: translate(-1270%, -35px) scale(450%);
     border: none;
     opacity: 0.25;
     color: transparent;
@@ -82,7 +82,7 @@
     background-image: url(../../collector-experiments/User/Assets/LOP/yes.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    transform: translateX(1250%) scale(450%);
+    transform: translate(1250%, -35px) scale(450%);
     border: none;
     opacity: 0.25;
     color: transparent;
@@ -126,10 +126,10 @@
   <div id='instruction'>{{text}}{{rhyme}}</div>
   <div id='ready'>Ready?</div>
   <div id='word'><b>{{word}}</b></div>
-  <div id='response_buttons'>
+  <!--<div id='response_buttons'>-->
     <input id='No' type='button' value='0'/>
     <input id='Yes' type='button' value='1'/>
-  </div>
+  <!--</div>-->
   <div id='too_slow'>Too Slow</div>
   <div id="spinner" class="spinner-border text-primary" role="status">
     <span class="sr-only"></span>
