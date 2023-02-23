@@ -65,7 +65,7 @@
 }
 .option-input.radio {
     border-radius: 0;
-    transform: translateY(-12px);
+    transform: translateY(-16px);
 }
 
 .radioLabel {

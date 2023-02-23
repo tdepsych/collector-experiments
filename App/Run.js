@@ -893,7 +893,17 @@ function final_phase() {
     case "onlinepreview":
       online_data_obj.finished_and_stored = true;
       $("#project_div").html(
-        "<h1>You have finished. You can download the data by clicking <b><span id='download_json'>here</span></b></h1>"
+        '<div id="card_container" style="width:100%;height:100%;display: flex;justify-content: center;align-items: center;text-align: center;flex-direction: column;">'+
+        '<div class="card" style="width: 30em;">'+
+          '<div class="card-header text-primary"><h2>You have finished</h2></div>'+
+          '<div class="card-body">'+
+            '<p><b>Thank you for taking part in this study.</b><br><br> If you wish, you can download the data by clicking the button below. '+
+            'It is advisable to do so in case any data transfer issues occured behind the scenes whilst you completed the study. '+
+            'If you have saved your experimental data, you can be added to the final dataset, ensuring your time has not been wasted.'+
+          '</div>'+
+          '<div class="card-footer"><button class="btn btn-primary text-white" id="download_json">Download data</button></div>'+
+        '</div>'+
+      '</div>'
       );
       $("#download_json").on("click", function () {
         precrypted_data(project_json, "What do you want to save this file as?");
@@ -1472,14 +1482,17 @@ function process_welcome() {
       $("#researcher_message").html(project_json.this_condition.start_message);
     } else {
       def_start_msg =
-        "<h1 class='text-primary'> Collector</h1>" +
-        "<br><br>" +
-        "<h4>It's very important to read the following before starting!</h1>" +
-        "<div class='text-danger'>If you complete multiple Collector experiments at the same time, your completion codes may be messed up. Please do not do this!</div>" +
-        "<br>" +
-        "<div class='text-danger'>If you participate in this experiment, your progress in it will be stored on your local machine to avoid you losing your progress if the window or tab closes or freezes. This data will be cleared from your computer once you have completed the task. <b>However, if you do not want this website to store your progress on your computer, DO NOT PROCEED.</b></div>" +
-        "<br>" +
-        "<div class='text-danger'>If the experiment freezes, try pressing <b>CTRL-S</b> to save your data so far. </div>";
+        '<div class="card"><div class="card-header text-primary">'+
+          '<h2>Collector</h2>'+
+        '</div>'+
+        '<div class="card-body">'+
+          "<h5>It's very important to read the following before starting!</h5><br>" +
+          '<p class="text-danger">If you complete multiple Collector experiments at the same time, your completion codes may be messed up. Please do not do this!' +
+          'If you participate in this experiment, your progress in it will be stored on your local machine to avoid you losing your progress if the window or tab closes or freezes.'+
+          'This data will be cleared from your computer once you have completed the task.<b><br><br>However, if you do not want this website to store your progress on your computer, DO NOT PROCEED.</b><br><br>' +
+          'If the experiment freezes, try pressing <b>CTRL-S</b> to save your data so far.</p></div>'+
+        '</div></div>';
+
       $("#researcher_message").html(def_start_msg);
     }
   }

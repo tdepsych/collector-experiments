@@ -1,12 +1,32 @@
-<h1>Before starting</h1>
-<h2>
-  Please be careful about what details you give. If you feel that any
-  inappropriate details are being asked, please contact whoever asked you to
-  participate.
-</h2>
-<h3 class="text-danger">
-  This website stores information on your local browser to help the experiments
-  run smoother, and resume where you left off if you refresh the page. If you
-  are unhappy with this, please do not proceed
-</h3>
-<button class="btn btn-primary" onclick="Phase.submit()">Start</button>
+<style>
+ html {
+    height: 100%;
+    width: 100%;
+  }
+  body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
+</style>
+<div id="container">
+  <div class="card" style="width: 30em;">
+    <div class="card-header text-primary">
+      <h2>Before Starting</h2>
+    </div>
+    <div class="card-body">
+      <p><b>Please be careful about what details you give. If you feel that any inappropriate details are being asked, please contact whoever asked you to participate.
+      <p class="text-danger">
+        This website stores information on your local browser to help the experiments run smoother, and resume where you left off if you refresh the page. If you are unhappy with this, please do not proceed
+      </b></p>
+
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary" onclick="Phase.submit()">Start</button>
+    </div>
+  </div>
+</div>

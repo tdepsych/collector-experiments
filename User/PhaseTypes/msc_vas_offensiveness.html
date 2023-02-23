@@ -15,18 +15,16 @@
     min-height: 50vh!important;
   }
   .slider {
-    -webkit-appearance: none;
-    width: 720px;
+    width: 80%;
     height: 15px;
     border-radius: 5px;
     background: #d3d3d3;
     outline: none;
     opacity: 0.7;
-    -webkit-transition: .2s;
     transition: opacity .2s;
-    /*transform: translateX(43px);*/
-    position: relative
-    z-index: 999;;
+      -webkit-transition: .2s;
+      -webkit-appearance: none;
+    transform: translateY(-23px);
   }
   .slider:hover {
     opacity: 1;
@@ -47,105 +45,35 @@
     background: #20669b;
     cursor: pointer;
   }
-  .anchor-start{
-    text-align:left;
-    position:relative;
-    z-index: -9;
-    left:-66px;
-    bottom:10px;
-  }
-  .arrow-start {
-    background: url("../../collector-experiments/User/Assets/Global/img/arrow-start.svg")  0 0 no-repeat;
-    background-size: 25px 58px;
-    background-repeat: no-repeat;
-    width: 35px;
-    height: 50px;
-    content: '';
-    transform: translate(-35px, 48px);
-  }
-  .anchor-end{
-    text-align: right;
-    position: absolute;
-    z-index: -9;
-    transform: translate(547px, -49px);
-  }
-  .arrow-end{
-    background: url(../../collector-experiments/User/Assets/Global/img/arrow-end.svg) 0 0 no-repeat;
-    background-size: 25px 58px;
-    background-repeat: no-repeat;
-    width: 35px;
-    height: 50px;
-    content: '';
-    transform: translate(730px, -41px);
-  }
       
   /* ******************** */
   /* CONTINUE BTN MESSAGE */
   /* ******************** */
-      
-  .tooltipHidden {
-    visibility: hidden;
-    position: absolute;
-    width: 200px;
-  }
-  .tooltipCon .tooltiptext {
-    visibility: hidden;
-    width: 725px;
-    background-color: #006599;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    transform: translate(-410px, -64px);
-  }
-  .tooltipCon:hover .tooltiptext {
-    visibility: visible;
-  }
   
-  /*This is the little arrow on the tooltip*/
-    .tooltipCon .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #006599 transparent transparent transparent;
-  }
-  #proceed_button {
-    color: #FFF;
-    background-color: #a1d4ee;
-    border-color: #a1d4ee;
-    font-weight: 400;
-    line-height: 1.5;
-    text-align: center;
-    vertical-align: middle;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    border-radius: .25rem;
-    cursor: default;
+  #vas_anchors {
+    width: 80%;
     margin: auto;
-    position: relative;
-    pointer-events: none;
   }
-
-  #proceed_button.btnActive {
-    background-color: #006599;
-    border-color: #006599;
-    cursor: pointer;
-    pointer-events: auto;
+  #vas_anchors::before {
+    background: url(../../collector-experiments/User/Assets/Global/img/arrow-start.svg) 50% 75% no-repeat;
+    content: 'I am not offended by this word';
+    background-size: 25px 25px;
+    height: 60px;
+    display: inline-block;
+    transform: translate(-130px, 0) scale(1.25);
+    float: left;
   }
-  
-  #proceed_button.btnActive:hover {
-      background-color: #275fda;
+  #vas_anchors::after {
+    background: url(../../collector-experiments/User/Assets/Global/img/arrow-end.svg) 50% 75% no-repeat;
+    content: 'This word is very offensive to me';
+    background-size: 25px 25px;
+    height: 60px;
+    display: inline-block;
+    transform: translate(139px, -0px) scale(1.25);
+    float: right;
   }
-  
-  .slidecontainer {
-    position: relative;
-    margin-top: -41px;
+  #tooltip{
+    transform: translateY(75px);
   }
   .valueHide {
     display:none;
@@ -157,31 +85,29 @@
 <div id="container">
   <h2><span>Offensiveness Rating</span></h2><br>
   <p>Thank you for completing the word rhyming task. Using the slider below, please rate how offensive the word <b>{{text}}</b> is to <b>you</b>.</p>
-  <br>
-  <div class="slidecontainer">
-    <div class="arrow-start"></div>
-    <div class="anchor-start">I am not offended by this word</div><input type="range" min="10" max="90" value="50" class="slider" id="vas"><div class="anchor-end">This word is very offensive to me</div>
-    <div class="arrow-end"></div>
+  <br><br>
+  <div id="vas_anchors"></div>
+    <input type="range" min="0" max="100" value="50" class="slider" id="vas">
     <p class="valueHide">Value: <span id="value"></span></p>
-  </div>
   <br/>
-  <div id="tooltipCon" class="tooltipCon">
-    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()">Continue</button>
-    <span id="tooltiptext" class="tooltiptext">Sorry. You need to move the slider to make a rating before you can continue.<br/>
-      <span style="font-size:14px;"><em>(If you feel the slider's starting position correctly indicates your rating, simply move it slightly and then back again)</em></span>
-    </span>
-  </div>
+  <span class="d-inline-block" id="tooltip" tabindex="0" data-toggle="tooltip" title="Sorry. You need to move the slider to make a rating before you can continue.">
+    <button class="btn btn-primary" id="proceed_btn" onclick="Phase.submit()" disabled>Continue</button>
+  </span>
 </div>
 <script>
   var slider = document.getElementById("vas");
   var output = document.getElementById("value");
-  output.innerHTML = Math.ceil(slider.value / 10);
-    
+  output.innerHTML = slider.value;
+        
   slider.oninput = function() {
-    output.innerHTML = Math.ceil(this.value / 10);
-    document.getElementById("proceed_button").setAttribute("class", "btnActive");
-    document.getElementById("tooltiptext").setAttribute("class", "tooltipHidden");
+    output.innerHTML = this.value;
     document.getElementById("offensive_vas").value = slider.value;
+    $("#proceed_btn").prop("disabled", false);
+    $("#tooltip").hide();
   }
+  
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 </script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

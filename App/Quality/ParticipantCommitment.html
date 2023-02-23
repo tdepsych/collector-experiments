@@ -3,80 +3,94 @@
 
   Based on Hibben, K. C., Felderer, B., & Conrad, F. G. (2020). Respondent commitment: applying techniques from face-to-face interviewing to online collection of employment data. International Journal of Social Research Methodology, 1-14.
 -->
-
-<h3 class="text-primary">
-  I commit to the following <br /><em>please select all that apply</em>
-</h3>
-
-<label
-  ><input
-    type="checkbox"
-    class="participant_commitment"
-    value="Reading all the questions carefully"
-  />Reading all the questions carefully</label
-><br />
-
-<label
-  ><input
-    type="checkbox"
-    class="participant_commitment"
-    value="Trying to be as precise as possible with my answers"
-  />Trying to be as precise as possible with my answers</label
-><br />
-
-<label
-  ><input
-    type="checkbox"
-    class="participant_commitment"
-    value="Answering honestly"
-  />Answering honestly</label
-><br />
-
-<label
-  ><input
-    type="checkbox"
-    class="participant_commitment"
-    value="Closing  other applications"
-  />Closing other applications so that the task can run as smoothly as
-  possible</label
-><br />
-
-<label
-  ><input
-    type="checkbox"
-    class="participant_commitment"
-    value="Removed environmental distractions"
-  />Removing (myself from) distractions in my environment</label
-><br />
-
-<label
-  ><input
-    type="checkbox"
-    class="participant_commitment"
-    value="None of the above but I will proceed anyway"
-  />None of the above - but I will proceed anyway</label
-><br />
-
-<input
-  type="hidden"
-  name="participant_commitment"
-  id="participant_commitment"
-/>
+<style>
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
+  input[type=checkbox] {
+    transform: scale(1.5);
+    margin-right:10px;
+    cursor: pointer;
+  }
+  label{
+    padding:5px;
+    cursor: pointer;
+  }
+  #container{
+    width: 30%!important;
+  }
+  .card-body{
+    text-align: left;
+  }
+</style>
+<div id="container">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="text-primary">I commit to the following: <br /></h3><h5 class="text-muted"><em>(please select all that apply)</em></h5>
+    </div>
+    <div class="card-body">
+      <label>
+        <input type="checkbox" class="participant_commitment commitment" value="Reading all the questions carefully" />
+        Reading all the questions carefully
+      </label><br />
+      <label>
+        <input type="checkbox" class="participant_commitment commitment" value="Trying to be as precise as possible with my answers" />
+        Trying to be as precise as possible with my answers
+      </label><br />
+      <label>
+        <input type="checkbox" class="participant_commitment commitment" value="Answering honestly" />
+        Answering honestly
+      </label><br />
+      <label>
+        <input type="checkbox" class="participant_commitment commitment" value="Closing  other applications" />
+        Closing other applications so that the task can run as smoothly as possible
+      </label><br />
+      <label>
+        <input type="checkbox" class="participant_commitment commitment" value="Removed environmental distractions" />
+        Removing (myself from) distractions in my environment
+      </label><br />
+      <label>
+        <input type="checkbox" class="participant_commitment" id="NotA" value="None of the above but I will proceed anyway" />
+        None of the above - but I will proceed anyway
+      </label><br />
+    </div>
+    <div class="card-footer">
+      <button id="pptCommitment-btn" class="btn btn-primary" onclick="Phase.submit()" disabled>Continue</button>
+    </div>
+  </div>
+  <input type="hidden" name="participant_commitment" id="participant_commitment" value="" />
+</div>
 
 <script>
-  $(".participant_commitment").on("click", function () {
-    var commitment_value = $("#participant_commitment").val();
-    commitment_value.replace("; " + this.value, "");
-
-    if (this.checked == true) {
-      commitment_value += "; " + this.value;
-    }
-    $("#participant_commitment").val(commitment_value);
+$('.card-body').click(function() {
+  var commitment_value ='';
+  $('.commitment:checked').each(function() {
+    commitment_value += this.value + "; ";
   });
-  $(".project_smoothness").on("click", function () {
-    $(".project_smoothness").prop("checked", false);
-    $(this).prop("checked", true);
-    $("#experiment_smoothness_val").val($(this).val());
+  
+  $('.commitment').click(function() {
+    $('#NotA').prop('checked',false);
   });
+  
+  if ($('#NotA').is(':checked')) {
+    commitment_value = $('#NotA').val() + ";";
+    $('.commitment').prop('checked',false);
+    $('#pptCommitment-btn').prop('disabled', false);
+  } else if ($('.commitment').is(':checked')) {
+    $('#pptCommitment-btn').prop('disabled', false);
+    $('#NotA').prop('checked',false);
+  } else {
+    commitment_value = "";
+    $('#pptCommitment-btn').prop('disabled', true);
+  }
+  document.getElementById("participant_commitment").value = commitment_value;
+});
 </script>
-<button class="btn btn-primary" onclick="Phase.submit()">Proceed</button>

@@ -9,15 +9,17 @@ function zoom_in() {
   document.body.style.zoom = parent.parent.current_zoom;
   document.body.style.MozTransform = "scale(" + parent.parent.current_zoom + ")";
   document.body.style.overflowX = "hidden";
+  document.body.style.transformOrigin = "center center";
 }
 function zoom_out() {
   parent.parent.current_zoom -= 0.1;
   document.body.style.zoom = parent.parent.current_zoom;
   document.body.style.MozTransform = "scale(" + parent.parent.current_zoom + ")";
   document.body.style.overflowX = "hidden";
+  document.body.style.transformOrigin = "center center";
 }
 
 window.onload = function(){ 
-  document.getElementById("zoomIn").onclick = zoom_in;
-  document.getElementById("zoomOut").onclick = zoom_out;
+  $("#zoomIn").click(zoom_in);
+  $("#zoomOut").click(zoom_out);
 }

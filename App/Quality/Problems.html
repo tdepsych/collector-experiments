@@ -1,59 +1,96 @@
-<h1>
-  <span class="text-danger"
-    >You are not finished until you click proceed and have received confirmation
-    that the data has been submitted</span
-  ><br />
-  How did it go?
-</h1>
-<div class="text-danger">
-  How smoothly did the experiment go (did it stop or have any problems running?)
+<style>
+  html{
+    height: 100%;
+    width: 100%;
+  }
+  body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
+  input[type=radio] {
+    transform: scale(1.5);
+    margin-right:10px;
+  }
+  input, label {
+    cursor: pointer;
+  }
+  #container{
+    width: 30% !important;
+  }
+  #textReport {
+    display: none;
+  }
+  #textArea {
+    width: 75%;
+    height: 100px;
+  }
+</style>
+<div id="container">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="text-primary">Did you have any problems?</h3>
+    </div>
+    <div class="card-body">
+      <p class="text-danger"><b>You are not finished until you click proceed and have received confirmation
+      that the data has been submitted - how did it go?</b></p>
+      <p>How smoothly did the experiment go?<br><em class="text-muted">(did it stop or have any problems running?)</em></p>
+      <label>
+        <input type="radio" class="project_smoothness" value="5_no_problems" />
+        No problems
+      </label><br />
+      <label>
+        <input type="radio" class="project_smoothness" value="4_minor_problems" />
+        Minor problems
+      </label><br />
+      <label>
+        <input type="radio" class="project_smoothness" value="3_moderate_problems" />
+        Moderate problems
+      </label><br />
+      <label>
+        <input type="radio" class="project_smoothness" value="2_major_problems" />
+        Major problems
+      </label><br />
+      <label>
+        <input type="radio" class="project_smoothness" value="1_it_stopped_working" />
+        It stopped working
+      </label>
+      <div id="textReport">
+        <br /><hr>
+        <input type="hidden" name="project_smoothness_val" id="project_smoothness_val" />
+        As you have reported having problems above, please describe what went wrong:<br><br>
+        <textarea name="experiment_problems_description" id="textArea"></textarea>
+      </div>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary" id="proceed_btn" onclick="Phase.submit()" disabled>Proceed</button>
+    </div>
+  </div>
+  
 </div>
-<label>
-  <input type="radio" class="project_smoothness" value="5_no_problems" />No
-  problems</label
-><br />
-<label>
-  <input
-    type="radio"
-    class="project_smoothness"
-    value="4_minor_problems"
-  />Minor problems</label
-><br />
-<label>
-  <input
-    type="radio"
-    class="project_smoothness"
-    value="3_moderate_problems"
-  />Moderate problems</label
-><br />
-<label>
-  <input
-    type="radio"
-    class="project_smoothness"
-    value="2_major_problems"
-  />Major problems</label
-><br />
-<label>
-  <input
-    type="radio"
-    class="project_smoothness"
-    value="1_it_stopped_working"
-  />It stopped working</label
-><br />
-<input
-  type="hidden"
-  name="project_smoothness_val"
-  id="project_smoothness_val"
-/>
 
-If you didn't answer 'No problems' above, please describe what went wrong:
-<textarea name="experiment_problems_description"></textarea><br />
+
+
 
 <script>
-  $(".project_smoothness").on("click", function () {
+  $(".project_smoothness").click(function () {
+    valueReported = this.value;
+    if (valueReported == "5_no_problems") {
+      console.log("No problems reported")
+      $('#textReport').hide();
+      $('#proceed_btn').prop('disabled', false);
+    } else {
+      $('#textReport').show();
+      $('#proceed_btn').prop('disabled', false);
+    }
+
+
     $(".project_smoothness").prop("checked", false);
     $(this).prop("checked", true);
     $("#project_smoothness_val").val($(this).val());
   });
 </script>
-<button class="btn btn-primary" onclick="Phase.submit()">Proceed</button>

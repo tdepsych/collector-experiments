@@ -4,16 +4,14 @@
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <script src="../../collector-experiments/User/Assets/Global/js/detect_mobile.js"></script>
 <style>
-  #startMssge {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    text-align: center;
-    margin: 100px;
-    color: #000;
+  #container {
+    overflow-y: hidden;
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
   }
 </style>
-<div id="aniCont">
+<div id="container">
   <div id="startMssge">Please ensure your browser is in full screen<br>& click the screen to start</div>
 </div>
 <script>
@@ -46,12 +44,12 @@
   var mobile = "{{notes}}"
   $(document).add(parent.parent.document).mouseup(function(e) {
     if (mobile == "no_mobile" && isMobile.any()) {
-      $("#aniCont").load("../../collector-experiments/User/PhaseTypes/error_page.html");
+      $("#container").load("../../collector-experiments/User/PhaseTypes/error_page.html");
     } else if (browser == "safari") {
       console.log("Participant is not using a mobile");
-      $("#aniCont").load("../../collector-experiments/User/PhaseTypes/error_page.html");
+      $("#container").load("../../collector-experiments/User/PhaseTypes/error_page.html");
     } else {
-      $('#aniCont').html('<div class="animation-container"><div class="image-container"><img src="' + img.src + '" /></div><div class="text-container"><h1>' + messageText + '</h1><div class="fading-effect"></div></div></div>');
+      $('#container').html('<div class="animation-container"><div class="image-container"><img src="' + img.src + '" /></div><div class="text-container"><h1>' + messageText + '</h1><div class="fading-effect"></div></div></div>');
       pageAdvance();
       $(document).unbind('mouseup');
     }

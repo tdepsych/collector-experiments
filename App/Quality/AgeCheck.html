@@ -1,9 +1,50 @@
-<div class="jumbotron container">
-  <h1>Age Check</h1><br>
-  <p>You must <b class="text-primary">be at least 18 years old</b> to participate in this study.</p>
-  <p>Please close the experiment if this is not the case.</p>
-
-<button class="btn btn-primary" onclick="Phase.submit()">
-  I am at least 18 years old
-</button>
+<style>
+  html {
+    height: 100%;
+    width: 100%;
+  }
+  body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
+  input[type=checkbox] {
+    transform: scale(1.5);
+    margin-right:10px;
+  }
+  input, label {
+    cursor: pointer;
+  }
+  #container{
+    width: 25%;
+    cursor: pointer;
+  }
+</style>
+<div id="container">
+  <div class="card">
+    <div class="card-header text-primary">
+      <h2>Age Check</h2>
+    </div>
+    <div class="card-body">
+      <p>You must <b class="text-primary">be at least 18 years old</b> to participate in this study. If you are under 18 years old, please close your browser to exit the experiment.</p>
+      <label><input type="checkbox" name = "ageCheck" id="ageCheck" value="Participant is over 18">Please tick to confirm you 18 years or older</label> 
+    </div>
+    <div class="card-footer">
+      <button id="ageCheck-btn" class="btn btn-primary" onclick="Phase.submit()" disabled>Continue</button>
+    </div>
+  </div>
 </div>
+
+<script>
+$('#ageCheck').click(function() {
+    if (this.checked) {
+        $('#ageCheck-btn').prop('disabled', false);
+    } else {
+        $('#ageCheck-btn').prop('disabled', true);
+    }
+});
+</script>
