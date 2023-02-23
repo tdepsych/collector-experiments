@@ -1416,6 +1416,7 @@ function write(type, row) {
       var this_input = $("<input>");
       this_input[0].type = "radio";
       this_input[0].id = row["item_name"] + i;
+      this_input[0].value = options[i];
       this_input[0].name = "survey_" + row["item_name"];
       this_input
         .addClass("custom-control-input")

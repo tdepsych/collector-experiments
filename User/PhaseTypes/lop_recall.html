@@ -1,4 +1,4 @@
-<!--'lop_trials' PhaseTypes-->
+<!--'lop_recall' PhaseTypes-->
 <script src="../../collector-experiments/User/Assets/Global/js/detect_mobile.js"></script>
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <style>
@@ -17,7 +17,7 @@
     font-size:40px;
     display: block;
     position: relative;
-    z-index: 1;
+    z-index: -1;
   }
   #ready{
     background-color:transparent;
@@ -26,45 +26,43 @@
     font-size:40px;
     display: block;
     position: relative;
-    z-index: 2;
-  }
-  #response_buttons{
-    display: block;
-    position: relative;
-    z-index: 5;
+    z-index: -1;
   }
   #word{
     background-color:transparent;
     color:black;
     cursor: default;
     font-size:40px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     display: block;
     position: relative;
-    z-index: 3;
+    z-index: -1;
   }
   #No {
     background-color: transparent;
     background-image: url(../../collector-experiments/User/Assets/LOP/no.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    transform: translateX(-1270%) scale(450%);
+    transform: translate(-1270%, -35px) scale(450%);
     border: none;
     opacity: 0.25;
     color: transparent;
     display: inline-block;
+    position: relative;
+    z-index: 1;
   }
   #Yes {
     background-color: transparent;
-    z-index: 0;
     background-image: url(../../collector-experiments/User/Assets/LOP/yes.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    transform: translateX(1250%) scale(450%);
+    transform: translate(1250%, -35px) scale(450%);
     border: none;
     opacity: 0.25;
     color: transparent;
     display: inline-block;
+    position: relative;
+    z-index: 2;
   }
   #No:hover, #Yes:hover {
         opacity: 1;
@@ -73,42 +71,44 @@
   /**************** 
    Spinner Styling 
    ****************/
-   
   #spinner {
-    width: 10rem;
-    height: 10rem;
-    border-width: 10px;
+    width: 5rem;
+    height: 5rem;
+    border-width: 8px;
   }
   
-  /**************** 
-    Mobile Styling
-   ****************/
+  /*************** 
+   Mobile Styling
+   ***************/
    
   #No.mobile {
     opacity: 1;
-    position: relative;
-    z-index: 998;
+    z-index: 999;
   }
   #Yes.mobile {
     opacity: 1;
-    position: relative;
-    z-index: 999;
+    z-index: 998;
   }
 </style>
+<!-------------->
+<!--HTML Below-->
+<!-------------->
 <input type='hidden' id='keyboard_response' name='keyboard_response' value="-1"/>
 <input type='hidden' id='lop_rt' name='lop_rt'/>
 <div id='container'>
-  <div id='instruction'>{{text}}</div>
+  <div id='instruction'>{{text}}{{rhyme}}</div>
   <div id='ready'>Ready?</div>
   <div id='word'><b>{{word}}</b></div>
-  <div id='response_buttons'>
     <input id='No' class="button_response" type='button' value='0'/>
     <input id='Yes' class="button_response" type='button' value='1'/>
-  </div>
+
   <div id="spinner" class="spinner-border text-primary" role="status">
     <span class="sr-only"></span>
   </div>
 </div>
+<!-------------------->
+<!--JavaScript Below-->
+<!-------------------->
 <script>
 
   // If mobile assign a new class
@@ -135,8 +135,6 @@
     $('#Yes, #No').show()
     $('#word').css('transform', 'translateY(13px)') // This just adjusts the position of the word so it doesn't appear to move when the buttons appear
   },'3000');
-  Phase.set_timer(function(){$('#word').hide()},'7000');
-  Phase.set_timer(function(){$('#Yes, #No').hide()},'7000');
   
   var responseTime;
   var rtTime;
@@ -158,6 +156,6 @@
     $('#spinner').show();
     setTimeout(function(){
       Phase.submit()
-    },2000);
+    },1500);
   });
 </script>

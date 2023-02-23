@@ -1,4 +1,4 @@
-<!--'lop_trials' PhaseTypes-->
+<!--'lop_encode' PhaseTypes-->
 <script src="../../collector-experiments/User/Assets/Global/js/detect_mobile.js"></script>
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <style>
@@ -28,12 +28,6 @@
     position: relative;
     z-index: -1;
   }
-  /* #response_buttons{*/
-  /*  background-color: transparent;*/
-  /*  display: block;*/
-  /*  position: relative;*/
-  /*  z-index: 1;*/
-  /*}*/
   #word{
     background-color:transparent;
     color:black;
@@ -99,9 +93,9 @@
    ****************/
    
   #spinner {
-    width: 10rem;
-    height: 10rem;
-    border-width: 10px;
+    width: 5rem;
+    height: 5rem;
+    border-width: 8px;
   }
   
   /*************** 
@@ -126,10 +120,8 @@
   <div id='instruction'>{{text}}{{rhyme}}</div>
   <div id='ready'>Ready?</div>
   <div id='word'><b>{{word}}</b></div>
-  <!--<div id='response_buttons'>-->
     <input id='No' class="button_response" type='button' value='0'/>
     <input id='Yes' class="button_response" type='button' value='1'/>
-  <!--</div>-->
   <div id='too_slow'>Too Slow</div>
   <div id="spinner" class="spinner-border text-primary" role="status">
     <span class="sr-only"></span>

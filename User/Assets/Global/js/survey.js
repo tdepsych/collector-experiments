@@ -1373,19 +1373,22 @@ function write(type, row) {
     for (var i = 0; i < options.length; i++) {
       var this_button = $("<input>");
       this_button
+        .attr("type", "radio")  
         .attr("name", "survey_" + row["item_name"])
-        .attr("type", "radio")
         .attr("autocomplete", "off")
         .attr("id", "likert_" + row["row_no"] + "_" + i)
         .attr("onclick", "survey_js.likert_update(this)")
         .attr("value", values[i])
+        .addClass("btn-check")
+      this_div.append(this_button);
+      var this_label = $("<label>");
+      this_label
         .addClass("btn")
         .addClass("btn-outline-primary")
-        .addClass("survey_btn")
-        .addClass(row["item_name"] + "_item row_" + row["row_no"])
+        .attr("for", "likert_" + row["row_no"] + "_" + i)
         .css("width", row["btn_width"])
         .html(clean_item(options[i]));
-      this_div.append(this_button);
+      this_div.append(this_label);
     }
     this_div.append(side_text[1]);
     this_html += this_div[0].outerHTML;
@@ -1413,10 +1416,11 @@ function write(type, row) {
     for (var i = 0; i < options.length; i++) {
       var this_cell = this_row.insertCell();
       var this_div = $("<div>");
-      this_div.addClass("custom-control");
-      this_div.addClass("custom-radio");
+      // this_div.addClass("custom-control").addClass("custom-radio");
+      this_div.addClass("custom-control").addClass("custom-radio").addClass("checkboxes");
       var this_input = $("<input>");
       this_input[0].type = "radio";
+      this_input[0].value = options[i];
       this_input[0].id = row["item_name"] + i;
       this_input[0].name = "survey_" + row["item_name"];
       this_input

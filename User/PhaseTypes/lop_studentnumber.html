@@ -12,12 +12,12 @@
     background-image: url(../../collector-experiments/User/Assets/LOP/start.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    height: 260px;
-    width: 536px;
-    transform: scale(25%);
+    height: 15%;
+    background-size: 125px;
+    width: 100%;
     border: none;
     opacity: .25;
-    margin: 0 auto;
+    margin: 50px auto 0 auto;
     display: block;
     position: relative;
     z-index: 999;
@@ -45,11 +45,10 @@
     column-gap: 2rem;
     row-gap: 2rem;
     margin: 50px auto 0;
+    text-align: right;
   }
   #grid label {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    margin-top: 12px;
   }
   input#studentage {
     margin-bottom: 5px;
@@ -92,7 +91,8 @@
   
   /* Mobile CSS */
   #container.mobile {
-    width: 85%;
+    /*transform: scale(0.75);*/
+    /*width: 800px;*/
   }
 </style>
 <input type='hidden' id='ppt_studentnumber' name='ppt_studentnumber' value="-1"/>
@@ -120,27 +120,26 @@
   <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
 </div>
 <script>
-
-  if(isMobile.any()) {
-    $('#container').addClass('mobile');
-    $('#proceed_button').css('opacity', '1');
-    $('#grid').css('grid-template-columns','48% 48% 22%')
-  }
+  $('select').on('change', function(){
+    var $this = $(this);
+    if (!$this.val()) {
+      $('#gender_tick').html("❌").css('visibility', 'visible');
+    } else {
+      $this.css('color','#000').css('text-transform','capitalize');
+      $('#gender_tick').html("✔").css('visibility', 'visible');
+    }
+  });
+  
   
   var Form = document.getElementById("container");
   $('#proceed_button').css('pointer-events','none');
+  
+  if(isMobile.any()) {
+    $('#container').addClass('mobile');
+    $('#proceed_button').css('opacity', '1');
+  } 
 
   Form.onchange = function() {
-    
-    $('select').on('change', function(){
-      var $this = $(this);
-      if (!$this.val()) {
-        $('#gender_tick').html("❌").css('visibility', 'visible');
-      } else {
-        $this.css('color','#000').css('text-transform','capitalize');
-        $('#gender_tick').html("✔").css('visibility', 'visible');
-      }
-    });
     
     if ($('#studentnumber').val().length == 0){
       //do nothing 

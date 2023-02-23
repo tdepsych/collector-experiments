@@ -1,56 +1,40 @@
 <script src="../../collector-experiments/User/Assets/Global/detect_mobile.js"></script>
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
-<!--General CSS-->
 <style>
-  #instruct_text {
-    width: 800px;
+  /************ 
+   General CSS 
+   ************/
+  #container {
     text-align: center;
     font-size: 30px;
   }
   #proceed_button {
     background-color: transparent;
-    z-index: 0;
     background-image: url(../../collector-experiments/User/Assets/LOP/play.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    transform: scale(600%);
+    height: 80px;
     border: none;
     opacity: .25;
-    margin: 0 auto;
+    margin: 50px auto 0 auto;
     display: block;
+    position: relative;
+    z-index: 999;
   }
   #proceed_button:hover {
     opacity: 1;
   }
-  #trial_contents {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 99vh;
-    }
-  #btnFlex {
-    display: flex;
-    width: 100%;
-    height: 10%;
-    margin-top: 10%;
-    align-items: flex-start;
+
+  /***********
+   Mobile CSS
+   ***********/
+  #container.mobile {
+    width: 85%;
   }
 </style>
-<!--Mobile CSS-->
-<style>
-  #instruct_text.mobile {
-    width: 800px;
-    text-align: center;
-    font-size: 30px;
-    transform: scale(0.75);
-  }
-</style>
-<div id="trial_contents">
-  <div id="instruct_text">
+<div id="container">
     {{text}}
-    <div id="btnFlex"> <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button> </div>
-  </div>
+    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
 </div>
 <script>
   if(isMobile.any()) {

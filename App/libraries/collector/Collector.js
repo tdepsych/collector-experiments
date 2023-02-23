@@ -288,10 +288,10 @@ Collector.custom_alert= function(msg, duration) {
     }
   },duration);
 
-  // This allows you to quickly clear the save message by pressing escape
+  // This just removes the "saved" message alert instantly by pressing escape
   $(document).keyup(function(e) {
     if (e.key === "Escape") {
-        $(this).remove();
+      $(this_alert).remove();
     }
   });
 }
