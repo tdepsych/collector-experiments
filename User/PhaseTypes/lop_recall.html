@@ -126,7 +126,7 @@
   },0);
   
   // This controls the hiding/showing of text as each trial progresses
-  $('#ready, #word, #response_buttons, #spinner').hide()     // start by hiding everything
+  $('#ready, #word, #Yes, #No, #spinner').hide()     // start by hiding everything
   Phase.set_timer(function(){$('#instruction').hide()},'1500');         //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
   Phase.set_timer(function(){$('#ready').show()},'1500');
   Phase.set_timer(function(){$('#ready').hide()},'2500');
