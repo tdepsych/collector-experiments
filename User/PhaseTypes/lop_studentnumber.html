@@ -27,7 +27,7 @@
   }
   #studentnumber, #studentage,  #studentgender {
     height: 65px;
-    width: 300px;
+    width: 100%;
     font-size: 20px;
     font-weight: 500;
     letter-spacing: 10px;
@@ -41,15 +41,14 @@
   }
   #grid {
     display: grid;
-    grid-template-columns: 300px 400px;
+    grid-template-columns: 48% 30% 22%;
     column-gap: 2rem;
     row-gap: 2rem;
-    width: 61%;
     margin: 50px auto 0;
+    text-align: right;
   }
   #grid label {
-    vertical-align: top;
-    text-align: left;
+    margin-top: 12px;
   }
   input#studentage {
     margin-bottom: 5px;
@@ -77,18 +76,17 @@
     color: rgba(0,0,0,1.0);
     text-transform: capitalize;
   }
-  
+  .ticks{
+    text-align: left;
+  }
   #number_tick {
-    position: absolute;
-    transform: translate(640px, 10px);
+    transform: translate(-30px, 12px);
   }
   #age_tick {
-    position: absolute;
-    transform: translate(640px, 120px);
+    transform: translate(-30px, 12px);
   }
   #gender_tick {
-    position: absolute;
-    transform: translate(640px, 220px);
+    transform: translate(-30px, 12px);
   }
   
   /* Mobile CSS */
@@ -104,10 +102,10 @@
   <div id='grid'>
     <label>Please enter your 8-digit student number:</label>
     <input type="text" id="studentnumber" placeholder="e.g. 12345678" maxlength="8" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-    <div id="number_tick" class="ticks" style="display:none;"></div>
+    <div id="number_tick" class="ticks" style="visibility: hidden;"></div>
     <label>Please enter your age:</label>
     <input type="text" id="studentage" placeholder="in years" maxlength="2" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-    <div id="age_tick" class="ticks" style="display:none;"></div>
+    <div id="age_tick" class="ticks" style="visibility: hidden;;"></div>
     <label>Please select the gender you identify with:</label>
     <select id="studentgender" class="colorMeBlue noValue">
       <option class="grey" disabled selected>--Options--</option>
@@ -116,7 +114,7 @@
       <option value="3">Non-Binary</option>
       <option value="0">Prefer to not say</option>
     </select>
-    <div id="gender_tick" class="ticks" style="display:none;"></div>
+    <div id="gender_tick" class="ticks" style="visibility: hidden;"></div>
   </div>
   <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
 </div>
@@ -124,10 +122,10 @@
   $('select').on('change', function(){
     var $this = $(this);
     if (!$this.val()) {
-      $('#gender_tick').html("❌").show();
+      $('#gender_tick').html("❌").css('visibility', 'visible');
     } else {
       $this.css('color','#000').css('text-transform','capitalize');
-      $('#gender_tick').html("✔").show();
+      $('#gender_tick').html("✔").css('visibility', 'visible');
     }
   });
   
@@ -145,17 +143,17 @@
     if ($('#studentnumber').val().length == 0){
       //do nothing 
     } else if ($('#studentnumber').val().length == 8){
-      $('#number_tick').html("✔").show();
+      $('#number_tick').html("✔").css('visibility', 'visible');
     } else {
-      $('#number_tick').html("❌").show()
+      $('#number_tick').html("❌").css('visibility', 'visible');
     }
     
     if ($('#studentage').val().length == 0){
       //do nothing 
     } else if ($('#studentage').val().length == 2){
-      $('#age_tick').html("✔").show();
+      $('#age_tick').html("✔").css('visibility', 'visible');
     } else {
-      $('#age_tick').html("❌").show();
+      $('#age_tick').html("❌").css('visibility', 'visible');
     }
     
     var ppt_studentnumber = studentnumber.value
