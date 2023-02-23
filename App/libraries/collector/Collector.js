@@ -287,6 +287,17 @@ Collector.custom_alert= function(msg, duration) {
       });
     }
   },duration);
+
+  // This allows you to quickly clear the save message by pressing escape
+  $(document).keyup(function(e) {
+    if (e.key === "Escape") {
+      $(this).animate({
+        opacity:  "0"
+      }, 500, "swing", function() {
+        $(this).remove();
+      });
+    }
+  });
 }
 Collector.detect_context= function(){
   //turn to false to make use of eel and python
