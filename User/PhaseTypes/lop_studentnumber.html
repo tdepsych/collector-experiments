@@ -92,9 +92,7 @@
   
   /* Mobile CSS */
   #container.mobile {
-    /*transform: scale(0.75);*/
-    width: 100%;
-    border:1px red solid;
+    width: 85%;
   }
 </style>
 <input type='hidden' id='ppt_studentnumber' name='ppt_studentnumber' value="-1"/>
@@ -122,26 +120,27 @@
   <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
 </div>
 <script>
-  $('select').on('change', function(){
-    var $this = $(this);
-    if (!$this.val()) {
-      $('#gender_tick').html("❌").css('visibility', 'visible');
-    } else {
-      $this.css('color','#000').css('text-transform','capitalize');
-      $('#gender_tick').html("✔").css('visibility', 'visible');
-    }
-  });
-  
-  
-  var Form = document.getElementById("container");
-  $('#proceed_button').css('pointer-events','none');
-  
+
   if(isMobile.any()) {
     $('#container').addClass('mobile');
     $('#proceed_button').css('opacity', '1');
-  } 
+    $('#grid').css('grid-template-columns','48% 48% 22%')
+  }
+  
+  var Form = document.getElementById("container");
+  $('#proceed_button').css('pointer-events','none');
 
   Form.onchange = function() {
+    
+    $('select').on('change', function(){
+      var $this = $(this);
+      if (!$this.val()) {
+        $('#gender_tick').html("❌").css('visibility', 'visible');
+      } else {
+        $this.css('color','#000').css('text-transform','capitalize');
+        $('#gender_tick').html("✔").css('visibility', 'visible');
+      }
+    });
     
     if ($('#studentnumber').val().length == 0){
       //do nothing 

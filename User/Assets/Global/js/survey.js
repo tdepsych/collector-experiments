@@ -1371,8 +1371,10 @@ function write(type, row) {
     var options = row["answers"].split("|");
     var values = row["values"].split("|");
     for (var i = 0; i < options.length; i++) {
-      var this_button = $("<button>");
+      var this_button = $("<input>");
       this_button
+        .attr("name", "survey_" + row["item_name"])
+        .attr("type", "radio")
         .attr("autocomplete", "off")
         .attr("id", "likert_" + row["row_no"] + "_" + i)
         .attr("onclick", "survey_js.likert_update(this)")
