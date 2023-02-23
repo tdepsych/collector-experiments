@@ -82,33 +82,13 @@
   /* Mobile Styling
    ******************/
    
-  #No.button_response.mobile {
-    position:absolute;
-    background-color: transparent;
-    z-index: 0;
-    background-image: url(../../collector-experiments/User/Assets/LOP/no.svg);
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+  #No.mobile {
     transform: translate(-1250%, -85%) scale(450%);
-    border: none;
-    display:none;
-    color: transparent;
     opacity: 1;
-    z-index: 998;
   }
-  #Yes.button_response.mobile {
-    position:absolute;
-    background-color: transparent;
-    z-index: 0;
-    background-image: url(../../collector-experiments/User/Assets/LOP/yes.svg);
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+  #Yes.mobile {
     transform: translate(1250%, -85%) scale(450%);
-    border: none;
-    display:none;
-    color: transparent;
     opacity: 1;
-    z-index: 999;
   }
 </style>
 <input type='hidden' id='keyboard_response' name='keyboard_response' value="-1"/>
@@ -118,8 +98,8 @@
   <div id='ready'>Ready?</div>
   <div id='word'><b>{{word}}</b></div>
   <div id='response_buttons'>
-    <input id='No' class='button_response' type='button' value='0'/>
-    <input id='Yes' class='button_response' type='button' value='1'/>
+    <input id='No' type='button' value='0'/>
+    <input id='Yes' type='button' value='1'/>
   </div>
   <div id="spinner" class="spinner-border text-primary" role="status">
     <span class="sr-only"></span>
@@ -134,27 +114,12 @@
   }
   
   // This is replaces Phase.elapsed() for working out RTs
-  var baselineTime = '';
+  var baselineTime;
   Phase.set_timer(function() {
     rawTime = (new Date()).getTime(); 
     baselineTime = rawTime + 3000;
     console.log("Baseline: " + baselineTime);
   },0);
-  
-  // This just monitors for a response click and ends the trial
-  $('.button_response').click(function(){
-    var class_list = this.className.split(' ');
-    var end_trial = false;
-    if(class_list.indexOf('end_trial') !== -1){
-      end_trial = true;
-    }
-    class_list.splice(class_list.indexOf('end_trial'),1);
-    class_list.splice(class_list.indexOf('button_response'),1);
-    $('input[name = "' + class_list + '"]').val(this.value);
-    if(end_trial){
-      Phase.submit();
-    }
-  });
   
   // This controls the hiding/showing of text as each trial progresses
   $('#ready, #word, #response_buttons, #spinner').hide()     // start by hiding everything
@@ -169,8 +134,8 @@
   Phase.set_timer(function(){$('#word').hide()},'7000');
   Phase.set_timer(function(){$('#Yes, #No').hide()},'7000');
   
-  var responseTime = '';
-  var rtTime = '';
+  var responseTime;
+  var rtTime;
   
   $('.button_response').click(function(){
     responseTime = (new Date()).getTime() 

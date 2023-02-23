@@ -75,7 +75,6 @@
   }
   #Yes {
     background-color: transparent;
-    z-index: 0;
     background-image: url(../../collector-experiments/User/Assets/LOP/yes.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -101,31 +100,13 @@
   /* Mobile Styling
    ******************/
    
-  #No.button_response.mobile {
-    position:absolute;
-    background-color: transparent;
-    background-image: url(../../collector-experiments/User/Assets/LOP/no.svg);
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+  #No.mobile {
     transform: translate(-1250%, -85%) scale(450%);
-    border: none;
-    display: inline-block;
-    color: transparent;
     opacity: 1;
-    z-index: 998;
   }
-  #Yes.button_response.mobile {
-    position:absolute;
-    background-color: transparent;
-    background-image: url(../../collector-experiments/User/Assets/LOP/yes.svg);
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+  #Yes.mobile {
     transform: translate(1250%, -85%) scale(450%);
-    border: none;
-    display: inline-block;
-    color: transparent;
     opacity: 1;
-    z-index: 999;
   }
 </style>
 <input type='hidden' id='keyboard_response' name='keyboard_response' value="-1"/>
@@ -135,8 +116,8 @@
   <div id='ready'>Ready?</div>
   <div id='word'><b>{{word}}</b></div>
   <div id='response_buttons'>
-    <input id='No' class='button_response' type='button' value='0'/>
-    <input id='Yes' class='button_response' type='button' value='1'/>
+    <input id='No' type='button' value='0'/>
+    <input id='Yes' type='button' value='1'/>
   </div>
   <div id='too_slow'>Too Slow</div>
   <div id="spinner" class="spinner-border text-primary" role="status">
@@ -145,55 +126,42 @@
 </div>
 <script>
 
-  // If mobile assign a new class
+  // If mobile assign a new class to the yes/no buttons to allow us to reposition them
   if(isMobile.any()) {
     $('#Yes').addClass('mobile');
     $('#No').addClass('mobile');
   }
   
-  // This is replaces Phase.elapsed() for working out RTs
-  var baselineTime = '';
+  // This is replaces Phase.elapsed() for working out RTs. It then adjusts the time to account for the delay before the target words appears on screen
+  var baselineTime;
   Phase.set_timer(function() {
     rawTime = (new Date()).getTime(); 
     baselineTime = rawTime + 3000;
     console.log("Baseline: " + baselineTime);
   },0);
   
-  // This just monitors for a response click and ends the trial
-  $('.button_response').click(function(){
-    var class_list = this.className.split(' ');
-    var end_trial = false;
-    if(class_list.indexOf('end_trial') !== -1){
-      end_trial = true;
-    }
-    class_list.splice(class_list.indexOf('end_trial'),1);
-    class_list.splice(class_list.indexOf('button_response'),1);
-    $('input[name = "' + class_list + '"]').val(this.value);
-    if(end_trial){
-      Phase.submit();
-    }
-  });
-  
   // This controls the hiding/showing of text as each trial progresses
-  $('#ready, #word, #response_buttons, #too_slow, #spinner').hide()     // start by hiding everything
+  $('#ready, #word, #response_buttons, #too_slow, #spinner').hide()  // Start Trial (hides everything except 'Instructions')
   Phase.set_timer(function(){$('#instruction').hide()},'1500');         //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
-  Phase.set_timer(function(){$('#ready').show()},'1500');
-  Phase.set_timer(function(){$('#ready').hide()},'2500');
-  Phase.set_timer(function(){$('#word').show()},'2500');
+  Phase.set_timer(function(){$('#ready').show()},'1500');               // Show 'Ready'
+  Phase.set_timer(function(){$('#ready').hide()},'2500');               // Hide 'Ready'
+  Phase.set_timer(function(){$('#word').show()},'2500');                // Show 'Word'
   Phase.set_timer(function(){
-    $('#response_buttons').show()
-    $('#word').css('transform', 'translateY(13px)') // This just adjusts the position of the word so it doesn't appear to move when the buttons appear
+    $('#response_buttons').show()                                       // Show 'Response Buttons'
+    $('#word').css('transform', 'translateY(13px)')                     // Adjusts the word position so it doesn't appear to move when the buttons appear
   },'3000');
-  Phase.set_timer(function(){$('#word').hide()},'7000');
-  Phase.set_timer(function(){$('#Yes, #No').hide()},'7000');
-  Phase.set_timer(function(){$('#too_slow').show()},'7000');
-  Phase.set_timer(function(){$('#too_slow').hide()},'8000');
-  Phase.set_timer(function(){$('#spinner').show()},'8000');
-  Phase.set_timer(function(){Phase.submit()},'9000');
+  Phase.set_timer(function(){$('#word').hide()},'7000');                // Hide 'Word'
+  Phase.set_timer(function(){$('#Yes, #No').hide()},'7000');            // Hide 'Response Buttons'
+  Phase.set_timer(function(){$('#too_slow').show()},'7000');            // Show 'Too Slow'
+  Phase.set_timer(function(){$('#too_slow').hide()},'8000');            // Hide 'Too Slow'
+  Phase.set_timer(function(){$('#spinner').show()},'8000');             // Show 'Loading Spinner'
+  Phase.set_timer(function(){Phase.submit()},'9000');                // End Trial If No Response Given
   
-  var responseTime = '';
-  var rtTime = '';
+  // Empty variables we then fill with the response times
+  var responseTime;
+  var rtTime;
   
+  // Actions if a response is given
   $('.button_response').click(function(){
     responseTime = (new Date()).getTime() 
     rtTime =  responseTime - baselineTime

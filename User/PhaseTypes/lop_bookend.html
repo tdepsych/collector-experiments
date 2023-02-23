@@ -2,17 +2,12 @@
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <style>
   /* General CSS */
-  #instruct_text {
-    margin: auto;
-    width: 800px;
-    /*padding: 15%;*/
-    /*max-height: 600px;*/
+  #container {
     text-align: center;
     font-size: 30px;
   }
   #proceed_button {
     background-color: transparent;
-    z-index: 0;
     background-image: url(../../collector-experiments/User/Assets/LOP/start.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -33,14 +28,12 @@
   }
 </style>
 <div id="container">
-  <div id="instruct_text">
     {{text}}
-    <div> <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button> </div>
-  </div>
+    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
 </div>
 <script>
   if(isMobile.any()) {
-    $('#trial_contents').addClass('mobile');
+    $('#container').addClass('mobile');
     $('#proceed_button').css('opacity', '1');
   }
 </script>

@@ -82,6 +82,22 @@
     text-transform: capitalize;
   }
   
+  #number_tick {
+    position: absolute;
+    top: 12px;
+    right: 120px;
+  }
+  #age_tick {
+    position: absolute;
+    top: 120px;
+    right: 120px;
+  }
+  #gender_tick {
+    position: absolute;
+    bottom: 28px;
+    right: 120px;
+  }
+  
   /* Mobile CSS */
   #container.mobile {
     transform: scale(0.75);
@@ -96,8 +112,10 @@
     <div id='grid'>
       <label>Please enter your 8-digit student number:</label>
       <input type="text" id="studentnumber" placeholder="e.g. 12345678" maxlength="8" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+      <span id="number_tick" class="ticks" style="display:none;">✔</span>
       <label>Please enter your age:</label>
       <input type="text" id="studentage" placeholder="in years" maxlength="2" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+      <span id="age_tick" class="ticks" style="display:none;">✔</span>
       <label>Please select the gender you identify with:</label>
       <select id="studentgender" class="colorMeBlue noValue">
         <option class="grey" disabled selected>--Options--</option>
@@ -106,6 +124,7 @@
         <option value="3">Non-Binary</option>
         <option value="0">Prefer to not say</option>
       </select>
+      <span id="gender_tick" class="ticks" style="display:none;">✔</span>
     </div>
     <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
   </div>
@@ -113,23 +132,37 @@
 <script>
   $('select').on('change', function(){
     var $this = $(this);
-    
     if (!$this.val()) {
-        //do nothing
+      $('#gender_tick').hide();
     } else {
-        $this.css('color','#000').css('text-transform','capitalize');
+      $this.css('color','#000').css('text-transform','capitalize');
+      $('#gender_tick').show();
     }
   });
   
   
   var Form = document.getElementById("container");
   $('#proceed_button').css('pointer-events','none');
+  
   if(isMobile.any()) {
     $('#container').addClass('mobile');
     $('#proceed_button').css('opacity', '1');
   } 
 
   Form.onchange = function() {
+    
+    if ($('#studentnumber').val().length == 8){
+      $('#number_tick').show();
+    } else {
+      $('#number_tick').hide();
+    }
+    
+    if ($('#studentage').val().length == 2){
+      $('#age_tick').show();
+    } else {
+      $('#age_tick').hide();
+    }
+    
     var ppt_studentnumber = studentnumber.value
     var ppt_studentage = studentage.value
     var ppt_studentgender = $('#studentgender').val();

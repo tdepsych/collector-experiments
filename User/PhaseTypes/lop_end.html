@@ -2,12 +2,7 @@
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <style>
   /* general css */
-  #instruct_text {
-    margin: auto;
-    width: 800px;
-    padding: 0px;
-    max-height: 600px;
-    text-align: center;
+  #container {
     font-size: 30px;
   }
   #proceed_button {
@@ -33,9 +28,8 @@
     }
 </style>
 <div id="container">
-  <div id="instruct_text">{{text}}
-    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
-  </div>
+  {{text}}
+  <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
 </div>
 <script>
   if(isMobile.any()) {
