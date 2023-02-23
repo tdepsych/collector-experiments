@@ -1,15 +1,10 @@
 <!--'lop_studentnumber' PhaseType - this also collects age/gender demographcis-->
 <script src="../../collector-experiments/User/Assets/Global/js/detect_mobile.js"></script>
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
-<meta name="viewport" content="device-width, initial-scale=1">
+<!--<meta name="viewport" content="device-width, initial-scale=1">-->
 <style>
   /* General CSS */
-  #instruct_text {
-    margin: auto;
-    width: 800px;
-    padding: 0px;
-    max-height: 600px;
-    text-align: center;
+  #container {
     font-size: 25px;
   }
   #proceed_button {
@@ -75,6 +70,7 @@
     background-repeat: no-repeat;
     background-position: right .5rem center;
     background-size: 1em;
+    background-color: #FFF;
   }
   
   option:not(:first-of-type) {
@@ -85,50 +81,47 @@
   #number_tick {
     position: absolute;
     top: 12px;
-    right: 120px;
+    right: 275px;
   }
   #age_tick {
     position: absolute;
     top: 120px;
-    right: 120px;
+    right: 275px;
   }
   #gender_tick {
     position: absolute;
     bottom: 28px;
-    right: 120px;
+    right: 275px;
   }
   
   /* Mobile CSS */
   #container.mobile {
     transform: scale(0.75);
-    margin:auto;
   }
 </style>
 <input type='hidden' id='ppt_studentnumber' name='ppt_studentnumber' value="-1"/>
 <input type='hidden' id='ppt_studentage' name='ppt_studentage' value="-1"/>
 <input type='hidden' id='ppt_studentgender' name='ppt_studentgender' value="-1"/>
-<div id="container">
-  <div id="instruct_text">{{text}}
-    <br><br>Before you begin, please complete the short demographics questionnaire below. Once completed, please press start to begin the study.<br>
-    <div id='grid'>
-      <label>Please enter your 8-digit student number:</label>
-      <input type="text" id="studentnumber" placeholder="e.g. 12345678" maxlength="8" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-      <span id="number_tick" class="ticks" style="display:none;">✔</span>
-      <label>Please enter your age:</label>
-      <input type="text" id="studentage" placeholder="in years" maxlength="2" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-      <span id="age_tick" class="ticks" style="display:none;">✔</span>
-      <label>Please select the gender you identify with:</label>
-      <select id="studentgender" class="colorMeBlue noValue">
-        <option class="grey" disabled selected>--Options--</option>
-        <option value="1">Male</option>
-        <option value="2">Female</option>
-        <option value="3">Non-Binary</option>
-        <option value="0">Prefer to not say</option>
-      </select>
-      <span id="gender_tick" class="ticks" style="display:none;">✔</span>
-    </div>
-    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
+<div id="container">{{text}}
+  <br><br>Before you begin, please complete the short demographics questionnaire below. Once completed, please press start to begin the study.<br>
+  <div id='grid'>
+    <label>Please enter your 8-digit student number:</label>
+    <input type="text" id="studentnumber" placeholder="e.g. 12345678" maxlength="8" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+    <span id="number_tick" class="ticks" style="display:none;">✔</span>
+    <label>Please enter your age:</label>
+    <input type="text" id="studentage" placeholder="in years" maxlength="2" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+    <span id="age_tick" class="ticks" style="display:none;">✔</span>
+    <label>Please select the gender you identify with:</label>
+    <select id="studentgender" class="colorMeBlue noValue">
+      <option class="grey" disabled selected>--Options--</option>
+      <option value="1">Male</option>
+      <option value="2">Female</option>
+      <option value="3">Non-Binary</option>
+      <option value="0">Prefer to not say</option>
+    </select>
+    <span id="gender_tick" class="ticks" style="display:none;">✔</span>
   </div>
+  <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
 </div>
 <script>
   $('select').on('change', function(){
