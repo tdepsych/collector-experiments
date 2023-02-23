@@ -1417,24 +1417,26 @@ function write(type, row) {
       var this_cell = this_row.insertCell();
       var this_div = $("<div>");
       // this_div.addClass("custom-control").addClass("custom-radio");
-      this_div.addClass("custom-control").addClass("custom-radio").addClass("checkboxes");
+      this_div.addClass("custom-control").addClass("custom-radio").addClass("checkboxes_h");
       var this_input = $("<input>");
       this_input[0].type = "radio";
       this_input[0].value = options[i];
       this_input[0].id = row["item_name"] + i;
       this_input[0].name = "survey_" + row["item_name"];
       this_input
-        .addClass("custom-control-input")
-        .addClass("response")
-        .addClass(row["this_class"])
-        .addClass(row["custom-control"])
-        .addClass(row["custom-radio"])
-        .addClass(row["item_name"] + "_item")
-        .addClass("row_" + row["row_no"]);
+      .addClass("custom-control-input").addClass(row["this_class"]).addClass("custom-control").addClass("custom-radio").addClass("response").addClass("option-input radio").addClass(row["item_name"] + "_item_row_" + row["row_no"]);
+        // .addClass("custom-control-input")
+        // .addClass("response")
+        // .addClass(row["this_class"])
+        // .addClass(row["custom-control"])
+        // .addClass(row["custom-radio"])
+        // .addClass(row["item_name"] + "_item")
+        // .addClass("row_" + row["row_no"]);
       var this_label = $("<label>");
       this_label[0].htmlFor = row["item_name"] + i;
       this_label[0].innerText = options[i];
-      this_label.addClass("custom-control-label");
+      // this_label.addClass("custom-control-label");
+      this_label.addClass("custom-control-label").addClass("radioLabelHolder");
       this_div.append(this_input).append(this_label);
       this_cell.innerHTML = this_div[0].outerHTML;
     }
@@ -1457,13 +1459,7 @@ function write(type, row) {
       this_input[0].value = options[i];
       this_input[0].name = "survey_" + row["item_name"];
       this_input
-        .addClass("custom-control-input")
-        .addClass(row["this_class"])
-        .addClass("custom-control")
-        .addClass("custom-radio")
-        .addClass("response")
-        .addClass("option-input radio")
-        .addClass(row["item_name"] + "_item_row_" + row["row_no"]);
+        .addClass("custom-control-input").addClass(row["this_class"]).addClass("custom-control").addClass("custom-radio").addClass("response").addClass("option-input radio").addClass(row["item_name"] + "_item_row_" + row["row_no"]);
       var this_label = $("<label>");
       this_label[0].htmlFor = row["item_name"] + i;
       this_label.addClass("custom-control-label").addClass("radioLabelHolder");

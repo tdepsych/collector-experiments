@@ -1,8 +1,8 @@
 item_name,text,type,answers,values,optional,btn_width,shuffle_question,
 Instructions1,"<h2><span>Self-Evaluation Questionnaire</span></h2><br>
 <span class=""instruc"">Thank you for making your word ratings. Please think back to the last word you repeated aloud for 20 second. Take a moment to think how you felt <span style=""text-decoration: underline;"">after</span> repeating the word?<br><br>To respond, please rate each statement below by clicking on a number from 1 to 7, whereby <b>1 = you strongly disagree</b> with the statement, while <b>7 = you strongly agree</b> with the statement.</span><br/><br/>",instruct,,,,,,
-cd_e1,I was in despair,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,132px,on,
-cd_e2,I resented it,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,132px,on,
+cd_e1,I was in despair,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,132px,no,
+cd_e2,I resented it,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,132px,no,
 cd_e3,I felt disappointed with myself,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,132px,on,
 cd_e4,I felt scared,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,132px,on,
 cd_e5,I felt hollow,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,132px,on,
