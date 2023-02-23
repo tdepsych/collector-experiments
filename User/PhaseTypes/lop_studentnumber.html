@@ -1,7 +1,7 @@
 <!--'lop_studentnumber' PhaseType - this also collects age/gender demographcis-->
 <script src="../../collector-experiments/User/Assets/Global/js/detect_mobile.js"></script>
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
-<!--<meta name="viewport" content="device-width, initial-scale=1">-->
+<meta name="viewport" content="device-width, initial-scale=1">
 <style>
   /* General CSS */
   #instruct_text {
@@ -30,7 +30,7 @@
   #proceed_button:hover {
     opacity: 1;
   }
-  #studentnumber, #studentage {
+  #studentnumber, #studentage,  #studentgender {
     height: 65px;
     width: 300px;
     font-size: 20px;
@@ -52,7 +52,7 @@
     row-gap: 2rem;
     transform: translateX(11%);
   }
-  #grid #label {
+  #grid label {
     vertical-align: top;
     text-align: left;
   }
@@ -63,122 +63,25 @@
     outline: none;
   }
   /* Dropdown CSS */
-
-  /********************* Custom Select **********************/
-  /** Adapted from Yusuf (https://codepen.io/yy/pen/vOYqYV) */
-  /**********************************************************/
-  .custom-select {
-    position: relative;
-    display: inline-block;
-    background-color: #FFFFFF;
-  }
-  .custom-select-wrapper {
-    text-align: left;
-  }
-  .custom-select-trigger {
-    position: relative;
-    display: block;
-    width: 300px;
-    padding: 10 50px 0 22px;
-    font-size: 20px;
-    font-weight: 500;
-    color: rgba(0, 0, 0);
+  select {
     text-align: center;
-    border-radius: 35px;
+    text-align-last: center;
+    -moz-text-align-last: center;
+    color: rgba(0,0,0,0.25);
+    text-transform: lowercase;
     cursor: pointer;
-    border: 5px #78bce9 solid;
-    height: 65px;
-    letter-spacing: 3px;
-    line-height: 50px;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='cornflowerblue' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: right .5rem center;
+    background-size: 1em;
   }
-  .custom-select-trigger:after {
-    position: absolute;
-    display: block;
-    content: '';
-    width: 10px; height: 10px;
-    top: 50%; right: 25px;
-    margin-top: -3px;
-    border-bottom: 1px solid #78bce9;
-    border-right: 1px solid #78bce9;
-    transform: rotate(45deg) translateY(-50%);
-    transition: all .4s ease-in-out;
-    transform-origin: 50% 0;
+  
+  option:not(:first-of-type) {
+    color: rgba(0,0,0,1.0);
+    text-transform: capitalize;
   }
-  .custom-select.opened .custom-select-trigger:after {
-    margin-top: 3px;
-    transform: rotate(-135deg) translateY(-50%);
-  }
-  .custom-options {
-    position: absolute;
-    display: block;
-    top: 100%; left: 34.5%; right: 0;
-    margin: 15px 0;
-    border: 1px solid #b5b5b5;
-    border-radius: 25px;
-    box-sizing: border-box;
-    box-shadow: 0 2px 1px rgba(0,0,0,.07);
-    background: #fff;
-    transition: all .4s ease-in-out;
-    
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transform: translateY(-15px);
-  }
-  .custom-select.opened .custom-options {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: all;
-    transform: translateY(0);
-    width:200px
-  }
-  .custom-options:before {
-    position: absolute;
-    display: block;
-    content: '';
-    bottom: 98.5%;
-    right: 30px;
-    width: 15px;
-    height: 15px;
-    margin-bottom: -4px;
-    border-top: 1px solid #b5b5b5;
-    border-left: 1px solid #b5b5b5;
-    background: #fff;
-    transform: rotate(45deg);
-    transition: all .4s ease-in-out;
-  }
-  .option-hover:before {
-    background: #dfeefb;
-  }
-  .custom-option {
-    position: relative;
-    display: block;
-    padding: 0 22px;
-    border-bottom: 1px solid #b5b5b5;
-    font-size: 18px;
-    font-weight: 600;
-    color: #b5b5b5;
-    line-height: 47px;
-    cursor: pointer;
-    transition: all .4s ease-in-out;
-  }
-  .custom-option:first-of-type {
-    border-radius: 25px 25px 0 0;
-  }
-  .custom-option:last-of-type {
-    border-bottom: 0;
-    border-radius: 0 0 25px 25px;
-  }
-  .custom-option:hover,
-  .custom-option.selection {
-    background: #dfeefb;
-    color:000;
-  }
-  .custom-select-placeholder {
-    opacity: 0.25;
-    letter-spacing: 10px;
-    line-height: 50px;
-  }
+  
   /* Mobile CSS */
   #container.mobile {
     transform: scale(0.75);
@@ -191,12 +94,13 @@
   <div id="instruct_text">{{text}}
     <br><br>Before you begin, please complete the short demographics questionnaire below. Once completed, please press start to begin the study.<br>
     <div id='grid'>
-      <span id="label">Please enter your 8-digit student number:</span>
+      <label>Please enter your 8-digit student number:</label>
       <input type="text" id="studentnumber" placeholder="e.g. 12345678" maxlength="8" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-      <span id="label">Please enter your age:</span>
+      <label>Please enter your age:</label>
       <input type="text" id="studentage" placeholder="in years" maxlength="2" pattern="[0-9]*" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
-      <span id="label">Please select the gender you identify with:</span>
-      <select id="studentgender" class="custom-select" placeholder="options" >
+      <label>Please select the gender you identify with:</label>
+      <select id="studentgender" class="colorMeBlue noValue">
+        <option class="grey" disabled selected>--Options--</option>
         <option value="1">Male</option>
         <option value="2">Female</option>
         <option value="3">Non-Binary</option>
@@ -207,6 +111,17 @@
   </div>
 </div>
 <script>
+  $('select').on('change', function(){
+    var $this = $(this);
+    
+    if (!$this.val()) {
+        //do nothing
+    } else {
+        $this.css('color','#000').css('text-transform','capitalize');
+    }
+  });
+  
+  
   var Form = document.getElementById("container");
   $('#proceed_button').css('pointer-events','none');
   if(isMobile.any()) {
@@ -224,11 +139,8 @@
     document.getElementById("ppt_studentgender").value = ppt_studentgender;
     if (ppt_studentnumber.length == 8) {
       $('#proceed_button').css('pointer-events','auto');
-      console.log("hello");
     } else {
       $('#proceed_button').css('pointer-events','none');
-      console.log("goodbye");
     }
   }
 </script>
-<script src="../../collector-experiments/User/Assets/LOP/select_javascript.js"></script>
