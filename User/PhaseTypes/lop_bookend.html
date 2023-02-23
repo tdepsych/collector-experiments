@@ -1,7 +1,9 @@
 <script src="../../collector-experiments/User/Assets/Global/js/detect_mobile.js"></script>
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <style>
-  /* General CSS */
+  /************ 
+   General CSS 
+   ************/
   #container {
     text-align: center;
     font-size: 30px;
@@ -22,12 +24,14 @@
   #proceed_button:hover {
     opacity: 1;
   }
-  /* Mobile CSS */
+  /***********
+   Mobile CSS
+   ***********/
   #container.mobile {
-    transform: scale(0.75);
+    transform: scale(0.95);
   }
 </style>
-<div id="container">
+<div id="container" class="mobile">
     {{text}}
     <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
 </div>

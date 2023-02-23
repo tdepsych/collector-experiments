@@ -2,8 +2,9 @@
 <script src="../../collector-experiments/User/Assets/Global/js/detect_mobile.js"></script>
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <style>
-  /* General Styling
-   ******************/
+  /**************** 
+   General Styling
+   ****************/
   
   body{
     background-color:white;
@@ -32,7 +33,6 @@
     display: block;
     position: relative;
     z-index: 5;
-    top: 100px;
   }
   #word{
     background-color:transparent;
@@ -67,7 +67,7 @@
     background-image: url(../../collector-experiments/User/Assets/LOP/no.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    transform: translateX(-150px) scale(450%);
+    transform: translateX(-1270%) scale(450%);
     border: none;
     opacity: 0.25;
     color: transparent;
@@ -78,7 +78,7 @@
     background-image: url(../../collector-experiments/User/Assets/LOP/yes.svg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    transform: translateX(140px) scale(450%);
+    transform: translateX(1250%) scale(450%);
     border: none;
     opacity: 0.25;
     color: transparent;
@@ -88,8 +88,9 @@
         opacity: 1;
   }
     
-  /* Spinner Styling 
-   *******************/
+  /**************** 
+   Spinner Styling 
+   ****************/
    
   #spinner {
     width: 10rem;
@@ -97,18 +98,24 @@
     border-width: 10px;
   }
   
-  /* Mobile Styling
-   ******************/
+  /*************** 
+   Mobile Styling
+   ***************/
    
   #No.mobile {
-    transform: translate(-1250%, -85%) scale(450%);
     opacity: 1;
+    position:relative;
+    z-index: 999;
   }
   #Yes.mobile {
-    transform: translate(1250%, -85%) scale(450%);
     opacity: 1;
+    position:relative;
+    z-index: 998;
   }
 </style>
+<!-------------->
+<!--HTML Below-->
+<!-------------->
 <input type='hidden' id='keyboard_response' name='keyboard_response' value="-1"/>
 <input type='hidden' id='lop_rt' name='lop_rt'/>
 <div id='container'>
@@ -124,6 +131,9 @@
     <span class="sr-only"></span>
   </div>
 </div>
+<!-------------------->
+<!--JavaScript Below-->
+<!-------------------->
 <script>
 
   // If mobile assign a new class to the yes/no buttons to allow us to reposition them
