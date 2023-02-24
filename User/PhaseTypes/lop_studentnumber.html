@@ -25,12 +25,12 @@
   #proceed_button:hover {
     opacity: 1;
   }
-  #studentnumber, #studentage,  #studentgender {
+  #studentnumber, #studentage,  #studentgender, #device {
     height: 65px;
     width: 100%;
     font-size: 20px;
     font-weight: 500;
-    letter-spacing: 10px;
+    letter-spacing: 8px;
     padding: 10px;
     border: 5px #78bce9 solid;
     border-radius: 35px;
@@ -41,14 +41,16 @@
   }
   #grid {
     display: grid;
-    grid-template-columns: 48% 30% 22%;
+    grid-template-columns: 50% 35% 20%;
     column-gap: 2rem;
     row-gap: 2rem;
     margin: 50px auto 0;
     text-align: right;
   }
   #grid label {
-    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
   input#studentage {
     margin-bottom: 5px;
@@ -79,20 +81,14 @@
   .ticks{
     text-align: left;
   }
-  #number_tick {
-    transform: translate(-30px, 12px);
-  }
-  #age_tick {
-    transform: translate(-30px, 12px);
-  }
-  #gender_tick {
-    transform: translate(-30px, 12px);
+  #number_tick, #age_tick, #gender_tick, #device_tick {
+    transform: translate(-10px, 12px);
   }
   
   /* Mobile CSS */
   #container.mobile {
     width: 85%;
-    grid-template-columns: 48% 40% 22%;
+    grid-template-columns: 48% 50% 22%;
   }
 </style>
 <input type='hidden' id='ppt_studentnumber' name='ppt_studentnumber' value="-1"/>
@@ -113,20 +109,37 @@
       <option value="1">Male</option>
       <option value="2">Female</option>
       <option value="3">Non-Binary</option>
+      <option value="4">Trans</option>
       <option value="0">Prefer to not say</option>
     </select>
     <div id="gender_tick" class="ticks" style="visibility: hidden;"></div>
+    <label>Please select the type of device you are using:</label>
+    <select id="device" class="colorMeBlue noValue">
+      <option class="grey" disabled selected>--Options--</option>
+      <option value="1">Laptop/PC</option>
+      <option value="2">Mobile/Tablet</option>
+    </select>
+    <div id="device_tick" class="ticks" style="visibility: hidden;"></div>
   </div>
   <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
 </div>
 <script>
-  $('select').on('change', function(){
+  $('#studentgender').on('change', function(){
     var $this = $(this);
     if (!$this.val()) {
       $('#gender_tick').html("❌").css('visibility', 'visible');
     } else {
       $this.css('color','#000').css('text-transform','capitalize');
       $('#gender_tick').html("✔").css('visibility', 'visible');
+    }
+  });
+  $('#device').on('change', function(){
+    var $this = $(this);
+    if (!$this.val()) {
+      $('#device_tick').html("❌").css('visibility', 'visible');
+    } else {
+      $this.css('color','#000').css('text-transform','capitalize');
+      $('#device_tick').html("✔").css('visibility', 'visible');
     }
   });
   
