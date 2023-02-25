@@ -305,12 +305,11 @@ Project = {
               if(attempt_no > 2){
                 alert("This data has not submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
               } else {
-                console.log("Data was submitted")
-                // redcap_post(
-                //   this_url,
-                //   this_data,
-                //   attempt_no
-                // );
+                redcap_post(
+                  this_url,
+                  this_data,
+                  attempt_no
+                );
               }
             }
           }
