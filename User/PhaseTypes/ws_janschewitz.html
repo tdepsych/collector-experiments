@@ -14,6 +14,7 @@
   }
   #proceed_button{
     margin-bottom: 50px!important;
+    transform: translateX(-15px)!important;
   }
   input {
     margin-right: 50px!important;
@@ -21,11 +22,12 @@
     transform: scale(1.25)!important;
   }
   #checkboxes {
-    margin: auto;
-    width: 67%;
+    margin: 0 auto;
+    width: 645px;
+    transform: translate(10px, 10px);
   }
   hr {
-    transform: translate(-22px,-10px);
+    transform: translateY(-10px);
   }
   #endRadio:after {
     display: none;
@@ -212,8 +214,8 @@
             <div class="rightAlign3">I use '{{word}}' all the time</div>
           </div>
       </section>
-      <hr>
     </div>
+    <hr>
     <p id="q2Label"><b>Familiarity:</b> How often do you <b>encounter</b> the word '{{word}}'? For example, you may hear it used in a conversation,
   on the radio, in a movie or on TV, or you may read the word in a magazine, book, on the Internet, etc. Give a 1–9 rating:</p>
     <div id="checkboxes">
@@ -235,10 +237,10 @@
             <div class="rightAlign3">I encounter '{{word}}' all the time</div>
           </div>
         </section>
-        <hr>
       </div>
+      <hr>
     </section>
-    <p id="q3Label"><b>Offensiveness:</b> How offensive is this word '{{word}}' to <b>YOU</b>? Give a 1–9 rating:</p><br>
+    <p id="q3Label"><b>Offensiveness:</b> How offensive is this word '{{word}}' to <b>YOU</b>? Give a 1–9 rating:</p>
     <div id="checkboxes">
       <input type="radio" name="jq3" class="option-input response1 radio jq3" value="1">
       <input type="radio" name="jq3" class="option-input response2 radio jq3" value="2">
@@ -257,8 +259,8 @@
           <div class="rightAlign2">'{{word}}' is very offensive to me</div>
         </div>
       </section>
-      <hr>
     </div>
+    <hr>
     <p id="q4Label"><b>Tabooness:</b> How taboo or <b>socially unacceptable</b>  is the word '{{word}}' to <b>peope in general</b>? Imagine the word being used at work, in a classroom, at a religious service, at a cocktail party, with friends, with family, etc. Give a 1–9 rating:</p>
     <div id="checkboxes">
       <input type="radio" name="jq4" class="option-input response1 radio jq4" value="1">
@@ -279,9 +281,9 @@
           <div class="rightAlign3">Very taboo</div>
         </div>
       </section>
-      <hr>
     </div>
-    <p id="q5Label"><b>Valence:</b> How positive or negative is the word '{{word}}'? Give a 1–9 rating:</p><br>
+    <hr>
+    <p id="q5Label"><b>Valence:</b> How positive or negative is the word '{{word}}'? Give a 1–9 rating:</p>
     <div id="checkboxes">
       <input type="radio" name="jq5" class="option-input response1 radio jq5" value="1">
       <input type="radio" name="jq5" class="option-input response2 radio jq5" value="2">
@@ -301,8 +303,8 @@
           <div class="rightAlign3">Strongly positive</div>
         </div>
       </section>
-      <hr>
     </div>
+    <hr>
     <p id="q6Label"><b>Arousal:</b> How How exciting is the word '{{word}}'? Consider how much the word <b>grabs your attention</b>.<br>Give a 1–9 rating:</p>
     <div id="checkboxes">
       <input type="radio" name="jq6" class="option-input response1 radio jq6" value="1">
@@ -323,8 +325,8 @@
           <div class="rightAlign3">Very arousing</div>
         </div>
       </section>
-      <hr>
     </div>
+    <hr>
     <p id="q7Label"><b>Imagery:</b> How easily does the word '{{word}}' bring an image to mind? When you think of the word, can you picture what it is? If this is easy, the word is high in imagery. For example, a word like “apple” has more imagery than a word like “honor.” Give a 1–9 rating:</p>
     <div id="checkboxes">
       <input type="radio" name="jq7" class="option-input response1 radio jq7" value="1">

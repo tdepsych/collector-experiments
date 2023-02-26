@@ -1,14 +1,45 @@
+// List of fields not to send to Redcap
+parent.parent.remove_fields = [
+  "buffer",
+  "condition_",
+  "condition_buffer",
+  "condition_end_message",
+  "condition_fullscreen",
+  "condition_notes",
+  "condition_participant_id",
+  "condition_redcap_url",
+  "condition_skip_quality",
+  "condition_start_message",
+  "end_message",
+  "fullscreen",
+  "item",
+  "location",
+  "max_time",
+  "name",
+  "organization",
+  "participant_id",
+  "post_0_phase_end_date",
+  "post_0_phase_end_ms",
+  "post_0_timezone",
+  "post_0_window_inner_height",
+  "post_0_window_inner_width",
+  "procedure",
+  "redcap_url",
+  "repeat",
+  "repository",
+  "shuffle_1",
+  "shuffle_2",
+  "skip_quality",
+  "start_message",
+  "stimuli",
+  "weight",
+]
+
 project_json = {};
 var home_dir;
 
-var start_date_time = new Date()
-  .toLocaleDateString("en-US")
-  .replaceAll("/","_") +
-  "_" +
-  new Date()
-    .toLocaleTimeString()
-    .replaceAll(":","_");
-
+// This needs to be a global variable or Phase.add_response() cannot use it
+parent.parent.start_date_time = new Date().toLocaleDateString("en-US").replaceAll("/","_") +"_" +new Date().toLocaleTimeString().replaceAll(":","_");
 /*
  * Objects
  */
@@ -175,13 +206,12 @@ Project = {
     response_data[post_string + "_window_inner_width"] = window.innerWidth;
     response_data[post_string + "_window_inner_height"] = window.innerHeight;
 
-    response_data[post_string + "_US_date"] = new Date().toLocaleDateString("en-US");
+    response_data[post_string + "_us_date"] = new Date().toLocaleDateString("en-US");
     response_data[post_string + "_time"]     = new Date().toLocaleTimeString();;
     response_data[post_string + "_timezone"] = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
     response_data[post_string + "_phase_end_ms"] = phase_end_ms;
-    response_data[post_string + "_rt_ms"] =
-      phase_end_ms - response_data[post_string + "_phase_start_ms"];
+    response_data[post_string + "_rt_ms"] = phase_end_ms - response_data[post_string + "_phase_start_ms"];
     response_data[post_string + "_phase_end_date"] = new Date(
       parseInt(phase_end_ms, 10)
     ).toString("MM/dd/yy HH:mm:ss");
@@ -265,21 +295,12 @@ Project = {
       Object.keys(phase_responses).forEach(function(old_key){
         clean_phase_responses[old_key] = phase_responses[old_key];
       });
-      delete(clean_phase_responses[
-        "condition_redcap_url"
-      ]);
-      delete(clean_phase_responses[
-        "_"
-      ]);
+      parent.parent.remove_fields.forEach(adjust_redcap_array)
+        function adjust_redcap_array(field) {
+          delete(clean_phase_responses[field]);
+        };
 
-      delete(clean_phase_responses[
-        "post_0_US_date"
-      ]);
-
-      clean_phase_responses.record_id = phase_responses.username +
-        "_" +
-        start_date_time;
-
+      clean_phase_responses.record_id = phase_responses.username + "_" + parent.parent.start_date_time;
 
       clean_phase_responses['redcap_repeat_instance'] = project_json.phase_no;
       clean_phase_responses['redcap_repeat_instrument'] = "main";
@@ -300,18 +321,19 @@ Project = {
           data: this_data,
           success: function(result){
             console.log("result");
-            if(result.toLowerCase().indexOf("error") !== -1 | result.toLowerCase().indexOf("count") === -1){
-              attempt_no++;
-              if(attempt_no > 2){
-                alert("This data has not submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
-              } else {
-                redcap_post(
-                  this_url,
-                  this_data,
-                  attempt_no
-                );
-              }
-            }
+            // if(result.toLowerCase().indexOf("error") !== -1 | result.toLowerCase().indexOf("count") === -1){
+            //   attempt_no++;
+            //   if(attempt_no > 2){
+            //     // alert("This data has not submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
+            //     console.log("This data may not have been submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
+            //   } else {
+            //     redcap_post(
+            //       this_url,
+            //       this_data,
+            //       attempt_no
+            //     );
+            //   }
+            // }
           }
         });
       };
@@ -592,26 +614,18 @@ Project = {
         post_val = "post " + project_json.post_no + " ";
       }
       var max_time;
-      if (
-        typeof project_json.parsed_proc[project_json.phase_no][
-          post_val + "max_time"
-        ] === "undefined"
-      ) {
+      if (typeof project_json.parsed_proc[project_json.phase_no][post_val + "max_time"] === "undefined") {
         max_time = "user";
       } else {
-        max_time =
-          project_json.parsed_proc[project_json.phase_no][
-            post_val + "max_time"
-          ];
+        max_time = project_json.parsed_proc[project_json.phase_no][post_val + "max_time"];
       }
       if ((max_time !== "") & (max_time.toLowerCase() !== "user")) {
         var this_phase_no = project_json.phase_no;
         var this_post_no = project_json.post_no;
         Project.phase_timer = new Collector.timer(function () {
-          if (
-            this_phase_no === project_json.phase_no &&
-            this_post_no === project_json.post_no
-          ) {
+          if (this_phase_no === project_json.phase_no && this_post_no === project_json.post_no) {
+            // Project.finish_phase();
+            project_json.inputs = jQuery("[name]");
             Project.finish_phase();
           }
         }, parseFloat(max_time) * 1000);
@@ -1438,7 +1452,7 @@ function precrypted_data(decrypted_data, message) {
 
   bootbox.prompt({
     title: message,
-    value: $("#participant_code").val() + "_" + start_date_time + ".csv",
+    value: $("#participant_code").val() + "_" + parent.parent.start_date_time + ".csv",
     callback: function (result) {
       if (result !== null) {
         save_csv(result, Papa.unparse(downloadable_csv));

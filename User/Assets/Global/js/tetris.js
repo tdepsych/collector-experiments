@@ -540,7 +540,7 @@ var canvasTetris = function(parentNode) {
 		this.setScore(newScore);
 		var tetrisScore = newScore;
 		// $("#tetrisScore").val(tetrisScore);
-		document.getElementById("PlayerScore").value = tetrisScore;
+		document.getElementById('tetris_score').value = tetrisScore;
 		console.log("Score: "+ tetrisScore)
 		if (game.speed > 100 && (Math.floor(newScore / 1000) > Math.floor(oldScore / 1000))) {
 			game.speed -= 100;

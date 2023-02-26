@@ -16,5 +16,5 @@ item,phasetype,survey,max_time,notes,text,shuffle_1,task_title,task_body_text,we
 0,tde_survey,adbdemo.csv,user,,"Phase.set_timer(function(){ 
     $("".sona_item"").attr('maxlength','8');
   },250);",,,,,
-0,upload_data,,10000,,,,,,,
+0,upload_data,,6,,Uploading REDCap Markers,,,,,
 0,ws_debrief,,user,,A title about investigating the effects of arousal and presentation on word recognition,,,,,

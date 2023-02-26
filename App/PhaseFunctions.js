@@ -2,13 +2,110 @@
  *	PhaseFunctions.js
  *	Collector Kitten/Cat release (2019-2023) © Dr. Anthony Haffey (team@someopen.solutions)
 */
+var start_date_time = new Date().toLocaleDateString("en-US").replaceAll("/","_") + "_" + new Date().toLocaleTimeString().replaceAll(":","_");
+var remove_fields = [
+  "buffer",
+  "condition_",
+  "condition_buffer",
+  "condition_end_message",
+  "condition_fullscreen",
+  "condition_notes",
+  "condition_participant_id",
+  "condition_redcap_url",
+  "condition_skip_quality",
+  "condition_start_message",
+  "end_message",
+  "fullscreen",
+  "item",
+  "location",
+  "max_time",
+  "name",
+  "organization",
+  "participant_id",
+  "post_0_phase_end_date",
+  "post_0_phase_end_ms",
+  "post_0_timezone",
+  "post_0_window_inner_height",
+  "post_0_window_inner_width",
+  "procedure",
+  "redcap_url",
+  "repeat",
+  "repository",
+  "shuffle_1",
+  "shuffle_2",
+  "skip_quality",
+  "start_message",
+  "stimuli",
+  "weight",
+]
+// Collector Phase Functions
 if (typeof Phase !== "undefined") {
-  Phase.add_response = function (response_obj) {
-    // response_obj.inserted_time_ms = new Date().getTime();
-    // response_obj.inserted_time_date = new Date().toString("MM/dd/yy HH:mm:ss");
-    parent.parent.project_json.responses.push(response_obj);
-  };
 
+  /* ADD A NEW RESPONSE WITHOUT ENDING PHASE 
+   * *************************************** */
+  Phase.add_response = function (response_obj) {
+
+    /* If we don't have a repeat number set have a repeat_no set - then this is the first
+       time we've added a response and so set the repeat_no to be the current phase number 
+    */
+    if(typeof(parent.parent.project_json.repeat_no) == "undefined"){
+      parent.parent.project_json.repeat_no = parent.parent.project_json.phase_no;
+    }
+
+    /* Then we want to add 1 to the repeat_no
+    */
+    parent.parent.project_json.repeat_no++;
+
+    // This pushed the responses
+    parent.parent.project_json.responses.push(response_obj);
+
+    parent.parent.project_json.phase_resp_no++
+
+
+    // If we have a REDCap URL set do the following....
+   if(typeof(parent.parent.project_json.this_condition.redcap_url) !== "undefined"){
+
+       var phase_responses = response_obj;
+
+       console.log("phase_responses");
+      //  var this_location = parent.parent.project_json.location.split("/")[0].replaceAll("-","") + "_" + parent.parent.project_json.location.split("/")[1].replaceAll("-","");
+
+       var clean_phase_responses = {};
+
+      Object.keys(phase_responses).forEach(function(old_key){
+        clean_phase_responses[old_key] = phase_responses[old_key];
+      });
+      
+      // This removes the data we don't need in REDCap based on the list at the top.
+      parent.parent.remove_fields.forEach(adjust_redcap_array)
+        function adjust_redcap_array(field) {
+          delete(clean_phase_responses[field]);
+        };
+
+      // This sets the REDCap record ID.  
+      clean_phase_responses.record_id = parent.parent.$("#participant_code").val() + "_" + parent.parent.start_date_time;
+      console.log(clean_phase_responses.record_id)
+      clean_phase_responses['redcap_repeat_instance'] = parent.parent.project_json.repeat_no;
+      clean_phase_responses['redcap_repeat_instrument'] = "main";
+       
+       console.log("just before the ajax");
+       function redcap_post(this_url,this_data){
+        $.ajax({
+          type: "POST",
+          url: this_url,
+          crossDomain: true,
+          data: this_data,
+
+         success: function(result){
+           console.log("result");
+           //console.log(result);
+           //Phase.submit();
+         }
+       });
+     };
+     redcap_post(parent.parent.project_json.this_condition.redcap_url,clean_phase_responses);
+  };
+  };
   Phase.elapsed = function () {
     alert("Don't use this function, as it has an average lag of 10-20ms. This code hasn't been deleted as this might be addressed in the future. Instead, you can use something like \n\n Phase.set_timer(function(){\nbaseline_time_manual = (new Date()).getTime();\n},0);\n\n to capture the time the phase started.");
     if (Phase.post_no == "") {
@@ -25,13 +122,21 @@ if (typeof Phase !== "undefined") {
     return parent.parent.project_json.study_vars[this_name];
   };
   Phase.get_proc = function (this_name) {
-    return parent.parent.project_json.all_procs[this_name];
+    // return parent.parent.project_json.all_procs[this_name]; <- this line just inserts the stimuli sheet as a comma separated list
+    required_proc_sheet = parent.parent.project_json.all_procs[this_name];
+    var required_proc_sheetConverted = csvToArray(required_proc_sheet)
+    return required_proc_sheetConverted
+    // {CGD} It would be good to make this function swap the loaded procedure sheet so you could alter a study based on prior performance if needed
   };
   Phase.get_stim = function (this_name) {
-    return parent.parent.project_json.all_stims[this_name];
+    // return parent.parent.project_json.all_stims[this_name]; <- this line just inserts the stimuli sheet as a comma separated list
+    required_stim_sheet = parent.parent.project_json.all_stims[this_name];
+    var required_stim_sheetConverted = csvToArray(required_stim_sheet)
+    return required_stim_sheetConverted
+    // {CGD} It would be good to make this function swap the loaded stimuli sheet so you could alter a task based on prior performance if needed
   };
-  Phase.go_to = function (new_trial_no) {
-    parent.parent.Project.go_to(new_trial_no);
+  Phase.go_to = function (new_phase_no) {
+    parent.parent.Project.go_to(new_phase_no);
   };
   Phase.set = function (this_name, this_content) {
     if (typeof parent.parent.project_json.study_vars == "undefined") {
@@ -131,3 +236,33 @@ $(window).bind("keydown", function (event) {
   }
   $(document).unbind('keydown');
 });
+
+// "csv to array" Function
+// - https://github.com/nsebhastian/javascript-csv-array-example/blob/master/index.html
+function csvToArray(str, delimiter = ",") {
+
+  // slice from start of text to the first \n index
+  // use split to create an array from string by delimiter
+  const headers = str.slice(0, str.indexOf("\n")).split(delimiter);
+
+  // slice from \n index + 1 to the end of the text
+  // use split to create an array of each csv value row
+  const rows = str.slice(str.indexOf("\n") + 1).split("\n");
+
+  // Map the rows
+  // split values from each row into an array
+  // use headers.reduce to create an object
+  // object properties derived from headers:values
+  // the object passed as an element of the array
+  const arr = rows.map(function (row) {
+    const values = row.split(delimiter);
+    const el = headers.reduce(function (object, header, index) {
+      object[header] = values[index];
+      return object;
+    }, {});
+    return el;
+  });
+
+  // return the array
+  return arr;
+}

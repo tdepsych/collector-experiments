@@ -159,7 +159,7 @@
     }
   }
 </style>
-<input type="hidden" name="ws_wordList" id="ws_wordList"/>
+<input type="hidden" name="ws_wordlist" id="ws_wordlist"/>
 <input type="hidden" name="grid_letters" id="grid_letters" value=""/>
 <button id="zoomOut" tabindex="-1"></button>
 <button id="zoomIn" tabindex="-1"></button>
@@ -185,11 +185,16 @@
   // This is set through the 'max_time' column in the procedure spreadsheet
   
   // Call in the trial time length (set in the max_time column of the procedure spreadsheet
-  var task_time_limit = {{max_time}};
+  var task_time_limit = ({{max_time}} *1000 )- 1;
   var progress_time = ({{max_time}} + 's')
+  
+  Phase.set_timer(function(){
+    Phase.submit()
+  },task_time_limit);
 
   // // First, work out if this is the first wordsearch attempted. This is needed as it dictates where to select the stimuli words from later
   var firstWordsearch = '';
+  var which_ws; 
   
   if (parent.parent.firstWordsearch == 1) {
     firstWordsearch = 'no';
@@ -220,7 +225,9 @@
   
   // if (parent.parent.global_count == 1) {
   if (firstWordsearch == 'yes') {
-    console.log("First Wordsearch"); 
+    console.log("First Wordsearch");
+    which_ws = "ws_1";
+    
     parent.parent.firstWordsearch = 1;
     // Get the source words from the procedure sheet  
     var source_words_nt = 'book,bake,chair,glass,sink,cork,knot,rain,ship,vest,flirt,joke,lust,star,gift,bird,cake,grin,silk,wise,debt,evil,fire,rage,fight,crime,dirt,sick,fault,tomb';
@@ -249,7 +256,7 @@
     //console.log("First Words: " + grid_stimuli); 
     
     // Set the value of a hidden input to be the stimuli words. 
-    document.getElementById("ws_wordList").value = grid_stimuli; // this saves them in our data spreadsheet meaning we know what words were on what wordsearch puzzle
+    document.getElementById("ws_wordlist").value = grid_stimuli; // this saves them in our data spreadsheet meaning we know what words were on what wordsearch puzzle
     
     // Get the five unused taboo words
     var TabooRemain = source_words_t.slice(5,10);
@@ -265,7 +272,8 @@
        
   } else {
     // As we're only running 2 wordsearches, we can simply pass in the previous array and we're good to go
-    //console.log("Second Wordsearch"); 
+    console.log("Second Wordsearch"); 
+    which_ws = "ws_2";
     
     // Shuffle the stimuli array  
     var grid_stimuli = shuffle(parent.parent.stimuli_TabooRemain); // Shuffle the selected words to randomise the displayed word list
@@ -273,7 +281,7 @@
     //console.log("Second Words: " + grid_stimuli); 
     
     // Set the value of a hidden input to be the stimuli words. 
-    document.getElementById("ws_wordList").value = grid_stimuli; // this saves them in our data spreadsheet meaning we know what words were on what wordsearch puzzle
+    document.getElementById("ws_wordlist").value = grid_stimuli; // this saves them in our data spreadsheet meaning we know what words were on what wordsearch puzzle
   }
 
 
@@ -603,8 +611,8 @@ var gridArray = [];
           var cvEl = document.createElement('canvas');
           cvEl.setAttribute('class', 'ws-col');
           // These lines control the sizes of the spacing around the indivudal letters
-          cvEl.setAttribute('width', 25);
-          cvEl.setAttribute('height', 25);
+          cvEl.setAttribute('width', 30);
+          cvEl.setAttribute('height', 30);
   
           // Fill text in middle center
           var x = cvEl.width / 2,
@@ -714,6 +722,7 @@ var gridArray = [];
     words[0] += selected[i].letter;
   }
   words.push(words[0].split('').reverse().join(''));
+  console.log(which_ws)
   
   // This section changes the yellow blocks to green by adding a css class (ws-found)
   if (this.settings.words.indexOf(words[0]) > -1 || this.settings.words.indexOf(words[1]) > -1) {
@@ -732,9 +741,7 @@ var gridArray = [];
           wordListItems[i].innerHTML = "<del>"+wordListItems[i].innerHTML+"</del>";
           //Increment solved words.
           this.solved++;
-          //console.log(this.solved);
           // var time_elapsed = Phase.set_timer(function(){baseline_time_manual = (new Date()).getTime();},0);
-          // console.log(time_elapsed);
           $(".ws_title").html("Found " + this.solved + " out of " + this.settings.words.length + " words so far" );
         }
       }
@@ -761,7 +768,14 @@ var gridArray = [];
        It then compares the first and second variables, removing any duplicate items. What's left is the word we want.
     */    
     var second = $("del").map(function(){return $(this).html();}).get();
-    var word_found = second.filter(function (item) {return first.indexOf(item) === -1;});
+    var word_found = second.filter(function (item) {return first.indexOf(item) === -1});
+    if (word_found == null){
+      word_found = second;
+    } else {
+      //do nothing
+    }
+    word_found = word_found.toString()
+    console.log("The word found was: "+word_found)
     var timetoFind = '';
     var wordCount = this.solved;
     first = second;
@@ -771,15 +785,16 @@ var gridArray = [];
     } else {
       old_word_time = old_word_time;
     }
-              
+    
     // Get the time when the word was found
     setTimeout(function(){
       new_word_time = (new Date()).getTime();
       timetoFind = new_word_time - old_word_time;
       old_word_time = new_word_time;
       console.log("time to find: " + timetoFind);
+      console.log("this is ws: " + which_ws);
       Phase.add_response({
-        username: parent.parent.$("#participant_code").val(),
+        ws_number: which_ws,
         ws_score: wordCount,
         ws_word: word_found,
         ws_time: timetoFind
@@ -796,7 +811,15 @@ var gridArray = [];
 
     if(this.solved == this.settings.words.length){
       // Phase.submit(parent.parent.global_count++) // this code ends the task
-      Phase.submit() // this code ends the task
+        // Phase.add_response({
+        //   ws_number: which_ws,
+        //   ws_score: wordCount,
+        //   ws_word: word_found,
+        //   ws_time: timetoFind
+        // });
+      setTimeout(function(){
+        Phase.submit() // this code ends the task
+      },500);
     }
     // This changes the tiles red for 1 second if they are not correct
   } else {

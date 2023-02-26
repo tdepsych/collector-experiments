@@ -61,7 +61,7 @@
     }
   }
 </style>
-<input type="hidden" id="PlayerScore" name="PlayerScore" value=""/>
+<input type="hidden" id="tetris_score" name="tetris_score" value=""/>
 <button id="zoomOut" tabindex="-1"></button>
 <button id="zoomIn" tabindex="-1"></button>
 <div id="container">
@@ -76,6 +76,11 @@
 	 </div>
 </div>
 <script>
+
+  var task_time_limit = ({{max_time}} *1000 )- 1;
+  Phase.set_timer(function(){
+    Phase.submit()
+  },task_time_limit);
 
   var old_study = '{{notes}}';
   if (old_study == 'seconds') {
@@ -106,7 +111,5 @@
     }
     createProgressbar('progressbar1', progress_time); // If you want to change how long the bar lasts, alter the '300s' (it's total seconds)
     },0);
-    
-    Phase.set_timer(function(){Phase.submit()},task_time_limit);
   
 </script>
