@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
 <button id="zoomOut" tabindex="-1"></button>
 <button id="zoomIn" tabindex="-1"></button>
 <div id="container">
@@ -6,17 +7,30 @@
   <br>
   <p>{{task_body_text}}</p>
   <br>
-  <a class="btn btn-primary" id="sona_btn" href="#">{{text}}</a>
+  <a class="btn btn-outline-primary" id="sona_btn" href="#" target="_blank">Click to return to SONA and be awared your credit</a>
 </div>
 <script>
-console.log(document.location.href)
 
-var initial_url = document.location.href;
-var url_array = initial_url.split('sona=');
-console.log(url_array)
-var sonaID = url_array[1];
-console.log(sonaID)
-var updated_url = 'https://rdg-psychology.sona-systems.com/webstudy_credit.aspx?experiment_id=2517&credit_token=59b2f527265f4395b4cb7a38d9dc53b9&survey_code=' + sonaID;
-$("#sona_btn").attr("href", updated_url)
-console.log(updated_url)
+  $("#Save").click(function() {
+    e = $.Event("keydown");
+    e.which = 83; // S
+    e.ctrlKey = true; // CTRL
+    $(document).trigger(e);
+  });
+  
+  var initial_url = document.location.href;
+  var url_array = initial_url.split('sona=');
+  var sonaID = url_array[1];
+  var updated_url = '{{text}}' + sonaID;
+  $("#sona_btn").attr("href", updated_url)
+  
+  Phase.set_timer(function(){
+    if (sonaID == null){
+      appropriate_message("Your SONA ID was not correctly captured by the programme when you started the study, this means we need to manually award you your credit for completing the study. Please contact the researchers to arrange this.");
+      $("#sona_btn").hide();
+    } else {
+      // do nothing
+    }  
+  },0)
+  
 </script>

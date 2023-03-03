@@ -23,3 +23,8 @@ window.onload = function(){
   $("#zoomIn").click(zoom_in);
   $("#zoomOut").click(zoom_out);
 }
+
+// Just hiding this in here as it's mainly a globally loaded file - might have to move one day
+function appropriate_message(this_message) {
+  bootbox.alert(this_message);
+}
