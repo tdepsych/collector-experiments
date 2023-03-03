@@ -847,12 +847,18 @@ function final_phase() {
         );
       }
       if(typeof(project_json.this_condition.sona_url) !== "undefined"){
+
+        var initial_url = document.location.href;
+        var url_array = initial_url.split('sona=');
+        var sonaID = url_array[1];
+
         if(typeof(Project.get_vars.sona_id) === "undefined"){
           bootbox.alert("There seems to be a problem with how the researcher has set up the connection FROM SONA to Collector. Please tell them to include '&sona_id=%SURVEY_CODE%' towards the end of the URL.");
         } else {
           $("#download_div").append(
             $("<div>")
-              .html("You can now return to SONA by clicking <a href='" + project_json.this_condition.sona_url + "&sona_id=" + Project.get_vars.sona_id + "' id='sona_link' target='_blank'>here</a>")
+              // .html("You can now return to SONA by clicking <a href='" + project_json.this_condition.sona_url + "&sona_id=" + Project.get_vars.sona_id + "' id='sona_link' target='_blank'>here</a>")
+              .html("You can now return to SONA by clicking <a href='" + project_json.this_condition.sona_url + "&sona_id=" + sonaID + "' id='sona_link' target='_blank'>here</a>")
           );
         }
       }
