@@ -11,9 +11,11 @@
 <script>
 console.log(document.location.href)
 
-var urlArray = window.location.pathname.split('sona=');
-var sonaID = urlArray[1];
+var initial_url = document.location.href;
+var url_array = initial_url.split('sona=');
+var sonaID = url_array[1];
 console.log(sonaID)
-$("#sona_btn").attr("href", "'https://rdg-psychology.sona-systems.com/webstudy_credit.aspx?experiment_id=2517&credit_token=59b2f527265f4395b4cb7a38d9dc53b9&survey_code=' + sonaID")
-// XXXX
+var updated_url = 'https://rdg-psychology.sona-systems.com/webstudy_credit.aspx?experiment_id=2517&credit_token=59b2f527265f4395b4cb7a38d9dc53b9&survey_code=' + sonaID;
+$("#sona_btn").attr("href", updated_url)
+console.log(updated_url)
 </script>
