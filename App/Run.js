@@ -1,40 +1,4 @@
-// List of fields not to send to Redcap
-parent.parent.remove_fields = [
-  "buffer",
-  "condition_",
-  "condition_buffer",
-  "condition_end_message",
-  "condition_fullscreen",
-  "condition_notes",
-  "condition_participant_id",
-  "condition_redcap_url",
-  "condition_skip_quality",
-  "condition_start_message",
-  "end_message",
-  "fullscreen",
-  "item",
-  "location",
-  "max_time",
-  "name",
-  "organization",
-  "participant_id",
-  "post_0_phase_end_date",
-  "post_0_phase_end_ms",
-  "post_0_timezone",
-  "post_0_window_inner_height",
-  "post_0_window_inner_width",
-  "procedure",
-  "redcap_url",
-  "repeat",
-  "repository",
-  "shuffle_1",
-  "shuffle_2",
-  "skip_quality",
-  "start_message",
-  "stimuli",
-  "weight",
-]
-
+$.getScript( "../Default/redcap_dropped_fields.js")
 project_json = {};
 var home_dir;
 
@@ -281,6 +245,12 @@ Project = {
     */
     if(typeof(project_json.this_condition.redcap_url) !== "undefined"){
 
+      if (parent.parent.redcap_instrument == null){
+        parent.parent.redcap_instrument = "main";
+      } else {
+        parent.parent.redcap_instrument = parent.parent.redcap_instrument;
+      }
+
       var phase_responses = project_json.responses[project_json.responses.length-1];
 
       console.log("phase_responses");
@@ -295,15 +265,25 @@ Project = {
       Object.keys(phase_responses).forEach(function(old_key){
         clean_phase_responses[old_key] = phase_responses[old_key];
       });
-      parent.parent.remove_fields.forEach(adjust_redcap_array)
+      
+      // parent.parent.remove_fields.forEach(adjust_redcap_array)
+      main_remove_fields.forEach(adjust_redcap_array)
         function adjust_redcap_array(field) {
           delete(clean_phase_responses[field]);
         };
 
-      clean_phase_responses.record_id = phase_responses.username + "_" + parent.parent.start_date_time;
+            clean_phase_responses.record_id = phase_responses.username + "_" + parent.parent.start_date_time;
 
       clean_phase_responses['redcap_repeat_instance'] = project_json.phase_no;
-      clean_phase_responses['redcap_repeat_instrument'] = "main";
+      // clean_phase_responses['redcap_repeat_instrument'] = "main";
+      clean_phase_responses['redcap_repeat_instrument'] = parent.parent.redcap_instrument;
+      if (parent.parent.redcap_instrument == "demo") {
+        clean_phase_responses['demo_complete'] = 2;
+        demo_remove_fields.forEach(adjust_redcap_array)
+        function adjust_redcap_array(field) {
+          delete(clean_phase_responses[field]);
+        };
+      }
       // this_location.toLowerCase();
 
       console.log("just before the ajax");
@@ -371,6 +351,7 @@ Project = {
           //Phase.submit();
         }
       });
+      parent.parent.redcap_instrument = "main";
     }
 
     switch (Project.get_vars.platform) {

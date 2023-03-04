@@ -50,6 +50,7 @@ types_list = [
   "checkbox_horizontal",
   "checkbox_single",
   "date",
+  "demo",
   "dropdown",
   "select",
   "email",
@@ -269,6 +270,11 @@ $("#proceed_button").on("click", function () {
 
       if ($(".table_break#table" + next_table_no).length === 0) {
         if (typeof Phase !== "undefined") {
+          // if (Something == "demo") {
+          //   parent.parent.redcap_instrument = "demo";
+          // } else {
+          //   parent.parent.redcap_instrument = "main"
+          // }
           Phase.submit();
         } else {
           appropriate_message(
@@ -639,6 +645,8 @@ function process_question(row, row_no) {
       case "date":
         question_td += write("date", row_x);
         break;
+      case "demo":
+        break;
       case "dropdown":
       case "select":
         question_td += write("dropdown", row_x);
@@ -715,7 +723,10 @@ function process_question(row, row_no) {
   } else {
     if (row["type"].toLowerCase() === "instruct") {
       row_html = write("instruct", row);
-    } else if (row["type"].toLowerCase() === "jumbled") {
+    } else if (row["type"].toLowerCase() === "demo") {
+      parent.parent.redcap_instrument = "demo";
+      row_html = write("demo", row);
+      } else if (row["type"].toLowerCase() === "jumbled") {
       //row_html  = question_td + write("jumbled",row); <-- this is better, but being paused for placement work Anthony is doing
       row_html = write("jumbled", row);
     } else if (row["type"].toLowerCase() === "likert") {
