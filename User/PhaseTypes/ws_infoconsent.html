@@ -258,7 +258,7 @@
             <span class="radioLabel">I understand that the data collected as part of this study will be preserved and made openly available in an anonymized form, so that they can be consulted and re-used by others.</span>
             </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio" name="c12_future_studies" id="c12_future_studies" value=""/>
+            <input type="checkbox" class="option-input radio" name="c12_future_studies" id="c12_future_studies" value="No"/>
             <span class="radioLabel">Please tick this box if you are happy to be contacted by the researchers about future studies they conduct (optional).</span>
           </label>
           <label id="radioLabelHolder">
@@ -346,6 +346,10 @@
   }
     
   $("#consentForm").change(function() {
+    
+    if ($('#c12_future_studies').is(':checked')) {
+      $('#c12_future_studies').val("Yes");
+    }
     // Assign the particpant's ID and testing sessions numbers to variables
     $('#uniqueid').val(parent.parent.pptID);
     $('#testingsession').val(parent.parent.sessionnumber);
