@@ -1,3 +1,10 @@
+<!--
+---development---
+[
+{'text':'A title about investigating the effects of arousal and presentation on word recognition'}
+]
+---development---
+-->
 <!DOCTYPE html>
 </html>
 <!-- 'wrdsrch_info_consent' PhaseType. The title is set is the 'text' column of the procedure table-->
@@ -131,6 +138,7 @@
   }
   #consentForm {
     display: flex;
+    margin-top: 15px;
   } 
 </style>
 <!--The hidden inputs shouldn't be needed as it's not multisession tracking-->
@@ -159,8 +167,9 @@
       Supervisor: Prof. Philip Beaman (c.p.beaman@reading.ac.uk - 0118 378 7637)<br/>
       Experimenter: Alastair Bird (a.d.bird@student.reading.ac.uk)
       <br/><br/>
-      We would be grateful if you could assist us by participating in our study <b>‘{{text}}’</b>. Online disinhibition is the psychological phenomenon whereby increased anonymity in online interactions reduces the level of accountability felt. It is suggested that this phenomenon may explain why behavioural effects of swearing (e.g., an increase in pain tolerance and physical strength) do not appear to replicate using online testing methodologies. We are, therefore, interested in understanding how methodological changes may alter levels of online disinhibition, altering subsequent behavioural effects of swearing.  
+      We would be grateful if you could assist us by participating in our online study <b>‘{{text}}’</b>. Online disinhibition is the psychological phenomenon whereby increased anonymity in online interactions reduces the level of accountability felt. It is suggested that this phenomenon may explain why behavioural effects of swearing (e.g., an increase in pain tolerance and physical strength) do not appear to replicate using online testing methodologies. We are, therefore, interested in understanding how methodological changes may alter levels of online disinhibition, altering subsequent behavioural effects of swearing.  
       <br/><br/>
+      <b>What will I be asked to do?</b><br>
       The study comprises <b>three</b> testing sessions, each taking approximately <b>10 - 15 minutes</b>. Each session is online, differing only in how present the researchers are, and uses the same procedure. Initially, you will be asked to repeat either a swearword (Fuck) or a non-swearword (Flat) out loud, at your normal speaking volume and rate, for 20 seconds. After this, you will undertake a computerised ‘balloon inflation’ task where you collect points each time you pump up a balloon without it bursting. Upon completion of the balloon inflation task, you will complete a lexical decision task, responding to whether a displayed word rhymes with the previously repeated word. You will then provide ratings of how offensive the repeated word is to you and how humorous you found repeating it. Next you will complete a self-report emotional questionnaire. After this, you will be given a short break in which you can solve a wordsearch puzzle. You will then repeat all the tasks except the wordsearch, vocalising the other word for 20 seconds before the balloon inflation task. We are also collecting basic demographic information to monitor the diversity and inclusivity of those who take part.
       <br/><br/>
       Your data will be kept confidential and securely stored, with only an anonymous number identifying it. No information linking that number to you will be stored.
@@ -196,12 +205,12 @@
       Supervisor: Prof. Philip Beaman (c.p.beaman@reading.ac.uk - 0118 378 7637)<br/>
       Experimenter: Alastair Bird (a.d.bird@student.reading.ac.uk)
       <br/><br/>
-      <p>Please read the following, and tick the box preceding it, to confirm it has been read and you agree to it.</p>
+      <p>Please read the following, and tick the box preceding it, to confirm it has been read and you agree to it1.</p>
       <div id="consentForm">
         <div class="checkboxes">
           <label id="radioLabelHolder">
             <input type="checkbox" class="option-input radio consent pptConsent" name="c1_readinfo" id="c1_readinfo" value=""/>
-            <span class="radioLabel">I have read the information sheet regarding the project: <em>{{text}}</em>.</span>
+            <span class="radioLabel">I have read the information sheet regarding the project: <em>{{text}}</em></span>
           </label>
           <label id="radioLabelHolder">
             <input type="checkbox" class="option-input radio consent pptConsent" name="c2_swear" id="c2_swear" value=""/>
@@ -228,24 +237,32 @@
             <span class="radioLabel">I understand that I can download copies of the study ‘Information Sheet’ and this ‘Consent Form’ by clicking the link at the bottom of the debrief sheet at the end of the study, or by requesting copies via email from the Experimenter listed above.</span>
           </label>
           <label id="radioLabelHolder">
+            <input type="checkbox" class="option-input radio consent pptConsent" name="c8_questions" id="c8_questions" value=""/>
+            <span class="radioLabel">I confirm that I have has asked any questions that I may have about the study via email with the researchers and that these have been answered to my satisfaction.</span>
+          </label>
+          <label id="radioLabelHolder">
             <input type="checkbox" class="option-input radio consentCheck" />
             <span class="radioLabel">To confirm that you are reading each item before agreeing, please leave this unticked.</span>
           </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="c8_over18" id="c8_over18" value=""/>
+            <input type="checkbox" class="option-input radio consent pptConsent" name="c9_over18" id="c9_over18" value=""/>
             <span class="radioLabel">I confirm that I am over the age of 18.</span>
           </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="c9_nativeenlish" id="c9_nativeenlish" value=""/>
+            <input type="checkbox" class="option-input radio consent pptConsent" name="c10_nativeenlish" id="c10_nativeenlish" value=""/>
             <span class="radioLabel">I confirm that I am a native English speaker. <br><span style="font-size:14px; color:#808080;"><em>(defined as someone born in a native English speaking country (e.g., the UK or USA), or moved there before the age of 2)</em></span>
             </span>
           </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="c10_opendata" id="c10_open data" value=""/>
+            <input type="checkbox" class="option-input radio consent pptConsent" name="c11_opendata" id="c11_open data" value=""/>
             <span class="radioLabel">I understand that the data collected as part of this study will be preserved and made openly available in an anonymized form, so that they can be consulted and re-used by others.</span>
             </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="c11_informedconsent" id="c11_informedconsent" value=""/>
+            <input type="checkbox" class="option-input radio" name="c12_future_studies" id="c12_future_studies" value=""/>
+            <span class="radioLabel">Please tick this box if you are happy to be contacted by the researchers about future studies they conduct (optional).</span>
+          </label>
+          <label id="radioLabelHolder">
+            <input type="checkbox" class="option-input radio consent pptConsent" name="informedconsent" id="informedconsent" value=""/>
             <span class="radioLabel">I understand that by clicking <b>Continue</b> (which begins the study) that I am providing <b>informed consent</b> to take part in this study.</span>
           </label>
         </div>
@@ -278,13 +295,13 @@
 <!-- --------------------------------- -->
 <script>
   
-  // This just sets up a popup message that doesn't break full screen
-  function appropriate_message(this_message) { 
-    bootbox.alert(this_message);
-  }
+  // // This just sets up a popup message that doesn't break full screen
+  // function appropriate_message(this_message) { 
+  //   bootbox.alert(this_message);
+  // }
   
   // Assign the all the checkboxes to a variable
-  var checkBox = $('#consent');  
+  // var checkBox = $('#consent');  
   
   // Current tab is set to be the first tab (0)
   var currentTab = 0; 
@@ -295,15 +312,15 @@
   function showTab(n) {
   // This function will display the specified tab of the form...
   
-  var x = $('.tab');
-  x[n].style.display = "block";
+  var tab = $('.tab');
+  tab[n].style.display = "block";
   //... and fix the Previous/Next buttons:
   if (n == 0) {
     document.getElementById("prevBtn").style.display = "none";
   } else {
     document.getElementById("prevBtn").style.display = "inline";
   }
-  if (n == (x.length - 1)) {
+  if (n == (tab.length - 1)) {
     $('#nextBtn').html("Consent & Start");
     $('#nextBtn').attr("class", "submitBtn");
     $('#tooltiptext').attr("class", "tooltiptext");
@@ -318,11 +335,11 @@
         
   // This function will figure out which tab to display
   function nextPrev(n) {
-    var x = $(".tab");                              // Create a variable 
+    var tab = $(".tab");                              // Create a variable 
     if (n == 1 && !validateForm()) return false;    // Exit the function if any field in the current tab is invalid:
-      x[currentTab].style.display = "none";         // Hide the current tab:
+      tab[currentTab].style.display = "none";         // Hide the current tab:
       currentTab = currentTab + n;                  // Increase or decrease the current tab by 1:
-      if (currentTab >= x.length) {                 // if you have reached the end of the form...
+      if (currentTab >= tab.length) {                 // if you have reached the end of the form...
         Phase.submit()                              // ... so the form gets submitted:
       }
     showTab(currentTab);                            // Otherwise, display the correct tab:
@@ -333,23 +350,31 @@
     $('#uniqueid').val(parent.parent.pptID);
     $('#testingsession').val(parent.parent.sessionnumber);
     
+    // This checks that ppts haven't clicked the attention mistake and disables the nextBtn
     if ($('.consentCheck').is(':checked')) {
       $("#tooltiptext").attr("class", "tooltiptext");
       $("#nextBtn").attr("class", "submitBtn");
       $("#tooltiptext").html("Please read each item carefully before accepting (ticking)<br><em>(Currently, you have incorrectly ticked an item)</em>");
+    
+    // This checks if all the consent items are checked and if so, activates the nextBtn to submit the form  
     } else if ($('.consent:checked').length == $('.consent').length) {
       $('.pptConsent').val('Yes');
       $("#nextBtn").attr("class", "submitBtn_active");
       $("#tooltiptext").attr("class", "tooltipHidden");
+    
+    // This checks whether the number of consented items is less than the total number of consent items and disables the nextBtn if so  
     } else if ($('.consent:checked').length < $('.consent').length) {
       $("#tooltiptext").attr("class", "tooltiptext");
       $("#nextBtn").attr("class", "submitBtn");
+    
+    // This just keeps the tool tip  
     } else {
       $("#tooltiptext").html("Sorry. You can only start the experiment once you have ticked all the boxes above<br/><em>(indicating your happy and consenting to participate in this study)</em>");
-      if ($('.consent:checked').length == $('.consent').length) {
-        $("#nextBtn").attr("class", "submitBtn_active");
-        $("#tooltiptext").attr("class", "tooltipHidden");
-      }
+      
+      // if ($('.consent:checked').length == $('.consent').length) {
+      //   $("#nextBtn").attr("class", "submitBtn_active");
+      //   $("#tooltiptext").attr("class", "tooltipHidden");
+      // }
     }
   });
         
@@ -366,16 +391,16 @@
     
   function validateForm() {
     // This function deals with validation of the form fields
-    var x, y, i, valid = true;
-    x = $(".tab");
-    y = x[currentTab].getElementsByTagName("input");
+    var tab, tabInput, i, valid = true;
+    tab = $(".tab");
+    tabInput = tab[currentTab].getElementsByTagName("input");
     
     // A loop that checks every input field in the current tab:
-    for (i = 0; i < y.length; i++) {
+    for (i = 0; i < tabInput.length; i++) {
       // If a field is empty...
-      if (y[i].value == "") {
+      if ($("input").hasClass("required") && tabInput[i].value == "") {
         // add an "invalid" class to the field:
-        y[i].className += " invalid";
+        tabInput[i].className += " invalid";
         // and set the current valid status to false
         valid = false;
       }
@@ -389,12 +414,12 @@
         
   function fixStepIndicator(n) {
     // This function removes the "active" class of all steps...
-    var i, x = $(".step");
-    for (i = 0; i < x.length; i++) {
-      x[i].className = x[i].className.replace(" active", "");
+    var i, step = $(".step");
+    for (i = 0; i < step.length; i++) {
+      step[i].className = step[i].className.replace(" active", "");
     }
     //... and adds the "active" class on the current step:
-    x[n].className += " active";
+    step[n].className += " active";
   }
 </script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

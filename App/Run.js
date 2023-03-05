@@ -277,8 +277,9 @@ Project = {
       clean_phase_responses['redcap_repeat_instance'] = project_json.phase_no;
       // clean_phase_responses['redcap_repeat_instrument'] = "main";
       clean_phase_responses['redcap_repeat_instrument'] = parent.parent.redcap_instrument;
-      if (parent.parent.redcap_instrument == "demo") {
-        clean_phase_responses['demo_complete'] = 2;
+      if (parent.parent.redcap_instrument != "main") {
+        var field_name = parent.parent.redcap_instrument;
+        clean_phase_responses[field_name +'_complete'] = 2;
         demo_remove_fields.forEach(adjust_redcap_array)
         function adjust_redcap_array(field) {
           delete(clean_phase_responses[field]);

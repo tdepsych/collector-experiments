@@ -13,6 +13,7 @@ let main_remove_fields = [
     "fullscreen",
     "item",
     "location",
+    "main_complete",
     "max_time",
     "name",
     "organization",
