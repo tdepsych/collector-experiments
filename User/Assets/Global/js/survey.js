@@ -5,12 +5,7 @@
 /* 
  * Setup a prepend variable
  */
-  var survey_prepend = "#survey_";
-  // if (row["type"].toLowerCase() === "redcap_pii") {
-  //   parent.parent.redcap_instrument = row["item_name"].toLowerCase();
-  //   survey_prepend = row["item_name"].toLowerCase() + '_pii_';
-  // } 
-
+  var survey_prepend = "survey_";
 
 /*
  * detect if testing or not
@@ -523,7 +518,7 @@ function process_question(row, row_no) {
     [feedback_array, feedback_color] = get_feedback(row);
 
     if (row["type"].toLowerCase() === "redcap_pii") {
-      parent.parent.redcap_instrument = row["item_name"].toLowerCase();
+      // parent.parent.redcap_instrument = row["item_name"].toLowerCase();
       survey_prepend = row["item_name"].toLowerCase() + '_pii_';
     } 
 
@@ -780,9 +775,7 @@ function process_question(row, row_no) {
 
       //var row_html="<td colspan='2'>"+question_td+"</td>";
     } else if (row["type"].toLowerCase() === "redcap_pii") {
-      // parent.parent.redcap_instrument = row["item_name"].toLowerCase();
       row_html = write(row["item_name"].toLowerCase(), row);
-      // survey_prepend = row["item_name"].toLowerCase() + '_';
     } else {
       if (
         (row["text"].toLowerCase() === "page_start") |

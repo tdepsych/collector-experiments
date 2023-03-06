@@ -140,6 +140,27 @@
     display: flex;
     margin-top: 15px;
   } 
+  .textInput{
+    border-radius: 10px;
+    border-color: #3f97f6;
+  }
+  #textInputs {
+    width: 95%;
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 15px 30px 25px 65px;
+  }
+  .textInput_gridItems {
+    padding-bottom: 15px;
+    padding-right: 10px;
+  }
+  .textInput_gridItems span {
+    display: flex;
+    justify-content: flex-start;
+    height: 100%;
+    align-items: center;
+    padding-left: 10px;
+  }
 </style>
 <!--The hidden inputs shouldn't be needed as it's not multisession tracking-->
 <!--<input type="hidden" id="uniqueid" name="uniqueid" />-->
@@ -191,6 +212,8 @@
     <!-- ------------------------ -->
         
     <div class="tab">
+      <input type="hidden" name="consent_pii_participant_name" id="participant_name" value=""/>
+      <input type="hidden" name="consent_pii_participant_email" id="participant_email" value=""/>
       <img id="uorLogo" src="../../collector-experiments/User/Assets/Global/img/uor.svg" />
       <br>
       School of Psychology and Clinical Language Sciences,<br>Whitenights, Reading, RG6 6AL
@@ -205,39 +228,40 @@
       Supervisor: Prof. Philip Beaman (c.p.beaman@reading.ac.uk - 0118 378 7637)<br/>
       Experimenter: Alastair Bird (a.d.bird@student.reading.ac.uk)
       <br/><br/>
-      <p>Please read the following, and tick the box preceding it, to confirm it has been read and you agree to it1.</p>
+      <p>Please read the following, and tick the box preceding it, to confirm it has been read and you agree to it.</p>
       <div id="consentForm">
         <div class="checkboxes">
+          <!--Check Boxes-->
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="c1_readinfo" id="c1_readinfo" value=""/>
+            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c1_readinfo" id="c1_readinfo" value=""/>
             <span class="radioLabel">I have read the information sheet regarding the project: <em>{{text}}</em></span>
           </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="c2_swear" id="c2_swear" value=""/>
+            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c2_swear" id="c2_swear" value=""/>
             <span class="radioLabel">I understand the experimental procedure as explained on the information sheet and that this study involves taboo language (swearwords).</span>
           </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="c3_understandrights" id="c3_understandrights" value=""/>
+            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c3_understandrights" id="c3_understandrights" value=""/>
             <span class="radioLabel">I understand what information is collected about me, how it will be used in relation to the study, how it will be kept safe, and my rights in relation to my data.</span>
           </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="c4_rightwithdraw" id="c4_rightwithdraw" value=""/>
+            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c4_rightwithdraw" id="c4_rightwithdraw" value=""/>
             <span class="radioLabel">I understand participation is entirely voluntary and that I have the right to withdraw from the study at any time without detriment.</span>
           </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="c5_closebrowser" id="c5_closebrowser" value=""/>
+            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c5_closebrowser" id="c5_closebrowser" value=""/>
             <span class="radioLabel">I understand that I can withdraw at any time by simply closing my browser window.</span>
           </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="c6_anonymousdata" id="c6_anonymousdata" value=""/>
+            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c6_anonymousdata" id="c6_anonymousdata" value=""/>
             <span class="radioLabel">I understand that the data I provide will be anonymous and cannot be linked back to me.</span>
           </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="c7_downloadinfo" id="c7_downloadinfo" value=""/>
+            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c7_downloadinfo" id="c7_downloadinfo" value=""/>
             <span class="radioLabel">I understand that I can download copies of the study ‘Information Sheet’ and this ‘Consent Form’ by clicking the link at the bottom of the debrief sheet at the end of the study, or by requesting copies via email from the Experimenter listed above.</span>
           </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="c8_questions" id="c8_questions" value=""/>
+            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c8_questions" id="c8_questions" value=""/>
             <span class="radioLabel">I confirm that I have has asked any questions that I may have about the study via email with the researchers and that these have been answered to my satisfaction.</span>
           </label>
           <label id="radioLabelHolder">
@@ -245,25 +269,32 @@
             <span class="radioLabel">To confirm that you are reading each item before agreeing, please leave this unticked.</span>
           </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="c9_over18" id="c9_over18" value=""/>
+            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c9_over18" id="c9_over18" value=""/>
             <span class="radioLabel">I confirm that I am over the age of 18.</span>
           </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="c10_nativeenlish" id="c10_nativeenlish" value=""/>
+            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c10_nativeenlish" id="c10_nativeenlish" value=""/>
             <span class="radioLabel">I confirm that I am a native English speaker. <br><span style="font-size:14px; color:#808080;"><em>(defined as someone born in a native English speaking country (e.g., the UK or USA), or moved there before the age of 2)</em></span>
             </span>
           </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="c11_opendata" id="c11_open data" value=""/>
+            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c11_opendata" id="c11_open data" value=""/>
             <span class="radioLabel">I understand that the data collected as part of this study will be preserved and made openly available in an anonymized form, so that they can be consulted and re-used by others.</span>
             </label>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio" name="c12_future_studies" id="c12_future_studies" value="No"/>
+            <input type="checkbox" class="option-input radio" name="consent_pii_c12_future_studies" id="c12_future_studies" value="No"/>
             <span class="radioLabel">Please tick this box if you are happy to be contacted by the researchers about future studies they conduct (optional).</span>
           </label>
+          <!--Text Inputs-->
+          <br><br>
+          <label id="textLabel" style="margin-left: 65px; margin-top: -20px;">Please enter your name and email address in the boxes below. These are required so we can link the consent agreement above to you and are stored separately to all experimental data, ensuring your anonymity.</label>
+          <div id="textInputs">
+            <div class="textInput_gridItems"><input type="text" class="textInput" name="consent_pii_participant_name" id="participant_nameInput" value="" placeholder="Please enter your full name"/></div>
+            <div class="textInput_gridItems"><input type="email" class="textInput" name="consent_pii_participant_email" id="participant_emailInput" value="" placeholder="Please enter your email address"/></div>
+          </div>
           <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="informedconsent" id="informedconsent" value=""/>
-            <span class="radioLabel">I understand that by clicking <b>Continue</b> (which begins the study) that I am providing <b>informed consent</b> to take part in this study.</span>
+            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_informedconsent" id="informedconsent" value=""/>
+            <span class="radioLabel">Finally, please confirm that you understand that by clicking <b>Continue</b> (which begins the study) your are providing <b>informed consent</b> to take part in this study.</span>
           </label>
         </div>
       </div>
@@ -294,14 +325,6 @@
 <!-- Only Javascript beyond this point -->
 <!-- --------------------------------- -->
 <script>
-  
-  // // This just sets up a popup message that doesn't break full screen
-  // function appropriate_message(this_message) { 
-  //   bootbox.alert(this_message);
-  // }
-  
-  // Assign the all the checkboxes to a variable
-  // var checkBox = $('#consent');  
   
   // Current tab is set to be the first tab (0)
   var currentTab = 0; 
@@ -346,6 +369,7 @@
   }
     
   $("#consentForm").change(function() {
+    // parent.parent.redcap_instrument = "consent"
     
     if ($('#c12_future_studies').is(':checked')) {
       $('#c12_future_studies').val("Yes");
@@ -353,6 +377,8 @@
     // Assign the particpant's ID and testing sessions numbers to variables
     $('#uniqueid').val(parent.parent.pptID);
     $('#testingsession').val(parent.parent.sessionnumber);
+    $('#participant_name').val($('#participant_nameInput').val());
+    $('#participant_email').val($('#participant_emailInput').val())
     
     // This checks that ppts haven't clicked the attention mistake and disables the nextBtn
     if ($('.consentCheck').is(':checked')) {
@@ -361,24 +387,19 @@
       $("#tooltiptext").html("Please read each item carefully before accepting (ticking)<br><em>(Currently, you have incorrectly ticked an item)</em>");
     
     // This checks if all the consent items are checked and if so, activates the nextBtn to submit the form  
-    } else if ($('.consent:checked').length == $('.consent').length) {
+    } else if( $('.consent:checked').length == $('.consent').length && $("#participant_name").val() != '' && $("#participant_email").val() != '' ) {
       $('.pptConsent').val('Yes');
       $("#nextBtn").attr("class", "submitBtn_active");
       $("#tooltiptext").attr("class", "tooltipHidden");
     
     // This checks whether the number of consented items is less than the total number of consent items and disables the nextBtn if so  
-    } else if ($('.consent:checked').length < $('.consent').length) {
+    } else if ($('.consent:checked').length < $('.consent').length || $("#participant_name").val() == '' || $("#participant_email").val() == '') {
       $("#tooltiptext").attr("class", "tooltiptext");
       $("#nextBtn").attr("class", "submitBtn");
     
     // This just keeps the tool tip  
     } else {
-      $("#tooltiptext").html("Sorry. You can only start the experiment once you have ticked all the boxes above<br/><em>(indicating your happy and consenting to participate in this study)</em>");
-      
-      // if ($('.consent:checked').length == $('.consent').length) {
-      //   $("#nextBtn").attr("class", "submitBtn_active");
-      //   $("#tooltiptext").attr("class", "tooltipHidden");
-      // }
+      $("#tooltiptext").html("Sorry. You can only start the experiment once you have ticked all the boxes and entered your name/email above<br/><em>(indicating your happy and consenting to participate in this study)</em>");
     }
   });
         

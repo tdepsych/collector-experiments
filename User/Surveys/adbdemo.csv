@@ -1,5 +1,5 @@
 item_name,text,type,answers,optional,values,side_by_side,
-demographics,,redcap_pii,,,,,
+demo,,redcap_pii,,,,,
 Instructions,"<h2><span>Demographic Information</span></h2><br><br>
 <span id=""instruc"">Please could you help us better understand the diversity and inclusivity of your participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select ""Prefer not to say"", if that is the case). Answers for questions 6, 7, and 8 are required, however, as you will be unable to take part in the rest of the study without supplying that information. Finally, we are collecting your demographic information before you begin any testing session to ensure that each session has an identical procedure (as this increases the validity of our final results).</span><br/><br/>",instruct,,,,,
 Age,"1. Please enter your age (in years)<br><span class=""minor""><em>(the input only accepts numbers e.g., 21)</em></span>",number,,Yes,,,

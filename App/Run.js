@@ -1,4 +1,4 @@
-$.getScript( "../Default/redcap_dropped_fields.js")
+$.getScript( "libraries/collector/redcap_dropped_fields.js")
 project_json = {};
 var home_dir;
 
@@ -145,7 +145,7 @@ Project = {
         });
         return r;
       }, {});
-
+      
     var post_string = "post_" + project_json.post_no;
 
     response_data["location"] = Project.get_vars.location;
@@ -245,12 +245,22 @@ Project = {
     */
     if(typeof(project_json.this_condition.redcap_url) !== "undefined"){
 
-      if (parent.parent.redcap_instrument == null){
-        parent.parent.redcap_instrument = "main";
-      } else {
-        parent.parent.redcap_instrument = parent.parent.redcap_instrument;
-      }
-
+      var keys = Object.keys(response_data)
+        // if (keys.includes("_pii_")) {
+          if (keys.some(e => e.includes("_pii_"))) {
+            for (let i = 0; i < keys.length; i++) {
+              let field = keys[i]
+              if (field.includes("_pii_")) {
+                form_name = field.split("_pii", 1)[0]
+                parent.parent.redcap_instrument = form_name;
+              } else {
+                //do nothing
+              }
+            }
+        } else {
+          parent.parent.redcap_instrument = "main";
+        }
+        console.log("REDcap Instrument: " + parent.parent.redcap_instrument)
       var phase_responses = project_json.responses[project_json.responses.length-1];
 
       console.log("phase_responses");
@@ -275,7 +285,6 @@ Project = {
             clean_phase_responses.record_id = phase_responses.username + "_" + parent.parent.start_date_time;
 
       clean_phase_responses['redcap_repeat_instance'] = project_json.phase_no;
-      // clean_phase_responses['redcap_repeat_instrument'] = "main";
       clean_phase_responses['redcap_repeat_instrument'] = parent.parent.redcap_instrument;
       if (parent.parent.redcap_instrument != "main") {
         var field_name = parent.parent.redcap_instrument;
@@ -352,7 +361,6 @@ Project = {
           //Phase.submit();
         }
       });
-      parent.parent.redcap_instrument = "main";
     }
 
     switch (Project.get_vars.platform) {
