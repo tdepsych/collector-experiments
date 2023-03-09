@@ -518,7 +518,6 @@ function process_question(row, row_no) {
     [feedback_array, feedback_color] = get_feedback(row);
 
     if (row["type"].toLowerCase() === "redcap_pii") {
-      // parent.parent.redcap_instrument = row["item_name"].toLowerCase();
       survey_prepend = row["item_name"].toLowerCase() + '_pii_';
     } 
 
@@ -650,8 +649,6 @@ function process_question(row, row_no) {
       case "date":
         question_td += write("date", row_x);
         break;
-      case "redcap_pii":
-        break;
       case "dropdown":
       case "select":
         question_td += write("dropdown", row_x);
@@ -680,7 +677,8 @@ function process_question(row, row_no) {
       case "radio_horizontal":
         question_td += write("radio_horizontal", row_x);
         break;
-
+      case "redcap_pii":
+          break;
       case "report_score":
         question_td.append(
           $("<input>")

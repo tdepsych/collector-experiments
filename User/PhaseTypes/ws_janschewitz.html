@@ -384,18 +384,19 @@
     score7 = $('.jq7:checked').val();
   });
   
+  var startPhase = {{text}};
   // This sets a global variable which we +1 every submission to allow us to count completed trials
-  if (parent.parent.blockCount == null) {
-    parent.parent.blockCount = 1;
-    console.log("First Trial: "+parent.parent.blockCount);
-    $("h2 span").text($("h2 span").text().replace("Rating", "Rating 1"));
-  } else {
-    parent.parent.blockCount = parent.parent.blockCount;
-    $("h2 span").text($("h2 span").text().replace("Rating", "Rating "+parent.parent.blockCount));
-    console.log("Subequent Trial: "+parent.parent.blockCount);
-  }
-  parent.parent.blockCount++
-  
+    if (parent.parent.blockCount == null) {
+      parent.parent.blockCount = 1;
+      console.log("First Trial: "+parent.parent.blockCount);
+      $("h2 span").text($("h2 span").text().replace("Rating", "Rating 1"));
+    } else {
+      parent.parent.blockCount = parent.parent.blockCount;
+      $("h2 span").text($("h2 span").text().replace("Rating", "Rating "+parent.parent.blockCount));
+      console.log("Subequent Trial: "+parent.parent.blockCount);
+    }
+    parent.parent.blockCount++
+    
   // This swaps the submission button text when we reach the last word in the block
   if (parent.parent.blockCount == 21 || parent.parent.blockCount == 41) {
     $('#proceed_button').html("End Block");

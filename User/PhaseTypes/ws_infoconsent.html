@@ -161,6 +161,10 @@
     align-items: center;
     padding-left: 10px;
   }
+  .optional_item {
+    opacity: .75;
+    color: lightslategrey;
+  }
 </style>
 <!--The hidden inputs shouldn't be needed as it's not multisession tracking-->
 <!--<input type="hidden" id="uniqueid" name="uniqueid" />-->
@@ -281,7 +285,7 @@
             <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c11_opendata" id="c11_open data" value=""/>
             <span class="radioLabel">I understand that the data collected as part of this study will be preserved and made openly available in an anonymized form, so that they can be consulted and re-used by others.</span>
             </label>
-          <label id="radioLabelHolder">
+          <label id="radioLabelHolder" class="optional_item">
             <input type="checkbox" class="option-input radio" name="consent_pii_c12_future_studies" id="c12_future_studies" value="No"/>
             <span class="radioLabel">Please tick this box if you are happy to be contacted by the researchers about future studies they conduct (optional).</span>
           </label>
@@ -369,7 +373,6 @@
   }
     
   $("#consentForm").change(function() {
-    // parent.parent.redcap_instrument = "consent"
     
     if ($('#c12_future_studies').is(':checked')) {
       $('#c12_future_studies').val("Yes");

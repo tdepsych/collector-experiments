@@ -2,6 +2,11 @@
  * Collector Survey 3.1.0
  */
 
+/* 
+ * Setup a prepend variable
+ */
+  var survey_prepend = "survey_";
+
 /*
  * detect if testing or not
  */
@@ -62,6 +67,7 @@ types_list = [
   "radio",
   "radio_vertical",
   "radio_horizontal",
+  "redcap_pii",
   "report_score",
   "text",
 ];
@@ -511,6 +517,10 @@ function process_question(row, row_no) {
 
     [feedback_array, feedback_color] = get_feedback(row);
 
+    if (row["type"].toLowerCase() === "redcap_pii") {
+      survey_prepend = row["item_name"].toLowerCase() + '_pii_';
+    } 
+
     var survey_id = "survey_" + row["item_name"].toLowerCase();
 
     question_td =
@@ -667,7 +677,8 @@ function process_question(row, row_no) {
       case "radio_horizontal":
         question_td += write("radio_horizontal", row_x);
         break;
-
+            case "redcap_pii":
+        break;
       case "report_score":
         question_td.append(
           $("<input>")
@@ -761,6 +772,8 @@ function process_question(row, row_no) {
         .html(question_td)[0].outerHTML;
 
       //var row_html="<td colspan='2'>"+question_td+"</td>";
+    } else if (row["type"].toLowerCase() === "redcap_pii") {
+      row_html = write(row["item_name"].toLowerCase(), row);
     } else {
       if (
         (row["text"].toLowerCase() === "page_start") |
