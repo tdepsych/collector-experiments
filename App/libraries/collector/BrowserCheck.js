@@ -59,10 +59,23 @@ if(isSafari){
   alert("This website does not work reliably on Safari - please use another browser, preferably Google Chrome.");
 }
 
-participant_browser = isOpera   ? "opera"
-                    : isFirefox ? "firefox"
-                    : isSafari  ? "safari"
-                    : isIE      ? "internet_explorer"
-                    : isEdge    ? "edge"
-                    : isChrome  ? "chrome"
-                    : isBlink   ? "blink" : "unknown";
+// participant_browser = isOpera   ? "opera"
+//                     : isFirefox ? "firefox"
+//                     : isSafari  ? "safari"
+//                     : isIE      ? "internet_explorer"
+//                     : isEdge    ? "edge"
+//                     : isChrome  ? "chrome"
+//                     : isBlink   ? "blink" : "unknown";
+
+parent.parent.participant_browser = (function (agent) {
+  switch (true) {
+    case agent.indexOf("edge") > -1: return "MS Edge (EdgeHtml)";
+    case agent.indexOf("edg") > -1: return "MS Edge Chromium";
+    case agent.indexOf("opr") > -1 && !!window.opr: return "opera";
+    case agent.indexOf("chrome") > -1 && !!window.chrome: return "chrome";
+    case agent.indexOf("trident") > -1: return "Internet Explorer";
+    case agent.indexOf("firefox") > -1: return "firefox";
+    case agent.indexOf("safari") > -1: return "safari";
+    default: return "other";
+  }
+})(window.navigator.userAgent.toLowerCase());

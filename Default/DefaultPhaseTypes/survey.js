@@ -1,11 +1,11 @@
 /*
- * Collector Survey 3.1.0
+ * Collector Survey 3.2.0
  */
 
 /* 
  * Setup a prepend variable
  */
-  var survey_prepend = "survey_";
+var survey_prepend = "survey_";
 
 /*
  * detect if testing or not
@@ -416,8 +416,8 @@ survey_js.likert_update = function (this_element) {
     .removeClass("btn-primary")
     .addClass("btn-outline-primary");
   $(this_element).removeClass("btn-outline-primary").addClass("btn-primary");
-  $("#survey_" + item_name + "_response").val(this_element.innerHTML);
-  $("#survey_" + item_name + "_value").val(this_element.value);
+  $("#"+survey_prepend + item_name + "_response").val(this_element.innerHTML);
+  $("#"+survey_prepend + item_name + "_value").val(this_element.value);
 
   response_check(this_element);
 };
@@ -517,11 +517,7 @@ function process_question(row, row_no) {
 
     [feedback_array, feedback_color] = get_feedback(row);
 
-    if (row["type"].toLowerCase() === "redcap_pii") {
-      survey_prepend = row["item_name"].toLowerCase() + '_pii_';
-    } 
-
-    var survey_id = "survey_" + row["item_name"].toLowerCase();
+    var survey_id = survey_prepend + row["item_name"].toLowerCase();
 
     question_td =
       $("<input>")
@@ -688,7 +684,7 @@ function process_question(row, row_no) {
             .addClass("row_" + row_no)
             .attr("disabled", true)
             .attr("type", "text")
-            .prop("name", "survey_" + row["item_name"].toLowerCase())
+            .prop("name", survey_prepend + row["item_name"].toLowerCase())
         );
         break;
 
@@ -742,7 +738,7 @@ function process_question(row, row_no) {
             .html(row["text"])
             .prop(
               "id",
-              "survey_" +
+              survey_prepend +
                 row["item_name"].toLowerCase().replace(" ", "_") +
                 "_question"
             )[0].outerHTML + $("<td>").html(question_td)[0].outerHTML;
@@ -772,8 +768,6 @@ function process_question(row, row_no) {
         .html(question_td)[0].outerHTML;
 
       //var row_html="<td colspan='2'>"+question_td+"</td>";
-    } else if (row["type"].toLowerCase() === "redcap_pii") {
-      row_html = write(row["item_name"].toLowerCase(), row);
     } else {
       if (
         (row["text"].toLowerCase() === "page_start") |
@@ -789,7 +783,7 @@ function process_question(row, row_no) {
             .html(row["text"])
             .prop(
               "id",
-              "survey_" +
+              survey_prepend +
                 row["item_name"].toLowerCase().replace(" ", "_") +
                 "_question"
             )[0].outerHTML + $("<td>").html(question_td)[0].outerHTML;
@@ -825,9 +819,9 @@ function process_score(
   if (typeof values_reverse !== "undefined" && values_reverse === "r") {
     item_values.reverse();
   }
-  item_answers = survey_obj.data[row_no]["values"].split("|");
+  item_answers = survey_obj.data[row_no]["answers"].split("|");
   var this_value = item_values[item_answers.indexOf(this_response)];
-  $("#survey_" + item + "_score").val(this_value);
+  $(survey_prepend + item + "_score").val(this_value);
   if (typeof this_value !== "undefined") {
     return parseFloat(this_value);
   }
@@ -934,9 +928,7 @@ function response_check(submitted_element) {
       break;
 
     case "button":
-      $("#" + submitted_element.name + "_response").val(
-        submitted_element.value
-      );
+      $("#" + submitted_element.name + "_response").val(submitted_element.value);
       break;
 
     case "number":
@@ -945,9 +937,7 @@ function response_check(submitted_element) {
     case "select-one":
     case "text":
     case "textarea":
-      $("#" + submitted_element.name + "_response").val(
-        submitted_element.value
-      );
+      $("#" + submitted_element.name + "_response").val(submitted_element.value);
       break;
   }
   update_score();
@@ -974,7 +964,7 @@ function reveal_answers(this_element) {
   var this_response = $(
     "#" +
       this_element.id
-        .replace("reveal_", "survey_")
+        .replace("reveal_", survey_prepend)
         .replace("_feedback", "_response")
   ).val();
   response_present = this_response === "" ? false : true;
@@ -1079,7 +1069,7 @@ function update_score() {
 
     questions.forEach(function (row_no) {
       var item = survey_obj.data[row_no].item_name.toLowerCase();
-      var this_response = $("#survey_" + item + "_value").val();
+      var this_response = $("#" + survey_prepend + item + "_response").val();
       var normal_reverse = this_scale.questions[row_no];
 
       if (normal_reverse.indexOf("-") === -1) {
@@ -1157,7 +1147,7 @@ function write(type, row) {
       var this_input = $("<input>");
       this_input[0].type = "checkbox";
       this_input[0].id = row["item_name"] + i;
-      this_input[0].name = "survey_" + row["item_name"];
+      this_input[0].name = survey_prepend + row["item_name"];
       this_input
         .addClass("custom-control-input")
         .addClass("response")
@@ -1185,7 +1175,7 @@ function write(type, row) {
     this_label.html(row["answers"]);
     var this_checkbox = $("<input>");
     this_checkbox[0].id = row["item_name"];
-    this_checkbox[0].name = "survey_" + row["item_name"].toLowerCase();
+    this_checkbox[0].name = survey_prepend + row["item_name"].toLowerCase();
     this_checkbox[0].type = "checkbox";
     this_checkbox.attr("checked", true);
     this_checkbox
@@ -1210,7 +1200,7 @@ function write(type, row) {
       this_checkbox[0].id = row["item_name"] + i;
       this_checkbox[0].value = options[i];
       this_checkbox[0].type = "checkbox";
-      this_checkbox[0].name = "survey_" + row["item_name"].toLowerCase();
+      this_checkbox[0].name = survey_prepend + row["item_name"].toLowerCase();
       this_checkbox
         .addClass("custom-control-input")
         .addClass(row["this_class"])
@@ -1236,7 +1226,7 @@ function write(type, row) {
       this_checkbox[0].id = row["item_name"] + "_other";
       this_checkbox[0].value = "Other";
       this_checkbox[0].type = "checkbox";
-      this_checkbox[0].name = "survey_" + row["item_name"].toLowerCase();
+      this_checkbox[0].name = survey_prepend + row["item_name"].toLowerCase();
       this_checkbox
         .addClass("custom-control-input")
         .addClass(row["this_class"])
@@ -1258,8 +1248,7 @@ function write(type, row) {
         "placeholder",
         "(Please specify if you selected 'Other')"
       );
-      text_input[0].name =
-        "survey_" + row["item_name"].toLowerCase() + "_other";
+      text_input[0].name = survey_prepend + row["item_name"].toLowerCase() + "_other";
       this_html += text_input[0].outerHTML;
     }
   } else if (type === "date") {
@@ -1271,7 +1260,7 @@ function write(type, row) {
       .addClass("date")
       .addClass(row["item_name"] + "_item")
       .addClass("row_" + row["row_no"])
-      .attr("name", "survey_" + row["item_name"])
+      .attr("name", survey_prepend + row["item_name"])
       .attr("type", "text");
   } else if (type === "dropdown") {
     var options = row["answers"].split("|");
@@ -1283,7 +1272,7 @@ function write(type, row) {
       .addClass(row["item_name"] + "_item")
       .addClass("row_" + row["row_no"])
       .addClass("collector_button")
-      .attr("name", "survey_" + row["item_name"])
+      .attr("name", survey_prepend + row["item_name"])
       .css("margin", "0px")
       .css("width", "auto");
 
@@ -1307,9 +1296,9 @@ function write(type, row) {
       .addClass("response")
       .addClass(row["item_name"] + "_item row_" + row["row_no"])
       .attr("type", "email")
-      .attr("name", "survey_" + row["item_name"])
+      .attr("name", survey_prepend + row["item_name"])
       .attr("onblur", "validateEmail()")
-      .prop("id", "survey_" + row["item_name"] + "_response" + " emailInput");
+      .prop("id", survey_prepend + row["item_name"] + "_response" + " emailInput");
       this_html += this_input[0].outerHTML;
   } else if (type === "instruct") {
     this_html += "<td colspan='2'>" + row["text"] + "</td>";
@@ -1403,7 +1392,7 @@ function write(type, row) {
   } else if (type === "number") {
     var this_input = $("<input>");
     this_input[0].type = "number";
-    this_input[0].name = "survey_" + row["item_name"];
+    this_input[0].name = survey_prepend + row["item_name"];
     this_input
       .addClass("response")
       .addClass("form-control")
@@ -1411,7 +1400,7 @@ function write(type, row) {
     this_html += this_input[0].outerHTML;
   } else if (type === "para") {
     var this_textarea = $("<textarea>");
-    this_textarea[0].name = "survey_" + row["item_name"];
+    this_textarea[0].name = survey_prepend + row["item_name"];
     this_textarea
       .addClass(row["item_name"] + "_item row_" + row["row_no"])
       .addClass("response");
@@ -1428,9 +1417,9 @@ function write(type, row) {
       this_div.addClass("custom-radio");
       var this_input = $("<input>");
       this_input[0].type = "radio";
-      this_input[0].id = row["item_name"] + i;
       this_input[0].value = options[i];
-      this_input[0].name = "survey_" + row["item_name"];
+      this_input[0].id = row["item_name"] + i;
+      this_input[0].name = survey_prepend + row["item_name"];
       this_input
         .addClass("custom-control-input")
         .addClass("response")
@@ -1481,7 +1470,7 @@ function write(type, row) {
   } else if (type === "text") {
     var this_input = $("<input>");
     this_input[0].type = "text";
-    this_input[0].name = "survey_" + row["item_name"];
+    this_input[0].name = survey_prepend + row["item_name"];
     this_input
       .addClass("form-control")
       .addClass(row["item_name"] + "_item row_" + row["row_no"])
@@ -1517,6 +1506,15 @@ function write_survey(this_survey, this_id) {
     shuffled_arrays: {},
   };
 
+  for (i = 0; i < this_survey.length; i++) {
+    row = this_survey[i];
+    if (row["type"].toLowerCase() === "redcap_pii") {
+      survey_prepend = row["item_name"].toLowerCase() + '_pii_';
+      console.log("Survey contains PII, ID prefix changed to: " + survey_prepend)
+      break;
+    } 
+  }
+  
   survey_html += "<tr>";
   for (i = 0; i < this_survey.length; i++) {
     row = this_survey[i];
@@ -1617,4 +1615,3 @@ if (typeof module !== "undefined") {
     load_survey(current_survey, "survey_outline");
   }
 }
-

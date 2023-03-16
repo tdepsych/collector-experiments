@@ -1,5 +1,5 @@
 /*
- * Collector Survey 3.1.0
+ * TDE Survey 3.2.0
  */
 
 /* 
@@ -187,7 +187,7 @@ scoring_object = {
     this.scales.forEach(function (element) {
       element = element.replace(": ", ":");
       scales_html +=
-        "<input name='" +
+        "<input name='" + 
         element.replace(/ |:/g, "_") +
         "' class='score_total " +
         element.replace(/ |:/g, "_") +
@@ -416,8 +416,8 @@ survey_js.likert_update = function (this_element) {
     .removeClass("btn-primary")
     .addClass("btn-outline-primary");
   $(this_element).removeClass("btn-outline-primary").addClass("btn-primary");
-  $(survey_prepend + item_name + "_response").val(this_element.innerHTML);
-  $(survey_prepend + item_name + "_value").val(this_element.value);
+  $("#"+survey_prepend + item_name + "_response").val(this_element.innerHTML);
+  $("#"+survey_prepend + item_name + "_response").val(this_element.value);
 
   response_check(this_element);
 };
@@ -516,10 +516,6 @@ function process_question(row, row_no) {
     row_x["this_class"] = this_class;
 
     [feedback_array, feedback_color] = get_feedback(row);
-
-    if (row["type"].toLowerCase() === "redcap_pii") {
-      survey_prepend = row["item_name"].toLowerCase() + '_pii_';
-    } 
 
     var survey_id = survey_prepend + row["item_name"].toLowerCase();
 
@@ -772,8 +768,6 @@ function process_question(row, row_no) {
         .html(question_td)[0].outerHTML;
 
       //var row_html="<td colspan='2'>"+question_td+"</td>";
-    } else if (row["type"].toLowerCase() === "redcap_pii") {
-      row_html = write(row["item_name"].toLowerCase(), row);
     } else {
       if (
         (row["text"].toLowerCase() === "page_start") |
@@ -825,9 +819,10 @@ function process_score(
   if (typeof values_reverse !== "undefined" && values_reverse === "r") {
     item_values.reverse();
   }
+  // item_answers = survey_obj.data[row_no]["answers"].split("|");
   item_answers = survey_obj.data[row_no]["values"].split("|");
   var this_value = item_values[item_answers.indexOf(this_response)];
-  $(survey_id + item + "_score").val(this_value);
+  $(survey_prepend + item + "_score").val(this_value);
   if (typeof this_value !== "undefined") {
     return parseFloat(this_value);
   }
@@ -934,20 +929,19 @@ function response_check(submitted_element) {
       break;
 
     case "button":
-      $("#" + submitted_element.name + "_response").val(
-        submitted_element.value
-      );
+      $("#" + submitted_element.name + "_response").val(submitted_element.value);
       break;
 
     case "number":
     case "email":
     case "radio":
+      $("#" + submitted_element.name + "_response").val(submitted_element.value);
+      console.log($("#" + submitted_element.name + "_response").val(submitted_element.value));
+      break;
     case "select-one":
     case "text":
     case "textarea":
-      $("#" + submitted_element.name + "_response").val(
-        submitted_element.value
-      );
+      $("#" + submitted_element.name + "_response").val(submitted_element.value);
       break;
   }
   update_score();
@@ -1079,21 +1073,17 @@ function update_score() {
 
     questions.forEach(function (row_no) {
       var item = survey_obj.data[row_no].item_name.toLowerCase();
-      var this_response = $(survey_id + item + "_value").val();
+      console.log("Item " + item)
+      // var this_response = $("#" + survey_prepend + item + "_value").val();
+      var this_response = $("#" + survey_prepend + item + "_response").val();
+      console.log("This Response " + this_response)
       var normal_reverse = this_scale.questions[row_no];
-
+      console.log("Normal Reverse " + normal_reverse)
       if (normal_reverse.indexOf("-") === -1) {
         var multiplier = parseFloat(normal_reverse.replace("r", ""));
         if (normal_reverse.indexOf("r") === 0) {
           //reverse the values
-
-          this_value = process_score(
-            row_no,
-            "values",
-            this_response,
-            item,
-            "r"
-          );
+          this_value = process_score(row_no, "values", this_response, item, "r");
         } else {
           this_value = process_score(row_no, "values", this_response, item);
         }
@@ -1105,17 +1095,12 @@ function update_score() {
 
         if (normal_reverse.indexOf("r") === 0) {
           //reverse the values
-          this_value = process_score(
-            row_no,
-            values_col,
-            this_response,
-            item,
-            "r"
-          );
+          this_value = process_score(row_no, values_col, this_response, item, "r");
         } else {
           this_value = process_score(row_no, values_col, this_response, item);
         }
       }
+      console.log("This Value: "+ this_value)
       if (typeof this_value !== "undefined") {
         this_score += multiplier * this_value;
       } else {
@@ -1157,7 +1142,6 @@ function write(type, row) {
       var this_input = $("<input>");
       this_input[0].type = "checkbox";
       this_input[0].id = row["item_name"] + i;
-      // this_input[0].name = "survey_" + row["item_name"];
       this_input[0].name = survey_prepend + row["item_name"];
       this_input
         .addClass("custom-control-input")
@@ -1259,8 +1243,7 @@ function write(type, row) {
         "placeholder",
         "(Please specify if you selected 'Other')"
       );
-      text_input[0].name =
-        survey_prepend + row["item_name"].toLowerCase() + "_other";
+      text_input[0].name = survey_prepend + row["item_name"].toLowerCase() + "_other";
       this_html += text_input[0].outerHTML;
     }
   } else if (type === "date") {
@@ -1385,16 +1368,16 @@ function write(type, row) {
     var options = row["answers"].split("|");
     var values = row["values"].split("|");
     for (var i = 0; i < options.length; i++) {
-      var this_button = $("<input>");
-      this_button
+      var this_radio = $("<input>");
+      this_radio
         .attr("type", "radio")  
         .attr("name", survey_prepend + row["item_name"])
         .attr("autocomplete", "off")
         .attr("id", "likert_" + row["row_no"] + "_" + i)
-        .attr("onclick", "survey_js.likert_update(this)")
+        .attr("onclick", "survey_js.likert_update(this);")
         .attr("value", values[i])
         .addClass("btn-check")
-      this_div.append(this_button);
+      this_div.append(this_radio);
       var this_label = $("<label>");
       this_label
         .addClass("btn")
@@ -1471,9 +1454,15 @@ function write(type, row) {
       this_input[0].type = "radio";
       this_input[0].id = row["item_name"] + i;
       this_input[0].value = options[i];
-      this_input[0].name = survey_prepend + row["item_name"];
+      this_input[0].name = this_input[0].value = options[i]; + row["item_name"];
       this_input
-        .addClass("custom-control-input").addClass(row["this_class"]).addClass("custom-control").addClass("custom-radio").addClass("response").addClass("option-input radio").addClass(row["item_name"] + "_item_row_" + row["row_no"]);
+        .addClass("custom-control-input")
+        .addClass(row["this_class"])
+        .addClass("custom-control")
+        .addClass("custom-radio")
+        .addClass("response")
+        .addClass("option-input radio")
+        .addClass(row["item_name"] + "_item_row_" + row["row_no"]);
       var this_label = $("<label>");
       this_label[0].htmlFor = row["item_name"] + i;
       this_label.addClass("custom-control-label").addClass("radioLabelHolder");
@@ -1485,7 +1474,10 @@ function write(type, row) {
     var this_input = $("<input>");
     this_input[0].type = "text";
     this_input[0].name = survey_prepend + row["item_name"];
-    this_input.addClass("form-control").addClass(row["item_name"] + "_item row_" + row["row_no"]).addClass("response");
+    this_input
+    .addClass("form-control")
+    .addClass(row["item_name"] + "_item row_" + row["row_no"])
+    .addClass("response");
     this_html += this_input[0].outerHTML;
   }
 
@@ -1517,6 +1509,14 @@ function write_survey(this_survey, this_id) {
     shuffled_arrays: {},
   };
 
+  for (i = 0; i < this_survey.length; i++) {
+    row = this_survey[i];
+    if (row["type"].toLowerCase() === "redcap_pii") {
+      survey_prepend = row["item_name"].toLowerCase() + '_pii_';
+      console.log("Survey contains PII, ID prefix changed to: " + survey_prepend)
+    } 
+  }
+  
   survey_html += "<tr>";
   for (i = 0; i < this_survey.length; i++) {
     row = this_survey[i];
@@ -1614,4 +1614,3 @@ if (typeof module !== "undefined") {
     load_survey(current_survey, "survey_outline");
   }
 }
-

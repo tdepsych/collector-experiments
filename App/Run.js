@@ -2,8 +2,7 @@ $.getScript( "libraries/collector/redcap_dropped_fields.js")
 project_json = {};
 var home_dir;
 
-// download at end text
-var dowload_data = '<div id="card_container" style="width:100%;height:100%;display: flex;justify-content: center;align-items: center;text-align: center;flex-direction: column;">'+
+var download_data_text = '<div id="card_container" style="width:100%;height:100%;display: flex;justify-content: center;align-items: center;text-align: center;flex-direction: column;">'+
 '<div class="card" style="width: 30em;">'+
   '<div class="card-header text-primary"><h2>You have finished</h2></div>'+
   '<div class="card-body">'+
@@ -116,14 +115,10 @@ Project = {
     }
   },
   finish_phase: function (go_to_info) {
-
     phase_end_ms = new Date().getTime();
+    parent.parent.phase_start_time_ms = phase_end_ms;
     phase_inputs = {};
-    $("#experiment_progress").css(
-      "width",
-      (100 * project_json.phase_no) / (project_json.parsed_proc.length - 1) +
-        "%"
-    );
+    $("#experiment_progress").css("width",(100 * project_json.phase_no) / (project_json.parsed_proc.length - 1) + "%");
 
     for (var i = 0; i < project_json.inputs.length; i++) {
       if (
@@ -184,25 +179,26 @@ Project = {
     response_data[post_string + "_window_inner_height"] = window.innerHeight;
 
     response_data[post_string + "_us_date"] = new Date().toLocaleDateString("en-US");
-    response_data[post_string + "_time"]     = new Date().toLocaleTimeString();;
+    response_data[post_string + "_time"]     = new Date().toLocaleTimeString();
     response_data[post_string + "_timezone"] = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
     response_data[post_string + "_phase_end_ms"] = phase_end_ms;
     response_data[post_string + "_rt_ms"] = phase_end_ms - response_data[post_string + "_phase_start_ms"];
-    response_data[post_string + "_phase_end_date"] = new Date(
-      parseInt(phase_end_ms, 10)
-    ).toString("MM/dd/yy HH:mm:ss");
+    response_data[post_string + "_phase_end_date"] = new Date(parseInt(phase_end_ms, 10)).toString("MM/dd/yy HH:mm:ss");
     response_data.platform = window.navigator.platform;
     response_data.username = $("#participant_code").val();
 
     Object.keys(project_json.this_condition).forEach(function (condition_item) {
-      response_data["condition_" + condition_item] =
-        project_json.this_condition[condition_item];
+      response_data["condition_" + condition_item] = project_json.this_condition[condition_item];
     });
 
     project_json.this_phase = response_data;
-    response_data.participant_browser = participant_browser;
-    response_data.phase_number = project_json.phase_no;
+    response_data.participant_browser = parent.parent.participant_browser;
+    if(parent.parent.project_json.repeat_no >= project_json.phase_no){
+      response_data.phase_number = project_json.phase_no + 1;
+    } else {
+      response_data.phase_number = project_json.phase_no;
+    }
 
     var not_final_phase = true;
 
@@ -223,6 +219,7 @@ Project = {
         final_phase();
       } else {
         if (typeof go_to_info !== "undefined") {
+          project_json.this_phase = {};
           project_json.phase_no = parseFloat(go_to_info) - 1;
           // project_json.phase_no = parseFloat(go_to_info);
           project_json.post_no = 0;
@@ -232,9 +229,9 @@ Project = {
               parseFloat(project_json.phase_no);
               console.log("Buffering from phase: "+project_json.phase_no + " to phase: " + combined_phase_buffer)
             for (var index = project_json.phase_no; index < combined_phase_buffer; index++) {
-              console.log(project_json.parsed_proc[index]);
               write_phase_iframe(index);
             }
+            console.log("Trying to start: "+go_to_info)
           },0);
         } else {
           project_json.this_phase = {};
@@ -249,7 +246,6 @@ Project = {
           },0);
         }
         setTimeout(() => {
-          console.log("Trying to start: "+go_to_info)
           Project.start_post(go_to_info);
         }, 1);
       }
@@ -263,13 +259,8 @@ Project = {
         .find("iframe")
         .hide();
       Project.start_post(go_to_info);
-      project_json.this_phase[
-        "post_" + project_json.post_no + "_phase_start_ms"
-      ] = new Date().getTime();
-      project_json.this_phase[
-        "post_" + project_json.post_no + "_phase_start_date"
-      ] = new Date(parseInt(start_time, 10)).toString("MM/dd/yy HH:mm:ss");
-
+      project_json.this_phase["post_" + project_json.post_no + "_phase_start_ms"] = parent.parent.phase_start_time_ms;
+      project_json.this_phase["post_" + project_json.post_no + "_phase_start_date"] = new Date(parseInt(start_time, 10)).toString("MM/dd/yy HH:mm:ss");
     }
 
     /*
@@ -308,20 +299,25 @@ Project = {
         clean_phase_responses[old_key] = phase_responses[old_key];
       });
       
-      // parent.parent.remove_fields.forEach(adjust_redcap_array)
-      main_remove_fields.forEach(adjust_redcap_array)
+      parent.parent.main_remove_fields.forEach(adjust_redcap_array)
         function adjust_redcap_array(field) {
           delete(clean_phase_responses[field]);
         };
 
-            clean_phase_responses.record_id = phase_responses.username + "_" + parent.parent.start_date_time;
+       clean_phase_responses.record_id = phase_responses.username + "_" + parent.parent.start_date_time;
 
-      clean_phase_responses['redcap_repeat_instance'] = project_json.phase_no;
+      if (parent.parent.project_json.repeat_no == null){
+        clean_phase_responses['redcap_repeat_instance'] = parent.parent.project_json.phase_no;
+        parent.parent.project_json.repeat_no = parent.parent.project_json.phase_no;
+      } else {
+        clean_phase_responses['redcap_repeat_instance'] = parent.parent.project_json.repeat_no;
+      }
+      
       clean_phase_responses['redcap_repeat_instrument'] = parent.parent.redcap_instrument;
       if (parent.parent.redcap_instrument != "main") {
         var field_name = parent.parent.redcap_instrument;
         clean_phase_responses[field_name +'_complete'] = 2;
-        demo_remove_fields.forEach(adjust_redcap_array)
+        parent.parent.pii_remove_fields.forEach(adjust_redcap_array)
         function adjust_redcap_array(field) {
           delete(clean_phase_responses[field]);
         };
@@ -346,8 +342,8 @@ Project = {
             if(result.toLowerCase().indexOf("error") !== -1 | result.toLowerCase().indexOf("count") === -1){
               attempt_no++;
               if(attempt_no > 2){
-                // alert("This data has not submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
-                console.log("This data may not have been submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
+                bootbox.alert("⚠ <b class='text-danger'>WARNING</b> ⚠ <br><br>This data has not submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
+                // console.log("This data may not have been submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
               } else {
                 redcap_post(
                   this_url,
@@ -393,8 +389,13 @@ Project = {
           //Phase.submit();
         }
       });
-    }
 
+      // Finally, let's just update the repeat instance number
+      parent.parent.project_json.repeat_no++;
+    }
+    //
+    // Saving Local Data Now
+    //
     switch (Project.get_vars.platform) {
       case "localhost":
         var data_response = CElectron.fs.write_data(
@@ -483,9 +484,7 @@ Project = {
     this_phase = this_phase.replace("[post_no]", post_no);
 
     if(this_proc.item.toString() === "") {
-      console.log("ERROR: If it's 'White Screening' it's because you've got an empty row in the 'Item' column of your procedure sheet!")
-      console.log("       ps. I spent hours trying to debug Collector when this happened to me as I hadn't realised it was just a missing 0")
-      console.log("           which is why I'm writing this long error message, so if it happens again I can fix it in seconds! CD")
+      bootbox.alert("ERROR: If it's 'White Screening' it's because you've got an incorrect or empty row in the 'Item' column of your procedure sheet!<br><br><em>(ps. I spent hours trying to debug Collector when this happened to me as I hadn't realised it was just a missing 0 which is why I'm writing this long error message, so if it happens again I can fix it in seconds! CD)</em>")
     }
     if (this_proc.item.toString() !== "0") {
       this_stim = project_json.parsed_stim[this_proc.item];
@@ -543,6 +542,7 @@ Project = {
 
   go_to: function (go_to_info) {
     console.log("Jumping to phase: " + go_to_info)
+    parent.parent.project_json.inputs = jQuery("[name]");
     Project.finish_phase(go_to_info);
   },
 
@@ -661,9 +661,7 @@ Project = {
         //no timers on this phase?
       }
     }
-    project_json.this_phase[
-      "post_" + project_json.post_no + "_phase_start_ms"
-    ] = new Date().getTime();
+    project_json.this_phase["post_" + project_json.post_no + "_phase_start_ms"] = new Date().getTime();
   },
 };
 
@@ -849,9 +847,12 @@ function final_phase() {
       $("#project_div").append("<div id='download_div'></div>");
 
       if (download_at_end === "on") {
-        $("#download_div").html(dowload_data
+        $("#download_div").html(download_data_text
           // "<h3 class='text-primary'><h1>Thank you for participating. If you'd like to download your raw data <span id='download_json'>click here</span></h1></h3>"
         );
+        $("#download_json").on("click", function () {
+          precrypted_data(project_json, "What do you want to save this file as?");
+        });
       } else if (download_at_end === "off") {
         $("#download_div").html(""
           /*
@@ -887,10 +888,12 @@ function final_phase() {
                     " please copy the link into a new window to proceed there."
                 );
               }
-              $("#project_div").html(dowload_data
+              $("#project_div").html(download_data_text
                 // "<h1>Thank you for participating. If you'd like to download your raw data <span id='download_json'>click here</span></h1>"
               );
-
+              $("#download_json").on("click", function () {
+                precrypted_data(project_json, "What do you want to save this file as?");
+              });
               //$("#participant_country").show();
               //$("#participant_country").load("ParticipantCountry.html");
               window.localStorage.removeItem("project_json");
@@ -920,7 +923,7 @@ function final_phase() {
     case "preview":
     case "onlinepreview":
       online_data_obj.finished_and_stored = true;
-      $("#project_div").html(dowload_data);
+      $("#project_div").html(download_data_text);
       $("#download_json").on("click", function () {
         precrypted_data(project_json, "What do you want to save this file as?");
       });
@@ -1436,9 +1439,11 @@ function precrypted_data(decrypted_data, message) {
   condition_headers = Object.keys(this_condition).filter(function (item) {
     return item !== "_empty_";
   });
-
   table_headers = response_headers.concat(condition_headers);
   downloadable_csv = [table_headers];
+  if(parent.parent.go_to_active){
+    var responses_csv = responses_csv.filter(value => Object.keys(value).length !== 0);
+  }
   responses_csv.forEach(function (row, row_no) {
     downloadable_csv.push([]);
     table_headers.forEach(function (item, item_no) {
@@ -1451,16 +1456,19 @@ function precrypted_data(decrypted_data, message) {
       }
     });
   });
-
-  bootbox.prompt({
-    title: message,
-    value: $("#participant_code").val() + "_" + parent.parent.start_date_time + ".csv",
-    callback: function (result) {
-      if (result !== null) {
-        save_csv(result, Papa.unparse(downloadable_csv));
-      }
-    },
-  });
+  if (!parent.parent.functionIsRunning) {
+    parent.parent.functionIsRunning = true;
+    bootbox.prompt({
+      title: message,
+      value: $("#participant_code").val() + "_" + parent.parent.start_date_time + ".csv",
+      callback: function (result) {
+        parent.parent.functionIsRunning = false;
+        if (result !== null) {
+          save_csv(result, Papa.unparse(downloadable_csv));
+        }
+      },
+    });
+  }
 }
 
 function process_welcome() {

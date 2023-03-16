@@ -3,48 +3,13 @@
  *	Collector Kitten/Cat release (2019-2023) © Dr. Anthony Haffey (team@someopen.solutions)
 */
 var start_date_time = new Date().toLocaleDateString("en-US").replaceAll("/","_") + "_" + new Date().toLocaleTimeString().replaceAll(":","_");
-var remove_fields = [
-  "buffer",
-  "condition_",
-  "condition_buffer",
-  "condition_end_message",
-  "condition_fullscreen",
-  "condition_notes",
-  "condition_participant_id",
-  "condition_redcap_url",
-  "condition_skip_quality",
-  "condition_start_message",
-  "end_message",
-  "fullscreen",
-  "item",
-  "location",
-  "max_time",
-  "name",
-  "organization",
-  "participant_id",
-  "post_0_phase_end_date",
-  "post_0_phase_end_ms",
-  "post_0_timezone",
-  "post_0_window_inner_height",
-  "post_0_window_inner_width",
-  "procedure",
-  "redcap_url",
-  "repeat",
-  "repository",
-  "shuffle_1",
-  "shuffle_2",
-  "skip_quality",
-  "start_message",
-  "stimuli",
-  "weight",
-]
+var redcap_marker_update = false // This is just to tell whether the add_response() call is updating redcap markers of submitting experimental data
 // Collector Phase Functions
 if (typeof Phase !== "undefined") {
 
   /* ADD A NEW RESPONSE WITHOUT ENDING PHASE 
    * *************************************** */
   Phase.add_response = function (response_obj) {
-
     /* If we don't have a repeat number set have a repeat_no set - then this is the first
        time we've added a response and so set the repeat_no to be the current phase number 
     */
@@ -66,28 +31,50 @@ if (typeof Phase !== "undefined") {
    if(typeof(parent.parent.project_json.this_condition.redcap_url) !== "undefined"){
 
        var phase_responses = response_obj;
-
-       console.log("phase_responses");
-      //  var this_location = parent.parent.project_json.location.split("/")[0].replaceAll("-","") + "_" + parent.parent.project_json.location.split("/")[1].replaceAll("-","");
-
        var clean_phase_responses = {};
 
       Object.keys(phase_responses).forEach(function(old_key){
         clean_phase_responses[old_key] = phase_responses[old_key];
       });
-      
+
+      // This populates out the condition _name, _stimuli, and _procedure columns
+      Object.keys(parent.parent.project_json.this_condition).forEach(function (condition_item) {
+        clean_phase_responses["condition_" + condition_item] = parent.parent.project_json.this_condition[condition_item];
+      });
+
       // This removes the data we don't need in REDCap based on the list at the top.
-      parent.parent.remove_fields.forEach(adjust_redcap_array)
+      parent.parent.add_response_remove_fields.forEach(adjust_redcap_array)
         function adjust_redcap_array(field) {
           delete(clean_phase_responses[field]);
         };
-
       // This sets the REDCap record ID.  
+
+      var post_string = "post_" + parent.parent.project_json.post_no;
+      if (redcap_marker_update){
+        console.log("Updating Redcap Markers")
+      } else {
+        var add_response_time_ms = new Date().getTime();
+        clean_phase_responses[post_string + "_phase_start_ms"] = parent.parent.phase_start_time_ms;
+        clean_phase_responses[post_string + "_rt_ms"] = add_response_time_ms - parent.parent.phase_start_time_ms;
+        clean_phase_responses[post_string + "_time"]     = new Date().toLocaleTimeString();
+        if (window.innerHeight === screen.height) {
+          clean_phase_responses[post_string + "_fullscreen"] = true;
+        } else {
+          clean_phase_responses[post_string + "_fullscreen"] = false;
+        } 
+      
+      clean_phase_responses[post_string + "_us_date"] = new Date().toLocaleDateString("en-US");
+      clean_phase_responses[post_string + "_screen_height"] = screen.height;
+      clean_phase_responses[post_string + "_screen_width"] = screen.width;
+      clean_phase_responses.participant_browser = parent.parent.participant_browser;
+      clean_phase_responses.platform = window.navigator.platform;
+      clean_phase_responses['username'] = parent.parent.$("#participant_code").val();
+      clean_phase_responses['phase_number'] = parent.parent.project_json.phase_no;
+    }
       clean_phase_responses.record_id = parent.parent.$("#participant_code").val() + "_" + parent.parent.start_date_time;
-      console.log(clean_phase_responses.record_id)
       clean_phase_responses['redcap_repeat_instance'] = parent.parent.project_json.repeat_no;
       clean_phase_responses['redcap_repeat_instrument'] = "main";
-       
+
        console.log("just before the ajax");
        function redcap_post(this_url,this_data){
         $.ajax({
@@ -97,9 +84,7 @@ if (typeof Phase !== "undefined") {
           data: this_data,
 
          success: function(result){
-           console.log("result");
-           //console.log(result);
-           //Phase.submit();
+           console.log("Add_Response Sent");
          }
        });
      };
@@ -136,7 +121,20 @@ if (typeof Phase !== "undefined") {
     // {CGD} It would be good to make this function swap the loaded stimuli sheet so you could alter a task based on prior performance if needed
   };
   Phase.go_to = function (new_phase_no) {
+    parent.parent.go_to_active = true;
     parent.parent.Project.go_to(new_phase_no);
+  };
+  Phase.redcap_markers = function(){
+    redcap_marker_update = true;
+    var redcap_instances = parent.parent.project_json.repeat_no + parent.parent.project_json.this_condition.buffer;
+    var redcap_safety = parent.parent.project_json.phase_no * 2;
+    for (var i = 0; i <= redcap_instances; i++) {
+      if (i === redcap_safety) { console.log("!!! For Loop Break Activated !!!");break; }
+      parent.parent.project_json.repeat_no = i;
+      Phase.add_response({
+        main_complete: 2
+      });
+    }
   };
   Phase.set = function (this_name, this_content) {
     if (typeof parent.parent.project_json.study_vars == "undefined") {

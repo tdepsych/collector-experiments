@@ -1,4 +1,7 @@
-let main_remove_fields = [
+/*  
+ * These fields are removed when using either phase.submit or phase.add_response
+*/
+  parent.parent.add_response_remove_fields = [
     "buffer",
     "condition_",
     "condition_buffer",
@@ -13,7 +16,6 @@ let main_remove_fields = [
     "fullscreen",
     "item",
     "location",
-    "main_complete",
     "max_time",
     "name",
     "organization",
@@ -33,13 +35,25 @@ let main_remove_fields = [
     "start_message",
     "stimuli",
     "weight",
+  ]
+
+ /*  
+ * These fields are added to the above list when using phase.submit
+ */
+  var additional_main_fields = [
+    "main_complete",
     "return_page",
     "completion_code",
     "prehashed_code",
   ]
+
+  // Ignore - this just adds the additional fields to the main list
+  parent.parent.main_remove_fields = parent.parent.add_response_remove_fields.concat(additional_main_fields);
   
-  let demo_remove_fields = [
-    // "completion_code",
+  /*  
+ * These fields are removed when sending pii data to redcap
+*/
+  parent.parent.pii_remove_fields = [
     "condition_name",
     "condition_procedure",
     "condition_stimuli",
@@ -55,7 +69,6 @@ let main_remove_fields = [
     "post_0_screen_width",
     "post_0_time",
     "post_0_us_date",
-    // "return_page",
     "survey",
     "task_body_text",
     "task_title",
