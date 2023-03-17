@@ -7,6 +7,7 @@
     "condition_buffer",
     "condition_end_message",
     "condition_fullscreen",
+    "condition_mobile",
     "condition_notes",
     "condition_participant_id",
     "condition_redcap_url",
