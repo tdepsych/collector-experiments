@@ -29,16 +29,12 @@ function correct_master(){
     delete(master.phasetypes.user_codes);
   }
 
-  master.phasetypes         = Collector.missing_object(master.phasetypes);
-  master.phasetypes.default = Collector
-    .missing_object(master.phasetypes.default);
-  master.phasetypes.user = Collector
-    .missing_object(master.phasetypes.user);
-  master.phasetypes.graphic = Collector
-    .missing_object(master.phasetypes.graphic);
-  master.phasetypes.graphic.files = Collector
-    .missing_object(master.phasetypes.graphic.files);
-
+  master.phasetypes = Collector.missing_object(master.phasetypes);
+  master.phasetypes.default = Collector.missing_object(master.phasetypes.default);
+  master.phasetypes.user = Collector.missing_object(master.phasetypes.user);
+  master.phasetypes.graphic = Collector.missing_object(master.phasetypes.graphic);
+  master.phasetypes.graphic.files = Collector.missing_object(master.phasetypes.graphic.files);
+  
   /*
   * studies --> projects
   */

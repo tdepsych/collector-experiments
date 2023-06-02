@@ -935,9 +935,9 @@ function response_check(submitted_element) {
     case "number":
     case "email":
     case "radio":
-      $("#" + submitted_element.name + "_response").val(submitted_element.value);
-      console.log($("#" + submitted_element.name + "_response").val(submitted_element.value));
-      break;
+      // $("#" + submitted_element.name + "_response").val(submitted_element.value);
+      // console.log($("#" + submitted_element.name + "_response").val(submitted_element.value));
+      // break;
     case "select-one":
     case "text":
     case "textarea":
@@ -1454,7 +1454,7 @@ function write(type, row) {
       this_input[0].type = "radio";
       this_input[0].id = row["item_name"] + i;
       this_input[0].value = options[i];
-      this_input[0].name = this_input[0].value = options[i]; + row["item_name"];
+      this_input[0].name = survey_prepend + row["item_name"];
       this_input
         .addClass("custom-control-input")
         .addClass(row["this_class"])
@@ -1514,15 +1514,20 @@ function write_survey(this_survey, this_id) {
     if (row["type"].toLowerCase() === "redcap_pii") {
       survey_prepend = row["item_name"].toLowerCase() + '_pii_';
       console.log("Survey contains PII, ID prefix changed to: " + survey_prepend)
+      break;
     } 
   }
   
   survey_html += "<tr>";
   for (i = 0; i < this_survey.length; i++) {
-    row = this_survey[i];
-    row_html = process_question(row, i);
-    this_survey_object.content.push(row_html[0]);
-    this_survey_object.shuffle_question.push(row_html[1]);
+      row = this_survey[i];
+      if (row["type"].toLowerCase() === "redcap_pii") {
+        // do nothing as we don't want to include any HTML
+      } else {
+        row_html = process_question(row, i);
+        this_survey_object.content.push(row_html[0]);
+        this_survey_object.shuffle_question.push(row_html[1]);
+      }
   }
 
   unique_shuffles = this_survey_object.shuffle_question.filter(

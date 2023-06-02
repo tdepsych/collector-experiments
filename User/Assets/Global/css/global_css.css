@@ -176,3 +176,6 @@ hr {
 ::-webkit-scrollbar-corner {
   background-color: transparent;
 }
+::-webkit-scrollbar-thumb:hover {
+  background: #006688;
+}
