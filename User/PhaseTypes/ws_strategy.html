@@ -1,0 +1,41 @@
+<!--'ws_strategy.html' PhaseType-->
+<!-- ---development---
+[
+{'task_title':'Wordsearch Strategies'},
+{'text':'Submit'}
+]
+---development--- -->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  textarea {
+    border-radius: 10px;
+    border-color: #3f97f6;
+    padding: 10px;
+  }
+</style>
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <h2><span>{{task_title}}</span></h2><br>
+  In this study, we are interested in what factors effect people's ability to attend to taboo words within their environment. As a result, we need to account for any specific strategies you may have used to help find the words hidden within the wordsearches. If you used any specific strategies, please briefly describe them in the boxes below. If you didn't use any strategies, simply leave the boxes blank and click submit.
+  <br><br>
+  <form>
+    <label id="ws1_label" for="ws1_strategy">Wordsearch 1:</label><br>
+    <textarea id="ws1_strategy" name="ws1_strategy" rows="4" cols="75"></textarea>
+    <br><br>
+    <label id="ws2_label" for="ws2_strategy">Wordsearch 2:</label><br>
+    <textarea id="ws2_strategy" name="ws2_strategy" rows="4" cols="75"></textarea>
+    <br>
+  </form>
+  <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()" >{{text}}</button>
+</div>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
+<script>
+  if (parent.parent.ws_list == "NoList_First"){
+    $("#ws1_label").text('if Wordsearch 1 - No Word List');
+    $("#ws2_label").text('if Wordsearch 2 - Word List');
+  } else {
+    $("#ws1_label").text('else Wordsearch 1 - Word List');
+    $("#ws2_label").text('else Wordsearch 2 - No Word List');
+  }
+</script>

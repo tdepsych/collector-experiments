@@ -211,11 +211,23 @@
   var hideList = '{{notes}}';
   if (hideList == "NoList") {
     $('.ws-words').hide();
-    // console.log("They get the word list");
+    if (parent.parent.firstWordsearch == 1) {
+      parent.parent.ws_list = "List_First";
+    } else {
+      parent.parent.ws_list = "NoList_First";
+    }
   } else {
-    //console.log("They get the word list");
+    // parent.parent.ws_list = "List"
   }
 
+  
+  //=============== //
+  // SOURCE STIMULI //
+  //=============== // 
+  
+    var source_words_nt = 'book,bake,chair,glass,sink,cork,knot,rain,ship,vest,flirt,joke,lust,star,gift,bird,cake,grin,silk,wise,debt,evil,fire,rage,fight,crime,dirt,sick,fault,tomb';
+    var source_words_t = 'bitch,cock,fuck,shit,whore,twat,slut,dildo,cunt,crap';
+  
   //================ //
   // STIMULI SORTING //
   //================ // 
@@ -223,15 +235,11 @@
   /* First we just check if the stimuli list have been generated before, if not, this is the first wordsearch and we use the whole list
      if it does exist, we use the existing list, as that will have had the previously used words removed. */
   
-  // if (parent.parent.global_count == 1) {
   if (firstWordsearch == 'yes') {
     console.log("First Wordsearch");
     which_ws = "ws_1";
     
     parent.parent.firstWordsearch = 1;
-    // Get the source words from the procedure sheet  
-    var source_words_nt = 'book,bake,chair,glass,sink,cork,knot,rain,ship,vest,flirt,joke,lust,star,gift,bird,cake,grin,silk,wise,debt,evil,fire,rage,fight,crime,dirt,sick,fault,tomb';
-    var source_words_t = 'bitch,cock,fuck,shit,whore,twat,slut,dildo,cunt,crap';
     
     // Change the words into useable arrays
     source_words_nt = source_words_nt.split(',');
@@ -277,8 +285,6 @@
     
     // Shuffle the stimuli array  
     var grid_stimuli = shuffle(parent.parent.stimuli_TabooRemain); // Shuffle the selected words to randomise the displayed word list
-       
-    //console.log("Second Words: " + grid_stimuli); 
     
     // Set the value of a hidden input to be the stimuli words. 
     document.getElementById("ws_wordlist").value = grid_stimuli; // this saves them in our data spreadsheet meaning we know what words were on what wordsearch puzzle
@@ -775,7 +781,12 @@ var gridArray = [];
       //do nothing
     }
     word_found = word_found.toString()
-    console.log("The word found was: "+word_found)
+    if (source_words_t.includes(word_found)) {
+      var word_type = "taboo"
+    } else {
+      var word_type = "non-taboo"
+    }
+    
     var timetoFind = '';
     var wordCount = this.solved;
     first = second;
@@ -791,12 +802,11 @@ var gridArray = [];
       new_word_time = (new Date()).getTime();
       timetoFind = new_word_time - old_word_time;
       old_word_time = new_word_time;
-      console.log("time to find: " + timetoFind);
-      console.log("this is ws: " + which_ws);
       Phase.add_response({
         ws_number: which_ws,
         ws_score: wordCount,
         ws_word: word_found,
+        ws_type: word_type,
         ws_time: timetoFind
       })
     },0);
