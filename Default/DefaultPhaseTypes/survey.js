@@ -1577,17 +1577,12 @@ function write_survey(this_survey, this_id) {
   survey_html += qs_in_order;
   survey_html += "</table>";
 
-  $("#" + this_id).html(survey_html);
+  // $("#" + this_id).html(survey_html);
+  $("#" + this_id).html(survey_html).animate({height: "90%"}).show();
+  $(".response").on("change", function () {response_check(this);});
 
-  $(".response").on("change", function () {
-    response_check(this);
-  });
-
-  $("#" + this_id).show(0); //scroll to top
-  $("#" + this_id).animate({
-    "height": "90%"
-  });
-
+  // $("#" + this_id).show(0); //scroll to top
+  // $("#" + this_id).animate({height: "90%"});
 
   //show("slide", {direction: "down" }, "slow");
 
