@@ -36,9 +36,9 @@
     <br/><br/>
     <b>Thank your for taking part in our study</b>
     <br/>
-   As mentioned on the participant information sheet, we are interested in whether swear words can grab attention more than positively or negatively valanced words when presented at the same time. Previous research has found that [OUTLINE STUDY JUSTIFICATION] but these studies were conducted using words presented individually, rather than at the same time. Within the study we manipulated [LIST STUDY IVs] as independent variables, measuring [LIST STUDY DVs] as dependent variables. We are predicting that [OUTLINE STUDY HYPOTHESES].
-    <br/><br/>
-    The reason you completed two wordsearches – one with and one without a hidden word list – was to allow us to isolate the effect of pattern matching (where you hunt for a known word) with attention (where the word jumps out of the grid as you scan). The “Tetris” game between the two wordsearches was included as a cognitive distraction task to allow us to control for any hangover effects from completing the first wordsearch influencing your performance during the second wordsearch by creating a set time delay between the two.
+   As mentioned on the participant information sheet, we are interested in whether swear words can grab attention more than positively or negatively valanced words when presented at the same time. Previous research has found that swear words do process this property, but they present the words individually as part of a memory recall task. By presenting the words, at the same time and hidden within a wordsearch, we could isolate whether the previous effects are an inherent property of swear words or a methodological confound from presenting the words in isolation. Within the study we manipulated the category of word within the wordsearch and whether the wordsearch had a “hidden word” list as independent variables, measuring how many words you could find in each condition along with how quickly you found them as dependent variables. We are predicting that more words will be found when there was a list than when there wasn’t – and that the time to find each word will be quicker, too. It is also expected that the results will show significantly more swear words were found than non-swear words.
+   <br/><br/>
+   Furthermore, another reason you completed two wordsearches – one with and one without a hidden word list – was to allow us to isolate the effect of pattern matching (where you hunt for a known word) from attention (where the word jumps out of the grid as you scan). We also asked you to outline any search strategies you used to help us control any impact that may have had too. The “Tetris” game between the two wordsearches was included purely as a cognitive distraction task to allow us to control for any hangover effects from completing the first wordsearch influencing your performance during the second wordsearch by creating a set time delay between the two.
     <br/><br/>
     <b>SONA Credits/Amazon Gift Card Draw</b><br>
     If you are a University of Reading Student completing this study for SONA credits, please ensure that you click the “finish study and gain credit” button below. This will return you to the SONA system website and automatically award you your credit for completing this study. If you are not a University of Reading SONA student and you elected to enter the Amazon gift card draw, the winner will be drawn once data collection has finished later in the summer and the winner notified by email.
@@ -51,10 +51,17 @@
     <b>Prof. Philip Beaman and Alastair Bird</b>
     <hr>
     <span class ="minor">
-      Please click the following links if you  wish to download the <a href="../../collector-experiments/User/Assets/MSc/swear-disinhibition-information-sheet.pdf" download="Participant Information Sheet">participant information sheet <span id="pdfImg"></span></a> or the study <a href="../../collector-experiments/User/Assets/MSc/swear-disinhibition-debrief-sheet.pdf" download="Study Debrief Sheet">debreif sheet <span id="pdfImg"></span></a>
+      Please click the following links if you  wish to download the <a href="../../collector-experiments/User/Assets/ADB/information_sheet.pdf" download="Participant Information Sheet">participant information sheet <span id="pdfImg"></span></a> or the study <a href="../../collector-experiments/User/Assets/ADB/debrief_sheet.pdf" download="Study Debrief Sheet">debreif sheet <span id="pdfImg"></span></a>
     </span>
     <hr>
   <div>
   <button class="btn btn-primary" id="endButton" onclick="Phase.submit()">Finish Study</button>
   <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
+  <script>
+    if (parent.parent.sona) {
+      $("#endButton").attr("onclick","Phase.go_to(17)").html("Finish Study & Collect Credit");
+    } else {
+      $("#endButton").attr("onclick","Phase.submit()");
+    }
+  </script>
 </body>

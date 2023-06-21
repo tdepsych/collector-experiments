@@ -162,7 +162,7 @@
     padding-left: 10px;
   }
   .optional_item {
-    opacity: .75;
+    opacity: .85;
     color: lightslategrey;
   }
 </style>
@@ -192,10 +192,10 @@
       Supervisor: Prof. Philip Beaman (c.p.beaman@reading.ac.uk - 0118 378 7637)<br/>
       Experimenter: Alastair Bird (a.d.bird@student.reading.ac.uk)
       <br/><br/>
-      We would be grateful if you could assist us by participating in our online study <b>‘{{text}}’</b>.
+      We would be grateful if you could assist us by participating in our online study <br><em>‘{{text}}’</em>.
       <br><br>
       <b>What will I be asked to do?</b><br>
-      In the experiment you will be presented with [DESCRIPTION OF STIMULI AND PROCEDURE]. The experiment should take no longer than [MAXIMUM TIME EXPECTED]. Taking part in this study is completely voluntary; you may withdraw at any time without having to give any reason by simply closing your internet browser window. If you have any questions before starting the study, please contact the experimenter listed above via email.
+      In the experiment you will be presented with two wordsearch puzzles, one at a time, and required to find 15 words hidden within each, as fast as you can, within a 4-minute period. The 15 words within each puzzle are made up of swear and non-swear words. As a break between the two puzzles, you will play the classic arcade game Tetris for 4-minutes. After completing the second word search puzzle, you will be asked to outline any search strategies used and fill in a short demographics questionnaire. The experiment should take no longer than 15 minutes. Taking part in this study is completely voluntary; you may withdraw at any time without having to give any reason by simply closing your internet browser window. If you have any questions before starting the study, please contact the experimenter listed above via email.
       <br><br>
       <b>Who can participate in this study?</b><br>
       You can participate in this study if you are over 18 years old and a native English speaker. This is defined as someone born in, or having moved to before the age of 2, a country where English is the first language. If you do not meet either of these requirements, please withdraw from the study.
@@ -304,6 +304,10 @@
             <input type="checkbox" class="option-input radio" name="consent_pii_c10_future_studies" id="c10_future_studies" value="No"/>
             <span class="radioLabel">Please tick this box if you are happy to be contacted by the researchers about future studies they conduct (optional).</span>
           </label>
+          <label id="radioLabelHolder" class="optional_item">
+            <input type="checkbox" class="option-input radio" name="consent_pii_c11_sona" id="c11_sona" value="SONA"/>
+            <span class="radioLabel">Please tick this box if you are completing this study for SONA credits (optional).</span>
+          </label>
           <!--Text Inputs-->
           <br><br>
           <label id="textLabel" style="margin-left: 65px; margin-top: -20px;">Please enter your name and email address in the boxes below. These are required so we can link the consent agreement above to you and are stored separately to all experimental data, ensuring your anonymity. They are also not included in any data made available once the study has been completed</label>
@@ -389,9 +393,14 @@
     
   $("#consentForm").change(function() {
     
-    if ($('#c12_future_studies').is(':checked')) {
-      $('#c12_future_studies').val("Yes");
+    if ($('#c10_future_studies').is(':checked')) {
+      $('#c10_future_studies').val("Yes");
     }
+    if ($('#c11_sona').is(':checked')) {
+      $('#c11_sona').val("Yes");
+      parent.parent.sona = true;
+    }
+    
     // Assign the particpant's ID and testing sessions numbers to variables
     $('#uniqueid').val(parent.parent.pptID);
     $('#testingsession').val(parent.parent.sessionnumber);

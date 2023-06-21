@@ -1577,12 +1577,20 @@ function write_survey(this_survey, this_id) {
   survey_html += qs_in_order;
   survey_html += "</table>";
 
-  // $("#" + this_id).html(survey_html);
-  $("#" + this_id).html(survey_html).animate({height: "90%"}).show(0);
-  $(".response").on("change", function () {response_check(this);});
+  $("#" + this_id).html(survey_html);
 
-  // $("#" + this_id).show(0); //scroll to top
-  // $("#" + this_id).animate({height: "90%"});
+  $(".response").on("change", function () {
+    response_check(this);
+  });
+
+  //scroll to top 
+  $("#" + this_id).show(0); 
+
+  //(hopeful) Firefox fix
+  $("#" + this_id).animate({
+    "height": window.innerHeight + "px",
+    "top": (parseFloat(window.innerHeight/2)) + "px"
+  });
 
   //show("slide", {direction: "down" }, "slow");
 

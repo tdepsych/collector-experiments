@@ -225,8 +225,10 @@
   // SOURCE STIMULI //
   //=============== // 
   
-    var source_words_nt = 'book,bake,chair,glass,sink,cork,knot,rain,ship,vest,flirt,joke,lust,star,gift,bird,cake,grin,silk,wise,debt,evil,fire,rage,fight,crime,dirt,sick,fault,tomb';
-    var source_words_t = 'bitch,cock,fuck,shit,whore,twat,slut,dildo,cunt,crap';
+    var source_words_pos = 'brave,wise,snow,fame,cake,tune,song,star,peace,cozy';
+    var source_words_neg = 'bees,waste,slap,fire,cork,tomb,sick,slap,pest,crash';
+    var source_words_t = 'bitch,whore,slut,fuck,cock,tits,shit,suck,piss,crap';
+    // var source_words_nt = 'book,bake,chair,glass,sink,cork,knot,rain,ship,vest,flirt,joke,lust,star,gift,bird,cake,grin,silk,wise,debt,evil,fire,rage,fight,crime,dirt,sick,fault,tomb';
   
   //================ //
   // STIMULI SORTING //
@@ -242,26 +244,33 @@
     parent.parent.firstWordsearch = 1;
     
     // Change the words into useable arrays
-    source_words_nt = source_words_nt.split(',');
     source_words_t = source_words_t.split(',');
+    source_words_pos = source_words_pos.split(',');
+    source_words_neg = source_words_neg.split(',');
+    // source_words_nt = source_words_nt.split(',');
 
     // Shuffle the source word arrays
-    var shuffled_NonTaboo = shuffle(source_words_nt); // Shuffle the non-taboo words
-    var shuffled_Taboo = shuffle(source_words_t); // Shuffle the non-taboo words
+    var shuffled_Pos = shuffle(source_words_pos); // Shuffle the positive words
+    var shuffled_Neg = shuffle(source_words_neg); // Shuffle the negative words
+    var shuffled_Taboo = shuffle(source_words_t); // Shuffle the taboo words
+    // var shuffled_NonTaboo = shuffle(source_words_nt); // Shuffle the non-taboo words
 
-    // Select the first 5 taboo words
-    var tabooWords1 = source_words_t.slice(0, 5);
+    // Select the first 5 stimuli  words from the source lists
+    var positiveWords1 = shuffled_Pos.slice(0, 5);
+    var negativeWords1 = shuffled_Neg.slice(0, 5);
+    var tabooWords1 = shuffled_Taboo.slice(0, 5);
 
     // Select the required number of non-taboo words
-    var nonTabooWords1 = source_words_nt.slice(0, 15);
+    // var nonTabooWords1 = source_words_nt.slice(0, 15);
+
+    // Merge the selected postive words with the negative words
+    var selected_nonTab_Words = $.merge( $.merge( [], positiveWords1 ), negativeWords1 );
 
     // Merge the selected taboo words with the non-taboo words
-    var selectedWords = $.merge( $.merge( [], tabooWords1 ), nonTabooWords1 );
+    var selectedWords = $.merge( $.merge( [], tabooWords1 ), selected_nonTab_Words );
 
     // Shuffle the stimuli array  
     var grid_stimuli = shuffle(selectedWords); // Shuffle the selected words to randomise the displayed word list
-    
-    //console.log("First Words: " + grid_stimuli); 
     
     // Set the value of a hidden input to be the stimuli words. 
     document.getElementById("ws_wordlist").value = grid_stimuli; // this saves them in our data spreadsheet meaning we know what words were on what wordsearch puzzle
@@ -269,13 +278,17 @@
     // Get the five unused taboo words
     var TabooRemain = source_words_t.slice(5,10);
     
-    // Get the five unused non taboo words
-    var nonTabooRemain = source_words_nt.slice(15,30);
+    // Get the five unused positive and five unused negative words
+    var positiveRemain = source_words_pos.slice(5,10);
+    var negativeRemain = source_words_neg.slice(5,10);
+    
+    // Merge the unused words into a single variable
+    var remaining_nonTab_Words = $.merge( $.merge( [], positiveRemain ), negativeRemain );
       
     // Merge the unused words into a single variable
-    var remainingStimuli = $.merge( $.merge( [], TabooRemain ), nonTabooRemain );
+    var remainingStimuli = $.merge( $.merge( [], TabooRemain ), remaining_nonTab_Words );
     
-    // Store the remaining 20 words into a global variable
+    // Store the remaining 15 words into a global variable
     parent.parent.stimuli_TabooRemain = remainingStimuli;
        
   } else {
