@@ -796,8 +796,10 @@ var gridArray = [];
     word_found = word_found.toString()
     if (source_words_t.includes(word_found)) {
       var word_type = "taboo"
+    } else if (source_words_neg.includes(word_found)) {
+      var word_type = "negative"
     } else {
-      var word_type = "non-taboo"
+      var word_type = "positive"
     }
     
     var timetoFind = '';
