@@ -125,11 +125,11 @@ if (typeof Phase !== "undefined") {
     parent.parent.Project.go_to(new_phase_no);
   };
   Phase.redcap_markers = function(){
+    console.log("redcap repeat no: " + parent.parent.project_json.repeat_no)
     redcap_marker_update = true;
-    var redcap_instances = parent.parent.project_json.repeat_no + parent.parent.project_json.this_condition.buffer;
+    var redcap_instances = parseInt(parent.parent.project_json.repeat_no) + parseInt(parent.parent.project_json.this_condition.buffer);
+    console.log("redcap instances: "+redcap_instances)
     var redcap_safety = parent.parent.project_json.phase_no * 2;
-    console.log(redcap_instances)
-    console.log(redcap_safety)
     for (var i = 0; i <= redcap_instances; i++) {
       if (i === redcap_safety) { console.log("!!! For Loop Break Activated !!!");break; }
       parent.parent.project_json.repeat_no = i;
