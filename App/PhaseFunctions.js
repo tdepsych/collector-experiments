@@ -129,7 +129,8 @@ if (typeof Phase !== "undefined") {
     redcap_marker_update = true;
     var redcap_instances = parseInt(parent.parent.project_json.repeat_no) + parseInt(parent.parent.project_json.this_condition.buffer);
     console.log("redcap instances: "+redcap_instances)
-    var redcap_safety = parent.parent.project_json.phase_no * 2;
+    // var redcap_safety = parent.parent.project_json.phase_no * 2;
+    var redcap_safety = redcap_instances * 2;
     for (var i = 0; i <= redcap_instances; i++) {
       if (i === redcap_safety) { console.log("!!! For Loop Break Activated !!!");break; }
       parent.parent.project_json.repeat_no = i;
