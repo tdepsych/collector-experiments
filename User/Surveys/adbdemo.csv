@@ -4,7 +4,7 @@ Instructions,"<h2><span>Demographic Information</span></h2><br><br>
 Age,"1. Please enter your age (in years)<br><span class=""minor""><em>(the input only accepts numbers e.g., 21)</em></span>",number,,Yes,,,
 Gender,2. Which gender identity do you identify most with:,radio,Male|Female|Non-binary|Trans|Prefer to self-identify|Prefer not to say,No,1 | 2 | 3 | 4 | 5| 0,,
 Ethnicity,3. I identify my ethnicity as:,radio,White|Mixed/Multiple|Asian|Black/African/Caribbean|Chinese|Arab|Other|Prefer not to say,No,1 | 2 | 3 | 4 | 5 | 6 | 7 | 0,,
-Education,4. What is the highest level of education you have completed?,radio,"GCSEs or equivalent|A-Levels or equivalent|University undergraduate programme (e.g., BSc)|University postgraduate programme (e.g., MSc)|Doctoral degree|Other|Prefer not to say",No,1 | 2 | 3 | 4 | 5 | 6 | 0,,
+Education,4. What is the highest level of education you have completed?,radio,"GCSEs or equivalent|A-Levels or equivalent|University undergraduate (e.g., BSc)|University postgraduate (e.g., MSc)|Doctoral degree|Other|Prefer not to say",No,1 | 2 | 3 | 4 | 5 | 6 | 0,,
 Emplyoment,5. What is your current employment status?,radio,Full-time employment|Part-time employment|Unemployed/Retired/Full-time education|Prefer not to say,No,1 | 2 | 3 | 0,,
 NativeSpeaker,"6. Are you a native British English Speaker<br><span class=""minor""><em>(defined as someone who was born and raised in the UK, <br/>or moved to the UK before the age of 2)</em></span>",radio,Yes|No,No,1 | 2,,
 HorizontalRule,<hr>,instruct,,,,,

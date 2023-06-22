@@ -165,6 +165,10 @@
     opacity: .85;
     color: lightslategrey;
   }
+  .optional_item:hover {
+    opacity: 1.0!important;
+    color: black!important;
+  }
 </style>
 <!--The hidden inputs shouldn't be needed as it's not multisession tracking-->
 <!--<input type="hidden" id="uniqueid" name="uniqueid" />-->
@@ -301,13 +305,9 @@
             </span>
           </label>
           <label id="radioLabelHolder" class="optional_item">
-            <input type="checkbox" class="option-input radio" name="consent_pii_c10_future_studies" id="c10_future_studies" value="No"/>
+            <input type="checkbox" class="option-input radio optional_item_checkbox" name="consent_pii_c10_future_studies" id="c10_future_studies" value="No"/>
             <span class="radioLabel">Please tick this box if you are happy to be contacted by the researchers about future studies they conduct (optional).</span>
           </label>
-          <!--<label id="radioLabelHolder" class="optional_item">-->
-          <!--  <input type="checkbox" class="option-input radio" name="consent_pii_c11_sona" id="c11_sona" value="SONA"/>-->
-          <!--  <span class="radioLabel">Please tick this box if you are completing this study for SONA credits (optional).</span>-->
-          <!--</label>-->
           <!--Text Inputs-->
           <br><br>
           <label id="textLabel" style="margin-left: 65px; margin-top: -20px;">Please enter your name and email address in the boxes below. These are required so we can link the consent agreement above to you and are stored separately to all experimental data, ensuring your anonymity. They are also not included in any data made available once the study has been completed</label>
@@ -396,10 +396,6 @@
     if ($('#c10_future_studies').is(':checked')) {
       $('#c10_future_studies').val("Yes");
     }
-    if ($('#c11_sona').is(':checked')) {
-      $('#c11_sona').val("Yes");
-      parent.parent.sona = true;
-    }
     
     // Assign the particpant's ID and testing sessions numbers to variables
     $('#uniqueid').val(parent.parent.pptID);
@@ -428,10 +424,20 @@
     } else {
       $("#tooltiptext").html("Sorry. You can only start the experiment once you have ticked all the boxes and entered your name/email above<br/><em>(indicating your happy and consenting to participate in this study)</em>");
     }
+   
+   console.log("length:" + $('#c10_future_studies:checked').length)
+    if ($('#c10_future_studies:checked').length == 1) {
+      $('.optional_item').css("color","black").css('opacity','1.0');
+    } else {
+      $('.optional_item').css("color","lightslategrey").css('opacity','0.85');
+    }
   });
-        
+  
+  
+  //Clear and reset form if participant clicks to go back to Info Sheet
   $("#prevBtn").click(function() {
-    $('.consent,.consentCheck').prop("checked", false);
+    $('.consent,.consentCheck,.optional_item_checkbox').prop("checked", false);
+    $('.optional_item').css("color","lightslategrey").css('opacity','0.85');
     $('#participant_nameInput, #participant_emailInput').val("");
     $("#tooltiptext").attr("class", "tooltipHidden");
   });
