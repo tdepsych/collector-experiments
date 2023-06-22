@@ -55,16 +55,17 @@
     </span>
     <hr>
   <div>
-  <button class="btn btn-primary" id="endButton" onclick="Phase.submit()">Finish Study</button>
+  <button class="btn btn-primary" id="endButton">Finish Study</button>
   <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
   <script>
     // if (parent.parent.sona) {
     var initial_url = document.location.href;
     if (initial_url.includes("sona")) {
     // if (parent.parent.sona) {
-      $("#endButton").attr("onclick","Phase.go_to(17)").html("Finish Study & Collect Credit");
+      $("#endButton").attr("onclick","Phase.add_response({main_complete: 2});Phase.go_to(17);").html("Finish Study & Collect Credit");
     } else {
-      $("#endButton").attr("onclick","Phase.submit()");
+      $("#endButton").attr("onclick","Phase.add_response({main_complete: 2});Phase.submit();");
     }
+    
   </script>
 </body>
