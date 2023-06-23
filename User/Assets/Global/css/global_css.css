@@ -179,3 +179,11 @@ hr {
 ::-webkit-scrollbar-thumb:hover {
   background: #006688;
 }
+
+
+/******************/
+/* BOOTBOX POPUP */
+/*****************/
+.bootbox-alert {
+	top: 40vh!important;
+}
