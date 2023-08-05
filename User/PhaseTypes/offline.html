@@ -1,0 +1,50 @@
+<!-- error_page.html used to stop access for safari or a mobile -->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  @font-face {
+    font-family: 'Montserrat-ExtraLight';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-ExtraLight.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Montserrat-ExtraBold';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-ExtraBold.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Montserrat-BlackItalic';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-BlackItalic.woff') format('woff');
+  }
+  * {
+    margin: 0;
+    padding: 0;
+  }
+      
+  body, html {
+     overflow: hidden;
+       background: #FFF;
+  }
+  #oops {
+    font-size: 150px!important;
+    font-family: Montserrat-BlackItalic!important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/mind.jpg);
+      background-repeat: repeat;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    background-position: 50% 30%;
+  }
+  #sub_head{
+    font-size: 50px;
+    font-family: Montserrat-ExtraBold;
+  }
+  #body_text{
+    font-size: 50px;
+    font-family: Montserrat-ExtraLight;
+  }
+  #container {
+    width: 100%!important;
+  }
+</style>
+<div id="container">
+    <p id="oops">Sorry</p>
+    <p id="sub_head">{{task_title}}</p>
+    <p id="body_text">{{task_body_text}}</p>
+</div>
