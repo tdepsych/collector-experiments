@@ -1,15 +1,136 @@
 {
   "all_procs": {
-    "procedure_1.csv": "item,phasetype,max_time,text,shuffle_1,\r\n2,instruct,user,This is the start of a new experiment.,off,"
+    "procedure_1.csv": "item,phasetype,survey,max_time,text,notes,shuffle_1,task_title,task_body_text,weight,\r\n0,uor_cover,,user,Welcome,no_mobile,off,,,,\r\n0,ws_zoom,,user,,,off,,,,\r\n0,ws_infoconsent,,user,Janschewitz Replication,,off,,,,\r\n0,task_bookend,,user,Start,,,Word Ratings,\"<p>In this study we are interested in how people perceive words. For the next task, you will be given a list of 76 words - one at a time - and your task is to rate each word according to the scales presented.<br><br>Please be as honest as possible in your judgments; <u>they are very important to us!</u> Work at a rapid pace and don't spend too much time on each word. Make your ratings based on your first reaction to the word.<br><br>The words are presented in two blocks, and you will be given a break halfway through.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>\",,\r\n2 to 39,ws_janschewitz,,user,,,Random,,,,\r\n0,task_bookend,,user,Start Block 2,,,Time For A Break,\"<p>Thank you for rating the first 20 words, when you are ready please press <b>Start Block 2</b> to move onto the second block  of 20 words. Once again, please be as honest as possible in your judgments; <u>they are very important to us!</u> Work at a rapid pace and  don't spend too much time on each word. Make your ratings based on your  first reaction to the word.</p>\",,\r\n40 to 77,ws_janschewitz,,user,,,Random,,,,\r\n0,task_bookend,,user,Start,,,Demographics,\"<p>Thank you for rating the second block of words. You have now completed the experimental task. The last thing we need to do is collect some basic demographic information from you so we can better understand who has  taken part in our study.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>\",,\r\n0,tde_survey,adbdemo.csv,user,,\"Phase.set_timer(function(){ \r\n             $(\"\".sona_item\"\").attr('maxlength','8');          },250);\",,,,,\r\n0,upload_data,,6,,Uploading REDCap Markers,,,,,\r\n0,ws_debrief,,user,Janschewitz Replication,,,,,,"
   },
-  "conditions": "name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,\r\ncondition_1,You can put more detailed notes in this field,stimuli_1.csv,procedure_1.csv,off,,on,,,5,",
+  "conditions": "name,notes,stimuli,procedure,fullscreen,participant_id,end_message,start_message,buffer,skip_quality,redcap_url,mobile,\r\ncondition_1,,stimuli_1.csv,procedure_1.csv,on,random,,https://xo019390.webs.act.reading.ac.uk/redcap/adbWordsearch.php,5,yes,,no,",
   "all_stims": {
-    "stimuli_1.csv": "cue,answer,\r\nA,Apple,\r\nB,Banana,\r\n,,"
+    "stimuli_1.csv": "word,\r\nanus,\r\nass,\r\nasshole,\r\nballs,\r\nbastard,\r\nbitch,\r\nblowjob,\r\nboner,\r\nboobs,\r\nbooty,\r\nbreasts,\r\nbullshit,\r\nbutt,\r\nbuttfuck,\r\ncastrate,\r\nclimax,\r\nclit,\r\ncock,\r\ncocksucker,\r\ncoitus,\r\ncrap,\r\ncum,\r\ncunnilingus,\r\ncunt,\r\ndamn,\r\ndefecate,\r\ndick,\r\ndildo,\r\ndumb,\r\nejaculate,\r\nexcrement,\r\nfart,\r\nfellatio,\r\nfornicate,\r\nfuck,\r\ngoddamn,\r\nhell,\r\nhorny,\r\nhump,\r\nidiot,\r\njism,\r\njugs,\r\nknockers,\r\nlame,\r\nloser,\r\nmasturbate,\r\nmoron,\r\nmotherfucker,\r\nnipples,\r\nnutsack,\r\norgasm,\r\npecker,\r\npee,\r\npenis,\r\npiss,\r\nprick,\r\npussy,\r\nrandy,\r\nrimjob,\r\nscrew,\r\nscrotum,\r\nsemen,\r\nshit,\r\nshithead,\r\nslut,\r\nsnatch,\r\nsodomize,\r\nstupid,\r\nsuck,\r\ntesticles,\r\ntits,\r\nturd,\r\ntwat,\r\nvagina,\r\nvibrator,\r\nwhore,\r\n,"
   },
   "location": "tdepsych/collector-experiments/janschewitz",
   "public_key": "ZIEuVRKYOLO6WwFULPPZwTRcHAjIYAjbIaCzNwwNLWc=",
   "phasetypes": {
-    "instruct": "[[[LOCATION]]]../Default/DefaultPhaseTypes/instruct.html"
+    "uor_cover": "[[[LOCATION]]]../User/PhaseTypes/uor_cover.html",
+    "ws_zoom": "[[[LOCATION]]]../User/PhaseTypes/ws_zoom.html",
+    "ws_infoconsent": "[[[LOCATION]]]../User/PhaseTypes/ws_infoconsent.html",
+    "task_bookend": "[[[LOCATION]]]../User/PhaseTypes/task_bookend.html",
+    "ws_janschewitz": "[[[LOCATION]]]../User/PhaseTypes/ws_janschewitz.html",
+    "tde_survey": "[[[LOCATION]]]../User/PhaseTypes/tde_survey.html",
+    "upload_data": "[[[LOCATION]]]../User/PhaseTypes/upload_data.html",
+    "ws_debrief": "[[[LOCATION]]]../User/PhaseTypes/ws_debrief.html"
+  },
+  "surveys": {
+    "adbdemo.csv": [
+      [
+        "item_name",
+        "text",
+        "type",
+        "answers",
+        "optional",
+        "values",
+        "side_by_side",
+        ""
+      ],
+      [
+        "Instructions",
+        "<h2><span>Demographic Information</span></h2><br><br>\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer question 6, as we cannot include your data in the final dataset if you are not a native English speaker due to the differences in emotional processing of swearwords that occurs in non-native speakers.</span><br/><br/>",
+        "instruct",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Age",
+        "1. Please enter your age (in years)<br><span class=\"minor\"><em>(the input only accepts numbers e.g., 21)</em></span>",
+        "number",
+        "",
+        "Yes",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Gender",
+        "2. Which gender identity do you identify most with:",
+        "radio",
+        "Male|Female|Non-binary|Trans|Prefer to self-identify|Prefer not to say",
+        "No",
+        "1 | 2 | 3 | 4 | 5| 0",
+        "",
+        ""
+      ],
+      [
+        "Ethnicity",
+        "3. I identify my ethnicity as:",
+        "radio",
+        "White|Mixed/Multiple|Asian|Black/African/Caribbean|Chinese|Arab|Other|Prefer not to say",
+        "No",
+        "1 | 2 | 3 | 4 | 5 | 6 | 7 | 0",
+        "",
+        ""
+      ],
+      [
+        "Education",
+        "4. What is the highest level of education you have completed?",
+        "radio",
+        "GCSEs or equivalent|A-Levels or equivalent|University undergraduate (e.g., BSc)|University postgraduate (e.g., MSc)|Doctoral degree|Other|Prefer not to say",
+        "No",
+        "1 | 2 | 3 | 4 | 5 | 6 | 0",
+        "",
+        ""
+      ],
+      [
+        "Employment",
+        "5. What is your current employment status?",
+        "radio",
+        "Full-time employment|Part-time employment|Unemployed/Retired/Full-time education|Prefer not to say",
+        "No",
+        "1 | 2 | 3 | 0",
+        "",
+        ""
+      ],
+      [
+        "NativeSpeaker",
+        "6. Are you a native British English Speaker<br><span class=\"minor\"><em>(defined as someone who was born and raised in the UK, <br/>or moved to the UK before the age of 2)</em></span>",
+        "radio",
+        "Yes|No",
+        "No",
+        "1 | 2",
+        "",
+        ""
+      ],
+      [
+        "HorizontalRule",
+        "<hr>",
+        "instruct",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "demo",
+        "",
+        "redcap_pii",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
   },
   "procs_csv": {},
   "stims_csv": {}
