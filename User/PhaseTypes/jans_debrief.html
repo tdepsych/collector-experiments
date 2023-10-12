@@ -64,7 +64,8 @@
     // if (parent.parent.sona) {
       $("#endButton").attr("onclick","Phase.add_response({main_complete: 2});Phase.go_to(17);").html("Finish Study & Collect Credit");
     } else {
-      $("#endButton").attr("onclick","Phase.add_response({main_complete: 2});Phase.go_to(16);");
+      //$("#endButton").attr("onclick","Phase.add_response({main_complete: 2});Phase.go_to(16);");
+      $("#endButton").attr("onclick","Phase.submit();");
     }
     
   </script>
