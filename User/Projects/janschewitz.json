@@ -1,10 +1,10 @@
 {
   "all_procs": {
-    "procedure_1.csv": "item,phasetype,survey,max_time,text,notes,shuffle_1,task_title,task_body_text,weight,\r\n0,uor_cover,,user,Welcome,no_mobile,off,,,,\r\n0,ws_zoom,,user,,,off,,,,\r\n0,jans_infoconsent,,user,Janschewitz Replication - Taboo Only,,off,,,,\r\n0,task_bookend,,user,Start,,off,Word Ratings,\"<p>In this study we are interested in how people perceive words. For the next task, you will be given a list of 76 words - one at a time - and your task is to rate each word according to the scales presented.<br><br>Please be as honest as possible in your judgments; <u>they are very important to us!</u> Work at a rapid pace and don't spend too much time on each word. Make your ratings based on your first reaction to the word.<br><br>The words are presented in two blocks, and you will be given a break halfway through.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>\",,\r\n2 to 39,jans_ratings,,user,,,Random,,,,\r\n0,task_bookend,,user,Start Block 2,,off,Time For A Break,\"<p>Thank you for rating the first 20 words, when you are ready please press <b>Start Block 2</b> to move onto the second block  of 20 words. Once again, please be as honest as possible in your judgments; <u>they are very important to us!</u> Work at a rapid pace and  don't spend too much time on each word. Make your ratings based on your  first reaction to the word.</p>\",,\r\n40 to 77,jans_ratings,,user,,,Random,,,,\r\n0,task_bookend,,user,Start,,off,Demographics,\"<p>Thank you for rating the second block of words. You have now completed the experimental task. The last thing we need to do is collect some basic demographic information from you so we can better understand who has  taken part in our study.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>\",,\r\n0,tde_survey,adbdemo.csv,user,,\"Phase.set_timer(function(){ \r\n             $(\"\".sona_item\"\").attr('maxlength','8');          },250);\",off,,,,\r\n0,upload_data,,6,,Uploading REDCap Markers,off,,,,\r\n0,jans_debrief,,user,Janschewitz Replication - Taboo Only,,off,,,,"
+    "procedure_1.csv": "item,phasetype,survey,max_time,text,notes,shuffle_1,task_title,task_body_text,weight,\r\n0,uor_cover,,user,Welcome,no_mobile,off,,,,\r\n0,ws_zoom,,user,,,off,,,,\r\n0,jans_infoconsent,,user,Janschewitz Replication - Taboo Only,,off,,,,\r\n0,task_bookend,,user,Start,,off,Word Ratings,\"<p>In this study we are interested in how people perceive words. For the next task, you will be given a list of 100 words - one at a time - and your task is to rate each word according to the scales presented.<br><br>Please be as honest as possible in your judgments; <u>they are very important to us!</u> Work at a rapid pace and don't spend too much time on each word. Make your ratings based on your first reaction to the word.<br><br>The words are presented in two blocks of 50 words, and you will be given a break halfway through.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>\",,\r\n2 to 51,jans_ratings,,user,,,Random,,,,\r\n0,task_bookend,,user,Start Block 2,,off,Time For A Break,\"<p>Thank you for rating the first 50 words, when you are ready please press <b>Start Block 2</b> to move onto the second block  of 50 words. Once again, please be as honest as possible in your judgments; <u>they are very important to us!</u> Work at a rapid pace and  don't spend too much time on each word. Make your ratings based on your  first reaction to the word.</p>\",,\r\n52 to 101,jans_ratings,,user,,,Random,,,,\r\n0,task_bookend,,user,Start,,off,Demographics,\"<p>Thank you for rating the second block of words. You have now completed the experimental task. The last thing we need to do is collect some basic demographic information from you so we can better understand who has  taken part in our study.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>\",,\r\n0,tde_survey,jans_demo.csv,user,,\"Phase.set_timer(function(){ \r\n             $(\"\".sona_item\"\").attr('maxlength','8');          },250);\",off,,,,\r\n0,upload_data,,6,,Uploading REDCap Markers,off,,,,\r\n0,jans_debrief,,user,Janschewitz Replication - Taboo Only,,off,,,,"
   },
   "conditions": "name,notes,stimuli,procedure,fullscreen,participant_id,end_message,start_message,buffer,skip_quality,redcap_url,mobile,\r\ncondition_1,,stimuli_1.csv,procedure_1.csv,on,random,,https://xo019390.webs.act.reading.ac.uk/redcap/adbWordsearch.php,5,yes,,no,",
   "all_stims": {
-    "stimuli_1.csv": "word,\r\nanus,\r\nass,\r\nasshole,\r\nballs,\r\nbastard,\r\nbitch,\r\nblowjob,\r\nboner,\r\nboobs,\r\nbooty,\r\nbreasts,\r\nbullshit,\r\nbutt,\r\nbuttfuck,\r\ncastrate,\r\nclimax,\r\nclit,\r\ncock,\r\ncocksucker,\r\ncoitus,\r\ncrap,\r\ncum,\r\ncunnilingus,\r\ncunt,\r\ndamn,\r\ndefecate,\r\ndick,\r\ndildo,\r\ndumb,\r\nejaculate,\r\nexcrement,\r\nfart,\r\nfellatio,\r\nfornicate,\r\nfuck,\r\ngoddamn,\r\nhell,\r\nhorny,\r\nhump,\r\nidiot,\r\njism,\r\njugs,\r\nknockers,\r\nlame,\r\nloser,\r\nmasturbate,\r\nmoron,\r\nmotherfucker,\r\nnipples,\r\nnutsack,\r\norgasm,\r\npecker,\r\npee,\r\npenis,\r\npiss,\r\nprick,\r\npussy,\r\nrandy,\r\nrimjob,\r\nscrew,\r\nscrotum,\r\nsemen,\r\nshit,\r\nshithead,\r\nslut,\r\nsnatch,\r\nsodomize,\r\nstupid,\r\nsuck,\r\ntesticles,\r\ntits,\r\nturd,\r\ntwat,\r\nvagina,\r\nvibrator,\r\nwhore,\r\n,"
+    "stimuli_1.csv": "word,\r\nanus,\r\narse,\r\narsehole,\r\nballs,\r\nbastard,\r\nbellend,\r\nbitch,\r\nbloody,\r\nblowjob,\r\nboner,\r\nboobs,\r\nbreasts,\r\nbugger,\r\nbullshit,\r\nbuttfuck,\r\ncastrate,\r\nclimax,\r\nclit,\r\ncock,\r\ncocksucker,\r\ncoitus,\r\ncrap,\r\ncum,\r\ncunnilingus,\r\ncunt,\r\ndamn,\r\ndefecate,\r\ndick,\r\ndildo,\r\nejaculate,\r\nexcrement,\r\nfanny,\r\nfart,\r\nfellatio,\r\nfornicate,\r\nfuck,\r\ngit,\r\ngoddamn,\r\nhell,\r\nhorny,\r\nidiot,\r\njism,\r\nknob,\r\nmasturbate,\r\nminge,\r\nminger,\r\nmotherfucker,\r\nmoron,\r\nnipples,\r\norgasm,\r\npee,\r\npenis,\r\npillock,\r\npiss,\r\nprat,\r\nprick,\r\npussy,\r\nrimjob,\r\nscrew,\r\nscrotum,\r\nsemen,\r\nshag,\r\nshit,\r\nshithead,\r\nslut,\r\nsnatch,\r\nsodomise,\r\nstupid,\r\ntesticles,\r\ntits,\r\ntosser,\r\ntosspot,\r\nturd,\r\ntwat,\r\nvagina,\r\nwanker,\r\nwankstain,\r\nwhore,\r\nalive,\r\nangel,\r\nbrave,\r\ncarefree,\r\ncolour,\r\nexercise,\r\nfame,\r\nflirt,\r\nheaven,\r\nhonest,\r\njoyful,\r\npet,\r\nprofit,\r\nquick,\r\nriches,\r\nsecure,\r\nsilk,\r\nsnow,\r\nstar,\r\nsunrise,\r\ntune,\r\nwish,\r\n,"
   },
   "location": "tdepsych/collector-experiments/janschewitz",
   "public_key": "ZIEuVRKYOLO6WwFULPPZwTRcHAjIYAjbIaCzNwwNLWc=",
@@ -19,7 +19,7 @@
     "jans_debrief": "[[[LOCATION]]]../User/PhaseTypes/jans_debrief.html"
   },
   "surveys": {
-    "adbdemo.csv": [
+    "jans_demo.csv": [
       [
         "item_name",
         "text",
@@ -99,6 +99,16 @@
         "1 | 2",
         "",
         ""
+      ],
+      [
+        "Religion",
+        "7. How religious do you consider yourself to be?<br><span class=\"minor\"><em>(1 = Not Religious, 9 =  Devout)</em></span>",
+        "radio_horizontal",
+        "1|2|3|4|5|6|7|8|9",
+        "Yes",
+        "1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9",
+        null,
+        null
       ],
       [
         "HorizontalRule",
