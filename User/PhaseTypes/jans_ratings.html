@@ -342,7 +342,7 @@
       <hr>
     </div>
     <div class="word_item">
-      <p id="q7Label"><b>Vocalisability:</b> How likely are <b>YOU</b> to say the word aloud '{{word}}' in response to pain? For example, if you stubbed your toe on a table. Give a rating 1-9:</p>
+      <p id="q7Label"><b>Vocalisability:</b> How likely are <b>YOU</b> to say the word '{{word}}' outloud in response to pain? For example, if you stubbed your toe on a table. Give a rating 1-9:</p>
       <div id="checkboxes">
         <input type="radio" name="jq7" class="option-input response1 radio jq7" value="1">
         <input type="radio" name="jq7" class="option-input response2 radio jq7" value="2">
@@ -357,9 +357,9 @@
         <br>
         <section id="anchorTable">
           <div class="minor">
-            <div class="leftAlign3">I would not say the word</div>
-            <div class="centerAlign3">I might say the word</div>
-            <div class="rightAlign3">I would not say the word</div>
+            <div class="leftAlign3">I would not say '{{word}}'</div>
+            <div class="centerAlign3">I might say '{{word}}'</div>
+            <div class="rightAlign3">I would say '{{word}}'</div>
           </div>
         </section>
       </div>
@@ -367,7 +367,6 @@
     </div>
   </div>
   <!--</form>-->
-  <br>
   <button class="btn btn-primary" id="proceed_button">Next Word</button>
 </div>
 <script>
@@ -417,7 +416,7 @@
     parent.parent.blockCount++
     
   // This swaps the submission button text when we reach the last word in the block
-  if (parent.parent.blockCount == 51 || parent.parent.blockCount == 101) {
+  if (parent.parent.blockCount == 31 || parent.parent.blockCount == 61 || parent.parent.blockCount == 91 || parent.parent.blockCount == 121) {
     $('#proceed_button').html("End Block");
   }
 
