@@ -1,0 +1,12 @@
+item_name,text,type,answers,optional,values,side_by_side
+Instructions,<h2><span>Trait Anger Scale</span></h2><br><br>A number of statements which people have used to describe themselves are given below.  Read each statement and indicate how you <em>generally</em> feel by selecting the appropriate response option</span><br/><br/>,instruct,,,,
+trait_anger_1,1. I am quick tempered,likert,Almost Never|Sometimes|Often|Almost Always, No,1|2|3|4,yes
+trait_anger_2,2. I have a fiery temper,likert,Almost Never|Sometimes|Often|Almost Always,No,1|2|3|5,yes
+trait_anger_3,3. I am a hotheaded person,likert,Almost Never|Sometimes|Often|Almost Always,No,1|2|3|6,yes
+trait_anger_4,4. l get angry when slowed down by others' mistakes,likert,Almost Never|Sometimes|Often|Almost Always,No,1|2|3|7,yes
+trait_anger_5,5. I feel annoyed when not given recognition for going good work,likert,Almost Never|Sometimes|Often|Almost Always,No,1|2|3|8,yes
+trait_anger_6,6. I fly off the handle,likert,Almost Never|Sometimes|Often|Almost Always,No,1|2|3|9,yes
+trait_anger_7,7. I say nasty things when mad,likert,Almost Never|Sometimes|Often|Almost Always,No,1|2|3|10,yes
+trait_anger_8,8. It makes me furious when I am criticised in front of others,likert,Almost Never|Sometimes|Often|Almost Always,No,1|2|3|11,yes
+trait_anger_9,9. I feel like hitting someone when frustrated,likert,Almost Never|Sometimes|Often|Almost Always,No,1|2|3|12,yes
+trait_anger_10,10. I feel infuriated when I do a good job and get a poor evaluation,likert,Almost Never|Sometimes|Often|Almost Always,No,1|2|3|13,yes

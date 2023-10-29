@@ -1417,7 +1417,7 @@
       },
       "janschewitz": {
         "all_procs": {
-          "procedure_1.csv": "item,phasetype,survey,max_time,text,notes,shuffle_1,task_title,task_body_text,weight,\r\n0,uor_cover,,user,Welcome,no_mobile,off,,,,\r\n0,ws_zoom,,user,,,off,,,,\r\n0,jans_infoconsent,,user,Janschewitz Replication - Taboo Only,,off,,,,\r\n0,task_bookend,,user,Start,,off,Word Ratings,\"<p>In this study we are interested in how people perceive words. For the next task, you will be given a list of 120 words - one at a time - and your task is to rate each word according to the scales presented.<br><br>Please be as honest as possible in your judgments; <u>they are very important to us!</u> Work at a rapid pace and don't spend too much time on each word. Make your ratings based on your first reaction to the word.<br><br>The words are presented in four blocks of 30 words, and you will be given a break after each block.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>\",,\r\n2 to 31,jans_ratings,,user,,,Random,,,,\r\n0,task_bookend,,user,Start Block 2,,off,Time For A Break,\"<p>Thank you for rating the first 30 words, when you are ready please press <b>Start Block 2</b> to move onto the second block  of 30 words. Once again, please be as honest as possible in your judgments; <u>they are very important to us!</u> Work at a rapid pace and  don't spend too much time on each word. Make your ratings based on your  first reaction to the word.</p>\",,\r\n32 to 61,jans_ratings,,user,,,Random,,,,\r\n0,task_bookend,,user,Start Block 3,,off,Time For A Break,\"<p>Thank you for rating the second 30 words, when you are ready please press <b>Start Block 3</b> to move onto the third block  of 20 words. Once again, please be as honest as possible in your judgments; <u>they are very important to us!</u> Work at a rapid pace and  don't spend too much time on each word. Make your ratings based on your  first reaction to the word.</p>\",,\r\n62 to 91,jans_ratings,,user,,,Random,,,,\r\n0,task_bookend,,user,Start Block 4,,off,Time For A Break,\"<p>Thank you for rating the third 30 words, when you are ready please press <b>Start Block 4</b> to move onto the final block  of 30 words. Once again, please be as honest as possible in your judgments; <u>they are very important to us!</u> Work at a rapid pace and  don't spend too much time on each word. Make your ratings based on your  first reaction to the word.</p>\",,\r\n92 to 121,jans_ratings,,user,,,Random,,,,\r\n0,task_bookend,,user,Start,,off,Demographics,\"<p>Thank you for rating all 120 words. You have now completed the experimental task. The last thing we need to do is collect some basic demographic information from you so we can better understand who has  taken part in our study.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>\",,\r\n0,tde_survey,jans_demo.csv,user,,\"Phase.set_timer(function(){ \r\n             $(\"\".sona_item\"\").attr('maxlength','8');          },250);\",off,,,,\r\n0,upload_data,,6,,Uploading REDCap Markers,off,,,,\r\n0,jans_debrief,,user,Janschewitz Replication - Taboo Only,,off,,,,"
+          "procedure_1.csv": "item,phasetype,survey,max_time,text,notes,shuffle_1,task_title,task_body_text,weight,\r\n0,uor_cover,,user,Welcome,no_mobile,off,,,,\r\n0,ws_zoom,,user,,,off,,,,\r\n0,jans_infoconsent,,user,Janschewitz Replication - Taboo Only,,off,,,,\r\n0,task_bookend,,user,Start,,off,Word Ratings,\"<p>In this study we are interested in how people perceive words. For the next task, you will be given a list of 120 words - one at a time - and your task is to rate each word according to the scales presented.<br><br>Please be as honest as possible in your judgments; <u>they are very important to us!</u> Work at a rapid pace and don't spend too much time on each word. Make your ratings based on your first reaction to the word.<br><br>The words are presented in four blocks of 30 words, and you will be given a break after each block.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>\",,\r\n2 to 31,jans_ratings,,user,,,Random,,,,\r\n0,task_bookend,,user,Start Block 2,,off,Time For A Break,\"<p>Thank you for rating the first 30 words, when you are ready please press <b>Start Block 2</b> to move onto the second block  of 30 words. Once again, please be as honest as possible in your judgments; <u>they are very important to us!</u> Work at a rapid pace and  don't spend too much time on each word. Make your ratings based on your  first reaction to the word.</p>\",,\r\n32 to 61,jans_ratings,,user,,,Random,,,,\r\n0,task_bookend,,user,Start Block 3,,off,Time For A Break,\"<p>Thank you for rating the second 30 words, when you are ready please press <b>Start Block 3</b> to move onto the third block  of 20 words. Once again, please be as honest as possible in your judgments; <u>they are very important to us!</u> Work at a rapid pace and  don't spend too much time on each word. Make your ratings based on your  first reaction to the word.</p>\",,\r\n62 to 91,jans_ratings,,user,,,Random,,,,\r\n0,task_bookend,,user,Start Block 4,,off,Time For A Break,\"<p>Thank you for rating the third 30 words, when you are ready please press <b>Start Block 4</b> to move onto the final block  of 30 words. Once again, please be as honest as possible in your judgments; <u>they are very important to us!</u> Work at a rapid pace and  don't spend too much time on each word. Make your ratings based on your  first reaction to the word.</p>\",,\r\n92 to 121,jans_ratings,,user,,,Random,,,,\r\n0,task_bookend,,user,Start,,off,Individual Diffierences,\"<p>Thank you for rating all 120 words. We are now going to ask you to complete two questionnaires. One relates to sexual anxiety and the other to trait anger. All answers you give are entirely anonymous and cannot be traced back to you, so please be honest in how you respond.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>\",,\r\n0,tde_survey,jans_sexanxscale.csv,user,,,off,,,,\r\n0,task_bookend,,user,Start,,off,Individual Diffierences,\"<p>Thank you for completing the first questionnaire. </p><br><p>When you are ready, please press <b>Start</b> to begin.</p>\",,\r\n0,tde_survey,trait_anger.csv,user,,,off,,,,\r\n0,task_bookend,,user,Start,,off,Demographics,\"<p>Thank you for rating all 120 words. You have now completed the experimental task. The last thing we need to do is collect some basic demographic information from you so we can better understand who has  taken part in our study.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>\",,\r\n0,tde_survey,jans_demo.csv,user,,\"Phase.set_timer(function(){ \r\n             $(\"\".sona_item\"\").attr('maxlength','8');          },250);\",off,,,,\r\n0,upload_data,,6,,Uploading REDCap Markers,off,,,,\r\n0,jans_debrief,,user,Janschewitz Replication - Taboo Only,,off,,,,"
         },
         "conditions": "name,notes,stimuli,procedure,fullscreen,participant_id,end_message,start_message,buffer,skip_quality,redcap_url,mobile,\r\ncondition_1,,stimuli_1.csv,procedure_1.csv,on,random,,https://xo019390.webs.act.reading.ac.uk/redcap/adbWordsearch.php,5,yes,,no,",
         "all_stims": {
@@ -1436,6 +1436,414 @@
           "jans_debrief": "[[[LOCATION]]]../User/PhaseTypes/jans_debrief.html"
         },
         "surveys": {
+          "jans_sexanxscale.csv": [
+            [
+              "item_name",
+              "text",
+              "type",
+              "answers",
+              "optional",
+              "values",
+              "side_by_side",
+              ""
+            ],
+            [
+              "Instructions",
+              "<h2><span>Sexual Anxiety Scale</span></h2><br><br>\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer question 6, as we cannot include your data in the final dataset if you are not a native English speaker due to the differences in emotional processing of swearwords that occurs in non-native speakers.</span><br/><br/>",
+              "instruct",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "extramarital_sex1",
+              "1. Extamarital sex...",
+              "likert",
+              "is OK if everyone agrees.|can break up families.",
+              " No",
+              "0|1",
+              "yes",
+              ""
+            ],
+            [
+              "sex",
+              "2. Sex...",
+              "likert",
+              "can cause as much anxiety as pleasure.|on the whole is good and enjoyable.",
+              "No",
+              "1|0",
+              "yes",
+              ""
+            ],
+            [
+              "masturbation",
+              "3. Masturbation",
+              "likert",
+              "causes me to worry.|can be a useful substitute.",
+              "No",
+              "1|0",
+              "yes",
+              ""
+            ],
+            [
+              "afterwards",
+              "4. After having sexual thoughts . . .",
+              "likert",
+              "I feel aroused.|I feel jittery.",
+              "No",
+              "0|1",
+              "yes",
+              ""
+            ],
+            [
+              "engage_in",
+              "5. When I engage in petting . . .",
+              "likert",
+              "I feel scared at first.|I thoroughly enjoy it.",
+              "No",
+              "1|0",
+              "yes",
+              ""
+            ],
+            [
+              "initating",
+              "6. Initiating sexual relationships . . .",
+              "likert",
+              "is a very stressful experience.|causes me no problem at all.",
+              "No",
+              "1|0",
+              "yes",
+              ""
+            ],
+            [
+              "oral",
+              "7. Oral sex . . .",
+              "likert",
+              "would arouse me.|would terrify me.",
+              "No",
+              "0|1",
+              "yes",
+              ""
+            ],
+            [
+              "nerves",
+              "8. I feel nervous . . .",
+              "likert",
+              "about initiating sexual relations.|about nothing when it comes to members of the opposite sex.",
+              "No",
+              "1|0",
+              "yes",
+              ""
+            ],
+            [
+              "meet",
+              "9. When I meet someone I’m attracted to . . .",
+              "likert",
+              "I get to know him or her.|I feel nervous.",
+              "No",
+              "0|1",
+              "yes",
+              ""
+            ],
+            [
+              "younger",
+              "10. When I was younger . . .",
+              "likert",
+              "I was looking forward to having sex.|I felt nervous about the prospect of having sex.",
+              "No",
+              "0|1",
+              "yes",
+              ""
+            ],
+            [
+              "flirt1",
+              "11. When others flirt with me . . .",
+              "likert",
+              "I don’t know what to do.|I flirt back.",
+              "No",
+              "1|0",
+              "yes",
+              ""
+            ],
+            [
+              "group_sex",
+              "12. Group sex . . .",
+              "likert",
+              "would scare me to death.|might be interesting.",
+              "No",
+              "1|0",
+              "yes",
+              ""
+            ],
+            [
+              "adultery",
+              "13. If in the future I committed adultery . . .",
+              "likert",
+              "I would probably get caught.|I wouldn’t feel bad about it.",
+              "No",
+              "1|0",
+              "yes",
+              ""
+            ],
+            [
+              "joke_tell",
+              "14. I would...",
+              "likert",
+              "feel too nervous to tell a dirty joke in mixed company.|tell a dirty joke if it were funny.",
+              "No",
+              "1|0",
+              "yes",
+              ""
+            ],
+            [
+              "joke_hear",
+              "15. Dirt jokes...",
+              "likert",
+              "make me feel uncomfortable.|often make me laugh.",
+              "No",
+              "1|0",
+              "yes",
+              ""
+            ],
+            [
+              "dreams",
+              "16. When I awake from sexual dreams...",
+              "likert",
+              "I feel pleasant and relaxed.|I feel tense.",
+              "No",
+              "0|1",
+              "yes",
+              ""
+            ],
+            [
+              "desires",
+              "17.When I have sexual desires...",
+              "likert",
+              "I worry about what I should do.|I do something to satisfy them.",
+              "No",
+              "1|0",
+              "yes",
+              ""
+            ],
+            [
+              "commit_adultery",
+              "18. If in the future I committed adultery...",
+              "likert",
+              "it would be nobody’s business but my own.|I would worry about my spouse finding out.",
+              "No",
+              "0|1",
+              "yes",
+              ""
+            ],
+            [
+              "porn",
+              "19. Buying a pornographic book...",
+              "likert",
+              "wouldn’t bother me.|would make me nervous.",
+              "No",
+              "0|1",
+              "yes",
+              ""
+            ],
+            [
+              "causal_sex",
+              "20. Casual sex...",
+              "likert",
+              "is better than no sex at all.|can hurt many people.",
+              "No",
+              "0|1",
+              "yes",
+              ""
+            ],
+            [
+              "extramarital_sex2",
+              "21. Extramarital sex...",
+              "likert",
+              "is sometimes necessary.|can damage one’s career.",
+              "No",
+              "0|1",
+              "yes",
+              ""
+            ],
+            [
+              "advances",
+              "22. Sexual advances...",
+              "likert",
+              "leave me feeling tense.|are welcomed.",
+              "No",
+              "1|0",
+              "yes",
+              ""
+            ],
+            [
+              "relations",
+              "23. When I have sexual relations...",
+              "likert",
+              "I feel satisfied.|I worry about being discovered.",
+              "No",
+              "0|1",
+              "yes",
+              ""
+            ],
+            [
+              "talking",
+              "24. When talking about sex in mixed company...",
+              "likert",
+              "I feel nervous.|I sometimes get excited.",
+              "No",
+              "1|0",
+              "yes",
+              ""
+            ],
+            [
+              "flirt2",
+              "25. If I were to flirt with someone...",
+              "likert",
+              "I would worry about his or her reaction.|I would enjoy it.",
+              "No",
+              "1|0",
+              "yes",
+              ""
+            ],
+            [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ]
+          ],
+          "trait_anger.csv": [
+            [
+              "item_name",
+              "text",
+              "type",
+              "answers",
+              "optional",
+              "values",
+              "side_by_side",
+              null
+            ],
+            [
+              "Instructions",
+              "<h2><span>Trait Anger Scale</span></h2><br><br>A number of statements which people have used to describe themselves are given below.  Read each statement and indicate how you <em>generally</em> feel by selecting the appropriate response option</span><br/><br/>",
+              "instruct",
+              "",
+              "",
+              "",
+              "",
+              null
+            ],
+            [
+              "trait_anger_1",
+              "1. I am quick tempered",
+              "likert",
+              "Almost Never|Sometimes|Often|Almost Always",
+              " No",
+              "1|2|3|4",
+              "yes",
+              null
+            ],
+            [
+              "trait_anger_2",
+              "2. I have a fiery temper",
+              "likert",
+              "Almost Never|Sometimes|Often|Almost Always",
+              "No",
+              "1|2|3|5",
+              "yes",
+              null
+            ],
+            [
+              "trait_anger_3",
+              "3. I am a hotheaded person",
+              "likert",
+              "Almost Never|Sometimes|Often|Almost Always",
+              "No",
+              "1|2|3|6",
+              "yes",
+              null
+            ],
+            [
+              "trait_anger_4",
+              "4. l get angry when slowed down by others' mistakes",
+              "likert",
+              "Almost Never|Sometimes|Often|Almost Always",
+              "No",
+              "1|2|3|7",
+              "yes",
+              null
+            ],
+            [
+              "trait_anger_5",
+              "5. I feel annoyed when not given recognition for going good work",
+              "likert",
+              "Almost Never|Sometimes|Often|Almost Always",
+              "No",
+              "1|2|3|8",
+              "yes",
+              null
+            ],
+            [
+              "trait_anger_6",
+              "6. I fly off the handle",
+              "likert",
+              "Almost Never|Sometimes|Often|Almost Always",
+              "No",
+              "1|2|3|9",
+              "yes",
+              null
+            ],
+            [
+              "trait_anger_7",
+              "7. I say nasty things when mad",
+              "likert",
+              "Almost Never|Sometimes|Often|Almost Always",
+              "No",
+              "1|2|3|10",
+              "yes",
+              null
+            ],
+            [
+              "trait_anger_8",
+              "8. It makes me furious when I am criticised in front of others",
+              "likert",
+              "Almost Never|Sometimes|Often|Almost Always",
+              "No",
+              "1|2|3|11",
+              "yes",
+              null
+            ],
+            [
+              "trait_anger_9",
+              "9. I feel like hitting someone when frustrated",
+              "likert",
+              "Almost Never|Sometimes|Often|Almost Always",
+              "No",
+              "1|2|3|12",
+              "yes",
+              null
+            ],
+            [
+              "trait_anger_10",
+              "10. I feel infuriated when I do a good job and get a poor evaluation",
+              "likert",
+              "Almost Never|Sometimes|Often|Almost Always",
+              "No",
+              "1|2|3|13",
+              "yes",
+              null
+            ],
+            [
+              "",
+              null
+            ]
+          ],
           "jans_demo.csv": [
             [
               "item_name",
@@ -2140,6 +2548,617 @@
           "",
           "",
           "",
+          ""
+        ]
+      ],
+      "jans_sexanxscale.csv": [
+        [
+          "item_name",
+          "text",
+          "type",
+          "answers",
+          "optional",
+          "values",
+          "side_by_side",
+          ""
+        ],
+        [
+          "Instructions",
+          "<h2><span>Sexual Anxiety Scale</span></h2><br><br>\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer question 6, as we cannot include your data in the final dataset if you are not a native English speaker due to the differences in emotional processing of swearwords that occurs in non-native speakers.</span><br/><br/>",
+          "instruct",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "extramarital_sex1",
+          "1. Extamarital sex...",
+          "likert",
+          "is OK if everyone agrees.|can break up families.",
+          " No",
+          "0|1",
+          "yes",
+          ""
+        ],
+        [
+          "sex",
+          "2. Sex...",
+          "likert",
+          "can cause as much anxiety as pleasure.|on the whole is good and enjoyable.",
+          "No",
+          "1|0",
+          "yes",
+          ""
+        ],
+        [
+          "masturbation",
+          "3. Masturbation",
+          "likert",
+          "causes me to worry.|can be a useful substitute.",
+          "No",
+          "1|0",
+          "yes",
+          ""
+        ],
+        [
+          "afterwards",
+          "4. After having sexual thoughts . . .",
+          "likert",
+          "I feel aroused.|I feel jittery.",
+          "No",
+          "0|1",
+          "yes",
+          ""
+        ],
+        [
+          "engage_in",
+          "5. When I engage in petting . . .",
+          "likert",
+          "I feel scared at first.|I thoroughly enjoy it.",
+          "No",
+          "1|0",
+          "yes",
+          ""
+        ],
+        [
+          "initating",
+          "6. Initiating sexual relationships . . .",
+          "likert",
+          "is a very stressful experience.|causes me no problem at all.",
+          "No",
+          "1|0",
+          "yes",
+          ""
+        ],
+        [
+          "oral",
+          "7. Oral sex . . .",
+          "likert",
+          "would arouse me.|would terrify me.",
+          "No",
+          "0|1",
+          "yes",
+          ""
+        ],
+        [
+          "nerves",
+          "8. I feel nervous . . .",
+          "likert",
+          "about initiating sexual relations.|about nothing when it comes to members of the opposite sex.",
+          "No",
+          "1|0",
+          "yes",
+          ""
+        ],
+        [
+          "meet",
+          "9. When I meet someone I’m attracted to . . .",
+          "likert",
+          "I get to know him or her.|I feel nervous.",
+          "No",
+          "0|1",
+          "yes",
+          ""
+        ],
+        [
+          "younger",
+          "10. When I was younger . . .",
+          "likert",
+          "I was looking forward to having sex.|I felt nervous about the prospect of having sex.",
+          "No",
+          "0|1",
+          "yes",
+          ""
+        ],
+        [
+          "flirt1",
+          "11. When others flirt with me . . .",
+          "likert",
+          "I don’t know what to do.|I flirt back.",
+          "No",
+          "1|0",
+          "yes",
+          ""
+        ],
+        [
+          "group_sex",
+          "12. Group sex . . .",
+          "likert",
+          "would scare me to death.|might be interesting.",
+          "No",
+          "1|0",
+          "yes",
+          ""
+        ],
+        [
+          "adultery",
+          "13. If in the future I committed adultery . . .",
+          "likert",
+          "I would probably get caught.|I wouldn’t feel bad about it.",
+          "No",
+          "1|0",
+          "yes",
+          ""
+        ],
+        [
+          "joke_tell",
+          "14. I would...",
+          "likert",
+          "feel too nervous to tell a dirty joke in mixed company.|tell a dirty joke if it were funny.",
+          "No",
+          "1|0",
+          "yes",
+          ""
+        ],
+        [
+          "joke_hear",
+          "15. Dirt jokes...",
+          "likert",
+          "make me feel uncomfortable.|often make me laugh.",
+          "No",
+          "1|0",
+          "yes",
+          ""
+        ],
+        [
+          "dreams",
+          "16. When I awake from sexual dreams...",
+          "likert",
+          "I feel pleasant and relaxed.|I feel tense.",
+          "No",
+          "0|1",
+          "yes",
+          ""
+        ],
+        [
+          "desires",
+          "17.When I have sexual desires...",
+          "likert",
+          "I worry about what I should do.|I do something to satisfy them.",
+          "No",
+          "1|0",
+          "yes",
+          ""
+        ],
+        [
+          "commit_adultery",
+          "18. If in the future I committed adultery...",
+          "likert",
+          "it would be nobody’s business but my own.|I would worry about my spouse finding out.",
+          "No",
+          "0|1",
+          "yes",
+          ""
+        ],
+        [
+          "porn",
+          "19. Buying a pornographic book...",
+          "likert",
+          "wouldn’t bother me.|would make me nervous.",
+          "No",
+          "0|1",
+          "yes",
+          ""
+        ],
+        [
+          "causal_sex",
+          "20. Casual sex...",
+          "likert",
+          "is better than no sex at all.|can hurt many people.",
+          "No",
+          "0|1",
+          "yes",
+          ""
+        ],
+        [
+          "extramarital_sex2",
+          "21. Extramarital sex...",
+          "likert",
+          "is sometimes necessary.|can damage one’s career.",
+          "No",
+          "0|1",
+          "yes",
+          ""
+        ],
+        [
+          "advances",
+          "22. Sexual advances...",
+          "likert",
+          "leave me feeling tense.|are welcomed.",
+          "No",
+          "1|0",
+          "yes",
+          ""
+        ],
+        [
+          "relations",
+          "23. When I have sexual relations...",
+          "likert",
+          "I feel satisfied.|I worry about being discovered.",
+          "No",
+          "0|1",
+          "yes",
+          ""
+        ],
+        [
+          "talking",
+          "24. When talking about sex in mixed company...",
+          "likert",
+          "I feel nervous.|I sometimes get excited.",
+          "No",
+          "1|0",
+          "yes",
+          ""
+        ],
+        [
+          "flirt2",
+          "25. If I were to flirt with someone...",
+          "likert",
+          "I would worry about his or her reaction.|I would enjoy it.",
+          "No",
+          "1|0",
+          "yes",
+          ""
+        ],
+        [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ],
+      "trait_anger.csv": [
+        [
+          "item_name",
+          "text",
+          "type",
+          "answers",
+          "optional",
+          "values",
+          "side_by_side",
+          null
+        ],
+        [
+          "Instructions",
+          "<h2><span>Trait Anger Scale</span></h2><br><br>A number of statements which people have used to describe themselves are given below.  Read each statement and indicate how you <em>generally</em> feel by selecting the appropriate response option</span><br/><br/>",
+          "instruct",
+          "",
+          "",
+          "",
+          "",
+          null
+        ],
+        [
+          "trait_anger_1",
+          "1. I am quick tempered",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          " No",
+          "1|2|3|4",
+          "yes",
+          null
+        ],
+        [
+          "trait_anger_2",
+          "2. I have a fiery temper",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "1|2|3|5",
+          "yes",
+          null
+        ],
+        [
+          "trait_anger_3",
+          "3. I am a hotheaded person",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "1|2|3|6",
+          "yes",
+          null
+        ],
+        [
+          "trait_anger_4",
+          "4. l get angry when slowed down by others' mistakes",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "1|2|3|7",
+          "yes",
+          null
+        ],
+        [
+          "trait_anger_5",
+          "5. I feel annoyed when not given recognition for going good work",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "1|2|3|8",
+          "yes",
+          null
+        ],
+        [
+          "trait_anger_6",
+          "6. I fly off the handle",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "1|2|3|9",
+          "yes",
+          null
+        ],
+        [
+          "trait_anger_7",
+          "7. I say nasty things when mad",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "1|2|3|10",
+          "yes",
+          null
+        ],
+        [
+          "trait_anger_8",
+          "8. It makes me furious when I am criticised in front of others",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "1|2|3|11",
+          "yes",
+          null
+        ],
+        [
+          "trait_anger_9",
+          "9. I feel like hitting someone when frustrated",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "1|2|3|12",
+          "yes",
+          null
+        ],
+        [
+          "trait_anger_10",
+          "10. I feel infuriated when I do a good job and get a poor evaluation",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "1|2|3|13",
+          "yes",
+          null
+        ],
+        [
+          "",
+          null
+        ]
+      ],
+      "trait_anxiety.csv": [
+        [
+          "item_name",
+          "text",
+          "type",
+          "answers",
+          "optional",
+          "values",
+          "side_by_side"
+        ],
+        [
+          "Instructions",
+          "<h2><span>Trait Anxiety Scale</span></h2><br><br>INSTRUCTIONS:  A number of statements which people have used to describe themselves are given below.  Read each statement and then circle an answer sheet to indicate how you generally feel.  There are no right or wrong answers.  Do not spend too much time on any one statement, but give the answer which seems to describe how you generally feel.</span><br/><br/>",
+          "instruct",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "trait_anx_1",
+          "1. I feel pleasant",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          " No",
+          "3|2|1|0",
+          "yes"
+        ],
+        [
+          "trait_anx_2",
+          "2. I feel nervous and restless",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "3|2|1|0",
+          "yes"
+        ],
+        [
+          "trait_anx_3",
+          "3. I am satisfied with myself",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "0|1|2|3",
+          "yes"
+        ],
+        [
+          "trait_anx_4",
+          "4. l wish I could be as happy as others seem to be",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "0|1|2|4",
+          "yes"
+        ],
+        [
+          "trait_anx_5",
+          "5. I feel like a failure",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "3|2|1|0",
+          "yes"
+        ],
+        [
+          "trait_anx_6",
+          "6. I feel rested",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "0|1|2|4",
+          "yes"
+        ],
+        [
+          "trait_anx_7",
+          "7. I am \"calm, cool, and collected\"",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "0|1|2|4",
+          "yes"
+        ],
+        [
+          "trait_anx_8",
+          "8. I feel that difficulties are piling p so that I cannot overcome them",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "3|2|1|0",
+          "yes"
+        ],
+        [
+          "trait_anx_9",
+          "9. I worry too much over something that really doesn't matter",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "0|1|2|4",
+          "yes"
+        ],
+        [
+          "trait_anx_10",
+          "10. I am happy",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "3|2|1|0",
+          "yes"
+        ],
+        [
+          "trait_anx_11",
+          "11. I have disturbing thoughts",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "3|2|1|0",
+          "yes"
+        ],
+        [
+          "trait_anx_12",
+          "12. I lack self-confidence",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "0|1|2|4",
+          "yes"
+        ],
+        [
+          "trait_anx_13",
+          "13. I feel secure",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "0|1|2|4",
+          "yes"
+        ],
+        [
+          "trait_anx_14",
+          "14. I make decision easily",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "0|1|2|4",
+          "yes"
+        ],
+        [
+          "trait_anx_15",
+          "15. I feel inadequate",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "3|2|1|0",
+          "yes"
+        ],
+        [
+          "trait_anx_16",
+          "16. I am content",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "3|2|1|0",
+          "yes"
+        ],
+        [
+          "trait_anx_17",
+          "17. Some unimportant thought run through my mind and bothers me",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "0|1|2|4",
+          "yes"
+        ],
+        [
+          "trait_anx_18",
+          "18. I take disappointments so keenly that I can't put them out of my mind",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "0|1|2|4",
+          "yes"
+        ],
+        [
+          "trait_anx_19",
+          "19. I am a steady person",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "3|2|1|0",
+          "yes"
+        ],
+        [
+          "trait_anx_20",
+          "20. I get in a state of tension or turmoil as I think about my recent concerns and interests",
+          "likert",
+          "Almost Never|Sometimes|Often|Almost Always",
+          "No",
+          "3|2|1|0",
+          "yes"
+        ],
+        [
           ""
         ]
       ]
