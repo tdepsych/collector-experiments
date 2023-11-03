@@ -8,6 +8,7 @@ Education,4. What is the highest level of education you have completed?,radio,"G
 Employment,5. What is your current employment status?,radio,Full-time employment|Part-time employment|Unemployed/Retired/Full-time education|Prefer not to say,No,1 | 2 | 3 | 0,,
 NativeSpeaker,"6. Are you a native British English Speaker<br><span class=""minor""><em>(defined as someone who was born and raised in the UK, <br/>or moved to the UK before the age of 2)</em></span>",radio,Yes|No,No,1 | 2,,
 Religion,"7. How religious do you consider yourself to be?<br><span class=""minor""><em>(1 = Not Religious, 9 =  Devout)</em></span>",radio_horizontal,1|2|3|4|5|6|7|8|9,Yes,1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9,,
+Control,"7. When I swear outloud in response to pain/frustration, how out of control do you feel?<br><span class=""minor""><em>(1 = Very out of control, 9 = Very in control)</em></span>",radio_horizontal,1|2|3|4|5|6|7|8|9,Yes,1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9,,
 HorizontalRule,<hr>,instruct,,,,,
 demo,,redcap_pii,,,,,
 ,,,,,,,
