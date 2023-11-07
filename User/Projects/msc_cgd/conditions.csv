@@ -1,7 +1,5 @@
 name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,age_check,skip_quality,zoom_check,mobile,redcap_url,
 pre_screen,demographics,taboo_ldt.csv,pre_screen.csv,on,,random,,,5,,no,yes,no,no,,
-eyes_nontab,text instructions,non_taboo_ldt.csv,eyes_nontab.csv,on,,random,,,5,,no,yes,no,no,,
-eyes_taboo,text instructions,taboo_ldt.csv,eyes_taboo.csv,on,,random,,,5,,no,yes,no,no,,
 researcher_nontab,text instructions,non_taboo_ldt.csv,researcher_nontab.csv,off,,random,,,5,,no,yes,no,no,,
 researcher_taboo,text instructions,taboo_ldt.csv,researcher_taboo.csv,off,,random,,,5,,no,yes,no,no,,
 text_nontab,text instructions,non_taboo_ldt.csv,text_nontab.csv,on,,random,,,5,,no,yes,no,no,,

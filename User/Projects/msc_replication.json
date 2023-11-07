@@ -1,0 +1,373 @@
+{
+  "all_procs": {
+    "pre_screen.csv": "item,phasetype,survey,max_time,notes,condition,text,shuffle_1,task_title,task_body_text,weight,\r\n0,uor_cover,,user,no_mobile,,Welcome,,,,,\r\n0,msc_ppt_setup,,user,{PPT ID},,,,,Pre_Screen,,\r\n0,msc_info_consent,,user,{CONSENT},,Investigating the impact of online disinhibition on the behavioural effects of swearing,,,Pre_Screen,,\r\n0,tde_survey,ppt-demographics.csv,user,{DEMO},,,,,,,\r\n0,uor_cover_end,,user,,,Session Complete,,,,,\r\n0,msc_midsession_debrief_sheet,,user,,,,,,Pre_Screen,,\r\n0,sona,,user,\"<b>Thank you for pilot testing\r\n  the 'text instructions' study.</b><hr  style=\"\"width:66%;\"\"><br/><em>Please provide feedback  on your experience by clicking the link below. It's a short, 10-item  questionnaire that allows me to ensure everything works smoothly before I  start collecting data for real.</em><br/><a  href=\"\"https://forms.office.com/r/kgcd2tMduG\"\"  target=\"\"_blank\"\">https://forms.office.com/r/kgcd2tMduG</a><br/>Thank  you. Chris\",,https://rdg-psychology.sona-systems.com/webstudy_credit.aspx?experiment_id=2517&credit_token=59b2f527265f4395b4cb7a38d9dc53b9&survey_code=,,Save your data,\"There have been some issues with data not correctly being sent to the server, even though the study claims to  have done so. I'm not 100% sure why this is occurring though which is making  it hard to fix.<br/><br/>As a result, please can you click the  button below and save the .csv file to your computer. I'll send you an email  once I've checked the server letting you know if there have been any problems  but, by saving your data, if there are any issues, I can use the .csv file to  manually add anything that's missing, which means your time hasn't been  wasted and/or my dissertation results impacted by an issue outside our  control. <br><br><button class=\"\"btn btn-primary\"\" id=\"\"Save\"\">💾 Please Save Your Data 💾</button><br/><br>If the button doesn't work for any reason, you  can save your data by pressing Ctrl+S (Cmd+S on a Mac) too. Obviously, please  don't delete this file from your computer until I've sent you an email saying  all the data was correctly uploaded to the  server.<br/><br/>Finally, if you could email <a  href=\"\"mailto:c.g.dobson@student.reading.ac.uk\"\">c.g.dobson@student.reading.ac.uk</a>  to let me know you've signed up that would be great. There is currently a  chance I won't be notified!\",,",
+    "eyes_nontab.csv": "item,phasetype,survey,max_time,notes,text,shuffle_1,shuffle_2,task_title,task_body_text,\r\n0,uor_cover,,user,no_mobile,Welcome,,,,,\r\n0,msc_ppt_setup,,user,,,,,,,\r\n0,msc_info_consent,,user,,Investigating the impact of online disinhibition on the behavioural effects of swearing,,,,,\r\n0,msc_videos,,user,{Welcome},welcome,,,Welcome to the study,\"This sessions uses video messages, please make sure your speakers are not\r\n  muted so you can hear the task instructions presented.\",\r\n0,msc_videos,,user,{BART},bart,,Non-Taboo,Balloon Inflation Task,Please watch the video below to understand what is required of you.,\r\n0,msc_videos,,user,{VOCAL},flat_vocal_eyes,,Non-Taboo,Word Vocalisation: Flat,Please watch the video below to understand what is required of you.,\r\n0,bart,,user,{BART},,,Non-Taboo,,,\r\n0,msc_videos,,user,{LDT},ldt,,Non-Taboo,Lexical Decision Task,\"Please watch the video below to understand what is required of\r\n  you.<script>     $(document).on('keydown',  function(event){    $(document).off('keypress');      if(event.which == 32) {       Phase.submit()      }     })    </script><style>    #proceed_button {    display:none!important;    }    </style>\",\r\n82 to 91,ldt_with_practice,,user,{LDT},,Shuffle1,Non-Taboo,,,\r\n0,task_bookend,,user,{LDT},,,Non-Taboo,End Of Practice Trials,\"<p>That completes the practice trials. You will now complete the\r\n  experimental trials. Once again, all you have to do is decide whether the  word displayed in the centre of the screen <b><u>rhymes</u>  with the word you repeated out loud for 20 seconds before the previous  balloon inflation task.</b> <br><br> <b>&bull; If  the word <span  style=\"\"color:blue;\"\"><em><u>rhymes</u></em>  press P</span><br><br>&bull; If the word <span  style=\"\"color:red;\"\"><u><em>does not  rhyme</em></u> press Q</b></span><br>  <br>Please position your index fingers over the required P and Q keys,  as shown below before starting.<br><b>Please note: </b>The  following experimental trials <span style=\"\"text-decoration:  underline;\"\"><em>do not</em></span> provide you with  feedback as to whether your response was correct or not.  <br><br>When you are ready and positioned your fingers as shown,  press the <b>Spacebar</b> with your thumb to start the  task.</p><br><br><img  src=\"\"../../collector-experiments/User/Assets/Task_Stimuli/response_icons/pq_keys/ldt_keyboard1.jpg\"\"  id=\"\"ldt_img\"\"/>    <script>     $(document).on('keydown',  function(event){      //$(document).off('keydown');      if(event.which == 32) {       Phase.submit()      }     })    </script>    <style>    #ldt_img {     display: block;     margin: auto;    }    #proceed_button {    display:none!important;    }    </style>\",\r\n2 to 41,ldt_no_practice,,user,{LDT},,Shuffle2,Non-Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_offensive,,Non-Taboo,Word Rating 1,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_offensiveness,,user,{VAS},FLAT,,Non-Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_humour,,Non-Taboo,Word Rating 2,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_humour,,user,{VAS},FLAT,,Non-Taboo,,,\r\n0,msc_videos,,user,{CDQ},cdq,,Non-Taboo,Task Evaluation Questionnaire,Please watch the video below to understand what is required of you.,\r\n0,tde_survey,cognitive_dissonance.csv,user,{COG DIS},,,,,,\r\n0,msc_videos,,user,,wordsearch,,,Time for a break...,Please watch the video below to understand what is required of you.,\r\n0,wordsearch_msc_cgd,,300,{WORDSEARCH},,,,,,\r\n0,wordsearch_feedback,,user,{WORDSEARCH},,,,Wordsearch Task Complete,,\r\n0,msc_videos,,user,{BART},bart,,Taboo,Balloon Inflation Task,Please watch the video below to understand what is required of you.,\r\n0,msc_videos,,user,{VOCAL},fuck_vocal_eyes,,Taboo,Word Vocalisation: Fuck,Please watch the video below to understand what is required of you.,\r\n0,bart,,user,{BART},,,Taboo,,,\r\n0,msc_videos,,user,{LDT},ldt,,Taboo,Lexical Decision Task,\"Please watch the video below to understand what is required of\r\n  you.<script>     $(document).on('keydown',  function(event){    $(document).off('keypress');      if(event.which == 32) {       Phase.submit()      } });    </script><style>    #proceed_button {    display:none!important;    }    </style>\",\r\n92 to 101,ldt_with_practice,,user,{LDT},,Shuffle3,Taboo,,,\r\n0,task_bookend,,user,{LDT},,,Taboo,End Of Practice Trials,\"<p>That completes the practice trials. You will now complete the\r\n  experimental trials. Once again, all you have to do is decide whether the  word displayed in the centre of the screen <b><u>rhymes</u>  with the word you repeated out loud for 20 seconds before the previous  balloon inflation task.</b> <br><br> <b>&bull; If  the word <span  style=\"\"color:blue;\"\"><em><u>rhymes</u></em>  press P</span><br><br>&bull; If the word <span  style=\"\"color:red;\"\"><u><em>does not  rhyme</em></u> press Q</b></span><br>  <br>Please position your index fingers over the required P and Q keys,  as shown below before starting.<br><b>Please note: </b>The  following experimental trials <span style=\"\"text-decoration:  underline;\"\"><em>do not</em></span> provide you with  feedback as to whether your response was correct or not.  <br><br>When you are ready and positioned your fingers as shown,  press the <b>Spacebar</b> with your thumb to start the  task.</p><br><br><img  src=\"\"../../collector-experiments/User/Assets/Task_Stimuli/response_icons/pq_keys/ldt_keyboard3.jpg\"\"  id=\"\"ldt_img\"\"/>    <script>     $(document).on('keydown',  function(event){      //$(document).off('keydown');      if(event.which == 32) {       Phase.submit()      } });    </script>    <style>    #ldt_img {     display: block;     margin: auto;    }    #proceed_button {    display:none!important;    }    </style>\",\r\n42 to 81,ldt_no_practice,,user,{LDT},,Shuffle4,Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_offensive,,Taboo,Word Rating 1,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_offensiveness,,user,{VAS},FUCK,,Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_humour,,Taboo,Word Rating 2,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_humour,,user,{VAS},FUCK,,Taboo,,,\r\n0,msc_videos,,user,{CDQ},cdq,,Taboo,Task Evaluation Questionnaire,Please watch the video below to understand what is required of you.,\r\n0,tde_survey,cognitive_dissonance.csv,user,{COG DIS},,,Taboo,,,\r\n0,uor_cover_end,,user,,Session Complete,,,,,\r\n0,uor_end,,user,,,,,,,\r\n0,save_data,,,,Save your data,,,💾 Please Save Your Data 💾,\"There have been some issues with data not correctly being sent to the server, even though the study claims to  have done so. I'm not 100% sure why this is occurring though which is making  it hard to fix.<br/><br/>As a result, please can you click the  button below and save the .csv file to your computer. I'll send you an email  once I've checked the server letting you know if there have been any problems  but, by saving your data, if there are any issues, I can use the .csv file to  manually add anything that's missing, which means your time hasn't been  wasted and/or my dissertation results impacted by an issue outside our  control.<br/><br>If the button doesn't work for any reason, you  can save your data by pressing Ctrl+S (Cmd+S on a Mac) too. Obviously, please  don't delete this file from your computer until I've sent you an email saying  all the data was correctly uploaded to the  server.<br/><br/>Finally, if you could email <a  href=\"\"mailto:c.g.dobson@student.reading.ac.uk\"\">c.g.dobson@student.reading.ac.uk</a>  to let me know you've signed up that would be great. There is currently a  chance I won't be notified!\",",
+    "eyes_taboo.csv": "item,phasetype,survey,max_time,notes,text,shuffle_1,shuffle_2,task_title,task_body_text,\r\n0,uor_cover,,user,no_mobile,Welcome,,,,,\r\n0,msc_ppt_setup,,user,,,,,,,\r\n0,msc_info_consent,,user,,Investigating the impact of online disinhibition on the behavioural effects of swearing,,,,,\r\n0,msc_videos,,user,{Welcome},welcome,,,Welcome to the study,\"This sessions uses video messages, please make sure your speakers are not\r\n  muted so you can hear the task instructions presented.\",\r\n0,msc_videos,,user,{BART},bart,,Non-Taboo,Balloon Inflation Task,Please watch the video below to understand what is required of you.,\r\n0,msc_videos,,user,{VOCAL},fuck_vocal_eyes,,Non-Taboo,Word Vocalisation: Fuck,Please watch the video below to understand what is required of you.,\r\n0,bart,,user,{BART},,,Non-Taboo,,,\r\n0,msc_videos,,user,{LDT},ldt,,Non-Taboo,Lexical Decision Task,\"Please watch the video below to understand what is required of\r\n  you.<script>     $(document).on('keydown',  function(event){    $(document).off('keypress');      if(event.which == 32) {       Phase.submit()      }     })    </script><style>    #proceed_button {    display:none!important;    }    </style>\",\r\n82 to 91,ldt_with_practice,,user,{LDT},,Shuffle1,Non-Taboo,,,\r\n0,task_bookend,,user,{LDT},,,Non-Taboo,End Of Practice Trials,\"<p>That completes the practice trials. You will now complete the\r\n  experimental trials. Once again, all you have to do is decide whether the  word displayed in the centre of the screen <b><u>rhymes</u>  with the word you repeated out loud for 20 seconds before the previous  balloon inflation task.</b> <br><br> <b>&bull; If  the word <span  style=\"\"color:blue;\"\"><em><u>rhymes</u></em>  press P</span><br><br>&bull; If the word <span  style=\"\"color:red;\"\"><u><em>does not  rhyme</em></u> press Q</b></span><br>  <br>Please position your index fingers over the required P and Q keys,  as shown below before starting.<br><b>Please note: </b>The  following experimental trials <span style=\"\"text-decoration:  underline;\"\"><em>do not</em></span> provide you with  feedback as to whether your response was correct or not.  <br><br>When you are ready and positioned your fingers as shown,  press the <b>Spacebar</b> with your thumb to start the  task.</p><br><br><img  src=\"\"../../collector-experiments/User/Assets/Task_Stimuli/response_icons/pq_keys/ldt_keyboard1.jpg\"\"  id=\"\"ldt_img\"\"/>    <script>     $(document).on('keydown',  function(event){      //$(document).off('keydown');      if(event.which == 32) {       Phase.submit()      }     })    </script>    <style>    #ldt_img {     display: block;     margin: auto;    }    #proceed_button {    display:none!important;    }    </style>\",\r\n2 to 41,ldt_no_practice,,user,{LDT},,Shuffle2,Non-Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_offensive,,Non-Taboo,Word Rating 1,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_offensiveness,,user,{VAS},FUCK,,Non-Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_humour,,Non-Taboo,Word Rating 2,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_humour,,user,{VAS},FUCK,,Non-Taboo,,,\r\n0,msc_videos,,user,{CDQ},cdq,,Non-Taboo,Task Evaluation Questionnaire,Please watch the video below to understand what is required of you.,\r\n0,tde_survey,cognitive_dissonance.csv,user,{COG DIS},,,,,,\r\n0,msc_videos,,user,,wordsearch,,,Time for a break...,Please watch the video below to understand what is required of you.,\r\n0,wordsearch_msc_cgd,,300,{WORDSEARCH},,,,,,\r\n0,wordsearch_feedback,,user,{WORDSEARCH},,,,Wordsearch Task Complete,,\r\n0,msc_videos,,user,{BART},bart,,Taboo,Balloon Inflation Task,Please watch the video below to understand what is required of you.,\r\n0,msc_videos,,user,{VOCAL},flat_vocal_eyes,,Taboo,Word Vocalisation: Flat,Please watch the video below to understand what is required of you.,\r\n0,bart,,user,{BART},,,Taboo,,,\r\n0,msc_videos,,user,{LDT},ldt,,Taboo,Lexical Decision Task,\"Please watch the video below to understand what is required of\r\n  you.<script>     $(document).on('keydown',  function(event){    $(document).off('keypress');      if(event.which == 32) {       Phase.submit()      } });    </script><style>    #proceed_button {    display:none!important;    }    </style>\",\r\n92 to 101,ldt_with_practice,,user,{LDT},,Shuffle3,Taboo,,,\r\n0,task_bookend,,user,{LDT},,,Taboo,End Of Practice Trials,\"<p>That completes the practice trials. You will now complete the\r\n  experimental trials. Once again, all you have to do is decide whether the  word displayed in the centre of the screen <b><u>rhymes</u>  with the word you repeated out loud for 20 seconds before the previous  balloon inflation task.</b> <br><br> <b>&bull; If  the word <span  style=\"\"color:blue;\"\"><em><u>rhymes</u></em>  press P</span><br><br>&bull; If the word <span  style=\"\"color:red;\"\"><u><em>does not  rhyme</em></u> press Q</b></span><br>  <br>Please position your index fingers over the required P and Q keys,  as shown below before starting.<br><b>Please note: </b>The  following experimental trials <span style=\"\"text-decoration:  underline;\"\"><em>do not</em></span> provide you with  feedback as to whether your response was correct or not.  <br><br>When you are ready and positioned your fingers as shown,  press the <b>Spacebar</b> with your thumb to start the  task.</p><br><br><img  src=\"\"../../collector-experiments/User/Assets/Task_Stimuli/response_icons/pq_keys/ldt_keyboard3.jpg\"\"  id=\"\"ldt_img\"\"/>    <script>     $(document).on('keydown',  function(event){      //$(document).off('keydown');      if(event.which == 32) {       Phase.submit()      } });    </script>    <style>    #ldt_img {     display: block;     margin: auto;    }    #proceed_button {    display:none!important;    }    </style>\",\r\n42 to 81,ldt_no_practice,,user,{LDT},,Shuffle4,Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_offensive,,Taboo,Word Rating 1,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_offensiveness,,user,{VAS},FLAT,,Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_humour,,Taboo,Word Rating 2,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_humour,,user,{VAS},FLAT,,Taboo,,,\r\n0,msc_videos,,user,{CDQ},cdq,,Taboo,Task Evaluation Questionnaire,Please watch the video below to understand what is required of you.,\r\n0,tde_survey,cognitive_dissonance.csv,user,{COG DIS},,,Taboo,,,\r\n0,uor_cover_end,,user,,Session Complete,,,,,\r\n0,uor_end,,user,,,,,,,\r\n0,save_data,,,,Save your data,,,💾 Please Save Your Data 💾,\"There have been some issues with data not correctly being sent to the server, even though the study claims to  have done so. I'm not 100% sure why this is occurring though which is making  it hard to fix.<br/><br/>As a result, please can you click the  button below and save the .csv file to your computer. I'll send you an email  once I've checked the server letting you know if there have been any problems  but, by saving your data, if there are any issues, I can use the .csv file to  manually add anything that's missing, which means your time hasn't been  wasted and/or my dissertation results impacted by an issue outside our  control.<br/><br>If the button doesn't work for any reason, you  can save your data by pressing Ctrl+S (Cmd+S on a Mac) too. Obviously, please  don't delete this file from your computer until I've sent you an email saying  all the data was correctly uploaded to the  server.<br/><br/>Finally, if you could email <a  href=\"\"mailto:c.g.dobson@student.reading.ac.uk\"\">c.g.dobson@student.reading.ac.uk</a>  to let me know you've signed up that would be great. There is currently a  chance I won't be notified!\",",
+    "video_nontab.csv": "item,phasetype,survey,max_time,notes,text,shuffle_1,shuffle_2,task_title,task_body_text,\r\n0,uor_cover,,user,no_mobile,Welcome,,,,,\r\n0,msc_ppt_setup,,user,,,,,,,\r\n0,msc_info_consent,,user,,Investigating the impact of online disinhibition on the behavioural effects of swearing,,,,,\r\n0,msc_videos,,user,{Welcome},welcome,,,Welcome to the study,\"This sessions uses video messages, please make sure your speakers are not\r\n  muted so you can hear the task instructions presented.\",\r\n0,msc_videos,,user,{BART},bart,,Non-Taboo,Balloon Inflation Task,Please watch the video below to understand what is required of you.,\r\n0,msc_videos,,user,{VOCAL},flat_vocal,,Non-Taboo,Word Vocalisation: Flat,Please watch the video below to understand what is required of you.,\r\n0,bart,,user,{BART},,,Non-Taboo,,,\r\n0,msc_videos,,user,{LDT},ldt,,Non-Taboo,Lexical Decision Task,\"Please watch the video below to understand what is required of\r\n  you.<script>     $(document).on('keydown',  function(event){    $(document).off('keypress');      if(event.which == 32) {       Phase.submit()      }     })    </script><style>    #proceed_button {    display:none!important;    }    </style>\",\r\n82 to 91,ldt_with_practice,,user,{LDT},,Shuffle1,Non-Taboo,,,\r\n0,task_bookend,,user,{LDT},,,Non-Taboo,End Of Practice Trials,\"<p>That completes the practice trials. You will now complete the\r\n  experimental trials. Once again, all you have to do is decide whether the  word displayed in the centre of the screen <b><u>rhymes</u>  with the word you repeated out loud for 20 seconds before the previous  balloon inflation task.</b> <br><br> <b>&bull; If  the word <span  style=\"\"color:blue;\"\"><em><u>rhymes</u></em>  press P</span><br><br>&bull; If the word <span  style=\"\"color:red;\"\"><u><em>does not  rhyme</em></u> press Q</b></span><br>  <br>Please position your index fingers over the required P and Q keys,  as shown below before starting.<br><b>Please note: </b>The  following experimental trials <span style=\"\"text-decoration:  underline;\"\"><em>do not</em></span> provide you with  feedback as to whether your response was correct or not.  <br><br>When you are ready and positioned your fingers as shown,  press the <b>Spacebar</b> with your thumb to start the  task.</p><br><br><img  src=\"\"../../collector-experiments/User/Assets/Task_Stimuli/response_icons/pq_keys/ldt_keyboard1.jpg\"\"  id=\"\"ldt_img\"\"/>    <script>     $(document).on('keydown',  function(event){      //$(document).off('keydown');      if(event.which == 32) {       Phase.submit()      }     })    </script>    <style>    #ldt_img {     display: block;     margin: auto;    }    #proceed_button {    display:none!important;    }    </style>\",\r\n2 to 41,ldt_no_practice,,user,{LDT},,Shuffle2,Non-Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_offensive,,Non-Taboo,Word Rating 1,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_offensiveness,,user,{VAS},FLAT,,Non-Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_humour,,Non-Taboo,Word Rating 2,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_humour,,user,{VAS},FLAT,,Non-Taboo,,,\r\n0,msc_videos,,user,{CDQ},cdq,,Non-Taboo,Task Evaluation Questionnaire,Please watch the video below to understand what is required of you.,\r\n0,tde_survey,cognitive_dissonance.csv,user,{COG DIS},,,,,,\r\n0,msc_videos,,user,,wordsearch,,,Time for a break...,Please watch the video below to understand what is required of you.,\r\n0,wordsearch_msc_cgd,,300,{WORDSEARCH},,,,,,\r\n0,wordsearch_feedback,,user,{WORDSEARCH},,,,Wordsearch Task Complete,,\r\n0,msc_videos,,user,{BART},bart,,Taboo,Balloon Inflation Task,Please watch the video below to understand what is required of you.,\r\n0,msc_videos,,user,{VOCAL},fuck_vocal,,Taboo,Word Vocalisation: Fuck,Please watch the video below to understand what is required of you.,\r\n0,bart,,user,{BART},,,Taboo,,,\r\n0,msc_videos,,user,{LDT},ldt,,Taboo,Lexical Decision Task,\"Please watch the video below to understand what is required of\r\n  you.<script>     $(document).on('keydown',  function(event){    $(document).off('keypress');      if(event.which == 32) {       Phase.submit()      } });    </script><style>    #proceed_button {    display:none!important;    }    </style>\",\r\n92 to 101,ldt_with_practice,,user,{LDT},,Shuffle3,Taboo,,,\r\n0,task_bookend,,user,{LDT},,,Taboo,End Of Practice Trials,\"<p>That completes the practice trials. You will now complete the\r\n  experimental trials. Once again, all you have to do is decide whether the  word displayed in the centre of the screen <b><u>rhymes</u>  with the word you repeated out loud for 20 seconds before the previous  balloon inflation task.</b> <br><br> <b>&bull; If  the word <span  style=\"\"color:blue;\"\"><em><u>rhymes</u></em>  press P</span><br><br>&bull; If the word <span  style=\"\"color:red;\"\"><u><em>does not  rhyme</em></u> press Q</b></span><br>  <br>Please position your index fingers over the required P and Q keys,  as shown below before starting.<br><b>Please note: </b>The  following experimental trials <span style=\"\"text-decoration:  underline;\"\"><em>do not</em></span> provide you with  feedback as to whether your response was correct or not.  <br><br>When you are ready and positioned your fingers as shown,  press the <b>Spacebar</b> with your thumb to start the  task.</p><br><br><img  src=\"\"../../collector-experiments/User/Assets/Task_Stimuli/response_icons/pq_keys/ldt_keyboard3.jpg\"\"  id=\"\"ldt_img\"\"/>    <script>     $(document).on('keydown',  function(event){      //$(document).off('keydown');      if(event.which == 32) {       Phase.submit()      } });    </script>    <style>    #ldt_img {     display: block;     margin: auto;    }    #proceed_button {    display:none!important;    }    </style>\",\r\n42 to 81,ldt_no_practice,,user,{LDT},,Shuffle4,Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_offensive,,Taboo,Word Rating 1,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_offensiveness,,user,{VAS},FUCK,,Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_humour,,Taboo,Word Rating 2,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_humour,,user,{VAS},FUCK,,Taboo,,,\r\n0,msc_videos,,user,{CDQ},cdq,,Taboo,Task Evaluation Questionnaire,Please watch the video below to understand what is required of you.,\r\n0,tde_survey,cognitive_dissonance.csv,user,{COG DIS},,,Taboo,,,\r\n0,uor_cover_end,,user,,Session Complete,,,,,\r\n0,uor_end,,user,,,,,,,\r\n0,save_data,,,,Save your data,,,💾 Please Save Your Data 💾,\"There have been some issues with data not correctly being sent to the server, even though the study claims to  have done so. I'm not 100% sure why this is occurring though which is making  it hard to fix.<br/><br/>As a result, please can you click the  button below and save the .csv file to your computer. I'll send you an email  once I've checked the server letting you know if there have been any problems  but, by saving your data, if there are any issues, I can use the .csv file to  manually add anything that's missing, which means your time hasn't been  wasted and/or my dissertation results impacted by an issue outside our  control.<br/><br>If the button doesn't work for any reason, you  can save your data by pressing Ctrl+S (Cmd+S on a Mac) too. Obviously, please  don't delete this file from your computer until I've sent you an email saying  all the data was correctly uploaded to the  server.<br/><br/>Finally, if you could email <a  href=\"\"mailto:c.g.dobson@student.reading.ac.uk\"\">c.g.dobson@student.reading.ac.uk</a>  to let me know you've signed up that would be great. There is currently a  chance I won't be notified!\",",
+    "video_taboo.csv": "item,phasetype,survey,max_time,notes,text,shuffle_1,shuffle_2,task_title,task_body_text,\r\n0,uor_cover,,user,no_mobile,Welcome,,,,,\r\n0,msc_ppt_setup,,user,,,,,,,\r\n0,msc_info_consent,,user,,Investigating the impact of online disinhibition on the behavioural effects of swearing,,,,,\r\n0,msc_videos,,user,{Welcome},welcome,,,Welcome to the study,\"This sessions uses video messages, please make sure your speakers are not\r\n  muted so you can hear the task instructions presented.\",\r\n0,msc_videos,,user,{BART},bart,,Non-Taboo,Balloon Inflation Task,Please watch the video below to understand what is required of you.,\r\n0,msc_videos,,user,{VOCAL},fuck_vocal,,Non-Taboo,Word Vocalisation: Fuck,Please watch the video below to understand what is required of you.,\r\n0,bart,,user,{BART},,,Non-Taboo,,,\r\n0,msc_videos,,user,{LDT},ldt,,Non-Taboo,Lexical Decision Task,\"Please watch the video below to understand what is required of\r\n  you.<script>     $(document).on('keydown',  function(event){    $(document).off('keypress');      if(event.which == 32) {       Phase.submit()      }     })    </script><style>    #proceed_button {    display:none!important;    }    </style>\",\r\n82 to 91,ldt_with_practice,,user,{LDT},,Shuffle1,Non-Taboo,,,\r\n0,task_bookend,,user,{LDT},,,Non-Taboo,End Of Practice Trials,\"<p>That completes the practice trials. You will now complete the\r\n  experimental trials. Once again, all you have to do is decide whether the  word displayed in the centre of the screen <b><u>rhymes</u>  with the word you repeated out loud for 20 seconds before the previous  balloon inflation task.</b> <br><br> <b>&bull; If  the word <span  style=\"\"color:blue;\"\"><em><u>rhymes</u></em>  press P</span><br><br>&bull; If the word <span  style=\"\"color:red;\"\"><u><em>does not  rhyme</em></u> press Q</b></span><br>  <br>Please position your index fingers over the required P and Q keys,  as shown below before starting.<br><b>Please note: </b>The  following experimental trials <span style=\"\"text-decoration:  underline;\"\"><em>do not</em></span> provide you with  feedback as to whether your response was correct or not.  <br><br>When you are ready and positioned your fingers as shown,  press the <b>Spacebar</b> with your thumb to start the  task.</p><br><br><img  src=\"\"../../collector-experiments/User/Assets/Task_Stimuli/response_icons/pq_keys/ldt_keyboard1.jpg\"\"  id=\"\"ldt_img\"\"/>    <script>     $(document).on('keydown',  function(event){      //$(document).off('keydown');      if(event.which == 32) {       Phase.submit()      }     })    </script>    <style>    #ldt_img {     display: block;     margin: auto;    }    #proceed_button {    display:none!important;    }    </style>\",\r\n2 to 41,ldt_no_practice,,user,{LDT},,Shuffle2,Non-Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_offensive,,Non-Taboo,Word Rating 1,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_offensiveness,,user,{VAS},FUCK,,Non-Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_humour,,Non-Taboo,Word Rating 2,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_humour,,user,{VAS},FUCK,,Non-Taboo,,,\r\n0,msc_videos,,user,{CDQ},cdq,,Non-Taboo,Task Evaluation Questionnaire,Please watch the video below to understand what is required of you.,\r\n0,tde_survey,cognitive_dissonance.csv,user,{COG DIS},,,,,,\r\n0,msc_videos,,user,,wordsearch,,,Time for a break...,Please watch the video below to understand what is required of you.,\r\n0,wordsearch_msc_cgd,,300,{WORDSEARCH},,,,,,\r\n0,wordsearch_feedback,,user,{WORDSEARCH},,,,Wordsearch Task Complete,,\r\n0,msc_videos,,user,{BART},bart,,Taboo,Balloon Inflation Task,Please watch the video below to understand what is required of you.,\r\n0,msc_videos,,user,{VOCAL},flat_vocal,,Taboo,Word Vocalisation: Flat,Please watch the video below to understand what is required of you.,\r\n0,bart,,user,{BART},,,Taboo,,,\r\n0,msc_videos,,user,{LDT},ldt,,Taboo,Lexical Decision Task,\"Please watch the video below to understand what is required of\r\n  you.<script>     $(document).on('keydown',  function(event){    $(document).off('keypress');      if(event.which == 32) {       Phase.submit()      } });    </script><style>    #proceed_button {    display:none!important;    }    </style>\",\r\n92 to 101,ldt_with_practice,,user,{LDT},,Shuffle3,Taboo,,,\r\n0,task_bookend,,user,{LDT},,,Taboo,End Of Practice Trials,\"<p>That completes the practice trials. You will now complete the\r\n  experimental trials. Once again, all you have to do is decide whether the  word displayed in the centre of the screen <b><u>rhymes</u>  with the word you repeated out loud for 20 seconds before the previous  balloon inflation task.</b> <br><br> <b>&bull; If  the word <span  style=\"\"color:blue;\"\"><em><u>rhymes</u></em>  press P</span><br><br>&bull; If the word <span  style=\"\"color:red;\"\"><u><em>does not  rhyme</em></u> press Q</b></span><br>  <br>Please position your index fingers over the required P and Q keys,  as shown below before starting.<br><b>Please note: </b>The  following experimental trials <span style=\"\"text-decoration:  underline;\"\"><em>do not</em></span> provide you with  feedback as to whether your response was correct or not.  <br><br>When you are ready and positioned your fingers as shown,  press the <b>Spacebar</b> with your thumb to start the  task.</p><br><br><img  src=\"\"../../collector-experiments/User/Assets/Task_Stimuli/response_icons/pq_keys/ldt_keyboard3.jpg\"\"  id=\"\"ldt_img\"\"/>    <script>     $(document).on('keydown',  function(event){      //$(document).off('keydown');      if(event.which == 32) {       Phase.submit()      } });    </script>    <style>    #ldt_img {     display: block;     margin: auto;    }    #proceed_button {    display:none!important;    }    </style>\",\r\n42 to 81,ldt_no_practice,,user,{LDT},,Shuffle4,Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_offensive,,Taboo,Word Rating 1,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_offensiveness,,user,{VAS},FLAT,,Taboo,,,\r\n0,msc_videos,,user,{VAS},vas_humour,,Taboo,Word Rating 2,Please watch the video below to understand what is required of you.,\r\n0,msc_vas_humour,,user,{VAS},FLAT,,Taboo,,,\r\n0,msc_videos,,user,{CDQ},cdq,,Taboo,Task Evaluation Questionnaire,Please watch the video below to understand what is required of you.,\r\n0,tde_survey,cognitive_dissonance.csv,user,{COG DIS},,,Taboo,,,\r\n0,uor_cover_end,,user,,Session Complete,,,,,\r\n0,uor_end,,user,,,,,,,\r\n0,save_data,,,,Save your data,,,💾 Please Save Your Data 💾,\"There have been some issues with data not correctly being sent to the server, even though the study claims to  have done so. I'm not 100% sure why this is occurring though which is making  it hard to fix.<br/><br/>As a result, please can you click the  button below and save the .csv file to your computer. I'll send you an email  once I've checked the server letting you know if there have been any problems  but, by saving your data, if there are any issues, I can use the .csv file to  manually add anything that's missing, which means your time hasn't been  wasted and/or my dissertation results impacted by an issue outside our  control.<br/><br>If the button doesn't work for any reason, you  can save your data by pressing Ctrl+S (Cmd+S on a Mac) too. Obviously, please  don't delete this file from your computer until I've sent you an email saying  all the data was correctly uploaded to the  server.<br/><br/>Finally, if you could email <a  href=\"\"mailto:c.g.dobson@student.reading.ac.uk\"\">c.g.dobson@student.reading.ac.uk</a>  to let me know you've signed up that would be great. There is currently a  chance I won't be notified!\","
+  },
+  "conditions": "name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,age_check,skip_quality,zoom_check,mobile,redcap_url,\r\npre_screen,demographics,taboo_ldt.csv,pre_screen.csv,on,,random,,,5,,no,yes,no,no,,\r\neyes_nontab,video instructions,non_taboo_ldt.csv,eyes_nontab.csv,on,,random,,,5,,no,yes,no,no,,\r\neyes_taboo,video instructions,taboo_ldt.csv,eyes_taboo.csv,on,,random,,,5,,no,yes,no,no,,\r\nvideo_nontab,video instructions,non_taboo_ldt.csv,video_nontab.csv,on,,random,,,5,,no,yes,no,no,,\r\nvideo_taboo,video instructions,taboo_ldt.csv,video_taboo.csv,on,,random,,,5,,no,yes,no,no,,",
+  "all_stims": {
+    "taboo_ldt.csv": "cue,answer,\r\neach,q,\r\nstruck,p,\r\nhave,q,\r\nlong,q,\r\ntruck,p,\r\nsuck,p,\r\ntree,q,\r\nprint,q,\r\nmuch,q,\r\nduck,q,\r\nchurch,p,\r\nblow,q,\r\ntuck,p,\r\nstruck,p,\r\npluck,p,\r\ntuck,p,\r\nbuck,p,\r\ndeal,q,\r\ntruck,p,\r\nbread,q,\r\nluck,p,\r\nmuck,p,\r\nduck,p,\r\nbend,q,\r\nfear,q,\r\nmuck,p,\r\nbuck,p,\r\nbreak,q,\r\ntail,q,\r\ncrown,q,\r\npluck,q,\r\ntongue,q,\r\nsnake,p,\r\nstuck,p,\r\nmonth,q,\r\nluck,p,\r\nlove,q,\r\nsuck,p,\r\ndeck,q,\r\nstuck,p,\r\nthat,p,\r\ncat,p,\r\nfaith,q,\r\nspat,p,\r\nraid,q,\r\ndumb,q,\r\nspat,p,\r\nbat,p,\r\ncat,p,\r\nlove,q,\r\nweek,q,\r\nchurch,q,\r\nfat,p,\r\nbread,q,\r\ncake,q,\r\ncrown,q,\r\ntail,q,\r\nchat,p,\r\ntongue,q,\r\nsplat,p,\r\nsat,p,\r\nsnake,q,\r\nlove,q,\r\nchat,p,\r\nfat,p,\r\nweek,q,\r\nsplat,p,\r\nhat,p,\r\nmonth,q,\r\nprint,q,\r\nthat,p,\r\nhat,p,\r\ndrop,q,\r\nbat,p,\r\nrat,p,\r\npath,p,\r\ngame,q,\r\npole,q,\r\nsat,p,\r\nrat,p,\r\nborn,q,\r\nsnuck,p,\r\ndrat,q,\r\nlate,q,\r\nruck,p,\r\ngood,q,\r\nchuck,p,\r\nsquare,q,\r\ncluck,p,\r\nyuck,p,\r\nmat,p,\r\ntight,q,\r\ngnat,p,\r\nblind,q,\r\nplat,p,\r\nstress,q,\r\ntame,q,\r\nvat,p,\r\nplay,q,\r\ndrat,p,\r\n,,",
+    "non_taboo_ldt.csv": "cue,answer,\r\nthat,p,\r\nsat,p,\r\nfat,p,\r\ncat,p,\r\nrat,p,\r\nhat,p,\r\nchat,p,\r\nbat,p,\r\nspat,p,\r\nsplat,p,\r\nstruck,q,\r\ntruck,q,\r\nluck,q,\r\nduck,q,\r\nsuck,q,\r\ntuck,q,\r\npluck,q,\r\nmuck,q,\r\nstuck,q,\r\nbuck,q,\r\nthat,p,\r\nsat,p,\r\nfat,p,\r\ncat,p,\r\nrat,p,\r\nhat,p,\r\nchat,p,\r\nbat,p,\r\nspat,p,\r\nsplat,p,\r\nstruck,q,\r\ntruck,q,\r\nluck,q,\r\nduck,q,\r\nsuck,q,\r\ntuck,q,\r\npluck,q,\r\nmuck,q,\r\nstuck,q,\r\nbuck,q,\r\nthat,q,\r\nsat,q,\r\nfat,q,\r\ncat,q,\r\nrat,q,\r\nhat,q,\r\nchat,q,\r\nbat,q,\r\nspat,q,\r\nsplat,q,\r\nstruck,p,\r\ntruck,p,\r\nluck,p,\r\nduck,p,\r\nsuck,p,\r\ntuck,p,\r\npluck,p,\r\nmuck,p,\r\nstuck,p,\r\nbuck,p,\r\nthat,q,\r\nsat,q,\r\nfat,q,\r\ncat,q,\r\nrat,q,\r\nhat,q,\r\nchat,q,\r\nbat,q,\r\nspat,q,\r\nsplat,q,\r\nstruck,p,\r\ntruck,p,\r\nluck,p,\r\nduck,p,\r\nsuck,p,\r\ntuck,p,\r\npluck,p,\r\nmuck,p,\r\nstuck,p,\r\nbuck,p,\r\nMat,p,\r\nVat,p,\r\nPlat,p,\r\nGnat,p,\r\nDrat,p,\r\nChuck,q,\r\nSnuck,q,\r\nCluck,q,\r\nRuck,q,\r\nYuck,q,\r\nMat,q,\r\nVat,q,\r\nPlat,q,\r\nGnat,q,\r\nDrat,q,\r\nChuck,p,\r\nSnuck,p,\r\nCluck,p,\r\nRuck,p,\r\nYuck,p,\r\n,,"
+  },
+  "location": "tdepsych/collector-experiments/msc_replication",
+  "public_key": "ZIEuVRKYOLO6WwFULPPZwTRcHAjIYAjbIaCzNwwNLWc=",
+  "phasetypes": {
+    "uor_cover": "[[[LOCATION]]]../User/PhaseTypes/uor_cover.html",
+    "msc_ppt_setup": "[[[LOCATION]]]../User/PhaseTypes/msc_ppt_setup.html",
+    "msc_info_consent": "[[[LOCATION]]]../User/PhaseTypes/msc_info_consent.html",
+    "tde_survey": "[[[LOCATION]]]../User/PhaseTypes/tde_survey.html",
+    "uor_cover_end": "[[[LOCATION]]]../User/PhaseTypes/uor_cover_end.html",
+    "msc_midsession_debrief_sheet": "[[[LOCATION]]]../User/PhaseTypes/msc_midsession_debrief_sheet.html",
+    "sona": "[[[LOCATION]]]../User/PhaseTypes/sona.html",
+    "msc_videos": "[[[LOCATION]]]../User/PhaseTypes/msc_videos.html",
+    "bart": "[[[LOCATION]]]../User/PhaseTypes/bart.html",
+    "ldt_with_practice": "[[[LOCATION]]]../User/PhaseTypes/ldt_with_practice.html",
+    "task_bookend": "[[[LOCATION]]]../User/PhaseTypes/task_bookend.html",
+    "ldt_no_practice": "[[[LOCATION]]]../User/PhaseTypes/ldt_no_practice.html",
+    "msc_vas_offensiveness": "[[[LOCATION]]]../User/PhaseTypes/msc_vas_offensiveness.html",
+    "msc_vas_humour": "[[[LOCATION]]]../User/PhaseTypes/msc_vas_humour.html",
+    "wordsearch_msc_cgd": "[[[LOCATION]]]../User/PhaseTypes/wordsearch_msc_cgd.html",
+    "wordsearch_feedback": "[[[LOCATION]]]../User/PhaseTypes/wordsearch_feedback.html",
+    "uor_end": "[[[LOCATION]]]../User/PhaseTypes/uor_end.html",
+    "save_data": "[[[LOCATION]]]../User/PhaseTypes/save_data.html"
+  },
+  "surveys": {
+    "ppt-demographics.csv": [
+      [
+        "item_name",
+        "text",
+        "type",
+        "answers",
+        "optional",
+        "values",
+        "side_by_side",
+        ""
+      ],
+      [
+        "Instructions",
+        "<h2><span>Demographic Information</span></h2><br>\n<span class=\"instruc\">Please could you help us better understand the diversity and inclusivity of your participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). Answers for questions 6, 7, and 8 are required, however, as you will be unable to take part in the rest of the study without supplying that information. Finally, we are collecting your demographic information before you begin any testing session to ensure that each session has an identical procedure (as this increases the validity of our final results).</span><br/><br/>",
+        "instruct",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Age",
+        "1. Please enter your age (in years)<br><span class=\"minor\"><em>(the input only accepts numbers e.g., 21)</em></span>",
+        "number",
+        "",
+        "Yes",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Gender",
+        "2. Which gender identity do you identify most with",
+        "radio",
+        "Male|Female|Non-binary|Prefer to self-identify|Prefer not to say",
+        "No",
+        "1 | 2 | 3 | 4 | 0",
+        "",
+        ""
+      ],
+      [
+        "Ethnicity",
+        "3. I identify my ethnicity as:",
+        "radio",
+        "White|Mixed/Multiple|Asian|Black/African/Caribbean|Chinese|Arab|Other|Prefer not to say",
+        "No",
+        "1 | 2 | 3 | 4 | 5 | 6 | 7 | 0",
+        "",
+        ""
+      ],
+      [
+        "Education",
+        "4. What is the highest level of education you have completed?",
+        "radio",
+        "GCSEs or equivalent|A-Levels or equivalent|University undergraduate programme (e.g., BSc)|University postgraduate programme (e.g., MSc)|Doctoral degree|Other|Prefer not to say",
+        "No",
+        "1 | 2 | 3 | 4 | 5 | 6 | 0",
+        "",
+        ""
+      ],
+      [
+        "Emplyoment",
+        "5. What is your current employment status",
+        "radio",
+        "Full-time employment|Part-time employment|Unemployed/Retired/Full-time education|Self-employed|Prefer not to say",
+        "No",
+        "1 | 2 | 3 | 4 | 0",
+        "",
+        ""
+      ],
+      [
+        "NativeSpeaker",
+        "6. Are you a native British English Speaker<br><span class=\"minor\"><em>(defined as someone who was born and raised in the UK, <br/>or moved to the UK before the age of 2)</em></span>",
+        "radio",
+        "Yes|No",
+        "No",
+        "1 | 2",
+        "",
+        ""
+      ],
+      [
+        "AmazonSona",
+        "7. Please indicate whether, upon completion of the study, you wish to be awarded SONA credits, enter the draw to win a £50 Amazon gift voucher, or neither",
+        "radio",
+        "0.75 Sona Credits|Amazon Gift Card Draw|Neither",
+        "No",
+        "sona | amazon | neither",
+        "",
+        ""
+      ],
+      [
+        "HorizontalRule",
+        "<hr>",
+        "instruct",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Email",
+        "8. Please enter your email address<br><span class=\"minor\"><em>This is purely to allow the Researchers to contact you regarding each testing session and is not stored with your experimental data</em></span>",
+        "email",
+        "",
+        "No",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    ],
+    "cognitive_dissonance.csv": [
+      [
+        "item_name",
+        "text",
+        "type",
+        "answers",
+        "values",
+        "optional",
+        "btn_width",
+        "shuffle_question",
+        ""
+      ],
+      [
+        "Instructions1",
+        "<h2><span>Self-Evaluation Questionnaire</span></h2><br>\n<span class=\"instruc\">Thank you for making your word ratings. Please think back to the last word you repeated aloud for 20 second. Take a moment to think how you felt <span style=\"text-decoration: underline;\">after</span> repeating the word?<br><br>To respond, please rate each statement below by clicking on a number from 1 to 7, whereby <b>1 = you strongly disagree</b> with the statement, while <b>7 = you strongly agree</b> with the statement.</span><br/><br/>",
+        "instruct",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "cd_e1",
+        "I was in despair",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "no",
+        "132px",
+        "no",
+        ""
+      ],
+      [
+        "cd_e2",
+        "I resented it",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "no",
+        "132px",
+        "no",
+        ""
+      ],
+      [
+        "cd_e3",
+        "I felt disappointed with myself",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "no",
+        "132px",
+        "on",
+        ""
+      ],
+      [
+        "cd_e4",
+        "I felt scared",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "no",
+        "132px",
+        "on",
+        ""
+      ],
+      [
+        "cd_e5",
+        "I felt hollow",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "no",
+        "132px",
+        "on",
+        ""
+      ],
+      [
+        "cd_e6",
+        "I felt angry",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "no",
+        "132px",
+        "on",
+        ""
+      ],
+      [
+        "cd_e7",
+        "I felt uneasy",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "no",
+        "132px",
+        "on",
+        ""
+      ],
+      [
+        "cd_e8",
+        "I felt I'd let myself down",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "no",
+        "132px",
+        "on",
+        ""
+      ],
+      [
+        "cd_e9",
+        "I felt annoyed",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "no",
+        "132px",
+        "on",
+        ""
+      ],
+      [
+        "cd_e10",
+        "I felt frustrated",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "no",
+        "132px",
+        "on",
+        ""
+      ],
+      [
+        "cd_e11",
+        "I was in pain",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "no",
+        "132px",
+        "on",
+        ""
+      ],
+      [
+        "cd_e12",
+        "I felt depressed",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "no",
+        "132px",
+        "on",
+        ""
+      ],
+      [
+        "cd_e13",
+        "I felt furious with myself",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "no",
+        "132px",
+        "on",
+        ""
+      ],
+      [
+        "cd_e14",
+        "I felt sick",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "no",
+        "132px",
+        "on",
+        ""
+      ],
+      [
+        "cd_e15",
+        "I was in agony",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "no",
+        "132px",
+        "on",
+        ""
+      ],
+      [
+        "cd_atten",
+        "For this question, <u>please select 4</u>",
+        "likert",
+        "1|2|3|4|5|6|7",
+        "1|2|3|4|5|6|7",
+        "yes",
+        "132px",
+        "on",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  "procs_csv": {},
+  "stims_csv": {}
+}
