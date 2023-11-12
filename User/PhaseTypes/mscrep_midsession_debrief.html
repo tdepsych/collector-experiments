@@ -56,4 +56,14 @@
   <div>
   <button class="btn btn-primary" id="endButton" onclick="Phase.go_to(135)">Finish Session & Save Data</button>
   <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
+  <script>
+    Phase.set_timer(function(){
+      if (parent.parent.sessionnumber == "0") {
+        $('#endButton').attr("onclick","Phase.submit()");
+        console.log("This was the prescreen so adjusting the finish button action");
+      } else {
+        console.log("Not A Pre Screen Session");
+      }
+    },0);
+  </script>
 </body>
