@@ -2,7 +2,7 @@ item,phasetype,survey,max_time,notes,text,shuffle_1,shuffle_2,task_title,task_bo
 0,uor_cover,,user,no_mobile,Welcome,,,,,,
 0,msc_ppt_setup,,user,,,,,,,,
 0,mscrep_infoconsent,,user,,Re-examining the role of eye-contact within online disinhibition on the behavioural effects of swearing,,,,,,
-0,msc_videos,,user,{Welcome},welcome_eyes,,,Welcome to the study,"This sessions uses video messages, please make sure your speakers are not
+0,msc_videos,,user,{Welcome},welcome_eyes,,,Welcome to the study,"This session uses video messages, please make sure your speakers are not
   muted so you can hear the task instructions presented.",,
 0,msc_videos,,user,{BART},bart_eyes,,nontab,Balloon Inflation Task,Please watch the video below to understand what is required of you.,,
 0,msc_videos,,user,{VOCAL},flat_vocal_eyes,,nontab,Word Vocalisation: Flat,Please watch the video below to understand what is required of you.,,
