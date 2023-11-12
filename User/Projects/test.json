@@ -1,6 +1,6 @@
 {
   "all_procs": {
-    "procedure_1.csv": "item,phasetype,survey,max_time,text,shuffle_1,weight,\r\n0,instruct,,user,This is the start of a new experiment.,off,,\r\n0,survey,autism_quotient.csv,,,,,\r\n0,tde_survey,autism_quotient.csv,,,,,"
+    "procedure_1.csv": "item,phasetype,survey,max_time,text,shuffle_1,weight,\r\n0,instruct,,user,This is the start of a new experiment.,off,0,\r\n0,survey,autism_quotient.csv,user,,,0,\r\n0,tde_survey,autism_quotient.csv,user,,,0,\r\n0,bart_rs,,user,,,0,\r\n0,bart_rs,,user,,,0,\r\n0,bart_rs,,user,,,0,\r\n0,bart_rs,,user,,,0,\r\n0,bart_ah,,user,,,,\r\n0,bart_ah,,user,,,,\r\n0,bart_ah,,user,,,,\r\n0,bart_ah,,user,,,,\r\n0,save_data,,user,,,,"
   },
   "conditions": "name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,skip_quality,\r\ncondition_1,You can put more detailed notes in this field,stimuli_1.csv,procedure_1.csv,off,,off,,,5,yes,",
   "all_stims": {
@@ -11,7 +11,10 @@
   "phasetypes": {
     "instruct": "[[[LOCATION]]]../Default/DefaultPhaseTypes/instruct.html",
     "survey": "[[[LOCATION]]]../Default/DefaultPhaseTypes/survey.html",
-    "tde_survey": "[[[LOCATION]]]../User/PhaseTypes/tde_survey.html"
+    "tde_survey": "[[[LOCATION]]]../User/PhaseTypes/tde_survey.html",
+    "bart_rs": "[[[LOCATION]]]../User/PhaseTypes/bart_rs.html",
+    "bart_ah": "[[[LOCATION]]]../User/PhaseTypes/bart_ah.html",
+    "save_data": "[[[LOCATION]]]../User/PhaseTypes/save_data.html"
   },
   "surveys": {
     "autism_quotient.csv": [

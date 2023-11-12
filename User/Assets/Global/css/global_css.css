@@ -187,3 +187,7 @@ hr {
 .bootbox-alert {
 	top: 40vh!important;
 }
+
+.bootbox-close-button {
+  display: none;
+}

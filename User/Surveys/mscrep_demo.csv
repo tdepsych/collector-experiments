@@ -8,7 +8,5 @@ Education,4. What is the highest level of education you have completed?,radio,"G
 Emplyoment,5. What is your current employment status,radio,Full-time employment|Part-time employment|Unemployed/Retired/Full-time education|Self-employed|Prefer not to say,No,1 | 2 | 3 | 4 | 0,,
 NativeSpeaker,"6. Are you a native British English Speaker<br><span class=""minor""><em>(defined as someone who was born and raised in the UK, <br/>or moved to the UK before the age of 2)</em></span>",radio,Yes|No,No,1 | 2,,
 Sona,7. Are you a UoR student completing this study for SONA course credit?,radio,Yes|No,No,Yes | No,,
-HorizontalRule,<hr>,instruct,,,,,
-Email,"8. Please enter your email address<br><span class=""minor""><em>This is purely to allow the Researchers to contact you regarding each testing session and is not stored with your experimental data</em></span>",email,,No,,,
 demo,,redcap_pii,,,,,
 ,,,,,,,

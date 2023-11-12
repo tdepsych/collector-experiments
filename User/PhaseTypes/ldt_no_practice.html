@@ -86,7 +86,7 @@
     <div id="stimulus">+</div>
   </button>
   <button id='cue_word' value='' class=' update_name' style='border:0; background-color:transparent'>
-    <div id="stimulus">{{cue}}</div>
+    <div id="stimulus">{{ldt_cue}}</div>
   </button>
   <button id='too_slow' value='' class=' update_name' style='border:0; background-color:transparent'>
     <div id="stimulus">Too Slow</div>
@@ -96,7 +96,7 @@
 <!--<input type='hidden' name='fixation_cross' />-->
 <!--<input type='hidden' name='' />-->
 <script>
-  var feedback = "{{answer}}";
+  var feedback = "{{ldt_answer}}";
   $('.update_name').on('click',function(){
     var class_list = this.className.split(' ');
     var end_trial = false;

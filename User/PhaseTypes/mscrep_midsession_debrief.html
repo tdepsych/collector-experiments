@@ -61,6 +61,7 @@
       if (parent.parent.sessionnumber == "0") {
         $('#endButton').attr("onclick","Phase.submit()");
         console.log("This was the prescreen so adjusting the finish button action");
+        appropriate_message("Thank you for completing the pre-screen. The experimenter will email you the link to your first session within the next 24hrs. You do not need to complete this pre-screen again");
       } else {
         console.log("Not A Pre Screen Session");
       }

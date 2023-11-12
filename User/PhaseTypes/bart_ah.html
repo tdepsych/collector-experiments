@@ -245,6 +245,7 @@
     $('#ballon').height(size);
     $('#ballon').show();
     $('#round').html('<h2>'+label_header+round+' of 10</h2>');
+    $('#press, #collect').css({'background' : '#006599','cursor' : 'pointer'});
   };
     
   // what happens when the game ends
@@ -280,6 +281,7 @@
         
   // animate explosion using jQuery UI explosion
   var balloon_explode = function() {
+    $('#press, #collect').css({'background' : '#c3c3c3','cursor' : 'default'});
     Phase.add_response({
       username: parent.parent.$("#participant_code").val(),
       bart_pumps: pumps,
@@ -323,7 +325,7 @@
       $('#current_pumps_value').html(pumps);
       current_value = (pumps*5);
       $('#current_points_value').html(current_value+label_currency);
-      //inflate_audio.play();
+      // inflate_audio.play();
       if (pumps < explode_array[round-1]) {
         size +=increase;
         $('#ballon').width(size); 
@@ -358,7 +360,7 @@
         bart_event: "Banked",
         bart_word: word
       })
-      
+      $('#press, #collect').css({'background' : '#c3c3c3','cursor' : 'default'});
       exploded.push(explosion); // save whether balloon has exploded or not
       collection_audio.play();
       number_pumps.push(pumps); // save number of pumps
