@@ -27,7 +27,7 @@ $('body').keyup(function(e){
 0,msc_videos,,user,{CDQ},cdq_eyes,,tab,Task Evaluation Questionnaire,Please watch the video below to understand what is required of you.,
 0,tde_survey,cognitive_dissonance.csv,user,{COG DIS},,,tab,,,
 0,msc_videos,,user,,wordsearch_eyes,,,Time for a break...,Please watch the video below to understand what is required of you.,
-0,wordsearch_msc_cgd,,300,{WORDSEARCH},,,,,,
+0,wordsearch_msc_cgd,,180,{WORDSEARCH},,,,,,
 0,wordsearch_feedback,,user,{WORDSEARCH},,,,Wordsearch Task Complete,,
 0,msc_videos,,user,{BART},bart_eyes,,nontab,Balloon Inflation Task,Please watch the video below to understand what is required of you.,
 0,msc_videos,,user,{VOCAL},flat_vocal_eyes,,nontab,Word Vocalisation: Flat,Please watch the video below to understand what is required of you.,

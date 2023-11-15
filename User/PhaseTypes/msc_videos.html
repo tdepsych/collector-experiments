@@ -31,15 +31,35 @@
   // DISPLAY BUTTON & REFRESH VIDEO //
   //--------------------------------//
   var text = "{{text}}";
+  video.addEventListener('playing', (event) => {
+    if (video.hasAttribute("controls")) {
+     video.removeAttribute("controls");
+     video.setAttribute("style", "cursor: none;");
+  } else {
+     video.setAttribute("controls","controls");
+     video.setAttribute("style", "cursor: pointer;");
+  }
+  });
+    
   video.addEventListener('ended', (event) => {
    if (text == "ldt") {
-      // var ldtInstruction = document.getElementById("ldt_instruction");
-      // ldtInstruction.style.visibility = "visible";
       $('#ldt_instruction').show();
+      if (video.hasAttribute("controls")) {
+        video.removeAttribute("controls");
+        video.setAttribute("style", "cursor: none;");
+      } else {
+        video.setAttribute("controls","controls")
+        video.setAttribute("style", "cursor: pointer;");
+      }
     } else {
-      // const button = document.getElementById("proceed_button");
-      // button.style.visibility = "visible";
       $('#proceed_button').show();
+      if (video.hasAttribute("controls")) {
+        video.removeAttribute("controls");
+        video.setAttribute("style", "cursor: none;");
+      } else {
+        video.setAttribute("controls","controls");
+        video.setAttribute("style", "cursor: pointer;");
+      }
     }
   });
   

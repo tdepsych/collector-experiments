@@ -20,7 +20,7 @@ item,phasetype,survey,max_time,notes,text,shuffle_1,shuffle_2,task_title,task_bo
 0,msc_videos,,user,{CDQ},cdq_img,,nontab,Task Evaluation Questionnaire,Please watch the video below to understand what is required of you.,,
 0,tde_survey,cognitive_dissonance.csv,user,{COG DIS},,,nontab,,,,
 0,msc_videos,,user,,wordsearch_img,,,Time for a break...,Please watch the video below to understand what is required of you.,,
-0,wordsearch_msc_cgd,,300,{WORDSEARCH},,,,,,,
+0,wordsearch_msc_cgd,,180,{WORDSEARCH},,,,,,,
 0,wordsearch_feedback,,user,{WORDSEARCH},,,,Wordsearch Task Complete,,,
 0,msc_videos,,user,{BART},bart_img,,tab,Balloon Inflation Task,Please watch the video below to understand what is required of you.,,
 0,msc_videos,,user,{VOCAL},fuck_vocal_img,,tab,Word Vocalisation: Fuck,Please watch the video below to understand what is required of you.,,
