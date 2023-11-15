@@ -121,11 +121,11 @@
         "hr",
         "<hr>",
         "instruct",
-        null,
-        null,
-        null,
-        null,
-        null
+        "",
+        "",
+        "",
+        "",
+        ""
       ],
       [
         "Sona",
@@ -144,8 +144,8 @@
         "Yes|No",
         "No",
         "Yes | No",
-        null,
-        null
+        "",
+        ""
       ],
       [
         "demo",
