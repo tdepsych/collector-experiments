@@ -595,16 +595,15 @@ Project = {
           var this_iframe = these_iframes[i];
           this_iframe_style = this_iframe.contentWindow.document.body.style;
           this_iframe_style.zoom = parent.parent.current_zoom;
-          // this_iframe_style.MozTransform = "scale(" + parent.parent.current_zoom - 1 + ")";
+          this_iframe_style.MozTransform = "scale(" + parent.parent.current_zoom - 1 + ")";
 
           if (isFirefox) {
             this_iframe_style.width = (window.innerWidth * 0.98) / parent.parent.current_zoom;  // {CGD} adjusted all width/height to just under fullscreen to counter scroll bar issue
             this_iframe_style.height = (window.innerHeight * 0.98)  / parent.parent.current_zoom;
             this_iframe_style.maxWidth = (window.innerWidth * 0.97) / parent.parent.current_zoom;
             this_iframe_style.maxHeight = (window.innerHeight * 0.97)  / parent.parent.current_zoom;
-            this_iframe_style.transformOrigin = "center top";
-            // this_iframe_style.scale = parent.parent.current_zoom;
-            // body.removeAttribute("scale");
+            this_iframe_style.transformOrigin = "center left";
+            this_iframe_style.scale = parent.parent.current_zoom;
           } else {
             this_iframe_style.width = "100%";
             this_iframe_style.height = "100%";
