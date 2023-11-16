@@ -24,7 +24,6 @@ function zoom_out() {
 }
 
 window.onload = function(){ 
-// window.onpageshow = function(){ 
   $("#zoomIn").click(zoom_in);
   $("#zoomOut").click(zoom_out);
 }
