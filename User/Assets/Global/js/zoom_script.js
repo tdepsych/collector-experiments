@@ -4,31 +4,23 @@ if (parent.parent.current_zoom == null){
   parent.parent.current_zoom = parent.parent.current_zoom;
 }
    
-var isFirefox = typeof InstallTrigger !== 'undefined';
-
 function zoom_in() {
   parent.parent.current_zoom += 0.1;
-  if (isFirefox) {
     // document.body.style.MozTransform = "scale(" + parent.parent.current_zoom + ")";
-    $('#container').MozTransform = "scale(" + parent.parent.current_zoom + ")";
-  } else {
-    document.body.style.zoom = parent.parent.current_zoom;
-  }
+  $('#container').css("transform", "scale(" + parent.parent.current_zoom + ")");
+  $('#container').transformOrigin = "center center";
+  // document.body.style.zoom = parent.parent.current_zoom;
   document.body.style.overflowX = "hidden";
   console.log("working?")
-  $('#container').transformOrigin = "center center";
-
 }
+
 function zoom_out() {
   parent.parent.current_zoom -= 0.1;
-  if (isFirefox) {
-    // document.body.style.MozTransform = "scale(" + parent.parent.current_zoom + ")";
-    $('#container').MozTransform = "scale(" + parent.parent.current_zoom + ")";
-  } else {
-    document.body.style.zoom = parent.parent.current_zoom;
-  }
-  document.body.style.overflowX = "hidden";
+  // document.body.style.MozTransform = "scale(" + parent.parent.current_zoom + ")";
+  $('#container').css("transform", "scale(" + parent.parent.current_zoom + ")");
   $('#container').transformOrigin = "center center";
+  // document.body.style.zoom = parent.parent.current_zoom;
+  document.body.style.overflowX = "hidden";
 }
 
 window.onload = function(){ 
