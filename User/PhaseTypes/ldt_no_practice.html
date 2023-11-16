@@ -141,12 +141,9 @@
       }
     }
   });
-  if (parent.parent.current_zoom == 1) {
-    // No need to do anything 
-  } else {
+
     Phase.set_timer(function (){
       var styleObject = $('body').prop('style'); 
       styleObject.removeProperty('scale');
     },0);
-  }
 </script>

@@ -601,8 +601,10 @@ Project = {
             this_iframe_style.height = (window.innerHeight * 0.98)  / parent.parent.current_zoom;
             this_iframe_style.maxWidth = (window.innerWidth * 0.97) / parent.parent.current_zoom;
             this_iframe_style.maxHeight = (window.innerHeight * 0.97)  / parent.parent.current_zoom;
-            this_iframe_style.transformOrigin = "0 0";
-            this_iframe_style.scale = parent.parent.current_zoom;
+            // this_iframe_style.transformOrigin = "0 0";
+            // this_iframe_style.scale = parent.parent.current_zoom;
+            // $("#phase" + project_json.phase_no).contents().find(".post_iframe").contents()
+            // .find("#container").css("transform", "translate(50%,50%")
           } else {
             this_iframe_style.width = "100%";
             this_iframe_style.height = "100%";
