@@ -4,14 +4,18 @@ if (parent.parent.current_zoom == null){
   parent.parent.current_zoom = parent.parent.current_zoom;
 }
    
+var isFirefox = typeof InstallTrigger !== 'undefined';
+
 function zoom_in() {
-  parent.parent.current_zoom = 1;
+  parent.parent.current_zoom += 0.1;
   if (isFirefox) {
     document.body.style.MozTransform = "scale(" + parent.parent.current_zoom + ")";
   } else {
     document.body.style.zoom = parent.parent.current_zoom;
   }
+  $("#zoomOut").removeAttr("zoom").css("transform", "scale(1)");
   document.body.style.overflowX = "hidden";
+  console.log("working?")
   // document.body.style.transformOrigin = "center center";
 
 }
