@@ -23,7 +23,8 @@ function zoom_out() {
   document.body.style.overflowX = "hidden";
 }
 
-window.onload = function(){ 
+// window.onload = function(){ 
+window.onpageshow = function(){ 
   $("#zoomIn").click(zoom_in);
   $("#zoomOut").click(zoom_out);
 }
