@@ -164,19 +164,12 @@
   Phase.set_timer(function(){$('#cue_word').show()},'500'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout)
   Phase.set_timer(function(){$('#cue_word').hide()},'2000');//Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
   Phase.set_timer(function(){$('#too_slow').show()},'2100');
-  Phase.set_timer(function(){Phase.submit()},'25000000');
+  Phase.set_timer(function(){Phase.submit()},'2500');
   $(window).bind('keydown', function(event) {
     if(event.which == 32) {
       console.log("do nothing")
     } else {
-      function timer(){
-        if (parent.parent.current_zoom == null){
-          parent.parent.current_zoom = 1;
-        } else {
-          parent.parent.current_zoom = parent.parent.current_zoom;
-        }
-        Phase.submit()
-      }
+      function timer(){Phase.submit()}
       setTimeout(timer,1000);
       var response = String.fromCharCode(event.which).toLowerCase()
       var responseTime = (new Date()).getTime();
@@ -228,6 +221,5 @@
   Phase.set_timer(function (){
     var styleObject = $('body').prop('style'); 
       styleObject.removeProperty('scale');
-    console.log("Firefox Scale Fix Employeed");
   },0);
 </script>

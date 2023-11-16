@@ -50,7 +50,7 @@
       ],
       [
         "Instructions",
-        "<h2><span>Demographic Information</span></h2><br>\n<span class=\"instruc\">Please could you help us better understand the diversity and inclusivity of your participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). Answers for questions 6, 7, and 8 are required, however, as you will be unable to take part in the rest of the study without supplying that information. Finally, we are collecting your demographic information before you begin any testing session to ensure that each session has an identical procedure (as this increases the validity of our final results).</span><br/><br/>",
+        "<h2><span>Demographic Information</span></h2><br>\r\n<span class=\"instruc\">Please could you help us better understand the diversity and inclusivity of your participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). Answers for questions 6, 7, and 8 are required, however, as you will be unable to take part in the rest of the study without supplying that information. Finally, we are collecting your demographic information before you begin any testing session to ensure that each session has an identical procedure (as this increases the validity of our final results).</span><br/><br/>",
         "instruct",
         "",
         "",
@@ -119,6 +119,16 @@
         ""
       ],
       [
+        "hr",
+        "<hr>",
+        "instruct",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
         "Sona",
         "7. Are you a UoR student completing this study for SONA course credit?",
         "radio",
@@ -129,22 +139,12 @@
         ""
       ],
       [
-        "HorizontalRule",
-        "<hr>",
-        "instruct",
-        "",
-        "",
-        "",
-        "",
-        ""
-      ],
-      [
-        "Email",
-        "8. Please enter your email address<br><span class=\"minor\"><em>This is purely to allow the Researchers to contact you regarding each testing session and is not stored with your experimental data</em></span>",
-        "email",
-        "",
+        "PY2RMP",
+        "8. Are you a UoR student who attends a PY2RMP workshop led by Chris Dobson?",
+        "radio",
+        "Yes|No",
         "No",
-        "",
+        "Yes | No",
         "",
         ""
       ],
