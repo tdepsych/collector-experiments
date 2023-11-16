@@ -169,7 +169,14 @@
     if(event.which == 32) {
       console.log("do nothing")
     } else {
-      function timer(){Phase.submit()}
+      function timer(){
+        if (parent.parent.current_zoom == null){
+          parent.parent.current_zoom = 1;
+        } else {
+          parent.parent.current_zoom = parent.parent.current_zoom;
+        }
+        Phase.submit()
+      }
       setTimeout(timer,1000);
       var response = String.fromCharCode(event.which).toLowerCase()
       var responseTime = (new Date()).getTime();
@@ -214,7 +221,7 @@
   });
   // The lexical decision task has no zoom control, as participants don't have time to change zoom level during task. This ensures the page zoom is set to their current level (or it gets reset)
   if (parent.parent.current_zoom == null){
-    parent.parent.current_zoom = 1;
+    parent.parent.current_zoom = 0;
   }else {
     parent.parent.current_zoom = parent.parent.current_zoom;
   }

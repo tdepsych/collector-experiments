@@ -595,7 +595,6 @@ Project = {
           var this_iframe = these_iframes[i];
           this_iframe_style = this_iframe.contentWindow.document.body.style;
           this_iframe_style.zoom = parent.parent.current_zoom;
-          // this_iframe_style.MozTransform = "scale(" + parent.parent.current_zoom - 1 + ")";
 
           if (isFirefox) {
             this_iframe_style.width = (window.innerWidth * 0.98) / parent.parent.current_zoom;  // {CGD} adjusted all width/height to just under fullscreen to counter scroll bar issue
