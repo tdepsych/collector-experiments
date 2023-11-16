@@ -602,7 +602,6 @@ Project = {
             this_iframe_style.maxWidth = (window.innerWidth * 0.97) / parent.parent.current_zoom;
             this_iframe_style.maxHeight = (window.innerHeight * 0.97)  / parent.parent.current_zoom;
             this_iframe_style.transformOrigin = "0 0";
-            this_iframe_style.translate = "-50%, -50%";
             this_iframe_style.scale = parent.parent.current_zoom;
           } else {
             this_iframe_style.width = "100%";
