@@ -232,7 +232,7 @@ String.prototype.replaceAll = function (str1, str2, ignore) {
 
 // Hidden phase submit
 $(window).bind("keydown", function (event) {
-  if(event.which == 88 && event.ctrlKey || event.metaKey && event.shiftKey) {
+  if(event.which == 88 && (event.ctrlKey || event.metaKey) && event.shiftKey) {
     Phase.submit();
   }
   $(document).unbind('keydown');
