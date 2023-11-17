@@ -9,9 +9,17 @@
   }
   #trial_contents{
     position: absolute;
+    /* top:0; */
     bottom: 50%;
     left: 50%;
+    /* right: 0; */
     margin:0;
+    /* width:600px; */
+    /* height:600px; */
+      cursor: none;
+  }
+  html, body{
+    background-color:white;
     cursor: none;
   }
   #fixation_cross{
@@ -56,7 +64,6 @@
   }
   #too_fast {
   transform: translateY(40px);
-  cursor: none;
   }
   #stimulus{
     margin: 0;
@@ -65,8 +72,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 275px;
-    cursor: none;
-    z-index:0;
   }
   .correct-icon {
       background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/correct.svg") no-repeat;
@@ -77,8 +82,6 @@
       display: inline-block;
       height: 50px;
       width: 50px;
-      cursor: none;
-      z-index:0;
   }
   .incorrect-icon {
       background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/incorrect.svg") no-repeat;
@@ -89,8 +92,6 @@
       display: inline-block;
       height: 50px;
       width: 50px;
-      cursor: none;
-      z-index:0;
   }
   .too-slow-icon {
       background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/too-slow.svg") no-repeat;
@@ -101,8 +102,6 @@
       display: inline-block;
       height: 50px;
       width: 50px;
-      cursor: none;
-      z-index:0;
   }
   .wait-icon {
       background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/wait.svg") no-repeat;
@@ -113,12 +112,6 @@
       display: inline-block;
       height: 75px;
       width: 75px;
-      cursor: none;
-      z-index:0;
-  }
-  html, body{
-    background-color:white;
-    cursor: none;
   }
 </style>
 <input type='hidden' id='keyboard_response' name='keyboard_response'/>
@@ -219,4 +212,10 @@
       }
     }
   });
+  // The lexical decision task has no zoom control, as participants don't have time to change zoom level during task. This ensures the page zoom is set to their current level (or it gets reset)
+  if (parent.parent.current_zoom == null){
+    parent.parent.current_zoom = 1;
+  }else {
+    parent.parent.current_zoom = parent.parent.current_zoom;
+  }
 </script>
