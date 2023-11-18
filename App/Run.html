@@ -35,6 +35,35 @@
 
 <script>
   $("#welcome_html").load("Welcome.html");
+  
+  // Hiding cursor if idle
+  document.addEventListener("DOMContentLoaded", () => {
+    let idleMouseTimer;
+    let forceMouseHide = false;
+
+    document.body.style.cursor = "none";
+
+    // Your wrapper here
+    document.body.addEventListener("mousemove", () => {
+      if (forceMouseHide) {
+        return;
+      }
+
+      document.body.style.cursor = "";
+
+      clearTimeout(idleMouseTimer);
+
+      idleMouseTimer = setTimeout(() => {
+        document.body.style.cursor = "none";
+
+        forceMouseHide = true;
+
+        setTimeout(() => {
+          forceMouseHide = false;
+        }, 200);
+      }, 1000);
+    });
+  });
 </script>
 
 <style>
