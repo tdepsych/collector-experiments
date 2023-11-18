@@ -41,7 +41,7 @@
   });
     
   video.addEventListener('ended', (event) => {
-   if (text == "ldt") {
+   if (text == "ldt" || text == "ldt_img" ||text == "ldt_eyes") {
       $('#ldt_instruction').show();
       if (video.hasAttribute("controls")) {
         video.removeAttribute("controls");

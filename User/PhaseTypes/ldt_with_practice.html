@@ -159,7 +159,7 @@
       Phase.submit();
     }
   });
-  var baselineTime
+  var baselineTime;
   Phase.set_timer(function(){baselineTime = (new Date()).getTime();},'0');
   Phase.set_timer(function(){$('#fixation_cross').hide()},'500'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
   Phase.set_timer(function(){$('#cue_word').show(); baselineTime = (new Date()).getTime();},'500');
@@ -171,8 +171,8 @@
     if(event.which == 32) {
       console.log("do nothing")
     } else {
-      function timer(){Phase.submit()}
-      setTimeout(timer,1000);
+      // function timer(){Phase.submit()}
+      // setTimeout(timer,1000);
       var response = String.fromCharCode(event.which).toLowerCase()
       var responseTime = (new Date()).getTime();
       //document.getElementById("ldt_rt").value = responseTime - baselineTime;
