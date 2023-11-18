@@ -1,0 +1,87 @@
+<!--'redcap_markers' PhaseType that claims to "upload data" while actually changing REDCap marker colours-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  #endSession_btn {
+    margin-bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    margin-top: 20px;
+    display: none;
+  }
+  #endSession_btn_redcap {
+    margin-bottom: 25px;
+    left: 50%;
+    pointer-events: none;
+    background-color: #a1d4ee;
+    border-color: #a1d4ee;
+    transform: translateX(-50%);
+    position: absolute;
+    margin-top: 20px;
+    /*display: none;*/
+    text-align: left;
+    width: 185px;
+  }
+</style>
+<div id="page" style="margin-top: -20px; right: auto; margin-left:auto;"></div>
+<div id="endButtons">
+  <button class="btn btn-primary" id="endSession_btn" onclick="Phase.submit()">Go To Session Debrief</button>
+  <button class="btn btn-primary" id="endSession_btn_redcap" >Uploading Data </button>
+</div>
+
+<script>
+var upload_timer = {{text}} * 1000;
+
+  function appropriate_message(this_message) { // This just sets up a popup message that doesn't break full screen
+    bootbox.alert(this_message);
+  }
+  
+  $(document).ready(function(){
+    var save_msg = "Once the data has uploaded, please make sure you follow the instructions about saving your data to your computer after you are debriefed.";
+    appropriate_message(save_msg);
+  });
+ 
+  function buttonSwap() {
+    var x = document.getElementById('endSession_btn_redcap'),
+    label_text = x.innerHTML,
+    // create array to cycle through
+    time = ['.','. .','. . .','. . . .','. . . . .'],
+    // set start point in array
+    i = 0;  
+      
+    // The code below uses 'setTimeout' rather than 'Phase.set_timer()' because the Phase... calls dont work within other functions
+    setTimeout(function(){
+      $('#endSession_btn_redcap').show();
+      setInterval(function (){
+        // change the text using the array
+        // i++ go to the next number in array
+        x.innerHTML = label_text + time[i++];
+        i = time.length === i ? 0 : i;
+      }, 1000);
+    }, 0);
+          
+    setTimeout(function(){
+      $('#endSession_btn').show();
+      $('#endSession_btn_redcap').hide();
+    },upload_timer); 
+  }
+ 
+  function REDCap_Markers() {
+    for (let i = 0; i <= parent.parent.project_json.phase_no; i++) {
+      parent.parent.project_json.repeat_no = i;
+      Phase.add_response({
+        phase_number: i,
+        username: parent.parent.$("#participant_code").val(),
+        complete: 2
+      });
+      if (parent.parent.project_json.phase_no == i) {
+        console.log("For Loop Finished");
+        buttonSwap();
+      }
+    }
+  }
+
+  Phase.set_timer(function(){
+    REDCap_Markers();
+  },0);
+</script>

@@ -299,7 +299,7 @@
             </span>
           </label>
           <label id="radioLabelHolder" class="optional_item">
-            <input type="checkbox" class="option-input radio optional_item_checkbox" name="consent_pii_c09_future_studies" id="c09_future_studies" value="No"/>
+            <input type="checkbox" class="option-input radio optional_item_checkbox" name="consent_pii_c9_future_studies" id="c9_future_studies" value="No"/>
             <span class="radioLabel">Please tick this box if you are happy to be contacted by the researchers about future studies they conduct (optional).</span>
           </label>
           <!--Text Inputs-->
@@ -387,8 +387,8 @@
     
   $("#consentForm").change(function() {
     
-    if ($('#c09_future_studies').is(':checked')) {
-      $('#c09_future_studies').val("Yes");
+    if ($('#c9_future_studies').is(':checked')) {
+      $('#c9_future_studies').val("Yes");
     }
     
     // Assign the particpant's ID and testing sessions numbers to variables
@@ -419,7 +419,7 @@
       $("#tooltiptext").html("Sorry. You can only start the experiment once you have ticked all the boxes and entered your name/email above<br/><em>(indicating your happy and consenting to participate in this study)</em>");
     }
    
-    if ($('#c09_future_studies:checked').length == 1) {
+    if ($('#c9_future_studies:checked').length == 1) {
       $('.optional_item').css("color","black").css('opacity','1.0');
     } else {
       $('.optional_item').css("color","lightslategrey").css('opacity','0.85');

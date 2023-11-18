@@ -120,6 +120,6 @@ console.log(""wrong key pressed"");
 0,msc_vas_offensiveness,,user,{VAS},FUCK,,Taboo,,,,
 0,msc_vas_humour,,user,{VAS},FUCK,,Taboo,,,,
 0,tde_survey,cognitive_dissonance.csv,user,{COG DIS},,,Taboo,,,,
-0,uor_cover_end,,,,Session Complete,,,,,,
-0,uor_end,,user,,,,,,,,
+0,uor_cover_end,,user,,Session Complete,,,,,,
+0,redcap_markers,,user,,10,,,,,,
 0,save_data,,user,,💾 Please Save Your Data 💾,,,Save Your Data,"<p>There have been some issues with data not correctly being sent to the server, even though the study claims to  have done so. I'm not 100% sure why this is  occurring though which is making  it  hard to fix.<br/><br/>As a result, please can you click the  button below and save the .csv file to your  computer. I'll send you an email  once  I've checked the server letting you know if there have been any problems  but, by saving your data, if there are any  issues, I can use the .csv file to   manually add anything that's missing, which means your time hasn't  been  wasted and/or my dissertation  results impacted by an issue outside our   control.<br/><br>If the button doesn't work for any  reason, you  can save your data by  pressing Ctrl+S (Cmd+S on a Mac) too. Obviously, please  don't delete this file from your computer  until I've sent you an email saying   all the data was correctly uploaded to the  server.<br/><br/>Finally, if  you could email <a href=""mailto:c.g.dobson@student.reading.ac.uk"">c.g.dobson@student.reading.ac.uk</a>  to let me know you've signed up that would  be great. There is currently a  chance  I won't be notified!</p>",,

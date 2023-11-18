@@ -1,4 +1,4 @@
-<!--'msc_uor_end' PhaseType that claims to "upload data" while actually changing REDCap marker colours before chosing a debrief sheet to load based on the participants session number-->
+<!--'mscrep_redcap' PhaseType that claims to "upload data" while actually changing REDCap marker colours before chosing a debrief sheet to load based on the participants session number-->
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <style>
   #endSession_btn {
@@ -30,13 +30,14 @@
 </div>
 
 <script>
+var upload_timer = {{text}} * 1000;
 
   function appropriate_message(this_message) { // This just sets up a popup message that doesn't break full screen
     bootbox.alert(this_message);
   }
   
   $(document).ready(function(){
-    var save_msg = "Once the data has uploaded, please make sure you click 'finish session/study' and follow the instructions about saving your data to your computer.";
+    var save_msg = "Once the data has uploaded, please make sure you follow the instructions about saving your data to your computer after you are debriefed.";
     appropriate_message(save_msg);
   });
  
@@ -62,8 +63,7 @@
     setTimeout(function(){
       $('#endSession_btn').show();
       $('#endSession_btn_redcap').hide();
-    // },25000); 
-  },10000); 
+    },upload_timer); 
   }
  
   function REDCap_Markers() {
@@ -82,20 +82,16 @@
   }
 
   Phase.set_timer(function(){
-  //   if (parent.parent.sessionnumber == "3") {
-  //     $("#page").load("../../collector-experiments/User/PhaseTypes/mscrep_debrief.html");
-  //     console.log("This was Session 3");
-  //   } else {
-  //     $("#page").load("../../collector-experiments/User/PhaseTypes/mscrep_midsession_debrief.html");
-  //     console.log("This was the Pre Screen, or Session 1 or 2");
-  //     $('#endButtons').css('margin-top','-100px');
-  //   }
+    console.log("session number: " + parent.parent.sessionnumber);
     if (parent.parent.sessionnumber == "3") {
       $('#endSession_btn').attr("onclick","Phase.go_to(134)");
       console.log("This was Session 3");
+    } else if (parent.parent.sessionnumber == "0") {
+      $('#endSession_btn').attr("onclick","Phase.submit()");
+      console.log("This was the pre-screen");
     } else {
       $('#endSession_btn').attr("onclick","Phase.go_to(133)");
-      console.log("This was the Pre Screen, or Session 1 or 2");
+      console.log("This was Session 1 or 2");
     }
     REDCap_Markers();
   },0);

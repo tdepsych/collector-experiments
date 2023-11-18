@@ -193,10 +193,6 @@ Project = {
     response_data.platform = window.navigator.platform;
     response_data.username = $("#participant_code").val();
 
-    Object.keys(project_json.this_condition).forEach(function (condition_item) {
-      response_data["condition_" + condition_item] = project_json.this_condition[condition_item];
-    });
-
     project_json.this_phase = response_data;
     response_data.participant_browser = parent.parent.participant_browser;
     if(parent.parent.project_json.repeat_no >= project_json.phase_no){
@@ -286,6 +282,9 @@ Project = {
               }
             }
         } else {
+          Object.keys(project_json.this_condition).forEach(function (condition_item) {
+            response_data["condition_" + condition_item] = project_json.this_condition[condition_item];
+          });
           parent.parent.redcap_instrument = "main";
         }
         console.log("REDcap Instrument: " + parent.parent.redcap_instrument)
@@ -327,6 +326,7 @@ Project = {
           delete(clean_phase_responses[field]);
         };
       }
+      // console.log(clean_phase_responses) // Uncomment this if you want to see what variables are submitted during each phase.submit() call
       // this_location.toLowerCase();
 
       console.log("just before the ajax");
