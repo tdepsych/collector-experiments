@@ -1,8 +1,4 @@
 <!--'ldt_with_practice' PhaseType-->
-<link rel="preload" as="image" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/correct.svg">
-<link rel="preload" as="image" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/incorrect.svg">
-<link rel="preload" as="image" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/too-slow.svg">
-<link rel="preload" as="image" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/wait.svg">
 <style>
   * {
      cursor: none;
@@ -170,7 +166,7 @@
   Phase.set_timer(function(){$('#cue_word').show()},'500'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout)
   Phase.set_timer(function(){$('#cue_word').hide()},'2000');//Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
   Phase.set_timer(function(){$('#too_slow').show()},'2100');
-  Phase.set_timer(function(){Phase.submit()},'2500000');
+  Phase.set_timer(function(){Phase.submit()},'2500');
   $(window).bind('keydown', function(event) {
     if(event.which == 32) {
       console.log("do nothing")
@@ -225,3 +221,7 @@
     parent.parent.current_zoom = parent.parent.current_zoom;
   }
 </script>
+<!--<link rel="preload" as="image" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/correct.svg">-->
+<!--<link rel="preload" as="image" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/incorrect.svg">-->
+<!--<link rel="preload" as="image" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/too-slow.svg">-->
+<!--<link rel="preload" as="image" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/wait.svg">-->
