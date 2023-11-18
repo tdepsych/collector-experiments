@@ -271,21 +271,22 @@ Project = {
 
       var keys = Object.keys(response_data)
         // if (keys.includes("_pii_")) {
-          if (keys.some(e => e.includes("_pii_"))) {
-            for (let i = 0; i < keys.length; i++) {
-              let field = keys[i]
-              if (field.includes("_pii_")) {
-                form_name = field.split("_pii", 1)[0]
-                parent.parent.redcap_instrument = form_name;
-              } else {
-                //do nothing
-              }
+        if (keys.some(e => e.includes("_pii_"))) {
+          for (let i = 0; i < keys.length; i++) {
+            let field = keys[i]
+            if (field.includes("_pii_")) {
+              form_name = field.split("_pii", 1)[0]
+              parent.parent.redcap_instrument = form_name;
+            } else {
+              //do nothing
             }
+          }
         } else {
+          parent.parent.redcap_instrument = "main";
           Object.keys(project_json.this_condition).forEach(function (condition_item) {
             response_data["condition_" + condition_item] = project_json.this_condition[condition_item];
           });
-          parent.parent.redcap_instrument = "main";
+          
         }
         console.log("REDcap Instrument: " + parent.parent.redcap_instrument)
       var phase_responses = project_json.responses[project_json.responses.length-1];

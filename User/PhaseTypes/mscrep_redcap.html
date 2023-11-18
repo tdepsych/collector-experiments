@@ -65,23 +65,16 @@ var upload_timer = {{text}} * 1000;
       $('#endSession_btn_redcap').hide();
     },upload_timer); 
   }
- 
-  function REDCap_Markers() {
+
+
+  Phase.set_timer(function(){
     for (let i = 0; i <= parent.parent.project_json.phase_no; i++) {
       parent.parent.project_json.repeat_no = i;
-      Phase.add_response({
-        phase_number: i,
-        username: parent.parent.$("#participant_code").val(),
-        complete: 2
-      });
       if (parent.parent.project_json.phase_no == i) {
         console.log("For Loop Finished");
         buttonSwap();
       }
     }
-  }
-
-  Phase.set_timer(function(){
     console.log("session number: " + parent.parent.sessionnumber);
     if (parent.parent.sessionnumber == "3") {
       $('#endSession_btn').attr("onclick","Phase.go_to(134)");
@@ -93,6 +86,6 @@ var upload_timer = {{text}} * 1000;
       $('#endSession_btn').attr("onclick","Phase.go_to(133)");
       console.log("This was Session 1 or 2");
     }
-    REDCap_Markers();
+    Phase.redcap_markers();
   },0);
 </script>
