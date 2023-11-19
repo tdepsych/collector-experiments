@@ -6,7 +6,7 @@ item,phasetype,survey,max_time,notes,text,shuffle_1,shuffle_2,task_title,task_bo
   muted so you can hear the task instructions presented.",,
 0,msc_videos,,user,{BART},bart_eyes,,,Balloon Inflation Task,Please watch the video below to understand what is required of you.,,
 0,msc_videos,,user,{VOCAL},flat_vocal_eyes,,,Word Vocalisation: Flat,Please watch the video below to understand what is required of you.,,
-0,bart_ah,,user,{BART},,,,,,,
+0,bart_ah,,user,{BART},nt,,,,,,
 0,msc_videos,,user,{LDT},ldt_eyes,,,Lexical Decision Task,"Please watch the video below to understand what is required of you.<br> -- The keys are P for Yes and Q for No --
 <script>
   $('body').keyup(function(e){
@@ -16,7 +16,7 @@ item,phasetype,survey,max_time,notes,text,shuffle_1,shuffle_2,task_title,task_bo
   });
 </script>
 <style>#proceed_button {display:none!important;}</style>",,
-82 to 91,ldt_with_practice,,user,{LDT},,ldtpracnt,,,,,
+92 to 101,ldt_with_practice,,user,{LDT},,ldtpracnt,,,,,
 0,task_bookend,,user,{LDT},,,,End Of Practice Trials,"<p>That completes the practice trials. You will now complete the experimental trials. Once again, all you have to do is decide whether the  word displayed in the centre of the screen <b><u>rhymes</u>  with the word you repeated out loud for 20 seconds before the previous  balloon inflation task.</b> <br><br> <b>&bull; If  the word <span  style=""color:blue;""><em><u>rhymes</u></em>  press P</span><br><br>&bull; If the word <span  style=""color:red;""><u><em>does not  rhyme</em></u> press Q</b></span><br>  <br>Please position your index fingers over the required P and Q keys,  as shown below before starting.<br><b>Please note: </b>The following experimental trials <span style=""text-decoration:  underline;""><em>do not</em></span> provide you with  feedback as to whether your response was correct or not.  <br><br>When you are ready and positioned your fingers as shown,  press the <b>Spacebar</b> with your thumb to start the  task.</p><br><br><img  src=""../../collector-experiments/User/Assets/Task_Stimuli/response_icons/pq_keys/ldt_keyboard2.jpg""  id=""ldt_img""/>
 <script>
 $('body').keyup(function(e){
@@ -26,7 +26,7 @@ $('body').keyup(function(e){
 });
 </script>
 <style>#ldt_img {display: block;margin: auto;} #proceed_button {display:none!important;}</style>",,
-2 to 41,ldt_no_practice,,user,{LDT},,ldtnt,,,,,
+42 to 81,ldt_no_practice,,user,{LDT},,ldtnt,,,,,
 0,msc_videos,,user,{VAS},vas_offensive_eyes,,,Word Rating 1,Please watch the video below to understand what is required of you.,,
 0,msc_vas_offensiveness,,user,{VAS},FLAT,,,,,,
 0,msc_videos,,user,{VAS},vas_humour_eyes,,,Word Rating 2,Please watch the video below to understand what is required of you.,,
@@ -38,10 +38,10 @@ $('body').keyup(function(e){
 0,wordsearch_feedback,,user,{WORDSEARCH},,,,Wordsearch Task Complete,,,
 0,msc_videos,,user,{BART},bart_eyes,,,Balloon Inflation Task,Please watch the video below to understand what is required of you.,,
 0,msc_videos,,user,{VOCAL},fuck_vocal_eyes,,,Word Vocalisation: Fuck,Please watch the video below to understand what is required of you.,,
-0,bart_ah,,user,{BART},,,,,,,
+0,bart_ah,,user,{BART},t,,,,,,
 0,msc_videos,,user,{LDT},ldt_eyes,,,Lexical Decision Task,"Please watch the video below to understand what is required of you.<br> -- The keys are P for Yes and Q for No --
 <script>  $('body').keyup(function(e){    if(e.keyCode == 32){      Phase.submit();    }  });</script><style>#proceed_button {display:none!important;}</style>",,
-92 to 101,ldt_with_practice,,user,{LDT},,ldtpract,,,,,
+82 to 91,ldt_with_practice,,user,{LDT},,ldtpract,,,,,
 0,task_bookend,,user,{LDT},,,,End Of Practice Trials,"<p>That completes the practice trials. You will now complete the experimental trials. Once again, all you have to do is decide whether the  word displayed in the centre of the screen <b><u>rhymes</u>  with the word you repeated out loud for 20 seconds before the previous  balloon inflation task.</b> <br><br> <b>&bull; If  the word <span  style=""color:blue;""><em><u>rhymes</u></em>  press P</span><br><br>&bull; If the word <span  style=""color:red;""><u><em>does not  rhyme</em></u> press Q</b></span><br>  <br>Please position your index fingers over the required P and Q keys,  as shown below before starting.<br><b>Please note: </b>The following experimental trials <span style=""text-decoration:  underline;""><em>do not</em></span> provide you with  feedback as to whether your response was correct or not.  <br><br>When you are ready and positioned your fingers as shown,  press the <b>Spacebar</b> with your thumb to start the  task.</p><br><br><img  src=""../../collector-experiments/User/Assets/Task_Stimuli/response_icons/pq_keys/ldt_keyboard3.jpg""  id=""ldt_img""/>
 <script>
 $('body').keyup(function(e){
@@ -51,7 +51,7 @@ $('body').keyup(function(e){
 });
 </script>
 <style>#ldt_img {display: block;margin: auto;} #proceed_button {display:none!important;}</style>",,
-42 to 81,ldt_no_practice,,user,{LDT},,ldtt,,,,,
+2 to 41,ldt_no_practice,,user,{LDT},,ldtt,,,,,
 0,msc_videos,,user,{VAS},vas_offensive_eyes,,,Word Rating 1,Please watch the video below to understand what is required of you.,,
 0,msc_vas_offensiveness,,user,{VAS},FUCK,,,,,,
 0,msc_videos,,user,{VAS},vas_humour_eyes,,,Word Rating 2,Please watch the video below to understand what is required of you.,,

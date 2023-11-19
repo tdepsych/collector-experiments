@@ -6,7 +6,7 @@ item,phasetype,survey,max_time,notes,text,shuffle_1,shuffle_2,task_title,task_bo
   muted so you can hear the task instructions presented.",
 0,msc_videos,,user,{BART},bart,,,Balloon Inflation Task,Please watch the video below to understand what is required of you.,
 0,msc_videos,,user,{VOCAL},fuck_vocal,,,Word Vocalisation: Fuck,Please watch the video below to understand what is required of you.,
-0,bart_ah,,user,{BART},,,,,,
+0,bart_ah,,user,{BART},t,,,,,
 0,msc_videos,,user,{LDT},ldt,,,Lexical Decision Task,"Please watch the video below to understand what is required of you.<br> -- The keys are P for Yes and Q for No --
 <script>  $('body').keyup(function(e){    if(e.keyCode == 32){      Phase.submit();    }  });</script><style>#proceed_button {display:none!important;}</style>",
 82 to 91,ldt_with_practice,,user,{LDT},,ldtprac1,,,,
@@ -31,7 +31,7 @@ $('body').keyup(function(e){
 0,wordsearch_feedback,,user,{WORDSEARCH},,,,Wordsearch Task Complete,,
 0,msc_videos,,user,{BART},bart,,,Balloon Inflation Task,Please watch the video below to understand what is required of you.,
 0,msc_videos,,user,{VOCAL},flat_vocal,,,Word Vocalisation: Flat,Please watch the video below to understand what is required of you.,
-0,bart_ah,,user,{BART},,,,,,
+0,bart_ah,,user,{BART},nt,,,,,
 0,msc_videos,,user,{LDT},ldt,,,Lexical Decision Task,"Please watch the video below to understand what is required of you.<br> -- The keys are P for Yes and Q for No --
 <script>  $('body').keyup(function(e){    if(e.keyCode == 32){      Phase.submit();    }  });</script><style>#proceed_button {display:none!important;}</style>",
 92 to 101,ldt_with_practice,,user,{LDT},,ldtprac2,,,,
