@@ -104,7 +104,7 @@
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
-    bottom: 45px;
+    bottom: 65px;
     right: -235px;
   }
   .tooltipCon:hover .tooltiptext {
@@ -307,7 +307,7 @@
           <label id="textLabel" style="margin-left: 65px; margin-top: -20px;">Please enter your name and email address in the boxes below. These are required so we can link the consent agreement above to you and are stored separately to all experimental data, ensuring your anonymity. They are also not included in any data made available once the study has been completed</label>
           <div id="textInputs">
             <div class="textInput_gridItems"><input type="text" class="textInput" name="consent_pii_participant_name" id="participant_nameInput" value="" placeholder="Please enter your full name"/></div>
-            <div class="textInput_gridItems"><input type="email" class="textInput" name="consent_pii_participant_email" id="participant_emailInput" value="" placeholder="Please enter your email address"/></div>
+            <div class="textInput_gridItems"><input type="email" class="textInput" name="consent_pii_participant_email" id="participant_emailInput" value="" placeholder="Please enter your email address" onblur="validateEmail(this);" /></div>
           </div>
           <label id="radioLabelHolder">
             <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_informedconsent" id="informedconsent" value=""/>
@@ -471,6 +471,19 @@
     }
     //... and adds the "active" class on the current step:
     step[n].className += " active";
+  }
+  
+  function validateEmail(emailField){
+    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    if (reg.test(emailField.value) == false) {
+      appropriate_message('<b>Please enter a valid email address</b><br><br>Your email address is stored only with this consent form and is not included in any experimental data ensuring your anonymity.');
+      $("#tooltiptext").attr("class", "tooltiptext").html("Sorry. You can only start the experiment once you have entered a valid email above");
+      $("#nextBtn").attr("class", "submitBtn");
+      return false;
+    } else {
+      $("#tooltiptext").html("Sorry. You can only start the experiment once you have ticked all the boxes and entered your name<br/><em>(indicating your happy and consenting to participate in this study)</em>");
+    }
+    return true;
   }
 </script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
