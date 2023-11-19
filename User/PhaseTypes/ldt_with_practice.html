@@ -29,7 +29,7 @@
     color:black;
     font-size:150px;
     z-index:0;
-    /*display: none;*/
+    display: none;
     /*cursor: none;*/
   }
   #cue_word{
@@ -160,11 +160,13 @@
     }
   });
   var baselineTime;
+  
   // Phase.set_timer(function(){baselineTime = (new Date()).getTime();},'0');
-  Phase.set_timer(function(){$('#fixation_cross').hide()},'500'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+  Phase.set_timer(function(){$('#fixation_cross').show()},'1');
+  Phase.set_timer(function(){$('#fixation_cross').hide()},'500');
   Phase.set_timer(function(){$('#cue_word').show(); baselineTime = (new Date()).getTime();},'500');
-  Phase.set_timer(function(){$('#cue_word').show()},'500'); //Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout)
-  Phase.set_timer(function(){$('#cue_word').hide()},'2000');//Phase.set_timer is a Collector function required because of buffering (which prevents the use of setTimeout) 
+  Phase.set_timer(function(){$('#cue_word').show()},'500');
+  Phase.set_timer(function(){$('#cue_word').hide()},'2000');
   Phase.set_timer(function(){$('#too_slow').show()},'2000');
   Phase.set_timer(function(){Phase.submit()},'2500');
   $(window).bind('keydown', function(event) {
