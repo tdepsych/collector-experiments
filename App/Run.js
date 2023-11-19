@@ -589,7 +589,7 @@ Project = {
         .contents()
         .find("body")
         .prepend('<button style="opacity:0; filter: alpha(opacity=0)" id="keyresponse_autofocus"></button>') // {CGD} Do not move, needs to prepend displayed HTML or autofocus scrolls to bottom on load
-        .css("transform-origin", "top");
+        .css({"transform-origin":"top", "cursor":"none"});
 
       try {
         for (var i = 0; i < these_iframes.length; i++) {
