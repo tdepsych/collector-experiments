@@ -327,7 +327,7 @@ Project = {
           delete(clean_phase_responses[field]);
         };
       }
-      console.log(clean_phase_responses) // Uncomment this if you want to see what variables are submitted during each phase.submit() call
+      // console.log(clean_phase_responses) // Uncomment this if you want to see what variables are submitted during each phase.submit() call
       // this_location.toLowerCase();
 
       console.log("just before the ajax");
