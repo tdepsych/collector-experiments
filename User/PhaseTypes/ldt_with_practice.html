@@ -11,11 +11,9 @@
     bottom: 50%;
     left: 50%;
     margin:0;
-    /*cursor: none;*/
   }
   html, body{
     background-color:white;
-    /*cursor: none;*/
     height: 100vh;
     width: 100vw;
   }
@@ -30,7 +28,6 @@
     font-size:150px;
     z-index:0;
     display: none;
-    /*cursor: none;*/
   }
   #cue_word{
     position:absolute;
@@ -43,7 +40,6 @@
     color:black;
     font-size:100px;
     z-index:0;
-    /*cursor: none;*/
   }
   #too_slow, #correct, #incorrect, #too_fast {
     position:absolute;
@@ -57,7 +53,6 @@
     font-size:50px;
     z-index:0;
     top:10px;
-    /*cursor: none;*/
   }
   #too_fast {
     transform: translateY(40px);
@@ -69,7 +64,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 275px;
-    /*cursor: none;*/
   }
   .correct-icon {
     background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/correct.svg") no-repeat;
@@ -80,7 +74,6 @@
     display: inline-block;
     height: 50px;
     width: 50px;
-    /*cursor: none;*/
   }
   .incorrect-icon {
     background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/incorrect.svg") no-repeat;
@@ -91,7 +84,6 @@
     display: inline-block;
     height: 50px;
     width: 50px;
-    /*cursor: none;*/
   }
   .too-slow-icon {
     background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/too-slow.svg") no-repeat;
@@ -102,7 +94,6 @@
     display: inline-block;
     height: 50px;
     width: 50px;
-    /*cursor: none;*/
   }
   .wait-icon {
     background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/wait.svg") no-repeat;
@@ -113,7 +104,6 @@
     display: inline-block;
     height: 75px;
     width: 75px;
-    /*cursor: none;*/
   }
 </style>
 <input type='hidden' id='keyboard_response' name='keyboard_response'/>
@@ -161,7 +151,6 @@
   });
   var baselineTime;
   
-  Phase.set_timer(function(){document.body.requestPointerLock();},'0');
   Phase.set_timer(function(){$('#fixation_cross').show()},'1');
   Phase.set_timer(function(){$('#fixation_cross').hide()},'500');
   Phase.set_timer(function(){$('#cue_word').show(); baselineTime = (new Date()).getTime();},'500');
