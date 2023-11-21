@@ -77,13 +77,15 @@ var upload_timer = {{text}} * 1000;
     }
     console.log("session number: " + parent.parent.sessionnumber);
     if (parent.parent.sessionnumber == "3") {
-      $('#endSession_btn').attr("onclick","Phase.go_to(134)");
+      // $('#endSession_btn').attr("onclick","Phase.go_to(134)");
+      $('#endSession_btn').attr("onclick","Phase.go_to('+2')");
       console.log("This was Session 3");
     } else if (parent.parent.sessionnumber == "0") {
       $('#endSession_btn').attr("onclick","Phase.submit()");
       console.log("This was the pre-screen");
     } else {
-      $('#endSession_btn').attr("onclick","Phase.go_to(133)");
+      // $('#endSession_btn').attr("onclick","Phase.go_to(133)");
+      $('#endSession_btn').attr("onclick","Phase.go_to('+1')");
       console.log("This was Session 1 or 2");
     }
     Phase.redcap_markers();

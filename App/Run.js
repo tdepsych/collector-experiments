@@ -398,6 +398,7 @@ Project = {
 
       // Finally, let's just update the repeat instance number
       parent.parent.project_json.repeat_no++;
+      console.log("this is row number: " + parent.parent.project_json.repeat_no)
     }
     //
     // Saving Local Data Now
@@ -547,6 +548,30 @@ Project = {
   },
 
   go_to: function (go_to_info) {
+
+    // The Phase.go_to() function allows a user to jump forward/back a set number of phases or to a specific phase of their choice
+    // It can be useful when you need to have participants restart trials based on task performance or branch participant based on responses
+
+    var goTo_input = go_to_info;
+    
+    if (typeof go_to_info == "string") {
+      console.log("They inputted a string with a +/-");
+      if (goTo_input.indexOf('+') != -1) {
+        // this is employed when people ask to move forward via a +
+        goTo_input = goTo_input.replace('+', '');
+        console.log("The asked to move forward: " + goTo_input + " phases")  
+        go_to_info = (project_json.phase_no + 1) + parseInt(goTo_input);
+      } else {
+        // this is employed when people ask to move back via a -
+        goTo_input = goTo_input.replace('-', '');
+        console.log("The asked to move back: " + goTo_input + " phases")  
+        go_to_info = (project_json.phase_no + 1) - parseInt(goTo_input);
+      } 
+    } else  {
+      // this allows people to select a specific procedure procedure row number to load
+      console.log("They inputted a number");
+      console.log("They want to go to phase: " + go_to_info)  
+    } 
     console.log("Jumping to phase: " + go_to_info)
     parent.parent.project_json.inputs = jQuery("[name]");
     Project.finish_phase(go_to_info);
@@ -558,7 +583,6 @@ Project = {
       console.log("phase.go_to: "+project_json.phase_no)
     }
     console.log("phase.submit: "+project_json.phase_no)
-    // console.log("go_to_info: "+ go_to_info);
     if (typeof project_json.responses[project_json.phase_no] === "undefined") {
       project_json.responses[project_json.phase_no] = {};
     }
