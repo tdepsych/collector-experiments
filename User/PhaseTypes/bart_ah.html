@@ -92,7 +92,8 @@
   #total_term, #current_points_label, #current_pumps_label{
     text-align: right;
   }
-  #press, #collect, #goOn, #gonext {
+  /*#press, #collect, #goOn, #gonext {*/
+  .has-hover {
     cursor: pointer;
     background: #006599;
     color: #fff;
@@ -100,11 +101,20 @@
     margin-top: 3px;
     border-width: 1px;
   }
-  #press:hover, #collect:hover, #goOn:hover, #gonext:hover {
-    background-color: #4169E1!important;
+  /*#press:hover, #collect:hover, #goOn:hover, #gonext:hover {*/
+  .has-hover:hover {
+    background: #4169E1!important;
   }
-  #press:active, #collect:active, #goOn:active, #gonext:active {
-    background-color: #275fda!important;
+  /*#press:active, #collect:active, #goOn:active, #gonext:active {*/
+  .has-hover:active {
+    background: #275fda!important;
+  }
+  .no-hover {
+    background: #c8c8c8!important;
+    cursor: default;
+    border-radius: 5px;
+    margin-top: 3px;
+    border-width: 1px;
   }
   #gonext {
     font-size: 110%;
@@ -136,8 +146,8 @@
       <img src="../../collector-experiments/User/Assets/MSc/bart/bart_balloon_inflate.jpg" id="ballon" alt="Ballon">
     </div>
         
-    <button type="button" id="press"></button>
-    <button type="button" id="collect"></button>
+    <button type="button" id="press" class="has-hover"></button>
+    <button type="button" id="collect" class="has-hover"></button>
       
     <div id="current_round_points">
       <div id="current_points_label"></div>
@@ -280,7 +290,9 @@
         
   // animate explosion using jQuery UI explosion
   var balloon_explode = function() {
-    $('#press, #collect').css({'background' : '#c3c3c3','cursor' : 'default'});
+    $('#press, #collect').removeClass('has-hover');
+    $('#press, #collect').addClass('no-hover');
+    // .css({'background' : '#c3c3c3','cursor' : 'default'});
     Phase.add_response({
       username: parent.parent.$("#participant_code").val(),
       bart_pumps: pumps,
