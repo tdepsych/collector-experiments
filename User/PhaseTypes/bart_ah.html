@@ -111,7 +111,7 @@
   }
   .no-hover {
     background: #c8c8c8!important;
-    cursor: default;
+    cursor: not-allowed!important;
     border-radius: 5px;
     margin-top: 3px;
     border-width: 1px;
@@ -142,7 +142,7 @@
   <div id="bigwrap">
     <div id="ballonwrap">
       <div id="message"></div>
-      <div id="gonext"></div>
+      <div id="gonext" class="has-hover"></div>
       <img src="../../collector-experiments/User/Assets/MSc/bart/bart_balloon_inflate.jpg" id="ballon" alt="Ballon">
     </div>
         
@@ -254,7 +254,7 @@
     $('#ballon').height(size);
     $('#ballon').show();
     $('#round').html('<h2>'+label_header+round+' of 10</h2>');
-    $('#press, #collect').css({'background' : '#006599','cursor' : 'pointer'});
+    $('#press, #collect, #gonext').addClass('has-hover').removeClass('no-hover');
   };
     
   // what happens when the game ends
@@ -276,8 +276,8 @@
   
   // message shown if balloon explodes
   var explosion_message = function() {
-    $('#collect').hide();
-    $('#press').hide();
+    $('#collect, #press').hide();
+    // $('#press').hide();
     $('#message').html(img_explosion+msg_explosion1+pumpmeup+' pumps'+msg_explosion2).show();
   };
   
@@ -290,9 +290,7 @@
         
   // animate explosion using jQuery UI explosion
   var balloon_explode = function() {
-    $('#press, #collect').removeClass('has-hover');
-    $('#press, #collect').addClass('no-hover');
-    // .css({'background' : '#c3c3c3','cursor' : 'default'});
+    $('#press, #collect').removeClass('has-hover').addClass('no-hover');
     Phase.add_response({
       username: parent.parent.$("#participant_code").val(),
       bart_pumps: pumps,
@@ -371,7 +369,6 @@
         bart_event: "Banked",
         bart_word: word
       })
-      $('#press, #collect').css({'background' : '#c3c3c3','cursor' : 'default'});
       exploded.push(explosion); // save whether balloon has exploded or not
       collection_audio.play();
       number_pumps.push(pumps); // save number of pumps
@@ -391,6 +388,7 @@
   $('#gonext').click(function() {
     if (round < noOfTrials) {
       new_round();
+      $('#press, #collect').addClass('has-hover').removeClass('no-hover');
     } else {
       end_game();
     }
