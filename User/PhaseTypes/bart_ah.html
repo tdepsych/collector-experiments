@@ -188,7 +188,7 @@
   var rounds_played = 10;
   //var explode_array =  Array.from({length: 10}, () => Math.floor(Math.random() * (60 - 5) + 5));
   var explode_array =  burstPoint;
-  var maximal_pumps = 100;
+  var maximal_pumps = 64;
   var pumpmeup; // number pumps in a given round; is updated each round
   var number_pumps = []; // arrays for saving number of pumps
   var exploded = []; // array for saving whether ballon has exploded
@@ -242,6 +242,7 @@
   var new_round = function() {
     console.log(number_pumps);
     console.log(exploded);
+    console.log(burstPoint);
     $('#gonext').hide();
     $('#message').hide();  
     $('#collect').show();
