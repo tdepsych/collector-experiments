@@ -3291,7 +3291,7 @@
           "Education",
           "4. What is the highest level of education you have completed?",
           "radio",
-          "GCSEs or equivalent|A-Levels or equivalent|University undergraduate degree (e.g., BSc)|University postgraduate degree (e.g., MSc)|Doctoral degree|Other|Prefer not to say",
+          "GCSEs or equivalent|A-Levels or equivalent|Undergraduate degree (e.g., BSc)|Postgraduate degree (e.g., MSc)|Doctoral degree|Other|Prefer not to say",
           "No",
           "1 | 2 | 3 | 4 | 5 | 6 | 0",
           "",
