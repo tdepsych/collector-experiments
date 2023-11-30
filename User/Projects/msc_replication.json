@@ -90,7 +90,7 @@
         "Education",
         "4. What is the highest level of education you have completed?",
         "radio",
-        "GCSEs or equivalent|A-Levels or equivalent|University undergraduate degree (e.g., BSc)|University postgraduate degree (e.g., MSc)|Doctoral degree|Other|Prefer not to say",
+        "GCSEs or equivalent|A-Levels or equivalent|Undergraduate degree (e.g., BSc)|Postgraduate degree (e.g., MSc)|Doctoral degree|Other|Prefer not to say",
         "No",
         "1 | 2 | 3 | 4 | 5 | 6 | 0",
         "",
@@ -181,7 +181,7 @@
       ],
       [
         "Instructions1",
-        "<h2><span>Self-Evaluation Questionnaire</span></h2><br>\n<span class=\"instruc\">Thank you for making your word ratings. Please think back to the last word you repeated aloud for 20 second. Take a moment to think how you felt <span style=\"text-decoration: underline;\">after</span> repeating the word?<br><br>To respond, please rate each statement below by clicking on a number from 1 to 7, whereby <b>1 = you strongly disagree</b> with the statement, while <b>7 = you strongly agree</b> with the statement.</span><br/><br/>",
+        "<h2><span>Self-Evaluation Questionnaire</span></h2><br>\r\n<span class=\"instruc\">Thank you for making your word ratings. Please think back to the last word you repeated aloud for 20 second. Take a moment to think how you felt <span style=\"text-decoration: underline;\">after</span> repeating the word?<br><br>To respond, please rate each statement below by clicking on a number from 1 to 7, whereby <b>1 = you strongly disagree</b> with the statement, while <b>7 = you strongly agree</b> with the statement.</span><br/><br/>",
         "instruct",
         "",
         "",
