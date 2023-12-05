@@ -69,12 +69,12 @@
         ""
       ],
       [
-        "Gender",
-        "2. Which gender identity do you identify most with",
+        "Sex",
+        "2. What is your biological sex?",
         "radio",
-        "Male|Female|Non-binary|Prefer to self-identify|Prefer not to say",
+        "Male|Female|Non-binary|Prefer not to say",
         "No",
-        "1 | 2 | 3 | 4 | 0",
+        "1 | 2 | 3 | 0",
         "",
         ""
       ],
@@ -92,14 +92,14 @@
         "Education",
         "4. What is the highest level of education you have completed?",
         "radio",
-        "GCSEs or equivalent|A-Levels or equivalent|University undergraduate programme (e.g., BSc)|University postgraduate programme (e.g., MSc)|Doctoral degree|Other|Prefer not to say",
+        "GCSEs or equivalent|A-Levels or equivalent|Undergraduate degree (e.g., BSc)|Postgraduate degree (e.g., MSc)|Doctoral degree|Other|Prefer not to say",
         "No",
         "1 | 2 | 3 | 4 | 5 | 6 | 0",
         "",
         ""
       ],
       [
-        "Emplyoment",
+        "Employment",
         "5. What is your current employment status",
         "radio",
         "Full-time employment|Part-time employment|Unemployed/Retired/Full-time education|Self-employed|Prefer not to say",
