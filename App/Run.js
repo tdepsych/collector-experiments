@@ -1321,65 +1321,68 @@ function parse_sheets() {
     } else {
       console.log("No counterbalance settings have been entered. Please stop the study and contact the researcher");
     }
-    $.get(data_url, function(data) {
-      data = data.replace(/\D/g, "");
-      console.log("The input value was: " + data);
-      levels = parseInt(data);
-      if (levels < total_procedures) {
-        console.log("yay 1")
-        suffix = "_" + levels + ".csv";
-        proc_sheet_name = proc_sheet_name + suffix;
-        new_data = levels + 1;
-        counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
-        switch_platform ();
-      } else if (levels >= total_procedures) {
-        console.log("yay 2")
-        suffix = "_" + total_procedures + ".csv";
-        proc_sheet_name = proc_sheet_name + suffix;
-        new_data = 1;
-        counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
-        switch_platform ();
-      } else {
-        console.log("boo 3")
-        bootbox.alert("Counterbalancing has broken. Please stop the study and contact the researcher");
-        var rand_num = Math.floor( Math.random() * total_procedures + 1 );
-        suffix = "_" + rand_num + ".csv";
-        proc_sheet_name = proc_sheet_name + suffix;
-        switch_platform ();
-      }
-    }, 'text');
-
-    // $.ajax({
-    //   url: data_url, // this is the old internally working link
-    //   context: document.body,
-    //   crossDomain: true,
-    //   cache: false,
-    //   success: function (old_data){
-    //     levels = parseInt(old_data);
-    //     if (levels < total_procedures) {
-    //       suffix = "_" + levels + ".csv";
-    //       proc_sheet_name = proc_sheet_name + suffix;
-    //       new_data = parseInt(levels) + 1;
-    //       counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
-    //     } else if (levels >= total_procedures) {
-    //       suffix = "_" + total_procedures + ".csv";
-    //       proc_sheet_name = proc_sheet_name + suffix;
-    //       new_data = 1;
-    //       counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
-    //     } else {
-    //       bootbox.alert("Counterbalancing has broken. Please stop the study and contact the researcher");
-    //       console.log("Counterbalancing has broken. Please stop the study and contact the researcher");
-    //     }
+    // $.get(data_url, function(data) {
+    //   console.log("The input value was: " + data);
+    //   levels = parseInt(data);
+    //   if (levels < total_procedures) {
+    //     console.log("yay 1")
+    //     suffix = "_" + levels + ".csv";
+    //     proc_sheet_name = proc_sheet_name + suffix;
+    //     new_data = levels + 1;
+    //     counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
     //     switch_platform ();
-    //   },
-    //   error: function () {
+    //   } else if (levels >= total_procedures) {
+    //     console.log("yay 2")
+    //     suffix = "_" + total_procedures + ".csv";
+    //     proc_sheet_name = proc_sheet_name + suffix;
+    //     new_data = 1;
+    //     counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
+    //     switch_platform ();
+    //   } else {
+    //     console.log("boo 3")
+    //     bootbox.alert("Counterbalancing has broken. Please stop the study and contact the researcher");
     //     var rand_num = Math.floor( Math.random() * total_procedures + 1 );
     //     suffix = "_" + rand_num + ".csv";
     //     proc_sheet_name = proc_sheet_name + suffix;
     //     switch_platform ();
-    //     bootbox.alert("Please complete the study, but let the researcher know that counterbalancing failed.");
     //   }
-    // });    
+    // }, 'text');
+
+    $.ajax({
+      url: data_url, // this is the old internally working link
+      context: document.body,
+      crossDomain: true,
+      cache: false,
+      // headers: {
+      //   "Access-Control-Allow-Origin": "*",
+      //   "Access-Control-Allow-Headers": "origin, content-type, accept"
+      // },
+      success: function (old_data){
+        levels = parseInt(old_data);
+        if (levels < total_procedures) {
+          suffix = "_" + levels + ".csv";
+          proc_sheet_name = proc_sheet_name + suffix;
+          new_data = parseInt(levels) + 1;
+          counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
+        } else if (levels >= total_procedures) {
+          suffix = "_" + total_procedures + ".csv";
+          proc_sheet_name = proc_sheet_name + suffix;
+          new_data = 1;
+          counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
+        } else {
+          bootbox.alert("Counterbalancing has broken. Please stop the study and contact the researcher");
+          console.log("Counterbalancing has broken. Please stop the study and contact the researcher");
+        }
+        switch_platform ();
+      },
+      error: function () {
+        var rand_num = Math.floor( Math.random() * total_procedures + 1 );
+        suffix = "_" + rand_num + ".csv";
+        proc_sheet_name = proc_sheet_name + suffix;
+        switch_platform ();
+        bootbox.alert("Please complete the study, but let the researcher know that counterbalancing failed.");
+      }
+    });    
   } else {
     proc_sheet_name = project_json.this_condition.procedure.toLowerCase().replace(".csv", "") + ".csv";
     switch_platform ();
