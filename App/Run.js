@@ -1227,7 +1227,7 @@ function load_phases() {
 
 function parse_sheets() {
   // Counterbalancing
-  var test = JSON.parse(CElectron.fs.read_file("Projects",Project.get_vars.location + ".json"))
+  var test = JSON.parse(Colector.read_file("Projects",Project.get_vars.location + ".json"))
 console.log("--------");
 console.log(test);
 console.log("--------");
