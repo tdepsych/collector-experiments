@@ -1322,9 +1322,9 @@ function parse_sheets() {
       console.log("No counterbalance settings have been entered. Please stop the study and contact the researcher");
     }
     $.ajax({
-      url: data_url,
-      headers: {'Content-Type':'text/xml',},
-      dataType: "text",
+      url: data_url, // this is the old internally working link
+      context: document.body,
+      crossDomain: true,
       cache: false,
       success: function (old_data){
         levels = parseInt(old_data);
