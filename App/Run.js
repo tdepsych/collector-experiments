@@ -1227,17 +1227,17 @@ function load_phases() {
 
 function parse_sheets() {
   // Counterbalancing
-  var test = JSON.parse(home_dir + "/User/Projects/" + Project.get_vars.location + ".json")
-console.log("--------");
-console.log(test);
-console.log("--------");
   
-  console.log(test)
+// console.log(project_json);
+// console.log("--------");
+// console.log(Object.keys(project_json.all_procs).length);
+// console.log("--------");
+  
   var proc_sheet_name;
   var levels;
   var suffix;
   var new_data;
-  var folder = "../User/Projects/" + Project.get_vars.location;
+  // var folder = "../User/Projects/" + Project.get_vars.location;
   var proc_sheet_name = project_json.this_condition.procedure.toLowerCase().split('_')[0];
   var data_url = project_json.this_condition.counterbalance + Project.get_vars.location + "_" + project_json.this_condition.name + ".txt";
   var isCounterbalanceNeeded = Project.get_vars.location + " counterbalance";
@@ -1315,8 +1315,9 @@ console.log("--------");
 
   if (CounterbalanceCheck === isCounterbalanceNeeded) {
     if (project_json.this_condition.counterbalance.length !== 0) {
-      var dirfiles = CElectron.fs.read_dir(folder);
-      var total_procedures = dirfiles.split(proc_sheet_name).length - 1;
+      // var dirfiles = CElectron.fs.read_dir(folder);
+      // var total_procedures = dirfiles.split(proc_sheet_name).length - 1;
+      var total_procedures = Object.keys(project_json.all_procs).length;
     } else {
       console.log("No counterbalance settings have been entered. Please stop the study and contact the researcher");
     }
