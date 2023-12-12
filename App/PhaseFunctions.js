@@ -91,6 +91,21 @@ if (typeof Phase !== "undefined") {
      redcap_post(parent.parent.project_json.this_condition.redcap_url,clean_phase_responses);
   };
   };
+  // Phase.counterbalance = function(new_data, url){
+  //   var url_php = url + ".php"
+  //   console.log("the counterbalance function fired")
+  //   console.log(new_data)
+  //   console.log(url_php)
+  //   $.ajax({
+  //     type: "POST",
+  //     url: url_php,
+  //     crossDomain: true,
+  //     data: {new_data: new_data},
+  //     success: function(result){
+  //       console.log("success!");
+  //     }
+  //   });
+  // };
   Phase.elapsed = function () {
     alert("Don't use this function, as it has an average lag of 10-20ms. This code hasn't been deleted as this might be addressed in the future. Instead, you can use something like \n\n Phase.set_timer(function(){\nbaseline_time_manual = (new Date()).getTime();\n},0);\n\n to capture the time the phase started.");
     if (Phase.post_no == "") {

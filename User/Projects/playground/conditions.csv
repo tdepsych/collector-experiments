@@ -1,0 +1,3 @@
+name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,skip_quality,counterbalance,
+condition_1,You can put more detailed notes in this field,stimuli_1.csv,procedure_1.csv,off,,off,,,5,yes,,
+counterbalance,You can put more detailed notes in this field,stimuli_1.csv,procedure_3.csv,off,,off,,,5,yes,https://xo019390.webs.act.reading.ac.uk/redcap/,

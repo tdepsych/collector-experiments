@@ -123,6 +123,9 @@
   <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()"></button>
 </div>
 <script>
+  function appropriate_message(this_message) {
+    bootbox.alert(this_message);
+  }
   $('#studentgender').on('change', function(){
     var $this = $(this);
     if (!$this.val()) {
@@ -139,7 +142,12 @@
     } else {
       $this.css('color','#000').css('text-transform','capitalize');
       $('#device_tick').html("✔").css('visibility', 'visible');
+      if ($('#device').val() == 2) {
+        console.log("Participant is using a phone");
+        appropriate_message("Please hold your device in horizontally (in landscape) to complete the rest of this experiment");
+      }
     }
+    
   });
   
   

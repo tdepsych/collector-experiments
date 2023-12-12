@@ -3,9 +3,38 @@
     <!-- put any page specific css here -->
 </style>
 <div id="container">
-hello
+{{text}}
+ <button type="button" id="btnGetTxt" onclick="getTxt()">Get Text</button>
+ <button type="button" id="btnUpdateTxt" onclick="updateTxt()">Update Text</button>
 </div>
 <script>
-    <!-- put any page specific javascript here -->
+var new_data;
+
+getTxt = function (){
+
+  $.ajax({
+    url:'https://xo019390.webs.act.reading.ac.uk/redcap/counterbalance.txt',
+    success: function (old_data){
+      var levels = old_data;
+      console.log(levels)
+      if (levels == "1") {
+        console.log("Value was 1")
+        new_data = "2";
+      } else if (levels == "2") {
+        console.log("Value was 2")
+        new_data = "3";
+      } else {
+        console.log("Value was 3")
+        new_data = "1";
+      }
+    }
+  });
+}
+
+updateTxt = function (){
+  Phase.counterbalance(new_data, "https://xo019390.webs.act.reading.ac.uk/redcap/counterbalance")
+  console.log("The New Value Is: " + new_data);
+}
+
 </script>
 

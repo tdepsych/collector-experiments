@@ -1,0 +1,5 @@
+name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,age_check,skip_quality,zoom_check,redcap_url,counterbalance,
+rhyme,,all_stimuli,procedure_1.csv,on,,random,,,5,,no,yes,no,,,
+deep,,all_stimuli,procedure_2.csv,on,,random,,,5,,no,yes,no,,,
+shallow,,all_stimuli,procedure_3.csv,on,,random,,,5,,no,yes,no,,,
+counterbalance,,all_stimuli,procedure_3.csv,on,,random,,https://haffeyprojects.reading.ac.uk/redcap/redcapChris.php,5,,no,yes,no,https://xo019390.webs.act.reading.ac.uk/redcap/py1ipy.php,https://xo019390.webs.act.reading.ac.uk/redcap/,

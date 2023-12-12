@@ -13,6 +13,8 @@
     "condition_redcap_url",
     "condition_skip_quality",
     "condition_start_message",
+    "condition_counterbalance",
+    "counterbalance",
     "end_message",
     "fullscreen",
     "item",
