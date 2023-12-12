@@ -1321,34 +1321,43 @@ function parse_sheets() {
     } else {
       console.log("No counterbalance settings have been entered. Please stop the study and contact the researcher");
     }
-    // $.get(data_url, function(data) {
-    //   console.log("The input value was: " + data);
-    //   levels = parseInt(data);
-    //   if (levels < total_procedures) {
-    //     console.log("yay 1")
-    //     suffix = "_" + levels + ".csv";
-    //     proc_sheet_name = proc_sheet_name + suffix;
-    //     new_data = levels + 1;
-    //     counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
-    //     switch_platform ();
-    //   } else if (levels >= total_procedures) {
-    //     console.log("yay 2")
-    //     suffix = "_" + total_procedures + ".csv";
-    //     proc_sheet_name = proc_sheet_name + suffix;
-    //     new_data = 1;
-    //     counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
-    //     switch_platform ();
-    //   } else {
-    //     console.log("boo 3")
-    //     bootbox.alert("Counterbalancing has broken. Please stop the study and contact the researcher");
-    //     var rand_num = Math.floor( Math.random() * total_procedures + 1 );
-    //     suffix = "_" + rand_num + ".csv";
-    //     proc_sheet_name = proc_sheet_name + suffix;
-    //     switch_platform ();
+    var url_phpLoader = project_json.this_condition.counterbalance + project_json.this_condition.name + "_loader.php";
+    // $.ajax({
+    //   type: "GET", 
+    //   url: url_phpLoader,
+    //   crossDomain: true,
+    //   data: {url_txt: url_txt},
+    //   success: function(result){
+    //     console.log("success!");
+    //     console.log("The input value was: " + data);
+    //     levels = parseInt(data);
+    //     if (levels < total_procedures) {
+    //       console.log("yay 1")
+    //       suffix = "_" + levels + ".csv";
+    //       proc_sheet_name = proc_sheet_name + suffix;
+    //       new_data = levels + 1;
+    //       counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
+    //       switch_platform ();
+    //     } else if (levels >= total_procedures) {
+    //       console.log("yay 2")
+    //       suffix = "_" + total_procedures + ".csv";
+    //       proc_sheet_name = proc_sheet_name + suffix;
+    //       new_data = 1;
+    //       counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
+    //       switch_platform ();
+    //     } else {
+    //       console.log("boo 3")
+    //       bootbox.alert("Counterbalancing has broken. Please stop the study and contact the researcher");
+    //       var rand_num = Math.floor( Math.random() * total_procedures + 1 );
+    //       suffix = "_" + rand_num + ".csv";
+    //       proc_sheet_name = proc_sheet_name + suffix;
+    //       switch_platform ();
+    //     }
     //   }
-    // }, 'text');
+    // });
 
     $.ajax({
+      type: "GET",
       url: data_url, // this is the old internally working link
       context: document.body,
       crossDomain: true,
