@@ -1227,11 +1227,17 @@ function load_phases() {
 
 function parse_sheets() {
   // Counterbalancing
+  var test = JSON.parse(CElectron.fs.read_file("Projects",Project.get_vars.location + ".json"))
+console.log("--------");
+console.log(test);
+console.log("--------");
+  
+  console.log(test)
   var proc_sheet_name;
   var levels;
   var suffix;
   var new_data;
-  var folder = "Projects/" + Project.get_vars.location;
+  var folder = "../User/Projects/" + Project.get_vars.location;
   var proc_sheet_name = project_json.this_condition.procedure.toLowerCase().split('_')[0];
   var data_url = project_json.this_condition.counterbalance + Project.get_vars.location + "_" + project_json.this_condition.name + ".txt";
   var isCounterbalanceNeeded = Project.get_vars.location + " counterbalance";
@@ -1265,9 +1271,7 @@ function parse_sheets() {
         });
         var stim_url = "../User/Projects/" + Project.get_vars.location + "/" + stim_sheet_name;
         $.get(stim_url, function (stim_sheet_content) {
-          project_json.parsed_stim = [null, null].concat(
-            Collector.PapaParsed(stim_sheet_content)
-          );
+          project_json.parsed_stim = [null, null].concat(Collector.PapaParsed(stim_sheet_content));
           proc_stim_loaded[0] = "stimuli";
           if (proc_stim_loaded.join("-") === "stimuli-procedure") {
             Project.activate_pipe();
@@ -1276,9 +1280,7 @@ function parse_sheets() {
         break;
       case "server":
         proc_stim_loaded[1] = "procedure";
-        project_json.parsed_proc = Collector.PapaParsed(
-          project_json.all_procs[proc_sheet_name]
-        );
+        project_json.parsed_proc = Collector.PapaParsed(project_json.all_procs[proc_sheet_name]);
         if (proc_stim_loaded.join("-") === "stimuli-procedure") {
           Project.activate_pipe();
         }
