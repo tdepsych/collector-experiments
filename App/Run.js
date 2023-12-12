@@ -1322,6 +1322,7 @@ function parse_sheets() {
       console.log("No counterbalance settings have been entered. Please stop the study and contact the researcher");
     }
     $.get(data_url, function(data) {
+      data = data.replace(/\D/g, "");
       console.log("The input value was: " + data);
       levels = parseInt(data);
       if (levels < total_procedures) {
