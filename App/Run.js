@@ -1323,7 +1323,7 @@ function parse_sheets() {
     }
     $.ajax({
       url: data_url,
-      dataType: "text",
+      dataType: "jsonp",
       cache: false,
       success: function (old_data){
         levels = parseInt(old_data);
