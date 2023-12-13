@@ -295,6 +295,12 @@
   // This runs when the user clicks there mouse (either on the screen or alert message). The if statements checks for mobiles, the elseif checks for safari and if neither is true, the else runs the animation
   
   $(document).add(parent.parent.document).mouseup(function(e) {
+    if (typeof parent.parent.cb_levels !== 'undefined') {
+      Phase.counterbalance();
+      console.log("Function fired!");
+    } else {
+      console.log("Function didn't fire!");
+    }
     if (browser == "safari") {
       console.log("Participant is not using a mobile");
       $("#aniCont").load("../../collector-experiments/User/PhaseTypes/error_safari.html");
