@@ -1,0 +1,56 @@
+<!-- error_page.html used to stop access for safari only -->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  @font-face {
+    font-family: 'Montserrat-ExtraLight';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-ExtraLight.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Montserrat-ExtraBold';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-ExtraBold.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Montserrat-BlackItalic';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-BlackItalic.woff') format('woff');
+  }
+  * {
+    margin: 0;
+    padding: 0;
+  }
+      
+  body, html {
+     overflow: hidden;
+       background: #FFF;
+  }
+  #oops {
+    font-size: 150px!important;
+    font-family: Montserrat-BlackItalic!important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/mind.jpg);
+      background-repeat: repeat;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    background-position: 50% 30%;
+  }
+  #sub_head{
+    font-size: 50px;
+    font-family: Montserrat-ExtraBold;
+  }
+  #body_text{
+    font-size: 50px;
+    font-family: Montserrat-ExtraLight;
+  }
+  #container {
+    width: 100%!important;
+  }
+</style>
+<div id="container">
+    <p id="oops">Opps!</p>
+    <p id="sub_head">INCOMPATIBLE BROWSER</p>
+    <p id="body_text">Sorry, this study cannot be run using the Apple browser Safari.<br>Please restart the experiment in Google Chrome, Mozilla Firefox, or Microsoft Edge</p>
+    <button class="btn btn-outline-primary bi bi-browser-chrome" id="proceed_button" onclick="location.href='https://www.google.com/intl/en_uk/chrome/'"><b>CLICK TO DOWNLOAD GOOGLE CHROME</b></button>
+</div>
+<script>
+  if (typeof parent.parent.cb_levels !== 'undefined') {
+    Phase.counterbalance();
+  }
+</script>

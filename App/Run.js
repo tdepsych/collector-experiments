@@ -1825,9 +1825,6 @@ function shuffle_start_exp() {
 
 function start_restart() {
   if (isSafari) {
-    if (typeof parent.parent.cb_levels !== undefined) {
-      Phase.counterbalance();
-    }
     bootbox.alert(
       "Please do not use Safari to complete this study. It is likely that your data will not save correctly if you do. Please close Safari and use another browser"
     );
