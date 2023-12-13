@@ -1243,6 +1243,8 @@ console.log(project_json);
   var url_txt = Project.get_vars.location + "_" + project_json.this_condition.name + ".txt";
   var isCounterbalanceNeeded = Project.get_vars.location + " counterbalance";
   var CounterbalanceCheck = Project.get_vars.location + " " + project_json.this_condition.name;
+  parent.parent.cb_new;
+  parent.parent.cb_total;
 
   // This is the original code that loads the stim sheets in and then activates the rest of the Collector pipeline
   function switch_platform () {
@@ -1329,8 +1331,7 @@ console.log(project_json);
           console.log("success!");
           console.log("The input value was: " + data);
           levels = parseInt(data);
-          parent.parent.cb_new = levels;
-          parent.parent.cb_total = total_procedures;
+          parent.parent.cb_level = levels;
           if (levels < total_procedures) {
             console.log("yay 1")
             suffix = "_" + levels + ".csv";
