@@ -50,7 +50,12 @@
     <button class="btn btn-outline-primary bi bi-browser-chrome" id="proceed_button" onclick="location.href='https://www.google.com/intl/en_uk/chrome/'"><b>CLICK TO DOWNLOAD GOOGLE CHROME</b></button>
 </div>
 <script>
-  if (typeof parent.parent.cb_levels !== 'undefined') {
+Phase.set_timer(function(){ 
+ if (typeof parent.parent.cb_levels !== 'undefined') {
     Phase.counterbalance();
+  } else {
+    console.log("Function didn't fire!")
   }
+},100);
+  
 </script>
