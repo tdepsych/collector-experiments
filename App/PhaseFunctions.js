@@ -91,21 +91,29 @@ if (typeof Phase !== "undefined") {
      redcap_post(parent.parent.project_json.this_condition.redcap_url,clean_phase_responses);
   };
   };
-  // Phase.counterbalance = function(new_data, url){
-  //   var url_php = url + ".php"
-  //   console.log("the counterbalance function fired")
-  //   console.log(new_data)
-  //   console.log(url_php)
-  //   $.ajax({
-  //     type: "POST",
-  //     url: url_php,
-  //     crossDomain: true,
-  //     data: {new_data: new_data},
-  //     success: function(result){
-  //       console.log("success!");
-  //     }
-  //   });
-  // };
+  Phase.counterbalance = function(){
+    var url_php = project_json.this_condition.counterbalance + project_json.this_condition.name + ".php";
+    console.log("url php:" + url_php);
+    var url_txt = Project.get_vars.location + "_" + project_json.this_condition.name + ".txt";
+    console.log("url text:" + url_txt);
+    console.log("the counterbalance function fired");
+    if (parent.parent.cb_levels > 1) {
+      new_data = parent.parent.cb_levels - 1;
+    } else if (parent.parent.cb_levels == 1) {
+      new_data = parent.parent.cb_levels;
+    } else {
+      // do nothing;
+    }
+    $.ajax({
+      type: "POST",
+      url: url_php,
+      crossDomain: true,
+      data: {new_data: new_data, url_txt: url_txt},
+      success: function(result){
+        console.log("success!");
+      }
+    });
+  };
   Phase.elapsed = function () {
     alert("Don't use this function, as it has an average lag of 10-20ms. This code hasn't been deleted as this might be addressed in the future. Instead, you can use something like \n\n Phase.set_timer(function(){\nbaseline_time_manual = (new Date()).getTime();\n},0);\n\n to capture the time the phase started.");
     if (Phase.post_no == "") {

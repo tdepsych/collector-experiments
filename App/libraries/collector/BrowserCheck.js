@@ -56,6 +56,9 @@ if(isFirefox){
 }
 
 if(isSafari){
+  if (typeof parent.parent.cb_levels !== undefined) {
+    Phase.counterbalance();
+  }
   alert("This website does not work reliably on Safari - please use another browser, preferably Google Chrome.");
 }
 

@@ -1316,8 +1316,6 @@ console.log(project_json);
 
   if (CounterbalanceCheck === isCounterbalanceNeeded) {
     if (project_json.this_condition.counterbalance.length !== 0) {
-      // var dirfiles = CElectron.fs.read_dir(folder);
-      // var total_procedures = dirfiles.split(proc_sheet_name).length - 1;
       var total_procedures = Object.keys(project_json.all_procs).length;
     } else {
       console.log("No counterbalance settings have been entered. Please stop the study and contact the researcher");
@@ -1331,19 +1329,23 @@ console.log(project_json);
           console.log("success!");
           console.log("The input value was: " + data);
           levels = parseInt(data);
+          parent.parent.cb_new = levels;
+          parent.parent.cb_total = total_procedures;
           if (levels < total_procedures) {
             console.log("yay 1")
             suffix = "_" + levels + ".csv";
             proc_sheet_name = proc_sheet_name + suffix;
             new_data = levels + 1;
-            counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
+            // counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
+            counterbalance(new_data);
             switch_platform ();
           } else if (levels >= total_procedures) {
             console.log("yay 2")
             suffix = "_" + total_procedures + ".csv";
             proc_sheet_name = proc_sheet_name + suffix;
             new_data = 1;
-            counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
+            // counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
+            counterbalance(new_data);
             switch_platform ();
           } else {
             console.log("boo 3")
@@ -1823,6 +1825,9 @@ function shuffle_start_exp() {
 
 function start_restart() {
   if (isSafari) {
+    if (typeof parent.parent.cb_levels !== undefined) {
+      Phase.counterbalance();
+    }
     bootbox.alert(
       "Please do not use Safari to complete this study. It is likely that your data will not save correctly if you do. Please close Safari and use another browser"
     );
