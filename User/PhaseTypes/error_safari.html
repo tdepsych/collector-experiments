@@ -53,6 +53,7 @@
 Phase.set_timer(function(){ 
  if (typeof parent.parent.cb_levels !== 'undefined') {
     Phase.counterbalance();
+    console.log("Function fired!")
   } else {
     console.log("Function didn't fire!")
   }
