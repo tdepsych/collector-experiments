@@ -277,11 +277,38 @@
       Phase.submit()
     }, 6500);
   }
+  
+  var browser = (function (agent) {
+    switch (true) {
+      case agent.indexOf("edge") > -1: return "MS Edge (EdgeHtml)";
+      case agent.indexOf("edg") > -1: return "MS Edge Chromium";
+      case agent.indexOf("opr") > -1 && !!window.opr: return "opera";
+      case agent.indexOf("chrome") > -1 && !!window.chrome: return "chrome";
+      case agent.indexOf("trident") > -1: return "Internet Explorer";
+      case agent.indexOf("firefox") > -1: return "firefox";
+      case agent.indexOf("safari") > -1: return "safari";
+      default: return "other";
+    }
+  })(window.navigator.userAgent.toLowerCase());
+  console.log("User is running " + browser);
+  
+  // This runs when the user clicks there mouse (either on the screen or alert message). The if statements checks for mobiles, the elseif checks for safari and if neither is true, the else runs the animation
+  
+  $(document).add(parent.parent.document).mouseup(function(e) {
+    if (browser == "safari") {
+      console.log("Participant is not using a mobile");
+      $("#container").load("../../collector-experiments/User/PhaseTypes/error_page.html");
+    } else {
+      $('#aniCont').html('<div class="container"><div class="box"><div class="title"><span class="block"></span><h1>Introduction to Psychology<span></span></h1></div><div class="role"><div class="block"></div><p>{{text}}</p></div></div></div><footer><div class="texto"><span><i class="fab fa-youtube"></i><img src="../../collector-experiments/User/Assets/LOP/uor.svg" /></span></div></footer>');
+    pageAdvance();
+    $(document).unbind('mouseup');;
+    }
+  });
     
   // This sets up to start the animation, by replacing an empty <div> when the user clicks their mouse on the screen
-  $(document).add(parent.parent.document).mouseup(function(e) {
-    $('#aniCont').html('<div class="container"><div class="box"><div class="title"><span class="block"></span><h1>Introduction to Psychology<span></span></h1></div><div class="role"><div class="block"></div><p>{{text}}</p></div></div></div><footer><div class="texto"><span><i class="fab fa-youtube"></i><img src="../../collector-experiments/User/Assets/LOP/uor.svg" /></span></div></footer>');
-    pageAdvance();
-    $(document).unbind('mouseup');
-  });
+  // $(document).add(parent.parent.document).mouseup(function(e) {
+  //   $('#aniCont').html('<div class="container"><div class="box"><div class="title"><span class="block"></span><h1>Introduction to Psychology<span></span></h1></div><div class="role"><div class="block"></div><p>{{text}}</p></div></div></div><footer><div class="texto"><span><i class="fab fa-youtube"></i><img src="../../collector-experiments/User/Assets/LOP/uor.svg" /></span></div></footer>');
+  //   pageAdvance();
+  //   $(document).unbind('mouseup');
+  // });
 </script>
