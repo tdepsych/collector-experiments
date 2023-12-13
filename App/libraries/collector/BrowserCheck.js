@@ -57,7 +57,27 @@ if(isFirefox){
 
 if(isSafari){
   if (typeof parent.parent.cb_levels !== undefined) {
-    Phase.counterbalance();
+    var url_php = project_json.this_condition.counterbalance + project_json.this_condition.name + ".php";
+    console.log("url php:" + url_php);
+    var url_txt = Project.get_vars.location + "_" + project_json.this_condition.name + ".txt";
+    console.log("url text:" + url_txt);
+    console.log("the counterbalance function fired");
+    if (parent.parent.cb_levels > 1) {
+      new_data = parent.parent.cb_levels - 1;
+    } else if (parent.parent.cb_levels == 1) {
+      new_data = parent.parent.cb_levels;
+    } else {
+      // do nothing;
+    }
+    $.ajax({
+      type: "POST",
+      url: url_php,
+      crossDomain: true,
+      data: {new_data: new_data, url_txt: url_txt},
+      success: function(result){
+        console.log("success!");
+      }
+    });
   }
   alert("This website does not work reliably on Safari - please use another browser, preferably Google Chrome.");
 }
