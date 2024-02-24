@@ -569,7 +569,7 @@
   function Likert_blur() {
     $('.jcat_1').css({'background':"#FFFFFF", 'color':'#3f97f6'});
   };
-  function Likert_selecte() {
+  function Likert_select() {
     $('.jcat_1').css({'background':"#3f97f6", 'color':'#FFFFFF'});
   };
   
@@ -582,7 +582,7 @@
       if (jcat_val != 0) {
         if (jcat_val != 0) {
           if (jcat_val == 1) {
-            Likert_active(); // If the Likert value is 1 (i.e., the first category) make the button selected
+            Likert_select(); // If the Likert value is 1 (i.e., the first category) make the button selected
           } else {
             Likert_blur(); // If the Likert value above 1 (i.e., anything but the first category) blur the focused/selected button
           }
