@@ -14,7 +14,7 @@ item,phasetype,survey,max_time,text,notes,shuffle_1,task_title,task_body_text,we
 0,tde_survey,verbal_agressiveness.csv,user,,,Questionnaire,,,,
 0,tde_survey,trait_anger.csv,user,,,Questionnaire,,,,
 0,tde_survey,big_five_inventory.csv,user,,,Questionnaire,,,,
-0,task_bookend,,user,Start,,off,Demographics,"<p>Thank you for completing the 2 individual difference questionnaires. You have now completed all the experimental tasks. The last thing we require is to just collect some basic demographic information about you so we can better understand who has  taken part in our study.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>",,
+0,task_bookend,,user,Start,,off,Demographics,"<p>Thank you for completing the 3 individual difference questionnaires. You have now completed all the experimental tasks. The last thing we require is to just collect some basic demographic information about you so we can better understand who has  taken part in our study.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>",,
 0,tde_survey,jans_demo.csv,user,,"Phase.set_timer(function(){ 
              $("".sona_item"").attr('maxlength','8');          },250);",off,,,,
 0,upload_data,,6,,Uploading REDCap Markers,off,,,,
