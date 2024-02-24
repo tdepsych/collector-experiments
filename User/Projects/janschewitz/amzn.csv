@@ -1,5 +1,5 @@
 item,phasetype,survey,max_time,text,notes,shuffle_1,task_title,task_body_text,weight,
-0,intro_static,,user,Welcome,,off,,,,
+0,intro_static,,user,Welcome,no_mobile,off,,,,
 0,ws_zoom,,user,,,off,,,,
 0,jans_infoconsent,,user,"Re-examining taboo, emotionally valenced, and emotionally neutral word norms",,off,,,,
 0,task_bookend,,user,Start,,off,Word Ratings,"<p>In this study we are interested in how people perceive words. For the next task, you will be given a list of 120 words - one at a time - and your task is to rate each word according to the scales presented.<br><br>Please be as honest as possible in your judgments; <u>they are very important to us!</u> Work at a rapid pace and don't spend too much time on each word. Make your ratings based on your first reaction to the word.<br><br>The words are presented in four blocks of 30 words, and you will be given a break after each block.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>",,
