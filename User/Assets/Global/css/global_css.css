@@ -190,3 +190,11 @@ hr {
 .bootbox-close-button {
   display: none;
 }
+
+/******************/
+/* SURVEY STYLING */
+/******************/
+.table_break_tabs {
+  width: 60%!important;
+  margin: 0 auto!important;
+}

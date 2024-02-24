@@ -1,0 +1,58 @@
+<!--'ws_debrief' PhaseType-->
+<!--
+---development---
+[
+{'text':'Analysing the impact of procedural changes on continuous performance task responses'}
+]
+---development---
+-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  #container {
+  text-align: center;
+  padding-top: 3%!important;
+  }
+  #endButton {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+</style>
+<body>
+  <button id="zoomOut" tabindex="-1"></button>
+  <button id="zoomIn" tabindex="-1"></button>
+  <div id="container">
+    <img id="uorLogo" src="../../collector-experiments/User/Assets/Global/img/uor.svg" />
+    <br>
+    School of Psychology and Clinical Language Sciences,<br>Whitenights, Reading, RG6 6AL
+    <br/>
+    <hr>
+    <span style="color:red;"> 
+      <b>Study: {{text}}</b>
+    </span>
+    <hr>
+    <h5><b>DEBRIEF SHEET</b></h5>
+    Supervisor: Prof. Philip Beaman (c.p.beaman@reading.ac.uk - 0118 378 7637)<br/>
+    Experimenter: Chris Dobson (c.g.dobson@pgr.reading.ac.uk)
+    <br/><br/>
+    <b>Thank your for taking part in our study</b>
+    <br/>
+   This study was investigating whether procedural changes to reduce the overall completion time of the ‘AX’ continuous performance task produced comparable results to the more traditional, longer, task procedure. The task was developed to measure both goal-orientated cognitive function, as well as the type of cognitive strategy used when completing the task and we plan to use the task in a study next year to assess the impact of swearing on cognitive control. However, in its traditional procedural setup, there are 200 experimental trials that take around 25 minutes to complete. As we are planning a repeated measures study in which participants would complete the task twice, we are worried by how long the traditional, longer version of the task would make over overall study time. As a result, we ran this study to see whether reducing the number of trials and the time each trial lasts, such that overall task length was only around 15 minutes, would remain sensitive enough to capture results statistically in-line with the traditional, longer task. As, if results are inline, we can then use the shorter version in our planned study, reducing our total study length and making the study procedure more feasible. 
+    <br><br>
+    <b>Amazon Voucher Draw</b><br>
+    As a thank you for taking part in this study, you have been automatically entered into a draw to win one of three, £50 Amazon gift vouchers. The draw will be made once data collection has been completed later this year and the winners emailed by the experimenter.
+    <br><br>
+    <b>Reminder: What will happen to my data/how will it be protected?</b><br>
+    Your data will be kept anonymous, confidential, and securely stored, with only an anonymous ID identifying it so that it cannot be linked back to you. The final dataset collected from this study will be preserved and made available in its anonymised form, so that data can be re-used by others. Your individual consent form will be kept for 5 years after the completion of this study. Finally, if you agreed to be contacted about future studies whilst consenting to take part, you may remove this agreement at any point in the future by emailing Prof. Phil Beaman – c.p.beaman@reading.ac.uk. 
+    <br/><br/>
+    Once again, thank you for your participation.
+    <br/><br/>
+    <b>Prof. Philip Beaman and Chris Dobson</b>
+    <hr>
+    <span class ="minor">
+      Please click the following links if you  wish to download the <a href="../../collector-experiments/User/Assets/mscrep/information_sheet.pdf" download="Participant Information Sheet">participant information sheet <span id="pdfImg"></span></a> or the study <a href="../../collector-experiments/User/Assets/mscrep/debrief_sheet.pdf" download="Study Debrief Sheet">debrief sheet <span id="pdfImg"></span></a>
+    </span>
+    <hr>
+  <div>
+  <button class="btn btn-primary" id="endButton" onclick="Phase.submit()">Finish Study & Save Data</button>
+  <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
+</body>

@@ -1,0 +1,97 @@
+<script>console.log("UoR Cover Started")</script>
+<!--'uor_cover' PhaseType (UoR logo fadein). Subtitle is set from the "text" field of the procedure sheet -->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/uor_cover_zoom_in.css">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<script src="../../collector-experiments/User/Assets/Global/js/detect_mobile.js"></script>
+<style>
+  @font-face {
+    font-family: 'Montserrat-ExtraLight';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-ExtraLight.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Montserrat-ExtraBold';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-ExtraBold.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Montserrat-BlackItalic';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-BlackItalic.woff') format('woff');
+  }
+  * {
+    margin: 0;
+    padding: 0;
+  }
+      
+  body, html {
+     overflow: hidden;
+       background: #FFF;
+  }
+  #oops {
+    font-size: 150px!important;
+    font-family: Montserrat-BlackItalic!important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/mind.jpg);
+      background-repeat: repeat;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    background-position: 50% 40%;
+  }
+  #sub_head{
+    font-size: 50px;
+    font-family: Montserrat-ExtraBold;
+  }
+  #body_text{
+    font-size: 50px;
+    font-family: Montserrat-ExtraLight;
+  }
+  #container {
+    width: 100%!important;
+  }
+</style>
+<div id="container">
+  <p id="oops">WELCOME!</p>
+  <p id="sub_head">Thank you for taking part in our study</p>
+  <p id="body_text">When you are ready to begin, please click the button below to load the study information sheet and consent form.</p>
+  <button class="btn btn-outline-primary bi bi-browser-chrome" id="proceed_button" onclick="Phase.submit()"><b>CLICK TO START</b></button>
+</div>
+<script>
+  // This checks what browser the user is running the study in and stores it to a variable 'browser'
+  var browser = (function (agent) {
+    switch (true) {
+      case agent.indexOf("edge") > -1: return "MS Edge (EdgeHtml)";
+      case agent.indexOf("edg") > -1: return "MS Edge Chromium";
+      case agent.indexOf("opr") > -1 && !!window.opr: return "opera";
+      case agent.indexOf("chrome") > -1 && !!window.chrome: return "chrome";
+      case agent.indexOf("trident") > -1: return "Internet Explorer";
+      case agent.indexOf("firefox") > -1: return "firefox";
+      case agent.indexOf("safari") > -1: return "safari";
+      default: return "other";
+    }
+  })(window.navigator.userAgent.toLowerCase());
+  console.log("User is running " + browser);
+  
+  // This runs when the user clicks there mouse (either on the screen or alert message). The if statements checks for mobiles, the elseif checks for safari and if neither is true, the else runs the animation
+  var mobile = "{{notes}}"
+    if (mobile == "no_mobile" && isMobile.any()) {
+      $("#container").load("../../collector-experiments/User/PhaseTypes/error_page.html");
+      if (typeof parent.parent.cb_level !== 'undefined') {
+        Phase.counterbalance();
+        console.log("Counterbalance level reset");
+      } else {
+        console.log("No counterbalancing in use");
+      }
+    } else if (browser == "safari") {
+      console.log("Participant is not using a mobile");
+      $("#container").load("../../collector-experiments/User/PhaseTypes/error_safari.html");
+      if (typeof parent.parent.cb_level !== 'undefined') {
+        Phase.counterbalance();
+        console.log("Counterbalance level reset");
+      } else {
+        console.log("No counterbalancing in use");
+      }
+    } else {
+      //do nothing
+    }
+     
+  // This is creating a global count value. I needed it in my MSc for something, but just leaving it here as it might be useful
+  parent.parent.global_count = 1;
+</script>
+</html>

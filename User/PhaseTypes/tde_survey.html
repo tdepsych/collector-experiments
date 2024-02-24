@@ -76,14 +76,22 @@
   .option-input.radio {
     transform: translateY(-16px)!important;
 }
+.container {
+  width: 50%;
+  max-height: 90vh;
+}
+.container_tabs {
+  max-height: 90vh;
+}
+
 </style>
 <button id="zoomOut" tabindex="-1"></button>
 <button id="zoomIn" tabindex="-1"></button>
-<div id="container">
+<div id="survey_container" class="container">
   <div id="survey_outline"></div>
   <button class="btn btn-primary" id="proceed_button">Proceed</button>
 </div>
-<!--<span id="scales_span"></span>-->
+<span id="scales_span"></span>
 <script src="../../collector-experiments/User/Assets/Global/js/survey.js"></script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
 <!--<script src="../Default/DefaultPhaseTypes/survey.js"></script>-->

@@ -6,7 +6,10 @@
  * Setup a prepend variable
  */
   var survey_prepend = "survey_";
-
+  var clicks = 0;
+  var survey_pages_used = false;
+  var current_table_no = 0;
+  var this_element_label;
 /*
  * detect if testing or not
  */
@@ -63,12 +66,14 @@ types_list = [
   "instruct",
   "likert",
   "number",
+  "page_break",
   "para",
   "radio",
   "radio_vertical",
   "radio_horizontal",
   "redcap_pii",
   "report_score",
+  "survey_break",
   "text",
 ];
 /*
@@ -85,10 +90,7 @@ if (typeof settings !== "undefined") {
  * vertical vs. horizontal tabs
  */
 
-if (
-  typeof settings.tab_hor_vert === "undefined" ||
-  settings.tab_hor_vert.toLowerCase() === "horizontal"
-) {
+if (typeof settings.tab_hor_vert === "undefined" || settings.tab_hor_vert.toLowerCase() === "horizontal") {
   settings.tab_hor_vert = "horizontal";
   $("#survey_outline")
     .append(
@@ -217,16 +219,12 @@ $( ".datepicker" ).datepicker({
 
 $("#ExperimentContainer").css("transform", "scale(1,1)");
 $("#proceed_button").on("click", function () {
+  clicks++
   var proceed = true;
   var tabs = document.getElementsByClassName("show_tab active");
   if (tabs.length > 0) {
-    var current_tab = document
-      .getElementsByClassName("show_tab active")[0]
-      .id.replace("_button", "")
-      .replace("tab_", "");
-    var response_elements = $("#table_" + current_tab).find(
-      ".response_element"
-    );
+    var current_tab = document.getElementsByClassName("show_tab active")[0].id.replace("_button", "").replace("tab_", "");
+    var response_elements = $("#table_" + current_tab).find(".response_element");
   } else {
     response_elements = $(".table_break:visible").find(".response_element");
   }
@@ -255,40 +253,39 @@ $("#proceed_button").on("click", function () {
       var quest_resp = isJSON($("#" + response_elements[i].id).val());
       if (quest_resp.length < min_resp_length) {
         proceed = false;
-        $("#" + response_elements[i].id.replace("response", "question"))
-          .removeClass("text-dark")
-          .removeClass("text-success")
-          .addClass("text-danger");
+        $("#" + response_elements[i].id.replace("response", "question")).removeClass("text-dark").removeClass("text-success").addClass("text-danger");
       } else {
-        $("#" + response_elements[i].id.replace("response", "question"))
-          .removeClass("text-dark")
-          .removeClass("text-danger")
-          .addClass("text-success");
+        $("#" + response_elements[i].id.replace("response", "question")).removeClass("text-dark").removeClass("text-danger").addClass("text-success");
       }
     }
+  }
+  if (survey_pages_used && clicks == page_break_management.breaks_remaining && proceed) {
+    $("#proceed_button").text("Proceed");
+  } else if (survey_pages_used && clicks != page_break_management.breaks_remaining && proceed) {
+    $("#proceed_button").text("Next Page");
+  } else {
+    //do nothing;
   }
 
   if (current_tab === survey_obj.tabs && proceed) {
     if (typeof sql_surveys === "undefined") {
-      var next_table_no =
-        parseFloat($(".table_break:visible")[0].id.replace("table", "")) + 1;
+      var next_table_no = parseFloat($(".table_break:visible")[0].id.replace("table", "")) + 1;
 
       if ($(".table_break#table" + next_table_no).length === 0) {
         if (typeof Phase !== "undefined") {
           Phase.submit();
         } else {
-          appropriate_message(
-            "You've finished! Click on the preview button to restart."
-          );
+          appropriate_message("You've finished! Click on the preview button to restart.");
         }
       } else {
         $(".table_break").hide();
         $(".table_break#table" + next_table_no).show(0);
+        current_table_no = next_table_no;
+        $('#table'+current_table_no).addClass("table_break_tabs");
+        $(window).scrollTop(0);
       }
     } else {
-      $("#" + survey_outline).append(
-        $("<h1>").html("You have finished the preview of this survey.")
-      );
+      $("#" + survey_outline).append($("<h1>").html("You have finished the preview of this survey."));
     }
   } else if (current_tab < survey_obj.tabs && proceed) {
     current_tab++;
@@ -410,14 +407,11 @@ function isJSON(str) {
 }
 
 survey_js.likert_update = function (this_element) {
+  // qwerty1
+  // this_element_label = $('label[for="'+this_element.id+'"]').text();
   [row_no, item_name] = retrieve_row_no_item_name(this_element);
-  $(".row_" + row_no)
-    .removeClass("active")
-    .removeClass("btn-primary")
-    .addClass("btn-outline-primary");
+  $(".row_" + row_no).removeClass("active").removeClass("btn-primary").addClass("btn-outline-primary");
   $(this_element).removeClass("btn-outline-primary").addClass("btn-primary");
-  $("#"+survey_prepend + item_name + "_response").val(this_element.innerHTML);
-  $("#"+survey_prepend + item_name + "_response").val(this_element.value);
 
   response_check(this_element);
 };
@@ -460,30 +454,21 @@ function load_survey(survey, survey_outline) {
 }
 
 function process_question(row, row_no) {
+  
   //row.values = row.values == "" ? row.answers : row.values;
-  if (row_check("page_break", row)) {
+  if (row.type === "page_break") {
     page_break_management.breaks_remaining++;
-    question_td =
-      "</tr></table><table id='table" +
-      page_break_management.breaks_remaining +
-      "' style='display:none' class='table_break'></tr>";
+    survey_pages_used = true;
+    question_td = "</tr></table><table id='table" + page_break_management.breaks_remaining + "' style='display:none' class='table_break'></tr>";
   } else {
-    if (
-      (typeof row["values"] !== "undefined") &
-      (typeof row["values"] !== "function")
-    ) {
-      //to address microsoft edge issue.
-      value_array = row["values"].split("|");
+    if ((typeof row["values"] !== "undefined") & (typeof row["values"] !== "function")) {
+      value_array = row["values"].split("|"); //to address microsoft edge issue.
     } else {
       value_array = "";
     }
 
     if (row["item_name"].indexOf(" ") !== -1) {
-      appropriate_message(
-        "Please note that the 'item name' '" +
-          row["item_name"] +
-          "' is invalid because it has at least one space. Please use underscores instead of spaces. If you're not the creator of this task, please contact the person who created it."
-      );
+      appropriate_message("Please note that the 'item name' '" + row["item_name"] + "' is invalid because it has at least one space. Please use underscores instead of spaces. If you're not the creator of this task, please contact the person who created it.");
     }
 
     /*
@@ -519,6 +504,7 @@ function process_question(row, row_no) {
 
     var survey_id = survey_prepend + row["item_name"].toLowerCase();
 
+    // This sets up the hidden inputs for each question - Qwerty2
     question_td =
       $("<input>")
         .attr("type", "hidden")
@@ -526,12 +512,13 @@ function process_question(row, row_no) {
         .addClass("row_" + row_no)
         .prop("id", survey_id + "_response")
         .prop("name", survey_id + "_response")
-        .val("")[0].outerHTML; // +
-      // $("<input>")
-      //   .attr("type", "hidden")
-      //   .prop("id", survey_id + "_value")
-      //   .prop("name", survey_id + "_value")
-      //   .val("")[0].outerHTML;
+        .val("")[0].outerHTML;  
+    question_td = question_td +=
+      $("<input>")
+        .attr("type", "hidden")
+        .prop("id", survey_id + "_value")
+        .prop("name", survey_id + "_value")
+        .val("")[0].outerHTML;
 
     /*
      * Survey settings
@@ -551,87 +538,6 @@ function process_question(row, row_no) {
     }
 
     switch (row["type"].toLowerCase()) {
-      case "page_start":
-        //var tabs_html = $("#survey_tabs").html();
-        if (settings.tab_hor_vert === "horizontal") {
-          span_div = "span";
-        } else if (settings.tab_hor_vert === "vertical") {
-          span_div = "div";
-        }
-        if (typeof survey_obj.tabs === "undefined") {
-          survey_obj.tabs = 0;
-        } else {
-          survey_obj.tabs++;
-        }
-        if (survey_obj.tabs === 0) {
-          //i.e. is the first tab
-          active_button = "btn-outline-primary active";
-        } else {
-          active_button = "btn-secondary disabled";
-        }
-        if (settings.tab_hor_vert === "vertical") {
-          var vert_btn_block = "btn-block";
-        } else {
-          var vert_btn_block = "";
-        }
-        $("#survey_tabs").append(
-          $("<" + span_div + ">")
-            .addClass("btn-group-toggle")
-            .attr("data-toggle", "buttons")
-            .append(
-              $("<label>")
-                .addClass("btn")
-                .addClass("show_tab")
-                .html(row["text"])
-                .prop("id", "tab_" + survey_obj.tabs + "_button")
-                .append(
-                  $("<input>")
-                    .attr("autocomplete", "off")
-                    .attr("checked", true)
-                    .attr("type", "checkbox")
-                )
-            )[0].outerHTML
-        );
-
-        page_break_indexes = [];
-        survey_obj.data.forEach(function (row, this_index) {
-          if (
-            typeof row.type !== "undefined" &&
-            row.type.toLowerCase() === "page_start"
-          ) {
-            page_break_indexes.push(this_index);
-          }
-        });
-
-        if (survey_obj.tabs > 0) {
-          question_td
-            .append(
-              $("<div>")
-                .addClass("survey_page")
-                .css("display", "none")
-                .prop("id", "tab_" + survey_obj.tabs)
-            )
-            .append(
-              $("<table>")
-                .addClass("table_break")
-                .prop("id", "table_" + survey_obj.tabs)
-                .append("<tr>")
-            );
-        } else {
-          question_td
-            .append(
-              $("<div>")
-                .addClass("survey_page")
-                .prop("id", "tab_" + survey_obj.tabs)
-            )
-            .append(
-              $("<table>")
-                .addClass("table_break")
-                .prop("id", "table_" + survey_obj.tabs)
-                .append("<tr>")
-            );
-        }
-        break;
       case "checkbox":
       case "checkbox_vertical":
         question_td += write("checkbox_vertical", row_x);
@@ -687,7 +593,6 @@ function process_question(row, row_no) {
             .prop("name", survey_prepend + row["item_name"].toLowerCase())
         );
         break;
-
       case "text":
         question_td += write("text", row_x);
         break;
@@ -770,8 +675,8 @@ function process_question(row, row_no) {
       //var row_html="<td colspan='2'>"+question_td+"</td>";
     } else {
       if (
-        (row["text"].toLowerCase() === "page_start") |
-        (row["type"].toLowerCase() === "page_start")
+        (row["text"].toLowerCase() === "page_break") |
+        (row["type"].toLowerCase() === "page_break")
       ) {
         row_html = question_td;
       } else {
@@ -885,12 +790,7 @@ function process_returned_questionnaire(data, survey_outline) {
       write_survey(survey_obj.data, survey_outline);
       $("#please_wait_div").hide();
       $("#proceed_button").show();
-      $("html, body").animate(
-        {
-          scrollTop: $("#" + survey_outline).offset().top,
-        },
-        0
-      );
+      $("html, body").animate({scrollTop: $("#" + survey_outline).offset().top,},0);
 
     }
   }
@@ -909,6 +809,7 @@ function row_perc(this_rat) {
 }
 
 function response_check(submitted_element) {
+  console.log(submitted_element)
   switch (submitted_element.type) {
     case "checkbox":
       var checked_responses = $(
@@ -935,9 +836,13 @@ function response_check(submitted_element) {
     case "number":
     case "email":
     case "radio":
-      // $("#" + submitted_element.name + "_response").val(submitted_element.value);
-      // console.log($("#" + submitted_element.name + "_response").val(submitted_element.value));
-      // break;
+      this_element_label = $('label[for="'+submitted_element.id+'"]').text();
+      //qwerty1
+        // $("#" + submitted_element.name + "_response").val(this_element_label);
+        // $("#" + submitted_element.name + "_value").val(submitted_element.value);  
+        $("#" + submitted_element.name + "_value").val(this_element_label);
+        $("#" + submitted_element.name + "_response").val(submitted_element.value);  
+      break;
     case "select-one":
     case "text":
     case "textarea":
@@ -1011,19 +916,6 @@ function reveal_answers(this_element) {
   }
 }
 
-function row_check(type, row) {
-  if ((type = "page_break")) {
-    return (
-      typeof row["text"] !== "undefined" &&
-      typeof row["type"] !== "undefined" &&
-      (row["text"].toLowerCase() === "page_break") |
-        (row["type"].toLowerCase() === "page_break")
-    );
-  } else if ((type = "")) {
-    //do nothing
-  }
-}
-
 // http://stackoverflow.com/questions/962802#962890
 function shuffle(array) {
   var tmp,
@@ -1073,12 +965,8 @@ function update_score() {
 
     questions.forEach(function (row_no) {
       var item = survey_obj.data[row_no].item_name.toLowerCase();
-      console.log("Item " + item)
-      // var this_response = $("#" + survey_prepend + item + "_value").val();
       var this_response = $("#" + survey_prepend + item + "_response").val();
-      console.log("This Response " + this_response)
       var normal_reverse = this_scale.questions[row_no];
-      console.log("Normal Reverse " + normal_reverse)
       if (normal_reverse.indexOf("-") === -1) {
         var multiplier = parseFloat(normal_reverse.replace("r", ""));
         if (normal_reverse.indexOf("r") === 0) {
@@ -1100,7 +988,7 @@ function update_score() {
           this_value = process_score(row_no, values_col, this_response, item);
         }
       }
-      console.log("This Value: "+ this_value)
+
       if (typeof this_value !== "undefined") {
         this_score += multiplier * this_value;
       } else {
@@ -1408,31 +1296,22 @@ function write(type, row) {
     this_html += this_textarea[0].outerHTML;
   } else if (type === "radio_horizontal") {
     var options = row["answers"].split("|");
+    var values = row["values"].split("|");
     var this_table = $("<table>");
     this_row = this_table[0].insertRow();
     for (var i = 0; i < options.length; i++) {
       var this_cell = this_row.insertCell();
       var this_div = $("<div>");
-      // this_div.addClass("custom-control").addClass("custom-radio");
       this_div.addClass("custom-control").addClass("custom-radio").addClass("checkboxes_h");
       var this_input = $("<input>");
       this_input[0].type = "radio";
-      this_input[0].value = options[i];
+      this_input[0].value = values[i];
       this_input[0].id = row["item_name"] + i;
       this_input[0].name = survey_prepend + row["item_name"];
-      this_input
-      .addClass("custom-control-input").addClass(row["this_class"]).addClass("custom-control").addClass("custom-radio").addClass("response").addClass("option-input radio").addClass(row["item_name"] + "_item_row_" + row["row_no"]);
-        // .addClass("custom-control-input")
-        // .addClass("response")
-        // .addClass(row["this_class"])
-        // .addClass(row["custom-control"])
-        // .addClass(row["custom-radio"])
-        // .addClass(row["item_name"] + "_item")
-        // .addClass("row_" + row["row_no"]);
+      this_input.addClass("custom-control-input").addClass(row["this_class"]).addClass("custom-control").addClass("custom-radio").addClass("response").addClass("option-input radio").addClass(row["item_name"] + "_item_row_" + row["row_no"]);
       var this_label = $("<label>");
       this_label[0].htmlFor = row["item_name"] + i;
       this_label[0].innerText = options[i];
-      // this_label.addClass("custom-control-label");
       this_label.addClass("custom-control-label").addClass("radioLabelHolder");
       this_div.append(this_input).append(this_label);
       this_cell.innerHTML = this_div[0].outerHTML;
@@ -1442,18 +1321,13 @@ function write(type, row) {
     var options = row["answers"].split("|");
     var values = row["values"].split("|");
     for (var i = 0; i < options.length; i++) {
-      feedback_string = generate_feedback_string(
-        feedback_array,
-        i,
-        feedback_color,
-        row
-      );
+      feedback_string = generate_feedback_string(feedback_array,i,feedback_color,row);
       var this_div = $("<div>");
       this_div.addClass("custom-control").addClass("custom-radio").addClass("checkboxes");
       var this_input = $("<input>");
       this_input[0].type = "radio";
       this_input[0].id = row["item_name"] + i;
-      this_input[0].value = options[i];
+      this_input[0].value = values[i];
       this_input[0].name = survey_prepend + row["item_name"];
       this_input
         .addClass("custom-control-input")
@@ -1500,7 +1374,7 @@ function write(type, row) {
 
 function write_survey(this_survey, this_id) {
   scoring_object.update_scales(this_survey);
-  survey_html = "<table class='table_break' id='table0'>";
+  survey_html = "<table class='table_break' id='table"+current_table_no+"'>";
   this_survey_object = {
     content: [],
     shuffle_question: [],
@@ -1614,6 +1488,11 @@ if (typeof module !== "undefined") {
   if (typeof Phase !== "undefined") {
     Phase.set_timer(function () {
       load_survey(current_survey, "survey_outline");
+      if (survey_pages_used) {
+        $("#proceed_button").text("Next Page");
+        $('#survey_container').removeClass("container").addClass("container_tabs");
+        $('#table'+current_table_no).addClass("table_break_tabs");
+      }
     }, 100);
   } else {
     load_survey(current_survey, "survey_outline");

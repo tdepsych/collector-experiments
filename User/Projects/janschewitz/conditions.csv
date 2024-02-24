@@ -1,2 +1,3 @@
 name,notes,stimuli,procedure,fullscreen,participant_id,end_message,start_message,buffer,skip_quality,redcap_url,mobile,
-condition_1,,words.csv,procedure_1.csv,on,random,,https://xo019390.webs.act.reading.ac.uk/redcap/adbWordsearch.php,5,yes,,no,
+sona,,words.csv,sona.csv,on,random,,https://xo019390.webs.act.reading.ac.uk/redcap/adbWordsearch.php,5,yes,,no,
+amzn,,words.csv,amzn.csv,on,random,,https://xo019390.webs.act.reading.ac.uk/redcap/adbWordsearch.php,5,yes,,no,

@@ -7,8 +7,8 @@ if (parent.parent.current_zoom == null){
 function zoom_in() {
   parent.parent.current_zoom += 0.1;
     // document.body.style.MozTransform = "scale(" + parent.parent.current_zoom + ")";
-  $('#container').css("transform", "scale(" + parent.parent.current_zoom + ")");
-  $('#container').transformOrigin = "center center";
+  $('#container, #survey_container').css("transform", "scale(" + parent.parent.current_zoom + ")");
+  $('#container, #survey_container').transformOrigin = "center center";
   // document.body.style.zoom = parent.parent.current_zoom;
   document.body.style.overflowX = "hidden";
   console.log("working?")
@@ -17,8 +17,8 @@ function zoom_in() {
 function zoom_out() {
   parent.parent.current_zoom -= 0.1;
   // document.body.style.MozTransform = "scale(" + parent.parent.current_zoom + ")";
-  $('#container').css("transform", "scale(" + parent.parent.current_zoom + ")");
-  $('#container').transformOrigin = "center center";
+  $('#container, #survey_container').css("transform", "scale(" + parent.parent.current_zoom + ")");
+  $('#container, #survey_container').transformOrigin = "center center";
   // document.body.style.zoom = parent.parent.current_zoom;
   document.body.style.overflowX = "hidden";
 }

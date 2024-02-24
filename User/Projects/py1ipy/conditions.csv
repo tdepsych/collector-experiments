@@ -2,4 +2,4 @@ name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start
 rhyme,,all_stimuli,procedure_1.csv,on,,random,,,5,,no,yes,no,,,
 deep,,all_stimuli,procedure_2.csv,on,,random,,,5,,no,yes,no,,,
 shallow,,all_stimuli,procedure_3.csv,on,,random,,,5,,no,yes,no,,,
-counterbalance,,all_stimuli,procedure_3.csv,on,,random,,https://haffeyprojects.reading.ac.uk/redcap/redcapChris.php,5,,no,yes,no,https://xo019390.webs.act.reading.ac.uk/redcap/py1ipy.php,https://xo019390.webs.act.reading.ac.uk/redcap/,
+counterbalance,,all_stimuli,procedure_3.csv,on,,random,https://xo019390.webs.act.reading.ac.uk/redcap/py1ipy.php,,5,,no,yes,no,,https://xo019390.webs.act.reading.ac.uk/redcap/,

@@ -9,9 +9,6 @@
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/radio_buttons.css">
 <style>
-  b{
-    color: #20669b;
-  }
   #container {
     margin-top:5%;
   }
@@ -39,6 +36,9 @@
   #endRadio:after {
     display: none;
   }
+  #uppercase {
+    text-transform: uppercase;
+  }
   .option-input:after {
     display: block;
     content: " ";
@@ -53,10 +53,10 @@
     background-color: #a7d4ef!important;
     cursor: pointer;
   }
-  .radio:focus {
+  .radio:focus, .jcat:focus {
     background-color: #a7d4ef!important;
+    color: #FFF;
   }
-  
   .option-input:checked::after {
   -webkit-animation: none!important;
   -moz-animation: none!important;
@@ -68,74 +68,101 @@
     background: #FFF!important;
     background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/one.svg)!important;
   }
-    .response1:checked {
-      background: #3f97f6!important;
+    .response1:hover {
       background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/one.svg)!important;
     }
+      .response1:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/one.svg)!important;
+      }
   .response2 {
     background: #FFF!important;
     background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/two.svg)!important;
   }
-    .response2:checked {
-      background: #3f97f6!important;
+    .response2:hover {
       background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/two.svg)!important;
     }
+      .response2:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/two.svg)!important;
+      }
   .response3 {
     background: #FFF!important;
     background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/three.svg)!important;
   }
-    .response3:checked {
-      background: #3f97f6!important;
+    .response3:hover {
       background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/three.svg)!important;
     }
+      .response3:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/three.svg)!important;
+      }
   .response4 {
     background: #FFF!important;
     background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/four.svg)!important;
   }
-    .response4:checked {
-      background: #3f97f6!important;
+    .response4:hover {
       background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/four.svg)!important;
     }
+      .response4:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/four.svg)!important;
+      }
   .response5 {
     background: #FFF!important;
     background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/five.svg)!important;
   }
-    .response5:checked {
-      background: #3f97f6!important;
+    .response5:hover {
       background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/five.svg)!important;
     }
+      .response5:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/five.svg)!important;
+      }
   .response6 {
     background: #FFF!important;
     background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/six.svg)!important;
   }
-    .response6:checked {
-      background: #3f97f6!important;
+    .response6:hover {
       background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/six.svg)!important;
     }
+      .response6:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/six.svg)!important;
+      }
   .response7 {
     background: #FFF!important;
     background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/seven.svg)!important;
   }
-    .response7:checked {
-      background: #3f97f6!important;
+    .response7:hover {
       background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/seven.svg)!important;
     }
+      .response7:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/seven.svg)!important;
+      }
   .response8 {
     background: #FFF!important;
     background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/eight.svg)!important;
   }
-    .response8:checked {
-      background: #3f97f6!important;
+    .response8:hover {
       background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/eight.svg)!important;
     }
+      .response8:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/eight.svg)!important;
+      }
   .response9 {
     background: #FFF!important;
     background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/nine.svg)!important;
   }
-    .response9:checked {
-      background: #3f97f6!important;
+    .response9:hover{
       background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/nine.svg)!important;
     }
+      .response9:checked{
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/nine.svg)!important;
+      }
   
   /* Restyle all the radio buttons to make the numbers appear a good size */
     .option-input {
@@ -144,14 +171,14 @@
       background-position: center!important;
       transform: scale(1.5)!important;
     }
-    .option-input:checked {
+    .option-input:checked,  .option-input:hover {
       background-size: 10px!important;
       background-repeat: no-repeat!important;
       background-position: center!important;
     }
-  .warning {
-    color: red;
-  }
+  /*.warning {*/
+  /*  color: red;*/
+  /*}*/
   section{
     display: table;
     width: 590px;
@@ -192,8 +219,64 @@
     width:292px;
     padding-right: 8px;
   }
-  #uppercase {
-    text-transform: uppercase;
+
+  /* ********************
+     LIKERT SCALE STYLING
+     ******************** */
+  
+  #likert {
+    --likert-rows: 6;
+    display: inline-grid;
+    max-width: 900px;
+    margin-top: 10px;
+    grid-auto-rows: 1fr;
+    gap: 15px;
+    grid-template-columns: repeat(var(--likert-rows), minmax(0, 1fr));
+    font-weight: 500;
+    color: #3f97f6;
+  }
+  #likert input {
+    max-width: 250px;
+    min-width: 250px;
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .jcat_1, .jcat_2 {
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /*box-sizing: border-box;*/
+    width: 100%;
+    height: 70%;
+    padding: 20px;
+    border: #3f97f6 solid 2px;
+    background: #ffffff;
+    transition: background .2s ease-in-out;
+  }
+  #likert input:checked + span {
+    border: #3f97f6 solid 2px;
+    background: #3f97f6;
+    color: #ffffff;
+  }
+
+  #likert span:hover {
+    background: #a7d4ef;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  #likert-line {
+    content: " ";
+    position: relative;
+    z-index: -800;
+    top: 36px;
+    background: rgb(63, 151, 246);
+    height: 2px;
+    width: 75%;
+    margin: 0 auto;
   }
 </style>
 <button id="zoomOut" tabindex="-1"></button>
@@ -208,16 +291,16 @@
     <div class="word_item">
       <p id="q1Label"><b>Personal use:</b> How often do <b>YOU</b> use the word '{{word}}' in any way - speaking or writing? Give a 1–9 rating:</p>
       <div id="checkboxes">
-        <input type="radio" name="jq1" class="option-input response1 radio jq1" value="1">
-        <input type="radio" name="jq1" class="option-input response2 radio jq1" value="2">
-        <input type="radio" name="jq1" class="option-input response3 radio jq1" value="3">
-        <input type="radio" name="jq1" class="option-input response4 radio jq1" value="4">
-        <input type="radio" name="jq1" class="option-input response5 radio jq1" value="5">
-        <input type="radio" name="jq1" class="option-input response6 radio jq1" value="6">
-        <input type="radio" name="jq1" class="option-input response7 radio jq1" value="7">
-        <input type="radio" name="jq1" class="option-input response8 radio jq1" value="8">
-        <input type="radio" name="jq1" class="option-input response9 radio jq1" id="endRadio" value="9">
-        <input type="hidden" id="jq1_response" name="jq1" class="responseValues" value="0"/>
+        <input type="radio" name="juse" class="option-input response1 radio juse" value="1">
+        <input type="radio" name="juse" class="option-input response2 radio juse" value="2">
+        <input type="radio" name="juse" class="option-input response3 radio juse" value="3">
+        <input type="radio" name="juse" class="option-input response4 radio juse" value="4">
+        <input type="radio" name="juse" class="option-input response5 radio juse" value="5">
+        <input type="radio" name="juse" class="option-input response6 radio juse" value="6">
+        <input type="radio" name="juse" class="option-input response7 radio juse" value="7">
+        <input type="radio" name="juse" class="option-input response8 radio juse" value="8">
+        <input type="radio" name="juse" class="option-input response9 radio juse" id="endRadio" value="9">
+        <input type="hidden" id="juse_response" name="juse" class="responseValues" value="0"/>
         <br>
         <section id="anchorTable">
           <div class="minor">
@@ -232,16 +315,16 @@
     <div class="word_item">
       <p id="q2Label"><b>Familiarity:</b> How often do you <b>encounter</b> the word '{{word}}'? For example, you may hear it used in a conversation, on the radio, in a movie or on TV, or you may read the word in a magazine, book, on the Internet, etc. Give a 1–9 rating:</p>
       <div id="checkboxes">
-        <input type="radio" name="jq2" class="option-input response1 radio jq2" value="1">
-        <input type="radio" name="jq2" class="option-input response2 radio jq2" value="2">
-        <input type="radio" name="jq2" class="option-input response3 radio jq2" value="3">
-        <input type="radio" name="jq2" class="option-input response4 radio jq2" value="4">
-        <input type="radio" name="jq2" class="option-input response5 radio jq2" value="5">
-        <input type="radio" name="jq2" class="option-input response6 radio jq2" value="6">
-        <input type="radio" name="jq2" class="option-input response7 radio jq2" value="7">
-        <input type="radio" name="jq2" class="option-input response8 radio jq2" value="8">
-        <input type="radio" name="jq2" class="option-input response9 radio jq2" id="endRadio" value="9">
-        <input type="hidden" id="jq2_response" name="jq2" class="responseValues" value="0"/>
+        <input type="radio" name="jfamilairty" class="option-input response1 radio jfamilairty" value="1">
+        <input type="radio" name="jfamilairty" class="option-input response2 radio jfamilairty" value="2">
+        <input type="radio" name="jfamilairty" class="option-input response3 radio jfamilairty" value="3">
+        <input type="radio" name="jfamilairty" class="option-input response4 radio jfamilairty" value="4">
+        <input type="radio" name="jfamilairty" class="option-input response5 radio jfamilairty" value="5">
+        <input type="radio" name="jfamilairty" class="option-input response6 radio jfamilairty" value="6">
+        <input type="radio" name="jfamilairty" class="option-input response7 radio jfamilairty" value="7">
+        <input type="radio" name="jfamilairty" class="option-input response8 radio jfamilairty" value="8">
+        <input type="radio" name="jfamilairty" class="option-input response9 radio jfamilairty" id="endRadio" value="9">
+        <input type="hidden" id="jfamilairty_response" name="jfamilairty" class="responseValues" value="0"/>
         <br>
         <section id="anchorTable">
           <div class="minor">
@@ -254,18 +337,18 @@
       <hr>
     </div>
     <div class="word_item">
-      <p id="q3Label"><b>Offensiveness:</b> How offensive is this word '{{word}}' to <b>YOU</b>? Give a 1–9 rating:</p>
+      <p id="q3Label"><b>Offensiveness:</b> How offensive is the word '{{word}}' to <b>YOU</b>? Give a 1–9 rating:</p>
       <div id="checkboxes">
-        <input type="radio" name="jq3" class="option-input response1 radio jq3" value="1">
-        <input type="radio" name="jq3" class="option-input response2 radio jq3" value="2">
-        <input type="radio" name="jq3" class="option-input response3 radio jq3" value="3">
-        <input type="radio" name="jq3" class="option-input response4 radio jq3" value="4">
-        <input type="radio" name="jq3" class="option-input response5 radio jq3" value="5">
-        <input type="radio" name="jq3" class="option-input response6 radio jq3" value="6">
-        <input type="radio" name="jq3" class="option-input response7 radio jq3" value="7">
-        <input type="radio" name="jq3" class="option-input response8 radio jq3" value="8">
-        <input type="radio" name="jq3" class="option-input response9 radio jq3" id="endRadio" value="9">
-        <input type="hidden" id="jq3_response" name="jq3" class="responseValues" value="0"/>
+        <input type="radio" name="joffense" class="option-input response1 radio joffense" value="1">
+        <input type="radio" name="joffense" class="option-input response2 radio joffense" value="2">
+        <input type="radio" name="joffense" class="option-input response3 radio joffense" value="3">
+        <input type="radio" name="joffense" class="option-input response4 radio joffense" value="4">
+        <input type="radio" name="joffense" class="option-input response5 radio joffense" value="5">
+        <input type="radio" name="joffense" class="option-input response6 radio joffense" value="6">
+        <input type="radio" name="joffense" class="option-input response7 radio joffense" value="7">
+        <input type="radio" name="joffense" class="option-input response8 radio joffense" value="8">
+        <input type="radio" name="joffense" class="option-input response9 radio joffense" id="endRadio" value="9">
+        <input type="hidden" id="joffense_response" name="joffense" class="responseValues" value="0"/>
         <br>
         <section id="anchorTable">
           <div class="minor">
@@ -279,16 +362,16 @@
     <div class="word_item">
       <p id="q4Label"><b>Tabooness:</b> How taboo or <b>socially unacceptable</b>  is the word '{{word}}' to <b>peope in general</b>? Imagine the word being used at work, in a classroom, at a religious service, at a cocktail party, with friends, with family, etc. Give a 1–9 rating:</p>
       <div id="checkboxes">
-        <input type="radio" name="jq4" class="option-input response1 radio jq4" value="1">
-        <input type="radio" name="jq4" class="option-input response2 radio jq4" value="2">
-        <input type="radio" name="jq4" class="option-input response3 radio jq4" value="3">
-        <input type="radio" name="jq4" class="option-input response4 radio jq4" value="4">
-        <input type="radio" name="jq4" class="option-input response5 radio jq4" value="5">
-        <input type="radio" name="jq4" class="option-input response6 radio jq4" value="6">
-        <input type="radio" name="jq4" class="option-input response7 radio jq4" value="7">
-        <input type="radio" name="jq4" class="option-input response8 radio jq4" value="8">
-        <input type="radio" name="jq4" class="option-input response9 radio jq4" id="endRadio" value="9">
-        <input type="hidden" id="jq4_response" name="jq4" class="responseValues" value="0"/>
+        <input type="radio" name="jtaboo" class="option-input response1 radio jtaboo" value="1">
+        <input type="radio" name="jtaboo" class="option-input response2 radio jtaboo" value="2">
+        <input type="radio" name="jtaboo" class="option-input response3 radio jtaboo" value="3">
+        <input type="radio" name="jtaboo" class="option-input response4 radio jtaboo" value="4">
+        <input type="radio" name="jtaboo" class="option-input response5 radio jtaboo" value="5">
+        <input type="radio" name="jtaboo" class="option-input response6 radio jtaboo" value="6">
+        <input type="radio" name="jtaboo" class="option-input response7 radio jtaboo" value="7">
+        <input type="radio" name="jtaboo" class="option-input response8 radio jtaboo" value="8">
+        <input type="radio" name="jtaboo" class="option-input response9 radio jtaboo" id="endRadio" value="9">
+        <input type="hidden" id="jtaboo_response" name="jtaboo" class="responseValues" value="0"/>
         <br>
         <section id="anchorTable">
           <div class="minor">
@@ -300,43 +383,19 @@
       </div>
       <hr>
     </div>
-    <!--<div class="word_item">-->
-    <!--  <p id="q5Label"><b>Valence:</b> How positive or negative is the word '{{word}}'? Give a 1–9 rating:</p>-->
-    <!--  <div id="checkboxes">-->
-    <!--    <input type="radio" name="jq5" class="option-input response1 radio jq5" value="1">-->
-    <!--    <input type="radio" name="jq5" class="option-input response2 radio jq5" value="2">-->
-    <!--    <input type="radio" name="jq5" class="option-input response3 radio jq5" value="3">-->
-    <!--    <input type="radio" name="jq5" class="option-input response4 radio jq5" value="4">-->
-    <!--    <input type="radio" name="jq5" class="option-input response5 radio jq5" value="5">-->
-    <!--    <input type="radio" name="jq5" class="option-input response6 radio jq5" value="6">-->
-    <!--    <input type="radio" name="jq5" class="option-input response7 radio jq5" value="7">-->
-    <!--    <input type="radio" name="jq5" class="option-input response8 radio jq5" value="8">-->
-    <!--    <input type="radio" name="jq5" class="option-input response9 radio jq5" id="endRadio" value="9">-->
-    <!--    <input type="hidden" id="jq5_response" name="jq5" class="responseValues" value="0"/>-->
-    <!--    <br>-->
-    <!--    <section id="anchorTable">-->
-    <!--      <div class="minor">-->
-    <!--        <div class="leftAlign3">Strongly negative</div>-->
-    <!--        <div class="centerAlign3">Not negative or positive</div>-->
-    <!--        <div class="rightAlign3">Strongly positive</div>-->
-    <!--      </div>-->
-    <!--    </section>-->
-    <!--  </div>-->
-    <!--  <hr>-->
-    <!--</div>-->
     <div class="word_item">
       <p id="q6Label"><b>Arousal:</b> How exciting is the word '{{word}}'? Consider how much the word <b>grabs your attention</b>.<br>Give a 1–9 rating:</p>
       <div id="checkboxes">
-        <input type="radio" name="jq6" class="option-input response1 radio jq6" value="1">
-        <input type="radio" name="jq6" class="option-input response2 radio jq6" value="2">
-        <input type="radio" name="jq6" class="option-input response3 radio jq6" value="3">
-        <input type="radio" name="jq6" class="option-input response4 radio jq6" value="4">
-        <input type="radio" name="jq6" class="option-input response5 radio jq6" value="5">
-        <input type="radio" name="jq6" class="option-input response6 radio jq6" value="6">
-        <input type="radio" name="jq6" class="option-input response7 radio jq6" value="7">
-        <input type="radio" name="jq6" class="option-input response8 radio jq6" value="8">
-        <input type="radio" name="jq6" class="option-input response9 radio jq6" id="endRadio" value="9">
-        <input type="hidden" id="jq6_response" name="jq6" class="responseValues" value="0"/>
+        <input type="radio" name="jarousal" class="option-input response1 radio jarousal" value="1">
+        <input type="radio" name="jarousal" class="option-input response2 radio jarousal" value="2">
+        <input type="radio" name="jarousal" class="option-input response3 radio jarousal" value="3">
+        <input type="radio" name="jarousal" class="option-input response4 radio jarousal" value="4">
+        <input type="radio" name="jarousal" class="option-input response5 radio jarousal" value="5">
+        <input type="radio" name="jarousal" class="option-input response6 radio jarousal" value="6">
+        <input type="radio" name="jarousal" class="option-input response7 radio jarousal" value="7">
+        <input type="radio" name="jarousal" class="option-input response8 radio jarousal" value="8">
+        <input type="radio" name="jarousal" class="option-input response9 radio jarousal" id="endRadio" value="9">
+        <input type="hidden" id="jarousal_response" name="jarousal" class="responseValues" value="0"/>
         <br>
         <section id="anchorTable">
           <div class="minor">
@@ -349,7 +408,7 @@
       <hr>
     </div>
     <div class="word_item">
-      <p id="q7Label"><b>Vocalisability:</b> How likely are <b>YOU</b> to say the word '{{word}}' outloud in response to pain or frustration? For example, if you stubbed your toe on a table. Give a rating 1-9:</p>
+      <p id="q7Label"><b>Vocalisability:</b> How likely are <b>YOU</b> to say the word '{{word}}' out loud in response to pain or frustration? For example, if you stubbed your toe on a table. Give a rating 1-9:</p>
       <div id="checkboxes">
         <input type="radio" name="jq7" class="option-input response1 radio jq7" value="1">
         <input type="radio" name="jq7" class="option-input response2 radio jq7" value="2">
@@ -373,6 +432,22 @@
       <hr>
     </div>
   </div>
+  <!--Category question - not shuffled-->
+    <div class="word_item">
+      <p id="q8Label"><b>Category:</b> Based on your interpretation of the the word '{{word}}', please choose the option below which best describes the category you feel the word fits into. If you do not believe the world is a taboo/swearword, please select 'Non-Taboo' even if there is another option that would apply.</p>
+        <div id="likert-line"></div>
+        <div id="likert">
+          <label><input name="jcat" type="radio" class="jcat" value="1"/><span class="jcat_1 jcat">Religious</span></label>
+          <label><input name="jcat" type="radio" class="jcat" value="2"/><span class="jcat_2 jcat">Sexual</span></label>
+          <label><input name="jcat" type="radio" class="jcat" value="3"/><span class="jcat_2 jcat">Bodily</span></label>
+          <label><input name="jcat" type="radio" class="jcat" value="4"/><span class="jcat_2 jcat">Slur</span></label>
+          <label><input name="jcat" type="radio" class="jcat" value="5"/><span class="jcat_2 jcat">Non-Taboo</span></label>
+          <label><input name="jcat" type="radio" class="jcat" value="6"/><span class="jcat_2 jcat">Not Sure</span></label>
+                 <input type="hidden" id="jcat_response" name="jcat" class="responseValues" value="0"/>
+        </div>
+        <br>
+      <hr>
+    </div>
   <!--</form>-->
   <button class="btn btn-primary" id="proceed_button">Next Word</button>
 </div>
@@ -386,28 +461,29 @@
   var score2 = null;
   var score3 = null;
   var score4 = null;
-  // var score5 = null;
+  var score5 = null;
   var score6 = null;
   var score7 = null;
   
   $('#container').on('change', function() {
     // This stores all the response values back into their inputs so Collector adds them to the data
-    $('#jq1_response').val($('.jq1:checked').val());
-    $('#jq2_response').val($('.jq2:checked').val());
-    $('#jq3_response').val($('.jq3:checked').val());
-    $('#jq4_response').val($('.jq4:checked').val());
+    $('#juse_response').val($('.juse:checked').val());
+    $('#jfamilairty_response').val($('.jfamilairty:checked').val());
+    $('#joffense_response').val($('.joffense:checked').val());
+    $('#jtaboo_response').val($('.jtaboo:checked').val());
     // $('#jq5_response').val($('.jq5:checked').val());
-    $('#jq6_response').val($('.jq6:checked').val());
+    $('#jarousal_response').val($('.jarousal:checked').val());
     $('#jq7_response').val($('.jq7:checked').val());
+    $('#jcat_response').val($('.jcat:checked').val());
 
     // This assigns the response values to variables so we can validate the form by checking if they are "null"
-    score1 = $('.jq1:checked').val();
-    score2 = $('.jq2:checked').val();
-    score3 = $('.jq3:checked').val();
-    score4 = $('.jq4:checked').val();
-    // score5 = $('.jq5:checked').val();
-    score6 = $('.jq6:checked').val();
-    score7 = $('.jq7:checked').val();
+    score1 = $('.juse:checked').val();
+    score2 = $('.jfamilairty:checked').val();
+    score3 = $('.joffense:checked').val();
+    score4 = $('.jtaboo:checked').val();
+    score5 = $('.jarousal:checked').val();
+    score6 = $('.jq7:checked').val();
+    score7 = $('.jcat:checked').val();
   });
   
   // This sets a global variable which we +1 every submission to allow us to count completed trials
@@ -440,11 +516,11 @@
         if (score2 == null) { $('#q2Label').css('color','red');} else {$('#q2Label').css('color','green');}
         if (score3 == null) { $('#q3Label').css('color','red');} else {$('#q3Label').css('color','green');}
         if (score4 == null) { $('#q4Label').css('color','red');} else {$('#q4Label').css('color','green');}
-        // if (score5 == null) { $('#q5Label').css('color','red');} else {$('#q5Label').css('color','green');}
-        if (score6 == null) { $('#q6Label').css('color','red');} else {$('#q6Label').css('color','green');}
-        if (score7 == null) { $('#q7Label').css('color','red');} else {$('#q7Label').css('color','green');}
+        if (score5 == null) { $('#q6Label').css('color','red');} else {$('#q6Label').css('color','green');}
+        if (score6 == null) { $('#q7Label').css('color','red');} else {$('#q7Label').css('color','green');}
+        if (score7 == null) { $('#q8Label').css('color','red');} else {$('#q8Label').css('color','green');}
     } else {
-      Phase.submit();
+      Phase.submit(); 
     }
   });
   
@@ -474,12 +550,52 @@
           array[j] = temp;
       }
       return array;
-  }
+  };
 
   // Call to run the shuffle() function as soon as the page loads.
   document.addEventListener("DOMContentLoaded", function() {
     shuffle();
   });
 
+  
+  // ---------------------- //
+  // LIKERT BUTTON FOCUSING //
+  // ---------------------- //
+  
+  // Functions to focus, blur, or select buttons as required.
+  function Likert_focus() {
+    $('.jcat_1').css({'background':"#a7d4ef", 'color':'#FFFFFF'});
+  };
+  function Likert_blur() {
+    $('.jcat_1').css({'background':"#FFFFFF", 'color':'#3f97f6'});
+  };
+  function Likert_selecte() {
+    $('.jcat_1').css({'background':"#3f97f6", 'color':'#FFFFFF'});
+  };
+  
+  // Empty variables for storing the value of the Likert for conditional formatting below
+  var jcat_val;
+  
+  $('.jcat').focus(function() {
+    setTimeout(function(){
+      jcat_val = $('#jcat_response').val();
+      if (jcat_val != 0) {
+        if (jcat_val != 0) {
+          if (jcat_val == 1) {
+            Likert_active(); // If the Likert value is 1 (i.e., the first category) make the button selected
+          } else {
+            Likert_blur(); // If the Likert value above 1 (i.e., anything but the first category) blur the focused/selected button
+          }
+        } else {
+          //do nothing if the value is 0 as we've tabbed to it without setting a value and so need to show it's focued
+        }
+      } else {
+        Likert_focus(); // If the Likert value is 0 (i.e., it's not yet set) show the button is focused by not selected
+      }
+    },100); // Delay running this for 100ms after focusing on the Likert to give time for the likert response value to update if needed
+  });
+    
+
+console.log("hello")
 </script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

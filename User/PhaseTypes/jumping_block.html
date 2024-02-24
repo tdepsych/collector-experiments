@@ -1,0 +1,105 @@
+<!-- it can help to add a description between the --'s of what this code does -->
+<style>
+  * {
+    padding: 10px;
+    margin: 0;
+  }
+#game {
+  width: 500px;
+  height: 200px;
+  border: 1px solid black;
+  position: relative;
+}
+#character {
+  width: 20px;
+  height: 50px;
+  background-color: rgb(109, 2, 170);
+  position: absolute;
+  top: 150px;
+}
+.animate{
+  animation: jump 1s;
+} 
+@keyframes jump {
+  0%{top: 150px;}
+  30%{top: 100px;}
+  70%{top: 100px;}
+  100%{top: 150px;}
+}
+#block {
+  width: 20px;
+  height: 20px;
+  background-color: rgb(5, 128, 1);
+  position: absolute;
+  bottom: 0px;
+  left: 480px;
+  animation: slide infinite;
+  animation-duration: 1.5s;
+  border-radius: 10px;
+}
+@keyframes slide {
+  0%{left: 480px;}
+  100%{left: -40px;}
+}
+</style>
+<html>
+  <div id="game">
+    <div id="character"></div>
+    <div id="block"></div>
+    <div id="error">Whoops!</div>
+    
+  </div>
+</html>
+<script>
+  var score = 0;
+  var block_speed = "1.5s";
+  
+  function jump() {
+    if (!$('#character').hasClass('animate')) {
+      $('#character').addClass('animate'); 
+    }
+    setTimeout(function(){
+      $('#character').removeClass('animate'); 
+    }, 750);
+  }
+
+  $('body').keyup(function(e){
+    if(e.keyCode == 32){ jump(); }
+  })
+  
+  function game_reset() {
+    $('#block').css({animation: 'slide infinite'});
+    $('#block').css({'animation-duration': "1.5s"});
+    $('#block').css({display: ''});
+  }
+  
+  function speed_up() {
+    if (score % 1000 == 0 ) {
+      console.log("Speed up!")
+      block_speed = block_speed.replace("s", "");
+      block_speed = block_speed -= 0.1;
+      block_speed = block_speed + "s";
+      console.log(block_speed)
+      $('#block').css({'animation-duration': block_speed});
+    }
+  }
+
+  setInterval(function(){
+    var characterTop = $('#character').position().top;
+    var blockLeft = $('#block').position().left;
+    if(blockLeft<20 && blockLeft > 0 && characterTop >= 130){
+      $('#block').css({animation: 'none'});
+      $('#block').css({display: 'none'});
+      console.log("Game Over!!")
+      setTimeout(function(){
+        game_reset();
+      }, 100);
+    }
+    
+    if (blockLeft < 20 && blockLeft > 0 ){
+      score = score += 10;
+      console.log("Score: "+ score)
+      speed_up()
+    }
+  }, 10)
+</script>

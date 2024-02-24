@@ -1,0 +1,254 @@
+<!--'AX-CPT (3 second timings)' PhaseType-->
+<!--NOTE: If you use this task, you need to set up "cue_ms", isi_ms", "probe_ms", and "response_ms" timings via columns with those headings in the procedure sheet
+          Feedback is displayed for 500ms -->
+          
+<!-- ---development---
+[{'probe':'X'}]
+---development--- -->
+
+<style>
+  * {
+     cursor: none;
+  }
+  .update_name:focus{
+    border:0;
+  }
+  #trial_contents{
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    margin:0;
+  }
+  html, body{
+    background-color:white;
+    height: 100vh;
+    width: 100vw;
+  }
+  #response_stars, #inter_stim_interval{
+    position:absolute;
+    background-color:transparent;
+    border-color:;
+    border-radius:;
+    border-style:;
+    border-width:;
+    color:black;
+    font-size:150px;
+    z-index:0;
+    display: none;
+    font-weight: 500;
+  }
+  #cue, #probe {
+    position:absolute;
+    display:none;
+    background-color:transparent;
+    border-color:;
+    border-radius:;
+    border-style:;
+    border-width:;
+    color:black;
+    font-size:100px;
+    z-index:0;
+    font-weight: 500;
+    transform: translateY(13px);
+  }
+  #too_slow, #correct, #incorrect, #too_fast {
+    position:absolute;
+    display:none;
+    background-color:transparent;
+    border-color:;
+    border-radius:;
+    border-style:;
+    border-width:;
+    color:black;
+    font-size:50px;
+    z-index:0;
+    top:10px;
+  }
+  #too_fast {
+    transform: translateY(40px);
+  }
+  #stimulus, #target_stimulus {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 275px;
+  }
+  #wait_warning {
+    text-align: center;
+    font-style: italic;
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+    display: none;
+  }
+  .correct-icon {
+    background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/correct.svg") no-repeat;
+    position: absolute;
+    background-position: 0;
+    background-size: 50px;
+    transform: translate(109px,-18px);
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+  }
+  .incorrect-icon {
+    background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/incorrect.svg") no-repeat;
+    position: absolute;
+    background-position: 0;
+    background-size: 50px;
+    transform: translate(109px,-18px);
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+  }
+  .too-slow-icon {
+    background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/too-slow.svg") no-repeat;
+    position: absolute;
+    background-position: 0;
+    background-size: 50px;
+    transform: translate(125px,-20px);
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+  }
+  .wait-icon {
+    background: url("../../collector-experiments/User/Assets/Task_Stimuli/response_icons/wait.svg") no-repeat;
+    position: absolute;
+    background-position: 0;
+    background-size: 75px;
+    transform: translate(-30px,-160px);
+    display: inline-block;
+    height: 75px;
+    width: 75px;
+  }
+</style>
+<input type='hidden' id='keyboard_response' name='keyboard_response'/>
+<input type='hidden' id='axcpt_correct' name='axcpt_correct'/>
+<input type='hidden' id='axcpt_rt' name='axcpt_rt'/>
+<div id='trial_contents'>
+  <button id='cue' value='' class=' update_name' style='border:0; background-color:transparent'><div id="stimulus">{{cue}}</div></button>
+  <button id='inter_stim_interval' value='' class='response_stars update_name' style='border:0; background-color:transparent;cursor:none' ><div id="stimulus"></div></button>
+  <button id='probe' value='' class=' update_name' style='border:0; background-color:transparent'><div id="target_stimulus">{{probe}}</div></button>
+  <button id='response_stars' value='' class='response_stars update_name' style='border:0; background-color:transparent;cursor:none;transform:translateY(30px);' ><div id="target_stimulus">***</div></button>
+  <button id='too_slow' value='' class=' update_name' style='border:0; background-color:transparent'><div id="stimulus">Too Slow</div><span class="too-slow-icon"></span></button>
+  <div id="correct"><span id="stimulus" style="text-align:center;">Correct</span><span class="correct-icon"></span></div>
+  <div id="incorrect"><span id="stimulus" style="text-align:center;">Incorrect</span><span class="incorrect-icon"></span></div>
+  <!--<div id="too_fast"><span id="stimulus" style="text-align:center;">Wait For The Letter</span><span class="wait-icon"></span></div>-->
+</div>
+<div id="wait_warning">Wait for the second letter to appear before responding</div><span class="wait-icon"></span>
+<!-------------------------------->
+<!--Nothing but JavaScript below-->
+<!-------------------------------->
+<script>
+  var answer = "{{answer}}";
+  var use_feedback = "{{notes}}";
+  var targets_showing = false;
+  var baselineTime;
+  
+  var cue_ms = parseInt("{{cue_ms}}");
+  var isi_ms = parseInt("{{isi_ms}}");
+  var probe_ms = parseInt("{{probe_ms}}");
+  var response_ms = parseInt("{{response_ms}}");
+
+  $('.update_name').on('click',function(){
+    var class_list = this.className.split(' ');
+    class_list.splice(class_list.indexOf('end_trial'),1);
+    class_list.splice(class_list.indexOf('update_name'),1);
+    $('input[name = "' + class_list + '"]').val(this.value);
+  });
+  
+  if (use_feedback == "give_feedback") {
+    Phase.set_timer(function(){$('#cue').show(); baselineTime = (new Date()).getTime();},'250');
+    Phase.set_timer(function(){$('#cue').hide()},cue_ms+250);
+    Phase.set_timer(function(){$('#inter_stim_interval').show();},cue_ms+250);
+    Phase.set_timer(function(){$('#inter_stim_interval').hide()},cue_ms + isi_ms+250);
+    Phase.set_timer(function(){$('#probe').show();$('#wait_warning').remove();targets_showing = true;},cue_ms + isi_ms+250);
+    Phase.set_timer(function(){$('#probe').hide()},cue_ms + isi_ms + probe_ms+250);
+    Phase.set_timer(function(){$('#response_stars').show()},cue_ms + isi_ms + probe_ms+250);
+    Phase.set_timer(function(){$('#response_stars').hide()},cue_ms + isi_ms + probe_ms + response_ms+250);
+    Phase.set_timer(function(){$('#too_slow').show();targets_showing = false},cue_ms + isi_ms + probe_ms + response_ms+250);
+    Phase.set_timer(function(){Phase.submit()},cue_ms + isi_ms + probe_ms + response_ms + 750);
+  } else {
+    Phase.set_timer(function(){$('#cue').show(); baselineTime = (new Date()).getTime();},'250');
+    Phase.set_timer(function(){$('#cue').hide()},cue_ms+250);
+    Phase.set_timer(function(){$('#inter_stim_interval').show()},cue_ms+250);
+    Phase.set_timer(function(){$('#inter_stim_interval').hide()},cue_ms + isi_ms+250);
+    Phase.set_timer(function(){$('#probe').show();$('#wait_warning').remove();targets_showing = true},cue_ms + isi_ms+250);
+    Phase.set_timer(function(){$('#probe').hide()},cue_ms + isi_ms + probe_ms+250);
+    Phase.set_timer(function(){$('#response_stars').show()},cue_ms + isi_ms + probe_ms+250);
+    Phase.set_timer(function(){$('#response_stars').hide()},cue_ms + isi_ms + probe_ms + response_ms+250);
+    Phase.set_timer(function(){Phase.submit()},cue_ms + isi_ms + probe_ms + response_ms + 750);
+  }
+  
+  $(window).bind('keydown', function(event) {
+    if(event.which == 32) {
+      // do nothing as they pressed the 'space bar' - potentially a hangup from starting the task
+    } else {
+      var response = String.fromCharCode(event.which).toLowerCase()
+      var responseTime = (new Date()).getTime();
+      switch (String.fromCharCode(event.which).toLowerCase()) {
+        case 'p':
+          $("#keyboard_response").val(String.fromCharCode(event.which).toLowerCase());
+          $('#probe, #response_stars').hide();
+          break;
+        case 'l':
+          $("#keyboard_response").val(String.fromCharCode(event.which).toLowerCase());
+          $('#probe, #response_stars').hide();
+          break;
+      }
+      
+      if (use_feedback === "give_feedback") {
+        if (targets_showing) {
+          if (response === answer) {
+            $('#axcpt_rt').val(responseTime - baselineTime);
+            $('#correct').show();
+            $('#too_slow, #response_stars, #probe, #cue, #inter_stim_interval').remove();
+            $('#axcpt_correct').val('1');
+            $(window).unbind('keydown');
+            setTimeout(function(){Phase.submit()},'500');
+          } else {
+            $('#axcpt_rt').val(responseTime - baselineTime);
+            $('#incorrect').show();
+            $('#too_slow, #response_stars, #probe, #cue, #inter_stim_interval').remove();
+            $('#axcpt_correct').val('0');
+            $(window).unbind('keydown');
+            setTimeout(function(){Phase.submit()},'500');
+          }
+        } else {
+          $('#wait_warning').show();
+        }
+      } else {
+        if (targets_showing) {
+          if (response == answer) {
+            $('#axcpt_rt').val(responseTime - baselineTime);
+            $('#too_slow, #response_stars, #probe, #cue, #inter_stim_interval').remove();
+            $('#axcpt_correct').val('1');
+            $(window).unbind('keydown');
+            setTimeout(function(){Phase.submit()},'1');
+          } else {
+            $('#axcpt_rt').val(responseTime - baselineTime);
+            $('#too_slow, #response_stars, #probe, #cue, #inter_stim_interval').remove();
+            $('#axcpt_correct').val('0');
+            $(window).unbind('keydown');
+            setTimeout(function(){Phase.submit()},'1');
+          }
+        } else {
+          $('#wait_warning').show();
+        }
+      }  
+    }
+  });
+    
+  // The AX-CPT has no zoom control, as participants don't have time to change zoom level during task. This ensures the page zoom is set to their current level (or it gets reset)
+  if (parent.parent.current_zoom == null){
+    parent.parent.current_zoom = 1;
+  } else {
+    parent.parent.current_zoom = parent.parent.current_zoom;
+  }
+</script>
+<link rel="prefetch" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/correct.svg">
+<link rel="prefetch" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/incorrect.svg">
+<link rel="prefetch" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/too-slow.svg">
+<!--<link rel="prefetch" href="../../collector-experiments/User/Assets/Task_Stimuli/response_icons/wait.svg">-->
