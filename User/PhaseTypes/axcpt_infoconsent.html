@@ -7,8 +7,6 @@
 -->
 <!DOCTYPE html>
 </html>
-<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
-<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/radio_buttons.css">
 <style>
   /********************/
   /* STLYING THE TABS */
@@ -170,6 +168,8 @@
   }
 </style>
 <!--The hidden inputs shouldn't be needed as it's not multisession tracking-->
+<!--<input type="hidden" id="uniqueid" name="uniqueid" />-->
+<input type="hidden" id="testingsession" name="consent_pii_testingsession" />
 <button id="zoomOut" class="zoomBtn" tabindex="-1"></button>
 <button id="zoomIn" class="zoomBtn" tabindex="-1"></button>
 <div id="container">
@@ -205,7 +205,7 @@
       There is no financial payment for taking part in this study, but all participants who complete the study will be entered into a draw (made once data collection has finished) to win one of three, £50 Amazon gift vouchers.
       <br><br>
       <b>Are there any risks or disadvantages to taking part?</b><br>
-      As this study does not include the use of emotionally evocative stimuli, or require participants to disclose highly personal or distressing information, it is felt that there is no personal risk to you from your participation. It is prudent, however, to remind you that should you wish to withdraw from the study at any point you are free to do so without detriment or penalty. You can withdraw from the study by simply closing your internet browser window and, should you decide to withdraw from the study, any data collected from your participation will be deleted and not included in the final dataset.
+      As this study does not include the use of emotionally evocative stimuli or require participants to disclose highly personal or distressing information it is felt that there is no personal risk to you from your participation. It is prudent, however, to remind you that should you wish to withdraw from the study at any point you are free to do so without detriment or penalty. You can withdraw from the study by simply closing your internet browser window and, should you decide to withdraw from the study, any data collected from your participant will be deleted and not included in the final dataset.
       <br><br>
       <b>What will happen to my data/how will it be protected?</b><br>
       Your data will be kept anonymous, confidential, and securely stored, with only a random ID identifying it. The final dataset collected from this study will be preserved and made available in anonymised form, so that data can be re-used by others. This dataset will contain the descriptive statistics for both AX-CPTs, giving task performance scores across multiple scoring mechanisms, as well as your basic demographic information. No personally identifiable information will be contained within the dataset made available to others.
@@ -340,7 +340,6 @@
 <!-- Only Javascript beyond this point -->
 <!-- --------------------------------- -->
 <script>
-  var email_validated = false;
   
   // Current tab is set to be the first tab (0)
   var currentTab = 0; 
@@ -385,11 +384,14 @@
   }
     
   $("#consentForm").change(function() {
+    
     if ($('#c9_future_studies').is(':checked')) {
       $('#c9_future_studies').val("Yes");
     }
     
     // Assign the particpant's ID and testing sessions numbers to variables
+    $('#uniqueid').val(parent.parent.pptID);
+    $('#testingsession').val(parent.parent.sessionnumber);
     $('#participant_name').val($('#participant_nameInput').val());
     $('#participant_email').val($('#participant_emailInput').val())
     
@@ -400,8 +402,7 @@
       $("#tooltiptext").html("Please read each item carefully before accepting (ticking)<br><em>(Currently, you have incorrectly ticked an item)</em>");
     
     // This checks if all the consent items are checked and if so, activates the nextBtn to submit the form  
-    // } else if( $('.consent:checked').length == $('.consent').length && $("#participant_name").val() != '' && $("#participant_email").val() != '' ) {
-    } else if( $('.consent:checked').length == $('.consent').length && $("#participant_name").val() != '' && email_validated === true ) {
+    } else if( $('.consent:checked').length == $('.consent').length && $("#participant_name").val() != '' && $("#participant_email").val() != '' ) {
       $('.pptConsent').val('Yes');
       $("#nextBtn").attr("class", "submitBtn_active");
       $("#tooltiptext").attr("class", "tooltipHidden");
@@ -410,13 +411,12 @@
     } else if ($('.consent:checked').length < $('.consent').length || $("#participant_name").val() == '' || $("#participant_email").val() == '') {
       $("#tooltiptext").attr("class", "tooltiptext");
       $("#nextBtn").attr("class", "submitBtn");
+    
     // This just keeps the tool tip  
     } else {
       $("#tooltiptext").html("Sorry. You can only start the experiment once you have ticked all the boxes and entered your name/email above<br/><em>(indicating your happy and consenting to participate in this study)</em>");
-      console.log("broken else!!!!!!")
     }
    
-   console.log("length:" + $('#c9_future_studies:checked').length)
     if ($('#c9_future_studies:checked').length == 1) {
       $('.optional_item').css("color","black").css('opacity','1.0');
     } else {
@@ -480,14 +480,10 @@
       return false;
     } else {
       $("#tooltiptext").html("Sorry. You can only start the experiment once you have ticked all the boxes and entered your name<br/><em>(indicating your happy and consenting to participate in this study)</em>");
-      email_validated = true;
-        if( $('.consent:checked').length == $('.consent').length && $("#participant_name").val() != '') {
-          $('.pptConsent').val('Yes');
-          $("#nextBtn").attr("class", "submitBtn_active");
-          $("#tooltiptext").attr("class", "tooltipHidden");
-        }
     }
     return true;
   }
 </script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/radio_buttons.css">
