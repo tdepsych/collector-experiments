@@ -220,6 +220,8 @@ $( ".datepicker" ).datepicker({
 $("#ExperimentContainer").css("transform", "scale(1,1)");
 $("#proceed_button").on("click", function () {
   clicks++
+  console.log(clicks + " <----------- clicks")
+  console.log(page_break_management.breaks_remaining + " <------------- breaks remaining")
   var proceed = true;
   var tabs = document.getElementsByClassName("show_tab active");
   if (tabs.length > 0) {
