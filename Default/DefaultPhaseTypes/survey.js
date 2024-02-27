@@ -6,8 +6,6 @@
  * Setup a prepend variable
  */
 var survey_prepend = "survey_";
-var clicks = 0;
-var survey_pages_used = false;
 
 /*
  * detect if testing or not
@@ -65,7 +63,6 @@ types_list = [
   "instruct",
   "likert",
   "number",
-  "page_break",
   "para",
   "radio",
   "radio_vertical",
@@ -220,7 +217,6 @@ $( ".datepicker" ).datepicker({
 
 $("#ExperimentContainer").css("transform", "scale(1,1)");
 $("#proceed_button").on("click", function () {
-  clicks++
   var proceed = true;
   var tabs = document.getElementsByClassName("show_tab active");
   if (tabs.length > 0) {
@@ -270,14 +266,6 @@ $("#proceed_button").on("click", function () {
           .addClass("text-success");
       }
     }
-  }
-
-  if (survey_pages_used && clicks == page_break_management.breaks_remaining && proceed) {
-    $("#proceed_button").text("Proceed");
-  } else if (survey_pages_used && clicks != page_break_management.breaks_remaining && proceed) {
-    $("#proceed_button").text("Next Page");
-  } else {
-    //do nothing;
   }
 
   if (current_tab === survey_obj.tabs && proceed) {
@@ -472,21 +460,30 @@ function load_survey(survey, survey_outline) {
 }
 
 function process_question(row, row_no) {
-  console.log(row)
   //row.values = row.values == "" ? row.answers : row.values;
-  if (row.type === "page_break") {
+  if (row_check("page_break", row)) {
     page_break_management.breaks_remaining++;
-    survey_pages_used = true;
-    question_td = "</tr></table><table id='table" + page_break_management.breaks_remaining + "' style='display:none' class='table_break'></tr>";
+    question_td =
+      "</tr></table><table id='table" +
+      page_break_management.breaks_remaining +
+      "' style='display:none' class='table_break'></tr>";
   } else {
-    if ((typeof row["values"] !== "undefined") & (typeof row["values"] !== "function")) {
-      value_array = row["values"].split("|"); //to address microsoft edge issue.
+    if (
+      (typeof row["values"] !== "undefined") &
+      (typeof row["values"] !== "function")
+    ) {
+      //to address microsoft edge issue.
+      value_array = row["values"].split("|");
     } else {
       value_array = "";
     }
 
     if (row["item_name"].indexOf(" ") !== -1) {
-      appropriate_message("Please note that the 'item name' '" + row["item_name"] + "' is invalid because it has at least one space. Please use underscores instead of spaces. If you're not the creator of this task, please contact the person who created it.");
+      appropriate_message(
+        "Please note that the 'item name' '" +
+          row["item_name"] +
+          "' is invalid because it has at least one space. Please use underscores instead of spaces. If you're not the creator of this task, please contact the person who created it."
+      );
     }
 
     /*
@@ -529,13 +526,12 @@ function process_question(row, row_no) {
         .addClass("row_" + row_no)
         .prop("id", survey_id + "_response")
         .prop("name", survey_id + "_response")
-        .val("")[0].outerHTML;
-      question_td = question_td += 
-        $("<input>")
-        .attr("type", "hidden")
-        .prop("id", survey_id + "_value")
-        .prop("name", survey_id + "_value")
-        .val("")[0].outerHTML;
+        .val("")[0].outerHTML; // +
+      // $("<input>")
+      //   .attr("type", "hidden")
+      //   .prop("id", survey_id + "_value")
+      //   .prop("name", survey_id + "_value")
+      //   .val("")[0].outerHTML;
 
     /*
      * Survey settings
@@ -555,6 +551,87 @@ function process_question(row, row_no) {
     }
 
     switch (row["type"].toLowerCase()) {
+      case "page_start":
+        //var tabs_html = $("#survey_tabs").html();
+        if (settings.tab_hor_vert === "horizontal") {
+          span_div = "span";
+        } else if (settings.tab_hor_vert === "vertical") {
+          span_div = "div";
+        }
+        if (typeof survey_obj.tabs === "undefined") {
+          survey_obj.tabs = 0;
+        } else {
+          survey_obj.tabs++;
+        }
+        if (survey_obj.tabs === 0) {
+          //i.e. is the first tab
+          active_button = "btn-outline-primary active";
+        } else {
+          active_button = "btn-secondary disabled";
+        }
+        if (settings.tab_hor_vert === "vertical") {
+          var vert_btn_block = "btn-block";
+        } else {
+          var vert_btn_block = "";
+        }
+        $("#survey_tabs").append(
+          $("<" + span_div + ">")
+            .addClass("btn-group-toggle")
+            .attr("data-toggle", "buttons")
+            .append(
+              $("<label>")
+                .addClass("btn")
+                .addClass("show_tab")
+                .html(row["text"])
+                .prop("id", "tab_" + survey_obj.tabs + "_button")
+                .append(
+                  $("<input>")
+                    .attr("autocomplete", "off")
+                    .attr("checked", true)
+                    .attr("type", "checkbox")
+                )
+            )[0].outerHTML
+        );
+
+        page_break_indexes = [];
+        survey_obj.data.forEach(function (row, this_index) {
+          if (
+            typeof row.type !== "undefined" &&
+            row.type.toLowerCase() === "page_start"
+          ) {
+            page_break_indexes.push(this_index);
+          }
+        });
+
+        if (survey_obj.tabs > 0) {
+          question_td
+            .append(
+              $("<div>")
+                .addClass("survey_page")
+                .css("display", "none")
+                .prop("id", "tab_" + survey_obj.tabs)
+            )
+            .append(
+              $("<table>")
+                .addClass("table_break")
+                .prop("id", "table_" + survey_obj.tabs)
+                .append("<tr>")
+            );
+        } else {
+          question_td
+            .append(
+              $("<div>")
+                .addClass("survey_page")
+                .prop("id", "tab_" + survey_obj.tabs)
+            )
+            .append(
+              $("<table>")
+                .addClass("table_break")
+                .prop("id", "table_" + survey_obj.tabs)
+                .append("<tr>")
+            );
+        }
+        break;
       case "checkbox":
       case "checkbox_vertical":
         question_td += write("checkbox_vertical", row_x);
@@ -693,8 +770,8 @@ function process_question(row, row_no) {
       //var row_html="<td colspan='2'>"+question_td+"</td>";
     } else {
       if (
-        (row["text"].toLowerCase() === "page_break") |
-        (row["type"].toLowerCase() === "page_break")
+        (row["text"].toLowerCase() === "page_start") |
+        (row["type"].toLowerCase() === "page_start")
       ) {
         row_html = question_td;
       } else {
@@ -930,6 +1007,19 @@ function reveal_answers(this_element) {
   }
 }
 
+function row_check(type, row) {
+  if ((type = "page_break")) {
+    return (
+      typeof row["text"] !== "undefined" &&
+      typeof row["type"] !== "undefined" &&
+      (row["text"].toLowerCase() === "page_break") |
+        (row["type"].toLowerCase() === "page_break")
+    );
+  } else if ((type = "")) {
+    //do nothing
+  }
+}
+
 // http://stackoverflow.com/questions/962802#962890
 function shuffle(array) {
   var tmp,
@@ -987,7 +1077,14 @@ function update_score() {
         var multiplier = parseFloat(normal_reverse.replace("r", ""));
         if (normal_reverse.indexOf("r") === 0) {
           //reverse the values
-          this_value = process_score(row_no,"values",this_response,item,"r");
+
+          this_value = process_score(
+            row_no,
+            "values",
+            this_response,
+            item,
+            "r"
+          );
         } else {
           this_value = process_score(row_no, "values", this_response, item);
         }
@@ -999,7 +1096,13 @@ function update_score() {
 
         if (normal_reverse.indexOf("r") === 0) {
           //reverse the values
-          this_value = process_score(row_no,values_col,this_response,item,"r");
+          this_value = process_score(
+            row_no,
+            values_col,
+            this_response,
+            item,
+            "r"
+          );
         } else {
           this_value = process_score(row_no, values_col, this_response, item);
         }
@@ -1516,9 +1619,6 @@ if (typeof module !== "undefined") {
   if (typeof Phase !== "undefined") {
     Phase.set_timer(function () {
       load_survey(current_survey, "survey_outline");
-      if (survey_pages_used) {
-        $("#proceed_button").text("Next Page");
-      }
     }, 100);
   } else {
     load_survey(current_survey, "survey_outline");

@@ -545,7 +545,7 @@
         },
         "conditions": "name,notes,stimuli,procedure,fullscreen,participant_id,end_message,start_message,buffer,skip_quality,redcap_url,\r\nsona,,words.csv,sona.csv,on,random,,,5,yes,https://xo019390.webs.act.reading.ac.uk/redcap/collectorDev.php,\r\namzn,,words.csv,amzn.csv,on,random,,,5,yes,https://xo019390.webs.act.reading.ac.uk/redcap/collectorDev.php,",
         "all_stims": {
-          "words.csv": "word,\r\nanus,\r\narse,\r\narsehole,\r\nballs,\r\nbastard,\r\nbellend,\r\nbitch,\r\nbloody,\r\nblowjob,\r\nbollocks,\r\nboner,\r\nboobs,\r\nbreasts,\r\nbugger,\r\nbullshit,\r\nbum,\r\nbuttfuck,\r\ncastrate,\r\nclimax,\r\nclit,\r\ncock,\r\ncocksucker,\r\ncoitus,\r\ncrap,\r\ncum,\r\ncunnilingus,\r\ncunt,\r\ndamn,\r\ndefecate,\r\ndick,\r\ndickhead,\r\ndildo,\r\nejaculate,\r\nexcrement,\r\nfanny,\r\nfart,\r\nfellatio,\r\nfornicate,\r\nfuck,\r\ngit,\r\ngoddamn,\r\nhell,\r\nhorny,\r\nidiot,\r\njism,\r\nknickers,\r\nknob,\r\nmasturbate,\r\nminge,\r\nminger,\r\nmotherfucker,\r\nmoron,\r\nnipples,\r\norgasm,\r\npee,\r\npenis,\r\npillock,\r\npiss,\r\nprat,\r\nprick,\r\npussy,\r\nrimjob,\r\nscrew,\r\nscrotum,\r\nsemen,\r\nshag,\r\nshit,\r\nshithead,\r\nslut,\r\nsnatch,\r\nsod,\r\nsodomise,\r\nstupid,\r\ntesticles,\r\ntits,\r\ntosser,\r\ntosspot,\r\nturd,\r\ntwat,\r\nvagina,\r\nwanker,\r\nwankstain,\r\nwhore,\r\nalive,\r\nangel,\r\nbrave,\r\ncarefree,\r\ncolour,\r\nexercise,\r\nfame,\r\nflirt,\r\nheaven,\r\nhonest,\r\njoyful,\r\npet,\r\nprofit,\r\nquick,\r\nriches,\r\nsecure,\r\nsilk,\r\nsnow,\r\nstar,\r\nsunrise,\r\ntune,\r\nwish,\r\nace,\r\nbird,\r\nbreeze,\r\nbright,\r\ncake,\r\ngrin,\r\nhopeful,\r\njoke,\r\nkindness,\r\nlively,\r\nmovie,\r\npeace,\r\npillow,\r\nrainbow,\r\nsnuggle,\r\nthrill,\r\n,"
+          "words.csv": "word,\r\nscrotum,\r\nbreasts,\r\ncock,\r\nfornicate,\r\ncunt,\r\ngit,\r\nsodomise,\r\nbitch,\r\nshithead,\r\nclit,\r\nminger,\r\ncastrate,\r\ntosser,\r\ncum,\r\nminge,\r\npillock,\r\nbugger,\r\nexcrement,\r\nshag,\r\ndefecate,\r\nbuttfuck,\r\nflirt,\r\nhopeful,\r\nsnuggle,\r\ntune,\r\nsunrise,\r\nfame,\r\ncolour,\r\nstar,\r\nheaven,\r\nnipples,\r\nknickers,\r\nprick,\r\nmotherfucker,\r\nscrew,\r\ncunnilingus,\r\ndickhead,\r\ntits,\r\nbellend,\r\nfart,\r\ngoddamn,\r\nhorny,\r\nwanker,\r\nsnatch,\r\nvagina,\r\nboner,\r\nsod,\r\ndick,\r\nbollocks,\r\nfellatio,\r\nbum,\r\nriches,\r\nrainbow,\r\nbrave,\r\nace,\r\nprofit,\r\nbreeze,\r\ngrin,\r\nkindness,\r\nsilk,\r\ncocksucker,\r\nmoron,\r\nknob,\r\narse,\r\npenis,\r\npussy,\r\nidiot,\r\nballs,\r\npiss,\r\nsemen,\r\nbloody,\r\nfuck,\r\nstupid,\r\nbullshit,\r\nslut,\r\ntesticles,\r\nanus,\r\nrimjob,\r\ntwat,\r\nprat,\r\nwhore,\r\njoke,\r\nalive,\r\nbright,\r\npet,\r\nangel,\r\njoyful,\r\nmovie,\r\nhonest,\r\nexercise,\r\npee,\r\ncoitus,\r\nclimax,\r\ntosspot,\r\ndamn,\r\norgasm,\r\narsehole,\r\nejaculate,\r\ncrap,\r\nhell,\r\nboobs,\r\nturd,\r\nblowjob,\r\nwankstain,\r\nshit,\r\nbastard,\r\ndildo,\r\nfanny,\r\njism,\r\nmasturbate,\r\nbird,\r\npeace,\r\nsecure,\r\nwish,\r\nsnow,\r\nlively,\r\npillow,\r\nquick,\r\ncake,\r\ncarefree,\r\n,"
         },
         "location": "tdepsych/collector-experiments/janschewitz",
         "public_key": "ZIEuVRKYOLO6WwFULPPZwTRcHAjIYAjbIaCzNwwNLWc=",
@@ -1820,7 +1820,7 @@
             ],
             [
               "Instructions",
-              "<h2><span>Demographic Information</span></h2><br><br>\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer questions 6-9, as we cannot include your data in the final dataset if you do not provide and answer to these questions.</span><br/><br/>",
+              "<h2><span>Demographic Information</span></h2><br><br>\r\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer questions 6-9, as we cannot include your data in the final dataset if you do not provide and answer to these questions.</span><br/><br/>",
               "instruct",
               "",
               "",
@@ -3389,7 +3389,7 @@
         ],
         [
           "Instructions1",
-          "<h2><span>Self-Evaluation Questionnaire</span></h2><br>\n<span class=\"instruc\">Thank you for making your word ratings. Please think back to the last word you repeated aloud for 20 second. Take a moment to think how you felt <span style=\"text-decoration: underline;\">after</span> repeating the word?<br><br>To respond, please rate each statement below by clicking on a number from 1 to 7, whereby <b>1 = you strongly disagree</b> with the statement, while <b>7 = you strongly agree</b> with the statement.</span><br/><br/>",
+          "<h2><span>Self-Evaluation Questionnaire</span></h2><br>\r\n<span class=\"instruc\">Thank you for making your word ratings. Please think back to the last word you repeated aloud for 20 second. Take a moment to think how you felt <span style=\"text-decoration: underline;\">after</span> repeating the word?<br><br>To respond, please rate each statement below by clicking on a number from 1 to 7, whereby <b>1 = you strongly disagree</b> with the statement, while <b>7 = you strongly agree</b> with the statement.</span><br/><br/>",
           "instruct",
           "",
           "",
@@ -3599,7 +3599,7 @@
         ],
         [
           "Instructions",
-          "<h2><span>Demographic Information</span></h2><br><br>\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer question 6, as we cannot include your data in the final dataset if you are not a native English speaker due to the differences in emotional processing of swearwords that occurs in non-native speakers.</span><br/><br/>",
+          "<h2><span>Demographic Information</span></h2><br><br>\r\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer question 6, as we cannot include your data in the final dataset if you are not a native English speaker due to the differences in emotional processing of swearwords that occurs in non-native speakers.</span><br/><br/>",
           "instruct",
           "",
           "",
@@ -3711,7 +3711,7 @@
         ],
         [
           "Instructions",
-          "<h2><span>Demographic Information</span></h2><br><br>\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer questions 6-9, as we cannot include your data in the final dataset if you do not provide and answer to these questions.</span><br/><br/>",
+          "<h2><span>Demographic Information</span></h2><br><br>\r\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer questions 6-9, as we cannot include your data in the final dataset if you do not provide and answer to these questions.</span><br/><br/>",
           "instruct",
           "",
           "",
@@ -5230,7 +5230,7 @@
         ],
         [
           "Instructions",
-          "<h2><span>Demographic Information</span></h2><br><br>\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case where possible).<br/><br/>",
+          "<h2><span>Demographic Information</span></h2><br><br>\r\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case where possible).<br/><br/>",
           "instruct",
           "",
           "",
