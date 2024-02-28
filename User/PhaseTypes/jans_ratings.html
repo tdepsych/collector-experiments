@@ -437,16 +437,16 @@
   </div>
   <!--Category question - not shuffled-->
     <div class="word_item">
-      <p id="q8Label"><b>Category:</b> Based on <b>your interpretation</b> of the the word <span style="color: #3f97f6;font-weight: bold;">{{word}}</span>, which <b>category</b> does the word best fit. If you believe the word <u>is not</u> a taboo/swearword, please select 'Non-Taboo' even if another would apply.</p>
+      <p id="q8Label"><b>Category:</b> Based on your <b>interpretation</b> of the the word <span style="color: #3f97f6;font-weight: bold;">{{word}}</span>, please select the <b>category</b> you feel it best fits into.<br><span style="font-size: 12pt; font-style: italic;">(If you believe the word <u>is not</u> a taboo/swearword, please select 'Non-Taboo' even if another category would apply.)</span></p>
         <div id="likert-line"></div>
         <div id="likert">
-          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="6"/><span class="jcat_2 jcat">Not Sure</span></label>
           <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="1"/><span class="jcat_1 jcat">Religious</span></label>
           <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="2"/><span class="jcat_2 jcat">Sexual</span></label>
           <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="3"/><span class="jcat_2 jcat">Body</span></label>
           <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="4"/><span class="jcat_2 jcat">Slur</span></label>
+          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="6"/><span class="jcat_2 jcat">Not Sure</span></label>
           <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="5"/><span class="jcat_2 jcat">Non-Taboo</span></label>
-                 <input type="hidden" id="jcat_response" name="jcat" class="responseValues" value="0"/>
+            <input type="hidden" id="jcat_response" name="jcat" class="responseValues" value="0"/>
         </div>
         <br>
       <hr>
@@ -608,8 +608,6 @@
       }
     },100); // Delay running this for 100ms after focusing on the Likert to give time for the likert response value to update if needed
   });
-    
 
-console.log("hello")
 </script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
