@@ -6,7 +6,7 @@ Sex,2. What is your biological sex?,radio_vertical,Male|Female|Non-binary|Prefer
 Ethnicity,3. I identify my ethnicity as:,radio,White|Mixed/Multiple|Asian|Black/African/Caribbean|Chinese|Arab|Other|Prefer not to say,No,1|2|3|4|5|6|7|0,,
 Education,4. What is the highest level of education you have completed?,radio,"GCSEs or equivalent|A-Levels or equivalent|Undergraduate (e.g., BSc)|Postgraduate (e.g., MSc)|Doctoral degree|Other|Prefer not to say",No,1|2|3|4|5|6|0,,
 Employment,5. What is your current employment status?,radio,Full-time employment|Part-time employment|Unemployed/Retired/Full-time education|Prefer not to say,No,1|2|3|0,,
-NativeSpeaker,"6. Are you a native British English Speaker<br><span class=""minor""><em>(defined as someone who was born and raised in the UK, <br/>or moved to the UK before the age of 2)</em></span>",radio,Yes|No,No,1|2,,
+NativeSpeaker,"6. Are you a native British English Speaker<br><span class=""minor""><em>(defined as being born and raised in the UK, or moved to the UK before the age of 2)</em></span>",radio,Yes|No,No,1|2,,
 Religion,"7. How religious do you consider yourself to be?<br><span class=""minor""><em>(1 = Not Religious, 9 =  Devout)</em></span>",radio_horizontal,1|2|3|4|5|6|7|8|9,Yes,1|2|3|4|5|6|7|8|9,,
 Control,"8. When I swear out loud in response to pain/frustration, how out of control do you feel?<br><span class=""minor""><em>(1 = Very out of control, 9 = Very in control)</em></span>",radio_horizontal,1|2|3|4|5|6|7|8|9,Yes,1|2|3|4|5|6|7|8|9,,
 PCLS,10. Are you a student or staff member in the School of Psychology & Clinical Language Sciences at the University of Reading?,radio,Yes|No,No,1|2,,

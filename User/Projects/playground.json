@@ -1,6 +1,6 @@
 {
   "all_procs": {
-    "procedure_1.csv": "item,phasetype,survey,max_time,text,task_title,task_body_text,shuffle_1,weight,\r\n0,intro_static,,user,,,,,,\r\n0,instruct,,user,,,,,0,\r\n0,survey,autism_quotient.csv,user,,,,,0,\r\n0,tde_survey,autism_quotient.csv,user,,,,,0,\r\n0,task_bookend,,user,Start,BART - Probabilistic Scoring,\"The following BART task is set up to use probabilistic scoring. This means that every the balloon is pumped it recalculates if the balloon should burst and then compares that to the number of pumps so far. The idea being that as the number of pumps increases, the probability of the balloon bursting on the next pump also increases. However, this coding introduces between participant differences in the level of risk they face. <br><br>You have 10 balloons to score as many points as possible. Click \"\"inflate balloon\"\" to pump up the balloon and click \"\"Collect Points\"\" to bank the points scored for that balloon and move on to the next.\",,,\r\n0,bart_rs,,user,,,,,,\r\n0,bart_rs,,user,,,,,0,\r\n0,bart_rs,,user,,,,,0,\r\n0,task_bookend,,user,Start,BART - Fixed Risk Scoring,\"The following BART task is set up to use a fixed risk scoring. This means that while the number of pumps allowed before the balloon bursts will vary across the 10 balloons, the total risk faced by each participant is set to be the same across all participants.<br><br>Once again, you have 10 balloons to score as many points as possible. Click \"\"inflate balloon\"\" to pump up the balloon and click \"\"Collect Points\"\" to bank the points scored for that balloon and move on to the next.\",,,\r\n0,bart_ah,,user,,,,,,\r\n0,bart_ah,,user,,,,,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,save_data,,user,,,,,0,",
+    "procedure_1.csv": "item,phasetype,survey,max_time,text,task_title,task_body_text,shuffle_1,weight,\r\n0,intro_static,,user,,,,,,\r\n0,instruct,,user,,,,,0,\r\n0,survey,autism_quotient.csv,user,,,,,0,\r\n0,tde_survey,jans_demo.csv,user,,,,,0,\r\n0,task_bookend,,user,Start,BART - Probabilistic Scoring,\"The following BART task is set up to use probabilistic scoring. This means that every the balloon is pumped it recalculates if the balloon should burst and then compares that to the number of pumps so far. The idea being that as the number of pumps increases, the probability of the balloon bursting on the next pump also increases. However, this coding introduces between participant differences in the level of risk they face. <br><br>You have 10 balloons to score as many points as possible. Click \"\"inflate balloon\"\" to pump up the balloon and click \"\"Collect Points\"\" to bank the points scored for that balloon and move on to the next.\",,,\r\n0,bart_rs,,user,,,,,,\r\n0,bart_rs,,user,,,,,0,\r\n0,bart_rs,,user,,,,,0,\r\n0,task_bookend,,user,Start,BART - Fixed Risk Scoring,\"The following BART task is set up to use a fixed risk scoring. This means that while the number of pumps allowed before the balloon bursts will vary across the 10 balloons, the total risk faced by each participant is set to be the same across all participants.<br><br>Once again, you have 10 balloons to score as many points as possible. Click \"\"inflate balloon\"\" to pump up the balloon and click \"\"Collect Points\"\" to bank the points scored for that balloon and move on to the next.\",,,\r\n0,bart_ah,,user,,,,,,\r\n0,bart_ah,,user,,,,,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,save_data,,user,,,,,0,",
     "procedure_2.csv": "item,phasetype,max_time,text,shuffle_1,\r\n2,instruct,user,<h1>This is experiment 2</h1><br><br>,off,",
     "procedure_3.csv": "item,phasetype,max_time,text,shuffle_1,\r\n2,instruct,user,<h1>This is experiment 3</h1><br><br>,off,"
   },
@@ -855,6 +855,148 @@
         "yes"
       ],
       [
+        ""
+      ]
+    ],
+    "jans_demo.csv": [
+      [
+        "item_name",
+        "text",
+        "type",
+        "answers",
+        "optional",
+        "values",
+        "side_by_side",
+        ""
+      ],
+      [
+        "Instructions",
+        "<h2><span>Demographic Information</span></h2><br><br>\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer questions 6-9, as we cannot include your data in the final dataset if you do not provide and answer to these questions.</span><br/><br/>",
+        "instruct",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Age",
+        "1. Please enter your age (in years)<br><span class=\"minor\"><em>(the input only accepts numbers e.g., 21)</em></span>",
+        "number",
+        "",
+        "Yes",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Sex",
+        "2. What is your biological sex?",
+        "radio_vertical",
+        "Male|Female|Non-binary|Prefer not to say",
+        "No",
+        "1|2|3|0",
+        "",
+        ""
+      ],
+      [
+        "Ethnicity",
+        "3. I identify my ethnicity as:",
+        "radio",
+        "White|Mixed/Multiple|Asian|Black/African/Caribbean|Chinese|Arab|Other|Prefer not to say",
+        "No",
+        "1|2|3|4|5|6|7|0",
+        "",
+        ""
+      ],
+      [
+        "Education",
+        "4. What is the highest level of education you have completed?",
+        "radio",
+        "GCSEs or equivalent|A-Levels or equivalent|Undergraduate (e.g., BSc)|Postgraduate (e.g., MSc)|Doctoral degree|Other|Prefer not to say",
+        "No",
+        "1|2|3|4|5|6|0",
+        "",
+        ""
+      ],
+      [
+        "Employment",
+        "5. What is your current employment status?",
+        "radio",
+        "Full-time employment|Part-time employment|Unemployed/Retired/Full-time education|Prefer not to say",
+        "No",
+        "1|2|3|0",
+        "",
+        ""
+      ],
+      [
+        "NativeSpeaker",
+        "6. Are you a native British English Speaker<br><span class=\"minor\"><em>(defined as being born and raised in the UK, or moved to the UK before the age of 2)</em></span>",
+        "radio",
+        "Yes|No",
+        "No",
+        "1|2",
+        "",
+        ""
+      ],
+      [
+        "Religion",
+        "7. How religious do you consider yourself to be?<br><span class=\"minor\"><em>(1 = Not Religious, 9 =  Devout)</em></span>",
+        "radio_horizontal",
+        "1|2|3|4|5|6|7|8|9",
+        "Yes",
+        "1|2|3|4|5|6|7|8|9",
+        "",
+        ""
+      ],
+      [
+        "Control",
+        "8. When I swear out loud in response to pain/frustration, how out of control do you feel?<br><span class=\"minor\"><em>(1 = Very out of control, 9 = Very in control)</em></span>",
+        "radio_horizontal",
+        "1|2|3|4|5|6|7|8|9",
+        "Yes",
+        "1|2|3|4|5|6|7|8|9",
+        "",
+        ""
+      ],
+      [
+        "PCLS",
+        "10. Are you a student or staff member in the School of Psychology & Clinical Language Sciences at the University of Reading?",
+        "radio",
+        "Yes|No",
+        "No",
+        "1|2",
+        "",
+        ""
+      ],
+      [
+        "HorizontalRule",
+        "<hr>",
+        "instruct",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "demo",
+        "",
+        "redcap_pii",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
         ""
       ]
     ]
