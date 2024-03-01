@@ -1821,7 +1821,7 @@
             ],
             [
               "Instructions",
-              "<h2><span>Demographic Information</span></h2><br><br>\r\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer questions 6-9, as we cannot include your data in the final dataset if you do not provide and answer to these questions.</span><br/><br/>",
+              "<h2><span>Demographic Information</span></h2><br><br>\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer questions 6-9, as we cannot include your data in the final dataset if you do not provide and answer to these questions.</span><br/><br/>",
               "instruct",
               "",
               "",
@@ -3512,7 +3512,7 @@
         ],
         [
           "Instructions1",
-          "<h2><span>Self-Evaluation Questionnaire</span></h2><br>\r\n<span class=\"instruc\">Thank you for making your word ratings. Please think back to the last word you repeated aloud for 20 second. Take a moment to think how you felt <span style=\"text-decoration: underline;\">after</span> repeating the word?<br><br>To respond, please rate each statement below by clicking on a number from 1 to 7, whereby <b>1 = you strongly disagree</b> with the statement, while <b>7 = you strongly agree</b> with the statement.</span><br/><br/>",
+          "<h2><span>Self-Evaluation Questionnaire</span></h2><br>\n<span class=\"instruc\">Thank you for making your word ratings. Please think back to the last word you repeated aloud for 20 second. Take a moment to think how you felt <span style=\"text-decoration: underline;\">after</span> repeating the word?<br><br>To respond, please rate each statement below by clicking on a number from 1 to 7, whereby <b>1 = you strongly disagree</b> with the statement, while <b>7 = you strongly agree</b> with the statement.</span><br/><br/>",
           "instruct",
           "",
           "",
@@ -3722,7 +3722,7 @@
         ],
         [
           "Instructions",
-          "<h2><span>Demographic Information</span></h2><br><br>\r\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer question 6, as we cannot include your data in the final dataset if you are not a native English speaker due to the differences in emotional processing of swearwords that occurs in non-native speakers.</span><br/><br/>",
+          "<h2><span>Demographic Information</span></h2><br><br>\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer question 6, as we cannot include your data in the final dataset if you are not a native English speaker due to the differences in emotional processing of swearwords that occurs in non-native speakers.</span><br/><br/>",
           "instruct",
           "",
           "",
@@ -3834,7 +3834,7 @@
         ],
         [
           "Instructions",
-          "<h2><span>Demographic Information</span></h2><br><br>\r\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer questions 6-9, as we cannot include your data in the final dataset if you do not provide and answer to these questions.</span><br/><br/>",
+          "<h2><span>Demographic Information</span></h2><br><br>\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer questions 6-9, as we cannot include your data in the final dataset if you do not provide and answer to these questions.</span><br/><br/>",
           "instruct",
           "",
           "",
@@ -5333,7 +5333,7 @@
         ],
         [
           "Instructions",
-          "<h2><span>Demographic Information</span></h2><br><br>\r\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case where possible).<br/><br/>",
+          "<h2><span>Demographic Information</span></h2><br><br>\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case where possible).<br/><br/>",
           "instruct",
           "",
           "",
