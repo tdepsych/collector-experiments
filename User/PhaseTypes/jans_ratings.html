@@ -441,7 +441,7 @@
   </div>
   <!--Category question - not shuffled-->
     <div class="word_item">
-      <p id="q8Label"><b>Category:</b> Based on your <b>interpretation</b> of the the word <span style="color: #3f97f6;font-weight: bold;">{{word}}</span>, please select the <b>category</b> you feel it best fits into.<br><span style="font-size: 12pt; font-style: italic;color: #636363;">Note: If you interpret the word as <u>not being a swearword</u> (e.g. 'jugs' as a container rather than a term for breasts), please select 'Non-Taboo' even if another category also applies.</span></p>
+      <p id="q8Label"><b>Category:</b> Based on <b>your interpretation</b> of the the word <span style="color: #3f97f6;font-weight: bold;">{{word}}</span>, please select the <b>category</b> you feel it best fits into.<br><span style="font-size: 12pt; font-style: italic;color: #636363;">Note: If you interpret the word as being <u>socially acceptable</u> (e.g. you would interpret 'jugs' as meaning containers rather than a slang term for breasts), please select 'Non-Taboo' even if another category would apply.</span></p>
         <div id="likert-line"></div>
         <div id="likert">
           <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="1"/><span class="jcat_1 jcat">Religious</span></label>
@@ -548,7 +548,7 @@
     });
   }
 
-/*  function shuffle_category() {
+  function shuffle_category() {
     var container = document.getElementById("likert");
     var elementsArray = Array.prototype.slice.call(container.getElementsByClassName('jcat_container'));
     console.log(elementsArray);
@@ -556,7 +556,7 @@
     elementsArray.forEach(function(element){
       container.appendChild(element);
     });
-  }*/
+  }
 
   // Function to shuffle the array created in shuffle() - you can ignore
   function shuffleArray(array) {
