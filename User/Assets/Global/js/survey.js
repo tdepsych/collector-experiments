@@ -261,9 +261,9 @@ $("#proceed_button").on("click", function () {
       }
     }
   }
-  if (survey_pages_used && clicks == page_break_management.breaks_remaining && proceed) {
+  if (survey_pages_used && clicks >= page_break_management.breaks_remaining && proceed) {
     $("#proceed_button").text("Proceed");
-  } else if (survey_pages_used && clicks != page_break_management.breaks_remaining && proceed) {
+  } else if (survey_pages_used && clicks < page_break_management.breaks_remaining && proceed) {
     $("#proceed_button").text("Next Page");
   } else {
     //do nothing;
