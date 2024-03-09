@@ -1,0 +1,143 @@
+<!--
+---development---
+[
+{'task_title':'Experiment Feedback'}
+]
+---development---
+-->
+<!-- it can help to add a description between the --'s of what this code does -->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  #container {
+    margin-top:5%;
+  }
+  #container p {
+    text-align: center;
+    width: 92%!important;
+  }
+  #proceed_button{
+    margin-bottom: 50px!important;
+    transform: translateX(-15px)!important;
+  }
+  #collector_phase_timer {
+    display: none;
+  }
+  .feedback {
+    border-color: #20669b;
+    border-radius: 5px;
+  }
+  /* Styling Below Manages the Progress Bar */
+  .progressbar {
+    width: 30%;
+    margin: 0 auto;
+    border: solid 1px #000;
+    border-radius: 10px;
+  }
+  .progressbar .inner {
+    height: 15px;
+    border-radius: 10px;
+    opacity: 0.25;
+    animation: progressbar-countdown;
+    animation-duration: 10s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+    animation-timing-function: linear;
+  }
+  @keyframes progressbar-countdown {
+    0% {
+      width: 100%;
+      background: #006599;
+    }
+    100% {
+      width: 0%;
+      background: #006599;
+    }
+  }
+</style>
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <h2><span id="uppercase">{{task_title}}</span></h2>
+  <br><p>{{task_body_text}}</p><br>
+  <!--<form>-->
+  <div id="items">
+    <textarea id="feedback" class="feedback" rows="10" cols="100" placeholder="Please enter any feedback..."></textarea></textarea>
+    <input type="hidden" id="feedback_response" name="feedback" class="responseValues" value="0"/>
+  </div>
+  <!--</form>-->
+  <button class="btn btn-primary" id="proceed_button">Proceed</button>
+</div>
+    <div id='progressbar1' class="progressbar">
+      <div id='progressbar1_inner' class="inner" style="animation-duration: 300s; animation-play-state: paused;"></div>
+    </div>
+<script>
+  
+  var score1 = null;
+  var task_time_limit = {{max_time}} - 1;
+  var progress_time = (task_time_limit + 's')
+
+  // ------------------ //
+  // START PROGRESS BAR //
+  // ------------------ //
+
+  function startProgressbar(id, duration) {
+    var progressbarinner = document.getElementById('progressbar1_inner');
+    progressbarinner.style.animationDuration = duration;
+    progressbarinner.style.animationPlayState = 'running';
+  }
+  
+  // --------------- // 
+  // SAVE TEXT VALUE //
+  // --------------- //
+  
+  $('#container').on("keydown", function(){
+    startProgressbar('progressbar1', progress_time);
+    setTimeout(() => {
+      score1 = $('.feedback').val();
+      if (score1 == "") {
+        score1 = null;
+        console.log(score1)
+      } else {
+        $('#feedback_response').val(score1);
+        console.log(score1)
+      }
+    }, "10");
+  });
+  
+  // -------------- //
+  // SUBMIT ACTIONS //
+  // -------------- //
+  
+  $('#proceed_button').click(function() {
+    
+    // Just double check that anyone not providing feedback is because they don't have any to leave
+    if (score1 == null) {
+      bootbox.confirm({
+        message: 'Are you sure you wish to proceed without leaving any additional feedback regarding how you found the study?',
+        buttons: {
+          confirm: {
+            label: 'Yes',
+            className: 'btn-success'
+          },
+          cancel: {
+            label: 'No',
+            className: 'btn-danger'
+          }
+        },
+        callback: function (result) {
+          console.log('This was logged in the callback: ' + result);
+          if (result) {
+            Phase.submit();
+          } else {
+            // do nothing as cancelled
+          }
+        }
+      });
+    } else {
+      Phase.submit(); 
+    }
+  });
+
+</script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
