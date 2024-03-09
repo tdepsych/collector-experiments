@@ -1,0 +1,281 @@
+<!--
+---development---
+[
+{'task_title':'Task Difficulty Rating'}
+]
+---development---
+-->
+<!-- it can help to add a description between the --'s of what this code does -->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/radio_buttons.css">
+<style>
+  #container {
+    margin-top:5%;
+  }
+  #container p {
+    text-align: center;
+    width: 92%!important;
+  }
+  #proceed_button{
+    margin-bottom: 50px!important;
+    transform: translateX(-15px)!important;
+  }
+  input {
+    margin-right: 50px!important;
+    margin-bottom: 40px;
+    transform: scale(1.25)!important;
+  }
+  #checkboxes {
+    margin: 0 auto;
+    width: 700px;
+    transform: translate(10px, 10px);
+  }
+  hr {
+    transform: translateY(-10px);
+  }
+  #endRadio:after {
+    display: none;
+  }
+  #uppercase {
+    font-weight: bold;
+  }
+  .option-input:after {
+    display: block;
+    content: " ";
+    position: absolute!important;
+    bottom: 8px;
+    background: rgb(63, 151, 246);
+    height: 1px;
+    width: 30px;
+    right: -30px;
+  }
+  .radio:hover {
+    background-color: #a7d4ef!important;
+    cursor: pointer;
+  }
+  .radio:focus, .jcat:focus {
+    background-color: #a7d4ef!important;
+    color: #FFF;
+  }
+  .option-input:checked::after {
+  -webkit-animation: none!important;
+  -moz-animation: none!important;
+  animation: none!important;
+  content: '';
+  z-index: 100;
+  }
+  .response1 {
+    background: #FFF!important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/one.svg)!important;
+  }
+    .response1:hover {
+      background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/one.svg)!important;
+    }
+      .response1:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/one.svg)!important;
+      }
+  .response2 {
+    background: #FFF!important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/two.svg)!important;
+  }
+    .response2:hover {
+      background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/two.svg)!important;
+    }
+      .response2:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/two.svg)!important;
+      }
+  .response3 {
+    background: #FFF!important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/three.svg)!important;
+  }
+    .response3:hover {
+      background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/three.svg)!important;
+    }
+      .response3:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/three.svg)!important;
+      }
+  .response4 {
+    background: #FFF!important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/four.svg)!important;
+  }
+    .response4:hover {
+      background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/four.svg)!important;
+    }
+      .response4:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/four.svg)!important;
+      }
+  .response5 {
+    background: #FFF!important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/five.svg)!important;
+  }
+    .response5:hover {
+      background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/five.svg)!important;
+    }
+      .response5:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/five.svg)!important;
+      }
+  .response6 {
+    background: #FFF!important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/six.svg)!important;
+  }
+    .response6:hover {
+      background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/six.svg)!important;
+    }
+      .response6:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/six.svg)!important;
+      }
+  .response7 {
+    background: #FFF!important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/seven.svg)!important;
+  }
+    .response7:hover {
+      background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/seven.svg)!important;
+    }
+      .response7:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/seven.svg)!important;
+      }
+  .response8 {
+    background: #FFF!important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/eight.svg)!important;
+  }
+    .response8:hover {
+      background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/eight.svg)!important;
+    }
+      .response8:checked {
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/eight.svg)!important;
+      }
+  .response9 {
+    background: #FFF!important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/nine.svg)!important;
+  }
+    .response9:hover{
+      background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/nine.svg)!important;
+    }
+      .response9:checked{
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/nine.svg)!important;
+      }
+      
+  .response0 {
+    background: #FFF!important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/zero.svg)!important;
+  }
+    .response0:hover{
+      background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/zero.svg)!important;
+    }
+      .response0:checked{
+        background: #3f97f6!important;
+        background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/zero.svg)!important;
+      }
+  
+  /* Restyle all the radio buttons to make the numbers appear a good size */
+    .option-input {
+      background-size: 10px!important;
+      background-repeat: no-repeat!important;
+      background-position: center!important;
+      transform: scale(1.5)!important;
+    }
+    .option-input:checked,  .option-input:hover {
+      background-size: 10px!important;
+      background-repeat: no-repeat!important;
+      background-position: center!important;
+    }
+  /*.warning {*/
+  /*  color: red;*/
+  /*}*/
+  section{
+    display: table;
+    width: 655px;
+    transform: translateY(-20px);
+  }
+  section > * {
+    display: table-row;
+  }
+  .leftAlign2 {
+    text-align: left;
+    font-size: 13.5px;
+    display: table-cell;
+    /*width:292px;*/
+    transform: translateX(-30px);
+  }
+  .rightAlign2 {
+    text-align: right;
+    font-size: 13.5px;
+    display: table-cell;
+    width:292px;
+    padding-right: 8px;
+    transform: translateX(20px);
+  }
+</style>
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <h2><span id="uppercase">{{task_title}}</span></h2>
+  <br><p>{{task_body_text}}</p><br>
+  <!--<form>-->
+  <div id="items">
+    <div class="word_item">
+      <p id="q1Label">Please use the scale below to rate how difficult you found the previous task to be.<br>When you have made your rating, please click 'Proceed' to continue to the next task.</p><br>
+      <div id="checkboxes">
+        <input type="radio" name="difficulty" class="option-input response0 radio difficulty" value="0">
+        <input type="radio" name="difficulty" class="option-input response1 radio difficulty" value="1">
+        <input type="radio" name="difficulty" class="option-input response2 radio difficulty" value="2">
+        <input type="radio" name="difficulty" class="option-input response3 radio difficulty" value="3">
+        <input type="radio" name="difficulty" class="option-input response4 radio difficulty" value="4">
+        <input type="radio" name="difficulty" class="option-input response5 radio difficulty" value="5">
+        <input type="radio" name="difficulty" class="option-input response6 radio difficulty" value="6">
+        <input type="radio" name="difficulty" class="option-input response7 radio difficulty" value="7">
+        <input type="radio" name="difficulty" class="option-input response8 radio difficulty" value="8">
+        <input type="radio" name="difficulty" class="option-input response9 radio difficulty" id="endRadio" value="9">
+        <input type="hidden" id="difficulty_response" name="difficulty" class="responseValues" value="0"/>
+        <br>
+        <section id="anchorTable" class="difficulty">
+          <div class="minor">
+            <div class="leftAlign2">Very difficult</div>
+            <div class="rightAlign2">Very easy</div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <!--</form>-->
+  <button class="btn btn-primary" id="proceed_button">Proceed</button>
+<script>
+
+  function appropriate_message(this_message) {
+    bootbox.alert(this_message);
+  }
+  
+  var score1 = null;
+  
+  $('#container').on('change', function() {
+    // This stores all the response values back into their inputs so Collector adds them to the data
+      score1 = $('.difficulty:checked').val();
+      $('#difficulty_response').val($('.difficulty:checked').val());
+  });
+
+  // -------------- //
+  // SUBMIT ACTIONS //
+  // -------------- //
+  
+  $('#proceed_button').click(function() {
+    
+    // First we validate the form by checking we have complete responses. If there are null values, we alert the user and change the relevant text red. Else, we move to the next word
+    if (score1 == null) {
+      appropriate_message("<b>Missing responses</b><br>Sorry, you have missed one or more questions, these are now highlighted in red. Please fill in all the questions");
+        if (score1 == null) { $('#q1Label').css('color','red');} else {$('#q1Label').css('color','green');}
+    } else {
+      Phase.submit(); 
+    }
+  });
+
+</script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

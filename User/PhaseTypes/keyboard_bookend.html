@@ -7,10 +7,10 @@
   {{task_body_text}}
 </div>
 <script>
-  function randomIntFromInterval(min, max) { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  }
-  
+
+  // ------------------ //
+  // Space bar to start //
+  // ------------------ //
   Phase.set_timer(function(){ 
    document.body.onkeyup = function(e) {
       if (e.code == "Space" || e.keyCode == 32) {
@@ -21,12 +21,27 @@
     }
   },0);
   
-
+  // ----------------- //
+  // Keyboard Img Swap //
+  // ----------------- //
   
+  // Function to generate a random number
+  function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }  
+  
+  // Create a random number between 1 and 3
   var rndInt = randomIntFromInterval(1, 3);
-  var oldSrc = '../../collector-experiments/User/Assets/axcpt/key1.jpg';
-  var newSrc = '../../collector-experiments/User/Assets/axcpt/key' + rndInt + '.jpg';
   
+  // Get name of project being run
+  var project = "{{notes}}";
+  
+  // get old and new image locations
+  var oldSrc = '../../collector-experiments/User/Assets/' + project + '/key1.jpg';
+  var newSrc = '../../collector-experiments/User/Assets/' + project + '/key' + rndInt + '.jpg';
+  
+  // swap image code on the displayed page to the new image location
   $('img[src="' + oldSrc + '"]').attr('src', newSrc);
+  
 </script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
