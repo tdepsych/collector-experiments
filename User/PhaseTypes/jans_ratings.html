@@ -521,7 +521,7 @@
   $('#proceed_button').click(function() {
     
     // First we validate the form by checking we have complete responses. If there are null values, we alert the user and change the relevant text red. Else, we move to the next word
-    if (score1 == null || score2 == null || score3 ==null || score4 == null || score6 == null || score7 == null) {
+    if (score1 == null || score2 == null || score3 ==null || score4 == null || score5 == null || score6 == null || score7 == null) {
       appropriate_message("<b>Missing responses</b><br>Sorry, you have missed one or more questions, these are now highlighted in red. Please fill in all the questions");
         if (score1 == null) { $('#q1Label').css('color','red');} else {$('#q1Label').css('color','green');}
         if (score2 == null) { $('#q2Label').css('color','red');} else {$('#q2Label').css('color','green');}
