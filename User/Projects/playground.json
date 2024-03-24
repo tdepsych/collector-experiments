@@ -893,9 +893,9 @@
         "Sex",
         "2. What is your biological sex?",
         "radio_vertical",
-        "Male|Female|Non-binary|Prefer not to say",
+        "Male|Female|Prefer not to say",
         "No",
-        "1|2|3|0",
+        "1|2|0",
         "",
         ""
       ],
@@ -940,28 +940,8 @@
         ""
       ],
       [
-        "Religion",
-        "7. How religious do you consider yourself to be?<br><span class=\"minor\"><em>(1 = Not Religious, 9 =  Devout)</em></span>",
-        "radio_horizontal",
-        "1|2|3|4|5|6|7|8|9",
-        "Yes",
-        "1|2|3|4|5|6|7|8|9",
-        "",
-        ""
-      ],
-      [
-        "Control",
-        "8. When I swear out loud in response to pain/frustration, how out of control do you feel?<br><span class=\"minor\"><em>(1 = Very out of control, 9 = Very in control)</em></span>",
-        "radio_horizontal",
-        "1|2|3|4|5|6|7|8|9",
-        "Yes",
-        "1|2|3|4|5|6|7|8|9",
-        "",
-        ""
-      ],
-      [
         "PCLS",
-        "10. Are you a student or staff member in the School of Psychology & Clinical Language Sciences at the University of Reading?",
+        "7. Are you a student or staff member in the University of Reading's School of Psychology & Clinical Language Sciences?",
         "radio",
         "Yes|No",
         "No",
