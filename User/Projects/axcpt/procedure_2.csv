@@ -33,4 +33,5 @@ item,phasetype,survey,max_time,text,shuffle_1,notes,cue_ms,isi_ms,probe_ms,respo
 0,axcpt_feedback,,300,,,,,,,,Experiment Feedback,"<p>Please could you provide some written feedback regarding how you have found completing this study. For example, were the instructions clear? Did you understand what was required of you? Did anything appear not to work? Equally, is there anything you feel we could add to the study that would have made it easier for you to complete?<br><br>Please write your feedback in the box below, the task will automatically continue after 5 minutes but you do not have to write for that length of time and the timer wont start until you start writing. If you do not have any feedback to give, please feel free to skip this task by pressing 'proceed'.</p>",,
 0,tde_survey,axcpt_demo.csv,user,,,,,,,,,"<p>Thank you for providing us with feedback. We will now collect some basic demographic information.<br><br>When you are ready, please click
   'Contunue'.</p>",,
+0,upload_data,,10,,,Uploading REDCap Markers,,,,,,,,
 0,axcpt_debrief,,user,Analysing how AX-CPT Procedural Changes Alter Participants' Responses,,,,,,,,,,
