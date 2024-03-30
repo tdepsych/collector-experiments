@@ -77,7 +77,7 @@
       } else {
         console.log("No counterbalancing in use");
       }
-    } else if (browser == "safari") {
+    } else if (browser == "safari" || browser == "firefox") {
       console.log("Participant is not using a mobile");
       $("#container").load("../../collector-experiments/User/PhaseTypes/error_safari.html");
       if (typeof parent.parent.cb_level !== 'undefined') {
