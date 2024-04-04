@@ -54,6 +54,10 @@ hr {
   font-style:italic;
 }
 
+.div_padding p {
+  padding-bottom: 50px!important;
+}
+
 /* ******************** */
 /* STYLING ZOOM BUTTONS */
 /* ******************** */
