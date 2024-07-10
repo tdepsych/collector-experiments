@@ -3,6 +3,10 @@ window.onload = function() {
 	canvasTetris(node);	
 };
 
+// Create the audio element
+var tetrisMusic = new Audio('../../collector-experiments/User/Assets/Global/sounds/tetris.mp3');
+tetrisMusic.loop = true;
+
 var canvasTetris = function(parentNode) {
 	var canvas = {
 		node: null,
