@@ -1,3 +1,5 @@
+// run.js //
+
 $.getScript( "libraries/collector/redcap_dropped_fields.js")
 project_json = {};
 var home_dir;
