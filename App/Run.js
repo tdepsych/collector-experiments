@@ -1,4 +1,4 @@
-// run.js //
+// <!-- CD Fix -->
 
 $.getScript( "libraries/collector/redcap_dropped_fields.js")
 project_json = {};

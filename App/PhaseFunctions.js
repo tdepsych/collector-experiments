@@ -1,6 +1,6 @@
 /*  
  *	PhaseFunctions.js
- *	Collector Kitten/Cat release (2019-2023) © Dr. Anthony Haffey (team@someopen.solutions)
+ *	Collector Kitten/Cat release (2019-2024) © Dr. Anthony Haffey & Chris Dobson
 */
 var start_date_time = new Date().toLocaleDateString("en-US").replaceAll("/","_") + "_" + new Date().toLocaleTimeString().replaceAll(":","_");
 var redcap_marker_update = false // This is just to tell whether the add_response() call is updating redcap markers of submitting experimental data
