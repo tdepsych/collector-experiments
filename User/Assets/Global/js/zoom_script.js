@@ -32,3 +32,12 @@ window.onload = function(){
 function appropriate_message(this_message) {
   bootbox.alert(this_message);
 }
+
+Phase.set_timer(function(){
+  if (sonaID == null){
+    appropriate_message("Your SONA ID was not correctly captured when you started the study, this means we need to manually award you your credit for completing the study. Please contact the researchers to arrange this.");
+    $("#sona_btn").hide();
+  } else {
+    // do nothing
+  }  
+},0)

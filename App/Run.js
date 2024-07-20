@@ -1,5 +1,3 @@
-// <!-- CD Fix -->
-
 $.getScript( "libraries/collector/redcap_dropped_fields.js")
 project_json = {};
 var home_dir;
@@ -64,7 +62,7 @@ Project = {
     "detect_exe",
     "get_htmls",
     "get_gets",
-    //"start_restart", {CGD} Turned this off a long time ago, can't really remember why! (Think it was something to do with a double page loading thing)
+    //"start_restart", //{CGD} Turned this off a long time ago, can't really remember why! (Think it was something to do with a double page loading thing)
     "start_project",
     "load_phases",
     "select_condition",
@@ -350,7 +348,7 @@ Project = {
             if(result.toLowerCase().indexOf("error") !== -1 | result.toLowerCase().indexOf("count") === -1){
               attempt_no++;
               if(attempt_no > 2){
-                bootbox.alert("⚠ <b class='text-danger'>WARNING</b> ⚠ <br><br>This data has not submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
+                bootbox.alert("⚠ <b class='text-danger'>WARNING</b> ⚠ <br><br>111This data has not submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
                 // console.log("This data may not have been submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
               } else {
                 redcap_post(

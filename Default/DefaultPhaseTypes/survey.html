@@ -26,48 +26,320 @@
 
 -->
 <style>
-  body {
-    /* background-color: #5f9ea0; */
-    width: 100%;
-    height: 100%;
+/********************/
+/* STYLING THE PAGE */
+/********************/
+html, body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  transform-origin: center center;
+}
+
+h2 {
+  width: 100%; 
+  text-align: center; 
+  border-bottom: 3px solid #20669b;
+  line-height: 0.15em;
+  margin: 10px 0 20px; 
   }
-  td {
+h2 span { 
+  background:#fff; 
+  padding:0 25px; 
+}
+hr {
+    width: 100%;
+    height: 1px;
+    color: #000000;
+    opacity: 0.25;
+  }
+#container {
+  width: 50%;
+  max-height: 90vh;
+}
+#container p {
+  width: 90%;
+  font-size: 1.15em;
+  margin: auto;
+}
+
+#proceed_button {
+  /* margin-bottom: 20px; */
+  min-width: 95px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  /* position: relative;
+  display: inline-block;
+  transform: translate(360px, 35px); */
+}
+
+.minor {
+  font-size: 12px;
+  font-style:italic;
+}
+
+.div_padding p {
+  padding-bottom: 50px!important;
+}
+
+/* ******************** */
+/* STYLING ZOOM BUTTONS */
+/* ******************** */
+#zoomOut {
+    /* background: url(../../../collector-experiments/User/Assets/Global/img/zoom-out.svg) no-repeat; */
+    background: url(../img/zoom-out.svg) no-repeat;
+    background-position: 4px 4px;
+    background-size: 65%;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border: 2px solid #ADD8E6;
+    border-radius: 25px;
+    position: fixed;
+    top: 5px;
+    left: 5px;
+}
+      
+#zoomOut:hover {
+    background-color: #006599!important;
+    border: 2px solid #006599!important;
+    background-position: 4px!important;
+    background-size: 70%!important;
+    background: url(../img/zoom-out-hover.svg) no-repeat;
+}
+      
+#zoomIn {
+    background: url(../img/zoom-in.svg) no-repeat;
+    background-position: 4px 4px;
+    background-size: 65%;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border: 2px solid #ADD8E6;
+    border-radius: 25px;
+    position: fixed;
+    top: 5px;
+    left: 40px;
+}
+
+#zoomIn:hover {
+    background-color: #006599!important;
+    border: 2px solid #006599!important;
+    background-position: 4px!important;
+    background-size: 70%!important;
+    background: url(../img/zoom-in-hover.svg) no-repeat;
+}  
+
+/**************************/
+/* REPEATED PAGE ELEMENTS */
+/**************************/
+
+#uorLogo{
+    width: 300px;
+}
+
+#bookendImg {
+    margin-left: 45px;
+    display: inline;
+    width: 165px;
+    float: right;
+    transform: translate(-5px, 5px);
+  }
+      
+#pdfImg {
+  background-image: url('../img/pdf.svg');
+  background-repeat: no-repeat;
+  background-position: center; 
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-left: 5px;
+  transform: translateY(3px);
+}
+
+/*******************/
+/* DEBRIEF BUTTONS */
+/*******************/
+
+  /* #endSession_btn {
+    margin-bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    margin-top: 20px;
+    display: none;
+  }
+  #endSession_btn_redcap {
+    margin-bottom: 25px;
+    left: 50%;
+    pointer-events: none;
+    background-color: #a1d4ee;
+    border-color: #a1d4ee;
+    transform: translateX(-50%);
+    position: absolute;
+    margin-top: 20px;
+  } */
+
+/*
+* by Bora Alp Arat at https://stackoverflow.com/questions/21684101/css-vertical-scrollbar-padding-left-right-in-ul-possible
+*/
+::-webkit-scrollbar {
+  width: 14px;
+  height: 18px;
+}
+::-webkit-scrollbar-thumb {
+  height: 6px;
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  -webkit-border-radius: 7px;
+  background-color: rgba(0, 102, 153, 0.5);
+  -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05),
+    inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+}
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #006688;
+}
+
+
+/******************/
+/* BOOTBOX POPUP */
+/*****************/
+.bootbox-alert {
+	top: 40vh!important;
+}
+
+.bootbox-close-button {
+  display: none;
+}
+
+/******************/
+/* SURVEY STYLING */
+/******************/
+.table_break_tabs {
+  width: 60%!important;
+  margin: 0 auto!important;
+}
+
+@keyframes click-wave {
+  0% {
+    height: 40px;
+    width: 40px;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 200px;
+    width: 200px;
+    margin-left: -80px;
+    margin-top: -80px;
+    opacity: 0;
+  }
+}
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 13.33333px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  transition: all 0.15s ease-out 0s;
+  background: #FFF;
+  border: 1px solid #3f97f6;
+  border-radius: 15px!important;
+  color: #fff;
+  cursor: pointer;
+  /* display: inline-block; */
+  float: left;
+  margin-right: 0.5rem;
+  outline: none;
+  position: relative;
+  z-index: 1000;
+}
+.option-input.radio:hover {
+    background-color: #a7d4ef;
+    cursor: pointer;
+}
+.option-input.radio:focus {
+  background-color: #a7d4ef;
+}
+.option-input.radio:checked {
+    background: #3f97f6;
+    background-image: url(../img/checked.svg);
+    background-size: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: default;
+}
+.option-input:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  content: '';
+  position: relative;
+  z-index: 100;
+}
+.option-input.radio {
+    border-radius: 0;
+    transform: translateY(-10px);
+}
+
+.radioLabel {
+    transform: translateX(5px);
+    cursor: pointer;
+}
+
+#radioLabelHolder {
+    float: left;
+    clear: left;
+    padding-bottom: 10px;
+}
+
+/* #sessionNumber {
+    padding-bottom: 100px;
+    padding-top: 10px;
+} */
+
+.consentCheck:checked {
+  background: #ff0065!important;
+  border: 1px solid #ff0d65!important;
+  background-image: url(../img/cross.svg)!important;
+  background-size: 12px!important;
+  background-repeat: no-repeat!important;
+  background-position: center!important;
+}
+
+td {
     padding: 10px;
     vertical-align: top;
   }
-
-  /*
-  *	elements by id
-  */
-
-  #content {
-    width: 95%;
+  #proceed_btn {
+    margin-bottom: 40px!important;
+    margin-top: 30px!important;
   }
-  #proceed_button {
-    position: fixed;
-    display: none;
-    bottom: 0px;
-    left: 50%;
-    overflow: auto;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    min-width: 100px;
-    max-width: 100px;
-    border-radius: 5px;
-    border-width: 3px;
+  #container {
+    width: 65%!important;
   }
-  #survey_outline {
-    position: fixed;
-    top: 47%;
-    left: 50%;
-    height: 88%;
-    width: 75%;
-    overflow: auto;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    background-color: white;
-    min-width: 900px;
-    max-width: 9000px;
+  #container p {
+    text-align: left;
+    width: 100%;
   }
   #survey_tabs {
     padding: 20px;
@@ -76,10 +348,17 @@
     padding: 20px;
     display: none;
   }
-
-  /*
-*	elements by class
-*/
+  .checkboxes {
+    text-align: left;
+    margin-top: 5px;
+  }
+  .checkboxes_h {
+    text-align: left;
+    margin-top: -5px;
+  }
+  .minor{
+  /* do nothing  */
+  }
   .feedback_span_multiple {
     display: none;
     margin: 10px;
@@ -110,37 +389,34 @@
     height: 0px;
     overflow: auto;
   }
+  .form-control{
+    border-color: #3f97f6!important;
+  }
+  .text-primary{
+    text-align: left;
+  }
+  .custom-control-label {
+    cursor: pointer;
+    transform: translateY(-5px);
+  }
+  .option-input.radio {
+    transform: translateY(-16px)!important;
+}
+.container {
+  width: 65%;
+  max-height: 90vh;
+}
+.container_tabs {
+  max-height: 90vh;
+}
+.btn {
+  font-size: .95rem!important;
+}
 
-  /*
-* by Bora Alp Arat at https://stackoverflow.com/questions/21684101/css-vertical-scrollbar-padding-left-right-in-ul-possible
-*/
-  ::-webkit-scrollbar {
-    width: 14px;
-    height: 18px;
-  }
-  ::-webkit-scrollbar-thumb {
-    height: 6px;
-    border: 4px solid rgba(0, 0, 0, 0);
-    background-clip: padding-box;
-    -webkit-border-radius: 7px;
-    background-color: rgba(0, 102, 153, 0.5);
-    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05),
-      inset 1px 1px 0px rgba(0, 0, 0, 0.05);
-  }
-  ::-webkit-scrollbar-button {
-    width: 0;
-    height: 0;
-    display: none;
-  }
-  ::-webkit-scrollbar-corner {
-    background-color: transparent;
-  }
 </style>
-<div id="everything"  class="hello">
+<div id="survey_container" class="container">
   <div id="survey_outline"></div>
-  <button id="proceed_button" class="btn bg-white btn-outline-primary">
-    Proceed
-  </button>
+  <button class="btn btn-primary" id="proceed_button">Proceed</button>
 </div>
 <span id="scales_span"></span>
 

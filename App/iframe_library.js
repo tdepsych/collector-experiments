@@ -15,7 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-		Kitten/Cat release (2019-2022) author: Dr. Anthony Haffey & Chris Dobson
+		Kitten/Cat release (2019-2022) author: Dr. Anthony Haffey
 */
 
 var libraries =
