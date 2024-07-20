@@ -89,15 +89,20 @@
 .btn {
   font-size: .95rem!important;
 }
+#previous_button {
+  display:none;
+  margin-right: 15px;
+}
 
 </style>
 <button id="zoomOut" tabindex="-1"></button>
 <button id="zoomIn" tabindex="-1"></button>
 <div id="survey_container" class="container">
   <div id="survey_outline"></div>
+  <button class="btn btn-primary" id="previous_button">Previous</button>
   <button class="btn btn-primary" id="proceed_button">Proceed</button>
 </div>
 <span id="scales_span"></span>
 <script src="../../collector-experiments/User/Assets/Global/js/survey.js"></script>
+<!-- <script src="../../collector-experiments/User/Assets/Global/js/survey_ah.js"></script> -->
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
-<!--<script src="../Default/DefaultPhaseTypes/survey.js"></script>-->

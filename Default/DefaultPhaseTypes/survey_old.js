@@ -807,12 +807,7 @@ function process_returned_questionnaire(data, survey_outline) {
       write_survey(survey_obj.data, survey_outline);
       $("#please_wait_div").hide();
       $("#proceed_button").show();
-      $("html, body").animate(
-        {
-          scrollTop: $("#" + survey_outline).offset().top,
-        },
-        0
-      );
+      $("html, body").animate({scrollTop: $("#" + survey_outline).offset().top,},0);
 
     }
   }

@@ -9,6 +9,9 @@
   var clicks = 0;
   var survey_pages_used = false;
   var current_table_no = 0;
+  var previous_table_no = 0;
+  var tableCount;
+  var visibleTable;
   var this_element_label;
 /*
  * detect if testing or not
@@ -218,10 +221,42 @@ $( ".datepicker" ).datepicker({
 */
 
 $("#ExperimentContainer").css("transform", "scale(1,1)");
+
+function show_previous_button() {
+  if (current_table_no !== 0) {
+    $('#previous_button').css('display', 'inline');
+  } else {
+    $('#previous_button').css('display', 'none');
+  }
+}
+
+function swap_proceed_text() {
+  visibleTable = $('table').filter(function() {
+    return $(this).attr('style') === undefined || $(this).attr('style') === '';
+  }).attr('id').replace("table", "");
+
+  tableCount = $('table').length - 1; // this is reduced by 1 as the table numbering starts at 0
+
+  if (visibleTable == tableCount) {
+    $("#proceed_button").text("Proceed");
+  } else {
+    $("#proceed_button").text("Next Page");
+  }
+}
+
+//QWERTY
+$("#previous_button").on("click", function () {
+  current_table_no = parseFloat($(".table_break:visible")[0].id.replace("table", "")) - 1;
+  $(".table_break").hide();
+  $(".table_break#table" + previous_table_no).show(0);
+  $('#table'+ previous_table_no).addClass("table_break_tabs");
+  $(window).scrollTop(0);      
+  show_previous_button();
+  swap_proceed_text();
+});
+
+
 $("#proceed_button").on("click", function () {
-  clicks++
-  console.log(clicks + " <----------- clicks")
-  console.log(page_break_management.breaks_remaining + " <------------- breaks remaining")
   var proceed = true;
   var tabs = document.getElementsByClassName("show_tab active");
   if (tabs.length > 0) {
@@ -261,18 +296,10 @@ $("#proceed_button").on("click", function () {
       }
     }
   }
-  if (survey_pages_used && clicks >= page_break_management.breaks_remaining && proceed) {
-    $("#proceed_button").text("Proceed");
-  } else if (survey_pages_used && clicks < page_break_management.breaks_remaining && proceed) {
-    $("#proceed_button").text("Next Page");
-  } else {
-    //do nothing;
-  }
 
   if (current_tab === survey_obj.tabs && proceed) {
     if (typeof sql_surveys === "undefined") {
-      var next_table_no = parseFloat($(".table_break:visible")[0].id.replace("table", "")) + 1;
-
+      next_table_no = parseFloat($(".table_break:visible")[0].id.replace("table", "")) + 1;
       if ($(".table_break#table" + next_table_no).length === 0) {
         if (typeof Phase !== "undefined") {
           Phase.submit();
@@ -282,9 +309,11 @@ $("#proceed_button").on("click", function () {
       } else {
         $(".table_break").hide();
         $(".table_break#table" + next_table_no).show(0);
+        previous_table_no = current_table_no;
         current_table_no = next_table_no;
         $('#table'+current_table_no).addClass("table_break_tabs");
         $(window).scrollTop(0);
+        clicks++
       }
     } else {
       $("#" + survey_outline).append($("<h1>").html("You have finished the preview of this survey."));
@@ -296,9 +325,7 @@ $("#proceed_button").on("click", function () {
     $("#tab_" + current_tab + "_button").addClass("btn-outline-dark");
     $("#tab_" + current_tab + "_button").click();
   } else if (proceed === false) {
-    appropriate_message(
-      "You're missing some responses. Please fill in all the answers for the questions in red above."
-    );
+    appropriate_message("You're missing some responses. Please fill in all the answers for the questions in red above.");
 
     /*
      * count how many times the participant has tried to proceed
@@ -312,6 +339,8 @@ $("#proceed_button").on("click", function () {
       "Error - please contact the researcher about this problem, error 'Survey_001'."
     );
   }
+  show_previous_button();
+  swap_proceed_text();
 });
 
 //by qwerty at https://stackoverflow.com/questions/2116558/fastest-method-to-replace-all-instances-of-a-character-in-a-string
@@ -792,7 +821,7 @@ function process_returned_questionnaire(data, survey_outline) {
       write_survey(survey_obj.data, survey_outline);
       $("#please_wait_div").hide();
       $("#proceed_button").show();
-      $("html, body").animate({scrollTop: $("#" + survey_outline).offset().top,},0);
+      //$("html, body").animate({scrollTop: $("#" + survey_outline).offset().top,},0);
 
     }
   }
@@ -811,7 +840,7 @@ function row_perc(this_rat) {
 }
 
 function response_check(submitted_element) {
-  console.log(submitted_element)
+  //console.log(submitted_element)
   switch (submitted_element.type) {
     case "checkbox":
       var checked_responses = $(

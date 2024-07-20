@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
-<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
 <button id="zoomOut" tabindex="-1"></button>
 <button id="zoomIn" tabindex="-1"></button>
 <div id="container">
@@ -10,6 +9,9 @@
   <a class="btn btn-outline-primary" id="sona_btn" href="#" target="_blank">Click to return to SONA and be awared your credit</a>
 </div>
 <script>
+function appropriate_message(this_message) {
+  bootbox.alert(this_message);
+}
 
   $("#Save").click(function() {
     e = $.Event("keydown");
@@ -23,7 +25,9 @@
   var sonaID = url_array[1];
   var updated_url = '{{text}}' + sonaID;
   $("#sona_btn").attr("href", updated_url)
-  
+  //alert("Your");
+  appropriate_message("Your SONA");
+  console.log(sonaID)
   Phase.set_timer(function(){
     if (sonaID == null){
       appropriate_message("Your SONA ID was not correctly captured by the programme when you started the study, this means we need to manually award you your credit for completing the study. Please contact the researchers to arrange this.");
@@ -34,3 +38,4 @@
   },0)
   
 </script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
