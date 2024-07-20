@@ -123,7 +123,7 @@ Project = {
     phase_end_ms = new Date().getTime();
     parent.parent.phase_start_time_ms = phase_end_ms;
     phase_inputs = {};
-    $("#experiment_progress").css("width",(100 * project_json.phase_no) / (project_json.parsed_proc.length - 1) + "%");
+    // $("#experiment_progress").css("width",(100 * project_json.phase_no) / (project_json.parsed_proc.length - 1) + "%");
 
     for (var i = 0; i < project_json.inputs.length; i++) {
       if (
@@ -382,7 +382,8 @@ Project = {
       });
       */
 
-
+      
+/*
       console.log("just before the ajax");
       $.ajax({
         type: "POST",
@@ -395,6 +396,7 @@ Project = {
           //Phase.submit();
         }
       });
+*/
 
       // Finally, let's just update the repeat instance number
       parent.parent.project_json.repeat_no++;
@@ -578,6 +580,24 @@ Project = {
   },
 
   start_post: function (go_to_info) {
+    // use the phase_progress column 
+    
+    if(typeof(project_json.this_condition.progress_bar) !== "undefined"){
+      if(project_json.this_condition.progress_bar == "off"){
+        $("#project_progress_bar").css("display","none");
+      } else if(project_json.this_condition.progress_bar == "phase" | project_json.this_condition.progress_bar == "trial" | project_json.this_condition.progress_bar == "stimuli" | project_json.this_condition.progress_bar == "item"){
+        $("#experiment_progress").css("width",(100 * project_json.phase_no) / (project_json.parsed_proc.length - 1) + "%");
+      } else  if(project_json.this_condition.progress_bar == "row" | project_json.this_condition.progress_bar == "procedure"){
+        $("#experiment_progress").css("width",(100 * project_json.parsed_proc[project_json.phase_no].phase_progress) + "%"); 
+        // the default is to have a progress bar, but for it to move on after each row of the spreadsheet, not after each phase.  
+      } else {
+        $("#experiment_progress").css("width",(100 * project_json.parsed_proc[project_json.phase_no].phase_progress) + "%");
+      }
+      // the default is to have a progress bar, but for it to move on after each row of the spreadsheet, not after each phase.
+    } else {
+      $("#experiment_progress").css("width",(100 * project_json.parsed_proc[project_json.phase_no].phase_progress) + "%");
+
+    }
     if (typeof go_to_info !== "undefined") {
       project_json.phase_no = project_json.phase_no;
       console.log("phase.go_to: "+project_json.phase_no)
@@ -1463,6 +1483,10 @@ function parse_current_proc() {
       }) === false
     );
   });
+    // add progress here
+    for(var i = 0; i < project_json.parsed_proc.length; i++){
+      project_json.parsed_proc[i].phase_progress = i / project_json.parsed_proc.length;
+    }
   proc_fill_items();
   proc_apply_repeats();
   Project.activate_pipe();
@@ -1829,9 +1853,12 @@ function start_restart() {
     bootbox.alert(
       "Please do not use Safari to complete this study. It is likely that your data will not save correctly if you do. Please close Safari and use another browser"
     );
-  } else  /* //skipping resume for now if (
+/*
+    //blocking resume for now
+  } else if(
     (window.localStorage.getItem("project_json") !== null) &
-    (Project.get_vars.platform !== "preview")
+    (Project.get_vars.platform !== "preview") &
+    (project_json.conditions[0].resume == "yes")
   ) {
     bootbox.dialog({
       title: "Resume or Restart?",
@@ -1883,7 +1910,8 @@ function start_restart() {
         },
       },
     });
-  } else */ {
+    */
+  } else  {
     Project.activate_pipe();
   }
 }
