@@ -1,4 +1,4 @@
-name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,age_check,skip_quality,zoom_check,redcap_url2,counterbalance,
+name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,scripts,age_check,skip_quality,zoom_check,redcap_lru,counterbalance,
 rhyme,,all_stimuli,procedure_1.csv,on,,random,,,5,,no,yes,no,,,
 deep,,all_stimuli,procedure_2.csv,on,,random,,,5,,no,yes,no,,,
 shallow,,all_stimuli,procedure_3.csv,on,,random,,,5,,no,yes,no,,,
