@@ -32,7 +32,3 @@ window.onload = function(){
 function appropriate_message(this_message) {
   bootbox.alert(this_message);
 }
-
-Phase.set_timer(function(){
-    appropriate_message("Your SONA ID was not correctly captured when you started the study, this means we need to manually award you your credit for completing the study. Please contact the researchers to arrange this.");
-},0)
