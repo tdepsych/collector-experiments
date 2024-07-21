@@ -29,7 +29,7 @@ if (typeof Phase !== "undefined") {
 
     // If we have a REDCap URL set do the following....
    if(typeof(parent.parent.project_json.this_condition.redcap_url) !== "undefined"){
-
+      console.log("redcap url exists");
        var phase_responses = response_obj;
        var clean_phase_responses = {};
 
@@ -76,19 +76,52 @@ if (typeof Phase !== "undefined") {
       clean_phase_responses['redcap_repeat_instrument'] = "main";
 
        console.log("just before the ajax");
-       function redcap_post(this_url,this_data){
-        $.ajax({
-          type: "POST",
-          url: this_url,
-          crossDomain: true,
-          data: this_data,
+    //    function redcap_post(this_url,this_data){
+    //     $.ajax({
+    //       type: "POST",
+    //       url: this_url,
+    //       crossDomain: true,
+    //       data: this_data,
 
-         success: function(result){
-           console.log("Add_Response Sent");
-         }
-       });
-     };
-     redcap_post(parent.parent.project_json.this_condition.redcap_url,clean_phase_responses);
+    //      success: function(result){
+    //        console.log("Add_Response Sent");
+    //      }
+    //    });
+    //  };
+
+    function redcap_post(
+      this_url,
+      this_data,
+      attempt_no
+    ){
+      console.log("attempt number " + attempt_no);
+      $.ajax({
+        type: "POST",
+        url: this_url,
+        crossDomain: true,
+        data: this_data,
+        success: function(result){
+          console.log("result");
+          //console.log(result);
+          if(result.toLowerCase().indexOf("error") !== -1 | result.toLowerCase().indexOf("count") === -1){
+            attempt_no++;
+            if(attempt_no > 2){
+              bootbox.alert("⚠ <b class='text-danger'>WARNING</b> ⚠ <br><br>This data has not submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
+              // console.log("This data may not have been submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
+            } else {
+              
+              redcap_post(
+                this_url,
+                this_data,
+                attempt_no
+              );
+            }
+          }
+        }
+      });
+    };
+     console.log("sending to redcap")
+     redcap_post(parent.parent.project_json.this_condition.redcap_url,clean_phase_responses, 0);
   };
   };
   Phase.counterbalance = function(){
