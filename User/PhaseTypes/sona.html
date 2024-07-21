@@ -1,3 +1,8 @@
+<!--'Route Participants Back To SONA' PhaseType-->
+<!-- ---development---
+[{'task_title':'SONA', 'task_body_text':'Holding text for development purposes'}]
+---development--- -->
+
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <button id="zoomOut" tabindex="-1"></button>
 <button id="zoomIn" tabindex="-1"></button>
@@ -9,10 +14,6 @@
   <a class="btn btn-outline-primary" id="sona_btn" href="#" target="_blank">Click to return to SONA and be awared your credit</a>
 </div>
 <script>
-function appropriate_message(this_message) {
-  bootbox.alert(this_message);
-}
-
   $("#Save").click(function() {
     e = $.Event("keydown");
     e.which = 83; // S
@@ -24,11 +25,11 @@ function appropriate_message(this_message) {
   var url_array = initial_url.split('sona=');
   var sonaID = url_array[1];
   var updated_url = '{{text}}' + sonaID;
-  $("#sona_btn").attr("href", updated_url);
-  
+  $("#sona_btn").attr("href", updated_url)
+  //appropriate_message("Your SONA");
   Phase.set_timer(function(){
     if (sonaID == null){
-      appropriate_message("Your SONA ID was not correctly captured when you started the study, this means we need to manually award you your credit for completing the study. Please contact the researchers to arrange this.");
+      appropriate_message("Your SONA ID was not correctly captured by the programme when you started the study, this means we need to manually award you your credit for completing the study. Please contact the researchers to arrange this.");
       $("#sona_btn").hide();
     } else {
       // do nothing

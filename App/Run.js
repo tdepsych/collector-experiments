@@ -348,7 +348,7 @@ Project = {
             if(result.toLowerCase().indexOf("error") !== -1 | result.toLowerCase().indexOf("count") === -1){
               attempt_no++;
               if(attempt_no > 2){
-                bootbox.alert("⚠ <b class='text-danger'>WARNING</b> ⚠ <br><br>111This data has not submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
+                bootbox.alert("⚠ <b class='text-danger'>WARNING</b> ⚠ <br><br>This data has not submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
                 // console.log("This data may not have been submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
               } else {
                 redcap_post(
@@ -1228,7 +1228,7 @@ function load_phases() {
 function parse_sheets() {
   // Counterbalancing
   
-console.log(project_json);
+//console.log(project_json);
 // console.log("--------");
 // console.log(Object.keys(project_json.all_procs).length);
 // console.log("--------");
@@ -1333,7 +1333,6 @@ console.log(project_json);
           levels = parseInt(data);
           parent.parent.cb_level = levels;
           if (levels < total_procedures) {
-            console.log("yay 1")
             suffix = "_" + levels + ".csv";
             proc_sheet_name = proc_sheet_name + suffix;
             new_data = levels + 1;
@@ -1341,7 +1340,6 @@ console.log(project_json);
             counterbalance(new_data);
             switch_platform ();
           } else if (levels >= total_procedures) {
-            console.log("yay 2")
             suffix = "_" + total_procedures + ".csv";
             proc_sheet_name = proc_sheet_name + suffix;
             new_data = 1;
@@ -1349,7 +1347,6 @@ console.log(project_json);
             counterbalance(new_data);
             switch_platform ();
           } else {
-            console.log("boo 3")
             bootbox.alert("Counterbalancing has broken. Please stop the study and contact the researcher");
             var rand_num = Math.floor( Math.random() * total_procedures + 1 );
             suffix = "_" + rand_num + ".csv";
@@ -1641,7 +1638,7 @@ function select_condition() {
   project_json.this_condition = project_json.conditions.filter(function (row) {
     return row.name === Project.get_vars.name;
   })[0];
-  console.log(project_json.this_condition)
+  //console.log(project_json.this_condition)
   /*
    * Check if use of mobile devices is off
    */

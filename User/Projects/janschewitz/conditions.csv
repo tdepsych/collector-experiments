@@ -1,4 +1,4 @@
-name,notes,stimuli,procedure,fullscreen,participant_id,end_message,start_message,buffer,skip_quality,redcap_url,
-sona,,words.csv,sona.csv,on,random,,,5,yes,https://xo019390.webs.act.reading.ac.uk/redcap/Jans.php,
-amzn,,words.csv,amzn.csv,on,random,,,5,yes,https://xo019390.webs.act.reading.ac.uk/redcap/Jans.php,
-id_measure,,words.csv,id_measure.csv,on,random,,,5,yes,https://xo019390.webs.act.reading.ac.uk/redcap/Jans.php,
+name,notes,stimuli,procedure,fullscreen,participant_id,end_message,start_message,buffer,skip_quality,redcap_url,progress_bar,
+sona,,words.csv,sona.csv,on,random,,,5,yes,https://xo019390.webs.act.reading.ac.uk/redcap/Jans.php,stimuli,
+amzn,,words.csv,amzn.csv,on,random,,,5,yes,https://xo019390.webs.act.reading.ac.uk/redcap/Jans.php,stimuli,
+id_measure,,words.csv,id_measure.csv,on,random,,,5,yes,https://xo019390.webs.act.reading.ac.uk/redcap/Jans.php,stimuli,

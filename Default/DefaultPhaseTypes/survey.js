@@ -472,7 +472,7 @@ function load_survey(survey, survey_outline) {
 }
 
 function process_question(row, row_no) {
-  console.log(row)
+  //console.log(row)
   //row.values = row.values == "" ? row.answers : row.values;
   if (row.type === "page_break") {
     page_break_management.breaks_remaining++;

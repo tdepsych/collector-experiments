@@ -21,20 +21,10 @@
 var libraries =
   '<!DOCTYPE html>' +
   '<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />' +
-  "<scr" +
-  'ipt src="libraries/jquery.min.js"></scr' +
-  "ipt>" +
-  "<scr" +
-  'ipt src="libraries/popper.min.js"></scr' +
-  "ipt>" +
+  '<script src="libraries/jquery.min.js"></script>' +
+  '<script src="libraries/popper.min.js"></script>' +
   '<link rel="stylesheet" href="libraries/bootstrapCollector.css">' +
   '<link rel="stylesheet" type="text/css" href="libraries/bootbox.fix.css">' +
-  "<scr" +
-  'ipt src="libraries/bootstrap.min.js"></scr' +
-  "ipt>" +
-  "<scr" +
-  'ipt src="libraries/bootbox.min.js"></scr' +
-  "ipt>" +
-  "<scr" +
-  'ipt src="libraries/papaparse.min.js"></scr' +
-  "ipt>";
+  '<script src="libraries/bootstrap.min.js"></script>' +
+  '<script src="libraries/bootbox.min.js"></script>' +
+  '<script src="libraries/papaparse.min.js"></script>';

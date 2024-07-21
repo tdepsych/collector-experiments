@@ -2,10 +2,10 @@
 <!--
 
   /*
-  * Collector Survey 3.1.0
+  * Collector Survey 3.2.3
   */
 
-  Author: Dr. Anthony Haffey
+  Author: Dr. Anthony Haffey & Chris Dobson
 
   Collector: Cat release
   A program for running experiments on the web
@@ -21,7 +21,7 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-  Kitten/Cat release (2019-2022) author: Dr. Anthony Haffey
+  Kitten/Cat release (2019-2024) author: Dr. Anthony Haffey & Chris Dobson
 
 
 -->
@@ -76,7 +76,10 @@ hr {
   display: inline-block;
   transform: translate(360px, 35px); */
 }
-
+#previous_button {
+  display:none;
+  margin-right: 15px;
+}
 .minor {
   font-size: 12px;
   font-style:italic;
@@ -84,85 +87,6 @@ hr {
 
 .div_padding p {
   padding-bottom: 50px!important;
-}
-
-/* ******************** */
-/* STYLING ZOOM BUTTONS */
-/* ******************** */
-#zoomOut {
-    /* background: url(../../../collector-experiments/User/Assets/Global/img/zoom-out.svg) no-repeat; */
-    background: url(../img/zoom-out.svg) no-repeat;
-    background-position: 4px 4px;
-    background-size: 65%;
-    background-color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    height: 30px;
-    width: 30px;
-    border: 2px solid #ADD8E6;
-    border-radius: 25px;
-    position: fixed;
-    top: 5px;
-    left: 5px;
-}
-      
-#zoomOut:hover {
-    background-color: #006599!important;
-    border: 2px solid #006599!important;
-    background-position: 4px!important;
-    background-size: 70%!important;
-    background: url(../img/zoom-out-hover.svg) no-repeat;
-}
-      
-#zoomIn {
-    background: url(../img/zoom-in.svg) no-repeat;
-    background-position: 4px 4px;
-    background-size: 65%;
-    background-color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    height: 30px;
-    width: 30px;
-    border: 2px solid #ADD8E6;
-    border-radius: 25px;
-    position: fixed;
-    top: 5px;
-    left: 40px;
-}
-
-#zoomIn:hover {
-    background-color: #006599!important;
-    border: 2px solid #006599!important;
-    background-position: 4px!important;
-    background-size: 70%!important;
-    background: url(../img/zoom-in-hover.svg) no-repeat;
-}  
-
-/**************************/
-/* REPEATED PAGE ELEMENTS */
-/**************************/
-
-#uorLogo{
-    width: 300px;
-}
-
-#bookendImg {
-    margin-left: 45px;
-    display: inline;
-    width: 165px;
-    float: right;
-    transform: translate(-5px, 5px);
-  }
-      
-#pdfImg {
-  background-image: url('../img/pdf.svg');
-  background-repeat: no-repeat;
-  background-position: center; 
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  margin-left: 5px;
-  transform: translateY(3px);
 }
 
 /*******************/
@@ -356,9 +280,6 @@ td {
     text-align: left;
     margin-top: -5px;
   }
-  .minor{
-  /* do nothing  */
-  }
   .feedback_span_multiple {
     display: none;
     margin: 10px;
@@ -412,10 +333,10 @@ td {
 .btn {
   font-size: .95rem!important;
 }
-
 </style>
 <div id="survey_container" class="container">
   <div id="survey_outline"></div>
+  <button class="btn btn-outline-primary" id="previous_button">Previous Page</button>
   <button class="btn btn-primary" id="proceed_button">Proceed</button>
 </div>
 <span id="scales_span"></span>
@@ -426,4 +347,5 @@ td {
  */
 current_survey = "{{survey}}";
 </script>
-<script src="../Default/DefaultPhaseTypes/survey_white.js"></script>
+<!-- <script src="../Default/DefaultPhaseTypes/survey_white.js"></script> -->
+<script src="../../collector-experiments/User/Assets/Global/js/survey.js"></script>

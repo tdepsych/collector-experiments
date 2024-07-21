@@ -1,3 +1,3 @@
-name,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,skip_quality,counterbalance,
-bart,stimuli_1.csv,procedure_1.csv,off,,off,,,5,yes,,
-counterbalance,stimuli_1.csv,procedure_3.csv,off,,off,,,5,yes,https://xo019390.webs.act.reading.ac.uk/redcap/,
+name,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,skip_quality,counterbalance,redcap_url,
+bart,stimuli_1.csv,procedure_1.csv,off,,off,,,5,yes,,,
+counterbalance,stimuli_1.csv,procedure_3.csv,off,,off,,,5,yes,https://xo019390.webs.act.reading.ac.uk/redcap/,,
