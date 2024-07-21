@@ -1,5 +1,5 @@
 item,phasetype,survey,max_time,text,notes,shuffle_1,task_title,task_body_text,weight,
-0,offline,,user,,,off,STUDY TEMPORARILY OFFLINE,"We're really sorry but the study isn't available at the moment. The University are updating the database storage system that we use to store all the experimental data from this study. As a result, until this update is complete we are unable to save any additional data. We really do apologise for the fact you cannot complete the study right now. The update should only take a couple of hours, so please do try again later.",0,
+0,offline,,user,,,off,STUDY TEMPORARILY OFFLINE,We're really sorry but the study isn't available at the moment. The program used to run this study has had an update which has broken the data storage within this study. We are very sorry that you cannot complete the study at this time.,,
 0,intro_static,,user,Welcome,no_mobile,off,,,,
 0,ws_zoom,,user,,,off,,,,
 0,jans_infoconsent,,user,"Re-examining taboo, emotionally valenced, and emotionally neutral word norms",,off,,,0,
