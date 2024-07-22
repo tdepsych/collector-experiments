@@ -26,10 +26,10 @@
   var sonaID = url_array[1];
   var updated_url = '{{text}}' + sonaID;
   $("#sona_btn").attr("href", updated_url)
-  appropriate_message("Your SONA");
+  //appropriate_message("Your SONA");
   Phase.set_timer(function(){
     if (sonaID == null){
-      //appropriate_message("Your SONA ID was not correctly captured by the programme when you started the study, this means we need to manually award you your credit for completing the study. Please contact the researchers to arrange this.");
+      appropriate_message("Your SONA ID was not correctly captured by the programme when you started the study, this means we need to manually award you your credit for completing the study. Please contact the researchers to arrange this.");
       $("#sona_btn").hide();
     } else {
       // do nothing
