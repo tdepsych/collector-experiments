@@ -1,15 +1,18 @@
 /*
- * Collector Survey 3.2.3
+ * Collector Survey 3.2.4
  */
 
 /* 
  * Setup a prepend variable
  */
 var survey_prepend = "survey_";
-var clicks = 0;
 var survey_pages_used = false;
 var current_table_no = 0;
+var next_table_no = 0;
+var tableCount;
 var this_element_label;
+var item_name;
+
 /*
 * detect if testing or not
 */
@@ -205,7 +208,8 @@ survey_obj = {};
 * Element actions
 */
 
-/*
+/* I THINK LEAVE THIS IS JUST IN CASE WE WANT TO REBUILD THIS FUNCTIONALITY
+ 
 $(function() {
 $( ".datepicker" ).datepicker({
 dateFormat : 'mm/dd/yy',
@@ -220,115 +224,110 @@ maxDate: '-1d'
 var blocks_obj = {};
 
 $("#ExperimentContainer").css("transform", "scale(1,1)");
-$("#proceed_button").on("click", function () {
-clicks++;
-//console.log(clicks + " <----------- clicks")
-//console.log(page_break_management.breaks_remaining + " <------------- breaks remaining")
-var proceed = true;
-var tabs = document.getElementsByClassName("show_tab active");
-if (tabs.length > 0) {
-  var current_tab = document.getElementsByClassName("show_tab active")[0].id.replace("_button", "").replace("tab_", "");
-  var response_elements = $("#table_" + current_tab).find(".response_element");
-} else {
-  response_elements = $(".table_break:visible").find(".response_element");
-}
-for (var i = 0; i < response_elements.length; i++) {
-  [row_no, item_name] = retrieve_row_no_item_name(response_elements[i]);
-  if (typeof survey_obj.data[row_no].optional !== "undefined") {
-    var this_optional = survey_obj.data[row_no].optional.toLowerCase();
-    var this_block   = survey_obj.data[row_no].block;
-    
-    if (this_optional.indexOf("no") !== -1 & ((this_block) === "" | blocks_obj[this_block] === true)) { //
-      this_optional = this_optional.split("-"); // find out whether there's a minimal number of responses
-      if (this_optional.length === 1) {
-        // default is that length needs to be at least 1
-        var min_resp_length = 1;
-      } else if (this_optional.length === 2) {
-        var min_resp_length = this_optional[1];
-      } else {
-        appropriate_message(
-          "Error - you appear to have too many '-' characters in the 'optional' column"
-        );
-        return false;
-      }
-    } else {
-      min_resp_length = 0;
-    }
 
-    
+/* *************************************************** **  
+** Functions for page breaks and button label swapping **
+** *************************************************** */
 
-    console.log("response_elements[i].id");
-    //console.log(response_elements[i].id.replace("_response","_value"));
-    
-    //console.log(isJSON($("#" + response_elements[i].id).val()));
-    //console.log(isJSON($("#" + response_elements[i].id.replace("_response","_value")).val()));
-    
-    //console.log("min_resp_length");
-    //console.log(min_resp_length);
-
-    // can probably delete the next line as it checks the values, which is not helpful, when it should be checking what the response was
-    //var quest_resp = isJSON($("#" + response_elements[i].id).val());
-
-    var quest_resp = isJSON($("#" + response_elements[i].id.replace("_response","_value")).val());
-    if (quest_resp.length < min_resp_length) {
-      proceed = false;
-      $("#" + response_elements[i].id.replace("response", "question")).removeClass("text-dark").removeClass("text-success").addClass("text-danger");
-    } else {
-      $("#" + response_elements[i].id.replace("response", "question")).removeClass("text-dark").removeClass("text-danger").addClass("text-success");
-    }
-  }
-}
-if (survey_pages_used && clicks >= page_break_management.breaks_remaining && proceed) {
-  $("#proceed_button").text("Proceed");
-} else if (survey_pages_used && clicks < page_break_management.breaks_remaining && proceed) {
-  $("#proceed_button").text("Next Page");
-} else {
-  //do nothing;
-}
-
-if (current_tab === survey_obj.tabs && proceed) {
-  if (typeof sql_surveys === "undefined") {
-    var next_table_no = parseFloat($(".table_break:visible")[0].id.replace("table", "")) + 1;
-
-    if ($(".table_break#table" + next_table_no).length === 0) {
-      if (typeof Phase !== "undefined") {
-        Phase.submit();
-      } else {
-        appropriate_message("You've finished! Click on the preview button to restart.");
-      }
-    } else {
-      $(".table_break").hide();
-      $(".table_break#table" + next_table_no).show(0);
-      current_table_no = next_table_no;
-      $('#table'+current_table_no).addClass("table_break_tabs");
-      $(window).scrollTop(0);
-    }
+function show_previous_button() {
+  // this function will show the previous_button if the table number is anything other than Table0 (which is the first table)
+  if (next_table_no === 0) {
+    $('#previous_button').css('display', 'none');  
   } else {
-    $("#" + survey_outline).append($("<h1>").html("You have finished the preview of this survey."));
-  }
-} else if (current_tab < survey_obj.tabs && proceed) {
-  current_tab++;
-  $("#tab_" + current_tab + "_button").removeClass("btn-secondary");
-  $("#tab_" + current_tab + "_button").removeClass("disabled");
-  $("#tab_" + current_tab + "_button").addClass("btn-outline-dark");
-  $("#tab_" + current_tab + "_button").click();
-} else if (proceed === false) {
-  appropriate_message(
-    "You're missing some responses. Please fill in all the answers for the questions in red above."
-  );
-
-  /*
-   * count how many times the participant has tried to proceed
-   */
-  var submit_fails = $("#false_submit").val();
-      submit_fails++;
-      $("#false_submit").val(submit_fails);
-
-} else if (current_tab > survey_obj.tabs) {
-  appropriate_message(
-    "Error - please contact the researcher about this problem, error 'Survey_001'."
-  );
+    $('#previous_button').css('display', 'inline');
+  }    
 }
+
+$("#previous_button").on("click", function () {
+  current_table_no = $('table').filter(function() {return $(this).attr('style') === undefined || $(this).attr('style') === '';}).attr('id').replace("table", "");
+  tableCount = $('table').length - 1; // this is reduced by 1 as the table numbering starts at 0
+  next_table_no = eval(current_table_no) - eval(1);
+  $(".table_break#table" + current_table_no).hide();
+  $(".table_break#table" + next_table_no).show();
+  $('.table_break#table'+ next_table_no).addClass("table_break_tabs");
+  $('.table_break#table'+ current_table_no).removeClass("table_break_tabs");
+  $(window).scrollTop(0);      
+  $("#proceed_button").text("Next Page");
+  show_previous_button();
+});
+
+$("#proceed_button").on("click", function () {
+  var proceed = true;
+  current_table_no = $('table').filter(function() {return $(this).attr('style') === undefined || $(this).attr('style') === '';}).attr('id').replace("table", "");
+  tableCount = $('table').length - 1; // this is reduced by 1 as the table numbering starts at 0
+  next_table_no = eval(current_table_no) + eval(1);
+
+  var response_elements = $("#table" + current_table_no).find("tr:visible .response_element");
+
+  for (var i = 0; i < response_elements.length; i++) {
+    [row_no, item_name] = retrieve_row_no_item_name(response_elements[i]);
+    if (typeof survey_obj.data[row_no].optional !== "undefined") {
+      var this_optional = survey_obj.data[row_no].optional.toLowerCase();
+
+      // work out the minimum number of responses needed as set by the number of required questions
+      if (this_optional.indexOf("no") !== -1) {
+        this_optional = this_optional.split("-");
+        if (this_optional.length === 1) {
+          // default is that length needs to be at least 1
+          var min_resp_length = 1;
+        } else if (this_optional.length === 2) {
+          var min_resp_length = this_optional[1];
+        } else {
+          appropriate_message("Error - you appear to have too many '-' characters in the 'optional' column");
+          return false;
+        }
+      } else {
+        min_resp_length = 0;
+      }
+
+      // store the number of responses we have received
+      var quest_resp = isJSON($("#" + response_elements[i].id).val());
+
+      // check if the number of responses is less than the number we expected.
+      if (quest_resp.length < min_resp_length) {
+        proceed = false; // this stops the survey from submitted/moving forward
+        $("#" + response_elements[i].id.replace("response", "question")).removeClass("text-dark").removeClass("text-success").addClass("text-danger");
+      } else {
+        $("#" + response_elements[i].id.replace("response", "question")).removeClass("text-dark").removeClass("text-danger").addClass("text-success");
+      }
+    }
+  }
+
+  if (proceed) {
+      if (next_table_no === eval(tableCount) + eval(1)) {
+        if (typeof Phase !== "undefined") {
+          Phase.submit();
+        } else {
+          appropriate_message("You've finished! Click on the preview button to restart.");
+        }
+      } else {
+        $(".table_break").hide();
+        $(".table_break#table" + next_table_no).show(0);
+        $('.table_break#table'+ next_table_no).addClass("table_break_tabs");
+        $('.table_break#table'+ current_table_no).removeClass("table_break_tabs");
+        $(window).scrollTop(0);
+      }
+      if ($('.table_break_tabs').length > 0) {
+        show_previous_button();
+      }
+      
+  } else if (current_table_no > tableCount) {
+    appropriate_message("Error - please contact the researcher about this problem, error 'Survey_001'.");
+  } else {
+    appropriate_message("You're missing some responses. Please fill in all the answers for the questions in red above.");
+    var submit_fails = $("#false_submit").val();
+    submit_fails++;
+    $("#false_submit").val(submit_fails);
+  }
+
+  if ($('.table_break_tabs').length > 0) {
+    if (next_table_no === tableCount) {
+      $("#proceed_button").text("Submit");
+    } else {
+      $("#proceed_button").text("Next Page");
+    }  
+  }
+
 });
 
 //by qwerty at https://stackoverflow.com/questions/2116558/fastest-method-to-replace-all-instances-of-a-character-in-a-string
@@ -426,7 +425,6 @@ try {
 }
 
 survey_js.likert_update = function (this_element) {
-// this_element_label = $('label[for="'+this_element.id+'"]').text();
 [row_no, item_name] = retrieve_row_no_item_name(this_element);
 $(".row_" + row_no).removeClass("active").removeClass("btn-primary").addClass("btn-outline-primary");
 $(this_element).removeClass("btn-outline-primary").addClass("btn-primary");
@@ -435,14 +433,12 @@ response_check(this_element);
 };
 
 function hide_blocks(block_names){
-console.log("block_names");
-//console.log(block_names);
-if(typeof(block_names) !== "undefined" && block_names !== ""){
-  block_names.split(" ").forEach(function(block_name){
-    $("[block_name=" + block_name+"]").hide();
-    blocks_obj[block_name] = false;
-  });  
-}
+  if(typeof(block_names) !== "undefined" && block_names !== ""){
+    block_names.split(" ").forEach(function(block_name){
+      $("[block_name=" + block_name+"]").hide();
+      blocks_obj[block_name] = false;
+    });  
+  }
 }
 
 function load_survey(survey, survey_outline) {
@@ -747,24 +743,6 @@ if (typeof row["type"] === "undefined") {
   } else {
     this_shuffle = row["shuffle_question"];
   }
-
-
-  /* Likely you can delete this code
-  console.log("row");
-  console.log(row);
-  console.log("hi Ant and Chris :-)");
-  console.log(typeof(row["branched"]) !== "undefined");
-
-  
-  if(typeof(row["branched"]) !== "undefined" && row["branched"] !== ""){
-    row_html = row_html.replaceAll("<tr","<tr style='display:none' ");
-  }
-
-
-  console.log("this row_html");
-  console.log(row_html);
-  */
-
   return [row_html, this_shuffle];
 }
 }
@@ -780,7 +758,6 @@ item_values = survey_obj.data[row_no][values_col].split("|");
 if (typeof values_reverse !== "undefined" && values_reverse === "r") {
   item_values.reverse();
 }
-// item_answers = survey_obj.data[row_no]["answers"].split("|");
 item_answers = survey_obj.data[row_no]["values"].split("|");
 var this_value = item_values[item_answers.indexOf(this_response)];
 $(survey_prepend + item + "_score").val(this_value);
@@ -846,7 +823,7 @@ function load_phasetypes(phasetypes) {
     write_survey(survey_obj.data, survey_outline);
     $("#please_wait_div").hide();
     $("#proceed_button").show();
-    $("html, body").animate({scrollTop: $("#" + survey_outline).offset().top,},0);
+    //$("html, body").animate({scrollTop: $("#" + survey_outline).offset().top,},0);
 
   }
 }
@@ -865,23 +842,13 @@ return [row_ques_perc, row_resp_perc];
 }
 
 function response_check(submitted_element) {
-
-show_block($("#" + submitted_element.id).attr('block_name'));
-hide_blocks($("#" + submitted_element.id).attr('hide_blocks'));
-
-// var next_item = ;
-
-// console.log("next_item");
-// console.log(next_item);
-
-// $("[item_name='" + next_item + "']").show();
-
-
-//$("[name='" + submitted_element.name + "']").prop('next_item').show();
-
-
-// possibly return here once the elements have the branch property qweryt
-
+//QWERTY2
+if($('[block_name]').length > 0) {
+  show_block($("#" + submitted_element.id).attr('block_name'));
+  hide_blocks($("#" + submitted_element.id).attr('hide_blocks'));
+} else {
+  // do nothing
+}
 
 switch (submitted_element.type) {
   case "checkbox":
@@ -910,11 +877,8 @@ switch (submitted_element.type) {
   case "email":
   case "radio":
     this_element_label = $('label[for="'+submitted_element.id+'"]').text();
-    
-      // $("#" + submitted_element.name + "_response").val(this_element_label);
-      // $("#" + submitted_element.name + "_value").val(submitted_element.value);  
-      $("#" + submitted_element.name + "_value").val(this_element_label);
-      $("#" + submitted_element.name + "_response").val(submitted_element.value);  
+    $("#" + submitted_element.name + "_response").val(this_element_label);
+    $("#" + submitted_element.name + "_value").val(submitted_element.value);  
     break;
   case "select-one":
   case "text":
@@ -930,7 +894,6 @@ var item_name;
 function retrieve_row_no_item_name(this_element) {
 var these_classes = this_element.className.split(" ");
 var row_no;
-// var item_name;
 these_classes.forEach(function (this_class) {
   if (this_class.indexOf("row_") > -1) {
     row_no = this_class.replace("row_", "");
@@ -990,10 +953,10 @@ if (
 }
 
 function show_block(block_name){
-if(block_name !== ""){
-  $("[block_name=" + block_name+"]").show();
-  blocks_obj[block_name] = true;
-}
+  if(block_name !== ""){
+    $("[block_name=" + block_name+"]").show();
+    blocks_obj[block_name] = true;
+  }
 }
 
 // http://stackoverflow.com/questions/962802#962890
@@ -1341,8 +1304,7 @@ if(typeof(row["item_name_old"]) !== "undefined"){
   } else {
     branches = row["branch"].split("|");
   }
-  console.log("branches");
-  //console.log(branches);
+
   for (var i = 0; i < options.length; i++) {
     var this_radio = $("<input>");
     
@@ -1361,11 +1323,9 @@ if(typeof(row["item_name_old"]) !== "undefined"){
       .attr("autocomplete", "off")
       .attr("id", "likert_" + row["row_no"] + "_" + i)
       .attr("onclick", "survey_js.likert_update(this);")
-
+      .attr("value", values[i])
       .attr("block_name", branches[i])
       .attr("hide_blocks", hide_blocks)
-
-      .attr("value", values[i])
       .addClass("btn-check")
     this_div.append(this_radio);
     var this_label = $("<label>");
@@ -1497,59 +1457,12 @@ for (i = 0; i < this_survey.length; i++) {
 // seems like the next row might be deletable, but leaving in for now: 
 survey_html += "<tr>";
 
-
-//
-// add checks for branching
-//
-var any_branching = false;
-for(i =0; i < this_survey.length; i++){
-  
-  /*
-  //row = this_survey[i];
-   //
-   // identify that this row is impacted by branching
-   
-  if(any_branching === true){
-    this_survey[i].branched = "yes";
-  }
-  //
-  // check if any branching has occurred. If so, then identify this to help with hiding later
-  //
-  if(typeof(this_survey[i].branch) !== "undefined" && this_survey[i].branch !== ""){
-    any_branching = true;
-  }
-
-  
-  // identifying next question
-  //
-  // make sure we're not on the last question
-  console.log(i);
-  if(i < this_survey.length -1){
-    // check if this row is branching or already has a next question
-    if(this_survey[i].branch !==""){
-      // do nothing
-    } else if(this_survey[i].next_question !== ""){
-      //do nothing
-    } else {
-      // use item_name of next row as the next_question:
-      this_survey[i].next_question = this_survey[i+1].item_name;
-    }
-  }
-  */
-}
-
-console.log("this_survey");
-//console.log(this_survey);
-
-
 for (i = 0; i < this_survey.length; i++) {
     row = this_survey[i];
     if (row["type"].toLowerCase() === "redcap_pii") {
-      console.log("skipping due to this just being a redcap row");
       // do nothing as we don't want to include any HTML
     } else {
       row_html = process_question(row, i);
-      console.log(row_html);
       
       if(typeof(row["branch_id"]) == "undefined"){
         row["branch_id"] = "";
@@ -1559,29 +1472,13 @@ for (i = 0; i < this_survey.length; i++) {
         return item.replaceAll("<tr","<tr branch='" + row["branch"] + "'")
       });
 
-      /* likely can be deleted
-      if(typeof(row["branched"]) !== "undefined" && row["branched"] !== ""){
-        row_html = row_html.map(function(item){
-          return item.replaceAll("<tr","<tr style='display:none' item_name='" + row["item_name"] + "'")
-        });
-      }
-      */
-
       if(typeof(row["block"]) !== "undefined" && row["block"] !== ""){
         row_html = row_html.map(function(item){
           return item.replaceAll("<tr","<tr style='display:none' block_name='" + row["block"] + "'")
         });
       }
       
-      console.log("row_html");
-      //console.log(row_html);  
-      this_survey_object.content.push(
-        
-        
-        
-        
-        row_html[0]   
-      );
+      this_survey_object.content.push(row_html[0]);
       this_survey_object.shuffle_question.push(row_html[1]);
     }
 }
@@ -1629,28 +1526,6 @@ for (var i = 0; i < this_survey_object.content.length; i++) {
   }
 }
 
-/*
-
-  /*
-  * check if the row should be visible or not, e.g. due to previous branching
-  */
-
-
-
-  /*
-  var hide_show = "";
-  for(var i = 0; i < row_no; i++){
-    if(typeof(survey_obj.data[row_no].branching) !== "undefined" && survey_obj.data[row_no].branching !== ""){
-      hide_show = "display:none";
-    }
-  }
-
-  console.log("row");
-  console.log(row);
-
-*/
-
-
 qs_in_order = this_survey_object.content_new_order.join("");
 
 // below looks like it should be deleted, but leaving commented out for now
@@ -1668,9 +1543,6 @@ $(".response").on("change", function () {
 
 $("#" + this_id).show(0); //scroll to top
 
-
-//show("slide", {direction: "down" }, "slow");
-
 $(".show_tab").on("click", function () {
   if (this.className.indexOf("disabled") === -1) {
     $(".show_tab").removeClass("active");
@@ -1687,21 +1559,21 @@ $(".show_tab").on("click", function () {
 * exports for testing
 */
 if (typeof module !== "undefined") {
-module.exports = {
-  load_survey: load_survey,
-  likert_update: survey_js.likert_update,
-};
+  module.exports = {
+    load_survey: load_survey,
+    likert_update: survey_js.likert_update,
+  };
 } else {
-if (typeof Phase !== "undefined") {
-  Phase.set_timer(function () {
+  if (typeof Phase !== "undefined") {
+    Phase.set_timer(function () {
+      load_survey(current_survey, "survey_outline");
+      if (survey_pages_used) {
+        $("#proceed_button").text("Next Page");
+        $('#survey_container').removeClass("container").addClass("container_tabs");
+        $('#table'+current_table_no).addClass("table_break_tabs");
+      }
+    }, 100);
+  } else {
     load_survey(current_survey, "survey_outline");
-    if (survey_pages_used) {
-      $("#proceed_button").text("Next Page");
-      $('#survey_container').removeClass("container").addClass("container_tabs");
-      $('#table'+current_table_no).addClass("table_break_tabs");
-    }
-  }, 100);
-} else {
-  load_survey(current_survey, "survey_outline");
-}
+  }
 }

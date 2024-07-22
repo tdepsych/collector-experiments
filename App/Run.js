@@ -337,7 +337,6 @@ Project = {
       // console.log(clean_phase_responses) // Uncomment this if you want to see what variables are submitted during each phase.submit() call
       // this_location.toLowerCase();
 
-      // CGD this one!
       console.log("just before the ajax");
 
       function redcap_post(
@@ -353,6 +352,7 @@ Project = {
           data: this_data,
           success: function(result){
             console.log("result");
+            //console.log(result);
             //console.log(result);
             if(result.toLowerCase().indexOf("error") !== -1 | result.toLowerCase().indexOf("count") === -1){
               attempt_no++;
@@ -1365,6 +1365,7 @@ function parse_sheets() {
       }, function(data){ 
         // success: function(result){
           console.log("success!");
+          console.log("The input value was: " + data);
           levels = parseInt(data);
           parent.parent.cb_level = levels;
           if (levels < total_procedures) {
@@ -1684,7 +1685,7 @@ function select_condition() {
   project_json.this_condition = project_json.conditions.filter(function (row) {
     return row.name === Project.get_vars.name;
   })[0];
-  console.log(project_json.this_condition)
+  //console.log(project_json.this_condition)
   /*
    * Check if use of mobile devices is off
    */
@@ -1870,6 +1871,12 @@ function shuffle_start_exp() {
 function start_restart() {
   console.log
   if (isSafari) {
+    bootbox.alert(
+      "Please do not use Safari to complete this study. It is likely that your data will not save correctly if you do. Please close Safari and use another browser"
+    );
+    /*
+    //blocking resume for now
+  } else if(
     bootbox.alert("Please do not use Safari to complete this study. It is likely that your data will not save correctly if you do. Please close Safari and use another browser");
     /*
     //blocking resume for now

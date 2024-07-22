@@ -424,7 +424,6 @@ String.prototype.replaceAll = function (str1, str2, ignore) {
   }
 
   survey_js.likert_update = function (this_element) {
-    // this_element_label = $('label[for="'+this_element.id+'"]').text();
     [row_no, item_name] = retrieve_row_no_item_name(this_element);
     $(".row_" + row_no).removeClass("active").removeClass("btn-primary").addClass("btn-outline-primary");
     $(this_element).removeClass("btn-outline-primary").addClass("btn-primary");
@@ -740,7 +739,6 @@ String.prototype.replaceAll = function (str1, str2, ignore) {
     if (typeof values_reverse !== "undefined" && values_reverse === "r") {
       item_values.reverse();
     }
-    // item_answers = survey_obj.data[row_no]["answers"].split("|");
     item_answers = survey_obj.data[row_no]["values"].split("|");
     var this_value = item_values[item_answers.indexOf(this_response)];
     $(survey_prepend + item + "_score").val(this_value);
@@ -825,7 +823,6 @@ String.prototype.replaceAll = function (str1, str2, ignore) {
   }
 
   function response_check(submitted_element) {
-    //console.log(submitted_element)
     switch (submitted_element.type) {
       case "checkbox":
         var checked_responses = $(
@@ -868,7 +865,6 @@ String.prototype.replaceAll = function (str1, str2, ignore) {
   function retrieve_row_no_item_name(this_element) {
     var these_classes = this_element.className.split(" ");
     var row_no;
-    // var item_name;
     these_classes.forEach(function (this_class) {
       if (this_class.indexOf("row_") > -1) {
         row_no = this_class.replace("row_", "");
@@ -1471,9 +1467,6 @@ String.prototype.replaceAll = function (str1, str2, ignore) {
     });
 
     $("#" + this_id).show(0); //scroll to top
-
-
-    //show("slide", {direction: "down" }, "slow");
 
     $(".show_tab").on("click", function () {
       if (this.className.indexOf("disabled") === -1) {

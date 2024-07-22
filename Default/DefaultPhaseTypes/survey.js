@@ -473,6 +473,7 @@ function load_survey(survey, survey_outline) {
 
 function process_question(row, row_no) {
   //console.log(row)
+
   //row.values = row.values == "" ? row.answers : row.values;
   if (row.type === "page_break") {
     page_break_management.breaks_remaining++;
@@ -1486,7 +1487,7 @@ function write_survey(this_survey, this_id) {
 
   //(hopeful) Firefox fix
   $("#" + this_id).animate({
-    "height": window.innerHeight + "px",
+    "height": (window.innerHeight - 100) + "px",
     "top": (parseFloat(window.innerHeight/2)) + "px"
   });
 
