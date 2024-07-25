@@ -2,7 +2,7 @@
 <!--
 
   /*
-  * Collector Survey 3.2.3
+  * Collector Survey 3.2.4
   */
 
   Author: Dr. Anthony Haffey & Chris Dobson
@@ -21,7 +21,7 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <http://www.gnu.org/licenses/>
 
-  Kitten/Cat release (2019-2024) author: Dr. Anthony Haffey & Chris Dobson
+  Kitten/Cat release (2019-2024) authors: Dr. Anthony Haffey & Chris Dobson
 
 
 -->
@@ -29,6 +29,10 @@
 /********************/
 /* STYLING THE PAGE */
 /********************/
+
+/* * * * * * * * * */
+/*  ROOT ELEMENTS  */
+/* * * * * * * * * */
 html, body {
   height: 100%;
   width: 100%;
@@ -52,93 +56,49 @@ h2 span {
   padding:0 25px; 
 }
 hr {
-    width: 100%;
-    height: 1px;
-    color: #000000;
-    opacity: 0.25;
-  }
+  width: 100%;
+  height: 1px;
+  color: #000000;
+  opacity: 0.25;
+}
+td {
+  padding: 10px;
+  vertical-align: top;
+}
+
+/* * * * * * * * * */
+/*      IDs        */
+/* * * * * * * * * */
 #container {
-  width: 50%;
+  width: 65%!important;
   max-height: 90vh;
 }
 #container p {
-  width: 90%;
+  width: 100%;
   font-size: 1.15em;
   margin: auto;
-}
-
-#proceed_button {
-  /* margin-bottom: 20px; */
-  min-width: 95px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  /* position: relative;
-  display: inline-block;
-  transform: translate(360px, 35px); */
+  text-align: left;
 }
 #previous_button {
   display:none;
   margin-right: 15px;
 }
-.minor {
-  font-size: 12px;
-  font-style:italic;
+#proceed_button {
+  min-width: 95px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+#survey_tabs {
+  padding: 20px;
+}
+#this_survey_id {
+  padding: 20px;
+  display: none;
 }
 
-.div_padding p {
-  padding-bottom: 50px!important;
-}
-
-/*******************/
-/* DEBRIEF BUTTONS */
-/*******************/
-
-  /* #endSession_btn {
-    margin-bottom: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    position: absolute;
-    margin-top: 20px;
-    display: none;
-  }
-  #endSession_btn_redcap {
-    margin-bottom: 25px;
-    left: 50%;
-    pointer-events: none;
-    background-color: #a1d4ee;
-    border-color: #a1d4ee;
-    transform: translateX(-50%);
-    position: absolute;
-    margin-top: 20px;
-  } */
-
-/*
-* by Bora Alp Arat at https://stackoverflow.com/questions/21684101/css-vertical-scrollbar-padding-left-right-in-ul-possible
-*/
-::-webkit-scrollbar {
-  width: 14px;
-  height: 18px;
-}
-::-webkit-scrollbar-thumb {
-  height: 6px;
-  border: 4px solid rgba(0, 0, 0, 0);
-  background-clip: padding-box;
-  -webkit-border-radius: 7px;
-  background-color: rgba(0, 102, 153, 0.5);
-  -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05),
-    inset 1px 1px 0px rgba(0, 0, 0, 0.05);
-}
-::-webkit-scrollbar-corner {
-  background-color: transparent;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #006688;
-}
-
-
-/******************/
-/* BOOTBOX POPUP */
-/*****************/
+/* * * * * * * * * */
+/*     CLASSES     */
+/* * * * * * * * * */
 .bootbox-alert {
 	top: 40vh!important;
 }
@@ -146,31 +106,61 @@ hr {
 .bootbox-close-button {
   display: none;
 }
-
-/******************/
-/* SURVEY STYLING */
-/******************/
+.container {
+width: 65%;
+max-height: 90vh;
+}
+.custom-control-label {
+  cursor: pointer;
+  transform: translateY(-5px);
+}
+.div_padding p {
+  padding-bottom: 50px!important;
+}
+.feedback_span_multiple {
+  display: none;
+  margin: 10px;
+}
+.feedback_span_single {
+  display: none;
+  padding: 10px;
+}
+.form-control{
+  border-color: #3f97f6!important;
+}
+.likert_table td {
+  padding: 1px;
+  text-align: center;
+}
+.likert_table td:hover {
+  color: blue;
+}
+.minor {
+  font-size: 12px;
+  font-style:italic;
+}
+.score_total {
+  display: none;
+}
+.show_tab {
+  margin: 5px;
+}
+/* .survey_btn {
+  white-space: normal;
+  word-wrap: initial;
+} */
+.table_break {
+  width: 100%;
+  height: 0px;
+  overflow: auto;
+}
 .table_break_tabs {
   width: 60%!important;
   margin: 0 auto!important;
 }
-
-@keyframes click-wave {
-  0% {
-    height: 40px;
-    width: 40px;
-    opacity: 0.35;
-    position: relative;
-  }
-  100% {
-    height: 200px;
-    width: 200px;
-    margin-left: -80px;
-    margin-top: -80px;
-    opacity: 0;
-  }
+.text-primary{
+  text-align: left;
 }
-
 .option-input {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -206,7 +196,7 @@ hr {
 }
 .option-input.radio:checked {
     background: #3f97f6;
-    background-image: url(../img/checked.svg);
+    background-image: url(../Default/DefaultPhaseTypes/checked.svg);
     background-size: 12px;
     background-repeat: no-repeat;
     background-position: center;
@@ -221,130 +211,104 @@ hr {
   z-index: 100;
 }
 .option-input.radio {
-    border-radius: 0;
-    transform: translateY(-10px);
+  transform: translateY(-12px)!important;
 }
 
-.radioLabel {
-    transform: translateX(5px);
-    cursor: pointer;
+/* 
+*  STYLING THE CHECKBOXES
+*/
+.checkboxes {
+  text-align: left;
+  margin-top: 5px;
+}
+.checkboxes_h {
+  text-align: left;
+  margin-top: -5px;
+  margin-left: -10px;
+}
+.custom-checkbox .custom-control-input { /* Hides the default checkbox */
+  position: absolute;
+  opacity: 0;
+}
+.custom-checkbox .custom-control-input + label::before {
+  content: "";
+  display: inline-block;
+  width: 18px; /* Adjust the size */
+  height: 18px; /* Adjust the size */
+  background-color: #fff;
+  border: 1px solid #3f97f6;
+  border-radius: 15%; /* Round edges */
+  margin-right: 10px; /* Space between checkbox and label */
+  vertical-align: middle;
+  transform: translateY(-2px);
+}
+.custom-checkbox .custom-control-input:checked + label::before {
+  background-color: #3f97f6;
+  background-image: url('../Default/DefaultPhaseTypes/checked.svg');
+  background-size: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-color: #3f97f6;
+  transform: translateY(-2px);
+}
+.custom-checkbox label {
+  position: relative;
+  cursor: pointer;
+}
+.custom-checkbox .custom-control-input + label {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
 }
 
-#radioLabelHolder {
-    float: left;
-    clear: left;
-    padding-bottom: 10px;
+/*
+* by Bora Alp Arat at https://stackoverflow.com/questions/21684101/css-vertical-scrollbar-padding-left-right-in-ul-possible
+*/
+::-webkit-scrollbar {
+  width: 14px;
+  height: 18px;
 }
-
-/* #sessionNumber {
-    padding-bottom: 100px;
-    padding-top: 10px;
-} */
-
-.consentCheck:checked {
-  background: #ff0065!important;
-  border: 1px solid #ff0d65!important;
-  background-image: url(../img/cross.svg)!important;
-  background-size: 12px!important;
-  background-repeat: no-repeat!important;
-  background-position: center!important;
+::-webkit-scrollbar-thumb {
+  height: 6px;
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  -webkit-border-radius: 7px;
+  background-color: rgba(0, 102, 153, 0.5);
+  -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05),
+    inset 1px 1px 0px rgba(0, 0, 0, 0.05);
 }
-
-td {
-    padding: 10px;
-    vertical-align: top;
-  }
-  #proceed_btn {
-    margin-bottom: 40px!important;
-    margin-top: 30px!important;
-  }
-  #container {
-    width: 65%!important;
-  }
-  #container p {
-    text-align: left;
-    width: 100%;
-  }
-  #survey_tabs {
-    padding: 20px;
-  }
-  #this_survey_id {
-    padding: 20px;
-    display: none;
-  }
-  .checkboxes {
-    text-align: left;
-    margin-top: 5px;
-  }
-  .checkboxes_h {
-    text-align: left;
-    margin-top: -5px;
-  }
-  .feedback_span_multiple {
-    display: none;
-    margin: 10px;
-  }
-  .feedback_span_single {
-    display: none;
-    padding: 10px;
-  }
-  .likert_table td {
-    padding: 1px;
-    text-align: center;
-  }
-  .likert_table td:hover {
-    color: blue;
-  }
-  .score_total {
-    display: none;
-  }
-  .show_tab {
-    margin: 5px;
-  }
-  .survey_btn {
-    white-space: normal;
-    word-wrap: initial;
-  }
-  .table_break {
-    width: 100%;
-    height: 0px;
-    overflow: auto;
-  }
-  .form-control{
-    border-color: #3f97f6!important;
-  }
-  .text-primary{
-    text-align: left;
-  }
-  .custom-control-label {
-    cursor: pointer;
-    transform: translateY(-5px);
-  }
-  .option-input.radio {
-    transform: translateY(-16px)!important;
+::-webkit-scrollbar-corner {
+  background-color: transparent;
 }
-.container {
-  width: 65%;
-  max-height: 90vh;
+::-webkit-scrollbar-thumb:hover {
+  background: #006688;
 }
-.container_tabs {
-  max-height: 90vh;
+@keyframes click-wave {
+  0% {
+    height: 40px;
+    width: 40px;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 200px;
+    width: 200px;
+    margin-left: -80px;
+    margin-top: -80px;
+    opacity: 0;
+  }
 }
-.btn {
-  font-size: .95rem!important;
-}
+ 
 </style>
 <div id="survey_container" class="container">
   <div id="survey_outline"></div>
   <button class="btn btn-outline-primary" id="previous_button">Previous Page</button>
-  <button class="btn btn-primary" id="proceed_button">Submit</button>
+  <button class="btn btn-primary" id="proceed_button">Proceed</button>
 </div>
 <span id="scales_span"></span>
 
 <script>
-/*
- * Load survey
- */
-current_survey = "{{survey}}";
+  current_survey = "{{survey}}"; // Load the required survey
 </script>
 <script src="../Default/DefaultPhaseTypes/survey_white.js"></script>

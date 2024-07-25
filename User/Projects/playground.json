@@ -1,6 +1,6 @@
 {
   "all_procs": {
-    "procedure_1.csv": "item,phasetype,survey,max_time,text,task_title,task_body_text,shuffle_1,weight,\r\n0,intro_static,,user,,,,,0,\r\n0,instruct,,user,,,,,0,\r\n0,tde_survey,big_five_inventory.csv,user,,,,,,\r\n0,tde_survey,branching.csv,user,,,,,,\r\n0,tde_survey,verbal_agressiveness.csv,user,,,,,,\r\n2 to 5,time_perception,,user,,,,1,0,\r\n0,sona,,user,,SONA,Live Text,,,\r\n0,bart_rs,,user,,,,,0,\r\n0,bart_rs,,user,,,,,0,\r\n0,bart_rs,,user,,,,,0,\r\n0,task_bookend,,user,Start,BART - Fixed Risk Scoring,\"The following BART task is set up to use a fixed risk scoring. This means that while the number of pumps allowed before the balloon bursts will vary across the 10 balloons, the total risk faced by each participant is set to be the same across all participants.<br><br>Once again, you have 10 balloons to score as many points as possible. Click \"\"inflate balloon\"\" to pump up the balloon and click \"\"Collect Points\"\" to bank the points scored for that balloon and move on to the next.\",,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,save_data,,user,,,,,0,",
+    "procedure_1.csv": "item,phasetype,survey,max_time,text,task_title,task_body_text,shuffle_1,weight,\r\n0,intro_static,,user,,,,,0,\r\n0,instruct,,user,,,,,0,\r\n0,tde_survey,big_five_inventory.csv,user,,,,,,\r\n0,tde_survey,branching.csv,user,,,,,,\r\n0,tde_survey,verbal_agressiveness.csv,user,,,,,,\r\n2 to 5,time_perception,,user,,,,1,0,\r\n0,sona,,user,,SONA,Live Text,,,\r\n0,bart_rs,,user,,,,,,\r\n0,bart_rs,,user,,,,,0,\r\n0,bart_rs,,user,,,,,0,\r\n0,task_bookend,,user,Start,BART - Fixed Risk Scoring,\"The following BART task is set up to use a fixed risk scoring. This means that while the number of pumps allowed before the balloon bursts will vary across the 10 balloons, the total risk faced by each participant is set to be the same across all participants.<br><br>Once again, you have 10 balloons to score as many points as possible. Click \"\"inflate balloon\"\" to pump up the balloon and click \"\"Collect Points\"\" to bank the points scored for that balloon and move on to the next.\",,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,save_data,,user,,,,,0,",
     "procedure_2.csv": "item,phasetype,max_time,text,shuffle_1,\r\n2,instruct,user,<h1>This is experiment 2</h1><br><br>,off,",
     "procedure_3.csv": "item,phasetype,max_time,text,shuffle_1,\r\n2,instruct,user,<h1>This is experiment 3</h1><br><br>,off,"
   },
@@ -933,9 +933,9 @@
         "answers",
         "values",
         "optional",
-        "btn_width",
         "branch",
         "block",
+        "btn_width",
         ""
       ],
       [
@@ -954,12 +954,12 @@
         "Q1",
         "Are you happy to answer the following question?",
         "likert",
-        "Skip|Yep",
-        "1|0",
+        "Skip|Yep|Maybe",
+        "2|1|0",
         "No",
-        "100px",
         "|B",
         "",
+        "100px",
         ""
       ],
       [
@@ -969,9 +969,9 @@
         "Definitely agree|Slightly agree|Slightly disagree|Definitely disagree",
         "1|1|0|0",
         "Yes",
-        "100px",
         "",
         "B",
+        "100px",
         ""
       ],
       [
@@ -981,9 +981,9 @@
         "Definitely agree|Slightly agree|Slightly disagree|Definitely disagree",
         "1|1|0|0",
         "Yes",
-        "100px",
         "",
         "B",
+        "100px",
         ""
       ],
       [
@@ -993,21 +993,165 @@
         "Definitely agree|Slightly agree|Slightly disagree|Definitely disagree",
         "1|1|0|0",
         "Yes",
-        "100px",
         "",
         "B",
+        "100px",
         ""
       ],
       [
         "Q5",
-        "Route B: Question 4",
+        "Number",
+        "number",
+        "",
+        "",
+        "Yes",
+        "",
+        "B",
+        "",
+        ""
+      ],
+      [
+        "Q6",
+        "email",
+        "email",
+        "",
+        "",
+        "Yes",
+        "",
+        "B",
+        "",
+        ""
+      ],
+      [
+        "Q7",
+        "Dropdown",
+        "dropdown",
+        "Definitely agree|Slightly agree|Slightly disagree|Definitely disagree",
+        "1|1|0|0",
+        "Yes",
+        "",
+        "B",
+        "",
+        ""
+      ],
+      [
+        "Q8",
+        "This is some additional text within the branched line",
+        "instruct",
+        "",
+        "",
+        "Yes",
+        "",
+        "B",
+        "",
+        ""
+      ],
+      [
+        "Q9",
+        "this is a para input",
+        "para",
+        "",
+        "",
+        "Yes",
+        "",
+        "B",
+        "",
+        ""
+      ],
+      [
+        "Q10",
+        "Vertical Radio: I found it very hard to wind down",
+        "radio",
+        "Applied to me to some degree or some of the time because time goes very slowly!|Slightly agree|Slightly disagree|Definitely disagree",
+        "1|1|0|0",
+        "Yes",
+        "",
+        "B",
+        "500px",
+        ""
+      ],
+      [
+        "Q11",
+        "radio_horizontal",
+        "radio_horizontal",
+        "Definitely agree|Slightly agree|Slightly disagree|Definitely disagree",
+        "1|1|0|0",
+        "Yes",
+        "",
+        "B",
+        "",
+        ""
+      ],
+      [
+        "Q12",
+        "this is a text input",
+        "text",
+        "",
+        "",
+        "Yes",
+        "",
+        "B",
+        "",
+        ""
+      ],
+      [
+        "Q13",
+        "checkbox_horizontal",
+        "checkbox_horizontal",
+        "Skip|Yep",
+        "1|0",
+        "Yes",
+        "",
+        "B",
+        "",
+        ""
+      ],
+      [
+        "Q14",
+        "checkbox_vertical",
+        "checkbox",
+        "Skip|Yep",
+        "1|0",
+        "Yes",
+        "",
+        "B",
+        "",
+        ""
+      ],
+      [
+        "Q15",
+        "checkbox_single",
+        "checkbox",
+        "Please tick me!",
+        "1",
+        "Yes",
+        "",
+        "B",
+        "",
+        ""
+      ],
+      [
+        "Q16",
+        "Are you happy to answer the following question?",
+        "dropdown",
+        "Skip|Yep",
+        "1|0",
+        "No",
+        "|C",
+        "B",
+        "100px",
+        ""
+      ],
+      [
+        "Q17",
+        "The last question is horrible, can we check you're happy again!?",
         "likert",
         "Definitely agree|Slightly agree|Slightly disagree|Definitely disagree",
         "1|1|0|0",
         "No",
-        "100px",
         "",
-        "B",
+        "C",
+        "100px",
         ""
       ],
       [

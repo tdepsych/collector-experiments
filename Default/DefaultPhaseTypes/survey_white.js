@@ -1,5 +1,6 @@
 /*
  * Collector Survey 3.2.4
+ * Authors: Dr. Anthony Haffey & Chris Dobson
  */
 
 /* 
@@ -12,20 +13,20 @@ var next_table_no = 0;
 var tableCount;
 var this_element_label;
 var item_name;
-
+var response = [];
 /*
 * detect if testing or not
 */
 if (typeof module !== "undefined") {
-// give message to developer during testing
-function appropriate_message(this_message) {
-  console.log(appropriate_message);
-}
+  // give message to developer during testing
+  function appropriate_message(this_message) {
+    console.log(this_message);
+  }
 } else {
 // give message to participant
-function appropriate_message(this_message) {
-  bootbox.alert(this_message);
-}
+  function appropriate_message(this_message) {
+    bootbox.alert(this_message);
+  }
 }
 
 var home_dir = "";
@@ -59,7 +60,6 @@ types_list = [
 "checkbox",
 "checkbox_vertical",
 "checkbox_horizontal",
-"checkbox_single",
 "date",
 "dropdown",
 "select",
@@ -142,21 +142,10 @@ $("#" + survey_outline).append(
 } else if (settings.tab_hor_vert.toLowerCase() === "none") {
 $("#survey_outline")
   .append($("<div>").css("display", "none").prop("id", "survey_tabs"))
-  .append(
-    $("<div>")
-      .html("Please wait while survey is downloading")
-      .prop("id", "please_wait_div")
-  )
-  .append(
-    $("<div>")
-      .class("needs-validation")
-      .prop("id", "this_survey_id")
-      .attr("novalidate", true)
-  );
+  .append($("<div>").html("Please wait while survey is downloading").prop("id", "please_wait_div"))
+  .append($("<div>").class("needs-validation").prop("id", "this_survey_id").attr("novalidate", true));
 } else {
-appropriate_message(
-  "If you are the researcher, please check the 'settings' for this survey. The input for 'tab_hor_vert' appears to be invalid. Please change it to 'horizontal' or 'vertical' or 'none' or remove 'tab_hot_vert' altogether from the settings, which will make the tabs invisible"
-);
+  appropriate_message("If you are the researcher, please check the 'settings' for this survey. The input for 'tab_hor_vert' appears to be invalid. Please change it to 'horizontal' or 'vertical' or 'none' or remove 'tab_hot_vert' altogether from the settings, which will make the tabs invisible");
 }
 
 $("#everything").append(
@@ -172,14 +161,14 @@ $("<input>")
 */
 
 page_break_management = {
-breaks_remaining: 0,
-breaks_index: 0,
+  breaks_remaining: 0,
+  breaks_index: 0,
 };
 
 proceed_object = {
-type: [],
-name: [],
-break_no: [],
+  type: [],
+  name: [],
+  break_no: [],
 };
 
 scoring_object = {
@@ -239,7 +228,8 @@ function show_previous_button() {
 }
 
 $("#previous_button").on("click", function () {
-  current_table_no = $('table').filter(function() {return $(this).attr('style') === undefined || $(this).attr('style') === '';}).attr('id').replace("table", "");
+  current_table_no = $('table').filter(function() {
+    return $(this).attr('style') === undefined || $(this).attr('style') === '';}).attr('id').replace("table", "");
   tableCount = $('table').length - 1; // this is reduced by 1 as the table numbering starts at 0
   next_table_no = eval(current_table_no) - eval(1);
   $(".table_break#table" + current_table_no).hide();
@@ -294,19 +284,29 @@ $("#proceed_button").on("click", function () {
   }
 
   if (proceed) {
-      if (next_table_no === eval(tableCount) + eval(1)) {
+      if (page_break_management.breaks_remaining > 0) {
+        if (next_table_no === eval(tableCount) + eval(1)) {
+          console.log("We should get here?")
+          if (typeof Phase !== "undefined") {
+            Phase.submit();
+          } else {
+            appropriate_message("You've finished! Click on the preview button to restart.");
+          }
+        } else {
+          $(".table_break").hide();
+          $(".table_break#table" + next_table_no).show(0);
+          $('.table_break#table'+ next_table_no).addClass("table_break_tabs");
+          $('.table_break#table'+ current_table_no).removeClass("table_break_tabs");
+          $(window).scrollTop(0);
+        }
+      } else {
         if (typeof Phase !== "undefined") {
           Phase.submit();
         } else {
           appropriate_message("You've finished! Click on the preview button to restart.");
         }
-      } else {
-        $(".table_break").hide();
-        $(".table_break#table" + next_table_no).show(0);
-        $('.table_break#table'+ next_table_no).addClass("table_break_tabs");
-        $('.table_break#table'+ current_table_no).removeClass("table_break_tabs");
-        $(window).scrollTop(0);
       }
+
       if ($('.table_break_tabs').length > 0) {
         show_previous_button();
       }
@@ -319,10 +319,9 @@ $("#proceed_button").on("click", function () {
     submit_fails++;
     $("#false_submit").val(submit_fails);
   }
-
   if ($('.table_break_tabs').length > 0) {
     if (next_table_no === tableCount) {
-      $("#proceed_button").text("Submit");
+      $("#proceed_button").text("Proceed");
     } else {
       $("#proceed_button").text("Next Page");
     }  
@@ -432,13 +431,16 @@ $(this_element).removeClass("btn-outline-primary").addClass("btn-primary");
 response_check(this_element);
 };
 
-function hide_blocks(block_names){
+function hide_blocks(block_names, element_name){
   if(typeof(block_names) !== "undefined" && block_names !== ""){
     block_names.split(" ").forEach(function(block_name){
-      $("[block_name=" + block_name+"]").hide();
+      $("[block_name='" + block_name+"']").hide();
       blocks_obj[block_name] = false;
     });  
   }
+  // The code below is needed to make sure that radio/checkbox inputs aren't hidden accidently as the above code is a bit harsh
+  var element_name = $("td input, td select, td select option");
+  element_name.show();
 }
 
 function load_survey(survey, survey_outline) {
@@ -482,7 +484,7 @@ function process_question(row, row_no) {
 
 
 //row.values = row.values == "" ? row.answers : row.values;
-if (row.type === "page_break") {
+if (row["type"] === "page_break") {
   page_break_management.breaks_remaining++;
   survey_pages_used = true;
   question_td = "</tr></table><table id='table" + page_break_management.breaks_remaining + "' style='display:none' class='table_break'></tr>";
@@ -543,7 +545,7 @@ if (row.type === "page_break") {
     $("<input>")
       .attr("type", "hidden")
       .prop("id", survey_id + "_value")
-      .prop("name", survey_id + "_value")
+      .prop("name", survey_id + "_value") //<------------ Ant turned this off?? Why??
       .val("")[0].outerHTML;
 
   /*
@@ -570,9 +572,6 @@ if (row.type === "page_break") {
       break;
     case "checkbox_horizontal":
       question_td += write("checkbox_horizontal", row_x);
-      break;
-    case "checkbox_single":
-      question_td += write("checkbox_single", row_x);
       break;
     case "date":
       question_td += write("date", row_x);
@@ -658,25 +657,16 @@ if (typeof row["type"] === "undefined") {
     //row_html  = question_td + write("jumbled",row); <-- this is better, but being paused for placement work Anthony is doing
     row_html = write("jumbled", row);
   } else if (row["type"].toLowerCase() === "likert") {
-    if (
-      typeof row["side_by_side"] !== "undefined" &&
-      row["side_by_side"].toLowerCase() === "yes"
-    ) {
+    if (typeof row["side_by_side"] !== "undefined" && row["side_by_side"].toLowerCase() === "yes") {
       var row_html =
         $("<td>")
           .addClass("text-primary")
           .css("text-align", "right")
           .css("width", row_ques_perc)
           .html(row["text"])
-          .prop(
-            "id",
-            survey_prepend +
-              row["item_name"].toLowerCase().replace(" ", "_") +
-              "_question"
-          )[0].outerHTML + $("<td>").html(question_td)[0].outerHTML;
-    } else {
-
-    
+          .prop("id", survey_prepend + row["item_name"].toLowerCase().replace(" ", "_") + "_question")[0]
+          .outerHTML + $("<td>").html(question_td)[0].outerHTML;
+    } else {    
       var row_html =
         $("<tr>")
           .append($("<td>")
@@ -689,50 +679,39 @@ if (typeof row["type"] === "undefined") {
           $("<td>")
             .attr("colspan", 2)
             .attr("align", "center")
-            .html(question_td)
-        )[0].outerHTML;
+            .html(question_td))[0].outerHTML;
     }
-  } else if (row["type"].toLowerCase() === "google_slide") {
-    var row_html = $("<td>")
-      .attr("colspan", 2)
-      .html(row["text"])[0].outerHTML;
+  // } else if (row["type"].toLowerCase() === "google_slide") {
+  //   var row_html = $("<td>")
+  //     .attr("colspan", 2)
+  //     .html(row["text"])[0].outerHTML;
 
-    //var row_html="<td colspan='2'>"+row["text"]+"</label></td>";
-  } else if (
-    typeof row["no_text"] !== "undefined" &&
-    row["no_text"] === "on"
-  ) {
+  //   //var row_html="<td colspan='2'>"+row["text"]+"</label></td>";
+  } else if (typeof row["no_text"] !== "undefined" && row["no_text"] === "on") {
     var row_html = $("<td>")
       .attr("colspan", 2)
       .html(question_td)[0].outerHTML;
 
-    //var row_html="<td colspan='2'>"+question_td+"</td>";
-  } else {
-    if (
-      (row["text"].toLowerCase() === "page_break") |
-      (row["type"].toLowerCase() === "page_break")
-    ) {
+    //var row_html="<td colspan='2'>"+question_td+"</td>"; qwerty
+  } else if (row["type"].toLowerCase() === "page_break") {
       row_html = question_td;
-    } else {
+  } else {
       var row_html =
-        $("<td>")
-          .addClass("text-primary")
-          .css("text-align", "right")
-          .css("width", row_ques_perc)
-          .html(row["text"])
-          .prop(
-            "id",
-            survey_prepend +
-              row["item_name"].toLowerCase().replace(" ", "_") +
-              "_question"
-          )[0].outerHTML + $("<td>").html(question_td)[0].outerHTML;
+        $("<tr>")
+          .append($("<td>")  
+            .addClass("text-primary")
+            .css("text-align", "left")
+            .css("width", row_ques_perc)
+            .prop("id",survey_prepend + row["item_name"].toLowerCase().replace(" ", "_") + "_question")
+            .html(row["text"] + question_td))[0].outerHTML;
     }
   }
+  
   if (typeof row["optional"] !== "undefined") {
     if (row["optional"].toLowerCase() === "no") {
       proceed_object.name.push(row["item_name"]);
       proceed_object.type.push(row["type"]);
-      proceed_object.break_no.push(page_break_management.breaks_remaining);
+      //proceed_object.break_no.push(page_break_management.breaks_remaining);
     }
   }
   if (
@@ -745,7 +724,7 @@ if (typeof row["type"] === "undefined") {
   }
   return [row_html, this_shuffle];
 }
-}
+
 
 function process_score(
 row_no,
@@ -833,7 +812,7 @@ load_phasetypes(phasetypes);
 function row_perc(this_rat) {
 if (typeof this_rat === "undefined") {
   row_resp_perc = "50%";
-  row_ques_perc = "50%";
+  row_ques_perc = "100%";
 } else {
   row_resp_perc = parseFloat(100 - this_rat.replace("%", "")) + "%";
   row_ques_perc = parseFloat(this_rat.replace("%", "")) + "%";
@@ -842,29 +821,43 @@ return [row_ques_perc, row_resp_perc];
 }
 
 function response_check(submitted_element) {
-//QWERTY2
-if($('[block_name]').length > 0) {
-  show_block($("#" + submitted_element.id).attr('block_name'));
-  hide_blocks($("#" + submitted_element.id).attr('hide_blocks'));
-} else {
-  // do nothing
-}
+  if (submitted_element.type === "select-one" || submitted_element.type === "radio") {
+    // hiding blocks, current cannot handle two independent blocks but can handle a block embedded within another QWERTY2
+
+    if (Object.keys(row).includes('block')) {
+      if($('[block_name]').length > 0) {
+        show_block($("#" + submitted_element.id).attr('block_name') || $('#' + submitted_element.id + ' option:selected').attr('block_name'));
+        hide_blocks($("#" + submitted_element.id).attr('hide_blocks') || $('#' + submitted_element.id + ' option:selected').attr('hide_blocks'));
+      }
+    } else {
+      // do nothing as the survey doesn't contain branching
+    }
+  } else {
+    // do nothing as the elemet cannot be used for branching
+  }
 
 switch (submitted_element.type) {
-  case "checkbox":
-    var checked_responses = $(
-      "[name='" + submitted_element.name + "']:checked"
-    );
+  case "checkbox":   
+    var checked_responses = $("[name='" + submitted_element.name + "']:checked");
+    var checked_text = $('input[id="' + submitted_element.id + '"]').next('label').text();
+    
+    if (response.includes(checked_text)) {
+      response.splice( $.inArray(checked_text, response), 1 );
+    } else {
+      response.push(checked_text);
+    }
+
     if (checked_responses.length) {
       //i.e. more than 0
       var values = [];
       for (var i = 0; i < checked_responses.length; i++) {
         values.push(checked_responses[i].value);
-      }
-      $("#" + submitted_element.name + "_response").val(
-        JSON.stringify(values)
-      );
+      }    
+
+      $("#" + submitted_element.name + "_value").val(JSON.stringify(values));
+      $("#" + submitted_element.name + "_response").val(JSON.stringify(response));
     } else {
+      $("#" + submitted_element.name + "_value").val("");
       $("#" + submitted_element.name + "_response").val("");
     }
     break;
@@ -872,7 +865,13 @@ switch (submitted_element.type) {
   case "button":
     $("#" + submitted_element.name + "_response").val(submitted_element.value);
     break;
-
+ //QWERTY2
+  case "select-one": // I have no idea why, but this has to be with dropdown or the dropdown doesn't work at storing both value and response options!
+  case "dropdown":
+    this_element_label = $('#' + submitted_element.id + ' option:selected').text(); 
+    $("#" + submitted_element.name + "_response").val(this_element_label);
+    $("#" + submitted_element.name + "_value").val(submitted_element.value);  
+    break;
   case "number":
   case "email":
   case "radio":
@@ -880,10 +879,10 @@ switch (submitted_element.type) {
     $("#" + submitted_element.name + "_response").val(this_element_label);
     $("#" + submitted_element.name + "_value").val(submitted_element.value);  
     break;
-  case "select-one":
   case "text":
   case "textarea":
     $("#" + submitted_element.name + "_response").val(submitted_element.value);
+    console.log("hello")
     break;
 }
 update_score();
@@ -954,7 +953,7 @@ if (
 
 function show_block(block_name){
   if(block_name !== ""){
-    $("[block_name=" + block_name+"]").show();
+    $("[block_name='" + block_name+"']").show();
     blocks_obj[block_name] = true;
   }
 }
@@ -1055,24 +1054,40 @@ scales.forEach(function (scale) {
 });
 }
 
+var branches;
+function check_branching(values) {
+  if(typeof(row["branch"]) == "undefined"){
+    branches = Array(values.length);
+  } else {
+    branches = row["branch"].split("|");
+  }
+}
+
+// CREATING THE DIFFERENT RESPONSE TYPES
 function write(type, row) {
 var this_html = "";
 [feedback_array, feedback_color] = get_feedback(row);
+
 row = shuffle_answers(row);
 row["item_name"] = row["item_name"].toLowerCase();
 
+// Horizontal Checkbox
 if (type === "checkbox_horizontal") {
   var options = row["answers"].split("|");
+  var values = row["values"].split("|");
   var this_table = $("<table>");
   this_row = this_table[0].insertRow();
   for (var i = 0; i < options.length; i++) {
     var this_cell = this_row.insertCell();
     var this_div = $("<div>");
-    this_div.addClass("custom-control");
-    this_div.addClass("custom-checkbox");
+    this_div
+      .addClass("custom-control")
+      .addClass("custom-checkbox")
+      .addClass("checkboxes_h");
     var this_input = $("<input>");
     this_input[0].type = "checkbox";
     this_input[0].id = row["item_name"] + i;
+    this_input[0].value = values[i];
     this_input[0].name = survey_prepend + row["item_name"];
     this_input
       .addClass("custom-control-input")
@@ -1081,7 +1096,9 @@ if (type === "checkbox_horizontal") {
       .addClass(row["custom-control"])
       .addClass(row["custom-checkbox"])
       .addClass(row["item_name"] + "_item")
-      .addClass("row_" + row["row_no"]);
+      .addClass("row_" + row["row_no"])
+      .attr("block_name",'')
+      .attr("hide_blocks",'');
     var this_label = $("<label>");
     this_label[0].htmlFor = row["item_name"] + i;
     this_label[0].innerText = options[i];
@@ -1089,42 +1106,21 @@ if (type === "checkbox_horizontal") {
     this_div.append(this_input).append(this_label);
     this_cell.innerHTML = this_div[0].outerHTML;
   }
-
   this_html += this_table[0].outerHTML;
-} else if (type === "checkbox_single") {
-  var this_div = $("<div>");
-  this_div.attr("data-toggle", "buttons");
-  this_div.addClass("btn-group-toggle");
-  var this_label = $("<label>");
-  this_label.addClass("btn");
-  this_label.addClass("btn-outline-primary");
-  this_label.html(row["answers"]);
-  var this_checkbox = $("<input>");
-  this_checkbox[0].id = row["item_name"];
-  this_checkbox[0].name = survey_prepend + row["item_name"].toLowerCase();
-  this_checkbox[0].type = "checkbox";
-  this_checkbox.attr("checked", true);
-  this_checkbox
-    .addClass("response")
-    .addClass(row["item_name"] + "_item row_" + row["row_no"]);
-  this_div.append(this_label);
-  this_label.append(this_checkbox);
-  this_html += this_div[0].outerHTML;
+
+  // Vertical Checkbox
 } else if (type === "checkbox_vertical") {
   var options = row["answers"].split("|");
   var values = row["values"].split("|");
   for (var i = 0; i < options.length; i++) {
-    feedback_string = generate_feedback_string(
-      feedback_array,
-      i,
-      feedback_color,
-      row
-    );
+    feedback_string = generate_feedback_string(feedback_array,i,feedback_color,row);
     var this_div = $("<div>");
-    this_div.addClass("custom-control").addClass("custom-checkbox");
+    this_div
+      .addClass("custom-control")
+      .addClass("custom-checkbox");
     var this_checkbox = $("<input>");
     this_checkbox[0].id = row["item_name"] + i;
-    this_checkbox[0].value = options[i];
+    this_checkbox[0].value = values[i];
     this_checkbox[0].type = "checkbox";
     this_checkbox[0].name = survey_prepend + row["item_name"].toLowerCase();
     this_checkbox
@@ -1133,7 +1129,9 @@ if (type === "checkbox_horizontal") {
       .addClass("custom-control")
       .addClass("custom-checkbox")
       .addClass("response")
-      .addClass(row["item_name"] + "_item_row");
+      .addClass(row["item_name"] + "_item_row")
+      .attr("block_name",'')
+      .attr("hide_blocks",'');
     var this_label = $("<label>");
     this_label[0].htmlFor = row["item_name"] + i;
     this_label[0].innerHTML = options[i];
@@ -1142,79 +1140,110 @@ if (type === "checkbox_horizontal") {
 
     this_html += this_div[0].outerHTML;
   }
-  if (
-    typeof row["other"] !== "undefined" &&
-    row["other"].toLowerCase() === "yes"
-  ) {
-    var this_div = $("<div>");
-    this_div.addClass("custom-control").addClass("custom-checkbox");
-    var this_checkbox = $("<input>");
-    this_checkbox[0].id = row["item_name"] + "_other";
-    this_checkbox[0].value = "Other";
-    this_checkbox[0].type = "checkbox";
-    this_checkbox[0].name = survey_prepend + row["item_name"].toLowerCase();
-    this_checkbox
-      .addClass("custom-control-input")
-      .addClass(row["this_class"])
-      .addClass("custom-control")
-      .addClass("custom-checkbox")
-      .addClass("response")
-      .addClass(row["item_name"] + "_item_row");
-    var this_label = $("<label>");
-    this_label[0].htmlFor = row["item_name"] + "_other";
-    this_label[0].innerHTML = "Other";
-    this_label.addClass("custom-control-label");
-    this_div.append(this_checkbox).append(this_label);
 
-    this_html += this_div[0].outerHTML;
+  // Custom Checkbox??  <--- Not currently working
+  // if (typeof row["other"] !== "undefined" && row["other"].toLowerCase() === "yes") {
+  //   var this_div = $("<div>");
+  //   this_div.addClass("custom-control").addClass("custom-checkbox");
+  //   var this_checkbox = $("<input>");
+  //   this_checkbox[0].id = row["item_name"] + "_other";
+  //   this_checkbox[0].value = "Other";
+  //   this_checkbox[0].type = "checkbox";
+  //   this_checkbox[0].name = survey_prepend + row["item_name"].toLowerCase();
+  //   this_checkbox
+  //     .addClass("custom-control-input")
+  //     .addClass(row["this_class"])
+  //     .addClass("custom-control")
+  //     .addClass("custom-checkbox")
+  //     .addClass("response")
+  //     .addClass(row["item_name"] + "_item_row")
+  //     .attr("block_name",'')
+  //     .attr("hide_blocks",'');
+  //   var this_label = $("<label>");
+  //   this_label[0].htmlFor = row["item_name"] + "_other";
+  //   this_label[0].innerHTML = "Other";
+  //   this_label.addClass("custom-control-label");
+  //   this_div.append(this_checkbox).append(this_label);
 
-    var text_input = $("<input>");
-    text_input.addClass("form-control");
-    text_input.attr(
-      "placeholder",
-      "(Please specify if you selected 'Other')"
-    );
-    text_input[0].name = survey_prepend + row["item_name"].toLowerCase() + "_other";
-    this_html += text_input[0].outerHTML;
-  }
-} else if (type === "date") {
-  var input = $("<input>");
-  input
-    .addClass("response")
-    .addClass("custom-control")
-    .addClass("datepicker")
-    .addClass("date")
-    .addClass(row["item_name"] + "_item")
-    .addClass("row_" + row["row_no"])
-    .attr("name", survey_prepend + row["item_name"])
-    .attr("type", "text");
+  //   this_html += this_div[0].outerHTML;
+
+  //   var text_input = $("<input>");
+  //   text_input.addClass("form-control");
+  //   text_input.attr(
+  //     "placeholder",
+  //     "(Please specify if you selected 'Other')"
+  //   );
+  //   text_input[0].name = survey_prepend + row["item_name"].toLowerCase() + "_other";
+  //   this_html += text_input[0].outerHTML;
+  // }
+
+  // Date <--- Not currently working
+// } else if (type === "date") {
+//   var input = $("<input>");
+//   input
+//     .addClass("response")
+//     .addClass("custom-control")
+//     .addClass("datepicker")
+//     .addClass("date")
+//     .addClass(row["item_name"] + "_item")
+//     .addClass("row_" + row["row_no"])
+//     .attr("name", survey_prepend + row["item_name"])
+//     .attr("type", "text")
+//     .attr("block_name",'')
+//     .attr("hide_blocks",'');
+
+  // Dropdown
 } else if (type === "dropdown") {
+  var hide_blocks = [];
   var options = row["answers"].split("|");
-  var this_dropdown = $("<select>");
-  this_dropdown
-    .addClass("form-select")
-    .addClass("response")
-    .addClass("txt-primary")
-    .addClass(row["item_name"] + "_item")
-    .addClass("row_" + row["row_no"])
-    .addClass("collector_button")
-    .attr("name", survey_prepend + row["item_name"])
-    .css("margin", "0px")
-    .css("width", "auto");
+  var values = row["values"].split("|");
+  check_branching(values); // <---------------------------------------------
+  for (var i = 0; i < options.length; i++) {
+    // create hide blocks array  // <--------------------------------------------- // Maybe a function?
+    for(j=0; j < branches.length; j++){
+      if(i !== j){
+        hide_blocks.push(branches[j]);
+      }
+    }
+    // hide_blocks = hide_blocks.join(" ");  // <---------------------------------------------
 
-  /* this will be necessary to tidy up jumbled sentences
-if(typeof(row["item_name_old"]) !== "undefined"){
-  this_dropdown.addClass(row["item_name_old"] + "_item");
-}
-*/
+    var this_dropdown = $("<select>");
+    this_dropdown[0].id = survey_prepend + row["item_name"];
+    this_dropdown
+      .addClass("form-select")
+      .addClass("response")
+      .addClass("txt-primary")
+      .addClass(row["item_name"] + "_item")
+      .addClass("row_" + row["row_no"])
+      .addClass("collector_button")
+      .attr("type", "dropdown")
+      .attr("name", survey_prepend + row["item_name"])
+      .css("margin", "0px")
+      .css("width", "auto")
+      // .attr("block_name", branches[i])
+      // .attr("hide_blocks", hide_blocks)
 
-  this_dropdown.append(
-    "<option selected disabled hidden>-- no option selected --</option>"
-  );
-  options.forEach(function (this_option) {
-    this_dropdown.append("<option>" + this_option + "</option>");
-  });
-  var this_html = this_dropdown[0].outerHTML;
+    //this will be necessary to tidy up jumbled sentences
+    if(typeof(row["item_name_old"]) !== "undefined"){
+      this_dropdown.addClass(row["item_name_old"] + "_item");
+    }
+
+
+    this_dropdown.append("<option selected disabled hidden>-- no option selected --</option>");
+    // options.forEach(function (this_option) {
+    //   this_dropdown.append("<option value=" + values[this_option] + ">" + this_option + "</option>")
+    // });
+
+    options.forEach(function (this_option, index) {
+      const this_value = values[index];
+      const this_branch = branches[index];
+      const this_hideblock = hide_blocks[index];
+      this_dropdown.append(`<option type="dropdown" value="${this_value}" block_name= "${this_branch}" hide_blocks="${this_hideblock}">${this_option}</option>`);
+    });
+
+    var this_html = this_dropdown[0].outerHTML;
+  }
+  // Email
 } else if (type === "email") {
   var this_input = $("<input>");
   this_input
@@ -1224,10 +1253,12 @@ if(typeof(row["item_name_old"]) !== "undefined"){
     .attr("type", "email")
     .attr("name", survey_prepend + row["item_name"])
     .attr("onblur", "validateEmail()")
-    .prop("id", survey_prepend + row["item_name"] + "_response" + " emailInput");
+    .prop("id", survey_prepend + row["item_name"] + "_response" + " emailInput")
+    .attr("block_name",'')
+    .attr("hide_blocks",'');
     this_html += this_input[0].outerHTML;
 } else if (type === "instruct") {
-  this_html += "<td colspan='2'>" + row["text"] + "</td>";
+  this_html += "<tr><td colspan='2' block_name hide_block>" + row["text"] + "</td></tr>";
 } else if (type === "jumbled") {
   var this_td = $("<td>");
   this_td.attr("colspan", 2);
@@ -1264,6 +1295,8 @@ if(typeof(row["item_name_old"]) !== "undefined"){
   this_div.append(questions_html);
 
   this_html = this_td[0].outerHTML;
+
+  // Likert Scales
 } else if (type === "likert") {
   // set styles
   if (typeof row["btn_width"] === "undefined") {
@@ -1298,26 +1331,22 @@ if(typeof(row["item_name_old"]) !== "undefined"){
 
   var options = row["answers"].split("|");
   var values = row["values"].split("|");
-  var branches;
-  if(typeof(row["branch"]) == "undefined"){
-    branches = Array(values.length);
-  } else {
-    branches = row["branch"].split("|");
-  }
 
-  for (var i = 0; i < options.length; i++) {
-    var this_radio = $("<input>");
+  check_branching(values)
+
+  for (i = 0; i < options.length; i++) {
+    var this_input = $("<input>");
     
-    // create hide blocks array
+    // create hide blocks array <---------------------------------------
     var hide_blocks = [];
-    for(var j=0; j < branches.length; j++){
+    for(j=0; j < branches.length; j++){
       if(i !== j){
         hide_blocks.push(branches[j]);
       }
     }
     hide_blocks = hide_blocks.join(" ");
 
-    this_radio
+    this_input
       .attr("type", "radio")  
       .attr("name", survey_prepend + row["item_name"])
       .attr("autocomplete", "off")
@@ -1327,7 +1356,7 @@ if(typeof(row["item_name_old"]) !== "undefined"){
       .attr("block_name", branches[i])
       .attr("hide_blocks", hide_blocks)
       .addClass("btn-check")
-    this_div.append(this_radio);
+    this_div.append(this_input);
     var this_label = $("<label>");
     this_label
       .addClass("btn")
@@ -1339,15 +1368,21 @@ if(typeof(row["item_name_old"]) !== "undefined"){
   }
   this_div.append(side_text[1]);
   this_html += this_div[0].outerHTML;
-} else if (type === "number") {
-  var this_input = $("<input>");
-  this_input[0].type = "number";
-  this_input[0].name = survey_prepend + row["item_name"];
-  this_input
-    .addClass("response")
-    .addClass("form-control")
-    .addClass(row["item_name"] + "_item row_" + row["row_no"]);
+
+  // Number
+} else if (type === "number") { 
+    var this_input = $("<input>");
+    this_input[0].type = "number";
+    this_input[0].name = survey_prepend + row["item_name"];
+    this_input
+      .addClass("response")
+      .addClass("form-control")
+      .addClass(row["item_name"] + "_item row_" + row["row_no"])
+      .attr("block_name",'')
+      .attr("hide_blocks",'')
   this_html += this_input[0].outerHTML;
+
+  // Paragraph Text Area
 } else if (type === "para") {
   var this_textarea = $("<textarea>");
   this_textarea[0].name = survey_prepend + row["item_name"];
@@ -1356,56 +1391,112 @@ if(typeof(row["item_name_old"]) !== "undefined"){
     .addClass("response");
   this_textarea.css("width", "100%").css("height", "200px");
   this_html += this_textarea[0].outerHTML;
+
+  // Horiztonal Radio Buttons
 } else if (type === "radio_horizontal") {
   var options = row["answers"].split("|");
   var values = row["values"].split("|");
+  check_branching(values); // <---------------------------------------------
   var this_table = $("<table>");
   this_row = this_table[0].insertRow();
   for (var i = 0; i < options.length; i++) {
     var this_cell = this_row.insertCell();
     var this_div = $("<div>");
-    this_div.addClass("custom-control").addClass("custom-radio").addClass("checkboxes_h");
-    var this_input = $("<input>");
-    this_input[0].type = "radio";
-    this_input[0].value = values[i];
-    this_input[0].id = row["item_name"] + i;
-    this_input[0].name = survey_prepend + row["item_name"];
-    this_input.addClass("custom-control-input").addClass(row["this_class"]).addClass("custom-control").addClass("custom-radio").addClass("response").addClass("option-input radio").addClass(row["item_name"] + "_item_row_" + row["row_no"]);
+    this_div
+      .addClass("custom-control")
+      .addClass("custom-radio")
+      .addClass("checkboxes_h");
+
+    // create hide blocks array  // <---------------------------------------------
+    var hide_blocks = [];
+    for(j=0; j < branches.length; j++){
+      if(i !== j){
+        hide_blocks.push(branches[j]);
+      }
+    }
+    hide_blocks = hide_blocks.join(" ");  // <---------------------------------------------
+    
     var this_label = $("<label>");
     this_label[0].htmlFor = row["item_name"] + i;
-    this_label[0].innerText = options[i];
     this_label.addClass("custom-control-label").addClass("radioLabelHolder");
-    this_div.append(this_input).append(this_label);
+    
+    this_label.append(
+      $("<input>")
+        .prop("type", "radio")
+        .prop("id", row["item_name"] + i)
+        .prop("value", values[i])
+        .prop("name", survey_prepend + row["item_name"])
+        .addClass("custom-control-input")
+        .addClass(row["this_class"])
+        .addClass("custom-control")
+        .addClass("custom-radio")
+        .addClass("response")
+        .addClass("option-input radio")
+        .addClass(row["item_name"] + "_item_row_" + row["row_no"])
+        .attr("block_name", branches[i])
+        .attr("hide_blocks", hide_blocks)
+    )
+    .append(
+      $("<span>").html(options[i])
+    );
+    this_div
+      .append(this_label)
+      //.append(feedback_string);
+
     this_cell.innerHTML = this_div[0].outerHTML;
   }
   this_html += this_table[0].outerHTML;
+
+  // Veritcal Radio Buttons
 } else if (type === "radio_vertical") {
   var options = row["answers"].split("|");
   var values = row["values"].split("|");
+  check_branching(values)
   for (var i = 0; i < options.length; i++) {
     feedback_string = generate_feedback_string(feedback_array,i,feedback_color,row);
     var this_div = $("<div>");
     this_div.addClass("custom-control").addClass("custom-radio").addClass("checkboxes");
-    var this_input = $("<input>");
-    this_input[0].type = "radio";
-    this_input[0].id = row["item_name"] + i;
-    this_input[0].value = values[i];
-    this_input[0].name = survey_prepend + row["item_name"];
-    this_input
-      .addClass("custom-control-input")
-      .addClass(row["this_class"])
-      .addClass("custom-control")
-      .addClass("custom-radio")
-      .addClass("response")
-      .addClass("option-input radio")
-      .addClass(row["item_name"] + "_item_row_" + row["row_no"]);
+
+    // create hide blocks array  // <--------------------------------------------- // Maybe a function?
+    var hide_blocks = [];
+    for(j=0; j < branches.length; j++){
+      if(i !== j){
+        hide_blocks.push(branches[j]);
+      }
+    }
+    hide_blocks = hide_blocks.join(" ");  // <---------------------------------------------
+    
     var this_label = $("<label>");
     this_label[0].htmlFor = row["item_name"] + i;
     this_label.addClass("custom-control-label").addClass("radioLabelHolder");
-    this_label.html(options[i]);
-    this_div.append(this_input).append(this_label).append(feedback_string);
+
+    this_label.append(
+      $("<input>")
+        .prop("type", "radio")
+        .prop("id", row["item_name"] + i)
+        .prop("value", values[i])
+        .prop("name", survey_prepend + row["item_name"])
+        .addClass("custom-control-input")
+        .addClass(row["this_class"])
+        .addClass("custom-control")
+        .addClass("custom-radio")
+        .addClass("response")
+        .addClass("option-input radio")
+        .addClass(row["item_name"] + "_item_row_" + row["row_no"])
+        .attr("block_name", branches[i])
+        .attr("hide_blocks", hide_blocks)
+    )
+    .append(
+      $("<span>").html(options[i])
+    );
+    this_div
+      .append(this_label)
+      //.append(feedback_string);
+
     this_html += this_div[0].outerHTML;
   }
+
+  // Text Area
 } else if (type === "text") {
   var this_input = $("<input>");
   this_input[0].type = "text";
@@ -1413,9 +1504,15 @@ if(typeof(row["item_name_old"]) !== "undefined"){
   this_input
   .addClass("form-control")
   .addClass(row["item_name"] + "_item row_" + row["row_no"])
-  .addClass("response");
+  .addClass("response")
+  .attr("block_name",'')
+  .attr("hide_blocks",'');
   this_html += this_input[0].outerHTML;
+} else {
+  // do nothing
 }
+
+// End of creating elements //
 
 switch (type) {
   case "checkbox_vertical":
@@ -1423,12 +1520,7 @@ switch (type) {
     // do nothing
     break;
   default:
-    this_html += generate_feedback_string(
-      feedback_array,
-      0,
-      feedback_color,
-      row
-    );
+    this_html += generate_feedback_string(feedback_array,0,feedback_color,row);
     break;
 }
 return this_html;
@@ -1566,14 +1658,21 @@ if (typeof module !== "undefined") {
 } else {
   if (typeof Phase !== "undefined") {
     Phase.set_timer(function () {
+      console.log("Phase is defined")
       load_survey(current_survey, "survey_outline");
       if (survey_pages_used) {
         $("#proceed_button").text("Next Page");
-        $('#survey_container').removeClass("container").addClass("container_tabs");
         $('#table'+current_table_no).addClass("table_break_tabs");
       }
-    }, 100);
+    }, 50);
   } else {
-    load_survey(current_survey, "survey_outline");
+    setTimeout(function () {
+      console.log("Phase is not defined")
+      load_survey(current_survey, "survey_outline");
+      if (survey_pages_used) {
+        $("#proceed_button").text("Next Page");
+        $('#table'+current_table_no).addClass("table_break_tabs");
+      }
+    }, 50);
   }
 }

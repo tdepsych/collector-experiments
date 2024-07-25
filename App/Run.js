@@ -352,8 +352,6 @@ Project = {
           data: this_data,
           success: function(result){
             console.log("result");
-            //console.log(result);
-            //console.log(result);
             if(result.toLowerCase().indexOf("error") !== -1 | result.toLowerCase().indexOf("count") === -1){
               attempt_no++;
               if(attempt_no > 2){
@@ -542,7 +540,7 @@ Project = {
     });
     // in case the user forgets
     this_phase = this_phase.replaceAll("www.dropbox", "dl.dropbox");
-
+    
     /*
      * Need to detect whether localhost and on mac
      */
@@ -556,6 +554,7 @@ Project = {
       this_phase = this_phase.replaceAll("../User/", home_dir + "/User/");
     }
     return this_phase;
+    
   },
 
   go_to: function (go_to_info) {
@@ -1498,12 +1497,29 @@ function parse_current_proc() {
   });
 
   // add progress here
+    // check if there are weight 0 rows:
+    var weight_0s = 0;
+    var weight_1s = 0;
   for(var i = 0; i < project_json.parsed_proc.length; i++){
-    project_json.parsed_proc[i].phase_progress = i / project_json.parsed_proc.length;
+    if(project_json.parsed_proc[i].weight == "0"){
+      weight_0s++;
+    } else if (parseInt(project_json.parsed_proc[i].weight) > 1) {
+      weight_1s += parseInt(project_json.parsed_proc[i].weight);
+      console.log(weight_1s)
+    } else {
+      weight_1s++;
+    }
   }
-  
 
-
+  var this_progress = 0;
+  for(var i = 0; i < project_json.parsed_proc.length; i++){
+    if(project_json.parsed_proc[i].weight == "0"){
+      // do nothing
+    } else {
+      this_progress++;
+      project_json.parsed_proc[i].phase_progress = this_progress / weight_1s;
+    }
+  }
   proc_fill_items();
   proc_apply_repeats();
   Project.activate_pipe();
