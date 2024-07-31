@@ -352,6 +352,7 @@ Project = {
           data: this_data,
           success: function(result){
             console.log("result");
+            //console.log(result);
             if(result.toLowerCase().indexOf("error") !== -1 | result.toLowerCase().indexOf("count") === -1){
               attempt_no++;
               if(attempt_no > 2){
@@ -594,16 +595,22 @@ Project = {
     if(typeof(project_json.this_condition.progress_bar) !== "undefined"){
       if(project_json.this_condition.progress_bar == "off"){
         $("#project_progress_bar").css("display","none");
+      } else if(project_json.parsed_proc[project_json.phase_no].no_progress === "yes"){
+        $("#project_progress_bar").css("display","none");
       } else if(project_json.this_condition.progress_bar == "phase" | project_json.this_condition.progress_bar == "trial" | project_json.this_condition.progress_bar == "stimuli" | project_json.this_condition.progress_bar == "item"){
+        $("#project_progress_bar").css("display","flex");
         $("#experiment_progress").css("width",(100 * project_json.phase_no) / (project_json.parsed_proc.length - 1) + "%");
       } else  if(project_json.this_condition.progress_bar == "row" | project_json.this_condition.progress_bar == "procedure"){
+        $("#project_progress_bar").css("display","flex");
         $("#experiment_progress").css("width",(100 * project_json.parsed_proc[project_json.phase_no].phase_progress) + "%"); 
         // the default is to have a progress bar, but for it to move on after each row of the spreadsheet, not after each phase.  
       } else {
+        $("#project_progress_bar").css("display","flex");
         $("#experiment_progress").css("width",(100 * project_json.parsed_proc[project_json.phase_no].phase_progress) + "%");
       }
       // the default is to have a progress bar, but for it to move on after each row of the spreadsheet, not after each phase.
     } else {
+      $("#project_progress_bar").css("display","flex");
       $("#experiment_progress").css("width",(100 * project_json.parsed_proc[project_json.phase_no].phase_progress) + "%");
 
     }

@@ -1,6 +1,6 @@
 item_name,text,type,answers,values,optional,branch,block,btn_width,
 Instructions1,<span style='color:#006699'><span style='font-size:20px'>Choose one response that best describes how strongly each item applies to you:</span></span>,instruct,,,,,,,
-Q1,Are you happy to answer the following question?,likert,Skip|Yep|Maybe,2|1|0,No,|B,,100px,
+Q1,Are you happy to answer the following question?,dropdown,Skip|Yep|Maybe,2|1|0,No,|B,,100px,
 Q2,Route B: Question 1,likert,Definitely agree|Slightly agree|Slightly disagree|Definitely disagree,1|1|0|0,Yes,,B,100px,
 Q3,Route B: Question 2,likert,Definitely agree|Slightly agree|Slightly disagree|Definitely disagree,1|1|0|0,Yes,,B,100px,
 Q4,Route B: Question 3,likert,Definitely agree|Slightly agree|Slightly disagree|Definitely disagree,1|1|0|0,Yes,,B,100px,

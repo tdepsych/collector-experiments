@@ -230,23 +230,21 @@ Collector.custom_alert= function(msg, duration) {
   }
 
   var this_alert = $("<div>")
-    .css({
-      backgroundColor:  this_background_color,
-      border:           "3px solid " + border_color,
-      borderRadius:     "6px",
-      color:            this_color,
-      "font-size":      "20px",
-      left:             "10px",
-      // margin:           "10px 5px",
-      opacity:          "0",
-      padding:          "20px",
-      position:         "fixed",
-      right:            "10px",
-      // top:              (top_padding + 20) + "px",
-      top:              "10%",
-      "z-index":        1000
-    })
-    .html(msg + " (click to keep on screen and click again to hide)");
+  .css({
+    backgroundColor:  this_background_color,
+    border:           "3px solid " + border_color,
+    borderRadius:     "6px",
+    color:            this_color,
+    "font-size":      "20px",
+    left:             "10px",
+    opacity:          "0",
+    padding:          "20px",
+    position:         "fixed",
+    right:            "10px",
+    top:              "10%",
+    "z-index":        9999 // Use a high z-index value to ensure it's on top
+  })
+  .html(msg + " (click to keep on screen and click again to hide)");
   /*
   - need to think through how to avoid multiple redundant elements through appending...
   */

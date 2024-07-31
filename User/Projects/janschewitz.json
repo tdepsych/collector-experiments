@@ -208,12 +208,16 @@
         "btn_width",
         "score:trait_anger",
         "reversed",
+        "branch",
+        "block",
         ""
       ],
       [
         "Instructions",
         "<h2><span>Trait Anger Scale</span></h2><br><br><h6><b>INSTRUCTIONS: </b>A  number of statements which people have used to describe themselves are given below.  Read each statement carefully and indicate how you <em>generally</em> feel by selecting the appropriate response option given underneath</h6><br/><br/>",
         "instruct",
+        "",
+        "",
         "",
         "",
         "",
@@ -228,12 +232,14 @@
         "1. I am quick tempered...",
         "likert",
         "Almost Never|Sometimes|Often|Almost Always",
-        " No",
+        "No",
         "1|2|3|4",
         "no",
         "175px",
         "1",
         "no",
+        "A1|||",
+        "",
         ""
       ],
       [
@@ -247,6 +253,8 @@
         "175px",
         "1",
         "no",
+        "",
+        "A1",
         ""
       ],
       [
@@ -260,6 +268,8 @@
         "175px",
         "1",
         "no",
+        "",
+        "A1",
         ""
       ],
       [
@@ -273,6 +283,8 @@
         "175px",
         "1",
         "no",
+        "",
+        "A1",
         ""
       ],
       [
@@ -286,6 +298,8 @@
         "175px",
         "1",
         "no",
+        "",
+        "A1",
         ""
       ],
       [
@@ -299,6 +313,8 @@
         "175px",
         "1",
         "no",
+        "",
+        "A1",
         ""
       ],
       [
@@ -312,6 +328,8 @@
         "175px",
         "1",
         "no",
+        "",
+        "A1",
         ""
       ],
       [
@@ -325,6 +343,8 @@
         "175px",
         "1",
         "no",
+        "",
+        "A1",
         ""
       ],
       [
@@ -338,6 +358,8 @@
         "175px",
         "1",
         "no",
+        "",
+        "A1",
         ""
       ],
       [
@@ -351,9 +373,13 @@
         "175px",
         "1",
         "no",
+        "",
+        "A1",
         ""
       ],
       [
+        "",
+        "",
         "",
         "",
         "",
@@ -1278,14 +1304,12 @@
         "answers",
         "optional",
         "values",
-        "side_by_side",
         ""
       ],
       [
         "Instructions",
         "<h2><span>Demographic Information</span></h2><br><br>\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer questions 6-9, as we cannot include your data in the final dataset if you do not provide and answer to these questions.</span><br/><br/>",
         "instruct",
-        "",
         "",
         "",
         "",
@@ -1298,17 +1322,15 @@
         "",
         "Yes",
         "",
-        "",
         ""
       ],
       [
         "Sex",
         "2. What is your biological sex?",
-        "radio_vertical",
+        "radio",
         "Male|Female|Prefer not to say",
         "No",
         "1|2|0",
-        "",
         ""
       ],
       [
@@ -1318,6 +1340,14 @@
         "White|Mixed/Multiple|Asian|Black/African/Caribbean|Chinese|Arab|Other|Prefer not to say",
         "No",
         "1|2|3|4|5|6|7|0",
+        ""
+      ],
+      [
+        "chris",
+        "",
+        "page_break",
+        "",
+        "",
         "",
         ""
       ],
@@ -1328,7 +1358,6 @@
         "GCSEs or equivalent|A-Levels or equivalent|Undergraduate (e.g., BSc)|Postgraduate (e.g., MSc)|Doctoral degree|Other|Prefer not to say",
         "No",
         "1|2|3|4|5|6|0",
-        "",
         ""
       ],
       [
@@ -1338,7 +1367,6 @@
         "Full-time employment|Part-time employment|Unemployed/Retired/Full-time education|Prefer not to say",
         "No",
         "1|2|3|0",
-        "",
         ""
       ],
       [
@@ -1348,7 +1376,6 @@
         "Yes|No",
         "No",
         "1|2",
-        "",
         ""
       ],
       [
@@ -1358,14 +1385,12 @@
         "Yes|No",
         "No",
         "1|2",
-        "",
         ""
       ],
       [
         "HorizontalRule",
         "<hr>",
         "instruct",
-        "",
         "",
         "",
         "",
@@ -1378,11 +1403,9 @@
         "",
         "",
         "",
-        "",
         ""
       ],
       [
-        "",
         "",
         "",
         "",
