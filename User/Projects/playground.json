@@ -1,10 +1,10 @@
 {
   "all_procs": {
-    "procedure_1.csv": "item,phasetype,survey,max_time,text,task_title,task_body_text,shuffle_1,weight,\r\n0,intro_static,,user,,,,,0,\r\n0,instruct,,user,,,,,0,\r\n0,tde_survey,big_five_inventory.csv,user,,,,,0,\r\n0,tde_survey,branching.csv,user,,,,,0,\r\n0,tde_survey,verbal_agressiveness.csv,user,,,,,0,\r\n2 to 5,time_perception,,user,,,,1,0,\r\n0,sona,,user,,SONA,Live Text,,2,\r\n0,bart_rs,,user,,,,,1,\r\n0,bart_rs,,user,,,,,0,\r\n0,bart_rs,,user,,,,,0,\r\n0,task_bookend,,user,Start,BART - Fixed Risk Scoring,\"The following BART task is set up to use a fixed risk scoring. This means that while the number of pumps allowed before the balloon bursts will vary across the 10 balloons, the total risk faced by each participant is set to be the same across all participants.<br><br>Once again, you have 10 balloons to score as many points as possible. Click \"\"inflate balloon\"\" to pump up the balloon and click \"\"Collect Points\"\" to bank the points scored for that balloon and move on to the next.\",,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,bart_ah,,user,,,,,0,\r\n0,save_data,,user,,,,,0,",
+    "procedure_1.csv": "item,phasetype,survey,max_time,shuffle_1,task_title,task_body_text,weight,\r\n0,intro_static,,user,off,,,,\r\n0,instruct,,user,off,,,0,\r\n0,tde_survey,big_five_inventory.csv,user,off,,,0,\r\n0,tde_survey,branching.csv,user,off,,,0,\r\n0,tde_survey,verbal_agressiveness.csv,user,off,,,0,\r\n2 to 5,time_perception,,user,off,,,0,\r\n0,sona,,user,off,Sona,Holding Text,,\r\n0,error_safari,,1000,off,,,,\r\n0,bart_rs,,user,off,,,,\r\n0,bart_rs,,user,off,,,0,\r\n0,bart_rs,,user,off,,,0,\r\n0,task_bookend,,user,off,BART - Fixed Risk Scoring,\"The following BART task is set up to use a fixed risk scoring. This means that while the number of pumps allowed before the balloon bursts will vary across the 10 balloons, the total risk faced by each participant is set to be the same across all participants.<br><br>Once again, you have 10 balloons to score as many points as possible. Click \"\"inflate balloon\"\" to pump up the balloon and click \"\"Collect Points\"\" to bank the points scored for that balloon and move on to the next.\",0,\r\n0,bart_ah,,user,off,,,0,\r\n0,bart_ah,,user,off,,,0,\r\n0,bart_ah,,user,off,,,0,\r\n0,bart_ah,,user,off,,,0,\r\n0,save_data,,user,off,,,0,\r\n0,axcpt_debrief,,user,off,,,,",
     "procedure_2.csv": "item,phasetype,max_time,text,shuffle_1,\r\n2,instruct,user,<h1>This is experiment 2</h1><br><br>,off,",
     "procedure_3.csv": "item,phasetype,max_time,text,shuffle_1,\r\n2,instruct,user,<h1>This is experiment 3</h1><br><br>,off,"
   },
-  "conditions": "name,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,skip_quality,counterbalance,redcap_url,\r\nbart,stimuli_1.csv,procedure_1.csv,off,,off,,,5,yes,,,\r\ncounterbalance,stimuli_1.csv,procedure_3.csv,off,,off,,,5,yes,https://xo019390.webs.act.reading.ac.uk/redcap/,,",
+  "conditions": "name,stimuli,procedure,fullscreen,participant_id,end_message,start_message,buffer,skip_quality,counterbalance,\r\nbart,stimuli_1.csv,procedure_1.csv,on,random,,0,5,yes,,\r\ncounterbalance,stimuli_1.csv,procedure_3.csv,off,random,,,5,yes,https://xo019390.webs.act.reading.ac.uk/collector/counterbalance/playground.php,",
   "all_stims": {
     "stimuli_1.csv": "word,\r\nfuck,\r\nshit,\r\nbitch,\r\ndick,\r\n,"
   },
@@ -16,10 +16,12 @@
     "tde_survey": "[[[LOCATION]]]../User/PhaseTypes/tde_survey.html",
     "time_perception": "[[[LOCATION]]]../User/PhaseTypes/time_perception.html",
     "sona": "[[[LOCATION]]]../User/PhaseTypes/sona.html",
+    "error_safari": "[[[LOCATION]]]../User/PhaseTypes/error_safari.html",
     "bart_rs": "[[[LOCATION]]]../User/PhaseTypes/bart_rs.html",
     "task_bookend": "[[[LOCATION]]]../User/PhaseTypes/task_bookend.html",
     "bart_ah": "[[[LOCATION]]]../User/PhaseTypes/bart_ah.html",
-    "save_data": "[[[LOCATION]]]../User/PhaseTypes/save_data.html"
+    "save_data": "[[[LOCATION]]]../User/PhaseTypes/save_data.html",
+    "axcpt_debrief": "[[[LOCATION]]]../User/PhaseTypes/axcpt_debrief.html"
   },
   "surveys": {
     "big_five_inventory.csv": [
@@ -953,7 +955,7 @@
       [
         "Q1",
         "Are you happy to answer the following question?",
-        "likert",
+        "dropdown",
         "Skip|Yep|Maybe",
         "2|1|0",
         "No",
@@ -1178,14 +1180,12 @@
         "side_by_side",
         "btn_width",
         "score:ver_agg",
-        "reversed",
         ""
       ],
       [
         "Instructions",
         "<h2><span>Verbal Aggressiveness Scale</span></h2><br><br><h6><b>INSTRUCTIONS: </b> This questionnaire is concerned with how we try to get people to comply with our wishes. Please select from the options beneath each statement to indicate how often each statement is true for you personally when you try to influence other persons</h6><br/><br/>",
         "instruct",
-        "",
         "",
         "",
         "",
@@ -1204,7 +1204,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -1217,7 +1216,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -1230,7 +1228,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -1243,7 +1240,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -1256,7 +1252,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -1269,7 +1264,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -1282,7 +1276,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -1295,7 +1288,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -1308,7 +1300,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -1321,11 +1312,9 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
-        "",
         "",
         "",
         "",

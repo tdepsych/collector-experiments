@@ -71,8 +71,8 @@
   var mobile = "{{notes}}"
     if (mobile == "no_mobile" && isMobile.any()) {
       $("#container").load("../../collector-experiments/User/PhaseTypes/error_page.html");
-      if (typeof parent.parent.cb_level !== 'undefined') {
-        Phase.counterbalance();
+      if (parent.parent.counterbalance) {
+        Phase.counterbalance('reset');
         console.log("Counterbalance level reset");
       } else {
         console.log("No counterbalancing in use");
@@ -80,8 +80,8 @@
     } else if (browser == "safari" || browser == "firefox") {
       console.log("Participant is not using a mobile");
       $("#container").load("../../collector-experiments/User/PhaseTypes/error_safari.html");
-      if (typeof parent.parent.cb_level !== 'undefined') {
-        Phase.counterbalance();
+      if (parent.parent.counterbalance) {
+        Phase.counterbalance('reset');
         console.log("Counterbalance level reset");
       } else {
         console.log("No counterbalancing in use");

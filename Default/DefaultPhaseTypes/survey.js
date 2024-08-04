@@ -1,5 +1,5 @@
 /*
- * Collector Survey 3.2.2
+ * Collector Survey 3.4.0
  */
 
 /* 
@@ -472,7 +472,6 @@ function load_survey(survey, survey_outline) {
 }
 
 function process_question(row, row_no) {
-  //console.log(row)
 
   //row.values = row.values == "" ? row.answers : row.values;
   if (row.type === "page_break") {

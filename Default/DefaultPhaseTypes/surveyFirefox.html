@@ -680,9 +680,7 @@ if (row["type"] === "page_break") {
   survey_pages_used = true;
   if (typeof row["branch"] === "undefined") {
     question_td = "</tr></table><table id='table" + page_break_management.breaks_remaining + "' style='display:none' class='table_break'></tr>";
-    console.log("hello")
   } else {
-    console.log("goodbye")
     question_td = "</tr></table><table id='table" + page_break_management.breaks_remaining + "' style='display:none' class='table_break'></tr>";
   }
 } else {

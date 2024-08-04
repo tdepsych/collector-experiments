@@ -357,7 +357,6 @@ Project = {
               attempt_no++;
               if(attempt_no > 2){
                 bootbox.alert("⚠ <b class='text-danger'>WARNING</b> ⚠ <br><br>This data has not submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
-                // console.log("This data may not have been submitted, despite 3 attempts to do so. Please pause your participation and contact the researcher");
               } else {
                 redcap_post(
                   this_url,
@@ -907,11 +906,7 @@ function final_phase() {
         typeof project_json.this_condition.end_message !== "undefined" &&
         project_json.this_condition.end_message !== ""
       ) {
-        $("#project_div").html(
-          "<h3 class='text-primary'>" +
-            project_json.this_condition.end_message +
-            "</h3>"
-        );
+        $("#project_div").html("<h3 class='text-primary'>" +project_json.this_condition.end_message +"</h3>");
       } else {
         $("#project_div").html("");
       }
@@ -948,16 +943,8 @@ function final_phase() {
             online_data_obj.finished_and_stored = true;
             $("#google_progress").css("width", "100%");
             setTimeout(function () {
-              if (
-                typeof project_json.this_condition.forward_at_end !==
-                  "undefined" &&
-                project_json.this_condition.forward_at_end !== ""
-              ) {
-                bootbox.alert(
-                  "The researcher would like you to now go to " +
-                    project_json.this_condition.forward_at_end +
-                    " please copy the link into a new window to proceed there."
-                );
+              if (typeof project_json.this_condition.forward_at_end !== "undefined" && project_json.this_condition.forward_at_end !== "") {
+                bootbox.alert("The researcher would like you to now go to " + project_json.this_condition.forward_at_end + " please copy the link into a new window to proceed there.");
               }
               $("#project_div").html(download_data_text
                 // "<h1>Thank you for participating. If you'd like to download your raw data <span id='download_json'>click here</span></h1>"
@@ -1268,25 +1255,8 @@ function load_phases() {
 }
 
 function parse_sheets() {
-  // Counterbalancing
   
-//console.log(project_json);
-// console.log("--------");
-// console.log(Object.keys(project_json.all_procs).length);
-// console.log("--------");
-  
-  var proc_sheet_name;
-  var levels;
-  var suffix;
-  var new_data;
-  // var folder = "../User/Projects/" + Project.get_vars.location;
   var proc_sheet_name = project_json.this_condition.procedure.toLowerCase().split('_')[0];
-  var data_url = project_json.this_condition.counterbalance + Project.get_vars.location + "_" + project_json.this_condition.name + ".txt";
-  var url_txt = Project.get_vars.location + "_" + project_json.this_condition.name + ".txt";
-  var isCounterbalanceNeeded = Project.get_vars.location + " counterbalance";
-  var CounterbalanceCheck = Project.get_vars.location + " " + project_json.this_condition.name;
-  parent.parent.cb_new;
-  parent.parent.cb_total;
 
   // This is the original code that loads the stim sheets in and then activates the rest of the Collector pipeline
   function switch_platform () {
@@ -1340,66 +1310,44 @@ function parse_sheets() {
     }
   }
 
-  // This function updates the counterbalancing data value (+1 or reset) ready for the next time the study is run
-  function counterbalance (new_data) {
-    var url_php = project_json.this_condition.counterbalance + project_json.this_condition.name + ".php";
-    console.log("url php:" + url_php);
-    var url_txt = Project.get_vars.location + "_" + project_json.this_condition.name + ".txt";
-    console.log("url text:" + url_txt);
-    console.log("the counterbalance function fired");
+  function counterbalance(action) {
+    // NOTE: There's a copy of this as 'Phase.Counterbalance' that allows you to reset things if needed.
+    phpFileURL = project_json.this_condition.counterbalance;
     $.ajax({
-      type: "POST",
-      url: url_php,
-      crossDomain: true,
-      data: {new_data: new_data, url_txt: url_txt},
-      success: function(result){
-        console.log("success!");
-      }
+        type: 'POST',
+        url: phpFileURL,
+        data: { action: action },
+        success: function(response) {
+            if (action == 'location') {
+                console.log("Location Response: " + response);
+                proc_sheet_name = response;
+                switch_platform();
+            } else if (action == 'reset') {
+                console.log("Reset Response: " + response);
+            }
+        },
+        error: function() {
+            bootbox.alert("An error has occured with the counterbalancing system, please contact the researcher before continuing.")
+            proc_sheet_name = project_json.this_condition.procedure.toLowerCase().replace(".csv", "") + ".csv";
+            switch_platform();
+        }
     });
   }
-
-  if (CounterbalanceCheck === isCounterbalanceNeeded) {
-    if (project_json.this_condition.counterbalance.length !== 0) {
-      var total_procedures = Object.keys(project_json.all_procs).length;
+  
+  if (typeof project_json.this_condition.counterbalance !== 'undefined') {
+    if (project_json.this_condition.counterbalance !== '') {
+      parent.parent.counterbalancing = true;
+      counterbalance('location');
     } else {
-      console.log("No counterbalance settings have been entered. Please stop the study and contact the researcher");
+      parent.parent.counterbalancing = false;
+      proc_sheet_name = project_json.this_condition.procedure.toLowerCase();
+      proc_sheet_name = project_json.this_condition.procedure.toLowerCase().replace(".csv", "") + ".csv";
+      switch_platform();
     }
-
-    var url_phpLoader = project_json.this_condition.counterbalance + project_json.this_condition.name + "_loader.php";
-    $.post(url_phpLoader, { 
-      url_txt: url_txt
-      }, function(data){ 
-        // success: function(result){
-          console.log("success!");
-          console.log("The input value was: " + data);
-          levels = parseInt(data);
-          parent.parent.cb_level = levels;
-          if (levels < total_procedures) {
-            suffix = "_" + levels + ".csv";
-            proc_sheet_name = proc_sheet_name + suffix;
-            new_data = levels + 1;
-            // counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
-            counterbalance(new_data);
-            switch_platform ();
-          } else if (levels >= total_procedures) {
-            suffix = "_" + total_procedures + ".csv";
-            proc_sheet_name = proc_sheet_name + suffix;
-            new_data = 1;
-            // counterbalance(new_data, project_json.this_condition.counterbalance.replace(".txt", ""));
-            counterbalance(new_data);
-            switch_platform ();
-          } else {
-            bootbox.alert("Counterbalancing has broken. Please stop the study and contact the researcher");
-            var rand_num = Math.floor( Math.random() * total_procedures + 1 );
-            suffix = "_" + rand_num + ".csv";
-            proc_sheet_name = proc_sheet_name + suffix;
-            switch_platform ();
-          }
-        // }
-      })  
   } else {
+    parent.parent.counterbalancing = false;
     proc_sheet_name = project_json.this_condition.procedure.toLowerCase().replace(".csv", "") + ".csv";
-    switch_platform ();
+    switch_platform();
   }
 }
 
@@ -1512,7 +1460,6 @@ function parse_current_proc() {
       weight_0s++;
     } else if (parseInt(project_json.parsed_proc[i].weight) > 1) {
       weight_1s += parseInt(project_json.parsed_proc[i].weight);
-      console.log(weight_1s)
     } else {
       weight_1s++;
     }
@@ -1659,9 +1606,7 @@ function process_welcome() {
       $("#participant_code").val(Project.get_vars.redcap_id);
       post_welcome(Project.get_vars.redcap_id, "redcap");
     } else {
-      bootbox.alert(
-        "It's not clear if the researcher wants you to give them a user id - please contact them before proceeding."
-      );
+      bootbox.alert("It's not clear if the researcher wants you to give them a user id - please contact them before proceeding.");
     }
 
     if (project_json.this_condition.start_message !== "") {
@@ -1892,7 +1837,6 @@ function shuffle_start_exp() {
 }
 
 function start_restart() {
-  console.log
   if (isSafari) {
     bootbox.alert(
       "Please do not use Safari to complete this study. It is likely that your data will not save correctly if you do. Please close Safari and use another browser"

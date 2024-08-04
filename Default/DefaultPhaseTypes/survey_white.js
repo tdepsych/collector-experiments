@@ -1,5 +1,5 @@
 /*
- * Collector Survey 3.3.0
+ * Collector Survey 3.4.0
  * Authors: Dr. Anthony Haffey & Chris Dobson
  */
 
@@ -872,7 +872,6 @@ function response_check(submitted_element) {
     case "text":
     case "textarea":
       $("#" + submitted_element.name + "_response").val(submitted_element.value);
-      console.log("hello")
       break;
   }
 

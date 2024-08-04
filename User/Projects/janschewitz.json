@@ -36,14 +36,12 @@
         "side_by_side",
         "btn_width",
         "score:ver_agg",
-        "reversed",
         ""
       ],
       [
         "Instructions",
         "<h2><span>Verbal Aggressiveness Scale</span></h2><br><br><h6><b>INSTRUCTIONS: </b> This questionnaire is concerned with how we try to get people to comply with our wishes. Please select from the options beneath each statement to indicate how often each statement is true for you personally when you try to influence other persons</h6><br/><br/>",
         "instruct",
-        "",
         "",
         "",
         "",
@@ -62,7 +60,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -75,7 +72,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -88,7 +84,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -101,7 +96,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -114,7 +108,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -127,7 +120,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -140,7 +132,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -153,7 +144,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -166,7 +156,6 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
@@ -179,11 +168,9 @@
         "no",
         "175px",
         "1",
-        "no",
         ""
       ],
       [
-        "",
         "",
         "",
         "",
@@ -208,16 +195,12 @@
         "btn_width",
         "score:trait_anger",
         "reversed",
-        "branch",
-        "block",
         ""
       ],
       [
         "Instructions",
         "<h2><span>Trait Anger Scale</span></h2><br><br><h6><b>INSTRUCTIONS: </b>A  number of statements which people have used to describe themselves are given below.  Read each statement carefully and indicate how you <em>generally</em> feel by selecting the appropriate response option given underneath</h6><br/><br/>",
         "instruct",
-        "",
-        "",
         "",
         "",
         "",
@@ -238,8 +221,6 @@
         "175px",
         "1",
         "no",
-        "A1|||",
-        "",
         ""
       ],
       [
@@ -253,8 +234,6 @@
         "175px",
         "1",
         "no",
-        "",
-        "A1",
         ""
       ],
       [
@@ -268,8 +247,6 @@
         "175px",
         "1",
         "no",
-        "",
-        "A1",
         ""
       ],
       [
@@ -283,8 +260,6 @@
         "175px",
         "1",
         "no",
-        "",
-        "A1",
         ""
       ],
       [
@@ -298,8 +273,6 @@
         "175px",
         "1",
         "no",
-        "",
-        "A1",
         ""
       ],
       [
@@ -313,8 +286,6 @@
         "175px",
         "1",
         "no",
-        "",
-        "A1",
         ""
       ],
       [
@@ -328,8 +299,6 @@
         "175px",
         "1",
         "no",
-        "",
-        "A1",
         ""
       ],
       [
@@ -343,8 +312,6 @@
         "175px",
         "1",
         "no",
-        "",
-        "A1",
         ""
       ],
       [
@@ -358,8 +325,6 @@
         "175px",
         "1",
         "no",
-        "",
-        "A1",
         ""
       ],
       [
@@ -373,13 +338,9 @@
         "175px",
         "1",
         "no",
-        "",
-        "A1",
         ""
       ],
       [
-        "",
-        "",
         "",
         "",
         "",
@@ -1340,15 +1301,6 @@
         "White|Mixed/Multiple|Asian|Black/African/Caribbean|Chinese|Arab|Other|Prefer not to say",
         "No",
         "1|2|3|4|5|6|7|0",
-        ""
-      ],
-      [
-        "chris",
-        "",
-        "page_break",
-        "",
-        "",
-        "",
         ""
       ],
       [

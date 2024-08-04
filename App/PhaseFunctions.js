@@ -124,18 +124,24 @@ if (typeof Phase !== "undefined") {
      redcap_post(parent.parent.project_json.this_condition.redcap_url,clean_phase_responses, 0);
   };
   };
-  Phase.counterbalance = function(){
-    var url_php = parent.parent.project_json.this_condition.counterbalance + parent.parent.project_json.this_condition.name + ".php";
-    var url_txt = parent.parent.Project.get_vars.location + "_" + parent.parent.project_json.this_condition.name + ".txt";
-    new_data = parent.parent.cb_level;
+  Phase.counterbalance = function(action){
+    phpFileURL = parent.parent.project_json.this_condition.counterbalance;
     $.ajax({
-      type: "POST",
-      url: url_php,
-      crossDomain: true,
-      data: {new_data: new_data, url_txt: url_txt},
-      success: function(result){
-        console.log("counterbalance reset");
-      }
+        type: 'POST',
+        url: phpFileURL,
+        data: { action: action },
+        success: function(response) {
+            if (action == 'location') {
+                console.log("Location Response: " + response);
+                proc_sheet_name = response;
+                switch_platform();
+            } else if (action == 'reset') {
+                console.log("Reset Response: " + response);
+            }
+        },
+        error: function() {
+            bootbox.alert("An error has occured with the counterbalancing system, please contact the researcher before continuing.")
+        }
     });
   };
   Phase.elapsed = function () {
