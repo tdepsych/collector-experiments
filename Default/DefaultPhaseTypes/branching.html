@@ -13,23 +13,11 @@
     weight_total += parseFloat(row_freq);
   });
 
-  console.log("branch_obj");
-  //console.log(branch_obj);
-
-  console.log("weight_total");
-  //console.log(weight_total);
-
   var select_no = Math.floor(Math.random() * weight_total);
-
-  console.log("select_no");
-  //console.log(select_no);
 
   var selected_row = branch_obj.filter(function (row) {
     return row.select_min <= select_no && row.select_max >= select_no;
   })[0];
-
-  console.dir("selected_row");
-  //console.dir(selected_row);
 
   Phase.set_timer(function () {
     Phase.go_to(selected_row.row_no);

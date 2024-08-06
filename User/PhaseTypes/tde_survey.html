@@ -56,14 +56,16 @@ td {
   margin: auto;
   text-align: left;
 }
+#survey_buttons {
+  padding: 40px 0 40px 0;
+}
 #previous_button {
   display:none;
   margin-right: 15px;
+
 }
 #proceed_button {
   min-width: 95px;
-  margin-top: 30px;
-  margin-bottom: 40px;
 }
 #survey_tabs {
   padding: 20px;
@@ -213,7 +215,7 @@ max-height: 90vh;
   width: 18px; /* Adjust the size */
   height: 18px; /* Adjust the size */
   background-color: #fff;
-  border: 2px solid #3f97f6;
+  border: 1px solid #3f97f6;
   border-radius: 15%; /* Round edges */
   margin-right: 10px; /* Space between checkbox and label */
   vertical-align: middle;
@@ -282,8 +284,10 @@ max-height: 90vh;
 <button id="zoomIn" tabindex="-1"></button>
 <div id="survey_container" class="container">
   <div id="survey_outline"></div>
-  <button class="btn btn-outline-primary" id="previous_button">Previous Page</button>
-  <button class="btn btn-primary" id="proceed_button">Proceed</button>
+  <div id="survey_buttons">
+    <button class="btn btn-outline-primary" id="previous_button">Previous Page</button>
+    <button class="btn btn-primary" id="proceed_button">Proceed</button>
+  </div>
 </div>
 <span id="scales_span"></span>
 

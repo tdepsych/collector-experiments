@@ -2,7 +2,7 @@
 <!--
 
   /*
-  * Collector Survey 3.4.0
+  * Collector Survey 3.5.1
   */
 
   Authors: Dr. Anthony Haffey & Chris Dobson
@@ -79,14 +79,16 @@ td {
   margin: auto;
   text-align: left;
 }
+#survey_buttons {
+  padding: 40px 0 40px 0;
+}
 #previous_button {
   display:none;
   margin-right: 15px;
+
 }
 #proceed_button {
   min-width: 95px;
-  margin-top: 30px;
-  /* margin-bottom: 40px; */
 }
 #survey_tabs {
   padding: 20px;
@@ -303,8 +305,10 @@ max-height: 90vh;
 </style>
 <div id="survey_container" class="container">
   <div id="survey_outline"></div>
-  <button class="btn btn-outline-primary" id="previous_button">Previous Page</button>
-  <button class="btn btn-primary" id="proceed_button">Proceed</button>
+  <div id="survey_buttons">
+    <button class="btn btn-outline-primary" id="previous_button">Previous Page</button>
+    <button class="btn btn-primary" id="proceed_button">Proceed</button>
+  </div>
 </div>
 <span id="scales_span"></span>
 

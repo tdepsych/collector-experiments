@@ -1,5 +1,5 @@
 /*
- * Collector Survey 3.4.0
+ * Collector Survey 3.5.1
  * Authors: Dr. Anthony Haffey & Chris Dobson
  */
 
@@ -7,13 +7,15 @@
  * Setup a prepend variable
  */
 var survey_prepend = "survey_";
-var survey_pages_used = false;
+var survey_pages_used;
 var current_table_no = 0;
 var next_table_no = 0;
 var tableCount;
 var this_element_label;
 var item_name;
 var response = [];
+var lastTable = false;
+
 /*
 * detect if testing or not
 */
@@ -242,6 +244,42 @@ $("#previous_button").on("click", function () {
 });
 
 $("#proceed_button").on("click", function () {
+
+  // Find the visible table
+  var visibleTable = $('table:visible');
+                
+  if (visibleTable.length === 0) {
+      bootbox.alert("Please let the research know the survey system has broken and no page is visible.");
+      return;
+  } else {
+
+    // Check if there is a visible table and a sequential table exists
+    var tableIndex = -1;
+    visibleTable.each(function() {
+        var id = $(this).attr('id');
+        var match = id.match(/table(\d+)/);
+        if (match) {
+            tableIndex = parseInt(match[1], 10);
+            return false; // break out of the each loop
+        }
+    });
+
+    if (tableIndex >= 0 && $('#table' + (tableIndex + 1)).length) {
+        var hasVisibleBlock = false;
+        var hasBlockName = false;
+        $('tr[block_name]').each(function() {
+            hasBlockName = true;
+            if ($(this).is(':visible')) {
+                hasVisibleBlock = true;
+                return false; // break out of the each loop
+            }
+        });
+    } else {
+      lastTable = true;
+      console.log("Sequential table does not exist");
+    }
+  }
+
   var proceed = true;
   current_table_no = $('table').filter(function() {return $(this).attr('style') === undefined || $(this).attr('style') === '';}).attr('id').replace("table", "");
   tableCount = $('table').length - 1; // this is reduced by 1 as the table numbering starts at 0
@@ -284,33 +322,54 @@ $("#proceed_button").on("click", function () {
   }
 
   if (proceed) {
-      if (page_break_management.breaks_remaining > 0) {
-        if (next_table_no === eval(tableCount) + eval(1)) {
-          console.log("We should get here?")
-          if (typeof Phase !== "undefined") {
-            Phase.submit();
-          } else {
-            appropriate_message("You've finished! Click on the preview button to restart.");
-          }
-        } else {
+    if (hasBlockName) {
+      if (hasVisibleBlock) {
           $(".table_break").hide();
           $(".table_break#table" + next_table_no).show(0);
           $('.table_break#table'+ next_table_no).addClass("table_break_tabs");
           $('.table_break#table'+ current_table_no).removeClass("table_break_tabs");
           $(window).scrollTop(0);
-        }
       } else {
-        if (typeof Phase !== "undefined") {
-          Phase.submit();
+          if (typeof Phase !== "undefined") {
+            Phase.submit();
+          } else {
+            appropriate_message("You've finished! Click on the preview button to restart.");
+          }
+          return; // prevent moving to next table
+      }
+      if ($('.table_break_tabs').length > 0) {
+        show_previous_button();
+      }
+      checkBlockNames();
+    } else {
+
+        if (page_break_management.breaks_remaining > 0) {
+          if(lastTable) {
+            if (typeof Phase !== "undefined") {
+              Phase.submit();
+            } else {
+              appropriate_message("You've finished! Click on the preview button to restart.");
+            }
+          } else {
+            $(".table_break").hide();
+            $(".table_break#table" + next_table_no).show(0);
+            $('.table_break#table'+ next_table_no).addClass("table_break_tabs");
+            $('.table_break#table'+ current_table_no).removeClass("table_break_tabs");
+            $(window).scrollTop(0);
+          }
         } else {
-          appropriate_message("You've finished! Click on the preview button to restart.");
+          if (typeof Phase !== "undefined") {
+            Phase.submit();
+          } else {
+            appropriate_message("You've finished! Click on the preview button to restart.");
+          }
         }
+        checkBlockNames();
       }
 
       if ($('.table_break_tabs').length > 0) {
         show_previous_button();
       }
-      
   } else if (current_table_no > tableCount) {
     appropriate_message("Error - please contact the researcher about this problem, error 'Survey_001'.");
   } else {
@@ -319,14 +378,6 @@ $("#proceed_button").on("click", function () {
     submit_fails++;
     $("#false_submit").val(submit_fails);
   }
-  if ($('.table_break_tabs').length > 0) {
-    if (next_table_no === tableCount) {
-      $("#proceed_button").text("Proceed");
-    } else {
-      $("#proceed_button").text("Next Page");
-    }  
-  }
-
 });
 
 //by qwerty at https://stackoverflow.com/questions/2116558/fastest-method-to-replace-all-instances-of-a-character-in-a-string
@@ -425,6 +476,7 @@ function hide_blocks(block_names, element_name){
   // The code below is needed to make sure that radio/checkbox inputs aren't hidden accidently as the above code is a bit harsh
   var element_name = $("td input, td select, td select option");
   element_name.show();
+  checkBlockNames();
 }
 
 function load_survey(survey, survey_outline) {
@@ -469,8 +521,8 @@ function process_question(row, row_no) {
   //row.values = row.values == "" ? row.answers : row.values;
   if (row["type"] === "page_break") {
     page_break_management.breaks_remaining++;
-    survey_pages_used = true;
-    question_td = "</tr></table><table id='table" + page_break_management.breaks_remaining + "' style='display:none' class='table_break'></tr>";
+    // survey_pages_used = true;
+    question_td = "</tr></table><table id='table" + page_break_management.breaks_remaining + "' style='display:none' class='table_break page_break'></tr>";
   } else {
     if ((typeof row["values"] !== "undefined") & (typeof row["values"] !== "function")) {
       value_array = row["values"].split("|"); //to address microsoft edge issue.
@@ -717,23 +769,17 @@ function process_question(row, row_no) {
 }
 
 
-function process_score(
-row_no,
-values_col,
-this_response,
-item,
-values_reverse
-) {
-item_values = survey_obj.data[row_no][values_col].split("|");
-if (typeof values_reverse !== "undefined" && values_reverse === "r") {
-  item_values.reverse();
-}
-item_answers = survey_obj.data[row_no]["values"].split("|");
-var this_value = item_values[item_answers.indexOf(this_response)];
-$(survey_prepend + item + "_score").val(this_value);
-if (typeof this_value !== "undefined") {
-  return parseFloat(this_value);
-}
+function process_score(row_no,values_col,this_response,item,values_reverse) {
+  item_values = survey_obj.data[row_no][values_col].split("|");
+  if (typeof values_reverse !== "undefined" && values_reverse === "r") {
+    item_values.reverse();
+  }
+  item_answers = survey_obj.data[row_no]["values"].split("|");
+  var this_value = item_values[item_answers.indexOf(this_response)];
+  $(survey_prepend + item + "_score").val(this_value);
+  if (typeof this_value !== "undefined") {
+    return parseFloat(this_value);
+  }
 }
 
 function process_returned_questionnaire(data, survey_outline) {
@@ -978,6 +1024,7 @@ function show_block(block_name){
     $("[block_name='" + block_name+"']").show();
     blocks_obj[block_name] = true;
   }
+  checkBlockNames();
 }
 
 // http://stackoverflow.com/questions/962802#962890
@@ -1029,7 +1076,7 @@ scales.forEach(function (scale) {
 
   questions.forEach(function (row_no) {
     var item = survey_obj.data[row_no].item_name.toLowerCase();
-    var this_response = $("#" + survey_prepend + item + "_response").val();
+    var this_response = $("#" + survey_prepend + item + "_value").val();
     var normal_reverse = this_scale.questions[row_no];
     if (normal_reverse.indexOf("-") === -1) {
       var multiplier = parseFloat(normal_reverse.replace("r", ""));
@@ -1563,126 +1610,174 @@ function write(type, row) {
 }
 
 function write_survey(this_survey, this_id) {
-scoring_object.update_scales(this_survey);
-survey_html = "<table class='table_break' id='table"+current_table_no+"'>";
-this_survey_object = {
-  content: [],
-  shuffle_question: [],
-  content_new_order: [],
-  shuffled_content: [],
-  shuffled_arrays: {},
-};
+  scoring_object.update_scales(this_survey);
+  survey_html = "<table class='table_break' id='table"+current_table_no+"'>";
+  this_survey_object = {
+    content: [],
+    shuffle_question: [],
+    content_new_order: [],
+    shuffled_content: [],
+    shuffled_arrays: {},
+  };
 
-for (i = 0; i < this_survey.length; i++) {
-  row = this_survey[i];
-  if (row["type"].toLowerCase() === "redcap_pii") {
-    survey_prepend = row["item_name"].toLowerCase() + '_pii_';
-    console.log("Survey contains PII, ID prefix changed to: " + survey_prepend)
-    break;
-  } 
-}
-
-// seems like the next row might be deletable, but leaving in for now: 
-survey_html += "<tr>";
-
-for (i = 0; i < this_survey.length; i++) {
+  for (i = 0; i < this_survey.length; i++) {
     row = this_survey[i];
     if (row["type"].toLowerCase() === "redcap_pii") {
-      // do nothing as we don't want to include any HTML
-    } else {
-      row_html = process_question(row, i);
-      
-      if(typeof(row["branch_id"]) == "undefined"){
-        row["branch_id"] = "";
-      }
+      survey_prepend = row["item_name"].toLowerCase() + '_pii_';
+      console.log("Survey contains PII, ID prefix changed to: " + survey_prepend)
+      break;
+    } 
+  }
 
-      row_html = row_html.map(function(item){
-        return item.replaceAll("<tr","<tr branch='" + row["branch"] + "'")
-      });
+  // seems like the next row might be deletable, but leaving in for now: 
+  survey_html += "<tr>";
 
-      if(typeof(row["block"]) !== "undefined" && row["block"] !== ""){
-        row_html = row_html.map(function(item){
-          return item.replaceAll("<tr","<tr style='display:none' block_name='" + row["block"] + "'")
-        });
-      }
-      
-      this_survey_object.content.push(row_html[0]);
-      this_survey_object.shuffle_question.push(row_html[1]);
-    }
-}
-
-//by Camilo Martin on https://stackoverflow.com/questions/1960473/unique-values-in-an-array
-unique_shuffles = this_survey_object.shuffle_question.filter(
-  (v, i, a) => a.indexOf(v) === i
-); 
-
-for (var i = 0; i < unique_shuffles.length; i++) {
-  if (
-    typeof unique_shuffles[i] !== "undefined" &&
-    unique_shuffles[i] !== "none" &&
-    unique_shuffles[i] !== ""
-  ) {
-    shuffled_content = this_survey_object.shuffle_question
-      .map(function (element, index) {
-        if (
-          typeof element !== "undefined" &&
-          element.toLowerCase() !== "none" &&
-          element.toLowerCase() === unique_shuffles[i]
-        ) {
-          return this_survey_object.content[index];
+  for (i = 0; i < this_survey.length; i++) {
+      row = this_survey[i];
+      if (row["type"].toLowerCase() === "redcap_pii") {
+        // do nothing as we don't want to include any HTML
+      } else {
+        row_html = process_question(row, i);
+        
+        if(typeof(row["branch_id"]) == "undefined"){
+          row["branch_id"] = "";
         }
-      })
-      .filter((elm) => typeof elm !== "undefined");
-    new_order = shuffle(shuffled_content);
-    this_survey_object.shuffled_arrays[unique_shuffles[i]] = new_order; // add new array with dynamic name
+
+        row_html = row_html.map(function(item){
+          return item.replaceAll("<tr","<tr branch='" + row["branch"] + "'")
+        });
+
+        if(typeof(row["block"]) !== "undefined" && row["block"] !== ""){
+          row_html = row_html.map(function(item){
+            return item.replaceAll("<tr","<tr style='display:none' block_name='" + row["block"] + "'")
+          });
+        }
+        
+        this_survey_object.content.push(row_html[0]);
+        this_survey_object.shuffle_question.push(row_html[1]);
+      }
   }
-}
 
-for (var i = 0; i < this_survey_object.content.length; i++) {
-  var this_index = Object.keys(this_survey_object.shuffled_arrays).indexOf(
-    this_survey_object.shuffle_question[i]
-  );
-  if (this_index !== -1) {
-    //take first item off relevant list and delete item
-    var this_item =
-      this_survey_object.shuffled_arrays[
-        Object.keys(this_survey_object.shuffled_arrays)[this_index]
-      ].shift();
-    this_survey_object.content_new_order[i] = this_item;
-  } else {
-    this_survey_object.content_new_order[i] = this_survey_object.content[i];
+  //by Camilo Martin on https://stackoverflow.com/questions/1960473/unique-values-in-an-array
+  unique_shuffles = this_survey_object.shuffle_question.filter(
+    (v, i, a) => a.indexOf(v) === i
+  ); 
+
+  for (var i = 0; i < unique_shuffles.length; i++) {
+    if (
+      typeof unique_shuffles[i] !== "undefined" &&
+      unique_shuffles[i] !== "none" &&
+      unique_shuffles[i] !== ""
+    ) {
+      shuffled_content = this_survey_object.shuffle_question
+        .map(function (element, index) {
+          if (
+            typeof element !== "undefined" &&
+            element.toLowerCase() !== "none" &&
+            element.toLowerCase() === unique_shuffles[i]
+          ) {
+            return this_survey_object.content[index];
+          }
+        })
+        .filter((elm) => typeof elm !== "undefined");
+      new_order = shuffle(shuffled_content);
+      this_survey_object.shuffled_arrays[unique_shuffles[i]] = new_order; // add new array with dynamic name
+    }
   }
-}
 
-qs_in_order = this_survey_object.content_new_order.join("");
-
-// below looks like it should be deleted, but leaving commented out for now
-qs_in_order = this_survey_object.content_new_order.join("</tr><tr>");
-qs_in_order += "</tr>";
-
-survey_html += qs_in_order;
-survey_html += "</table>";
-
-$("#" + this_id).html(survey_html);
-
-$(".response").on("change", function () {
-  response_check(this);
-});
-
-$("#" + this_id).show(0); //scroll to top
-
-$(".show_tab").on("click", function () {
-  if (this.className.indexOf("disabled") === -1) {
-    $(".show_tab").removeClass("active");
-    $(".survey_page").hide();
-    $("#" + this.id.replace("_button", "")).show();
-  } else {
-    appropriate_message(
-      "You have not yet unlocked this tab - maybe try clicking on <b>Proceed</b>?"
+  for (var i = 0; i < this_survey_object.content.length; i++) {
+    var this_index = Object.keys(this_survey_object.shuffled_arrays).indexOf(
+      this_survey_object.shuffle_question[i]
     );
+    if (this_index !== -1) {
+      //take first item off relevant list and delete item
+      var this_item =
+        this_survey_object.shuffled_arrays[
+          Object.keys(this_survey_object.shuffled_arrays)[this_index]
+        ].shift();
+      this_survey_object.content_new_order[i] = this_item;
+    } else {
+      this_survey_object.content_new_order[i] = this_survey_object.content[i];
+    }
   }
-});
+
+  qs_in_order = this_survey_object.content_new_order.join("");
+
+  // below looks like it should be deleted, but leaving commented out for now
+  qs_in_order = this_survey_object.content_new_order.join("</tr><tr>");
+  qs_in_order += "</tr>";
+
+  survey_html += qs_in_order;
+  survey_html += "</table>";
+
+  $("#" + this_id).html(survey_html);
+
+  $(".response").on("change", function () {
+    response_check(this);
+  });
+
+  $("#" + this_id).show(0); //scroll to top
+
+  $(".show_tab").on("click", function () {
+    if (this.className.indexOf("disabled") === -1) {
+      $(".show_tab").removeClass("active");
+      $(".survey_page").hide();
+      $("#" + this.id.replace("_button", "")).show();
+    } else {
+      appropriate_message(
+        "You have not yet unlocked this tab - maybe try clicking on <b>Proceed</b>?"
+      );
+    }
+  });
 }
+
+function checkBlockNames() {
+
+  var tableCount = $('#survey_container .table_break').length - 1;
+  var hasBlockName = false;
+  var hasHiddenBlockName = false;    
+
+  setTimeout(() => {
+    $('table:visible').each(function() {
+      $(this).find('tr').each(function() {
+          if ($(this).attr('block_name')) {
+              if ($(this).is(':visible')) {
+                  hasBlockName = true;
+              } else {
+                  hasHiddenBlockName = true;
+              }
+          }
+      });
+    });
+  
+    if ($('.page_break').length) {
+      survey_pages_used = true;
+    } else {
+      // Do nothing
+    }
+
+    if (survey_pages_used && !hasBlockName) {
+      if (hasHiddenBlockName) {
+        $("#proceed_button").text("Proceed");
+      } else {
+        if (next_table_no == tableCount) {
+          $("#proceed_button").text("Proceed");
+        } else {
+          $("#proceed_button").text("Next Page");
+        }
+      }
+    } else if (survey_pages_used && hasBlockName) {
+      if (next_table_no == tableCount) {
+        $("#proceed_button").text("Proceed");
+      } else {
+        $("#proceed_button").text("Next Page");
+      }
+    } else {
+      $("#proceed_button").text("Proceed");
+    }
+  }, 50);
+}
+
 /*
 * exports for testing
 */
@@ -1692,23 +1787,18 @@ if (typeof module !== "undefined") {
     likert_update: survey_js.likert_update,
   };
 } else {
+
   if (typeof Phase !== "undefined") {
     Phase.set_timer(function () {
       console.log("Phase is defined")
+      checkBlockNames();
       load_survey(current_survey, "survey_outline");
-      if (survey_pages_used) {
-        $("#proceed_button").text("Next Page");
-        $('#table'+current_table_no).addClass("table_break_tabs");
-      }
     }, 50);
   } else {
     setTimeout(function () {
       console.log("Phase is not defined")
-      load_survey(current_survey, "survey_outline");
-      if (survey_pages_used) {
-        $("#proceed_button").text("Next Page");
-        $('#table'+current_table_no).addClass("table_break_tabs");
-      }
+      checkBlockNames();
+      load_survey(current_survey, "survey_outline");      
     }, 50);
   }
 }

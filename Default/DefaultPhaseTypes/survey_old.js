@@ -1,5 +1,6 @@
 /*
- * Collector Survey 3.4.0
+ * Collector Survey 3.2.0
+ *  - this is very old now - 
  */
 
 /* 

@@ -1,7 +1,7 @@
 {
   "all_procs": {
-    "procedure_1.csv": "item,phasetype,survey,max_time,shuffle_1,task_title,task_body_text,weight,\r\n0,intro_static,,user,off,,,,\r\n0,instruct,,user,off,,,0,\r\n0,tde_survey,big_five_inventory.csv,user,off,,,0,\r\n0,tde_survey,branching.csv,user,off,,,0,\r\n0,tde_survey,verbal_agressiveness.csv,user,off,,,0,\r\n2 to 5,time_perception,,user,off,,,0,\r\n0,sona,,user,off,Sona,Holding Text,,\r\n0,error_safari,,1000,off,,,,\r\n0,bart_rs,,user,off,,,,\r\n0,bart_rs,,user,off,,,0,\r\n0,bart_rs,,user,off,,,0,\r\n0,task_bookend,,user,off,BART - Fixed Risk Scoring,\"The following BART task is set up to use a fixed risk scoring. This means that while the number of pumps allowed before the balloon bursts will vary across the 10 balloons, the total risk faced by each participant is set to be the same across all participants.<br><br>Once again, you have 10 balloons to score as many points as possible. Click \"\"inflate balloon\"\" to pump up the balloon and click \"\"Collect Points\"\" to bank the points scored for that balloon and move on to the next.\",0,\r\n0,bart_ah,,user,off,,,0,\r\n0,bart_ah,,user,off,,,0,\r\n0,bart_ah,,user,off,,,0,\r\n0,bart_ah,,user,off,,,0,\r\n0,save_data,,user,off,,,0,\r\n0,axcpt_debrief,,user,off,,,,\r\n0,instruct,,,,,,,",
-    "procedure_2.csv": "item,phasetype,max_time,text,shuffle_1,shuffle_2,shuffle_3,weight,\r\n2 to 4,likert,user,<h1>This is experiment 2</h1><br><br>,wb_ABC,bb_1,,0,\r\n5  to 7,likert,user,,wb_DEF,bb_2,,0,\r\n0,instruct,user,The next task should do multi-block shuffling,off,off,off,,\r\n2 to 4,likert,user,,wb_ABC,bb_1,bb_1a,,\r\n8  to 10,likert,user,,wb_XYZ,bb_1,bb_1b,,\r\n11 to 13,likert,user,,wb_123,bb_2,off,,\r\n14  to 16,likert,user,,wb_987,bb_2,off,,\r\n0,instruct,user,End of experiment??,off,off,off,,",
+    "procedure_1.csv": "item,phasetype,survey,max_time,shuffle_1,task_title,task_body_text,weight,\r\n0,intro_static,,user,off,,,,\r\n0,instruct,,user,off,,,0,\r\n0,tde_survey,big_five_inventory.csv,user,off,,,,\r\n0,tde_survey,branching.csv,user,off,,,,\r\n0,survey,big_five_inventory.csv,user,off,,,,\r\n2 to 5,time_perception,,user,off,,,0,\r\n0,sona,,user,off,Sona,Holding Text,,\r\n0,error_safari,,1000,off,,,,\r\n0,bart_rs,,user,off,,,,\r\n0,bart_rs,,user,off,,,0,\r\n0,bart_rs,,user,off,,,0,\r\n0,task_bookend,,user,off,BART - Fixed Risk Scoring,\"The following BART task is set up to use a fixed risk scoring. This means that while the number of pumps allowed before the balloon bursts will vary across the 10 balloons, the total risk faced by each participant is set to be the same across all participants.<br><br>Once again, you have 10 balloons to score as many points as possible. Click \"\"inflate balloon\"\" to pump up the balloon and click \"\"Collect Points\"\" to bank the points scored for that balloon and move on to the next.\",0,\r\n0,bart_ah,,user,off,,,0,\r\n0,bart_ah,,user,off,,,0,\r\n0,bart_ah,,user,off,,,0,\r\n0,bart_ah,,user,off,,,0,\r\n0,save_data,,user,off,,,0,\r\n0,axcpt_debrief,,user,off,,,,\r\n0,instruct,,,,,,,",
+    "procedure_2.csv": "item,phasetype,max_time,text,shuffle_1,shuffle_2,shuffle_3,weight,\r\n2 to 4,likert,user,<h1>This is experiment 2</h1><br><br>,wb_ABC,bb_1,,0,\r\n5  to 7,likert,user,,wb_DEF,bb_2,,0,\r\n0,instruct,user,The next task should do multi-block shuffling,,,,0,\r\n2 to 4,likert,user,,wb_ABC,bb_1,bb_1a,0,\r\n8  to 10,likert,user,,wb_XYZ,bb_1,bb_1b,0,\r\n11 to 13,likert,user,,wb_123,bb_2,,0,\r\n14  to 16,likert,user,,wb_987,bb_2,,0,\r\n0,instruct,user,The next task should do multi-row shuffling,,,,,\r\n2,likert,user,,wb_rows,,,,\r\n3,likert,user,,wb_rows,,,,\r\n4,likert,user,,wb_rows,,,,",
     "procedure_3.csv": "item,phasetype,max_time,text,shuffle_1,\r\n2,instruct,user,<h1>This is experiment 3</h1><br><br>,off,"
   },
   "conditions": "name,stimuli,procedure,fullscreen,participant_id,end_message,start_message,buffer,skip_quality,counterbalance,\r\nbart,stimuli_1.csv,procedure_1.csv,off,random,,,5,yes,,\r\ncounterbalance,stimuli_1.csv,procedure_3.csv,off,random,,,5,yes,https://xo019390.webs.act.reading.ac.uk/collector/counterbalance/playground.php,\r\nshuffling,stimuli_1.csv,procedure_1.csv,off,random,,,5,yes,,",
@@ -14,6 +14,7 @@
     "intro_static": "[[[LOCATION]]]../User/PhaseTypes/intro_static.html",
     "instruct": "[[[LOCATION]]]../Default/DefaultPhaseTypes/instruct.html",
     "tde_survey": "[[[LOCATION]]]../User/PhaseTypes/tde_survey.html",
+    "survey": "[[[LOCATION]]]../Default/DefaultPhaseTypes/survey.html",
     "time_perception": "[[[LOCATION]]]../User/PhaseTypes/time_perception.html",
     "sona": "[[[LOCATION]]]../User/PhaseTypes/sona.html",
     "error_safari": "[[[LOCATION]]]../User/PhaseTypes/error_safari.html",
@@ -1050,6 +1051,18 @@
         ""
       ],
       [
+        "pageb",
+        "",
+        "page_break",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
         "Q9",
         "this is a para input",
         "para",
@@ -1155,164 +1168,6 @@
         "",
         "C",
         "100px",
-        ""
-      ],
-      [
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-      ]
-    ],
-    "verbal_agressiveness.csv": [
-      [
-        "item_name",
-        "text",
-        "type",
-        "answers",
-        "optional",
-        "values",
-        "side_by_side",
-        "btn_width",
-        "score:ver_agg",
-        ""
-      ],
-      [
-        "Instructions",
-        "<h2><span>Verbal Aggressiveness Scale</span></h2><br><br><h6><b>INSTRUCTIONS: </b> This questionnaire is concerned with how we try to get people to comply with our wishes. Please select from the options beneath each statement to indicate how often each statement is true for you personally when you try to influence other persons</h6><br/><br/>",
-        "instruct",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-      ],
-      [
-        "ver_agg_1",
-        "1. When individuals are very stubborn, I use insults to soften their stubbornness.",
-        "likert",
-        "Almost Never True|Rarely True|Occasionally True|Often True|Almost Always True",
-        " No",
-        "1|2|3|4|5",
-        "no",
-        "175px",
-        "1",
-        ""
-      ],
-      [
-        "ver_agg_2",
-        "2. When people refuse to do a task I know is important, without good reason, I tell them they are unreasonable.",
-        "likert",
-        "Almost Never True|Rarely True|Occasionally True|Often True|Almost Always True",
-        "No",
-        "1|2|3|4|5",
-        "no",
-        "175px",
-        "1",
-        ""
-      ],
-      [
-        "ver_agg_3",
-        "3. If individuals I am trying to influence really deserve it, I attack their character.",
-        "likert",
-        "Almost Never True|Rarely True|Occasionally True|Often True|Almost Always True",
-        "No",
-        "1|2|3|4|5",
-        "no",
-        "175px",
-        "1",
-        ""
-      ],
-      [
-        "ver_agg_4",
-        "4. When people behave in ways that are in very poor taste, I insult them in order to shock them into proper behavior.",
-        "likert",
-        "Almost Never True|Rarely True|Occasionally True|Often True|Almost Always True",
-        "No",
-        "1|2|3|4|5",
-        "no",
-        "175px",
-        "1",
-        ""
-      ],
-      [
-        "ver_agg_5",
-        "5. When people simply will not budge on a matter of importance I lose my temper and say rather strong things to them.",
-        "likert",
-        "Almost Never True|Rarely True|Occasionally True|Often True|Almost Always True",
-        "No",
-        "1|2|3|4|5",
-        "no",
-        "175px",
-        "1",
-        ""
-      ],
-      [
-        "ver_agg_6",
-        "6. When individuals insult me, I get a lot of pleasure out of really telling them off.",
-        "likert",
-        "Almost Never True|Rarely True|Occasionally True|Often True|Almost Always True",
-        "No",
-        "1|2|3|4|5",
-        "no",
-        "175px",
-        "1",
-        ""
-      ],
-      [
-        "ver_agg_7",
-        "7. I like poking fun at people who do things which are very stupid in order to stimulate their intelligence.",
-        "likert",
-        "Almost Never True|Rarely True|Occasionally True|Often True|Almost Always True",
-        "No",
-        "1|2|3|4|5",
-        "no",
-        "175px",
-        "1",
-        ""
-      ],
-      [
-        "ver_agg_8",
-        "8. When people do things which are mean or cruel, I attack their character in order to help correct their behaviour.",
-        "likert",
-        "Almost Never True|Rarely True|Occasionally True|Often True|Almost Always True",
-        "No",
-        "1|2|3|4|5",
-        "no",
-        "175px",
-        "1",
-        ""
-      ],
-      [
-        "ver_agg_9",
-        "9. When nothing seems to work in trying to influence others, I yell and scream in order to get some movement from them.",
-        "likert",
-        "Almost Never True|Rarely True|Occasionally True|Often True|Almost Always True",
-        "No",
-        "1|2|3|4|5",
-        "no",
-        "175px",
-        "1",
-        ""
-      ],
-      [
-        "ver_agg_10",
-        "10. When I am not able to refute others’ positions, I try to make them feel defensive in order to weaken their positions.",
-        "likert",
-        "Almost Never True|Rarely True|Occasionally True|Often True|Almost Always True",
-        "No",
-        "1|2|3|4|5",
-        "no",
-        "175px",
-        "1",
         ""
       ],
       [
