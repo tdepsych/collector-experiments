@@ -289,6 +289,11 @@
    color: #3f97f6;
    font-weight: bold;
  }
+ .mobile-modal-content {
+   font-size: 1.2em;
+   text-align: center;
+   padding: 20px;
+ }
 </style>
 <button id="zoomOut" tabindex="-1"></button>
 <button id="zoomIn" tabindex="-1"></button>
@@ -617,5 +622,44 @@
     },100); // Delay running this for 100ms after focusing on the Likert to give time for the likert response value to update if needed
   });
 
+  // Detect orientation change
+  function handleOrientationChange() {
+    if (window.innerHeight > window.innerWidth) {
+      bootbox.alert({
+        message: "<div class='mobile-modal-content'>Please rotate your device to landscape mode for a better experience.</div>",
+        backdrop: true
+      });
+    }
+  }
+
+  window.addEventListener("orientationchange", handleOrientationChange);
+
+  // Show one word_item at a time on mobile devices
+  function showNextItem() {
+    var items = document.querySelectorAll('.word_item');
+    var currentIndex = 0;
+
+    function showItem(index) {
+      items.forEach((item, i) => {
+        item.style.display = i === index ? 'block' : 'none';
+      });
+    }
+
+    showItem(currentIndex);
+
+    document.getElementById('proceed_button').addEventListener('click', function() {
+      if (currentIndex < items.length - 1) {
+        currentIndex++;
+        showItem(currentIndex);
+      } else {
+        Phase.submit();
+      }
+    });
+  }
+
+  if (/Mobi|Android/i.test(navigator.userAgent)) {
+    handleOrientationChange();
+    showNextItem();
+  }
 </script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
