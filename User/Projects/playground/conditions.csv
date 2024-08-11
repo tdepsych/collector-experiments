@@ -1,4 +1,4 @@
-name,stimuli,procedure,fullscreen,participant_id,end_message,start_message,buffer,skip_quality,counterbalance,
-bart,stimuli_1.csv,procedure_1.csv,off,random,,,5,yes,,
-counterbalance,stimuli_1.csv,procedure_3.csv,off,random,,,5,yes,https://xo019390.webs.act.reading.ac.uk/collector/counterbalance/playground.php,
-shuffling,stimuli_1.csv,procedure_2.csv,off,random,,,5,yes,,
+name,stimuli,procedure,fullscreen,participant_id,buffer,skip_quality,counterbalance,audio_visual,
+bart,stimuli_1.csv,procedure_1.csv,off,random,5,yes,,audio,
+counterbalance,stimuli_1.csv,procedure_3.csv,off,random,5,yes,https://xo019390.webs.act.reading.ac.uk/collector/counterbalance/playground.php,,
+shuffling,stimuli_1.csv,procedure_2.csv,off,random,5,yes,,,

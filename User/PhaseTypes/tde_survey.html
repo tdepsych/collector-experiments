@@ -42,6 +42,9 @@ td {
   padding: 10px;
   vertical-align: top;
 }
+input[type="number"] {
+    width: 240px; /* You can adjust this value to fit your needs */
+}
 
 /* * * * * * * * * */
 /*      IDs        */
@@ -57,7 +60,7 @@ td {
   text-align: left;
 }
 #survey_buttons {
-  padding: 40px 0 40px 0;
+  padding: 50px 0 50px 0;
 }
 #previous_button {
   display:none;
@@ -292,7 +295,7 @@ max-height: 90vh;
 <span id="scales_span"></span>
 
 <script>
-current_survey = "{{survey}}";
+  current_survey = "{{survey}}";
 </script>
 <script src="../Default/DefaultPhaseTypes/survey_white.js"></script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

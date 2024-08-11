@@ -1,6 +1,5 @@
 /*
- * Collector Survey 3.5.1
- * Authors: Dr. Anthony Haffey & Chris Dobson
+ * Collector Survey 3.5.2
  */
 
 /* 
@@ -1664,18 +1663,10 @@ function write_survey(this_survey, this_id) {
   ); 
 
   for (var i = 0; i < unique_shuffles.length; i++) {
-    if (
-      typeof unique_shuffles[i] !== "undefined" &&
-      unique_shuffles[i] !== "none" &&
-      unique_shuffles[i] !== ""
-    ) {
+    if (typeof unique_shuffles[i] !== "undefined" && unique_shuffles[i] !== "none" && unique_shuffles[i] !== "") {
       shuffled_content = this_survey_object.shuffle_question
         .map(function (element, index) {
-          if (
-            typeof element !== "undefined" &&
-            element.toLowerCase() !== "none" &&
-            element.toLowerCase() === unique_shuffles[i]
-          ) {
+          if (typeof element !== "undefined" && element.toLowerCase() !== "none" && element.toLowerCase() === unique_shuffles[i]) {
             return this_survey_object.content[index];
           }
         })

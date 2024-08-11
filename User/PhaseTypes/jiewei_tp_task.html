@@ -1,0 +1,106 @@
+<!-- it can help to add a description between the --'s of what this code does -->
+<!--
+---development---
+[
+{'word':'stick','audio':'duck','text':'feedback'}
+]
+---development---
+-->
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+  }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  p {
+    max-width: 100%;
+    max-height: 100%;
+    font-size: 150pt;
+    font-family: "Times New Roman", Times, serif;
+    text-transform: uppercase;
+  }
+  #stimuli_text, #too_slow, #too_fast, #well_done {
+    display: none;
+  }
+  .feedback {
+    /*font-size: 50pt!important;*/
+    font-size: 50pt;
+  }
+</style>
+<body>
+  <input type='hidden' id='reaction_time' name='reaction_time'/>
+  
+  <!--HTML-->
+  <p id="fixation">+</p>
+  <p id="stimuli_text">{{word}}</p>
+  <audio id="stimuli_audio" src="../../collector-experiments/User/Assets/timeperception/{{audio}}.mp3"></audio>
+  <p id="too_slow" class="feedback">🐢 too slow</p>
+  <p id="too_fast" class="feedback">🐇 too fast</p>
+  <p id="well_done" class="feedback">👍 well done</p>
+  
+  <!--JAVASCRIPT-->
+  <script>
+  var baselineTime;
+    Phase.set_timer(function() {
+      baselineTime = Date.now();
+    }, 0);
+    var feedback = '{{text}}';
+    
+    if (feedback === 'feedback') {
+      document.addEventListener('keydown', function(event) {
+        if (event.code === 'Space') {
+          const spacebarPressTime = Date.now();
+          $('#reaction_time').val(spacebarPressTime - baselineTime);
+          var rt = spacebarPressTime - baselineTime;
+          event.preventDefault();
+          console.log(rt)
+          $('#stimuli_audio').get(0).pause();
+          $('#stimuli_text').hide();
+          if (rt < 2400) {
+            $('#too_fast').show();
+          } else if (rt > 3600) {
+            $('#too_slow').show();
+          } else {
+            $('#well_done').show();
+          }
+          setTimeout(function() {
+            Phase.submit();
+          }, 750)
+        }
+      });
+      Phase.set_timer(function() {
+        $('#fixation').hide();
+        $('#stimuli_text').show();
+        $('#stimuli_audio')[0].play();
+      }, 1000);
+      Phase.set_timer(function() {
+        Phase.submit();
+      }, 7000);
+    } else {
+      document.addEventListener('keydown', function(event) {
+        if (event.code === 'Space') {
+          const spacebarPressTime = Date.now();
+          $('#reaction_time').val(spacebarPressTime - baselineTime);
+          event.preventDefault();
+          Phase.submit();
+        }
+      });
+      Phase.set_timer(function() {
+          $('#fixation').hide();
+          $('#stimuli_text').show();
+          $('#stimuli_audio')[0].play();
+      }, 1000);
+      Phase.set_timer(function() {
+        Phase.submit();
+        $('#stimuli_audio').get(0).pause();
+      }, 6000);
+    }
+  </script>
+</body>

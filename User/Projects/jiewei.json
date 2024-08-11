@@ -1,0 +1,169 @@
+{
+  "all_procs": {
+    "procedure_1.csv": "item,phasetype,survey,max_time,text,notes,shuffle_1,shuffle_2,task_title,task_body_text,weight,\r\n0,offline,,user,,,off,off,STUDY TEMPORARILY OFFLINE,We're really sorry but the study isn't available at the moment. The program used to run this study has had an update which has broken the data storage within this study. We are very sorry that you cannot complete the study at this time.,0,\r\n0,intro_static,,user,Welcome,no_mobile,off,off,,,,\r\n0,ws_zoom,,user,,,off,off,,,,\r\n0,jiewei_infoconsent,,user,Slow or quick? How do we experience time in the presence of swear words?,,off,off,,,,\r\n0,task_bookend,,user,Start,,off,off,Demographics,\"<p>Before you begin, we need you to complete a brief demographics questionnaire. we require is to just collect some basic demographic information about you so we can better understand who has taken part in our study.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>\",,\r\n0,tde_survey,jiewei_demo.csv,user,,,off,off,,,,\r\n0,task_bookend,,user,Start,,off,off,Time Peception,\"<p>In this study we are interested in how people's perception of time passing changes within a situation. For the next task, you will see a word written in the center of the screen. At the same time you will hear a word repeated through your speakers. You are simply required to press the <b>spacebar</b> after 3 seconds has elapsed. When you press space, the trial will end and the next begin. Please try to be as accurate as you can.<br><br>You will start with 10 practice trials. These will provide feedback regarding the accuracy of your judgement. After that you will have 120 experimental trials. These will be presented in 4 blocks of 30 trials.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>\",,\r\n122 to 131,jiewei_tp_task,,user,feedback,,Practice,off,,,,\r\n0,task_bookend,,user,Start,,off,off,End of practice trials,\"<p>Thank you for completing the practice trials. You are about to start the experimental trials. There are 120 trials broken up into 4 blocks. You may have a break between blocks. Once again, you are simply required to press the <b>spacebar</b> after 3 seconds has elapsed. When you press space, the trial will end and the next begin. Please try to be as accurate as you can.<br><br>The experimental trials do not provide feedback regarding the accuracy of your response.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>\",,\r\n2 to 31,jiewei_tp_task,,user,,,Experiment,Block 1,,,,\r\n0,task_bookend,,user,Start Block 2,,off,off,Time For A Break,\"<p>Thank you for completing the first block, you may have a break if you wish. When you are ready please press <b>Start Block 2</b> to move onto the second block of 30 trials.</p>\",,\r\n32 to 61,jiewei_tp_task,,user,,,Experiment,Block 2,,,,\r\n0,task_bookend,,user,Start Block 3,,off,off,Time For A Break,\"<p>Thank you for completing the second block, you may have a break if you wish. When you are ready please press <b>Start Block 3</b> to move onto the third block of 30 trials.</p>\",,\r\n62 to 91,jiewei_tp_task,,user,,,Experiment,Block 3,,,,\r\n0,task_bookend,,user,Start Block 4,,off,off,Time For A Break,\"<p>Thank you for completing the third block, you may have a break if you wish. When you are ready please press <b>Start Block 4</b> to move onto the final, fourth block of 30 trials.</p>\",,\r\n92 to 121,jiewei_tp_task,,user,,,Experiment,Block 4,,,,\r\n0,data_quality,,user,Start,,off,off,Data Quality Check,<p>Please check the box below if you feel the study did not run as it should have or you encountered an issue while completing the study. An example of an issue might be if multiple words appeared on screen at the time or audio seemed to overlap each other. <br><br><b>Please note: </b> a number of the trials in the main task did not play any audio while presenting a word on screen.</p>,,\r\n0,upload_data,,12,,Uploading REDCap Markers,off,off,,,,\r\n0,jiewei_debrief,,user,Slow or quick? How do we experience time in the presence of swear words?,,off,off,,,,"
+  },
+  "conditions": "name,notes,stimuli,procedure,fullscreen,welcome,participant_id,age_check,details_warning,skip_quality,zoom_check,buffer,progress_bar,mobile,audio_visual,\r\ntimeperception,this is just a backup of Jiewei's study in case we need it,stimuli_1.csv,procedure_1.csv,on,\"<b>Thank you for taking part in this study. Before we begin, however, there are some pre-study checks that we just need to run through.</b>\r\n<br><br>\r\nThis study requires you listen to audio stimuli and one of the checks is to ensure that your computer has working audio. While you can use your computer's speakers, we would recommend you use headphones/ear buds when you complete this study so you don't disturb others around you. You also require a physical keyboard as you will required to provide task responses by pressing the spacebar. \r\n<br><br>\r\nWhen you are ready to begin the pre-study checks, please press 'Start' below.\",random,no,no,no,no,5,stimuli,no,audio,",
+  "all_stims": {
+    "stimuli_1.csv": "audio,word,\r\nsilence,...,\r\nfuck,...,\r\nbitch,...,\r\nshit,...,\r\ndick,...,\r\nsilence,...,\r\nduck,...,\r\nwitch,...,\r\nship,...,\r\nstick,...,\r\nsilence,...,\r\nfuck,...,\r\nbitch,...,\r\nshit,...,\r\ndick,...,\r\nsilence,...,\r\nduck,...,\r\nwitch,...,\r\nship,...,\r\nstick,...,\r\nsilence,...,\r\nfuck,...,\r\nbitch,...,\r\nshit,...,\r\ndick,...,\r\nsilence,...,\r\nduck,...,\r\nwitch,...,\r\nship,...,\r\nstick,...,\r\nsilence,...,\r\nfuck,...,\r\nbitch,...,\r\nshit,...,\r\ndick,...,\r\nsilence,...,\r\nduck,...,\r\nwitch,...,\r\nship,...,\r\nstick,...,\r\nsilence,duck,\r\nfuck,witch,\r\nbitch,ship,\r\nshit,stick,\r\ndick,duck,\r\nsilence,witch,\r\nduck,ship,\r\nwitch,stick,\r\nship,duck,\r\nstick,witch,\r\nsilence,ship,\r\nfuck,stick,\r\nbitch,duck,\r\nshit,witch,\r\ndick,ship,\r\nsilence,stick,\r\nduck,duck,\r\nwitch,witch,\r\nship,ship,\r\nstick,stick,\r\nsilence,duck,\r\nfuck,witch,\r\nbitch,ship,\r\nshit,stick,\r\ndick,duck,\r\nsilence,witch,\r\nduck,ship,\r\nwitch,stick,\r\nship,duck,\r\nstick,witch,\r\nsilence,ship,\r\nfuck,stick,\r\nbitch,duck,\r\nshit,witch,\r\ndick,ship,\r\nsilence,stick,\r\nduck,duck,\r\nwitch,witch,\r\nship,ship,\r\nstick,stick,\r\nsilence,duck,\r\nfuck,witch,\r\nbitch,ship,\r\nshit,stick,\r\ndick,duck,\r\nsilence,witch,\r\nduck,ship,\r\nwitch,stick,\r\nship,duck,\r\nstick,witch,\r\nsilence,ship,\r\nfuck,stick,\r\nbitch,duck,\r\nshit,witch,\r\ndick,ship,\r\nsilence,stick,\r\nduck,duck,\r\nwitch,witch,\r\nship,ship,\r\nstick,stick,\r\nsilence,duck,\r\nfuck,witch,\r\nbitch,ship,\r\nshit,stick,\r\ndick,duck,\r\nsilence,witch,\r\nduck,ship,\r\nwitch,stick,\r\nship,duck,\r\nstick,witch,\r\nsilence,ship,\r\nfuck,stick,\r\nbitch,duck,\r\nshit,witch,\r\ndick,ship,\r\nsilence,stick,\r\nduck,duck,\r\nwitch,witch,\r\nship,ship,\r\nstick,stick,\r\ntesticles,...,\r\ncolour,...,\r\nbreeze,...,\r\nsunrise,knickers,\r\ncolour,orgasm,\r\nbreeze,colour,\r\nknickers,beeze,\r\norgasm,sunrise,\r\ncolour,testicles,\r\nsilence,horny,\r\n,,"
+  },
+  "location": "tdepsych/collector-experiments/jiewei",
+  "public_key": "ZIEuVRKYOLO6WwFULPPZwTRcHAjIYAjbIaCzNwwNLWc=",
+  "phasetypes": {
+    "offline": "[[[LOCATION]]]../User/PhaseTypes/offline.html",
+    "intro_static": "[[[LOCATION]]]../User/PhaseTypes/intro_static.html",
+    "ws_zoom": "[[[LOCATION]]]../User/PhaseTypes/ws_zoom.html",
+    "jiewei_infoconsent": "[[[LOCATION]]]../User/PhaseTypes/jiewei_infoconsent.html",
+    "task_bookend": "[[[LOCATION]]]../User/PhaseTypes/task_bookend.html",
+    "tde_survey": "[[[LOCATION]]]../User/PhaseTypes/tde_survey.html",
+    "jiewei_tp_task": "[[[LOCATION]]]../User/PhaseTypes/jiewei_tp_task.html",
+    "data_quality": "[[[LOCATION]]]../User/PhaseTypes/data_quality.html",
+    "upload_data": "[[[LOCATION]]]../User/PhaseTypes/upload_data.html",
+    "jiewei_debrief": "[[[LOCATION]]]../User/PhaseTypes/jiewei_debrief.html"
+  },
+  "surveys": {
+    "jiewei_demo.csv": [
+      [
+        "item_name",
+        "text",
+        "type",
+        "answers",
+        "optional",
+        "values",
+        "btn_width",
+        ""
+      ],
+      [
+        "Instructions",
+        "<h2><span>Demographic Information</span></h2><br><br>\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>All questions are optional, you do not have to answer if you wish, if that is the case please select \"Prefer not to say\". It really does help us, however, if you could answer the questions.</span><br/><br/>",
+        "instruct",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Age",
+        "1. Please enter your age (in years)<br><span class=\"minor\"><em>(the input only accepts numbers e.g., 21)</em></span>",
+        "number",
+        "",
+        "Yes",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Sex",
+        "2. What is your biological sex?",
+        "radio",
+        "Male|Female|Prefer not to say",
+        "No",
+        "1|2|0",
+        "",
+        ""
+      ],
+      [
+        "Ethnicity",
+        "3. I identify my ethnicity as:",
+        "radio",
+        "White|Mixed/Multiple|Asian|Black/African/Caribbean|Chinese|Other|Prefer not to say",
+        "No",
+        "1|2|3|4|5|6|0",
+        "",
+        ""
+      ],
+      [
+        "Education",
+        "4. What is the highest level of education you have completed?",
+        "radio",
+        "GCSEs or equivalent|A-Levels or equivalent|Undergraduate (e_g_, BSc)|Postgraduate (e_g_, MSc)|Doctoral degree|Other|Prefer not to say",
+        "No",
+        "1|2|3|4|5|6|0",
+        "",
+        ""
+      ],
+      [
+        "Employment",
+        "5. What is your current employment status?",
+        "radio",
+        "Full-time employment|Part-time employment|Unemployed/Retired/Full-time education|Prefer not to say",
+        "No",
+        "1|2|3|0",
+        "",
+        ""
+      ],
+      [
+        "NativeSpeaker",
+        "6. Are you a native British English Speaker<br><span class=\"minor\"><em>(defined as being born and raised in the UK, or moved to the UK before the age of 2)</em></span>",
+        "radio",
+        "Yes|No",
+        "No",
+        "1|2",
+        "",
+        ""
+      ],
+      [
+        "Familiarity",
+        "7. How often do you hear swearwords in your daily life?",
+        "likert",
+        "Never|Rarely|Sometimes|Often|Always",
+        "Yes",
+        "1|2|3|4|5",
+        "100px",
+        ""
+      ],
+      [
+        "Person_Use",
+        "8. How often do you use swearwords yourself?",
+        "likert",
+        "Never|Rarely|Sometimes|Often|Always",
+        "Yes",
+        "1|2|3|4|5",
+        "100px",
+        ""
+      ],
+      [
+        "Locality",
+        "9. How often do you the people around you (e.g., family, friends, and colleagues) use swearwords?",
+        "likert",
+        "Never|Rarely|Sometimes|Often|Always",
+        "Yes",
+        "1|2|3|4|5",
+        "100px",
+        ""
+      ],
+      [
+        "HorizontalRule",
+        "<hr>",
+        "instruct",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "demo",
+        "",
+        "redcap_pii",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  "procs_csv": {},
+  "stims_csv": {}
+}

@@ -1,0 +1,51 @@
+<!-- grapes test page -->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  @font-face {
+    font-family: 'Montserrat-ExtraLight';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-ExtraLight.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Montserrat-ExtraBold';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-ExtraBold.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Montserrat-BlackItalic';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-BlackItalic.woff') format('woff');
+  }
+  * {
+    margin: 0;
+    padding: 0;
+  }
+      
+  body, html {
+     overflow: hidden;
+       background: #FFF;
+  }
+  #oops {
+    font-size: 150px!important;
+    font-family: Montserrat-BlackItalic!important;
+    background-image: url('../../collector-experiments/User/Assets/Global/img/grapes.jpg');
+      background-repeat: repeat;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    background-position: 50% 30%;
+  }
+  #sub_head{
+    font-size: 50px;
+    font-family: Montserrat-ExtraBold;
+  }
+  #body_text{
+    font-size: 50px;
+    font-family: Montserrat-ExtraLight;
+  }
+  #container {
+    width: 100%!important;
+  }
+</style>
+<div id="container">
+    <p id="oops">GRAPES!!</p>
+    <p id="sub_head">This is just my test platform</p>
+    <p id="body_text">Sorry, this study cannot be run using Safari or Firefox.<br>Please restart the experiment in Google Chrome, or Microsoft Edge. If you do not have either of those browsers,<br>you can click the button to download Google Chrome (as this is the most stable browser for running this experiment).</p>
+    <button class="btn btn-outline-primary bi bi-browser-chrome" id="proceed_button" onclick="location.href='https://www.google.com/intl/en_uk/chrome/'"><b>CLICK TO DOWNLOAD GOOGLE CHROME</b></button>
+</div>
