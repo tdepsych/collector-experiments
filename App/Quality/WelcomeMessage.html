@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<style>
+ html {
+    height: 100%;
+    width: 100%;
+  }
+  body {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
+</style>
+<div id="container">
+  <div class="card" style="width: 30em;">
+    <div class="card-header text-primary">
+      <h2>Welcome</h2>
+    </div>
+    <div class="card-body">
+      <p id="welcome_message">Before you begin this experiment, we just need to complete some pre-experiment checks with you. When are ready, simply click 'Start' below.</p>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary" onclick="Phase.submit()">Start</button>
+    </div>
+  </div>
+</div>
+<script>
+  var welcome_message = parent.parent.welcome_message;
+  if (welcome_message.length >0) {
+    $('#welcome_message').html(welcome_message);
+  } 
+</script>

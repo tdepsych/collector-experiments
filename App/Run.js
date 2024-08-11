@@ -1148,27 +1148,47 @@ function insert_start() {
      * These quality checks are in reverse order
      */
 
-    if (
-      typeof project_json.this_condition.zoom_check !== "undefined" &&
-      project_json.this_condition.zoom_check.toLowerCase() === "no"
-    ) {
+    if (typeof project_json.this_condition.audio_visual !== "undefined" && project_json.this_condition.audio_visual.toLowerCase() === "no") {
+      //skip this
+    } else if (typeof project_json.this_condition.audio_visual !== "undefined" && project_json.this_condition.audio_visual.toLowerCase() === "audio") {
+      parent.parent.audio_visual = "audio";
+      this_proc = add_to_start(this_proc, "quality_audio_visual");
+    } else if (typeof project_json.this_condition.audio_visual !== "undefined" && project_json.this_condition.audio_visual.toLowerCase() === "video") {
+      parent.parent.audio_visual = "video";
+      this_proc = add_to_start(this_proc, "quality_audio_visual");
+    } else {
+      parent.parent.audio_visual = "both";
+      this_proc = add_to_start(this_proc, "quality_audio_visual");
+    }
+
+    if (typeof project_json.this_condition.zoom_check !== "undefined" && project_json.this_condition.zoom_check.toLowerCase() === "no") {
       //skip this
     } else {
       this_proc = add_to_start(this_proc, "quality_calibration_zoom");
     }
 
-    this_proc = add_to_start(this_proc, "quality_details_warning");
+    if (typeof project_json.this_condition.details_warning !== "undefined" && project_json.this_condition.details_warning.toLowerCase() === "no") {
+      //skip this
+    } else {
+      this_proc = add_to_start(this_proc, "quality_details_warning");
+    }
 
-    if (
-      typeof project_json.this_condition.age_check !== "undefined" &&
-      project_json.this_condition.age_check.toLowerCase() === "no"
-    ) {
+    if (typeof project_json.this_condition.age_check !== "undefined" && project_json.this_condition.age_check.toLowerCase() === "no") {
       //skip this
     } else {
       this_proc = add_to_start(this_proc, "quality_age_check");
     }
 
     this_proc = add_to_start(this_proc, "quality_participant_commitment");
+
+    // Adjust this so that it pulls in information from the "start message" field to populate the text if needed
+    if (typeof project_json.this_condition.welcome !== "undefined" && project_json.this_condition.welcome.toLowerCase() === "no") {
+      //skip this
+    } else {
+      parent.parent.welcome_message = project_json.this_condition.welcome;
+      this_proc = add_to_start(this_proc, "quality_welcome_message");
+    }
+    
 
     /*
      * Load the code for the quality checks that will
@@ -1179,6 +1199,10 @@ function insert_start() {
       {
         url: "Quality/AgeCheck.html",
         name: "quality_age_check",
+      },
+      {
+        url: "Quality/AudioVisual.html",
+        name: "quality_audio_visual",
       },
       {
         url: "Quality/Calibration.html",
@@ -1195,6 +1219,10 @@ function insert_start() {
       {
         url: "Quality/Problems.html",
         name: "end_checks_experiment",
+      },
+      {
+        url: "Quality/WelcomeMessage.html",
+        name: "quality_welcome_message",
       },
     ];
 

@@ -1,0 +1,385 @@
+<!--This allows you to check the users multimedia setting for autoplay video and -->
+<!--
+---development---
+[
+{'text':'both'}
+]
+---development---
+-->
+<style>
+    body, html {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card {
+      width: 515px;
+    }
+    .card-footer {
+      min-height: 55px;
+    }
+    
+    @keyframes growShrink {
+      0%, 100% {
+          transform: scaleY(1);
+      }
+      50% {
+          transform: scaleY(0.5);
+      }
+    }
+
+    .scaled {
+      transform: scale(0.5) translate(-240px, -50px);
+      height: 100px;
+    }
+
+    .audio-bar {
+      animation: growShrink 2s infinite;
+      transform-origin: center center;
+      z-index: 1;
+    }
+
+    .audiogram .audio-bar:nth-child(0) {animation-delay: 0.0s;}
+    .audiogram .audio-bar:nth-child(1) {animation-delay: 0.2s;}
+    .audiogram .audio-bar:nth-child(2) {animation-delay: 0.4s;}
+    .audiogram .audio-bar:nth-child(3) {animation-delay: 0.6s;}
+    .audiogram .audio-bar:nth-child(4) {animation-delay: 0.8s;}
+    .audiogram .audio-bar:nth-child(5) {animation-delay: 1.0s;}
+    .audiogram .audio-bar:nth-child(6) {animation-delay: 1.2s;}
+    .audiogram .audio-bar:nth-child(7) {animation-delay: 1.4s;}
+    .audiogram .audio-bar:nth-child(8) {animation-delay: 1.6s;}
+    .audiogram .audio-bar:nth-child(9) {animation-delay: 1.8s;}
+    .audiogram .audio-bar:nth-child(10) {animation-delay: 2.0s;}
+    .audiogram .audio-bar:nth-child(11) {animation-delay: 2.2s;}
+    .audiogram .audio-bar:nth-child(12) {animation-delay: 2.4s;}
+    .audiogram .audio-bar:nth-child(13) {animation-delay: 2.6s;}
+  </style>
+
+<body>
+  
+  <div class="card">
+    <div class="card-header text-primary"><h2>Multimedia Settings Check</h2></div>
+    <div class="card-body">
+      <div class="tab-content">
+          <div class="tab-pane fade show active" id="tab1">
+              <p>We will now check the multimedia settings of your browser as required for this experiment.</p>
+          </div>
+          <div class="tab-pane fade" id="tab2">
+            <p id="audioText">Playing audio test...</p>
+            <div class="scaled">
+              <svg id="audioImg" class="audiogram col" xmlns="http://www.w3.org/2000/svg" height="200">
+                <defs>
+                  <linearGradient id="audiogram-background" x1="0.5" y1="0" x2="0.5" y2="1">
+                    <stop offset="0%" stop-color="#006599" />
+                    <stop offset="50%" stop-color="#7393B3" />
+                    <stop offset="99%" stop-color="#006599" />
+                  </linearGradient>
+                </defs>
+                <rect width="10" class="audio-bar" fill="url(#audiogram-background)" height="102.2" x="0" y="49.9" rx="5" ry="5" />
+                <rect width="10" class="audio-bar" fill="url(#audiogram-background)" height="135.0" x="20" y="33.5" rx="5" ry="5" />
+                <rect width="10" class="audio-bar" fill="url(#audiogram-background)" height="164.2" x="40" y="18.9" rx="5" ry="5" />
+                <rect width="10" class="audio-bar" fill="url(#audiogram-background)" height="186.6" x="60" y="7.7" rx="5" ry="5" />
+                <rect width="10" class="audio-bar" fill="url(#audiogram-background)" height="199.6" x="80" y="1.2" rx="5" ry="5" />
+                <rect width="10" class="audio-bar" fill="url(#audiogram-background)" height="202.0" x="100" y="0.0" rx="5" ry="5" />
+                <rect width="10" class="audio-bar" fill="url(#audiogram-background)" height="193.4" x="120" y="4.3" rx="5" ry="5" />
+                <rect width="10" class="audio-bar" fill="url(#audiogram-background)" height="174.7" x="140" y="13.7" rx="5" ry="5" />
+                <rect width="10" class="audio-bar" fill="url(#audiogram-background)" height="148.0" x="160" y="27.0" rx="5" ry="5" />
+                <rect width="10" class="audio-bar" fill="url(#audiogram-background)" height="116.3" x="180" y="42.8" rx="5" ry="5" />
+                <rect width="10" class="audio-bar" fill="url(#audiogram-background)" height="83.1" x="200" y="59.5" rx="5" ry="5" />
+                <rect width="10" class="audio-bar" fill="url(#audiogram-background)" height="51.9" x="220" y="75.0" rx="5" ry="5" />
+                <rect width="10" class="audio-bar" fill="url(#audiogram-background)" height="26.3" x="240" y="87.9" rx="5" ry="5" />
+              </svg>
+            </div>
+              <audio id="audio_test" src="Quality/audio_test.mp3"></audio>
+          </div>
+          <div class="tab-pane fade" id="tab3">
+            <p>To begin, please ensure your speakers are turn on and not muted. If that is not the issue, please follow the instructions below to check your browser settings. If that does not solve the issue, please contact the researchers before continuing.</p>
+            <select class="form-select" id="audioBrowserDropdown">
+              <option value="chrome">Chrome</option>
+              <option value="edge">Edge</option>
+              <option value="firefox">Firefox</option>
+            </select>
+            <div id="audioBrowserInstructions" class="mt-3">
+              <!-- Instructions will be dynamically inserted here -->
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tab4">
+            <p id="videoText">Playing video test...</p>
+            <video id="video_test" src="Quality/video_test.mp4"></video>
+          </div>
+          <div class="tab-pane fade" id="tab5">
+            <p>Please follow the instructions below to check your browser settings. If that does not solve the issue, please contact the researchers before continuing.</p>
+            <select class="form-select" id="videoBrowserDropdown">
+              <option value="chrome">Chrome</option>
+              <option value="edge">Edge</option>
+              <option value="firefox">Firefox</option>
+            </select>
+            <div id="videoBrowserInstructions" class="mt-3">
+              <!-- Instructions will be dynamically inserted here -->
+            </div>
+          </div>
+          <div class="tab-pane fade" id="tab6">
+            <p>Thank you for setting up your multimedia as required by this experiment. When ready, please click below to start the experiment.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-primary" id="startBtn" style="display: none;">Start</button>
+        <button class="btn btn-danger" id="noBtn" style="display: none;">No</button>
+        <button class="btn btn-success" id="yesBtn" style="display: none;">Yes</button>
+        <button class="btn btn-primary" id="recheckAudioBtn" style="display: none;">Recheck Audio</button>
+        <button class="btn btn-primary" id="recheckVideoBtn" style="display: none;">Recheck Video</button>
+        <button class="btn btn-primary" id="startExperimentBtn" style="display: none;">Start Experiment</button>
+      </div>
+  </div>
+  
+  <script>
+    var audio_visual = parent.parent.audio_visual;
+
+    const video = $('#video_test');
+    video[0].pause();
+    
+    var browser = (function (agent) {
+        switch (true) {
+            case agent.indexOf("edge") > -1: return "edge";
+            case agent.indexOf("chrome") > -1 && !!window.chrome: return "chrome";
+            case agent.indexOf("firefox") > -1: return "firefox";
+            default: return "other";
+        }
+    })(window.navigator.userAgent.toLowerCase());
+
+    let currentTab = null; // Track the current tab (audio or video)
+    
+    // Function to update the instructions based on selected browser for audio settings
+    function updateAudioInstructions(selectedBrowser) {
+        let instructions = '';
+        switch (selectedBrowser) {
+            case 'chrome':
+                instructions = `
+                  <ul>
+                    <li>Click the three vertical dots.</li>
+                    <li>Go to Settings > Privacy and Security > Site Settings.</li>
+                    <li>Scroll down and click on 'Additional content settings'.</li>
+                    <li>Ensure that sound is allowed for this site.</li>
+                  </ul>`;
+                break;
+            case 'edge':
+                instructions = `
+                  <ul>
+                    <li>Click the three horizontal dots.</li>
+                    <li>Go to Settings > Cookies and site permissions.</li>
+                    <li>Under Media autoplay, ensure that Allow is selected.</li>
+                  </ul>`;
+                break;
+            case 'firefox':
+                instructions = `
+                  <ul>
+                    <li>Click the three horizontal lines.</li>
+                    <li>Go to Options > Privacy & Security.</li>
+                    <li>Scroll to Permissions and click on the Settings button next to Autoplay.</li>
+                    <li>Ensure that 'Allow Audio and Video' is selected from the dropdown menu.</li>
+                  </ul>`;
+                break;
+            default:
+                instructions = 'Please select a browser from the dropdown menu.';
+        }
+        $('#audioBrowserInstructions').html(instructions);
+    }
+
+    // Function to update the instructions based on selected browser for video settings
+    function updateVideoInstructions(selectedBrowser) {
+        let instructions = '';
+        switch (selectedBrowser) {
+            case 'chrome':
+                instructions = `
+                    <ul>
+                        <li>Click the three vertical dots.</li>
+                        <li>Go to Settings > Privacy and Security > Site Settings.</li>
+                        <li>Ensure that video is allowed for this site.</li>
+                    </ul>`;
+                break;
+            case 'edge':
+                instructions = `
+                    <ul>
+                        <li>Click the three horizontal dots.</li>
+                        <li>Go to Settings > Cookies and site permissions.</li>
+                        <li>Under Media autoplay, ensure that Allow is selected.</li>
+                    </ul>`;
+                break;
+            case 'firefox':
+                instructions = `
+                    <ul>
+                        <li>Click the three horizontal lines.</li>
+                        <li>Go to Options > Privacy & Security.</li>
+                        <li>Scroll to Permissions and click on the Settings button next to Autoplay.</li>
+                        <li>Ensure that 'Allow Audio and Video' is selected from the dropdown menu.</li>
+                    </ul>`;
+                break;
+            default:
+                instructions = 'Please select a browser from the dropdown menu.';
+        }
+        $('#videoBrowserInstructions').html(instructions);
+    }
+
+    // Set the dropdowns to the value of the browser variable
+    $('#audioBrowserDropdown').val(browser);
+    $('#videoBrowserDropdown').val(browser);
+
+    // Disable the dropdown if the browser matches
+    if ($('#audioBrowserDropdown').val() === browser) {
+        $('#audioBrowserDropdown').attr('disabled', true);
+    }
+    if ($('#videoBrowserDropdown').val() === browser) {
+        $('#videoBrowserDropdown').attr('disabled', true);
+    }
+
+    // Initial instructions update for both audio and video settings
+    updateAudioInstructions(browser);
+    updateVideoInstructions(browser);
+
+    // Update instructions when the dropdown value changes for audio settings
+    $('#audioBrowserDropdown').change(function () {
+        let selectedBrowser = $(this).val();
+        updateAudioInstructions(selectedBrowser);
+    });
+
+    // Update instructions when the dropdown value changes for video settings
+    $('#videoBrowserDropdown').change(function () {
+        let selectedBrowser = $(this).val();
+        updateVideoInstructions(selectedBrowser);
+    });
+
+    // Handle the start button on Tab 1
+    $("#startBtn").click(function () {
+        const audioVisualSetting = audio_visual;
+        if (audioVisualSetting === "audio" || audioVisualSetting === "both" || audioVisualSetting === "yes") {
+            $('#tab1').removeClass('show active');
+            $('#tab2').addClass('show active');
+            $('#startBtn').hide();
+            currentTab = 'audio';
+            const audio = $('#audio_test');
+            audio[0].play();
+            audio[0].play().catch(error => {
+                console.error('Audio playback failed:', error);
+            });
+            const video = $('#video_test');
+            video[0].pause();
+
+            handleMediaTimeout(currentTab); // Call the audio timeout function
+        } else if (audioVisualSetting === "video") {
+            $('#tab1').removeClass('show active');
+            $('#tab4').addClass('show active');
+            $('#startBtn').hide();
+            currentTab = 'video';
+            const video = $('#video_test');
+            video[0].play();
+            video[0].play().catch(error => {
+                console.error('Video playback failed:', error);
+            });
+
+            handleMediaTimeout(currentTab); // Call the video timeout function
+        }
+    });
+
+    // Handle Yes/No buttons for both audio and video tests
+    $("#noBtn").click(function () {
+        if (currentTab === 'audio') {
+            $('#tab2').removeClass('show active');
+            $('#tab3').addClass('show active');
+            $("#recheckAudioBtn").show();
+        } else if (currentTab === 'video') {
+            $('#tab4').removeClass('show active');
+            $('#tab5').addClass('show active');
+            $("#recheckVideoBtn").show();
+        }
+        $("#yesBtn").hide();
+        $("#noBtn").hide();
+    });
+
+    $("#yesBtn").click(function () {
+        if (currentTab === 'audio') {
+            const audioVisualSetting = audio_visual;
+            if (audioVisualSetting === 'both') {
+                $('#tab2').removeClass('show active');
+                $('#tab4').addClass('show active');
+                currentTab = 'video';
+                handleMediaTimeout(currentTab);
+                const video = $('#video_test');
+                video[0].play()
+                video[0].play().catch(error => {
+                    console.error('Video playback failed:', error);
+                });
+            } else {
+                $('#tab2').removeClass('show active');
+                $('#tab6').addClass('show active');
+                $("#startExperimentBtn").show();
+            }
+        } else if (currentTab === 'video') {
+            $('#tab4').removeClass('show active');
+            $('#tab6').addClass('show active');
+            $("#startExperimentBtn").show();
+        }
+        $("#yesBtn").hide();
+        $("#noBtn").hide();
+    });
+
+    function handleMediaTimeout(source) {
+        if (source === 'audio') {
+            setTimeout(() => {
+            $('#audioText').text('Could you hear the audio?');
+            $("#yesBtn").show();
+            $("#noBtn").show();
+            $("#startBtn, #audioImg, .scaled").hide();
+        }, 9250);
+        } else if (source === 'video') {
+            setTimeout(() => {
+                $('#videoText').text('Could you see the video?');
+                $("#yesBtn").show();
+                $("#noBtn").show();
+            }, 13000);
+        }
+    }
+
+    // Handle Recheck Audio button on Tab 3
+    $("#recheckAudioBtn").click(function () {
+        $('#tab3').removeClass('show active');
+        $('#tab2').addClass('show active');
+        $("#recheckAudioBtn").hide();
+        currentTab = 'audio';
+        $('#audioText').text('Playing audio test...');
+        $('#audioImg, .scaled').show();
+        const audio = $('#audio_test');
+        audio[0].play();
+        audio[0].play().catch(error => {
+            console.error('Audio playback failed:', error);
+        });
+
+        handleMediaTimeout('audio'); // Call the audio timeout function
+    });          
+
+    // Handle Recheck Video button on Tab 5
+    $("#recheckVideoBtn").click(function () {
+        $('#tab5').removeClass('show active');
+        $('#tab4').addClass('show active');
+        $("#recheckVideoBtn").hide();
+        currentTab = 'video';
+        $('#videoText').text('Playing video test...');
+        const video = $('#video_test');
+        video[0].play();
+        video[0].play().catch(error => {
+            console.error('Video playback failed:', error);
+        });
+
+        handleMediaTimeout('video'); // Call the video timeout function
+    });
+
+    // Handle Start Experiment button on Tab 6
+    $("#startExperimentBtn").click(function () {
+        Phase.submit()
+    });
+
+    // Initialize with the start button visible on Tab 1
+    $("#startBtn").show();
+  </script>
+</body>

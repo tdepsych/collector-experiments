@@ -320,3 +320,8 @@ function csvToArray(str, delimiter = ",") {
   // return the array
   return arr;
 }
+
+// setting up appropriate_message functionality
+function appropriate_message(this_message) {
+  bootbox.alert(this_message);
+}
