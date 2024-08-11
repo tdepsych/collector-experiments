@@ -142,7 +142,7 @@
     
     var browser = (function (agent) {
         switch (true) {
-            case agent.indexOf("edge") > -1: return "edge";
+            case agent.indexOf("edg") > -1: return "edge";
             case agent.indexOf("chrome") > -1 && !!window.chrome: return "chrome";
             case agent.indexOf("firefox") > -1: return "firefox";
             default: return "other";

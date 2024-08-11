@@ -20,6 +20,7 @@
     transform: scale(1.5);
     margin-right:10px;
     cursor: pointer;
+    border: 1px solid #3f97f6;
   }
   label{
     padding:5px;
@@ -30,6 +31,10 @@
   }
   .card-body{
     text-align: left;
+  }
+  .participant_commitment:checked + label::before {
+    background-color: #3f97f6;
+    border-color: #3f97f6;
   }
 </style>
 <div id="container">
