@@ -15,6 +15,7 @@ item,phasetype,survey,max_time,text,notes,shuffle_1,shuffle_2,task_title,task_bo
 62 to 91,jiewei_tp_task,,user,,,Experiment,Block 3,,,,
 0,task_bookend,,user,Start Block 4,,off,off,Time For A Break,"<p>Thank you for completing the third block, you may have a break if you wish. When you are ready please press <b>Start Block 4</b> to move onto the final, fourth block of 30 trials.</p>",,
 92 to 121,jiewei_tp_task,,user,,,Experiment,Block 4,,,,
-0,data_quality,,user,Start,,off,off,Data Quality Check,<p>Please check the box below if you feel the study did not run as it should have or you encountered an issue while completing the study. An example of an issue might be if multiple words appeared on screen at the time or audio seemed to overlap each other. <br><br><b>Please note: </b> a number of the trials in the main task did not play any audio while presenting a word on screen.</p>,,
+0,task_bookend,,user,Proceed,,off,off,End of Experimental Trials,"<p>Thank you for completing the fourth block, you have now completed all experimental trials. When you are ready please press <b>Proceed</b> to move to the next, final, task.</p>",,
+0,data_quality,,user,Proceed,,off,off,Data Quality Check,<p>Please check the box below if you feel the study did not run as it should have or you encountered an issue while completing the study. An example of an issue might be if multiple words appeared on screen at the time or audio seemed to overlap each other. <br><br><b>Please note: </b> a number of the trials in the main task did not play any audio while presenting a word on screen.</p>,,
 0,upload_data,,12,,Uploading REDCap Markers,off,off,,,,
 0,jiewei_debrief,,user,Slow or quick? How do we experience time in the presence of swear words?,,off,off,,,,

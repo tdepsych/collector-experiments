@@ -2,7 +2,7 @@
 <!--
 ---development---
 [
-{'word':'stick','audio':'duck','text':'feedback'}
+{'word':'ship','audio':'duck','text':'feedback'}
 ]
 ---development---
 -->
@@ -52,6 +52,7 @@
       baselineTime = Date.now();
     }, 0);
     var feedback = '{{text}}';
+    var word = '{{word}}';
     
     if (feedback === 'feedback') {
       document.addEventListener('keydown', function(event) {
@@ -101,6 +102,9 @@
         Phase.submit();
         $('#stimuli_audio').get(0).pause();
       }, 6000);
+    }
+    if (word === '...') {
+      $('#stimuli_text').css('transform','translateY(-58px)');
     }
   </script>
 </body>
