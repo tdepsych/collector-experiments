@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<style>
+  html, body {
+    height: 100%;
+    width: 100%;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
+  input[type=checkbox] {
+    transform: scale(1.5);
+    margin-right:10px;
+    cursor: pointer;
+    border: 1px solid #3f97f6;
+  }
+  label{
+    padding:5px;
+    cursor: pointer;
+  }
+  #container{
+    width: 40%!important;
+  }
+  .card-body{
+    text-align: left;
+  }
+  .participant_commitment:checked + label::before {
+    background-color: #3f97f6;
+    border-color: #3f97f6;
+  }
+</style>
+<div id="container">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="text-primary">I commit to the following: <br /></h3><h5 class="text-muted"><em>(please select all that apply)</em></h5>
+    </div>
+    <div class="card-body">
+      <label>
+        <input type="checkbox" class="participant_commitment commitment" value="Reading all questions carefully" />
+        Reading all questions and instructions carefully
+      </label><br />
+      <label>
+        <input type="checkbox" class="participant_commitment commitment" value="Trying to be as precise as possible with my answers" />
+        Trying to be as precise as possible with my answers
+      </label><br />
+      <label>
+        <input type="checkbox" class="participant_commitment commitment" value="Answering honestly" />
+        Answering honestly
+      </label><br />
+      <label>
+        <input type="checkbox" class="participant_commitment commitment" value="Closing  other applications" />
+        Closing other applications so this task can run as smoothly as possible
+      </label><br />
+      <label>
+        <input type="checkbox" class="participant_commitment commitment" value="Removed environmental distractions" />
+        Removing (myself from) distractions in my environment
+      </label><br />
+      <label>
+        <input type="checkbox" class="participant_commitment" id="NotA" value="None of the above but I will proceed anyway" />
+        None of the above - but I will proceed anyway
+      </label><br />
+    </div>
+    <div class="card-footer">
+      <button id="pptCommitment-btn" class="btn btn-primary" onclick="Phase.submit()" disabled>Next</button>
+    </div>
+  </div>
+  <input type="hidden" name="participant_commitment" id="participant_commitment" value="" />
+</div>
+
+<script>
+$('.card-body').click(function() {
+  var commitment_value ='';
+  $('.commitment:checked').each(function() {
+    commitment_value += this.value + "; ";
+  });
+  
+  $('.commitment').click(function() {
+    $('#NotA').prop('checked',false);
+  });
+  
+  if ($('#NotA').is(':checked')) {
+    commitment_value = $('#NotA').val() + ";";
+    $('.commitment').prop('checked',false);
+    $('#pptCommitment-btn').prop('disabled', false);
+  } else if ($('.commitment').is(':checked')) {
+    $('#pptCommitment-btn').prop('disabled', false);
+    $('#NotA').prop('checked',false);
+  } else {
+    commitment_value = "";
+    $('#pptCommitment-btn').prop('disabled', true);
+  }
+  document.getElementById("participant_commitment").value = commitment_value;
+});
+</script>

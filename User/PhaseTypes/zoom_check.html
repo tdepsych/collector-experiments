@@ -5,22 +5,27 @@
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/radio_buttons.css">
 <style>
-  #scaleBorder{
-    width: 1000px;
-    height: 750px;
-    border: 7px solid black;
-    border-radius: 15px;
+  html {
+    height: 100%;
+    width: 100%;
+  }
+  #container {
+    height: 100%;
+    width: 100%;
     display: flex;
-    justify-content: flex-start;
-    margin: 0 auto;
-    position: relative;
+    justify-content: center;
     align-items: center;
+    text-align: center;
     flex-direction: column;
+  }
+  #card {
+    width: 50vw;
+    height: 50vhx;
   }
   #zoomImg {
     display: inline;
     width: 165px;
-    transform: translateY(25px) scale(0.75);
+    transform: translateY(-5px) scale(0.75);
   }
   p {
     margin: 7px 50px;
@@ -34,7 +39,11 @@
     width: 80%;
   }
   #proceed_button {
-    transform: translateY(-20px);
+    margin: 10px 0 10px 0!important;
+  }
+  .card-footer {
+    text-align: center;
+    padding-left: 15px;
   }
   .arrow {
     background: url(../../collector-experiments/User/Assets/Global/img/arrow-end.svg) 0 0 no-repeat;
@@ -57,17 +66,29 @@
     75% { opacity: 1; }
     100% { opacity: 0; }
   }
+  .card-header h2 {
+    text-align: left!important;
+    border-bottom: none!important;
+    padding: 10px!important;
+  }
 </style>
+
 <button id="zoomOut" class="zoomBtn" tabindex="-1"></button>
 <button id="zoomIn" class="zoomBtn" tabindex="-1"></button>
 <div id="arrow"></div>
 <div id="container">
-  <div id="scaleBorder">
-    <img id="zoomImg" src="../../collector-experiments/User/Assets/MSc/swear-disinhibition-zoom.svg" />
-    <p><span style="font-weight:bold;">Let's Check If Everything Fits Your Screen...</span><br><br>Please ensure that this box is entirely visible on your screen as it represents the maximum width of the experimental tasks that will appear on screen during this study. <br><br>The box doesn't have to fill the screen, it simply has to be visibile. Most participants shouldn't need to adjust anything but, if the outside black border extends off your screen, please use the 'zoom in' and 'zoom out' buttons in the top left-hand corner of the screen to adjust the scaling until the border around this box is completely visibile.<br><br>Any adjustments should remain across the experiment, but if you feel it needs readjusting, the zoom buttons will be in the top left-hand corner of most pages. <br><br>When you are ready, please click 'Next' below.</p>
-    <!--<button class="btn btn-primary" id="proceed_button" onclick="Phase.go_to(18)">Next</button>-->
-    <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()">Next</button>
-  </div>
+    <div id="card" class="card">
+      <div class="card-header text-primary">
+        <h2>Zoom Check</h2>
+      </div>
+      <div class="card-body">
+        <img id="zoomImg" src="../../collector-experiments/User/Assets/MSc/swear-disinhibition-zoom.svg" />
+        <p><span style="font-weight:bold;">Let's Check If Everything Fits Your Screen...</span><br><br>Please ensure that this box is entirely visible on your screen as it represents the maximum width of the experimental tasks that will appear on screen during this study. <br><br>The box doesn't have to fill the screen, it simply has to be visibile. Most participants shouldn't need to adjust anything but, if the outside border extends off your screen, please use the 'zoom in' and 'zoom out' buttons in the top left-hand corner of the screen to adjust the scaling until the border around this box is completely visibile.<br><br>Any adjustments should remain across the experiment, but if you feel it needs readjusting, the zoom buttons will be in the top left-hand corner of most pages. <br><br>When you are ready, please click 'Next' below.</p>
+      </div>
+      <div class="card-footer text-left">
+        <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()">Next</button>
+      </div>
+    </div>
 </div>
 
 <!-- --------------------------------- -->
