@@ -487,17 +487,18 @@
   // Validate on text change
   // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
   $("#participant_emailInput").on("keydown", function(){
-    setTimeout(() => {
-      var emailField = $("#participant_emailInput").val();
-      console.log(emailField)
-      if( /(.+)@(.+){2,}\.(.+){2,}/.test(emailField) ){
-        email_validated = true;
-        validateConsent();
-      } else {
-        email_validated = false;
-        validateConsent();
-      }
-    }, "10");
+      setTimeout(() => {
+          var emailField = $("#participant_emailInput").val();
+          console.log(emailField);
+          // Check for valid email format and no spaces
+          if( /(.+)@(.+){2,}\.(.+){2,}/.test(emailField) && !/\s/.test(emailField) ){
+              email_validated = true;
+              validateConsent();
+          } else {
+              email_validated = false;
+              validateConsent();
+          }
+      }, 10);
   });
   
     $("#participant_nameInput").on("keydown", function(){
