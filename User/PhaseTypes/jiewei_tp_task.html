@@ -2,7 +2,7 @@
 <!--
 ---development---
 [
-{'word':'ship','audio':'duck','text':'feedback'}
+{'word':'ship','audio':'duck','text':'feedback', 'on':'298', 'off':'200'}
 ]
 ---development---
 -->
@@ -37,6 +37,7 @@
 </style>
 <body>
   <input type='hidden' id='reaction_time' name='reaction_time'/>
+  <input type='hidden' id='counting_flag' name='counting_flag'/>
   
   <!--HTML-->
   <p id="fixation">+</p>
@@ -48,23 +49,45 @@
   
   <!--JAVASCRIPT-->
   <script>
-  var baselineTime;
-    Phase.set_timer(function() {
+    var feedback = '{{text}}';
+    var audio = '{{audio}}';
+    var word = '{{word}}';
+    var on = '{{on}}';
+    var off = '{{off}}';
+    var intervalId;
+    
+    console.log(parseInt(on) + parseInt(off));
+  
+    var count = 0; // Counter to keep track of the repeats
+
+    // Function to toggle the image visibility and set hidden input value
+    function toggleImage() {
+        count++;
+        if (count === 3) {
+            $('#counting_flag').val('true'); // Set hidden input to true during the 3rd repeat to monitor for people counting
+        } else {
+            $('#counting_flag').val('false');
+        }
+        $('#stimuli_text').fadeIn(parseInt(on)).delay(parseInt(off)).fadeOut(0);
+    }
+          
+    var baselineTime;
+      Phase.set_timer(function() {
       baselineTime = Date.now();
     }, 0);
-    var feedback = '{{text}}';
-    var word = '{{word}}';
     
     if (feedback === 'feedback') {
       document.addEventListener('keydown', function(event) {
         if (event.code === 'Space') {
+          clearInterval(intervalId);
+          $('#stimuli_text').stop(true, true).hide();
+          
           const spacebarPressTime = Date.now();
           $('#reaction_time').val(spacebarPressTime - baselineTime);
           var rt = spacebarPressTime - baselineTime;
           event.preventDefault();
-          console.log(rt)
           $('#stimuli_audio').get(0).pause();
-          $('#stimuli_text').hide();
+          // $('#stimuli_text').hide();
           if (rt < 2400) {
             $('#too_fast').show();
           } else if (rt > 3600) {
@@ -77,29 +100,40 @@
           }, 750)
         }
       });
+      
       Phase.set_timer(function() {
         $('#fixation').hide();
-        $('#stimuli_text').show();
+        // $('#stimuli_text').show();
         $('#stimuli_audio')[0].play();
+        intervalId = setInterval(toggleImage, );
       }, 1000);
       Phase.set_timer(function() {
+        clearInterval(intervalId);
+        $('#stimuli_text').stop(true, true).hide();
         Phase.submit();
       }, 7000);
+      
     } else {
       document.addEventListener('keydown', function(event) {
         if (event.code === 'Space') {
+          clearInterval(intervalId);
+          $('#stimuli_text').stop(true, true).hide();
           const spacebarPressTime = Date.now();
           $('#reaction_time').val(spacebarPressTime - baselineTime);
           event.preventDefault();
+          clearInterval(intervalId);
           Phase.submit();
         }
       });
       Phase.set_timer(function() {
           $('#fixation').hide();
-          $('#stimuli_text').show();
+          // $('#stimuli_text').show();
+          intervalId = setInterval(toggleImage, );
           $('#stimuli_audio')[0].play();
       }, 1000);
       Phase.set_timer(function() {
+        clearInterval(intervalId);
+        $('#stimuli_text').stop(true, true).hide();
         Phase.submit();
         $('#stimuli_audio').get(0).pause();
       }, 6000);
