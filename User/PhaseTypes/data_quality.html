@@ -1,4 +1,4 @@
-<!-- it can help to add a description between the --'s of what this code does -->
+<!-- Data quality check - asks ppt's to report any issues they felt they had -->
 <!--
 ---development---
 [
@@ -18,6 +18,7 @@
     max-width: 400px;
   }
 </style>
+<input type="hidden" name="data_quality" id="data_quality" value="" />
 <div class="card">
   <div class="card-header text-primary"><h2>Data Quality Check</h2></div>
   <div class="card-body">
@@ -40,8 +41,17 @@
       $('#issueDetails').show();
     } else {
       $('#issueDetails').hide();
+      $('#data_quality').val(''); // Clear the hidden input when the textarea is hidden
     }
   });
 
-  $('#submitButton').click(function() {Phase.submit()});
+  $('#issueTextarea').on('input', function() {
+    if ($('#issueDetails').is(':visible')) {
+      $('#data_quality').val($(this).val());
+    }
+  });
+
+  $('#submitButton').click(function() {
+    Phase.submit();
+  });
 </script>
