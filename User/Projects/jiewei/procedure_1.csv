@@ -1,6 +1,7 @@
 item,phasetype,survey,max_time,text,notes,shuffle_1,shuffle_2,task_title,task_body_text,weight,
 0,offline,,user,,,off,off,STUDY TEMPORARILY OFFLINE,We're really sorry but the study isn't available at the moment. The program used to run this study has had an update which has broken the data storage within this study. We are very sorry that you cannot complete the study at this time.,0,
 0,intro_static,,user,Welcome,no_mobile,off,off,,,,
+0,multimedia_check,,user,audio,,off,off,,,,
 0,ws_zoom,,user,,,off,off,,,,
 0,jiewei_infoconsent,,user,Slow or quick? How do we experience time in the presence of swear words?,,off,off,,,,
 0,task_bookend,,user,Start,,off,off,Demographics,"<p>Before you begin, we need you to complete a brief demographics questionnaire. we require is to just collect some basic demographic information about you so we can better understand who has taken part in our study.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>",,
