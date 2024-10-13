@@ -708,7 +708,7 @@ function process_question(row, row_no) {
             .css("width", row_ques_perc)
             .html(row["text"])
             .prop("id", survey_prepend + row["item_name"].toLowerCase().replace(" ", "_") + "_question")[0]
-            .outerHTML + $("<td>").html(question_td)[0].outerHTML;
+            .outerHTML + $("<td>").html("<b>"+question_td+"</b>")[0].outerHTML;
       } else {    
         var row_html =
           $("<tr>")
@@ -1394,10 +1394,11 @@ function write(type, row) {
         var this_span = $("<span>");
         this_span
           .css("width", side_width)
-          .css("padding", "20px")
+          .css("padding", "0 20px 0 20px")
           .addClass("text-primary")
-          .html("<b>" + this_side + "</b>");
-        return this_span[0].outerHTML;
+          // .html("<b>" + this_side + "</b>");
+          .html(this_side);
+          return this_span[0].outerHTML;
       });
     } else {
       side_text = ["", ""];

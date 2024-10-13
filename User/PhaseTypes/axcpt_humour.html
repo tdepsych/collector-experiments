@@ -1,0 +1,121 @@
+<!--
+---development---
+[
+{'text':'fuck'}
+]
+---development---
+-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  /* This clears all formatting from the buttons to begin */
+  button, input[type="submit"], input[type="reset"] {
+  	background: none;
+  	color: inherit;
+  	border: none;
+  	padding: 0;
+  	font: inherit;
+  	cursor: pointer;
+  	outline: inherit;
+  }
+  #container{
+    /* This just overwrites the vertical centering */
+    min-height: 50vh!important;
+  }
+  .slider {
+    width: 80%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+      -webkit-transition: .2s;
+      -webkit-appearance: none;
+    transform: translateY(-23px);
+  }
+  .slider:hover {
+    opacity: 1;
+  }
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #20669b;
+    cursor: pointer;
+  }
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #20669b;
+    cursor: pointer;
+  }
+      
+  /* ******************** */
+  /* CONTINUE BTN MESSAGE */
+  /* ******************** */
+  
+  #vas_anchors {
+    width: 80%;
+    margin: auto;
+  }
+  #vas_anchors::before {
+    background: url(../../collector-experiments/User/Assets/Global/img/arrow-start.svg) 50% 75% no-repeat;
+    content: 'Not at all';
+    background-size: 25px 25px;
+    height: 60px;
+    display: inline-block;
+    transform: translate(-58px, 0) scale(1.25);
+    float: left;
+  }
+  #vas_anchors::after {
+    background: url(../../collector-experiments/User/Assets/Global/img/arrow-end.svg) 50% 75% no-repeat;
+    content: 'A lot';
+    background-size: 25px 25px;
+    height: 60px;
+    display: inline-block;
+    transform: translate(40px, -0px) scale(1.25);
+    float: right;
+  }
+  #tooltip{
+    transform: translateY(75px);
+  }
+  .valueHide {
+    display:none;
+  }
+</style>
+<input type="hidden" name="humour_vas" id="humour_vas" />
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <h2><span>Humour Rating</span></h2><br>
+  <p>Please can you adjust the slider below to state:<br><br><b>Whether you found repeating the word <u>{{text}}</u> to be funny/humorous.</b><br><br>Use the mouse to drag the blue dot on the slider below to make your rating.</p>
+  <br>
+  <div id="vas_anchors"></div>
+  <input type="range" min="0" max="100" value="50" class="slider" id="vas">
+  <p class="valueHide">Value: <span id="value"></span></p>
+    <br/>
+    <span class="d-inline-block" id="tooltip" tabindex="0" data-toggle="tooltip" title="Sorry. You need to move the slider to make a rating before you can continue.">
+      <button class="btn btn-primary" id="proceed_btn" onclick="Phase.submit()" disabled>Continue</button>
+  </span>
+  </div>
+</div>
+<script>
+  var $slider = $("#vas");
+  var $output = $("#value");
+  $output.html($slider.val());
+  
+  $slider.on("input", function() {
+      $output.html($(this).val());
+      $("#humour_vas").val($(this).val());
+      $("#proceed_btn").prop("disabled", false);
+      $("#tooltip").hide();
+  });
+  
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

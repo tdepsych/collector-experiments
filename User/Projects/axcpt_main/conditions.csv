@@ -1,2 +1,2 @@
-name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,progress_bar
-condition_1,You can put more detailed notes in this field,stimuli_1.csv,procedure_1.csv,off,,on,,,5,row
+name,notes,stimuli,procedure,fullscreen,participant_id,end_message,start_message,buffer,skip_quality,capred,mobile,test,
+counterbalance,,stimuli_1.csv,swear_first.csv,on,random,,,10,yes,https://xo019390.webs.act.reading.ac.uk/redcap/axcpt.php,no,https://xo019390.webs.act.reading.ac.uk/collector/counterbalance/axcpt.php,

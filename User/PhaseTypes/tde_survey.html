@@ -286,9 +286,12 @@ input[type="number"] {
   </div>
 </div>
 <span id="scales_span"></span>
-
 <script>
   current_survey = "{{survey}}";
+  setTimeout(function(){ 
+    var word = "{{task_body_text}}";
+    $('#word').text(word);
+  },1000);
 </script>
 <script src="../Default/DefaultPhaseTypes/survey_white.js"></script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

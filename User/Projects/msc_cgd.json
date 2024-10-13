@@ -197,7 +197,7 @@
       ],
       [
         "Instructions",
-        "<h2><span>Self-Evaluation Questionnaire</span></h2><br>\n<span class=\"instruc\">Thank you for making your word ratings. Please think back to the last word you repeated aloud for 20 second. Take a moment to think how you felt <span style=\"text-decoration: underline;\">after</span> repeating the word?<br><br>To respond, please rate each statement below by clicking on a number from 1 to 7, whereby <b>1 = you strongly disagree</b> with the statement, while <b>7 = you strongly agree</b> with the statement.</span><br/><br/>",
+        "<h2><span>Self-Evaluation Questionnaire</span></h2><br>\n<span class=\"instruc\">Please take a moment to think how you feel <span style=\"text-decoration: underline;\">after</span> repeating the word?<br><br>To respond, please rate each statement below by clicking on a number from 1 to 7, whereby <b>1 = you strongly disagree</b> with the statement, while <b>7 = you strongly agree</b> with the statement.</span><br/><br/>",
         "instruct",
         "",
         "",
@@ -292,6 +292,17 @@
         "no",
         "132px",
         "on",
+        ""
+      ],
+      [
+        "reminder_1",
+        "Please remember to rate each question using numbers from 1 to 7, whereby 1 indicates that you <b>strongly disagree</b> with the statement, while 7 signifies a <b>strong agreement</b> with the statement",
+        "instruct",
+        "",
+        "",
+        "",
+        "",
+        "off",
         ""
       ],
       [
