@@ -1,6 +1,6 @@
 {
   "all_procs": {
-    "swear_first.csv": "item,phasetype,survey,max_time,text,shuffle_1,notes,cue_ms,isi_ms,probe_ms,response_ms,task_title,task_body_text,weight,\r\n0,axcpt_intro,,user,,,no_mobile,,,,,,,,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Instructions,\"<p>You will now complete a word pairing task in which you will see two letters, one after the other, in the centre of the screen.<br>The second letter will be replaced by three asterisks and the screen will go blank between the letters.<br><br><b>You are required to monitor for a specific pair of letters appearing: A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span> on the keyboard.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span> on the keyboard.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>You will now complete 10 practice trials, receiving feedback as to whether you gave the correct response or not. When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin the task.</p>\",,\r\n2 to 11,axcpt,,user,,prac_1,give_feedback,500,1500,500,500,,,,\r\n0,axcpt_vocalisation,,user,20,,Taboo,,,,,FUCK,\"<p>Before you start the main trials you are required to repeat the word <b>fuck</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. The countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>fuck</b> as soon as you press space and continue repeating the word until the timer reaches 0. The task will automatically end when the counter reaches 0.</p>\",,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Main Trials,\"<p>Thank you for the repeating the word. You will now complete 180 trials, divided up into 4 blocks of 45 trials.<br>Between each block you will be required to repeat the word 'fuck' for 10 seconds.<br><br><b>The task is identical to the practice trials you previously completed and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",,\r\n2 to 46,axcpt,,user,,block1_1,,500,1500,500,500,,,,\r\n0,axcpt_vocalisation,,user,10,,Taboo,,,,,FUCK,\"<p>That completes the first block of 45 trials. You are now required to repeat the word <b>fuck</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. You only need to repeat the word <b>fuck</b> for 10 seconds and the countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>fuck</b> as soon as you press space and continue repeating the word until the timer reaches 0. The second block of trials will start automatically when the timer reaches 0.</p>\",0,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Block 2,\"<p>Thank you for the repeating the word. You will now complete your second block of of 45 trials.<br>When the block has finished you will be required to repeat the word 'fuck' for 10 seconds once again.<br><br><b>The trials are identical to the practice trials and previous block you completed and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",0,\r\n47 to 91,axcpt,,user,,block2_1,,500,1500,500,500,,,0,\r\n0,axcpt_vocalisation,,user,10,,Taboo,,,,,FUCK,\"<p>That completes the second block of 45 trials. You are now required to repeat the word <b>fuck</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. You only need to repeat the word for 10 seconds and the countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>fuck</b> as soon as you press space and continue repeating the word until the timer reaches 0. The second block of trials will start automatically when the timer reaches 0.</p>\",0,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Block 3,\"<p>Thank you for the repeating the word. You will now complete your third block of of 45 trials.<br>Once the block has finished you will be required to repeat the word 'fuck' for 10 seconds once again.<br><br><b>The trials are identical to the practice trials and previous two blocks you have completed and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",0,\r\n92 to 136,axcpt,,user,,block3_1,,500,1500,500,500,,,0,\r\n0,axcpt_vocalisation,,user,10,,Taboo,,,,,FUCK,\"<p>That completes the third block of 45 trials. You are now required to repeat the word <b>fuck</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. You only need to repeat the word for 10 seconds and the countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>fuck</b> as soon as you press space and continue repeating the word until the timer reaches 0. The second block of trials will start automatically when the timer reaches 0.</p>\",0,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Block 4,\"<p>Thank you for the repeating the word. You will now complete the final, fourth block of of 45 trials.<br><br><b>The trials are identical to all the other blocks you have completed and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",0,\r\n137 to 181,axcpt,,user,,block4_1,,500,1500,500,500,,,0,\r\n0,task_bookend,,user,Proceed,,,,,,,Self-Reflection Questionnaires 1,\"You will now complete a short questionnaire relating to how you felt repeating the word fuck out loud.<br><br>When you are ready to start, please click 'Proceed' below.\",,\r\n0,tde_survey,cognitive_dissonance.csv,user,50,q1,,,,,,,fuck,,\r\n0,task_bookend,,user,Proceed,,,,,,,Vocalisation Task Ratings 1,\"Thank you for completing the questionnaire. You will now make a number of individual ratings regarding how you felt repeating the word fuck out loud.<br><br> When you are ready, please click 'Proceed'.\",,\r\n0,axcpt_humour,,user,fuck,r1,,,,,,,,,\r\n0,axcpt_comfort,,user,fuck,r1,,,,,,,,,\r\n0,axcpt_judgement,,user,fuck,r1,,,,,,,,,\r\n0,axcpt_rulebreak,,user,fuck,r1,,,,,,,,,\r\n0,axcpt_authentic,,user,fuck,r1,,,,,,,,,\r\n0,axcpt_power1,,user,fuck,r1,,,,,,,,,\r\n0,tetris,,300,,,seconds,,,,,,,,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Instructions,\"<p>You will now complete a second word pairing task in which you will see two letters, one after the other, in the centre of the screen.<br><br><b>The task is identical to the first word pairing task you completed and requires you to monitor for the letter A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span> on the keyboard.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span> on the keyboard.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>Once again, you will first complete 10 practice trials, receiving feedback as to whether you gave the correct response or not.<br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin the task.</p>\",,\r\n2 to 11,axcpt,,user,,prac_2,give_feedback,500,1500,500,500,,,,\r\n0,axcpt_vocalisation,,user,20,,Non-Taboo,,,,,FLAT,\"<p>Before you start the main trials you are required to repeat the word <b>flat</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. The countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>flat</b> as soon as you press space and continue repeating the word until the timer reaches 0. The task will automatically end when the counter reaches 0.</p>\",,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Main Trials,\"<p>Thank you for the repeating the word. Once again there are 180 trials, divided up into 4 blocks of 45 trials.<br>Between each block you will be required to repeat the word <b>flat</b> for 10 seconds.<br><br><b>The task is identical to the previous pairing task and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",,\r\n2 to 46,axcpt,,user,,block1_2,,500,1500,500,500,,,,\r\n0,axcpt_vocalisation,,user,10,,Non-Taboo,,,,,FLAT,\"<p>That completes the first block of 45 trials. You are now required to repeat the word <b>flat</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. You only need to repeat the word for 10 seconds and the countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>flat</b> as soon as you press space and continue repeating the word until the timer reaches 0. The second block of trials will start automatically when the timer reaches 0.</p>\",0,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Block 2,\"<p>Thank you for the repeating the word. You will now complete your second block of of 45 trials.<br>When the block has finished you will be required to repeat the word <b>flat</b> for 10 seconds once again.<br><br><b>The trials are identical to the practice trials and previous block you completed and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",0,\r\n47 to 91,axcpt,,user,,block2_2,,500,1500,500,500,,,0,\r\n0,axcpt_vocalisation,,user,10,,Non-Taboo,,,,,FLAT,\"<p>That completes the second block of 45 trials. You are now required to repeat the word <b>flat</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. You only need to repeat the word for 10 seconds and the countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>flat</b> as soon as you press space and continue repeating the word until the timer reaches 0. The second block of trials will start automatically when the timer reaches 0.</p>\",0,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Block 3,\"<p>Thank you for the repeating the word. You will now complete your third block of of 45 trials.<br>When the block has finished you will be required to repeat the word <b>flat</b> for 10 seconds once again.<br><br><b>The trials are identical to the practice trials and previous two blocks you have completed and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",0,\r\n92 to 136,axcpt,,user,,block3_2,,500,1500,500,500,,,0,\r\n0,axcpt_vocalisation,,user,10,,Non-Taboo,,,,,FLAT,\"<p>That completes the third block of 45 trials. You are now required to repeat the word <b>flat</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. You only need to repeat the word for 10 seconds and the countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>flat</b> as soon as you press space and continue repeating the word until the timer reaches 0. The second block of trials will start automatically when the timer reaches 0.</p>\",0,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Block 4,\"<p>Thank you for the repeating the word. You will now complete the final, fourth block of of 45 trials.<br><br><b>The trials are identical to all the other blocks you have completed and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",0,\r\n137 to 181,axcpt,,user,,block4_2,,500,1500,500,500,,,0,\r\n0,task_bookend,,user,Proceed,,,,,,,Self-Reflection Questionnaires 1,\"You will now complete a short questionnaire relating to how you felt repeating the word <b>flat</b> out loud.<br><br>When you are ready to start, please click 'Proceed' below.\",,\r\n0,tde_survey,cognitive_dissonance.csv,user,50,q2,,,,,,,flat,,\r\n0,task_bookend,,user,Proceed,,,,,,,Vocalisation Task Ratings 1,\"Thank you for completing the questionnaire. You will now make a number of individual ratings regarding how you felt repeating the word <b>flat</b> out loud.<br><br> When you are ready, please click 'Proceed'.\",,\r\n0,axcpt_humour,,user,flat,r2,,,,,,,,,\r\n0,axcpt_comfort,,user,flat,r2,,,,,,,,,\r\n0,axcpt_judgement,,user,flat,r2,,,,,,,,,\r\n0,axcpt_rulebreak,,user,flat,r2,,,,,,,,,\r\n0,axcpt_authentic,,user,flat,r2,,,,,,,,,\r\n0,axcpt_power2,,user,flat,r2,,,,,,,,,\r\n0,tde_survey,axcpt_demo.csv,user,50,,,,,,,,\"<p>Thank you for providing us with feedback. We will now collect some basic demographic information.<br><br>When you are ready, please click\r\n  'Contunue'.</p>\",,\r\n0,axcpt_debrief,,user,Analysing how AX-CPT Procedural Changes Alter Participants' Responses,,,,,,,,,,"
+    "swear_first.csv": "item,phasetype,survey,max_time,text,shuffle_1,notes,cue_ms,isi_ms,probe_ms,response_ms,task_title,task_body_text,weight,\r\n0,axcpt_intro,,user,,,no_mobile,,,,,,,,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Instructions,\"<p>You will now complete a word pairing task in which you will see two letters, one after the other, in the centre of the screen.<br>The second letter will be replaced by three asterisks and the screen will go blank between the letters.<br><br><b>You are required to monitor for a specific pair of letters appearing: A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span> on the keyboard.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span> on the keyboard.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>You will now complete 10 practice trials, receiving feedback as to whether you gave the correct response or not. When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin the task.</p>\",,\r\n2 to 11,axcpt,,user,,prac_1,give_feedback,500,1500,500,500,,,,\r\n0,axcpt_vocalisation,,user,20,,Taboo,,,,,FUCK,\"<p>Before you start the main trials you are required to repeat the word <b>fuck</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. The countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>fuck</b> as soon as you press space and continue repeating the word until the timer reaches 0. The task will automatically end when the counter reaches 0.</p>\",,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Main Trials,\"<p>Thank you for the repeating the word. You will now complete 180 trials, divided up into 4 blocks of 45 trials.<br>Between each block you will be required to repeat the word 'fuck' for 10 seconds.<br><br><b>The task is identical to the practice trials you previously completed and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",,\r\n2 to 46,axcpt,,user,,block1_1,,500,1500,500,500,,,,\r\n0,axcpt_vocalisation,,user,10,,Taboo,,,,,FUCK,\"<p>That completes the first block of 45 trials. You are now required to repeat the word <b>fuck</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. You only need to repeat the word <b>fuck</b> for 10 seconds and the countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>fuck</b> as soon as you press space and continue repeating the word until the timer reaches 0. The second block of trials will start automatically when the timer reaches 0.</p>\",0,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Block 2,\"<p>Thank you for the repeating the word. You will now complete your second block of of 45 trials.<br>When the block has finished you will be required to repeat the word 'fuck' for 10 seconds once again.<br><br><b>The trials are identical to the practice trials and previous block you completed and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",0,\r\n47 to 91,axcpt,,user,,block2_1,,500,1500,500,500,,,0,\r\n0,axcpt_vocalisation,,user,10,,Taboo,,,,,FUCK,\"<p>That completes the second block of 45 trials. You are now required to repeat the word <b>fuck</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. You only need to repeat the word for 10 seconds and the countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>fuck</b> as soon as you press space and continue repeating the word until the timer reaches 0. The second block of trials will start automatically when the timer reaches 0.</p>\",0,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Block 3,\"<p>Thank you for the repeating the word. You will now complete your third block of of 45 trials.<br>Once the block has finished you will be required to repeat the word 'fuck' for 10 seconds once again.<br><br><b>The trials are identical to the practice trials and previous two blocks you have completed and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",0,\r\n92 to 136,axcpt,,user,,block3_1,,500,1500,500,500,,,0,\r\n0,axcpt_vocalisation,,user,10,,Taboo,,,,,FUCK,\"<p>That completes the third block of 45 trials. You are now required to repeat the word <b>fuck</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. You only need to repeat the word for 10 seconds and the countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>fuck</b> as soon as you press space and continue repeating the word until the timer reaches 0. The second block of trials will start automatically when the timer reaches 0.</p>\",0,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Block 4,\"<p>Thank you for the repeating the word. You will now complete the final, fourth block of of 45 trials.<br><br><b>The trials are identical to all the other blocks you have completed and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",0,\r\n137 to 181,axcpt,,user,,block4_1,,500,1500,500,500,,,0,\r\n0,task_bookend,,user,Proceed,,,,,,,Self-Reflection Questionnaire,\"You will now complete a short questionnaire relating to how you felt repeating the word fuck out loud.<br><br>When you are ready to start, please click 'Proceed' below.\",,\r\n0,tde_survey,axcpt_cogdis.csv,user,50,q1,,,,,,,fuck,,\r\n0,task_bookend,,user,Proceed,,,,,,,Vocalisation Task Ratings,\"Thank you for completing the questionnaire. You will now make a number of individual ratings regarding how you felt repeating the word fuck out loud.<br><br> When you are ready, please click 'Proceed'.\",,\r\n0,axcpt_humour,,user,fuck,r1,,,,,,,,,\r\n0,axcpt_comfort,,user,fuck,r1,,,,,,,,,\r\n0,axcpt_judgement,,user,fuck,r1,,,,,,,,,\r\n0,axcpt_rulebreak,,user,fuck,r1,,,,,,,,,\r\n0,axcpt_authentic,,user,fuck,r1,,,,,,,,,\r\n0,axcpt_power1,,user,fuck,r1,,,,,,,,,\r\n0,tetris,,300,,,seconds,,,,,,,,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Instructions,\"<p>You will now complete a second word pairing task in which you will see two letters, one after the other, in the centre of the screen.<br><br><b>The task is identical to the first word pairing task you completed and requires you to monitor for the letter A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span> on the keyboard.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span> on the keyboard.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>Once again, you will first complete 10 practice trials, receiving feedback as to whether you gave the correct response or not.<br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin the task.</p>\",,\r\n2 to 11,axcpt,,user,,prac_2,give_feedback,500,1500,500,500,,,,\r\n0,axcpt_vocalisation,,user,20,,Non-Taboo,,,,,FLAT,\"<p>Before you start the main trials you are required to repeat the word <b>flat</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. The countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>flat</b> as soon as you press space and continue repeating the word until the timer reaches 0. The task will automatically end when the counter reaches 0.</p>\",,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Main Trials,\"<p>Thank you for the repeating the word. Once again there are 180 trials, divided up into 4 blocks of 45 trials.<br>Between each block you will be required to repeat the word <b>flat</b> for 10 seconds.<br><br><b>The task is identical to the previous pairing task and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",,\r\n2 to 46,axcpt,,user,,block1_2,,500,1500,500,500,,,,\r\n0,axcpt_vocalisation,,user,10,,Non-Taboo,,,,,FLAT,\"<p>That completes the first block of 45 trials. You are now required to repeat the word <b>flat</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. You only need to repeat the word for 10 seconds and the countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>flat</b> as soon as you press space and continue repeating the word until the timer reaches 0. The second block of trials will start automatically when the timer reaches 0.</p>\",0,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Block 2,\"<p>Thank you for the repeating the word. You will now complete your second block of of 45 trials.<br>When the block has finished you will be required to repeat the word <b>flat</b> for 10 seconds once again.<br><br><b>The trials are identical to the practice trials and previous block you completed and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",0,\r\n47 to 91,axcpt,,user,,block2_2,,500,1500,500,500,,,0,\r\n0,axcpt_vocalisation,,user,10,,Non-Taboo,,,,,FLAT,\"<p>That completes the second block of 45 trials. You are now required to repeat the word <b>flat</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. You only need to repeat the word for 10 seconds and the countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>flat</b> as soon as you press space and continue repeating the word until the timer reaches 0. The second block of trials will start automatically when the timer reaches 0.</p>\",0,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Block 3,\"<p>Thank you for the repeating the word. You will now complete your third block of of 45 trials.<br>When the block has finished you will be required to repeat the word <b>flat</b> for 10 seconds once again.<br><br><b>The trials are identical to the practice trials and previous two blocks you have completed and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",0,\r\n92 to 136,axcpt,,user,,block3_2,,500,1500,500,500,,,0,\r\n0,axcpt_vocalisation,,user,10,,Non-Taboo,,,,,FLAT,\"<p>That completes the third block of 45 trials. You are now required to repeat the word <b>flat</b> out loud, using your normal speaking volume, speed, and rhythm, as if having a standard conversation. You only need to repeat the word for 10 seconds and the countdown timer will start when you press <b>Space</b> on the keyboard. You should start repeating the word <b>flat</b> as soon as you press space and continue repeating the word until the timer reaches 0. The second block of trials will start automatically when the timer reaches 0.</p>\",0,\r\n0,keyboard_bookend,,user,,,axcpt,,,,,Start of Block 4,\"<p>Thank you for the repeating the word. You will now complete the final, fourth block of of 45 trials.<br><br><b>The trials are identical to all the other blocks you have completed and requires you to monitor an A followed by X.</b><br><br>If you see <b>A</b> followed by <b>X</b> →  press <span style=\"\"color: blue\"\"><b>P</b></span>.<br>If you see any other combination → press <span style=\"\"color: red\"\"><b>L</b></span>.<br>You can only respond while the second letter or the asterisks are displayed.<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/stimuli_example.jpg\"\"></img><br><br>Please place you middle finger of your right hand over the letter <span style=\"\"color: blue\"\"><b>P</b></span> and the index finger of your right hand over the letter <span style=\"\"color: red\"\"><b>L</b></span><br>(as shown in the image below.)<br><br><img id=\"\"axcpt_keys_img\"\" src=\"\"../../collector-experiments/User/Assets/axcpt/key1.jpg\"\"></img><br><br>When you are ready to start, please position the index and middle finger of your right hand as shown and press the <b>space bar</b> with your thumb to begin.</p>\",0,\r\n137 to 181,axcpt,,user,,block4_2,,500,1500,500,500,,,0,\r\n0,task_bookend,,user,Proceed,,,,,,,Self-Reflection Questionnaire,\"You will now complete a short questionnaire relating to how you felt repeating the word <b>flat</b> out loud.<br><br>When you are ready to start, please click 'Proceed' below.\",,\r\n0,tde_survey,axcpt_cogdis.csv,user,50,q2,,,,,,,flat,,\r\n0,task_bookend,,user,Proceed,,,,,,,Vocalisation Task Ratings,\"Thank you for completing the questionnaire. You will now make a number of individual ratings regarding how you felt repeating the word <b>flat</b> out loud.<br><br> When you are ready, please click 'Proceed'.\",,\r\n0,axcpt_humour,,user,flat,r2,,,,,,,,,\r\n0,axcpt_comfort,,user,flat,r2,,,,,,,,,\r\n0,axcpt_judgement,,user,flat,r2,,,,,,,,,\r\n0,axcpt_rulebreak,,user,flat,r2,,,,,,,,,\r\n0,axcpt_authentic,,user,flat,r2,,,,,,,,,\r\n0,axcpt_power2,,user,flat,r2,,,,,,,,,\r\n0,tde_survey,axcpt_demo.csv,user,50,,,,,,,,\"<p>Thank you for providing us with feedback. We will now collect some basic demographic information.<br><br>When you are ready, please click\r\n  'Contunue'.</p>\",,\r\n0,axcpt_debrief,,user,Analysing how AX-CPT Procedural Changes Alter Participants' Responses,,,,,,,,,,"
   },
   "conditions": "name,notes,stimuli,procedure,fullscreen,participant_id,end_message,start_message,buffer,skip_quality,capred,mobile,test,\r\ncounterbalance,,stimuli_1.csv,swear_first.csv,on,random,,,10,yes,https://xo019390.webs.act.reading.ac.uk/redcap/axcpt.php,no,https://xo019390.webs.act.reading.ac.uk/collector/counterbalance/axcpt.php,",
   "all_stims": {
@@ -26,7 +26,7 @@
     "axcpt_debrief": "[[[LOCATION]]]../User/PhaseTypes/axcpt_debrief.html"
   },
   "surveys": {
-    "cognitive_dissonance.csv": [
+    "axcpt_cogdis.csv": [
       [
         "item_name",
         "text",
@@ -37,7 +37,9 @@
         "btn_width",
         "shuffle_question",
         "side_text",
-        ""
+        "score:cogdis_emotion",
+        "score:cogdis_wisdom",
+        null
       ],
       [
         "Instructions",
@@ -49,7 +51,9 @@
         "",
         "",
         "",
-        ""
+        "",
+        null,
+        null
       ],
       [
         "CD1",
@@ -61,11 +65,13 @@
         "75px",
         "on",
         "strongly disagree| strongly agree",
-        ""
+        "1",
+        null,
+        null
       ],
       [
         "CD2",
-        "<b>I resented it</b>",
+        "<b>I wondered if I really need to repeat it</b>",
         "likert",
         "1|2|3|4|5|6|7",
         "1|2|3|4|5|6|7",
@@ -73,11 +79,13 @@
         "75px",
         "on",
         "strongly disagree| strongly agree",
-        ""
+        "",
+        "1",
+        null
       ],
       [
         "CD3",
-        "<b>I felt disappointed with myself</b>",
+        "<b>I wondered if I should have repeat it</b>",
         "likert",
         "1|2|3|4|5|6|7",
         "1|2|3|4|5|6|7",
@@ -85,11 +93,13 @@
         "75px",
         "on",
         "strongly disagree| strongly agree",
-        ""
+        "",
+        "1",
+        null
       ],
       [
         "CD4",
-        "<b>I felt scared</b>",
+        "<b>I wondered if I made the right choice repeating it</b>",
         "likert",
         "1|2|3|4|5|6|7",
         "1|2|3|4|5|6|7",
@@ -97,7 +107,9 @@
         "75px",
         "on",
         "strongly disagree| strongly agree",
-        ""
+        "",
+        "1",
+        null
       ],
       [
         "CD5",
@@ -109,58 +121,12 @@
         "75px",
         "on",
         "strongly disagree| strongly agree",
-        ""
+        "1",
+        null,
+        null
       ],
       [
         "CD6",
-        "<b>I felt angry</b>",
-        "likert",
-        "1|2|3|4|5|6|7",
-        "1|2|3|4|5|6|7",
-        "no",
-        "75px",
-        "on",
-        "strongly disagree| strongly agree",
-        ""
-      ],
-      [
-        "CD7",
-        "<b>I felt uneasy</b>",
-        "likert",
-        "1|2|3|4|5|6|7",
-        "1|2|3|4|5|6|7",
-        "no",
-        "75px",
-        "on",
-        "strongly disagree| strongly agree",
-        ""
-      ],
-      [
-        "CD8",
-        "<b>I felt I'd let myself down</b>",
-        "likert",
-        "1|2|3|4|5|6|7",
-        "1|2|3|4|5|6|7",
-        "no",
-        "75px",
-        "on",
-        "strongly disagree| strongly agree",
-        ""
-      ],
-      [
-        "CD9",
-        "<b>I felt annoyed</b>",
-        "likert",
-        "1|2|3|4|5|6|7",
-        "1|2|3|4|5|6|7",
-        "no",
-        "75px",
-        "on",
-        "strongly disagree| strongly agree",
-        ""
-      ],
-      [
-        "CD10",
         "<b>I felt frustrated</b>",
         "likert",
         "1|2|3|4|5|6|7",
@@ -169,22 +135,12 @@
         "75px",
         "on",
         "strongly disagree| strongly agree",
-        ""
+        "1",
+        null,
+        null
       ],
       [
-        "CD11",
-        "<b>I was in pain</b>",
-        "likert",
-        "1|2|3|4|5|6|7",
-        "1|2|3|4|5|6|7",
-        "no",
-        "75px",
-        "on",
-        "strongly disagree| strongly agree",
-        ""
-      ],
-      [
-        "CD12",
+        "CD7",
         "<b>I felt depressed</b>",
         "likert",
         "1|2|3|4|5|6|7",
@@ -193,43 +149,9 @@
         "75px",
         "on",
         "strongly disagree| strongly agree",
-        ""
-      ],
-      [
-        "CD13",
-        "<b>I felt furious with myself</b>",
-        "likert",
-        "1|2|3|4|5|6|7",
-        "1|2|3|4|5|6|7",
-        "no",
-        "75px",
-        "on",
-        "strongly disagree| strongly agree",
-        ""
-      ],
-      [
-        "CD14",
-        "<b>I felt sick</b>",
-        "likert",
-        "1|2|3|4|5|6|7",
-        "1|2|3|4|5|6|7",
-        "no",
-        "75px",
-        "on",
-        "strongly disagree| strongly agree",
-        ""
-      ],
-      [
-        "CD15",
-        "<b>I was in agony</b>",
-        "likert",
-        "1|2|3|4|5|6|7",
-        "1|2|3|4|5|6|7",
-        "no",
-        "75px",
-        "on",
-        "strongly disagree| strongly agree",
-        ""
+        "1",
+        null,
+        null
       ],
       [
         "CDattention",
@@ -241,7 +163,9 @@
         "75px",
         "on",
         "strongly disagree| strongly agree",
-        ""
+        "",
+        null,
+        null
       ],
       [
         "",
@@ -253,7 +177,9 @@
         "",
         "",
         "",
-        ""
+        "",
+        null,
+        null
       ]
     ],
     "axcpt_demo.csv": [
