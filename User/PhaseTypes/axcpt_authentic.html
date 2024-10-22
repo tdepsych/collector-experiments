@@ -63,20 +63,20 @@
   }
   #vas_anchors::before {
     background: url(../../collector-experiments/User/Assets/Global/img/arrow-start.svg) 50% 75% no-repeat;
-    content: 'Not at all';
+    content: 'Very Little';
     background-size: 25px 25px;
     height: 60px;
     display: inline-block;
-    transform: translate(-58px, 0) scale(1.25);
+    transform: translate(-60px, 0) scale(1.25);
     float: left;
   }
   #vas_anchors::after {
     background: url(../../collector-experiments/User/Assets/Global/img/arrow-end.svg) 50% 75% no-repeat;
-    content: 'A lot';
+    content: 'A Lot';
     background-size: 25px 25px;
     height: 60px;
     display: inline-block;
-    transform: translate(42px, -0px) scale(1.25);
+    transform: translate(45px, -0px) scale(1.25);
     float: right;
   }
   #tooltip{
@@ -86,13 +86,13 @@
     display:none;
   }
 </style>
-<input type="hidden" name="humour_vas" id="humour_vas" />
+<input type="hidden" name="authentic_vas" id="authentic_vas" />
 <button id="zoomOut" tabindex="-1"></button>
 <button id="zoomIn" tabindex="-1"></button>
 <div id="container">
-  <h2><span>Humour Rating</span></h2><br>
-  <p>Please can you adjust the slider below to state:<br><br><b>Whether you found repeating the word <u>{{text}}</u> to be funny/humorous.</b><br><br>Use the mouse to drag the blue dot on the slider below to make your rating.</p>
-  <br>
+  <h2><span>Authenticity Rating</span></h2><br>
+  <p>Please can you adjust the slider below to state:<br><br><b>How much repeating the word <u>{{text}}</u> made you feel as though you could act naturally in the subsequent tasks.</b><br><br>Use the mouse to drag the blue dot on the slider below to make your rating.</p>
+  <br><br>
   <div id="vas_anchors"></div>
   <input type="range" min="0" max="100" value="50" class="slider" id="vas">
   <p class="valueHide">Value: <span id="value"></span></p>
@@ -109,7 +109,7 @@
   
   $slider.on("input", function() {
       $output.html($(this).val());
-      $("#humour_vas").val($(this).val());
+      $("#authentic_vas").val($(this).val());
       $("#proceed_btn").prop("disabled", false);
       $("#tooltip").hide();
   });
