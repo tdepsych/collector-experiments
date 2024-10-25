@@ -5129,6 +5129,16 @@
           ""
         ],
         [
+          "Gender",
+          "3. Does your gender identity match your biological sex?",
+          "radio_vertical",
+          "Yes|No|Prefer not to say",
+          "No",
+          "1|2|0",
+          null,
+          null
+        ],
+        [
           "Ethnicity",
           "3. I identify my ethnicity as:",
           "radio",
@@ -6502,7 +6512,7 @@
           "side_text",
           "score:cogdis_emotion",
           "score:cogdis_wisdom",
-          null
+          ""
         ],
         [
           "Instructions",
@@ -6515,8 +6525,8 @@
           "",
           "",
           "",
-          null,
-          null
+          "",
+          ""
         ],
         [
           "CD1",
@@ -6529,8 +6539,8 @@
           "on",
           "strongly disagree| strongly agree",
           "1",
-          null,
-          null
+          "",
+          ""
         ],
         [
           "CD2",
@@ -6544,7 +6554,7 @@
           "strongly disagree| strongly agree",
           "",
           "1",
-          null
+          ""
         ],
         [
           "CD3",
@@ -6558,7 +6568,7 @@
           "strongly disagree| strongly agree",
           "",
           "1",
-          null
+          ""
         ],
         [
           "CD4",
@@ -6572,7 +6582,7 @@
           "strongly disagree| strongly agree",
           "",
           "1",
-          null
+          ""
         ],
         [
           "CD5",
@@ -6585,8 +6595,8 @@
           "on",
           "strongly disagree| strongly agree",
           "1",
-          null,
-          null
+          "",
+          ""
         ],
         [
           "CD6",
@@ -6599,8 +6609,8 @@
           "on",
           "strongly disagree| strongly agree",
           "1",
-          null,
-          null
+          "",
+          ""
         ],
         [
           "CD7",
@@ -6613,8 +6623,8 @@
           "on",
           "strongly disagree| strongly agree",
           "1",
-          null,
-          null
+          "",
+          ""
         ],
         [
           "CDattention",
@@ -6627,8 +6637,8 @@
           "on",
           "strongly disagree| strongly agree",
           "",
-          null,
-          null
+          "",
+          ""
         ],
         [
           "",
@@ -6641,8 +6651,8 @@
           "",
           "",
           "",
-          null,
-          null
+          "",
+          ""
         ]
       ]
     },
