@@ -4,7 +4,7 @@
 <script src="../../collector-experiments/User/Assets/Global/js/detect_mobile.js"></script>
 <style>
   @font-face {
-    font-family: 'Montserrat-ExtraLight';
+    font-family: 'Montserrat';
     src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-ExtraLight.woff') format('woff');
   }
   @font-face {
@@ -34,12 +34,12 @@
     background-position: 50% 40%;
   }
   #sub_head{
-    font-size: 50px;
+    font-size: 24px!important;
     font-family: Montserrat-ExtraBold;
   }
   #body_text{
-    font-size: 50px;
-    font-family: Montserrat-ExtraLight;
+    font-family: Montserrat!important;
+    font-weight: 600!important;
   }
   #container {
     width: 100%!important;
@@ -48,7 +48,7 @@
 <div id="container">
   <p id="oops">WELCOME!</p>
   <p id="sub_head">Thank you for taking part in our study</p><br>
-  <p id="body_text">When you are ready to begin, please click the button below to load the <br>first task which is a self-reflection questionnaire about how you are feeling right now.<br><br>Please remember that you will be required to say the word 'fuck' out loud during this experiment,<br>if you do not wish to continue with the experiment please stop now and let the researcher know.</p>
+  <p id="body_text">When you are ready to begin, please click the button below to load the first task.<br>Please remember, you will be required to repeat the word 'fuck' out loud during this experiment.</p>
   <button class="btn btn-outline-primary bi bi-browser-chrome" id="proceed_button" onclick="Phase.submit()"><b>CLICK TO START</b></button>
 </div>
 <script>

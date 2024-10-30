@@ -1,8 +1,8 @@
-<!--'axcpt_vocalisation' PhaseType - this displays a countdown timer that starts when space is pressed-->
+<!-- 'axcpt_vocalisation' PhaseType - this displays a countdown timer that starts when space is pressed -->
 <!--
 ---development---
 [
-{'task_title':'fuck', 'task_body_text':'20', 'text':'text'}
+{'task_title':'f*ck', 'task_body_text':'This is the text that defines the whatever', 'text':'20'}
 ]
 ---development---
 -->
@@ -21,25 +21,35 @@
   #timer {  
     font-size: 150px;
     font-weight: 700;
+    display: none; /* Hide the timer initially */
+  }
+  #start_timer_button {
+    margin: 124px 0 120px 0;
   }
   .adjust_container {
     transform: translateY(-100px)!important;
   }
-  .adjust_timer_blank{
+  .adjust_timer_blank {
     margin-top: -100px!important;
   }
 </style>
+
 <button id="zoomOut" tabindex="-1"></button>
 <button id="zoomIn" tabindex="-1"></button>
+
 <div id="container">
   <h2><span>Word Vocalisation: {{task_title}}</span></h2>
   <br>
   {{task_body_text}}
   <div id="timer"></div>
   <br>
+  <button class="btn btn-outline-primary" id="start_timer_button"><b>CLICK TO START TIMER</b></button>
+  <br>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  let countdownValue = {{text}};
+  let countdownValue = '{{text}}';
   let timerInterval;
 
   // Update the timer display
@@ -49,6 +59,8 @@
 
   // Countdown logic
   function startCountdown() {
+    $('#start_timer_button').hide(); // Hide the button
+    $('#timer').show(); // Show the timer
     timerInterval = setInterval(function() {
       countdownValue--;
       updateTimerDisplay();
@@ -60,17 +72,11 @@
     }, 1000);
   }
 
-  // Detect space bar press to start countdown
-  $(document).on('keydown', function(e) {
-    if (e.key === ' ' || e.key === 'Spacebar') {
-      if (!timerInterval) {
-        startCountdown();
-      }
-    }
-  });
-
   // Initialize the display with starting value
   updateTimerDisplay();
-  
+
+  // Start countdown on button click
+  $('#start_timer_button').on('click', startCountdown);
 </script>
+
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

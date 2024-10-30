@@ -1,8 +1,10 @@
-<!-- error_page.html used to stop access for safari or a mobile -->
+<!--'uor_cover' PhaseType (UoR logo fadein). Subtitle is set from the "text" field of the procedure sheet -->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/uor_cover_zoom_in.css">
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<script src="../../collector-experiments/User/Assets/Global/js/detect_mobile.js"></script>
 <style>
   @font-face {
-    font-family: 'Montserrat-ExtraLight';
+    font-family: 'Montserrat';
     src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-ExtraLight.woff') format('woff');
   }
   @font-face {
@@ -29,23 +31,25 @@
       background-repeat: repeat;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-    background-position: 50% 30%;
+    background-position: 50% 40%;
   }
   #sub_head{
-    font-size: 50px;
+    font-size: 24px!important;
     font-family: Montserrat-ExtraBold;
   }
   #body_text{
-    font-size: 50px;
-    font-family: Montserrat-ExtraLight;
+    font-family: Montserrat!important;
+    font-weight: 600!important;
   }
   #container {
     width: 100%!important;
   }
 </style>
 <div id="container">
-    <p id="oops">Oops!</p>
-    <p id="sub_head">INCOMPATIBLE BROWSER OR DEVICE</p>
-    <p id="body_text">Sorry, this study cannot be run using a mobile/tablet or the Apple browser Safari.<br>Please restart the experiment in Google Chrome, using a desktop or laptop computer</p>
-    <button class="btn btn-outline-primary bi bi-browser-chrome" id="proceed_button" onclick="location.href='https://www.google.com/intl/en_uk/chrome/'"><b>CLICK TO DOWNLOAD GOOGLE CHROME</b></button>
+  <p id="oops">THANK YOU!</p>
+  <p id="sub_head">You have now finished the study.</p><br>
+  <p id="body_text">Please let the experimenter know that you have finished the study so they can ensure<br>your data has been saved and debrief you. Thank you again for taking part.</p>
+  <button class="btn btn-outline-primary bi bi-browser-chrome" id="proceed_button" onclick="Phase.submit()"><b>FINISHED & SAVE DATA</b></button>
 </div>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
+</html>

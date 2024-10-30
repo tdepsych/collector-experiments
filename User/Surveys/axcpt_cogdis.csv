@@ -1,13 +1,14 @@
 item_name,text,type,answers,values,optional,btn_width,shuffle_question,side_text,score:cogdis_emotion,score:cogdis_wisdom,
 Instructions,"<h2><span>Self-Evaluation Questionnaire</span></h2><br>
-<span class=""instruc"">Please take a moment to think how you feel <span style=""text-decoration: underline;"">after</span> repeating the word <span id=""word""></span>.<br><br>To respond, please rate each statement below by clicking on a number from 1 to 7, whereby <b>1 = you strongly disagree</b> with the statement, while <b>7 = you strongly agree</b> with the statement. There are no right or wrong answers. Do not spend too much time on any one statement.</span><br/><br/><br>
-",instruct,,,,,,,,,
-CD1,<b>I was in despair</b>,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,75px,on,strongly disagree| strongly agree,1,,
+<span class=""instruc"">Please take a moment to think how you felt <span style=""text-decoration: underline;"">after</span> repeating the previous word.<br><br>To respond, please rate each statement below by clicking on a number from 1 to 7, whereby <b>1 = you strongly disagree</b> with the statement, while <b>7 = you strongly agree</b> with the statement. There are no right or wrong answers. Do not spend too much time on any one statement.</span><br/><br/><br>",instruct,,,,,,,,,
+CD1,<b>I wondered if I had done the right thing by repeating it</b>,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,75px,on,strongly disagree| strongly agree,,1,
 CD2,<b>I wondered if I really need to repeat it</b>,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,75px,on,strongly disagree| strongly agree,,1,
 CD3,<b>I wondered if I should have repeat it</b>,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,75px,on,strongly disagree| strongly agree,,1,
 CD4,<b>I wondered if I made the right choice repeating it</b>,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,75px,on,strongly disagree| strongly agree,,1,
 CD5,<b>I felt hollow</b>,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,75px,on,strongly disagree| strongly agree,1,,
 CD6,<b>I felt frustrated</b>,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,75px,on,strongly disagree| strongly agree,1,,
 CD7,<b>I felt depressed</b>,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,75px,on,strongly disagree| strongly agree,1,,
-CDattention,"<b>For this question, <u>please select 4</u></b>",likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,yes,75px,on,strongly disagree| strongly agree,,,
+CD8,<b>I felt sick</b>,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,75px,on,strongly disagree| strongly agree,1,,
+CD9,<b>I was in despair</b>,likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,no,75px,on,strongly disagree| strongly agree,1,,
+CDattention,"<b>For this question, <u>please select 3</u></b>",likert,1|2|3|4|5|6|7,1|2|3|4|5|6|7,yes,75px,on,strongly disagree| strongly agree,,,
 ,,,,,,,,,,,
