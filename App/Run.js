@@ -1357,10 +1357,11 @@ function parse_sheets() {
                 console.log("Reset Response: " + response);
             }
         },
-        error: function() {
-            bootbox.alert("An error has occured with the counterbalancing system, please contact the researcher before continuing.")
-            proc_sheet_name = project_json.this_condition.procedure.toLowerCase().replace(".csv", "") + ".csv";
-            switch_platform();
+        error: function(response) {
+          console.log("Location Response: " + response);
+          bootbox.alert("An error has occured with the counterbalancing system, please contact the researcher before continuing.")
+          proc_sheet_name = project_json.this_condition.procedure.toLowerCase().replace(".csv", "") + ".csv";
+          switch_platform();
         }
     });
   }
