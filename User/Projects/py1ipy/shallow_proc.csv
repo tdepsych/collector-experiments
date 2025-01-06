@@ -2,33 +2,33 @@ item,phasetype,max_time,text,shuffle_1,task_title,task_body_text,weight,
 0,offline,user,Offline,off,Data Collection Has Finished!,"Thank you for trying to start the
   experiment but data collection has now finished.<br><br> If you
   require more information about the experiment, please contact the PY1IPY
-  module convenor: Samrah Ahmed (samrah.ahmed@reading.ac.uk)",,
-0,uor_intro,user,Welcome,off,,,0,
+  module convenor: Samrah Ahmed (samrah.ahmed@reading.ac.uk)",0,
+0,uor_intro,user,Welcome,off,,,,
 0,lop_studentnumber,user,"<b
-  style=""font-size:1.35em;"">Welcome to the study</b>",off,,,0,
+  style=""font-size:1.35em;"">Welcome to the study</b>",off,,,,
 0,lop_bookend,user,"<b>Type
   Case</b><br><br>The following screen displays a question
   for 2 seconds. There will then be a short pause before you are presented with
   a word. You then have 4 seconds to answer whether that word correctly answers
-  the original question.<br><br>When you are ready, press start.",off,,,0,
-102 to 131,lop_encode,user,Is the word written in&nbsp;,encode_only,,,0,
+  the original question.<br><br>When you are ready, press start.",off,,,,
+102 to 131,lop_encode,user,Is the word written in&nbsp;,encode_only,,,,
 0,video-play,user,"<b>Thank you for completing
   the previous task.</b><br><br>You will now watch a video,
   lasting a couple of minutes. The video has sound. Please make sure you volume
   is low enough not to disturb those around you. You may mute your speakers if
   you wish.<br><br>When you are ready to begin watching, press
-  play.",off,,,0,
-0,video,user,,off,,,0,
+  play.",off,,,,
+0,video,user,,off,,,,
 0,lop_bookend,user,"<b>Recall</b><br><br>The
   following task requires you to recall as many of the words from the previous
   'Type Case' task as you can. Individual words will be displayed in turn along
   with 'Yes/No' response buttons. Simply indicate whether you recognise the
   word or not as being part of the previous task. Each word will remain
   displayed until you provide an answer.<br><br>When you are ready,
-  press start.",off,,,0,
-102 to 151,lop_recall,user,Do you recognise the following word?,all_words,,,0,
-0,upload_data,7,,off,,,0,
+  press start.",off,,,,
+102 to 151,lop_recall,user,Do you recognise the following word?,all_words,,,,
+0,upload_data,7,,off,,,,
 0,lop_end,user,"<b>Thank you for completing
   the study</b><br><br>We're collecting data across all three
   seminars and you'll get to see the results next week.<br><br>When
-  you are ready to leave, press finish.",off,,,0,
+  you are ready to leave, press finish.",off,,,,
