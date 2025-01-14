@@ -1,0 +1,67 @@
+<!--
+---development---
+[
+{'visual':'Kitten'}
+]
+---development---
+-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  /* This clears all formatting from the buttons to begin */
+  button, input[type="submit"], input[type="reset"] {
+  	background: none;
+  	color: inherit;
+  	border: none;
+  	padding: 0;
+  	font: inherit;
+  	cursor: pointer;
+  	outline: inherit;
+  }
+  #container{
+    /* This just overwrites the vertical centering */
+    min-height: 50vh!important;
+  }
+  #word {
+    font-size: 24px;
+  }
+  #response_neg, #response_pos {
+    width: 115px;
+  }
+</style>
+<input type="hidden" name="valence_rating" id="valence_rating" />
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <h2><span>Valence Ratings</span></h2><br>
+  <p>
+    This task simply requires you to state whether you consider a word to be positive or negative. You shouldn't spend long thinking about your rating but rather go with your first reaction. To make your rating, please click the corresponding button below. You will automatically move to the next word when you make your rating.
+    <br><br>
+    <b>Do you consider the following word to be positive or negative?<br><br><span id="word">{{visual}}</span></b>
+  </p>
+  <br><br>
+  <button id="response_neg" class="btn btn-outline-primary btn-lg me-3">Negative</button>
+  <button id="response_pos" class="btn btn-outline-primary btn-lg">Positive</button>
+  <span id="thanks" style="display:none;">Thank you for making your rating</span>
+</div>
+<script>
+  $('#response_neg').click(function(){
+    $('#valence_rating').val('negative');
+    $('#response_neg, #response_pos').fadeOut(250, function() {
+      $('#thanks').show();
+    });
+    setTimeout(function(){
+      Phase.submit();  
+    },750);
+  });
+  
+  $('#response_pos').click(function(){
+    $('#valence_rating').val('positive');
+    $('#response_neg, #response_pos').fadeOut(250, function() {
+      $('#thanks').show();
+    });
+    setTimeout(function(){
+      Phase.submit();  
+    },750);
+  });
+</script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

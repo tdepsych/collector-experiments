@@ -1,0 +1,112 @@
+<!-- it can help to add a description between the --'s of what this code does -->
+<!--
+---development---
+[
+{'task_title':'Audio Level Check','task_body_text':'Finally, we just need to check and record your volume level. Please click the button below, which plays an audio file,'}
+]
+---development---
+-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<style>
+  body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+  }
+
+  .volume-container {
+      width: 300px;
+      height: 50px;
+      background-color: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      margin: 75px auto 0;
+  }
+
+  .volume-bar {
+      width: 0;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      background: linear-gradient(to right, green, yellow);
+      transition: width 0.878s ease-in-out;
+  }
+
+  .controls {
+      margin-top: 20px;
+      text-align: center;
+  }
+  .number_input {
+    display: none;
+  }
+  #submit, #audio_value {
+    margin-top: 20px;
+  }
+  #audio_value {
+    text-align: center;
+  }
+</style>
+  <input type="hidden" id="audio_level_check" name="audio_level_check" />
+<div id="container">
+  <h2><span style="font-weight:bold;">{{task_title}}</span></h2><br>
+  <p id="task_body_text">{{task_body_text}}</p>
+
+  <div class="volume-container">
+      <div class="volume-bar"></div>
+  </div>
+  <div class="controls">
+      <button id="animate-button" class="btn btn-primary">Run Volume Check</button>
+      <audio id="audio" src="../../collector-experiments/User/Assets/timeperception/audio/26.mp3"></audio>
+  </div>
+  <div class="number_input">
+    <input type="text" id="audio_value" />
+    <br>
+    <button id="submit" class="btn btn-primary" disabled>Submit Value</button>
+  </div>
+</div>
+
+
+</div>
+<script>
+  $('#animate-button').on('click', function () {
+      const targetVolume = '65%'; // This sets how far the "volume" bar goes to
+      $('#audio')[0].play();
+      setTimeout(function(){
+        $('.volume-bar').css('width', targetVolume);
+      },275);
+      
+      setTimeout(function(){
+        $('.controls, .volume-container').hide();
+        $('#task_body_text').html(`Thank you. There is one last thing we need you to do as a data quality check. Please can you enter in the box below the number that was read out during the audio check that's just completed`)
+        $('.number_input').show();
+      },1500);
+  });
+  
+  const inputField = $('#audio_value');
+  const submitButton = $('#submit');
+
+  // Initially disable the button
+  submitButton.prop('disabled', true);
+
+  // Enable the button when the input has a value
+  inputField.on('input', function () {
+    if ($(this).val().trim() !== '') {
+      submitButton.prop('disabled', false);
+      var audioValue = $(this).val();
+      $('#audio_level_check').val(audioValue);
+    } else {
+      submitButton.prop('disabled', true);
+      $('#audio_level_check').text('');
+    }
+  });
+    
+  $('#submit').on('click', function(){
+    Phase.submit();
+  });
+</script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

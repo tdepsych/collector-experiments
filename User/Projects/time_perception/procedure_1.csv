@@ -1,24 +1,45 @@
 item,phasetype,survey,max_time,text,notes,shuffle_1,shuffle_2,task_title,task_body_text,weight,
 0,offline,,user,,,off,off,STUDY TEMPORARILY OFFLINE,We're really sorry but the study isn't available at the moment. The program used to run this study has had an update which has broken the data storage within this study. We are very sorry that you cannot complete the study at this time.,0,
 0,intro_static,,user,Welcome,no_mobile,off,off,,,0,
-0,multimedia_check,,user,audio,,off,off,,,0,
+0,tp_multimedia,,user,,,off,off,,,0,
 0,zoom_check,,user,,,off,off,,,0,
-0,commitment_check,,user,,,off,off,,,0,
-0,jiewei_infoconsent,,user,Slow or quick? How do we experience time in the presence of swear words?,,off,off,,,0,
+0,tp_infoconsent,,user,Curse Words and the Clock: How Expletives Alter Our Sense of Time,,off,off,,,0,
 0,task_bookend,,user,Next,,off,off,Demographics,"<p>Before you begin, we need you to complete a brief demographics questionnaire. we require is to just collect some basic demographic information about you so we can better understand who has taken part in our study.</p><br><p>When you are ready, please press <b>Next</b> to begin.</p>",0,
-0,tde_survey,jiewei_demo.csv,user,50,,off,off,,,0,
-0,task_bookend,,user,Start,,off,off,Time Peception,"<p>In this study we are interested in how people's perception of time passing changes within a situation. For the next task, you will see a word written in the center of the screen. At the same time you will hear a word repeated through your speakers. You are simply required to press the <b>spacebar</b> after 3 seconds has elapsed. When you press space, the trial will end and the next begin. Please try to be as accurate as you can.<br><br>You will start with 10 practice trials. These will provide feedback regarding the accuracy of your judgement. After that you will have 120 experimental trials. These will be presented in 4 blocks of 30 trials.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>",,
-122 to 131,jiewei_tp_task,,user,feedback,,Practice,off,,,,
-0,task_bookend,,user,Start,,off,off,End of practice trials,"<p>Thank you for completing the practice trials. You are about to start the experimental trials. There are 120 trials broken up into 4 blocks. You may have a break between blocks. Once again, you are simply required to press the <b>spacebar</b> after 3 seconds has elapsed. When you press space, the trial will end and the next begin. Please try to be as accurate as you can.<br><br>The experimental trials do not provide feedback regarding the accuracy of your response.</p><br><p>When you are ready, please press <b>Start</b> to begin.</p>",,
-2 to 31,jiewei_tp_task,,user,,,Experiment,Block 1,,,,
-0,task_bookend,,user,Start Block 2,,off,off,Time For A Break,"<p>Thank you for completing the first block, you may have a break if you wish. When you are ready please press <b>Start Block 2</b> to move onto the second block of 30 trials.</p>",,
-32 to 61,jiewei_tp_task,,user,,,Experiment,Block 2,,,,
-0,task_bookend,,user,Start Block 3,,off,off,Time For A Break,"<p>Thank you for completing the second block, you may have a break if you wish. When you are ready please press <b>Start Block 3</b> to move onto the third block of 30 trials.</p>",,
-62 to 91,jiewei_tp_task,,user,,,Experiment,Block 3,,,,
-0,task_bookend,,user,Start Block 4,,off,off,Time For A Break,"<p>Thank you for completing the third block, you may have a break if you wish. When you are ready please press <b>Start Block 4</b> to move onto the final, fourth block of 30 trials.</p>",,
-92 to 121,jiewei_tp_task,,user,,,Experiment,Block 4,,,,
-0,task_bookend,,user,Next,,off,off,End of Experimental Trials,"<p>Thank you for completing the fourth block, you have now completed all experimental trials. When you are ready please press <b>Next</b> to move to the next, final, task.</p>",,
-0,data_quality,,user,,,off,off,,"We just want to check whether you encountered any issues while completing this study that you feel may have impacted the quality of the data collected? For example, did any of the trials seems to incorrectly load? Did you have multiple audio playing at the same time? Did you press the space bar and nothing seemed to happen. If you do feel you had an issue, please check the box below and provide further information.<br>
-<br><b>Please Note:</b> Some trials did not have audio and so if you did not hear a word during a trial, that is fine.",,
+0,tde_survey,tp_demo.csv,user,50,,off,off,,,,
+0,task_bookend,,user,Start,,off,off,Time Peception,"<p>In this study we are interested in how people's perception of time passing changes within a situation.
+<br><br>
+For the next task, each trial begins with a cross in the centre of the screen, please focus on this. It will then be replaced by a written word while, at the same time, you will hear a second word read out loud. Once the spoken word has been read out, the word on the screen will be replaced with a straight line and you will hear a constant audio tone. This tone will either last for 1.5 seconds (i.e., a long period) or 0.5 seconds (i.e., a short period). The tone will only be one of these two options. When the tone ends, the initial pair of words you saw/heard will be repeated. Once that repetition been completed, you will then be presented with two response buttons.
+<br><br>
+<b>All you have to do is state whether the audio tone you heard lasted for a long (i.e., 1.5 seconds) or short (i.e., 0.5 seconds) period of time.</b>
+<br><br>
+You will now complete a number of training trials so you can learn the difference between a long and short audio tone before the main experimental trials begin. These trials do not include swear words.
+<br><br>
+When you are ready to start, please press 'Start' below.</p>",,
+402 to 441,tp_training,,user,,,Training,off,,,,
+0,task_bookend,,user,Start,,off,off,End of training trials,"<p>You are about to start the main experimental trials. These include swear words.
+<br><br>
+<b>These trials are exactly the same as the training trials you have just completed except:
+<br><br>
+(1) The length of the audio tone between the words now differs<br> 
+(2) Some trials do not have a spoken or written word before/after the audio tone.
+<br><br>
+Once again, you simply have to listen how long the tone lasts for. But, you then need to decide if it was closer in length to the 'long' or 'short' trials from the training phase you just completed. If you think it was closer to the 0.5 second 'short' tone, click the 'Short' button but if you think it was closer to the 1.5 seconds 'long' tone, click the 'Long' button.</b>
+<br><br>
+As a reminder: you will initially see a cross in the centre of the screen (which you should focus on). The cross may then be replaced by a written word and you may hear another word read out. After this, a horizontal line will appear on screen and a single audio tone will play. When the tone stops, any initial written or spoken words will be repeated. You will then be given the same two response buttons (short and long).
+<br><br>
+The task is broken up into several blocks of trials and you will be given the option of a break between blocks. When you are ready to start the experimental trials, please click 'Start' below.
+</p>",,
+2 to 101,tp_maintask,,user,,,Experiment,Block 1,,,,
+0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the first block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",,
+102 to 201,tp_maintask,,user,,,Experiment,Block 2,,,,
+0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the second block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",,
+202 to 301,tp_maintask,,user,,,Experiment,Block 3,,,,
+0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the third block, you may now have a break if you wish. When you are ready to start the final block please press <b>Continue</b> below.</p>",,
+302 to 401,tp_maintask,,user,,,Experiment,Block 4,,,,
+0,task_bookend,,user,Next,,off,off,End of Experimental Trials,"<p>Thank you for completing the fourth block, you have now completed all blocks within this task. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",,
+442 to 481,tp_valence,,user,,,Valence,off,,,,
+0,task_bookend,,user,Continue,,off,off,End of Valence Ratings,"<p>Thank you for completing the valence ratings. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",,
+442 to 481,tp_arousal,,user,,,Arousal,off,,,,
+0,tp_dataquality,,user,,,off,off,Audio Level Check,Thank you for making the previous ratings. We now just need to record the audio level you used during the study so that we can control for any effect of different audio levels between participants from affecting our results. To run this check simply click the button below.,,
 0,upload_data,,12,,Uploading REDCap Markers,off,off,,,,
-0,jiewei_debrief,,user,Slow or quick? How do we experience time in the presence of swear words?,,off,off,,,,
+0,tp_debrief,,user,Curse Words and the Clock: How Expletives Alter Our Sense of Time,,off,off,,,,

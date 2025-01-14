@@ -1,0 +1,149 @@
+<!-- it can help to add a description between the --'s of what this code does -->
+<!--
+---development---
+[
+{'visual':'ship','audio':'Kitten','voice':'f', 'delay':'600', 'audio_time':'329'}
+]
+---development---
+-->
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+  }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  p {
+    max-width: 100%;
+    max-height: 100%;
+    font-size: 95pt;
+    font-family: "Times New Roman", Times, serif;
+    text-transform: uppercase;
+  }
+  #response_options  p {
+    max-width: 100%;
+    max-height: 100%;
+    font-size: 16pt;
+    font-family: "Times New Roman", Times, serif;
+    text-transform: none;
+  }
+  #stimuli_text, #delay_text, #response_options {
+    display: none;
+  }
+  .no_mouse{
+    cursor: none;
+  }
+</style>
+<body class="no_mouse">
+  <input type='hidden' id='response' name='response'/>
+  
+  <!--HTML-->
+  <p id="fixation">+</p>
+  
+  <p id="stimuli_text">{{visual}}</p>
+  <audio id="stimuli_audio" src="../../collector-experiments/User/Assets/timeperception/audio/main/{{audio}}_{{voice}}.mp3"></audio>
+  
+  <audio id="delay_audio" src="../../collector-experiments/User/Assets/timeperception/audio/500.mp3"></audio>
+  <p id="delay_text">—</p>
+  
+  <div id="response_options" class="text-center">
+      <p>Was the tone you heard closer in length to the short or long tone during the training trials?</p>
+      <br><br>
+      <button id="response_short" class="btn btn-outline-primary btn-lg me-3">Short</button>
+      <button id="response_long" class="btn btn-outline-primary btn-lg">Long</button>
+</div>
+
+  <!--JAVASCRIPT-->
+  <script>
+    var audio = '{{audio}}';
+    var visual = '{{visual}}';
+    var audio_time = '{{audio_time}}';
+    var delay = '{{delay}}';
+
+    var baselineTime;
+      Phase.set_timer(function() {
+      baselineTime = Date.now();
+    }, 0);
+    
+    var runtime = Number(500);
+    
+    if (visual == "Control") {
+      $('#stimuli_text').html("");
+    }
+    
+    // Hide the fixation cross and display the first bookend stimuli
+    Phase.set_timer(function() {
+      $('#fixation').hide();
+      $('#stimuli_text').show();
+      $('#stimuli_audio')[0].play();
+    }, runtime);
+      
+    // Update the runtime to add the required audio_time to the the fixation cross display time (with a tiny bit extra added on so the change isn't so jarring)
+    runtime = Number(audio_time) + 525;
+    
+    // Hide the bookend stmuli and play the time delay tone / show the visual dash
+    Phase.set_timer(function() {
+      $('#stimuli_text').hide();
+      $('#delay_text').show();
+      $('#delay_audio')[0].play();
+    }, runtime);
+    
+    // Update the runtime to add the required delay between audio bookends
+    runtime = Number(delay) + Number(runtime);
+    
+    // Stop the time delay tone and hide the visual dash
+    Phase.set_timer(function() {
+      $('#delay_text').hide();
+      $('#delay_audio')[0].pause();
+    }, runtime);
+    
+    // Add a tiny little delay so the change isn't jarring
+    runtime = Number(runtime) + 25;
+    
+    // Redisplay the bookend stimuli
+    Phase.set_timer(function() {
+      $('#stimuli_text').show();
+      $('#stimuli_audio')[0].play();
+    }, runtime);
+    
+    // Update the runtime to add the required audio_time
+    runtime = Number(audio_time) + runtime;
+    
+    // Hide the bookend stimuli 
+    Phase.set_timer(function() {
+      $('#stimuli_text').hide();
+    }, runtime);
+    
+    // Add a tiny little delay so the change isn't jarring
+    runtime = Number(runtime) + 25;
+    
+    // Display the response opton buttons
+    Phase.set_timer(function() {
+      $('body').removeClass('no_mouse');
+      $('#response_options').show();
+      console.log("delay: " + delay);
+      console.log("audio_time: " + audio_time);
+    }, runtime);
+    
+    // Response "Short" - Update the hidden input and end the trials
+    $('#response_short').click(function(){
+      $('#response').val('short');
+      console.log("Hidden input value set to 'short'.");
+      Phase.submit();
+    });
+    
+    // Response "LongShort" - Update the hidden input and end the trials
+    $('#response_long').click(function(){
+      $('#response').val('long');
+      console.log("Hidden input value set to 'long'.");
+      Phase.submit();
+    });
+
+  </script>
+</body>

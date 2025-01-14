@@ -1,0 +1,75 @@
+<!--'timeperception_debrief' PhaseType-->
+<!--
+---development---
+[
+{'text':'Curse Words and the Clock: How Expletives Alter Our Sense of Time'}
+]
+---development---
+-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  #container {
+  text-align: center;
+  padding-top: 3%!important;
+  }
+  #endButton {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+</style>
+<body>
+  <button id="zoomOut" tabindex="-1"></button>
+  <button id="zoomIn" tabindex="-1"></button>
+  <div id="container">
+    <img id="uorLogo" src="../../collector-experiments/User/Assets/Global/img/uor.svg" />
+    <br>
+    School of Psychology and Clinical Language Sciences,<br>Whitenights, Reading, RG6 6AL
+    <br/>
+    <hr>
+    <span style="color:red;"> 
+      <b>Study: {{text}}</b>
+    </span>
+    <hr>
+    <h5><b>DEBRIEF SHEET</b></h5>
+    Supervisors: Prof. Philip Beaman (c.p.beaman@reading.ac.uk - 0118 378 7637)<br/>
+    Experimenter: Christopher Dobson (c.g.dobson@pgr.reading.ac.uk)
+    <br/><br/>
+    <b>Thank your for taking part in our study</b>
+    <br/>
+   From a psychological perspective, swear words form an interesting subset of language as they seem to create unexpected behavioural and cognitive effects. For example, self-vocalised swearing has been found to increase pain tolerance, physical strength, and risk-taking behaviour. Swear words, received as experimental stimuli, have also been shown to command attention, increase response times and disrupt time perception. The finding around the disruption of time perception is interesting, however, because it runs counter to the literature base. Swear words are mainly considered to be negative words, and the literature around time perception suggests negative words cause people to over-estimate the passing of time. However, when swear words were presented as stimuli within a time perception study, participants significantly under-estimated the passing of time.
+   <br/><br/>
+   This study was, therefore, looking to replicate that initial, surprising result. However, it then extended its investigation to see whether it was the inherently arousing nature of swear words that explains why they cause people to under-estimate how much time has elapsed. Previous studies have shown that highly arousing non-swear words cause people to underestimate the passing of time and this study was the first to directly see whether it is the swear word’s arousal, rather than negativity, that drives the effect. Furthermore, as language can be presented cross-modally, via written words or spoken audio, we presented all the stimuli words to you in both ways. This will allow us to test whether one modality alone drives the expected effect or whether they are both, equally able to disrupt time perception and if so, if they disrupt it in the same direction. Finally, the spoken words were presented in both a female and a male voice because previous research found that when negative words were heard in a female voice, participants underestimated how much time had passed. By using both gendered voices, we can ascertain whether the speakers voice plays any role in the expected effect, too.
+   <br><br>
+   The reason we are interested in better understanding how swear words alter people’s perception of the passing of time is because, as previously mentioned, swearing has been shown to increase pain tolerance.  In fact, it’s a very robust finding but as of yet no satisfactory explanation for how it generates this effect has been given. It is key to note, however, that this increase has been shown using procedures that require participants to test how long they can withstand a noxious stimulus (e.g., very cold water) when repeating a swear word, compared to when they repeated a neutral word. If swear words cause people to underestimate the passing of time, as the literature currently suggests, then this may explain how swearing increases pain tolerance – by making people believe they haven’t withstood the stimuli for as long as they have. Your participation has helped us better understand if this is the case. Thank you.
+    <br/><br/>
+    <b>SONA Credits</b><br>
+    If you are a University of Reading student who has completed this study for SONA credit, please ensure that you click the button below, which will return you to SONA and automatically award your credit. If for any reason that doesn’t happen, however, please email the experimenter – Christopher Dobson (c.g.dobson@pgr.reading.ac.uk) who will manually award your credit.
+    <br><br>
+    <b>Reminder: What will happen to my data/how will it be protected?</b><br>
+    Your data will be kept anonymous, confidential, and securely stored, with only your anonymous ID identifying it and the final dataset collected from this study will be preserved and made available in anonymised form, so that data can be re-used by others. No data in that final dataset can be linked back to you. Your individual consent form will be kept for 5 years after the completion of this study and, if you agreed to be contacted about future studies whilst consenting to take part, you may remove this agreement at any point in the future by emailing Prof. Phil Beaman – c.p.beaman@reading.ac.uk. 
+    <br><br>
+    <i>This study was reviewed by the School Research Ethics Committee and given a favourable ethical opinion for conduct 2025-XXX-PB; expiry date: 17/09/2027).</i>
+    <br/><br/>
+    Once again, thank you for your participation.
+    <br/><br/>
+    <b>Prof. Philip Beaman and Christopher Dobson</b>
+    <hr>
+    <span class ="minor">
+      Please click the following links if you  wish to download the <a href="../../collector-experiments/User/Assets/timeperception/information_sheet.pdf" download="Participant Information Sheet">participant information sheet <span id="pdfImg"></span></a> or the study <a href="../../collector-experiments/User/Assets/timeperception/debrief_sheet.pdf" download="Study Debrief Sheet">debrief sheet <span id="pdfImg"></span></a>
+    </span>
+    <hr>
+  <div>
+  <button class="btn btn-primary" id="endButton">Finish Study</button>
+  <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
+  <script>
+    // if (parent.parent.sona) {
+    var initial_url = document.location.href;
+    if (initial_url.includes("sona")) {
+    // if (parent.parent.sona) {
+      $("#endButton").attr("onclick","Phase.add_response({main_complete: 2});Phase.submit();").html("Finish Study & Collect Credit");
+    } else {
+      $("#endButton").attr("onclick","Phase.submit();");
+    }
+    
+  </script>
+</body>
