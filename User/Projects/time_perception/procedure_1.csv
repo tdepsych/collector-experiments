@@ -6,7 +6,7 @@ item,phasetype,survey,max_time,text,notes,shuffle_1,shuffle_2,task_title,task_bo
 0,tp_infoconsent,,user,Curse Words and the Clock: How Expletives Alter Our Sense of Time,,off,off,,,,
 0,task_bookend,,user,Next,,off,off,Demographics,"<p>Before you begin, we need you to complete a brief demographics questionnaire. we require is to just collect some basic demographic information about you so we can better understand who has taken part in our study.</p><br><p>When you are ready, please press <b>Next</b> to begin.</p>",,
 0,tde_survey,tp_demo.csv,user,50,,off,off,,,,
-0,task_bookend,,user,Start,,off,off,Time Peception,"<p>In this study we are interested in how people's perception of time passing changes within a situation.
+0,task_bookend,,user,Start,,off,off,Time Perception,"<p>In this study we are interested in how people's perception of time passing changes within a situation.
 <br><br>
 For the next task, each trial begins with a cross in the centre of the screen, please focus on this. It will then be replaced by a written word while, at the same time, you will hear a second word read out loud. Once the spoken word has been read out, the word on the screen will be replaced with a straight line and you will hear a constant audio tone. This tone will either last for 1.5 seconds (i.e., a long period) or 0.5 seconds (i.e., a short period). The tone will only be one of these two options. When the tone ends, the initial pair of words you saw/heard will be repeated. Once that repetition been completed, you will then be presented with two response buttons.
 <br><br>
@@ -28,14 +28,14 @@ Once again, you simply have to listen how long the tone lasts for. But, you then
 As a reminder: you will initially see a cross in the centre of the screen (which you should focus on). The cross may then be replaced by a written word and you may hear another word read out. After this, a horizontal line will appear on screen and a single audio tone will play. When the tone stops, any initial written or spoken words will be repeated. You will then be given the same two response buttons (short and long).
 <br><br>
 The task is broken up into several blocks of trials and you will be given the option of a break between blocks. When you are ready to start the experimental trials, please click 'Start' below.
-</p>",,
-2 to 101,tp_maintask,,user,,,Experiment,Block 1,,,,
-0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the first block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",,
-102 to 201,tp_maintask,,user,,,Experiment,Block 2,,,,
-0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the second block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",,
-202 to 301,tp_maintask,,user,,,Experiment,Block 3,,,,
-0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the third block, you may now have a break if you wish. When you are ready to start the final block please press <b>Continue</b> below.</p>",,
-302 to 401,tp_maintask,,user,,,Experiment,Block 4,,,,
+</p>",0,
+2 to 101,tp_maintask,,user,,,Experiment,Block 1,,,0,
+0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the first block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",0,
+102 to 201,tp_maintask,,user,,,Experiment,Block 2,,,0,
+0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the second block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",0,
+202 to 301,tp_maintask,,user,,,Experiment,Block 3,,,0,
+0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the third block, you may now have a break if you wish. When you are ready to start the final block please press <b>Continue</b> below.</p>",0,
+302 to 401,tp_maintask,,user,,,Experiment,Block 4,,,0,
 0,task_bookend,,user,Next,,off,off,End of Experimental Trials,"<p>Thank you for completing the fourth block, you have now completed all blocks within this task. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",,
 442 to 481,tp_valence,,user,,,Valence,off,,,,
 0,task_bookend,,user,Continue,,off,off,End of Valence Ratings,"<p>Thank you for completing the valence ratings. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",,
