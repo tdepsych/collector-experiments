@@ -34,35 +34,41 @@
 <div id="container">
   <h2><span>Arousal Ratings</span></h2><br>
   <p>
-    This task simply requires you to state whether you consider a word to be arousing or not. You shouldn't spend long thinking about your rating but rather go with your first reaction. To make your rating, please click the corresponding button below. You will automatically move to the next word when you make your rating.
+    This task simply requires you to rate how arousing you consider a word to be. You shouldn't spend long thinking about your rating but rather go with your first reaction. To make your rating, please click the corresponding button below. You will automatically move to the next word once you make your rating.
     <br><br>
-    <b>Do you consider the following word to be arousing?<br><br><span id="word">{{visual}}</span></b>
+    <b>How arousing is the following word?<br><br><span id="word">{{visual}}</span></b>
   </p>
   <br><br>
-    <button id="response_no" class="btn btn-outline-primary btn-lg me-3">No</button>
-    <button id="response_yes" class="btn btn-outline-primary btn-lg">Yes</button>
-    <span id="thanks" style="display:none;">Thank you for making your rating</span>
+<div class="d-flex align-items-center" style="justify-content: center;">
+  <span class="text-primary me-3 align-middle anchor">Low Arousal</span>
+  <div class="btn-group" role="group" aria-label="First group">
+    <button type="button" class="btn btn-outline-primary">0</button>
+    <button type="button" class="btn btn-outline-primary">1</button>
+    <button type="button" class="btn btn-outline-primary">2</button>
+    <button type="button" class="btn btn-outline-primary">3</button>
+    <button type="button" class="btn btn-outline-primary">4</button>
+    <button type="button" class="btn btn-outline-primary">5</button>
+    <button type="button" class="btn btn-outline-primary">6</button>
+    <button type="button" class="btn btn-outline-primary">7</button>
+    <button type="button" class="btn btn-outline-primary">8</button>
+    <button type="button" class="btn btn-outline-primary">9</button>
+  </div>
+  <span class="text-primary ms-3 align-middle anchor">High Arousal</span>
+</div>
+  <span id="thanks" style="display:none;">Thank you for making your rating</span>
 </div>
 <script>
-  $('#response_no').click(function(){
-    $('#arousal_rating').val('no');
-    $('#response_no, #response_yes').fadeOut(250, function() {
-      $('#thanks').show();
-    });
-    setTimeout(function(){
-      Phase.submit();  
-    },750);
-  });
-  
-  $('#response_yes').click(function(){
-    $('#arousal_rating').val('yes');
-    $('#response_no, #response_yes').fadeOut(250, function() {
-      $('#thanks').show();
-    });
-    setTimeout(function(){
-      Phase.submit();  
-    },750);
+$('.btn-group .btn').click(function () {
+  const value = $(this).text();
+  $('#arousal_rating').val(value);
+
+  $('.btn-group .btn, .anchor').fadeOut(250, function () {
+    $('#thanks').show();
   });
 
+  setTimeout(function () {
+    Phase.submit();
+  }, 750);
+});
 </script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

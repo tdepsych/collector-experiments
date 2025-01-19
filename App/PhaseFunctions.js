@@ -174,6 +174,7 @@ if (typeof Phase !== "undefined") {
     // {CGD} It would be good to make this function swap the loaded stimuli sheet so you could alter a task based on prior performance if needed
   };
   Phase.go_to = function (new_phase_no) {
+    parent.parent.project_json.inputs = jQuery("[name]");
     parent.parent.go_to_active = true;
     parent.parent.Project.go_to(new_phase_no);
   };

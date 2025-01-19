@@ -2,7 +2,7 @@
 <!--
 ---development---
 [
-{'visual':'ship','audio':'Kitten','voice':'f', 'delay':'600', 'audio_time':'329'}
+{'visual':'Table','audio':'Cupboard','voice':'f', 'delay':'400', 'audio_time':'444'}
 ]
 ---development---
 -->
@@ -49,11 +49,11 @@
   <p id="stimuli_text">{{visual}}</p>
   <audio id="stimuli_audio" src="../../collector-experiments/User/Assets/timeperception/audio/training/{{audio}}_{{voice}}.mp3"></audio>
   
-  <audio id="delay_audio" src="../../collector-experiments/User/Assets/timeperception/audio/500.mp3"></audio>
+  <audio id="delay_audio" src="../../collector-experiments/User/Assets/timeperception/audio/200.mp3"></audio>
   <p id="delay_text">—</p>
   
   <div id="response_options" class="text-center">
-      <p>Was the tone you heard closer in length to the short or long tone during the training trials?</p>
+      <p>Did the tone last for a short (0.5 seconds) or long (1.5 seconds) period of time?</p>
       <br><br>
       <button id="response_short" class="btn btn-outline-primary btn-lg me-3">Short</button>
       <button id="response_long" class="btn btn-outline-primary btn-lg">Long</button>
@@ -128,21 +128,17 @@
     Phase.set_timer(function() {
       $('body').removeClass('no_mouse');
       $('#response_options').show();
-      console.log("delay: " + delay);
-      console.log("audio_time: " + audio_time);
     }, runtime);
     
     // Response "Short" - Update the hidden input and end the trials
     $('#response_short').click(function(){
       $('#response').val('short');
-      console.log("Hidden input value set to 'short'.");
       Phase.submit();
     });
     
     // Response "LongShort" - Update the hidden input and end the trials
     $('#response_long').click(function(){
       $('#response').val('long');
-      console.log("Hidden input value set to 'long'.");
       Phase.submit();
     });
 

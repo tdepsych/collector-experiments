@@ -1,0 +1,280 @@
+<!-- 'tp_demo' PhaseType. -->
+
+<!DOCTYPE html>
+</html>
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/radio_buttons.css">
+<style>
+  /********************/
+  /* STLYING THE TABS */
+  /********************/
+      
+  /* This clears all formatting from the buttons to begin */
+  button, input[type="submit"], input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
+  #proceed_button {
+    margin: 20px auto;
+    color: #FFF;
+    background-color: #006599;
+    border-color: #006599;
+    font-weight: 400;
+    /*line-height: 1.5;*/
+    text-align: center;
+    vertical-align: middle;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+  }
+
+  /* Style the input fields */
+  input {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #aaaaaa;
+  }
+
+  .radioLabelHolder {
+    padding-bottom: 2px;
+    transform: translate(0px, 7px);
+    display: flex;
+    cursor: pointer;
+  }
+  
+  .checkboxes {
+    text-align: left;
+    margin-top: 2px;
+  }
+
+  .ageInput{
+    border-radius: 10px;
+    border-color: #3f97f6;
+    width:50%;
+  }
+
+</style>
+<button id="zoomOut" class="zoomBtn" tabindex="-1"></button>
+<button id="zoomIn" class="zoomBtn" tabindex="-1"></button>
+<div id="container">
+  <h2><span>Demographic Information</span></h2><br>
+    <p>To begin, please could you complete the questionnaire below so we can better understand the diversity and inclusivity of the people taking part in our study. This allows us to understand how well our sample reflects the general population and how applicable the results of this study are more widely.
+    <br><br>
+    All questions are optional except for the final question relating to whether you are a native English speaker. If you do not wish to answer a question, simply check "Prefer not to say" (or leave your age blank). It really does help us, however, if you could answer the questions.
+    </p>
+  <br><hr><br>
+
+  <div style="text-align: left;">
+    <p class="text-primary" style="margin-bottom: 10px; width: 100%;">1. Please enter your age (in years)</p>
+    <input type="number" class="ageInput" name="demo_pii_age" id="participant_age" value="" placeholder="Please enter your age in numbers" />
+  </div>
+    <br>
+  
+  
+  <div style="text-align: left;">
+    <p class="text-primary" style="width: 100%;">2. What is your biological sex?</p>
+    <div style="display: inline-block; text-align: left;">
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_gender" id="gender_m">
+        <label class="form-check-label radioLabelHolder text-primary" for="gender_m">Male</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_gender" id="gender_f">
+        <label class="form-check-label radioLabelHolder text-primary" for="gender_f">Female</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_gender" id="gender_nb">
+        <label class="form-check-label radioLabelHolder text-primary" for="gender_nb">Non-Binary</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_gender" id="gender_na">
+        <label class="form-check-label radioLabelHolder text-primary" for="gender_na">Prefer Not To Say</label>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div style="text-align: left;">
+    <p class="text-primary" style="width: 100%;">3. I identify my ethnicity as:</p>
+    <div style="display: inline-block; text-align: left;">
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_ethnicity" id="ethnicity_w">
+        <label class="form-check-label radioLabelHolder text-primary" for="ethnicity_w">White</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_ethnicity" id="ethnicity_mx">
+        <label class="form-check-label radioLabelHolder text-primary" for="ethnicity_mx">Mixed/Multiple</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_ethnicity" id="ethnicity_a">
+        <label class="form-check-label radioLabelHolder text-primary" for="ethnicity_a">Asian</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_ethnicity" id="ethnicity_b">
+        <label class="form-check-label radioLabelHolder text-primary" for="ethnicity_b">Black/African/Caribbean</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_ethnicity" id="ethnicity_c">
+        <label class="form-check-label radioLabelHolder text-primary" for="ethnicity_c">Chinese</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_ethnicity" id="ethnicity_o">
+        <label class="form-check-label radioLabelHolder text-primary" for="ethnicity_o">Other</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_ethnicity" id="ethnicity_na">
+        <label class="form-check-label radioLabelHolder text-primary" for="ethnicity_na">Prefer Not To Say</label>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div style="text-align: left;">
+    <p class="text-primary" style="width: 100%;">4. What is the highest level of education you have completed?</p>
+    <div style="display: inline-block; text-align: left;">
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_education" id="education_g">
+        <label class="form-check-label radioLabelHolder text-primary" for="education_g">GCSEs or equivalent</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_education" id="education_a">
+        <label class="form-check-label radioLabelHolder text-primary" for="education_a">A-Levels or equivalent</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_education" id="education_ug">
+        <label class="form-check-label radioLabelHolder text-primary" for="education_ug">Undergraduate (e.g., BSc)</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_education" id="education_pg">
+        <label class="form-check-label radioLabelHolder text-primary" for="education_pg">Postgraduate (e.g., MSc)</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_education" id="education_phd">
+        <label class="form-check-label radioLabelHolder text-primary" for="education_phd">Doctoral degree</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_education" id="education_o">
+        <label class="form-check-label radioLabelHolder text-primary" for="education_o">Other</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_education" id="education_na">
+        <label class="form-check-label radioLabelHolder text-primary" for="education_na">Prefer Not To Say</label>
+      </div>
+    </div>
+  </div>
+  
+  <br>
+  <div style="text-align: left;">
+    <p class="text-primary" style="width: 100%;">5. What is your current employment status?</p>
+    <small class="text-primary"><em>(Full-time education refers to people who do not hold a job alongside their studies)</em></small></p>
+    <div style="display: inline-block; text-align: left;">
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_employment" id="employment_ft">
+        <label class="form-check-label radioLabelHolder text-primary" for="employment_ft">Full-time employment</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_employment" id="employment_pt">
+        <label class="form-check-label radioLabelHolder text-primary" for="employment_pt">Part-time employment</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_employment" id="employment_un">
+        <label class="form-check-label radioLabelHolder text-primary" for="employment_un">Unemployed/Retired/Full-time education</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_employment" id="employment_na">
+        <label class="form-check-label radioLabelHolder text-primary" for="employment_na">Prefer Not To Say</label>
+      </div>
+    </div>
+  </div>
+  
+  <br>
+  <div style="text-align: left;">
+    <p class="text-primary" style="width: 100%;">6. Are you a native English speaker?</p>
+    <small class="text-primary"><em>(Defined as being born in, or moved to before the age 2 years, a country with English as its main language)</em></small></p>
+    <div style="display: inline-block; text-align: left;">
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_native_english" id="native_english_yes">
+        <label class="form-check-label radioLabelHolder text-primary" for="native_english_yes">Yes</label>
+      </div>
+      <div class="form-check checkboxes">
+        <input class="form-check-input option-input radio" type="radio" name="demo_pii_native_english" id="native_english_no">
+        <label class="form-check-label radioLabelHolder text-primary" for="native_english_no">No</label>
+      </div>
+    </div>
+  </div>
+  
+  <br><hr><br>
+  
+  <button class="btn btn-primary" id="proceed_button">Continue</button>
+
+
+</div>
+<input type="hidden" id="demo_pii_gender" name="demo_pii_gender" />
+<input type="hidden" id="demo_pii_ethnicity" name="demo_pii_ethnicity" />
+<input type="hidden" id="demo_pii_education" name="demo_pii_education" />
+<input type="hidden" id="demo_pii_employment" name="demo_pii_employment" />
+<input type="hidden" id="demo_pii_native_english" name="demo_pii_native_english" />
+<!-- --------------------------------- -->
+<!-- Only Javascript beyond this point -->
+<!-- --------------------------------- -->
+<script>
+
+$('#proceed_button').on('click', function(event) {
+    // Prevent default form submission
+    event.preventDefault();
+
+    // Questions to validate
+    const questionIds = [
+        { id: "demo_pii_gender", question: "2. What is your biological sex?" },
+        { id: "demo_pii_ethnicity", question: "3. I identify my ethnicity as:" },
+        { id: "demo_pii_education", question: "4. What is the highest level of education you have completed?" },
+        { id: "demo_pii_employment", question: "5. What is your current employment status?" },
+        { id: "demo_pii_native_english", question: "6. Are you a native English speaker?" } // Added question 6
+    ];
+
+    let allValid = true;
+
+    // Clear previous error message and text-danger class
+    $('#error_message').remove();
+    $('p.text-primary').removeClass('text-danger');
+
+    // Validate each question
+    questionIds.forEach(question => {
+        const isSelected = $(`input[name="${question.id}"]:checked`).length > 0;
+        const questionLabel = $(`p.text-primary:contains('${question.question}')`);
+        
+        if (!isSelected) {
+            allValid = false;
+            questionLabel.addClass('text-danger');
+        } else {
+            questionLabel.removeClass('text-danger');
+        }
+    });
+
+    // If validation fails, show error message
+    if (!allValid) {
+      bootbox.alert("<b>Please ensure that you have selected an answer for questions 2 to 6.</b><br><br>Any question missing any answer has been highlighted in red.");
+    } else {
+      const isNativeEnglish = $(`input[name="demo_pii_native_english"]:checked`).attr('id') === 'native_english_yes';
+
+      if (isNativeEnglish) {
+        Phase.go_to('+2'); // Navigate to +2 if they answered "Yes"
+      } else {
+        Phase.submit(); // Submit if they answered "No"
+      }
+    }
+});
+
+$(document).on('click', 'input[type="radio"]', function() {
+    const name = $(this).attr('name'); // Get the name of the clicked radio button group
+    const labelText = $(`label[for="${$(this).attr('id')}"]`).text().trim(); // Get the label text for the clicked radio button
+
+    // Update the value of the corresponding hidden input
+    $(`#${name}`).val(labelText);
+});
+
+</script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

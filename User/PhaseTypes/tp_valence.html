@@ -34,34 +34,41 @@
 <div id="container">
   <h2><span>Valence Ratings</span></h2><br>
   <p>
-    This task simply requires you to state whether you consider a word to be positive or negative. You shouldn't spend long thinking about your rating but rather go with your first reaction. To make your rating, please click the corresponding button below. You will automatically move to the next word when you make your rating.
+    This task simply requires you to rate, on a scale from 0-9, how positive or negative you consider a word to be. You shouldn't spend long thinking about your rating but rather go with your first reaction. To make your rating, please click the corresponding button below. You will automatically move to the next word when you make your rating.
     <br><br>
-    <b>Do you consider the following word to be positive or negative?<br><br><span id="word">{{visual}}</span></b>
+    <b>Please click the number that corresponds to how positive or negative you consider the word...<br><br><span id="word">{{visual}}</span></b>
   </p>
   <br><br>
-  <button id="response_neg" class="btn btn-outline-primary btn-lg me-3">Negative</button>
-  <button id="response_pos" class="btn btn-outline-primary btn-lg">Positive</button>
+<div class="d-flex align-items-center" style="justify-content: center;">
+  <span class="text-primary me-3 align-middle anchor">Negative</span>
+  <div class="btn-group" role="group" aria-label="First group">
+    <button type="button" class="btn btn-outline-primary">0</button>
+    <button type="button" class="btn btn-outline-primary">1</button>
+    <button type="button" class="btn btn-outline-primary">2</button>
+    <button type="button" class="btn btn-outline-primary">3</button>
+    <button type="button" class="btn btn-outline-primary">4</button>
+    <button type="button" class="btn btn-outline-primary">5</button>
+    <button type="button" class="btn btn-outline-primary">6</button>
+    <button type="button" class="btn btn-outline-primary">7</button>
+    <button type="button" class="btn btn-outline-primary">8</button>
+    <button type="button" class="btn btn-outline-primary">9</button>
+  </div>
+  <span class="text-primary ms-3 align-middle anchor">Positive</span>
+</div>
   <span id="thanks" style="display:none;">Thank you for making your rating</span>
 </div>
 <script>
-  $('#response_neg').click(function(){
-    $('#valence_rating').val('negative');
-    $('#response_neg, #response_pos').fadeOut(250, function() {
-      $('#thanks').show();
-    });
-    setTimeout(function(){
-      Phase.submit();  
-    },750);
+$('.btn-group .btn').click(function () {
+  const value = $(this).text();
+  $('#valence_rating').val(value);
+
+  $('.btn-group .btn, .anchor').fadeOut(250, function () {
+    $('#thanks').show();
   });
-  
-  $('#response_pos').click(function(){
-    $('#valence_rating').val('positive');
-    $('#response_neg, #response_pos').fadeOut(250, function() {
-      $('#thanks').show();
-    });
-    setTimeout(function(){
-      Phase.submit();  
-    },750);
-  });
+
+  setTimeout(function () {
+    Phase.submit();
+  }, 750);
+});
 </script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

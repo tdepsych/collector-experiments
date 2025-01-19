@@ -280,7 +280,9 @@
         $("#startBtn_vol").hide();
         $("#yesBtn").hide();
         $("#noBtn").hide();
-        $("#setVolumeBtn").show();
+        setTimeout(function(){
+          $("#setVolumeBtn").show();
+        },5000);
         
         const audio = $('#volume_test')[0]; // Access the raw DOM element for the audio
         audio.loop = true; // Enable looping

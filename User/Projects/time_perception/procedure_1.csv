@@ -4,42 +4,44 @@ item,phasetype,survey,max_time,text,notes,shuffle_1,shuffle_2,task_title,task_bo
 0,tp_multimedia,,user,,,off,off,,,,
 0,zoom_check,,user,,,off,off,,,,
 0,tp_infoconsent,,user,Curse Words and the Clock: How Expletives Alter Our Sense of Time,,off,off,,,,
-0,task_bookend,,user,Next,,off,off,Demographics,"<p>Before you begin, we need you to complete a brief demographics questionnaire. we require is to just collect some basic demographic information about you so we can better understand who has taken part in our study.</p><br><p>When you are ready, please press <b>Next</b> to begin.</p>",,
-0,tde_survey,tp_demo.csv,user,50,,off,off,,,,
-0,task_bookend,,user,Start,,off,off,Time Perception,"<p>In this study we are interested in how people's perception of time passing changes within a situation.
+0,tp_demo,,user,50,,off,off,,,,
+0,offline,,user,,,off,off,YOU CANNOT CONTINUE,"We're really sorry but the study is only recruiting native English speakers.<br><br>As you indicated that you are not a native English speaker we cannot allow you to continue.<br><br>To end the experiment, simply close your browser window.",,
+0,task_bookend,,user,Start,,off,off,Time Perception,"<p>This study is investigation how people's perception of the passing of time changes within a situation.
 <br><br>
-For the next task, each trial begins with a cross in the centre of the screen, please focus on this. It will then be replaced by a written word while, at the same time, you will hear a second word read out loud. Once the spoken word has been read out, the word on the screen will be replaced with a straight line and you will hear a constant audio tone. This tone will either last for 1.5 seconds (i.e., a long period) or 0.5 seconds (i.e., a short period). The tone will only be one of these two options. When the tone ends, the initial pair of words you saw/heard will be repeated. Once that repetition been completed, you will then be presented with two response buttons.
+Within the next task, you will initially see a cross in the centre of the screen to direct your gaze. The cross will be replaced by a written word while you hear another word read out. Once the spoken word has been read out, the word on the screen will be replaced by a straight line and you will hear a constant audio tone. This tone will last for either 1.5 seconds (a long period) or 0.5 seconds (a short period). The tone will only be one of these two options. When the tone ends, the initial pair of words you saw/heard will be repeated. After that repetition, you will be presented with two response buttons.
 <br><br>
-<b>All you have to do is state whether the audio tone you heard lasted for a long (i.e., 1.5 seconds) or short (i.e., 0.5 seconds) period of time.</b>
+<b>All you have to do is state whether the audio tone you heard between the words lasted for a long (1.5 seconds) or short (0.5 seconds) period of time.</b>
 <br><br>
-You will now complete a number of training trials so you can learn the difference between a long and short audio tone before the main experimental trials begin. These trials do not include swear words.
+You will first complete a number of training trials designed to teach you the difference between a long and short audio tone. These trials do not include swear words.
 <br><br>
 When you are ready to start, please press 'Start' below.</p>",,
-402 to 441,tp_training,,user,,,Training,off,,,,
+530 to 569,tp_training,,user,,,Training,off,,,,
 0,task_bookend,,user,Start,,off,off,End of training trials,"<p>You are about to start the main experimental trials. These include swear words.
 <br><br>
-<b>These trials are exactly the same as the training trials you have just completed except:
+<b>These trials work in the same way as the training trials you have just completed. However...
 <br><br>
 (1) The length of the audio tone between the words now differs<br> 
-(2) Some trials do not have a spoken or written word before/after the audio tone.
+(2) Some trials do not have a spoken or written word
 <br><br>
-Once again, you simply have to listen how long the tone lasts for. But, you then need to decide if it was closer in length to the 'long' or 'short' trials from the training phase you just completed. If you think it was closer to the 0.5 second 'short' tone, click the 'Short' button but if you think it was closer to the 1.5 seconds 'long' tone, click the 'Long' button.</b>
+Once again, you just have to listen how long the tone lasts. But, you then need to decide if it was closer to the 'long' or 'short' trials from the training phase. If you think it was closer to the 0.5 second 'short' tone, click the 'Short' button or if you think it was closer to the 1.5 seconds 'long' tone, click the 'Long' button.</b>
 <br><br>
-As a reminder: you will initially see a cross in the centre of the screen (which you should focus on). The cross may then be replaced by a written word and you may hear another word read out. After this, a horizontal line will appear on screen and a single audio tone will play. When the tone stops, any initial written or spoken words will be repeated. You will then be given the same two response buttons (short and long).
+As a reminder: you initially see a cross in the centre of the screen (which you should focus on). The cross may be replaced by a written word and you may hear another word read out. After this, a horizontal line will appear and a single audio tone will play. When the tone ends, any initial written or spoken words will be repeated. You will then be given the two response buttons (short and long).
 <br><br>
-The task is broken up into several blocks of trials and you will be given the option of a break between blocks. When you are ready to start the experimental trials, please click 'Start' below.
-</p>",0,
-2 to 101,tp_maintask,,user,,,Experiment,Block 1,,,0,
-0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the first block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",0,
-102 to 201,tp_maintask,,user,,,Experiment,Block 2,,,0,
-0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the second block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",0,
-202 to 301,tp_maintask,,user,,,Experiment,Block 3,,,0,
-0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the third block, you may now have a break if you wish. When you are ready to start the final block please press <b>Continue</b> below.</p>",0,
-302 to 401,tp_maintask,,user,,,Experiment,Block 4,,,0,
+The task is broken up into several blocks and you will be given a break between blocks. When you are ready to start the experimental trials, please click 'Start' below.
+</p>",,
+2 to 133,tp_maintask,,user,,,Experiment,Block 1,,,,
+0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the first block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",,
+134 to 265,tp_maintask,,user,,,Experiment,Block 2,,,,
+0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the second block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",,
+266 to 397,tp_maintask,,user,,,Experiment,Block 3,,,,
+0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the third block, you may now have a break if you wish. When you are ready to start the final block please press <b>Continue</b> below.</p>",,
+398 to 529,tp_maintask,,user,,,Experiment,Block 4,,,,
 0,task_bookend,,user,Next,,off,off,End of Experimental Trials,"<p>Thank you for completing the fourth block, you have now completed all blocks within this task. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",,
-442 to 481,tp_valence,,user,,,Valence,off,,,,
+570 to 625,tp_valence,,user,,,Valence,off,,,,
 0,task_bookend,,user,Continue,,off,off,End of Valence Ratings,"<p>Thank you for completing the valence ratings. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",,
-442 to 481,tp_arousal,,user,,,Arousal,off,,,,
+570 to 625,tp_arousal,,user,,,Arousal,off,,,,
+0,task_bookend,,user,Continue,,off,off,End of Arousal Ratings,"<p>Thank you for completing the arousal ratings. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",,
+570 to 625,tp_category,,user,,,Category,off,,,,
 0,tp_dataquality,,user,,,off,off,Audio Level Check,Thank you for making the previous ratings. We now just need to record the audio level you used during the study so that we can control for any effect of different audio levels between participants from affecting our results. To run this check simply click the button below.,,
 0,upload_data,,12,,Uploading REDCap Markers,off,off,,,,
 0,tp_debrief,,user,Curse Words and the Clock: How Expletives Alter Our Sense of Time,,off,off,,,,
