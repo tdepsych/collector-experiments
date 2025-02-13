@@ -22,7 +22,7 @@ console.log(""wrong key pressed"");
 }
 });
 </script>",0,
-0,bart_ah,,user,{BART},,,Non-Taboo,,,0,
+0,bart_ah,,user,{BART},,,Non-Taboo,,,,
 0,task_bookend,,user,{LDT},,,Non-Taboo,Lexical Decision Task,"<p>Thank you for completing the BART task.  On the next page you will initially see a cross in the centre of the screen that will then be replaced with a word.<br>Once the word appears, you have <b>2 seconds</b> to decide whether the word <b>rhymes with the word you repeated out loud for 20 seconds before the previous balloon inflation task</b> and press a corresponding key. <br><br><b>&bull; If the
   word <span  style=""color:blue;""><u><em>rhymes</em></u> you should press P</b></span><br><b>&bull; If the word <span style=""color:red;""><u><em>does not   rhyme</em></u> press Q</b></span><br><br>Please position your index fingers over the required P and Q keys, as shown below before starting. <br><br>Initially, you will have
   <b>10 practice trials</b> which will provide you with feedback as to whether you response was correct or not. <br><br>When you are ready and positioned your fingers as shown, press the <b>Spacebar</b> with your thumb to start the task.</p><br><br><img
