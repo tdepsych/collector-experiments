@@ -30,6 +30,7 @@
   var url_array = initial_url.split('sona=');
   var sonaID = url_array[1];
   var updated_url = '{{text}}' + sonaID;
+  
   $("#sona_btn").attr("href", updated_url)
   //appropriate_message("Your SONA");
   Phase.set_timer(function(){
@@ -40,5 +41,9 @@
       // do nothing
     }  
   },0)
+  
+  $("#sona_btn").click(function() {
+    appropriate_message("Thank you for completing the experiment and collecting your credit. You may now close this browser window.");
+  });
 </script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
