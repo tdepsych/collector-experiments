@@ -16,7 +16,7 @@ Within the next task, you will initially see a cross in the centre of the screen
 You will first complete a number of training trials designed to teach you the difference between a long and short audio tone. These trials do not include swear words.
 <br><br>
 When you are ready to start, please press 'Start' below.</p>",,
-530 to 569,tp_training,,user,,,Training,off,,,,
+527 to 566,tp_training,,user,,,Training,off,,,,
 0,task_bookend,,user,Start,,off,off,End of training trials,"<p>You are about to start the main experimental trials. These include swear words.
 <br><br>
 <b>These trials work in the same way as the training trials you have just completed. However...
@@ -30,19 +30,19 @@ As a reminder: you initially see a cross in the centre of the screen (which you 
 <br><br>
 The task is broken up into several blocks and you will be given a break between blocks. When you are ready to start the experimental trials, please click 'Start' below.
 </p>",,
-2 to 133,tp_maintask,,user,,,Experiment,Block 1,,,,
+2 to 132,tp_maintask,,user,,,Experiment,Block 1,,,,
 0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the first block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",,
-134 to 265,tp_maintask,,user,,,Experiment,Block 2,,,,
+133 to 264,tp_maintask,,user,,,Experiment,Block 2,,,,
 0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the second block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",,
-266 to 397,tp_maintask,,user,,,Experiment,Block 3,,,,
+265 to 395,tp_maintask,,user,,,Experiment,Block 3,,,,
 0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the third block, you may now have a break if you wish. When you are ready to start the final block please press <b>Continue</b> below.</p>",,
-398 to 529,tp_maintask,,user,,,Experiment,Block 4,,,,
+396 to 526,tp_maintask,,user,,,Experiment,Block 4,,,,
 0,task_bookend,,user,Next,,off,off,End of Experimental Trials,"<p>Thank you for completing the fourth block, you have now completed all blocks within this task. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",,
-570 to 625,tp_valence,,user,,,Valence,off,,,,
+567 to 622,tp_valence,,user,,,Valence,off,,,,
 0,task_bookend,,user,Continue,,off,off,End of Valence Ratings,"<p>Thank you for completing the valence ratings. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",,
-570 to 625,tp_arousal,,user,,,Arousal,off,,,,
+567 to 622,tp_arousal,,user,,,Arousal,off,,,,
 0,task_bookend,,user,Continue,,off,off,End of Arousal Ratings,"<p>Thank you for completing the arousal ratings. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",,
-570 to 625,tp_category,,user,,,Category,off,,,,
+567 to 622,tp_category,,user,,,Category,off,,,,
 0,tp_dataquality,,user,,,off,off,Audio Level Check,Thank you for making the previous ratings. We now just need to record the audio level you used during the study so that we can control for any effect of different audio levels between participants from affecting our results. To run this check simply click the button below.,,
 0,upload_data,,12,,Uploading REDCap Markers,off,off,,,,
 0,tp_debrief,,user,Curse Words and the Clock: How Expletives Alter Our Sense of Time,,off,off,,,,

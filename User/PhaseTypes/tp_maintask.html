@@ -42,6 +42,7 @@
 </style>
 <body class="no_mouse">
   <input type='hidden' id='response' name='response'/>
+  <input type="hidden" id="sync-issue-flag" name="sync_issue" value="0">
   
   <!--HTML-->
   <p id="fixation">+</p>
@@ -67,79 +68,126 @@
     var delay = '{{delay}}';
 
     var baselineTime;
-      Phase.set_timer(function() {
-      baselineTime = Date.now();
+    var sync_issue = false;  // Flag for timing errors
+    var expectedTimes = {};  // Object to track expected timestamps
+
+    Phase.set_timer(function() {
+        baselineTime = Date.now();
+        $("#sync-issue-flag").val("0"); // Reset flag at start of trial
     }, 0);
-    
+
     var runtime = Number(500);
-    
+
     if (visual == "Control") {
-      $('#stimuli_text').html("");
+        $('#stimuli_text').html("");
     }
-    
+
     // Hide the fixation cross and display the first bookend stimuli
     Phase.set_timer(function() {
-      $('#fixation').hide();
-      $('#stimuli_text').show();
-      $('#stimuli_audio')[0].play();
+        $('#fixation').hide();
+        $('#stimuli_text').show();
+        if (audio !== "control") {
+            $('#stimuli_audio')[0].play();
+        }
+        expectedTimes.bookend1Start = Date.now();  // Store expected start time
     }, runtime);
-      
-    // Update the runtime to add the required audio_time to the the fixation cross display time (with a tiny bit extra added on so the change isn't so jarring)
-    runtime = Number(audio_time) + 525;
-    
-    // Hide the bookend stmuli and play the time delay tone / show the visual dash
+
+    // Update runtime to include audio duration
+    runtime += Number(audio_time) + 525;
+
+    // Hide bookend stimuli and play delay tone
     Phase.set_timer(function() {
-      $('#stimuli_text').hide();
-      $('#delay_text').show();
-      $('#delay_audio')[0].play();
+        $('#stimuli_text').hide();
+        $('#delay_text').show();
+        $('#delay_audio')[0].play();
+        expectedTimes.delayStart = Date.now();
     }, runtime);
-    
-    // Update the runtime to add the required delay between audio bookends
-    runtime = Number(delay) + Number(runtime);
-    
-    // Stop the time delay tone and hide the visual dash
+
+    // Update runtime to include delay duration
+    runtime += Number(delay);
+
+    // Stop delay tone and hide visual dash
     Phase.set_timer(function() {
-      $('#delay_text').hide();
-      $('#delay_audio')[0].pause();
+        $('#delay_text').hide();
+        $('#delay_audio')[0].pause();
+        $('#delay_audio')[0].currentTime = 0; // Ensure reset
+        expectedTimes.delayEnd = Date.now();
     }, runtime);
-    
-    // Add a tiny little delay so the change isn't jarring
-    runtime = Number(runtime) + 25;
-    
-    // Redisplay the bookend stimuli
+
+    runtime += 25; // Small buffer for smoother transition
+
+    // Redisplay bookend stimuli
     Phase.set_timer(function() {
-      $('#stimuli_text').show();
-      $('#stimuli_audio')[0].play();
+        $('#stimuli_text').show();
+        if (audio !== "control_m" && audio !== "control_f") {
+            $('#stimuli_audio')[0].play();
+        }
+        expectedTimes.bookend2Start = Date.now();
     }, runtime);
-    
-    // Update the runtime to add the required audio_time
-    runtime = Number(audio_time) + runtime;
-    
-    // Hide the bookend stimuli 
+
+    runtime += Number(audio_time);
+
+    // Hide bookend stimuli
     Phase.set_timer(function() {
-      $('#stimuli_text').hide();
+        $('#stimuli_text').hide();
+        expectedTimes.bookend2End = Date.now();
     }, runtime);
-    
-    // Add a tiny little delay so the change isn't jarring
-    runtime = Number(runtime) + 25;
-    
-    // Display the response opton buttons
+
+    runtime += 25; // Small buffer
+
+    // Display response option buttons
     Phase.set_timer(function() {
-      $('body').removeClass('no_mouse');
-      $('#response_options').show();
+        $('body').removeClass('no_mouse');
+        $('#response_options').show();
+        checkSync(); // Check if timings were off
     }, runtime);
-    
-    // Response "Short" - Update the hidden input and end the trials
-    $('#response_short').click(function(){
-      $('#response').val('short');
-      Phase.submit();
-    });
-    
-    // Response "LongShort" - Update the hidden input and end the trials
-    $('#response_long').click(function(){
-      $('#response').val('long');
-      Phase.submit();
+
+    // Response "Short" - Update input & submit
+    $('#response_short').click(function() {
+        $('#response').val('short');
+        Phase.submit();
     });
 
-  </script>
+    // Response "Long" - Update input & submit
+    $('#response_long').click(function() {
+        $('#response').val('long');
+        Phase.submit();
+    });
+
+    // Function to check sync issues
+    function checkSync() {
+        let errorMessages = [];
+
+        // Expected time calculations (assuming `baselineTime` was accurate)
+        let expectedBookend1Start = baselineTime + 500;
+        let expectedDelayStart = expectedBookend1Start + Number(audio_time) + 525;
+        let expectedDelayEnd = expectedDelayStart + Number(delay);
+        let expectedBookend2Start = expectedDelayEnd + 25;
+        let expectedBookend2End = expectedBookend2Start + Number(audio_time);
+
+        // Check for mismatches
+        if (Math.abs(expectedTimes.bookend1Start - expectedBookend1Start) > 50) {
+            errorMessages.push("Bookend 1 timing mismatch.");
+        }
+        if (Math.abs(expectedTimes.delayStart - expectedDelayStart) > 50) {
+            errorMessages.push("Delay tone timing mismatch.");
+        }
+        if (Math.abs(expectedTimes.delayEnd - expectedDelayEnd) > 50) {
+            errorMessages.push("Delay tone end timing mismatch.");
+        }
+        if (Math.abs(expectedTimes.bookend2Start - expectedBookend2Start) > 50) {
+            errorMessages.push("Bookend 2 timing mismatch.");
+        }
+        if (Math.abs(expectedTimes.bookend2End - expectedBookend2End) > 50) {
+            errorMessages.push("Bookend 2 disappearance timing mismatch.");
+        }
+
+        // If any errors were detected, set sync_issue flag
+        if (errorMessages.length > 0) {
+            sync_issue = true;
+            $("#sync-issue-flag").val("1"); // Mark trial as problematic
+            console.warn("Trial sync issue detected:", errorMessages);
+        }
+    }
+</script>
 </body>
