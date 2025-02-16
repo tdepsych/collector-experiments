@@ -60,9 +60,9 @@
  * These fields are removed when sending pii data to redcap
 */
   parent.parent.pii_remove_fields = [
-    "condition_name",
-    "condition_procedure",
-    "condition_stimuli",
+    // "condition_name",
+    // "condition_procedure",
+    // "condition_stimuli",
     "notes",
     "participant_browser",
     "phase_number",
