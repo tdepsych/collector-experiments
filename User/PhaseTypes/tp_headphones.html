@@ -1,0 +1,46 @@
+<!-- Time Perception -->
+<!--
+---development---
+[
+{'task_body_text':'Let us know if you had any!'}
+]
+---development---
+-->
+<style>
+  body, html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #headphonesImg {
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 15px;
+  }
+  .card {
+    width: 100%;
+    max-width: 400px;
+  }
+  p {
+    text-align: center;
+  }
+</style>
+<input type="hidden" name="data_quality" id="data_quality" value="" />
+<div class="card">
+  <div class="card-header text-primary"><h2>Please use headphones</h2></div>
+  <div class="card-body">
+    <img id="headphonesImg" src="../../collector-experiments/User/Assets/timeperception/headphones.svg" />
+        <p>This study involves seeing and hearing 28 uncensored swear words (words that are considered socially unacceptable, e.g., cunt).<br><br><b>We would strongly suggest that you complete this study in private using a pair or headphones/ear buds.</b><br><br>When you are ready to continue,<br>please click 'Next' below.</p>
+  </div>
+  <div class="card-footer text-center"><button type="button" class="btn btn-primary" id="submitButton">Next</button></div>
+</div>
+
+<script>
+
+
+  $('#submitButton').click(function() {
+    Phase.submit();
+  });
+</script>

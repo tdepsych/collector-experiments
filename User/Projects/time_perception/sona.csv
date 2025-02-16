@@ -1,6 +1,7 @@
 item,phasetype,survey,max_time,text,notes,shuffle_1,shuffle_2,task_title,task_body_text,weight,
 0,offline,,user,,,off,off,STUDY TEMPORARILY OFFLINE,We're really sorry but the study isn't available at the moment. The program used to run this study has had an update which has broken the data storage within this study. We are very sorry that you cannot complete the study at this time.,0,
 0,intro_static,,user,Welcome,no_mobile,off,off,,,,
+0,tp_headphones,,user,,,off,off,,,,
 0,tp_multimedia,,user,,,off,off,,,,
 0,zoom_check,,user,,,off,off,,,,
 0,tp_infoconsent,,user,Curse Words and the Clock: How Expletives Alter Our Sense of Time,,off,off,,,,
