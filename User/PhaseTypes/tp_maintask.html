@@ -42,7 +42,7 @@
 </style>
 <body class="no_mouse">
   <input type='hidden' id='response' name='response'/>
-  <input type="hidden" id="sync-issue-flag" name="sync_issue" value="0">
+  <input type="hidden" id="sync-issue" name="sync_issue" value="0">
   
   <!--HTML-->
   <p id="fixation">+</p>
@@ -73,7 +73,7 @@
 
     Phase.set_timer(function() {
         baselineTime = Date.now();
-        $("#sync-issue-flag").val("0"); // Reset flag at start of trial
+        $("#sync-issue").val("0"); // Reset flag at start of trial
     }, 0);
 
     var runtime = Number(500);
@@ -185,7 +185,7 @@
         // If any errors were detected, set sync_issue flag
         if (errorMessages.length > 0) {
             sync_issue = true;
-            $("#sync-issue-flag").val("1"); // Mark trial as problematic
+            $("#sync-issue").val("1"); // Mark trial as problematic
             console.warn("Trial sync issue detected:", errorMessages);
         }
     }
