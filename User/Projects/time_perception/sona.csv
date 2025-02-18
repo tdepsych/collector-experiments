@@ -22,12 +22,18 @@ You will first complete a number of training trials designed to teach you the di
 When you are ready to start, please press 'Start' below.</p>
 <script>
   $(document).ready(function() {
-    // Define the audio source
+    // Define the audio source.
     var audioSrc = ""../../collector-experiments/User/Assets/timeperception/audio/200.mp3"";
     
-    // When the ""Short"" button is clicked, play the audio for 400ms
+    // Preload the audio by creating a template audio element.
+    var audioTemplate = new Audio(audioSrc);
+    audioTemplate.preload = ""auto"";
+    audioTemplate.load();
+    
+    // When the ""Short"" button is clicked, play the audio for 400ms.
     $(""#response_short"").on(""click"", function() {
-      var audio = new Audio(audioSrc);
+      // Clone the preloaded audio element so that it's ready to play immediately.
+      var audio = audioTemplate.cloneNode(true);
       audio.play();
       setTimeout(function() {
         audio.pause();
@@ -35,9 +41,9 @@ When you are ready to start, please press 'Start' below.</p>
       }, 400);
     });
     
-    // When the ""Long"" button is clicked, play the audio for 1600ms
+    // When the ""Long"" button is clicked, play the audio for 1600ms.
     $(""#response_long"").on(""click"", function() {
-      var audio = new Audio(audioSrc);
+      var audio = audioTemplate.cloneNode(true);
       audio.play();
       setTimeout(function() {
         audio.pause();
@@ -46,6 +52,7 @@ When you are ready to start, please press 'Start' below.</p>
     });
   });
 </script>
+
 ",,
 527 to 566,tp_training,,user,,,Training,off,,,,
 0,task_bookend,,user,Start,,off,off,End of training trials,"<p>You are about to start the main experimental trials. These include swear words.
