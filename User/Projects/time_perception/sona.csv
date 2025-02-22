@@ -9,9 +9,9 @@ item,phasetype,survey,max_time,text,notes,shuffle_1,shuffle_2,task_title,task_bo
 0,offline,,user,,,off,off,YOU CANNOT CONTINUE,"We're really sorry but the study is only recruiting native English speakers.<br><br>As you indicated that you are not a native English speaker we cannot allow you to continue.<br><br>To end the experiment, simply close your browser window.",,
 0,task_bookend,,user,Start,,off,off,Time Perception,"<p>This study is investigation how people's perception of the passing of time changes within a situation.
 <br><br>
-Within the next task, you will initially see a cross in the centre of the screen to direct your gaze. The cross will be replaced by a written word while you hear another word read out. Once the spoken word has been read out, the word on the screen will be replaced by a straight line and you will hear a constant audio tone. This tone will last for either 1.5 seconds (a long period) or 0.5 seconds (a short period). The tone will only be one of these two options. When the tone ends, the initial pair of words you saw/heard will be repeated. After that repetition, you will be presented with two response buttons.
+Within the next task, you will initially see a cross in the centre of the screen to direct your gaze. The cross will be replaced by either a written word, a spoken word, or both togehter. Once the initial word(s) have appeared, a straight line will appear on the screen and a constant audio tone will play. This tone will last for either 1.5 seconds (a long period) or 0.5 seconds (a short period). The tone will only be one of these two options. When the tone ends, the word(s) you saw/heard will be repeated. After that repetition, you will be presented with two response buttons.
 <br><br>
-<b>All you have to do is state whether the audio tone you heard between the words lasted for a long (1.5 seconds) or short (0.5 seconds) period of time.</b>
+<b>All you have to do is state whether the audio tone you heard lasted for a long (1.5 seconds) or short (0.5 seconds) period of time.</b>
 <br><br>
 To hear each tone before you start, please click the button below.<br><br>
 <button id=""response_short"" class=""btn btn-outline-primary btn-sm me-3"">Short</button>
@@ -51,20 +51,17 @@ When you are ready to start, please press 'Start' below.</p>
       }, 1600);
     });
   });
-</script>
-
-",,
+</script>",,
 527 to 566,tp_training,,user,,,Training,off,,,,
-0,task_bookend,,user,Start,,off,off,End of training trials,"<p>You are about to start the main experimental trials. These include swear words.
+0,task_bookend,,user,Start,,off,off,End of training trials,"<p>You are about to start the main experimental trials which do include swear words.
 <br><br>
-<b>These trials work in the same way as the training trials you have just completed. However...
+<b>These trials work in the same way as the training trials you have just completed. However, the audio tone now differs in length.
+<br> 
+
 <br><br>
-(1) The length of the audio tone between the words now differs<br> 
-(2) Some trials do not have a spoken or written word
+Rather than deciding whether the audio tone played between the pair of words you see/hear was 'long' or 'short' in duration, you now must decide if the audio tone was closer to the 'long' or to the 'short' tone you heard during the previous training phase. If you think it was closer to the 0.5 second 'short' tone, click the 'Short' button or if you think it was closer to the 1.5 seconds 'long' tone, click the 'Long' button.</b>
 <br><br>
-Rather than simply deciding whether the audio tone played between the pair of words you see/hear was 'long' or 'short' in duration, this time you just need to decide if the audio tone was closer to the 'long' or closer to the 'short' tone you heard during the training phase. If you think it was closer to the 0.5 second 'short' tone, click the 'Short' button or if you think it was closer to the 1.5 seconds 'long' tone, click the 'Long' button.</b>
-<br><br>
-As a reminder: you initially see a cross in the centre of the screen (which you should focus on). The cross may be replaced by a written word and you may hear another word read out. After this, a horizontal line will appear and a single audio tone will play. When the tone ends, any initial written or spoken words will be repeated. You will then be given the two response buttons (short and long).
+As a reminder: you will initially see a cross in the centre of the screen (which you should focus on). The cross may be replaced by a written word and/or you may hear another word read out. After this, a horizontal line will appear and a single audio tone will play. When the tone ends, any initial written or spoken words will be repeated. You will then be given the two response buttons (short and long).
 <br><br>
 The task is broken up into several blocks and you will be given a break between blocks. When you are ready to start the experimental trials, please click 'Start' below.
 </p>",,
