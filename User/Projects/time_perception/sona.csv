@@ -1,12 +1,12 @@
 item,phasetype,survey,max_time,text,notes,shuffle_1,shuffle_2,task_title,task_body_text,weight,
-0,offline,,user,,,off,off,STUDY TEMPORARILY OFFLINE,We're really sorry but the study isn't available at the moment. The program used to run this study has had an update which has broken the data storage within this study. We are very sorry that you cannot complete the study at this time.,0,
-0,intro_static,,user,Welcome,no_mobile,off,off,,,,
-0,tp_headphones,,user,,,off,off,,,,
-0,tp_multimedia,,user,,,off,off,,,,
-0,zoom_check,,user,,,off,off,,,,
-0,tp_infoconsent,,user,Curse Words and the Clock: How Expletives Alter Our Sense of Time,,off,off,,,,
-0,tp_demo,,user,50,,off,off,,,,
-0,offline,,user,,,off,off,YOU CANNOT CONTINUE,"We're really sorry but the study is only recruiting native English speakers.<br><br>As you indicated that you are not a native English speaker we cannot allow you to continue.<br><br>To end the experiment, simply close your browser window.",,
+0,offline,,user,,,off,off,Study Offline!,"We're sorry but the study is currently offline as the University is conducting a major upgrade to the database used to store the experimental data.<br><br>The update is expected to take all day, with the experiment unlikely to be available before 6pm.<br>Please try again after then. We shall update this message if the upgrade takes longer than expected.",,
+0,intro_static,,user,Welcome,no_mobile,off,off,,,0,
+0,tp_headphones,,user,,,off,off,,,0,
+0,tp_multimedia,,user,,,off,off,,,0,
+0,zoom_check,,user,,,off,off,,,0,
+0,tp_infoconsent,,user,Curse Words and the Clock: How Expletives Alter Our Sense of Time,,off,off,,,0,
+0,tp_demo,,user,50,,off,off,,,0,
+0,offline,,user,,,off,off,YOU CANNOT CONTINUE,"We're really sorry but the study is only recruiting native English speakers.<br><br>As you indicated that you are not a native English speaker we cannot allow you to continue.<br><br>To end the experiment, simply close your browser window.",0,
 0,task_bookend,,user,Start,,off,off,Time Perception,"<p>This study is investigation how people's perception of the passing of time changes within a situation.
 <br><br>
 Within the next task, you will initially see a cross in the centre of the screen to direct your gaze. The cross will be replaced by either a written word, a spoken word, or both togehter. Once the initial word(s) have appeared, a straight line will appear on the screen and a constant audio tone will play. This tone will last for either 1.5 seconds (a long period) or 0.5 seconds (a short period). The tone will only be one of these two options. When the tone ends, the word(s) you saw/heard will be repeated. After that repetition, you will be presented with two response buttons.
@@ -51,8 +51,8 @@ When you are ready to start, please press 'Start' below.</p>
       }, 1600);
     });
   });
-</script>",,
-527 to 566,tp_training,,user,,,Training,off,,,,
+</script>",0,
+527 to 566,tp_training,,user,,,Training,off,,,0,
 0,task_bookend,,user,Start,,off,off,End of training trials,"<p>You are about to start the main experimental trials which do include swear words.
 <br><br>
 <b>These trials work in the same way as the training trials you have just completed. However, the audio tone now differs in length.
@@ -64,21 +64,21 @@ Rather than deciding whether the audio tone played between the pair of words you
 As a reminder: you will initially see a cross in the centre of the screen (which you should focus on). The cross may be replaced by a written word and/or you may hear another word read out. After this, a horizontal line will appear and a single audio tone will play. When the tone ends, any initial written or spoken words will be repeated. You will then be given the two response buttons (short and long).
 <br><br>
 The task is broken up into several blocks and you will be given a break between blocks. When you are ready to start the experimental trials, please click 'Start' below.
-</p>",,
-2 to 132,tp_maintask,,user,,,Experiment,Block 1,,,,
-0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the first block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",,
-133 to 264,tp_maintask,,user,,,Experiment,Block 2,,,,
-0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the second block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",,
-265 to 395,tp_maintask,,user,,,Experiment,Block 3,,,,
-0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the third block, you may now have a break if you wish. When you are ready to start the final block please press <b>Continue</b> below.</p>",,
-396 to 526,tp_maintask,,user,,,Experiment,Block 4,,,,
-0,task_bookend,,user,Next,,off,off,End of Experimental Trials,"<p>Thank you for completing the fourth block, you have now completed all blocks within this task. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",,
-567 to 622,tp_valence,,user,,,Valence,off,,,,
-0,task_bookend,,user,Continue,,off,off,End of Valence Ratings,"<p>Thank you for completing the valence ratings. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",,
-567 to 622,tp_arousal,,user,,,Arousal,off,,,,
-0,task_bookend,,user,Continue,,off,off,End of Arousal Ratings,"<p>Thank you for completing the arousal ratings. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",,
-567 to 622,tp_category,,user,,,Category,off,,,,
-0,tp_dataquality,,user,,,off,off,Audio Level Check,Thank you for making the previous ratings. We now just need to record the audio level you used during the study so that we can control for any effect of different audio levels between participants from affecting our results. To run this check simply click the button below.,,
-0,upload_data,,12,,Uploading REDCap Markers,off,off,,,,
-0,tp_debrief,,user,Curse Words and the Clock: How Expletives Alter Our Sense of Time,,off,off,,,,
-0,sona,,user,https://rdg-psychology.sona-systems.com/webstudy_credit.aspx?experiment_id=3200&credit_token=0fdd52e9a17d4495b09c11b1a512f873&survey_code=,,off,off,Save Data & Gain Credit,"Thank you for completing the study, we really do appreciate you taking the time to do so. Before you close the study, there are two things left to do:<br><br><b>(1) Save your data</b><br>If we could ask you to download your data by clicking the button below and saving it to your computer. This will ensure that, as this study was run online, if there were any issues with your data uploading to the server we can use the saved file to manually add your data to the final dataset, ensuring your time wasn't  wasted and/or the results of our study impacted (and you get to see what a raw data file actually looks like!). If you haven't heard from us within one month, feel free to delete the file from your computer as it will mean everything uploaded correctly.<br/><br><button class=""btn btn-primary"" id=""Save"">💾 Please Save Your Data 💾 </button><br/><br><span style=""opacity: 0.75;font-size: 15px;font-style: italic;"">Note: If the button doesn't work for any reason, you can save your data by pressing Ctrl+S (Cmd+S on a Mac)</span>. <br/><br/><b>(2) Gain SONA Credit</b><br>If you received a pop-up message above about your SONA ID not being stored correctly, or there is no button below, please email <a href=""mailto:c.g.dobson@pgr.reading.ac.uk"">c.g.dobson@pgr.reading.ac.uk</a> to let Chris know you've completed the study and he will award you your credit manually. Otherwise, simply click the button below to return to SONA and automatically receive your credit.",,
+</p>",0,
+2 to 132,tp_maintask,,user,,,Experiment,Block 1,,,0,
+0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the first block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",0,
+133 to 264,tp_maintask,,user,,,Experiment,Block 2,,,0,
+0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the second block, you may now have a break if you wish. When you are ready to start the next block please press <b>Continue</b> below.</p>",0,
+265 to 395,tp_maintask,,user,,,Experiment,Block 3,,,0,
+0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the third block, you may now have a break if you wish. When you are ready to start the final block please press <b>Continue</b> below.</p>",0,
+396 to 526,tp_maintask,,user,,,Experiment,Block 4,,,0,
+0,task_bookend,,user,Next,,off,off,End of Experimental Trials,"<p>Thank you for completing the fourth block, you have now completed all blocks within this task. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",0,
+567 to 622,tp_valence,,user,,,Valence,off,,,0,
+0,task_bookend,,user,Continue,,off,off,End of Valence Ratings,"<p>Thank you for completing the valence ratings. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",0,
+567 to 622,tp_arousal,,user,,,Arousal,off,,,0,
+0,task_bookend,,user,Continue,,off,off,End of Arousal Ratings,"<p>Thank you for completing the arousal ratings. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",0,
+567 to 622,tp_category,,user,,,Category,off,,,0,
+0,tp_dataquality,,user,,,off,off,Audio Level Check,Thank you for making the previous ratings. We now just need to record the audio level you used during the study so that we can control for any effect of different audio levels between participants from affecting our results. To run this check simply click the button below.,0,
+0,upload_data,,12,,Uploading REDCap Markers,off,off,,,0,
+0,tp_debrief,,user,Curse Words and the Clock: How Expletives Alter Our Sense of Time,,off,off,,,0,
+0,sona,,user,https://rdg-psychology.sona-systems.com/webstudy_credit.aspx?experiment_id=3200&credit_token=0fdd52e9a17d4495b09c11b1a512f873&survey_code=,,off,off,Save Data & Gain Credit,"Thank you for completing the study, we really do appreciate you taking the time to do so. Before you close the study, there are two things left to do:<br><br><b>(1) Save your data</b><br>If we could ask you to download your data by clicking the button below and saving it to your computer. This will ensure that, as this study was run online, if there were any issues with your data uploading to the server we can use the saved file to manually add your data to the final dataset, ensuring your time wasn't  wasted and/or the results of our study impacted (and you get to see what a raw data file actually looks like!). If you haven't heard from us within one month, feel free to delete the file from your computer as it will mean everything uploaded correctly.<br/><br><button class=""btn btn-primary"" id=""Save"">💾 Please Save Your Data 💾 </button><br/><br><span style=""opacity: 0.75;font-size: 15px;font-style: italic;"">Note: If the button doesn't work for any reason, you can save your data by pressing Ctrl+S (Cmd+S on a Mac)</span>. <br/><br/><b>(2) Gain SONA Credit</b><br>If you received a pop-up message above about your SONA ID not being stored correctly, or there is no button below, please email <a href=""mailto:c.g.dobson@pgr.reading.ac.uk"">c.g.dobson@pgr.reading.ac.uk</a> to let Chris know you've completed the study and he will award you your credit manually. Otherwise, simply click the button below to return to SONA and automatically receive your credit.",0,
