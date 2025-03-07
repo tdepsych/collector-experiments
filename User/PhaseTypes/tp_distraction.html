@@ -1,0 +1,42 @@
+<!-- Time Perception - Distraction -->
+<!--
+---development---
+[
+{'task_body_text':'Let us know if you had any!'}
+]
+---development---
+-->
+<style>
+  body, html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #distractionImg {
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 15px;
+  }
+  .card {
+    width: 100%;
+    max-width: 500px;
+  }
+  p {
+    text-align: center;
+  }
+</style>
+<div class="card">
+  <div class="card-header text-primary"><h2>Please remove any distractions</h2></div>
+  <div class="card-body">
+    <img id="distractionImg" src="../../collector-experiments/User/Assets/timeperception/distraction.svg" />
+        <p>This study involves you having to complete a number of trials during the main task. We can see if you are distracted during this based upon the time it takes for you to complete each trial. If it appears that you were distracted by something, for example looking at your phone or replying to a message, we have to exclude your data from our analyses.<br><br>As a result, we kindly ask that you switch off your phone (or place it in a different room) and close down any applications on your computer that might distract you while you complete the study.<br><br>When you are ready to continue,<br>please click 'Next' below.</p>
+  </div>
+  <div class="card-footer text-center"><button type="button" class="btn btn-primary" id="submitButton">Next</button></div>
+</div>
+<script>
+  $('#submitButton').click(function() {
+    Phase.submit();
+  });
+</script>
