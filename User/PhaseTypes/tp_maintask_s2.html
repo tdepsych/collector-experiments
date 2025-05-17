@@ -1,0 +1,141 @@
+<!-- Time Perception main trial setup study 2 (wording of response text is different to training) -->
+<!--
+---development---
+[
+{'visual':'motherfucker','audio':'Screw','voice':'f', 'delay':'1600'}
+]
+---development---
+-->
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+  }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  p {
+    max-width: 100%;
+    max-height: 100%;
+    font-size: 72pt;
+    font-family: "Times New Roman", Times, serif;
+    text-transform: uppercase;
+  }
+  #response_options  p {
+    max-width: 100%;
+    max-height: 100%;
+    font-size: 16pt;
+    font-family: "Times New Roman", Times, serif;
+    text-transform: none;
+  }
+  #stimuli_text, #delay_text, #response_options {
+    display: none;
+  }
+  .no_mouse{
+    cursor: none;
+  }
+</style>
+<body class="no_mouse">
+  <input type='hidden' id='response' name='response'/>
+  <input type="hidden" id="sync-issue" name="sync_issue" value="0">
+  
+  <!--HTML-->
+  <p id="fixation">+</p>
+  
+  <p id="stimuli_text">{{visual}}</p>
+  <audio id="stimuli_audio" src="../../collector-experiments/User/Assets/timeperception/audio/main_s2/{{audio}}_{{voice}}_{{delay}}.mp3"></audio>
+  
+  <div id="response_options" class="text-center">
+      <p>Was the audio tone closer in length to the short (0.5 second) or long (1.5 second) tone you heard during the training trials?</p>
+      <br><br>
+      <button id="response_short" class="btn btn-outline-primary btn-lg me-3">Short</button>
+      <button id="response_long" class="btn btn-outline-primary btn-lg">Long</button>
+</div>
+
+  <!--JAVASCRIPT-->
+  <script>
+    var audio = '{{audio}}';
+    var visual = '{{visual}}';
+    var audio_time = '{{delay}}';
+
+    var baselineTime;
+    var sync_issue = false;  // Still included if needed
+    var expectedTimes = {};  // Still included if needed
+
+    Phase.set_timer(function() {
+        baselineTime = Date.now();
+        $("#sync-issue").val("0"); // Reset flag at start of trial
+    }, 0);
+
+    var runtime = Number(500);
+    
+    // Remove the written text from control trials
+    if (visual == "Control") {
+      $('#stimuli_text').html("");
+    }
+
+    // Display initial visual stimulus
+    Phase.set_timer(function() {
+        $('#fixation').hide();
+        $('#stimuli_text').show();
+        if (audio !== "control") {
+            $('#stimuli_audio')[0].play();
+        }
+        expectedTimes.bookend1Start = Date.now();  // Optional: tracking timing
+    }, runtime);
+
+    // Duration of audio + short buffer
+    runtime += Number(audio_time) + 50;
+
+    // Hide the stimulus
+    Phase.set_timer(function() {
+        $('#stimuli_text').hide();
+        expectedTimes.bookend1End = Date.now();  // Optional
+    }, runtime);
+
+    runtime += 25;
+
+    // Show response options
+    Phase.set_timer(function() {
+        $('body').removeClass('no_mouse');
+        $('#response_options').show();
+        checkSync(); // Optional: keep or remove depending on timing needs
+    }, runtime);
+
+    // Response buttons
+    $('#response_short').click(function() {
+        $('#response').val('short');
+        Phase.submit();
+    });
+
+    $('#response_long').click(function() {
+        $('#response').val('long');
+        Phase.submit();
+    });
+
+    // Optional sync check function (can be removed if you no longer care about precise timing)
+    function checkSync() {
+        let errorMessages = [];
+        let expectedBookend1Start = baselineTime + 500;
+        let expectedBookend1End = expectedBookend1Start + Number(audio_time) + 50;
+
+        if (Math.abs(expectedTimes.bookend1Start - expectedBookend1Start) > 50) {
+            errorMessages.push("Bookend 1 timing mismatch.");
+        }
+        if (Math.abs(expectedTimes.bookend1End - expectedBookend1End) > 50) {
+            errorMessages.push("Bookend 1 end timing mismatch.");
+        }
+
+        if (errorMessages.length > 0) {
+            sync_issue = true;
+            $("#sync-issue").val("1");
+            console.warn("Trial sync issue detected:", errorMessages);
+        }
+    }
+</script>
+</body>
