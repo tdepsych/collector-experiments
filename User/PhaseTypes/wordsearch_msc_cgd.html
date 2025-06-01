@@ -344,7 +344,7 @@
   */
       var default_settings = {
         'directions': ['W', 'N', 'WN', 'EN'],
-        'gridSize': 20,
+        'gridSize': 30,
         'words': grid_stimuli,
         'wordsList' : [],
         'debug': false
@@ -828,5 +828,6 @@
   $.getScript("../../collector-experiments/User/Assets/Wordsearch/wordsearch_js_end.js");
 };
 
-Phase.set_timer(function(){createWordsearch()},0);
+// Phase.set_timer(function(){createWordsearch()},0);
+createWordsearch()
 </script>

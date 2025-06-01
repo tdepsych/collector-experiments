@@ -1,0 +1,442 @@
+{
+  "all_procs": {
+    "procedure_1.csv": "item,phasetype,survey,max_time,text,notes,shuffle_1,shuffle_2,task_title,task_body_text,weight,\r\n0,afw_intro,,user,Welcome,no_mobile,off,off,,,,\r\n0,tde_survey,afw_demo.csv,user,,,,,,,,\r\n0,afw_caffeine,,user,,,,,,,,\r\n0,afw_sleep,,user,,,,,,,,\r\n0,task_bookend,,user,Start Breakout,,,,Breakout Instructions,\"This just needs to be an explanation of the task, what the participant is trying to do, how long it will last etc.\",,\r\n0,breakout,,180,,,,,,,,\r\n0,task_bookend,,user,Start Questionnaires,,,,Post-game measures,\"This just needs to a short bit of text thanking the participant for playing the game, and just saying that they will now complete two questionnaires about how they found it.\",,\r\n0,tde_survey,post-tast_attention_scale.csv,user,,,q1,,,,,\r\n0,tde_survey,state_frustration_scale.csv,user,,,q1,,,,,\r\n0,task_bookend,,user,Start Word Search,,,,Word Search Instructions,\"This just needs to be an explanation of the task, what the participant is trying to do, how long it will last etc.\",,\r\n0,afw_wordsearch,,user,\"'Chair,Table,Spoon,Plate,Towel,Soap,Brush,Light,Clock,Pillow'\",,ws,,,,,\r\n0,task_bookend,,user,Start Questionnaires,,,,Post-game measures,\"This just needs to a short bit of text thanking the participant for playing the game, and just saying that they will now complete two questionnaires about how they found it.\",,\r\n0,tde_survey,post-tast_attention_scale.csv,user,,,q2,,,,,\r\n0,tde_survey,state_frustration_scale.csv,user,,,q2,,,,,\r\n0,task_bookend,,user,Start Tetris,,,,Tetris Instructions,\"This just needs to be an explanation of the task, what the participant is trying to do, how long it will last etc.\",,\r\n0,tetris,,180,,seconds,,,,,,\r\n0,task_bookend,,user,Start Questionnaires,,,,Post-game measures,\"This just needs to a short bit of text thanking the participant for playing the game, and just saying that they will now complete two questionnaires about how they found it.\",,\r\n0,tde_survey,post-tast_attention_scale.csv,user,,,q3,,,,,\r\n0,tde_survey,state_frustration_scale.csv,user,,,q3,,,,,\r\n0,task_bookend,,user,Start Word Search,,,,Word Search Instructions,\"This just needs to be an explanation of the task, what the participant is trying to do, how long it will last etc.\",,\r\n0,afw_wordsearch,,user,\"'Flind,Grolt,Brisp,Quamp,Throl,Sprun,Velmit,Drinle,Plashe,Worple'\",,ws,,,,,\r\n0,tde_survey,post-tast_attention_scale.csv,user,,,q4,,,,,\r\n0,tde_survey,state_frustration_scale.csv,user,,,q4,,,,,\r\n0,task_bookend,,user,,,,,End of Experimental Tasks,Thank you for completing everything. Let the researcher present know so you can be debriefed.,,"
+  },
+  "conditions": "name,notes,stimuli,procedure,fullscreen,welcome,participant_id,end_message,start_message,buffer,progress_bar,\r\naaliyah,You can put more detailed notes in this field,stimuli_1.csv,procedure_1.csv,on,,on,,,5,row,",
+  "all_stims": {
+    "stimuli_1.csv": "cue,answer\r\nA,Apple\r\nB,Banana"
+  },
+  "location": "tdepsych/collector-experiments/aaliyah",
+  "public_key": "ZIEuVRKYOLO6WwFULPPZwTRcHAjIYAjbIaCzNwwNLWc=",
+  "phasetypes": {
+    "afw_intro": "[[[LOCATION]]]../User/PhaseTypes/afw_intro.html",
+    "tde_survey": "[[[LOCATION]]]../User/PhaseTypes/tde_survey.html",
+    "afw_caffeine": "[[[LOCATION]]]../User/PhaseTypes/afw_caffeine.html",
+    "afw_sleep": "[[[LOCATION]]]../User/PhaseTypes/afw_sleep.html",
+    "task_bookend": "[[[LOCATION]]]../User/PhaseTypes/task_bookend.html",
+    "breakout": "[[[LOCATION]]]../User/PhaseTypes/breakout.html",
+    "afw_wordsearch": "[[[LOCATION]]]../User/PhaseTypes/afw_wordsearch.html",
+    "tetris": "[[[LOCATION]]]../User/PhaseTypes/tetris.html"
+  },
+  "surveys": {
+    "afw_demo.csv": [
+      [
+        "item_name",
+        "text",
+        "type",
+        "answers",
+        "optional",
+        "values",
+        ""
+      ],
+      [
+        "Instructions",
+        "<h2><span>Demographic Information</span></h2><br><br>\n<span id=\"instruc\">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select \"Prefer not to say\", if that is the case). You are required, however, to answer questions 6, as we need to know whether you are completing the study for SONA credit or an Amazon gift voucher to ensure we compensate you correctly.</span><br/><br/>",
+        "instruct",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "Age",
+        "1. Please enter your age (in years)<br><span class=\"minor\"><em>(the input only accepts numbers e.g., 21)</em></span>",
+        "number",
+        "",
+        "Yes",
+        "",
+        ""
+      ],
+      [
+        "Gender",
+        "2. I identify as a?",
+        "radio",
+        "Man|Woman|Non-Binary|Trans|In a way not listed|Prefer not to say",
+        "No",
+        "1|2|3|4|5|0",
+        ""
+      ],
+      [
+        "Ethnicity",
+        "3. I identify my ethnicity as:",
+        "radio",
+        "White|Mixed/Multiple|Asian|Black/African/Caribbean|Chinese|Arab|Other|Prefer not to say",
+        "No",
+        "1|2|3|4|5|6|7|0",
+        ""
+      ],
+      [
+        "Education",
+        "4. What is the highest level of education you have completed?",
+        "radio",
+        "GCSEs or equivalent|A-Levels or equivalent|Undergraduate (e.g., BSc)|Postgraduate (e.g., MSc)|Doctoral degree|Other|Prefer not to say",
+        "No",
+        "1|2|3|4|5|6|0",
+        ""
+      ],
+      [
+        "Employment",
+        "5. What is your current employment status?<br><span class=\"minor\"><em>(if you are a student, working outside your studies, please choose 'Student')</em></span>",
+        "radio",
+        "Full-time employment|Part-time employment|Unemployed/Retired/Student|Prefer not to say",
+        "No",
+        "1|2|3|0",
+        ""
+      ],
+      [
+        "SONA",
+        "7. Are you completing this study for SONA credit?",
+        "radio",
+        "Yes|No",
+        "No",
+        "1|2",
+        ""
+      ],
+      [
+        "HorizontalRule",
+        "<hr>",
+        "instruct",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "demo",
+        "",
+        "redcap_pii",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    ],
+    "post-tast_attention_scale.csv": [
+      [
+        "item_name",
+        "text",
+        "type",
+        "answers",
+        "optional",
+        "values",
+        "side_by_side",
+        "btn_width",
+        "score:sfs_total",
+        "shuffle_question",
+        ""
+      ],
+      [
+        "Instructions",
+        "<h2><span><b>Post Task Attention Scale</b></span></h2><br><br><h6><b>INSTRUCTIONS: </b></h6>Read each statement below and select the appropriate response to indicate how much you agree or disagree with it in relation to your experience while completing the previous task. There are no right or wrong answers. Do not spend too much time on any one statement but give the answer which seems to describe your present feelings best.<br/><br/>",
+        "instruct",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "pta_1",
+        "I was fully focused on the task from start to finish.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "1",
+        "on",
+        ""
+      ],
+      [
+        "pta_2",
+        "I felt my thoughts drift away from the task.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "r1",
+        "on",
+        ""
+      ],
+      [
+        "pta_3",
+        "I often caught myself thinking about unrelated matters.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "r1",
+        "on",
+        ""
+      ],
+      [
+        "pta_4",
+        "I felt actively engaged with what I was doing.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "1",
+        "on",
+        ""
+      ],
+      [
+        "pta_5",
+        "I was easily distracted during the task.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "r1",
+        "on",
+        ""
+      ],
+      [
+        "pta_6",
+        "I gave the task my full attention throughout.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "1",
+        "on",
+        ""
+      ],
+      [
+        "pta_7",
+        "I found it hard to concentrate on the task.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "r1",
+        "on",
+        ""
+      ],
+      [
+        "pta_8",
+        "I was aware of what my actions throughout the task.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "1",
+        "on",
+        ""
+      ],
+      [
+        "pta_9",
+        "Time seemed to pass quickly because I was absorbed in the task.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "1",
+        "on",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    ],
+    "state_frustration_scale.csv": [
+      [
+        "item_name",
+        "text",
+        "type",
+        "answers",
+        "optional",
+        "values",
+        "side_by_side",
+        "btn_width",
+        "score:sfs_total",
+        "shuffle_question",
+        ""
+      ],
+      [
+        "Instructions",
+        "<h2><span><b>State Frustration Scale</b></span></h2><br><br><h6><b>INSTRUCTIONS: </b></h6>Read each statement below and select the appropriate response to indicate how much you agree or disagree with it in relation to your experience while completing the previous task. There are no right or wrong answers. Do not spend too much time on any one statement but give the answer which seems to describe your present feelings best.<br/><br/>",
+        "instruct",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      [
+        "sfs_1",
+        "I felt frustrated while doing the task.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "1",
+        "on",
+        ""
+      ],
+      [
+        "sfs_2",
+        "I felt annoyed by the task.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "1",
+        "on",
+        ""
+      ],
+      [
+        "sfs_3",
+        "I wanted to quit the task.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "1",
+        "on",
+        ""
+      ],
+      [
+        "sfs_4",
+        "I felt irritated with my progress.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "1",
+        "on",
+        ""
+      ],
+      [
+        "sfs_5",
+        "The task stopped me from doing what I intended.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "1",
+        "on",
+        ""
+      ],
+      [
+        "sfs_6",
+        "I felt physically tense as while doing the task.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "1",
+        "on",
+        ""
+      ],
+      [
+        "sfs_7",
+        "I kept thinking the task was unfair.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "1",
+        "on",
+        ""
+      ],
+      [
+        "sfs_8",
+        "I tried to hide my frustration.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "1",
+        "on",
+        ""
+      ],
+      [
+        "sfs_9",
+        "I kept thinking the task didn’t make sense.",
+        "likert",
+        "Strongly Disagree|Disagree|Slightly Disagree|Neither Agree Nor Disagree|Slightly Agree|Agree|Strongly Agree",
+        "No",
+        "1|2|3|4|5|6|7",
+        "no",
+        "150px",
+        "1",
+        "on",
+        ""
+      ],
+      [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    ]
+  },
+  "procs_csv": {},
+  "stims_csv": {}
+}

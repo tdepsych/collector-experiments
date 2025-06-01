@@ -1,0 +1,959 @@
+<!--'wordsearch_dynamic' PhaseType-->
+<!--
+---development---
+[
+{'text':'Chair,Table,Spoon,Plate,Towel,Soap,Brush,Light,Clock,Pillow'}
+]
+---development---
+-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<script src="../../collector-experiments/User/Assets/Wordsearch/shuffle_function.js"></script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
+<style>
+  .spinner {
+    transform: translateY(-421px);
+  }
+  #container {
+    min-height: 75vh!important;
+  }
+  #collector_phase_timer {
+    display: none;
+  }
+  /* CSS reset */
+  body, h1 {
+    margin: 0;
+    padding: 0;
+    }
+  h1 {
+    /* text-transform: uppercase; */
+    transform: translateX(-46px);
+    padding-bottom: 25px;
+  }
+  
+  body {
+    color: #333;
+  }
+  .fix:after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+  .wrap {
+    min-width: 1140px;
+    width: 1140px;
+    margin: 0 auto;
+    padding: 40px 0;
+    text-align: center;
+    position:relative;
+    transform: translateY(-40px);
+  }
+  .logo, #gameArea {
+    margin-bottom: 40px;
+  }
+  .ws-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 100%; /* Adjust this value to suit your layout */
+    margin: 0 auto;     /* Center horizontally */
+    flex-wrap: nowrap;  /* Prevent grid and word list from wrapping */
+  }
+  .ws-area, .ws-words {
+    display: inline-block;
+    vertical-align: top;
+  }
+  .ws-words {
+    text-align: left;
+    list-style-type: none;
+    text-transform: uppercase;
+    /*transform: translateX(-50px);*/
+  }
+  .ws-word {
+    margin-bottom: 4px;
+  }
+  .ws-words ::first-letter{
+      text-transform : capitalize;
+  }
+  .ws-area {
+    /*background: #fafafa;*/
+    display: inline-block;
+    padding: 15px;
+    border-radius: 10px;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    border: 5px #4A70A0 solid;
+    /*transform: translateX(-50px);*/
+  }
+  .ws-row {
+    line-height: 0;
+  }
+  .ws-col {
+    cursor: pointer;
+  }
+  .ws-col.ws-selected {
+    background: yellow;
+  }
+  .ws-found {
+    background: lime;
+  }
+  .ws-wrong {
+    background: red;
+    color: white;
+  }
+  .ws-game-over-outer {
+    background: rgba(0, 0, 0, 0.85);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .ws-game-over-inner {
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+    display:table;
+  }
+  .ws-game-over {
+    display:table-cell;
+    vertical-align:middle;
+  }
+  .ws-game-over h2 {
+    /*color:#FFFFFF;*/
+    font-size:1em;
+    text-transform:uppercase;
+    padding:0;
+    margin:0 0 9px 0;
+  }
+  .ws-game-over p {
+    /*color:#FFFFFF;*/
+    font-size:1em;
+    padding:0;
+    margin:0;
+  }
+  del {
+    color: lightgrey;
+  }
+  
+  /* Styling Below Manages the Progress Bar */
+  .progressbar {
+    position: absolute;
+    width: 60%;
+    left: 90px;
+    bottom: -10px;
+    margin: 0 auto;
+    border: solid 1px #000;
+    border-radius: 10px;
+  }
+
+  .progressbar .inner {
+    height: 15px;
+    border-radius: 10px;
+    animation: progressbar-countdown;
+    /* Placeholder, this will be updated using javascript */ 
+    animation-duration: 40s;
+    /* We stop in the end */
+    animation-iteration-count: 1;
+    /* Stay on pause when the animation is finished finished */
+    animation-fill-mode: forwards;
+    /* We start paused, we start the animation using javascript */
+    animation-play-state: paused;
+    /* We want a linear animation, ease-out is standard */
+    animation-timing-function: linear;
+  }
+  @keyframes progressbar-countdown {
+    0% {
+      width: 100%;
+      background: #d2fcd2;
+    }
+    100% {
+      width: 0%;
+      background: #fcd2d2; 
+    }
+  }
+  .ws-word-column{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;   /* left-align the text and button */
+  }
+  
+  /* make each grid section a positioning context */
+  #ws-area_c,
+  #ws-area_r{
+    position: relative;
+  }
+  
+  /* visual for the hint overlay */
+  .ws-hint-box{
+    position: absolute;
+    border: 3px solid #4A70A0;   /* match the game’s navy-blue */
+    border-radius: 8px;
+    pointer-events: none;        /* let clicks pass through */
+    opacity: 1;
+    transition: opacity .5s linear;
+  }
+  
+  /* ─── Bootbox modal header – navy + bold white text ───────────── */
+  .bootbox .modal-header{
+    background:#4A70A0;     /* same navy as the puzzle border */
+    border-bottom:none;     /* optional: remove Bootstrap’s line */
+  }
+  
+  .bootbox .modal-header .modal-title{
+    color:#fff;
+    font-weight:bold;
+  }
+  
+  /* darker “dim-out” behind any Bootbox / Bootstrap modal  */
+  .modal-backdrop.show{
+    opacity: 0.95!important;
+    background: #172434;
+  }
+
+</style>
+<input type="hidden" name="ws_wordList" id="ws_wordList"/>
+<input type="hidden" name="grid_letters" id="grid_letters" value=""/>
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <div class="wrap">
+    <h1 class="ws_title"></h1>
+    <div class="ws-container">
+      <section id="ws-area_c"></section>
+      <section id="ws-area_r" style="display:none;"></section>
+      <div class="ws-word-column">
+        <ul class="ws-words"></ul>
+        <button id="clueBtn" class="btn btn-success" style="visibility:hidden; opacity:0;margin-top:12px;transform: translateX(30px);">
+          Get&nbsp;A&nbsp;Clue
+        </button>
+      </div>    
+    </div>
+    <div id='progressbar1'></div>
+  </div>
+</div>   
+
+<script>
+  $.getScript("../../collector-experiments/User/Assets/Wordsearch/wordsearch_js_end.js");
+</script>
+
+
+
+<script>
+  // ─── GLOBALS FOR TIMER ─────────────────────────────────────────────────────────────────────────
+  // (We no longer need global realPuzzleMatrix/realPlacedWords here,
+  //  because each WordSearch instance will hold its own copy.)
+
+  // Change task_time_limit to your actual time limit (in seconds)
+  var task_time_limit = 180;
+  var progress_time   = task_time_limit + 's';
+
+  // ───────────────────────────────────────────────────────────────────────────────────────────────
+  // 1) PHASE TIMER + PROGRESS BAR
+  // ───────────────────────────────────────────────────────────────────────────────────────────────
+  Phase.set_timer(function() {
+    function createProgressbar(id, duration) {
+      var progressbar = document.getElementById(id);
+      progressbar.className = 'progressbar';
+      var progressbarinner = document.createElement('div');
+      progressbarinner.className = 'inner';
+      progressbarinner.style.animationDuration = duration;
+
+      // When animation ends, show “Time’s up!” dialog
+      progressbarinner.addEventListener('animationend', function() {
+        bootbox.dialog({
+          title: "<h3><b>Time's up!</b></h3>",
+          message: "<p>Sorry you didn't any of the words.<br><br>Click below to reveal their locations.<br>The task will automatically end after 10 seconds.</p>",
+          buttons: {
+            reveal: {
+              label: "Reveal",
+              className: "btn-success",
+              callback: function () {
+                // 1) Hide corrupted grid, show real grid
+                document.getElementById('ws-area_c').style.display = 'none';
+                document.getElementById('ws-area_r').style.display = 'block';
+                var titleEl = document.querySelector('.ws_title');
+                if (titleEl) {
+                  titleEl.innerText = "Here’s where the words were hidden";
+                }
+      
+                // 2) Replace the progress bar area with a 10→0 countdown
+                var progressContainer = document.getElementById('progressbar1');
+                progressContainer.classList.remove('progressbar');
+                progressContainer.innerHTML = '';
+      
+                var countdownDiv = document.createElement('div');
+                countdownDiv.style.fontSize    = "1.2em";
+                countdownDiv.style.fontWeight  = "bold";
+                countdownDiv.style.marginTop   = "10px";
+                countdownDiv.style.textAlign   = "center";
+                progressContainer.appendChild(countdownDiv);
+      
+                var remaining = 10;
+                countdownDiv.innerText = "Moving to next task in " + remaining;
+      
+                var timerID = setInterval(function() {
+                  remaining--;
+                  if (remaining > 0) {
+                    countdownDiv.innerText = "Moving to next task in " + remaining;
+                  } else {
+                    clearInterval(timerID);
+                    countdownDiv.innerText = "Moving to next task in 0";
+                    Phase.submit();
+                  }
+                }, 1000);
+              }
+            }
+          }
+        });
+      });
+
+
+
+
+
+      progressbar.appendChild(progressbarinner);
+      // Start the CSS animation immediately
+      progressbarinner.style.animationPlayState = 'running';
+    }
+
+    createProgressbar('progressbar1', progress_time);
+  }, 1);
+
+  // ───────────────────────────────────────────────────────────────────────────────────────────────
+  // 2) UTILITY: REMOVE DIACRITICS (ACCENTED CHARACTERS) FROM A STRING
+  // ───────────────────────────────────────────────────────────────────────────────────────────────
+  function removeDiacritics(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+  // ───────────────────────────────────────────────────────────────────────────────────────────────
+  // 3) MAIN FUNCTION: CREATE + CORRUPT + DRAW BOTH PUZZLES
+  // ───────────────────────────────────────────────────────────────────────────────────────────────
+  function createWordsearch() {
+    // ─── RESET any per‐run state (no global puzzle arrays) ───────────────────────────────────────
+    // (Everything is built inside each instance; no shared globals.)
+
+    // ─── YOUR MASTER WORD LIST (COMMA‐SEPARATED) ─────────────────────────────────────────────────
+    // To preview the task, put '{{text}}' below (i.e., add the '')
+    var source_words       = {{text}};
+    var source_words_array = source_words.split(',');
+    var shuffled_words     = shuffle(source_words_array);
+    var selectedWords      = shuffled_words.slice(0, 10);     // Pick 10 words
+    var grid_stimuli       = shuffle(selectedWords);         // Shuffle again for random order
+
+    // Clear any previous HTML in title, both puzzle sections, and word list:
+    document.querySelector('.ws_title').innerText = '';
+    document.getElementById('ws-area_c').innerHTML  = '';
+    document.getElementById('ws-area_r').innerHTML  = '';
+    document.querySelector('.ws-words').innerHTML   = '';
+
+    // Build the word list on the right side
+    var wordListContainer = document.querySelector('.ws-words');
+    for (var w = 0; w < grid_stimuli.length; w++) {
+      var li = document.createElement('li');
+      li.className = 'ws-word';
+      li.innerText = grid_stimuli[w].trim().toUpperCase();
+      wordListContainer.appendChild(li);
+    }
+
+    // ─── POLYFILL: Math.rangeInt(min, max) ───────────────────────────────────────────────────────
+    if (typeof Math.rangeInt !== 'function') {
+      Math.rangeInt = function(min, max) {
+        if (max === undefined) {
+          max = min;
+          min = 0;
+        }
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      };
+    }
+    // ─── POLYFILL: Object.merge(sourceObj, targetObj) ───────────────────────────────────────────
+    if (typeof Object.merge !== 'function') {
+      Object.merge = function(o1, o2) {
+        for (var i in o1) {
+          o2[i] = o1[i];
+        }
+        return o2;
+      };
+    }
+
+    // ─────────────────────────────────────────────────────────────────────────────────────────────
+    // 3A) WORDSEARCH CLASS DEFINITION (UNCHANGED APART FROM INSTANCE STORAGE) – ATTACHES .wordSearch()
+    // ─────────────────────────────────────────────────────────────────────────────────────────────
+    (function() {
+      'use strict';
+
+      Element.prototype.wordSearch = function(settings) {
+        return new WordSearch(this, settings);
+      };
+
+      function WordSearch(wrapEl, settings) {
+        this.wrapEl = wrapEl;
+        this.wrapEl.classList.add('ws-area');
+        this.solved = 0;
+
+        // Give each instance its own “true puzzle” & “placed words” arrays:
+        this.thisPuzzleMatrix = [];
+        this.thisPlacedWords  = [];
+
+        var default_settings = {
+          directions: ['W', 'N', 'WN', 'EN'],
+          gridSize:    30,
+          words:       grid_stimuli,
+          wordsList:   [],
+          debug:       false
+        };
+        this.settings = Object.merge(settings, default_settings);
+
+        if (this.parseWords(this.settings.gridSize)) {
+          var isWorked = false;
+          while (!isWorked) {
+            this.initialize();
+            isWorked = this.addWords();
+          }
+
+          if (!this.settings.debug) {
+            this.fillUpFools();     // Fill every “.” with a random A–Z
+          }
+
+          // ─── NOW MAKE A DEEP COPY of the fully‐filled grid into this instance:
+          for (let r = 0; r < this.settings.gridSize; r++) {
+            this.thisPuzzleMatrix[r] = [];
+            for (let c = 0; c < this.settings.gridSize; c++) {
+              this.thisPuzzleMatrix[r][c] = this.matrix[r][c].letter;
+            }
+          }
+          for (let r = 0; r < Math.min(5, this.thisPuzzleMatrix.length); r++) {
+            console.log('  row ' + r + ':', this.thisPuzzleMatrix[r].slice(0,5).join(''));
+          }
+
+          if (!this.settings.debug) {
+            this.corruptPuzzle();  // Overwrite only the word‐cells
+          }
+
+          this.drawmatrix();
+        }
+      }
+
+      // ─── PARSE WORDS: uppercase, remove diacritics, ensure length ≤ gridSize ──────────────────
+      WordSearch.prototype.parseWords = function(maxSize) {
+        var itWorked = true;
+        for (var i = 0; i < this.settings.words.length; i++) {
+          this.settings.wordsList[i] = this.settings.words[i].trim();
+          this.settings.words[i] = removeDiacritics(this.settings.wordsList[i].trim().toUpperCase());
+          var word = this.settings.words[i];
+          if (word.length > maxSize) {
+            console.error('The length of word `' + word + '` exceeds the gridSize.');
+            itWorked = false;
+          }
+        }
+        return itWorked;
+      };
+
+      // ─── TRY TO PLACE ALL WORDS IN RANDOM DIRECTIONS ──────────────────────────────────────────────
+      WordSearch.prototype.addWords = function() {
+        var keepGoing = true,
+            counter   = 0,
+            isWorked  = true;
+
+        while (keepGoing) {
+          var dir    = this.settings.directions[Math.rangeInt(this.settings.directions.length - 1)];
+          var result = this.addWord(this.settings.words[counter], dir);
+          isWorked = true;
+          if (result === false) {
+            keepGoing = false;
+            isWorked = false;
+          }
+          counter++;
+          if (counter >= this.settings.words.length) {
+            keepGoing = false;
+          }
+        }
+        return isWorked;
+      };
+
+      // ─── PLACE A SINGLE WORD: write letters into this.matrix & record placement in this instance
+      WordSearch.prototype.addWord = function(word, direction) {
+        var itWorked   = true,
+            directions = {
+              W:  [0, 1],
+              N:  [1, 0],
+              WN: [1, 1],
+              EN: [1, -1]
+            },
+            row, col;
+
+        // Choose a random start so the word fits in the grid
+        switch (direction) {
+          case 'W':
+            row = Math.rangeInt(this.settings.gridSize - 1);
+            col = Math.rangeInt(this.settings.gridSize - word.length);
+            break;
+          case 'N':
+            row = Math.rangeInt(this.settings.gridSize - word.length);
+            col = Math.rangeInt(this.settings.gridSize - 1);
+            break;
+          case 'WN':
+            row = Math.rangeInt(this.settings.gridSize - word.length);
+            col = Math.rangeInt(this.settings.gridSize - word.length);
+            break;
+          case 'EN':
+            row = Math.rangeInt(this.settings.gridSize - word.length);
+            col = Math.rangeInt(word.length - 1, this.settings.gridSize - 1);
+            break;
+          default:
+            console.log('UNKNOWN DIRECTION ' + direction + '!');
+            break;
+        }
+
+        var dRow   = directions[direction][0],
+            dCol   = directions[direction][1],
+            endRow = row + (word.length - 1) * dRow,
+            endCol = col + (word.length - 1) * dCol;
+
+        // Ensure the word doesn’t touch the border
+        if (
+          row === 0 || row === this.settings.gridSize - 1 ||
+          col === 0 || col === this.settings.gridSize - 1 ||
+          endRow === 0 || endRow === this.settings.gridSize - 1 ||
+          endCol === 0 || endCol === this.settings.gridSize - 1
+        ) {
+          return false;
+        }
+
+        // Place each letter in this.matrix
+        for (var i = 0; i < word.length; i++) {
+          var newRow = row + i * dRow;
+          var newCol = col + i * dCol;
+          var origin = this.matrix[newRow][newCol].letter;
+
+          // If the cell is empty '.' or already has the same letter, place it
+          if (origin === '.' || origin === word[i]) {
+            this.matrix[newRow][newCol].letter = word[i];
+          } else {
+            itWorked = false;
+          }
+        }
+
+        // If successfully placed, record this word’s metadata in this instance
+        if (itWorked) {
+          this.thisPlacedWords.push({
+            word:      word,
+            direction: direction,
+            startRow:  row,
+            startCol:  col
+          });
+        }
+        return itWorked;
+      };
+
+      // ─── INITIALIZE: create a fresh this.matrix of '.' and clear thisPlacedWords ───────────────
+      WordSearch.prototype.initialize = function() {
+        this.matrix     = [];
+        this.selectFrom = null;
+        this.selected   = [];
+
+        this.wrapEl.innerHTML = '';
+        this.initmatrix(this.settings.gridSize);
+
+        this.thisPlacedWords = [];
+      };
+
+      // ─── BUILD this.matrix AS A gridSize×gridSize OF { letter: '.' } OBJECTS ───────────────────
+      WordSearch.prototype.initmatrix = function(size) {
+        for (var row = 0; row < size; row++) {
+          for (var col = 0; col < size; col++) {
+            var item = { letter: '.', row: row, col: col };
+            if (!this.matrix[row]) this.matrix[row] = [];
+            this.matrix[row][col] = item;
+          }
+        }
+      };
+
+      // ─── FILL EVERY '.' CELL IN this.matrix WITH A RANDOM LETTER A–Z ───────────────────────────
+      WordSearch.prototype.fillUpFools = function() {
+        var rangeLanguage = [65, 90];  // Unicode codes for ‘A’ through ‘Z’
+        for (var row = 0; row < this.settings.gridSize; row++) {
+          for (var col = 0; col < this.settings.gridSize; col++) {
+            if (this.matrix[row][col].letter === '.') {
+              this.matrix[row][col].letter = String.fromCharCode(
+                Math.rangeInt(rangeLanguage[0], rangeLanguage[1])
+              );
+            }
+          }
+        }
+      };
+
+      // ─── CORRUPT ONLY THE CELLS THAT BELONGED TO REAL WORDS ───────────────────────────────────
+      WordSearch.prototype.corruptPuzzle = function() {
+        for (let r = 0; r < Math.min(5, this.thisPuzzleMatrix.length); r++) {
+          console.log('  row ' + r + ':', this.thisPuzzleMatrix[r].slice(0,5).join(''));
+        }
+
+        const dirOffsets = {
+          W:  [0, 1],
+          N:  [1, 0],
+          WN: [1, 1],
+          EN: [1, -1]
+        };
+
+        for (const wordData of this.thisPlacedWords) {
+          const { word, direction, startRow, startCol } = wordData;
+          const [dRow, dCol] = dirOffsets[direction];
+
+          for (let i = 0; i < word.length; i++) {
+            const row = startRow + i * dRow;
+            const col = startCol + i * dCol;
+            const original = this.matrix[row][col].letter;
+
+            let newChar;
+            do {
+              newChar = String.fromCharCode(Math.rangeInt(65, 90));
+            } while (newChar === original);
+
+            this.matrix[row][col].letter = newChar;
+          }
+        }
+      };
+
+      // ─── DRAW THE (POSSIBLY‐CORRUPTED) MATRIX ONTO <canvas> CELLS ─────────────────────────────────
+      WordSearch.prototype.drawmatrix = function() {
+        $(".ws_title").html("Found " + this.solved + " out of " + this.settings.words.length + " words so far");
+
+        var gridArray = [];
+
+        for (var row = 0; row < this.settings.gridSize; row++) {
+          var divEl = document.createElement('div');
+          divEl.setAttribute('class', 'ws-row');
+          this.wrapEl.appendChild(divEl);
+
+          for (var col = 0; col < this.settings.gridSize; col++) {
+            var cvEl = document.createElement('canvas');
+            cvEl.setAttribute('class', 'ws-col');
+            cvEl.setAttribute('width',  30);
+            cvEl.setAttribute('height', 30);
+
+            var x   = cvEl.width / 2;
+            var y   = cvEl.height / 2;
+            var ctx = cvEl.getContext('2d');
+            ctx.font         = '400 20px Arial';
+            ctx.textAlign    = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle    = '#333';
+            ctx.fillText(this.matrix[row][col].letter, x, y);
+
+            gridArray.push(this.matrix[row][col].letter);
+
+            cvEl.addEventListener('mousedown', this.onMousedown(this.matrix[row][col]));
+            cvEl.addEventListener('mouseover', this.onMouseover(this.matrix[row][col]));
+            cvEl.addEventListener('mouseup', this.onMouseup());
+
+            divEl.appendChild(cvEl);
+          }
+        }
+
+        var gridArrayJSON = JSON.stringify(gridArray);
+        $("#grid_letters").val(gridArrayJSON);
+      };
+
+      WordSearch.prototype.onMousedown = function(item) {
+        var _this = this;
+        return function() {
+          _this.selectFrom = item;
+        };
+      };
+      WordSearch.prototype.onMouseover = function(item) {
+        var _this = this;
+        return function() {
+          if (_this.selectFrom) {
+            _this.selected = _this.getItems(
+              _this.selectFrom.row,
+              _this.selectFrom.col,
+              item.row,
+              item.col
+            );
+            _this.clearHighlight();
+            for (var i = 0; i < _this.selected.length; i++) {
+              var current = _this.selected[i],
+                  row     = current.row + 1,
+                  col     = current.col + 1,
+                  el      = document.querySelector(
+                    '.ws-area .ws-row:nth-child(' + row + ') .ws-col:nth-child(' + col + ')'
+                  );
+              el.className += ' ws-selected';
+            }
+          }
+        };
+      };
+      WordSearch.prototype.onMouseup = function() {
+        var _this = this;
+        return function() {
+          _this.selectFrom = null;
+          _this.clearHighlight();
+          _this.lookup(_this.selected);
+          _this.selected = [];
+        };
+      };
+
+      WordSearch.prototype.getItem = function(row, col) {
+        return this.matrix[row] ? this.matrix[row][col] : undefined;
+      };
+      WordSearch.prototype.getItems = function(rowFrom, colFrom, rowTo, colTo) {
+        var items = [];
+        if (
+          rowFrom === rowTo  ||
+          colFrom === colTo  ||
+          Math.abs(rowTo - rowFrom) == Math.abs(colTo - colFrom)
+        ) {
+          var shiftY = rowFrom === rowTo ? 0 : (rowTo > rowFrom ? 1 : -1),
+              shiftX = colFrom === colTo ? 0 : (colTo > colFrom ? 1 : -1),
+              row    = rowFrom,
+              col    = colFrom;
+
+          items.push(this.getItem(row, col));
+          do {
+            row += shiftY;
+            col += shiftX;
+            items.push(this.getItem(row, col));
+          } while (row !== rowTo || col !== colTo);
+        }
+        return items;
+      };
+      WordSearch.prototype.clearHighlight = function() {
+        var selectedEls = document.querySelectorAll('.ws-selected');
+        for (var i = 0; i < selectedEls.length; i++) {
+          selectedEls[i].classList.remove('ws-selected');
+        }
+      };
+
+      WordSearch.prototype.lookup = function(selected) {
+        var words = [''];
+        for (var i = 0; i < selected.length; i++) {
+          words[0] += selected[i].letter;
+        }
+        words.push(words[0].split('').reverse().join(''));
+
+        if (
+          this.settings.words.indexOf(words[0]) > -1 ||
+          this.settings.words.indexOf(words[1]) > -1
+        ) {
+          for (var i = 0; i < selected.length; i++) {
+            var row = selected[i].row + 1,
+                col = selected[i].col + 1;
+            var el = document.querySelector(
+              '.ws-area .ws-row:nth-child(' + row + ') .ws-col:nth-child(' + col + ')'
+            );
+            el.classList.add('ws-found');
+          }
+
+          var wordList      = document.querySelector(".ws-words");
+          var wordListItems = wordList.getElementsByTagName("li");
+
+          for (var i = 0; i < wordListItems.length; i++) {
+            if (
+              words[0] == removeDiacritics(wordListItems[i].innerHTML.toUpperCase()) ||
+              words[1] == removeDiacritics(wordListItems[i].innerHTML.toUpperCase())
+            ) {
+              if (wordListItems[i].innerHTML.indexOf("<del>") === -1) {
+                wordListItems[i].innerHTML = "<del>" + wordListItems[i].innerHTML + "</del>";
+                this.solved++;
+                $(".ws_title").html(
+                  "Found " + this.solved + " out of " + this.settings.words.length + " words so far"
+                );
+              }
+            }
+          }
+
+          if (this.solved == this.settings.words.length) {
+            Phase.submit();
+            parent.parent.gamesPlayed += 1;
+          }
+        } else {
+          for (var i = 0; i < selected.length; i++) {
+            var row = selected[i].row + 1,
+                col = selected[i].col + 1;
+            var el = document.querySelector(
+              '.ws-area .ws-row:nth-child(' + row + ') .ws-col:nth-child(' + col + ')'
+            );
+            el.classList.add('ws-wrong');
+            setTimeout(function() {
+              $('.ws-col').removeClass('ws-wrong');
+            }, 1000);
+          }
+        }
+      };
+
+      WordSearch.prototype._isOnRealWord = function(row, col) {
+        for (let i = 0; i < this.thisPlacedWords.length; i++) {
+          const { word, direction, startRow, startCol } = this.thisPlacedWords[i];
+          const dirOffsets = {
+            W:  [0, 1],
+            N:  [1, 0],
+            WN: [1, 1],
+            EN: [1, -1]
+          };
+          const [dRow, dCol] = dirOffsets[direction];
+          for (let k = 0; k < word.length; k++) {
+            const r = startRow + k * dRow;
+            const c = startCol + k * dCol;
+            if (r === row && c === col) {
+              return true;
+            }
+          }
+        }
+        return false;
+      };
+
+      // ─── REVISED showRealSolution (UNCHANGED except for using instance data) ─────────────────────
+      WordSearch.prototype.showRealSolution = function() {
+        const canvasSize = 30;
+        const gridSize   = this.settings.gridSize;
+        const wrapEl     = this.wrapEl;
+
+        // 1) Log the “snapshot” of the entire this.instance’s puzzle
+        for (let r = 0; r < Math.min(5, this.thisPuzzleMatrix.length); r++) {
+          console.log('  row ' + r + ':', this.thisPuzzleMatrix[r].slice(0, 5).join(''));
+        }
+
+        // 2) Restore *every* letter from this.instance’s saved puzzle back into this.matrix
+        for (let r = 0; r < gridSize; r++) {
+          for (let c = 0; c < gridSize; c++) {
+            this.matrix[r][c].letter = this.thisPuzzleMatrix[r][c];
+          }
+        }
+
+        // Log a small block of this.matrix after restoration
+        for (let r = 0; r < Math.min(5, this.settings.gridSize); r++) {
+          let rowLetters = [];
+          for (let c = 0; c < Math.min(5, this.settings.gridSize); c++) {
+            rowLetters.push(this.matrix[r][c].letter);
+          }
+          console.log('  row ' + r + ':', rowLetters.join(''));
+        }
+
+        // 3) Wipe out the old canvases and draw a brand‐new 30×30 grid
+        wrapEl.innerHTML = '';
+        for (let row = 0; row < gridSize; row++) {
+          const rowDiv = document.createElement('div');
+          rowDiv.setAttribute('class', 'ws-row');
+          wrapEl.appendChild(rowDiv);
+
+          for (let col = 0; col < gridSize; col++) {
+            const cvEl = document.createElement('canvas');
+            cvEl.setAttribute('class', 'ws-col');
+            cvEl.setAttribute('width',  canvasSize);
+            cvEl.setAttribute('height', canvasSize);
+
+            var ctx = cvEl.getContext('2d');
+            ctx.font         = '400 20px Arial';
+            ctx.textAlign    = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle    = '#333';
+            ctx.fillText(this.matrix[row][col].letter, canvasSize / 2, canvasSize / 2);
+
+            // If this cell is part of a real word, highlight it:
+            if (this._isOnRealWord(row, col)) {
+              cvEl.style.backgroundColor = 'rgba(0, 255, 0, 0.2)';
+            }
+
+            rowDiv.appendChild(cvEl);
+          }
+        }
+
+        // 4) Disable any further click/drag by cloning each canvas with some opacity
+        const allCanvases = wrapEl.querySelectorAll('.ws-col');
+        allCanvases.forEach((c) => {
+          const clone = c.cloneNode(true);
+          clone.style.opacity = '0.6';
+          c.replaceWith(clone);
+        });
+
+        // 5) Update the header
+        const titleEl = document.querySelector('.ws_title');
+        if (titleEl) {
+          titleEl.innerText = "Here’s where the words were hidden";
+        }
+      };
+
+      // ─── INSTANTIATE TWO PUZZLES: ONE CORRUPTED (ws-area_c), ONE REAL (ws-area_r) ───────────────────
+      // 
+      //  • #ws-area_r uses debug: true → places words + fills + copies to thisPuzzleMatrix + skips corrupt
+      //  • #ws-area_c uses debug: false → places words + fills + corrupts + draws
+      // 
+      var realInstance = document.querySelector("#ws-area_r").wordSearch({ debug: true });
+      document.querySelector("#ws-area_r").__wordsearchInstance = realInstance;
+      // Hide the real solution on startup:
+      document.getElementById('ws-area_r').style.display = 'none';
+
+      var corruptInstance = document.querySelector("#ws-area_c").wordSearch({ debug: false });
+      document.querySelector("#ws-area_c").__wordsearchInstance = corruptInstance;
+
+    })(); // END IIFE
+  } // END createWordsearch()
+
+Phase.set_timer(function(){createWordsearch()},1);
+
+// // --- delayed “Get A Clue” button -------------------------------------------
+//   const clueBtn  = document.getElementById('clueBtn');
+//   const delay_ms = 9 * 1000;   // 90 seconds
+
+//   // show the button after the delay
+//   setTimeout(() => {
+//     clueBtn.style.display = 'inline-block';
+//   }, delay_ms);
+
+//   // when the user takes a clue, remove the button forever
+//   clueBtn.addEventListener('click', () => {
+//     clueBtn.style.display = 'none';
+//   });
+
+  const clueBtn   = document.getElementById('clueBtn');
+  const delay_ms  = 90 * 1000;               // 90 seconds
+  const gridSize  = 30;                      // WordSearch grid is 30×30
+
+  /* ----------  reveal the button after the delay ---------- */
+  setTimeout(() => {
+    clueBtn.style.visibility = 'visible';
+    clueBtn.style.opacity    = '1';
+  }, delay_ms);
+  
+  /* ----------  click = hint + hide (without layout shift) ---------- */
+  clueBtn.addEventListener('click', () => {
+    showHintBox();
+    clueBtn.style.visibility = 'hidden';
+    clueBtn.style.opacity    = '0';
+    // clueBtn.disabled = true;   // optional: stop extra clicks
+  });
+
+  /* -------------------------------------------------------------------- */
+function showHintBox () {
+  const cellSize = 30;        // one canvas = 30 px
+  const boxCells = 15;        // 10×10 overlay
+  const inset    = 10;         // nudge left/up & enlarge by 2 px all round
+
+  /* pick a start cell that keeps the enlarged box fully inside the grid */
+  const minStart = 1;                                   // leave 1 cell margin
+  const maxStart = gridSize - boxCells - 1;             // 30-10-1 = 19
+  const startRow = Math.floor(Math.random() * (maxStart - minStart + 1)) + minStart;
+  const startCol = Math.floor(Math.random() * (maxStart - minStart + 1)) + minStart;
+
+  /* build the overlay */
+  const box = document.createElement('div');
+  box.className    = 'ws-hint-box';
+  box.style.width  = boxCells * cellSize + inset * 2 + 'px';
+  box.style.height = boxCells * cellSize + inset * 2 + 'px';
+  box.style.top    = startRow * cellSize - inset + 'px';
+  box.style.left   = startCol * cellSize - inset + 'px';
+
+  /* add to the visible grid (#ws-area_c) */
+  document.getElementById('ws-area_c').appendChild(box);
+
+  /* fade → clear */
+  setTimeout(() => { box.style.opacity = '0'; }, 1500);
+  setTimeout(() => { box.remove();        }, 2000);
+}
+
+</script>

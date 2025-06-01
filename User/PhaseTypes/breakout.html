@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+  <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
+	<style>
+	  #collector_phase_timer {
+      display: none;
+    }
+    #container p {
+      width: 100%; 
+    }
+		canvas {
+			display: block;
+			margin: auto;
+			border: 5px solid #4A70A0; /* navy blue border */
+			background-color: white;
+		}
+  .progressbar {
+    position: relative;
+    width: 50%;
+    margin: 20px auto;
+    border: solid 1px #000;
+    border-radius: 10px;
+    height: 15px;
+  }
+
+  .progressbar .inner {
+    height: 100%;
+    border-radius: 10px;
+    animation: progressbar-countdown;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-play-state: paused;
+  }
+
+  @keyframes progressbar-countdown {
+    0% {
+      width: 100%;
+      background: #d2fcd2;
+    }
+    100% {
+      width: 0%;
+      background: #fcd2d2; 
+    }
+  }
+  
+  #game_area {
+    margin-top: 30px;
+    cursor: none;
+  }
+  
+  #movearrows {
+    margin: 0 20px;
+  }
+  .arrows {
+    display: inline-block;
+    /*transform: scale(1.5);*/
+  }
+  .description {
+  	margin-top: 20px;
+  	text-align: center;
+  }
+</style>
+
+</head>
+<body>
+  <input type="hidden" id="breakout_score" name="breakout_score" value=""/>
+  <button id="zoomOut" tabindex="-1"></button>
+  <button id="zoomIn" tabindex="-1"></button>
+  
+<div id="container">
+	<h2><span><b>Breakout</b></span></h2><br>
+	<p>The idea of this game is that you use the paddle (controlled with the keyboard) to bounce the ball up and down, scoring points for each block you burst. Try to score as many points as possible. Good luck!</p>
+  <canvas id="game_area" width="500" height="500"></canvas>
+  <div class="description">
+	   <h4>Use the <span id="movearrows" class="arrows">⬅ ➡ </span>keys to move the paddle <h4>
+	   <div id='progressbar1'></div>
+	 </div>
+</div>
+<script>
+  const canvas = document.querySelector("canvas");
+  const ctx = canvas.getContext("2d");
+  const width = canvas.width;
+  const height = canvas.height;
+  
+  let colors = [];
+  let highestScore = 0;
+  
+  function generateBlueGradient(rows) {
+  	const top = { r: 74, g: 112, b: 160 };     // #4A70A0 from image
+  	const bottom = { r: 198, g: 217, b: 235 }; // a soft light blue
+  	let shades = [];
+  
+  	for (let i = 0; i < rows; i++) {
+  		const t = i / (rows - 1);
+  		const r = Math.round(top.r + (bottom.r - top.r) * t);
+  		const g = Math.round(top.g + (bottom.g - top.g) * t);
+  		const b = Math.round(top.b + (bottom.b - top.b) * t);
+  		const base = `rgb(${r},${g},${b})`;
+  		shades.push({
+  			color: base,
+  			light: `rgba(${Math.min(255, r + 30)}, ${Math.min(255, g + 30)}, ${Math.min(255, b + 30)}, 1)`,
+  			dark: `rgba(${Math.max(0, r - 30)}, ${Math.max(0, g - 30)}, ${Math.max(0, b - 30)}, 1)`
+  		});
+  	}
+  	return shades;
+  }
+  
+  class Player {
+  	constructor() {
+  		this.w = 75;
+  		this.h = 10;
+  		this.x = width / 2 - this.w / 2;
+  		this.y = height - 25;
+  		this.speed = 400;
+  		this.lives = 3;
+  	}
+  }
+  
+  class Ball {
+  	constructor(x, y) {
+  		this.r = 5;
+  		this.x = x;
+  		this.y = y - this.r;
+  		this.velocity = { x: 0, y: 0 };
+  		this.speed = 200;
+  		this.scaleSpeed = 7;
+  		this.active = false;
+  	}
+  }
+  
+  class Brick {
+  	static w = 50;
+  	static h = 20;
+  	static borderWidth = 5;
+  	constructor(x, y) {
+  		this.x = x;
+  		this.y = y;
+  	}
+  }
+  
+  let player, ball, bricks, totalBricks, brokenBricks, score, gameOver, initialized = false;
+  let leftPressed = false;
+  let rightPressed = false;
+  let spacePressed = false;
+  let refillTimer = 0;
+  let refillInterval = 5;
+  let refillEnabled = false;
+  
+  document.addEventListener("keydown", e => {
+  	if (e.code === "ArrowLeft") leftPressed = true;
+  	if (e.code === "ArrowRight") rightPressed = true;
+  	if (e.code === "Space") spacePressed = true;
+  });
+  
+  document.addEventListener("keyup", e => {
+  	if (e.code === "ArrowLeft") leftPressed = false;
+  	if (e.code === "ArrowRight") rightPressed = false;
+  	if (e.code === "Space") spacePressed = false;
+  });
+  
+  function createProgressbar(id, durationSeconds, callback) {
+    const progressbar = document.getElementById(id);
+    progressbar.innerHTML = ''; // reset if needed
+    progressbar.className = 'progressbar';
+  
+    const progressbarInner = document.createElement('div');
+    progressbarInner.className = 'inner';
+    progressbarInner.style.animationDuration = durationSeconds + 's';
+    progressbarInner.style.animationPlayState = 'running';
+  
+    if (typeof callback === 'function') {
+      progressbarInner.addEventListener('animationend', callback);
+    }
+  
+    progressbar.appendChild(progressbarInner);
+  }
+  
+  // Example: start a 60-second progress bar
+  createProgressbar('progressbar1', 180, function () {
+    console.log("Progress bar finished!");
+  });
+
+  
+  function setup() {
+  	player = new Player();
+  	ball = new Ball(getCenter(player.x, player.w), player.y);
+  
+  	let bricksAcross = width / Brick.w;
+  	let bricksDown = 6;
+  	let offset = { x: 0, y: 50 };
+  
+  	colors = generateBlueGradient(bricksDown);
+  	bricks = createBricks(bricksDown, bricksAcross, offset);
+  	totalBricks = bricks.length * bricks[0].length;
+  	score = 0;
+  	brokenBricks = 0;
+  	gameOver = false;
+  	refillEnabled = false;
+  	refillTimer = 0;
+  	spacePressed = false;
+  
+  	if (!initialized) requestAnimationFrame(initAnimation);
+  }
+  
+  function update(dt) {
+  	if (gameOver) {
+  		if (spacePressed) setup();
+  		return;
+  	}
+  
+  	if (leftPressed) player.x -= player.speed * dt;
+  	if (rightPressed) player.x += player.speed * dt;
+  	player.x = Math.max(0, Math.min(width - player.w, player.x));
+  
+  	const playerCenter = getCenter(player.x, player.w);
+  	if (spacePressed && !ball.active) {
+  		ball.active = true;
+  		ball.velocity.y = -ball.speed;
+  	}
+  
+  	if (ball.active) {
+  		ball.x += ball.velocity.x * dt;
+  		ball.y += ball.velocity.y * dt;
+  	} else {
+  		ball.x = playerCenter;
+  	}
+  
+  	if (ball.x - ball.r < 0) {
+  		ball.x = ball.r;
+  		ball.velocity.x *= -1;
+  	} else if (ball.x + ball.r > width) {
+  		ball.x = width - ball.r;
+  		ball.velocity.x *= -1;
+  	}
+  	if (ball.y - ball.r < 0) {
+  		ball.y = ball.r;
+  		ball.velocity.y *= -1;
+  	} else if (ball.y - ball.r > height) {
+  		if (--player.lives === 0) {
+  			gameOver = true;
+  		}
+  		ball = new Ball(playerCenter, player.y);
+  	}
+  
+  	if (
+  		ball.x + ball.r > player.x &&
+  		ball.x - ball.r < player.x + player.w &&
+  		ball.y + ball.r > player.y &&
+  		ball.y + ball.r < player.y + player.h
+  	) {
+  		ball.velocity.y *= -1;
+  		ball.y = player.y - ball.r;
+  		ball.velocity.x = (ball.x - playerCenter) * ball.scaleSpeed;
+  	}
+  
+  	for (let i = 0; i < bricks.length; ++i) {
+  		for (let j = 0; j < bricks[i].length; ++j) {
+  			let brick = bricks[i][j];
+  			if (!brick) continue;
+  
+  			let cx = Math.max(brick.x, Math.min(ball.x, brick.x + Brick.w));
+  			let cy = Math.max(brick.y, Math.min(ball.y, brick.y + Brick.h));
+  			let dx = ball.x - cx, dy = ball.y - cy;
+  
+  			if (dx * dx + dy * dy < ball.r * ball.r) {
+  				bricks[i][j] = null;
+  				score += 100;
+  				brokenBricks++;
+  				if (score > highestScore) {
+            highestScore = score;
+            document.getElementById("breakout_score").value = highestScore;
+          }
+  				if (brokenBricks === totalBricks) {
+  					gameOver = true;
+  				}
+  				if (Math.abs(dx) > Math.abs(dy)) ball.velocity.x *= -1;
+  				else ball.velocity.y *= -1;
+  				break;
+  			}
+  		}
+  	}
+  
+  	if (!refillEnabled && score >= 1000) refillEnabled = true;
+  	if (refillEnabled && !gameOver) {
+  		refillTimer += dt;
+  		if (refillTimer >= refillInterval) {
+  			refillTimer = 0;
+  			addMissingBrick();
+  		}
+  	}
+  }
+  
+  function render() {
+  	ctx.clearRect(0, 0, width, height);
+  
+  	// paddle
+  	ctx.fillStyle = "#4A70A0";
+  	ctx.fillRect(player.x, player.y, player.w, player.h);
+  
+  	// ball
+    ctx.fillStyle = "white";
+    ctx.strokeStyle = "#4A70A0";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+  
+  	// bricks
+  	for (let i = 0; i < bricks.length; ++i) {
+  		for (let brick of bricks[i]) {
+  			if (!brick) continue;
+  			ctx.fillStyle = colors[i].color;
+  			ctx.fillRect(brick.x, brick.y, Brick.w, Brick.h);
+  
+  			ctx.fillStyle = colors[i].light;
+  			ctx.beginPath();
+  			ctx.moveTo(brick.x, brick.y + Brick.h);
+  			ctx.lineTo(brick.x + Brick.borderWidth, brick.y + Brick.h - Brick.borderWidth);
+  			ctx.lineTo(brick.x + Brick.borderWidth, brick.y);
+  			ctx.lineTo(brick.x + Brick.borderWidth, brick.y + Brick.borderWidth);
+  			ctx.lineTo(brick.x + Brick.w, brick.y + Brick.borderWidth);
+  			ctx.lineTo(brick.x + Brick.w, brick.y);
+  			ctx.lineTo(brick.x, brick.y);
+  			ctx.closePath();
+  			ctx.fill();
+  
+  			ctx.fillStyle = colors[i].dark;
+  			ctx.beginPath();
+  			ctx.moveTo(brick.x, brick.y + Brick.h);
+  			ctx.lineTo(brick.x + Brick.borderWidth, brick.y + Brick.h - Brick.borderWidth);
+  			ctx.lineTo(brick.x + Brick.w - Brick.borderWidth, brick.y + Brick.h - Brick.borderWidth);
+  			ctx.lineTo(brick.x + Brick.w - Brick.borderWidth, brick.y + Brick.borderWidth);
+  			ctx.lineTo(brick.x + Brick.w, brick.y);
+  			ctx.lineTo(brick.x + Brick.w, brick.y + Brick.h);
+  			ctx.closePath();
+  			ctx.fill();
+  		}
+  	}
+  
+  	// text
+  	ctx.font = "20px sans-serif";
+  	ctx.fillStyle = "#4A70A0"; // navy blue
+  	ctx.textAlign = "left";
+  	ctx.fillText(`Lives: ${player.lives}`, 10, 30);
+  	ctx.textAlign = "right";
+  	ctx.fillText(`Score: ${score}`, width - 10, 30);
+  
+    if (!ball.active && !gameOver) {
+      ctx.font = "25px sans-serif";
+      ctx.fillStyle = "#4A70A0";
+      ctx.textAlign = "center";
+      ctx.fillText("Move the paddle to your starting position", width / 2, height / 2 - 20);
+      ctx.fillText("then press space to release ball", width / 2, height / 2 + 20);
+    }
+    
+  	if (gameOver) {
+      ctx.font = "50px sans-serif";
+      ctx.fillStyle = "#4A70A0";
+      ctx.textAlign = "center";
+      
+      const won = brokenBricks === totalBricks;
+      ctx.fillText(won ? "You Win!" : "Game Over!", width / 2, height / 2);
+    
+      if (won) {
+        ctx.font = "25px sans-serif";
+        ctx.fillText("The task will automatically end in 2 seconds.", width / 2, height / 2 + 50);
+        setTimeout(function () {
+          Phase.submit();
+        }, 2000);
+      } else {
+        ctx.font = "25px sans-serif";
+        ctx.fillText("Press Space to restart", width / 2, height / 2 + 50);
+      }
+    }
+
+  }
+  
+  function addMissingBrick() {
+  	let options = [];
+  	for (let i = bricks.length - 1; i >= 0; i--) {
+  		for (let j = 0; j < bricks[i].length; j++) {
+  			if (!bricks[i][j]) options.push({ i, j });
+  		}
+  		if (options.length) break;
+  	}
+  	if (!options.length) return;
+  	const pick = options[Math.floor(Math.random() * options.length)];
+  	const x = pick.j * Brick.w;
+  	const y = pick.i * Brick.h + 50;
+  	bricks[pick.i][pick.j] = new Brick(x, y);
+  	brokenBricks--;
+  }
+  
+  function getCenter(x, w) {
+  	return x + w / 2;
+  }
+  
+  function createBricks(rows, cols, offset) {
+  	let matrix = [];
+  	for (let y = 0; y < rows; y++) {
+  		matrix[y] = [];
+  		for (let x = 0; x < cols; x++) {
+  			let xPos = x * Brick.w + offset.x;
+  			let yPos = y * Brick.h + offset.y;
+  			matrix[y].push(new Brick(xPos, yPos));
+  		}
+  	}
+  	return matrix;
+  }
+  
+  const frameRate = 1 / 60;
+  const maxDelta = frameRate * 3;
+  let lastTimeStamp = 0;
+  let dt = 0;
+  
+  function main(timeStamp) {
+  	requestAnimationFrame(main);
+  	let timeElapsed = (timeStamp - lastTimeStamp) / 1000;
+  	dt += Math.min(timeElapsed, maxDelta);
+  	lastTimeStamp = timeStamp;
+  	while (dt > frameRate) {
+  		update(frameRate);
+  		dt -= frameRate;
+  	}
+  	render();
+  }
+  
+  function initAnimation(timeStamp) {
+  	lastTimeStamp = timeStamp;
+  	initialized = false;
+  	requestAnimationFrame(main);
+  }
+  
+  setup();
+</script>
+</body>
+</html>

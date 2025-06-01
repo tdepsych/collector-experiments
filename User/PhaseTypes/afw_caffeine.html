@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  /* This clears all formatting from the buttons to begin */
+  button, input[type="submit"], input[type="reset"] {
+  	background: none;
+  	color: inherit;
+  	border: none;
+  	padding: 0;
+  	font: inherit;
+  	cursor: pointer;
+  	outline: inherit;
+  }
+  #container{
+    /* This just overwrites the vertical centering */
+    min-height: 50vh!important;
+  }
+  .slider {
+    width: 80%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+      -webkit-transition: .2s;
+      -webkit-appearance: none;
+    transform: translateY(-23px);
+  }
+  .slider:hover {
+    opacity: 1;
+  }
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #20669b;
+    cursor: pointer;
+  }
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #20669b;
+    cursor: pointer;
+  }
+      
+  /* ******************** */
+  /* CONTINUE BTN MESSAGE */
+  /* ******************** */
+  
+  #vas {
+    margin-top: 30px;
+  }
+  #tooltip{
+    transform: translateY(75px);
+  }
+  .valueHide {
+    /*display:none;*/
+  }
+</style>
+<input type="hidden" name="caffeine_vas" id="caffeine_vas" />
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <h2><span><b>Last Caffeinated Drink</b></span></h2><br>
+  <p>Please can you adjust the slider to match the number of hours it has been since you last had a caffeinated drink. We require this information because caffeine consumption is known to impact game performance and by collecting this data we can use it to control for the different levels of sleep across our participants, strengthening our findings.</p>
+  <br>
+  <input type="range" min="0" max="24" value="0" class="slider" id="vas">
+  <p class="valueHide">Number of hours: <span id="value"></span></p>
+    <br/>
+    <span class="d-inline-block" id="tooltip" tabindex="0" data-toggle="tooltip" title="Sorry. You need to move the slider to make a rating before you can continue.">
+      <button class="btn btn-primary" id="proceed_btn" onclick="Phase.submit()" disabled>Continue</button>
+  </span>
+  </div>
+</div>
+<script>
+
+  function formatSliderValue(value) {
+    value = parseInt(value);
+    if (value === 0) return "< 1";
+    if (value === 24) return "> 23";
+    return value;
+  }
+
+  var slider = document.getElementById("vas");
+  var output = document.getElementById("value");
+  output.innerHTML = formatSliderValue(slider.value);
+        
+  slider.oninput = function() {
+    const formatted = formatSliderValue(this.value);
+    output.innerHTML = formatted;
+    document.getElementById("caffeine_vas").value = this.value;
+    $("#proceed_btn").prop("disabled", false);
+    $("#tooltip").hide();
+  }
+  
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
