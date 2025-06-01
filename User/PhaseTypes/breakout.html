@@ -178,9 +178,11 @@
   }
   
   // Example: start a 60-second progress bar
-  createProgressbar('progressbar1', 180, function () {
-    console.log("Progress bar finished!");
-  });
+  Phase.set_timer(function(){
+    createProgressbar('progressbar1', 180, function () {
+      console.log("Progress bar finished!");
+    });
+  },1);
 
   
   function setup() {
