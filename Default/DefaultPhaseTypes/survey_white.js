@@ -1385,6 +1385,9 @@ function write(type, row) {
     if (typeof row["side_width"] === "undefined") {
       var side_width = "auto";
     }
+    if (typeof row["btn_font_size"] === "undefined") {
+      row["btn_font_size"] = "auto";
+    }
 
     // create and build these elements
     var this_div = $("<div>");
@@ -1444,6 +1447,7 @@ function write(type, row) {
         .addClass("btn-outline-primary")
         .attr("for", "likert_" + row["row_no"] + "_" + i)
         .css("width", row["btn_width"])
+        .css("font-size", row["btn_font_size"])
         .html(clean_item(options[i]));
       this_div
       .append(this_label)

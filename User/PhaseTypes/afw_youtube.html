@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<!-- it can help to add a description between the --'s of what this code does -->
+<!--
+---development---
+[
+{'text':'"uqj7f4M8iTw"'}
+]
+---development---
+-->
+
+<!-- This code embeds a specific YouTube video into the page -->
+<style>
+    /* Put any page-specific CSS here */
+    #container {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    iframe {
+        width: 1070px;
+        height: 600px;
+        border: none;
+    }
+    #proceed_button {
+      display: none;
+    }
+</style>
+
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <h2><span><b>{{task_title}}</b></span></h2><br>
+  <p>{{task_body_text}}</p>
+  <br>
+  <!-- Embedded YouTube video -->
+  <div id="player"></div>
+  <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()">Continue Debrief</button>
+</div>
+
+<script>
+    // Load YouTube IFrame API
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            height: '315',
+            width: '560',
+            videoId: {{text}},
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    function onPlayerStateChange(event) {
+        // 0 means the video ended
+        if (event.data === YT.PlayerState.ENDED) {
+            document.getElementById('proceed_button').style.display = 'inline-block';
+        }
+    }
+</script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

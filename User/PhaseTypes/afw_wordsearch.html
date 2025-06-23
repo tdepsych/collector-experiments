@@ -2,7 +2,7 @@
 <!--
 ---development---
 [
-{'text':'Chair,Table,Spoon,Plate,Towel,Soap,Brush,Light,Clock,Pillow'}
+{'text':'"Chair,Table,Spoon,Plate,Towel,Soap,Brush,Light,Clock,Pillow"', 'max_time':'60'}
 ]
 ---development---
 -->
@@ -182,8 +182,7 @@
   }
   
   /* make each grid section a positioning context */
-  #ws-area_c,
-  #ws-area_r{
+  #ws-area {
     position: relative;
   }
   
@@ -215,16 +214,16 @@
   }
 
 </style>
-<input type="hidden" name="ws_wordList" id="ws_wordList"/>
-<input type="hidden" name="grid_letters" id="grid_letters" value=""/>
+<input type="hidden" name="ws_gridletters" id="ws_gridletters" value=""/>
+<input type="hidden" name="ws_found" id="ws_found" value=""/>
+<input type="hidden" name="ws_foundtimes" id="ws_foundtimes" value=""/>
 <button id="zoomOut" tabindex="-1"></button>
 <button id="zoomIn" tabindex="-1"></button>
 <div id="container">
   <div class="wrap">
     <h1 class="ws_title"></h1>
     <div class="ws-container">
-      <section id="ws-area_c"></section>
-      <section id="ws-area_r" style="display:none;"></section>
+      <section id="ws-area"></section>
       <div class="ws-word-column">
         <ul class="ws-words"></ul>
         <button id="clueBtn" class="btn btn-success" style="visibility:hidden; opacity:0;margin-top:12px;transform: translateX(30px);">
@@ -243,13 +242,22 @@
 
 
 <script>
-  // ─── GLOBALS FOR TIMER ─────────────────────────────────────────────────────────────────────────
-  // (We no longer need global realPuzzleMatrix/realPlacedWords here,
-  //  because each WordSearch instance will hold its own copy.)
 
+  // ─── GLOBALS FOR TIMER ─────────────────────────────────────────────────────────────────────────
+  
   // Change task_time_limit to your actual time limit (in seconds)
-  var task_time_limit = 180;
+  var task_time_limit = '{{max_time}}';
   var progress_time   = task_time_limit + 's';
+  
+  var task_time_limit = ({{max_time}} *1000 )- 1;
+  Phase.set_timer(function(){
+    Phase.submit()
+  },task_time_limit);
+  
+  parent.parent.solvedCount = 0;
+  
+  let ws_startTime = null;
+  let ws_foundTimes = [];
 
   // ───────────────────────────────────────────────────────────────────────────────────────────────
   // 1) PHASE TIMER + PROGRESS BAR
@@ -261,59 +269,6 @@
       var progressbarinner = document.createElement('div');
       progressbarinner.className = 'inner';
       progressbarinner.style.animationDuration = duration;
-
-      // When animation ends, show “Time’s up!” dialog
-      progressbarinner.addEventListener('animationend', function() {
-        bootbox.dialog({
-          title: "<h3><b>Time's up!</b></h3>",
-          message: "<p>Sorry you didn't any of the words.<br><br>Click below to reveal their locations.<br>The task will automatically end after 10 seconds.</p>",
-          buttons: {
-            reveal: {
-              label: "Reveal",
-              className: "btn-success",
-              callback: function () {
-                // 1) Hide corrupted grid, show real grid
-                document.getElementById('ws-area_c').style.display = 'none';
-                document.getElementById('ws-area_r').style.display = 'block';
-                var titleEl = document.querySelector('.ws_title');
-                if (titleEl) {
-                  titleEl.innerText = "Here’s where the words were hidden";
-                }
-      
-                // 2) Replace the progress bar area with a 10→0 countdown
-                var progressContainer = document.getElementById('progressbar1');
-                progressContainer.classList.remove('progressbar');
-                progressContainer.innerHTML = '';
-      
-                var countdownDiv = document.createElement('div');
-                countdownDiv.style.fontSize    = "1.2em";
-                countdownDiv.style.fontWeight  = "bold";
-                countdownDiv.style.marginTop   = "10px";
-                countdownDiv.style.textAlign   = "center";
-                progressContainer.appendChild(countdownDiv);
-      
-                var remaining = 10;
-                countdownDiv.innerText = "Moving to next task in " + remaining;
-      
-                var timerID = setInterval(function() {
-                  remaining--;
-                  if (remaining > 0) {
-                    countdownDiv.innerText = "Moving to next task in " + remaining;
-                  } else {
-                    clearInterval(timerID);
-                    countdownDiv.innerText = "Moving to next task in 0";
-                    Phase.submit();
-                  }
-                }, 1000);
-              }
-            }
-          }
-        });
-      });
-
-
-
-
 
       progressbar.appendChild(progressbarinner);
       // Start the CSS animation immediately
@@ -340,15 +295,25 @@
     // ─── YOUR MASTER WORD LIST (COMMA‐SEPARATED) ─────────────────────────────────────────────────
     // To preview the task, put '{{text}}' below (i.e., add the '')
     var source_words       = {{text}};
+    
     var source_words_array = source_words.split(',');
-    var shuffled_words     = shuffle(source_words_array);
-    var selectedWords      = shuffled_words.slice(0, 10);     // Pick 10 words
-    var grid_stimuli       = shuffle(selectedWords);         // Shuffle again for random order
+    
+    var realWords = [
+      source_words_array[0].trim(),
+      source_words_array[source_words_array.length - 1].trim()
+    ];
+    
+    const realWordsUpper = realWords.map(w => removeDiacritics(w.trim().toUpperCase()));
+    
+    // Shuffle and pick 8 fake distractors from the middle
+    var middleWords = source_words_array.slice(1, -1);
+    var fakeWords = shuffle(middleWords).slice(0, 8);
+
+    var grid_stimuli = shuffle(realWords.concat(fakeWords));
 
     // Clear any previous HTML in title, both puzzle sections, and word list:
     document.querySelector('.ws_title').innerText = '';
-    document.getElementById('ws-area_c').innerHTML  = '';
-    document.getElementById('ws-area_r').innerHTML  = '';
+    document.getElementById('ws-area').innerHTML  = '';
     document.querySelector('.ws-words').innerHTML   = '';
 
     // Build the word list on the right side
@@ -425,9 +390,6 @@
             for (let c = 0; c < this.settings.gridSize; c++) {
               this.thisPuzzleMatrix[r][c] = this.matrix[r][c].letter;
             }
-          }
-          for (let r = 0; r < Math.min(5, this.thisPuzzleMatrix.length); r++) {
-            console.log('  row ' + r + ':', this.thisPuzzleMatrix[r].slice(0,5).join(''));
           }
 
           if (!this.settings.debug) {
@@ -589,38 +551,38 @@
 
       // ─── CORRUPT ONLY THE CELLS THAT BELONGED TO REAL WORDS ───────────────────────────────────
       WordSearch.prototype.corruptPuzzle = function() {
-        for (let r = 0; r < Math.min(5, this.thisPuzzleMatrix.length); r++) {
-          console.log('  row ' + r + ':', this.thisPuzzleMatrix[r].slice(0,5).join(''));
-        }
-
         const dirOffsets = {
           W:  [0, 1],
           N:  [1, 0],
           WN: [1, 1],
           EN: [1, -1]
         };
-
+      
         for (const wordData of this.thisPlacedWords) {
           const { word, direction, startRow, startCol } = wordData;
+      
+          // Skip corruption if the word is one of the real words to keep
+          if (realWordsUpper.includes(word)) continue;
+      
           const [dRow, dCol] = dirOffsets[direction];
-
+      
           for (let i = 0; i < word.length; i++) {
             const row = startRow + i * dRow;
             const col = startCol + i * dCol;
             const original = this.matrix[row][col].letter;
-
+      
             let newChar;
             do {
               newChar = String.fromCharCode(Math.rangeInt(65, 90));
             } while (newChar === original);
-
+      
             this.matrix[row][col].letter = newChar;
           }
         }
       };
 
-      // ─── DRAW THE (POSSIBLY‐CORRUPTED) MATRIX ONTO <canvas> CELLS ─────────────────────────────────
       WordSearch.prototype.drawmatrix = function() {
+        parent.parent.solvedCount == this.solved;
         $(".ws_title").html("Found " + this.solved + " out of " + this.settings.words.length + " words so far");
 
         var gridArray = [];
@@ -643,6 +605,12 @@
             ctx.textAlign    = 'center';
             ctx.textBaseline = 'middle';
             ctx.fillStyle    = '#333';
+            
+            if (this._isOnRealWord(row, col)) {
+              ctx.fillStyle = '#333'; // Change this to 'red' to highlight placed words for debugging <---- QWERTY
+            } else {
+              ctx.fillStyle = '#333'; // default black for others
+            }
             ctx.fillText(this.matrix[row][col].letter, x, y);
 
             gridArray.push(this.matrix[row][col].letter);
@@ -656,7 +624,7 @@
         }
 
         var gridArrayJSON = JSON.stringify(gridArray);
-        $("#grid_letters").val(gridArrayJSON);
+        $("#ws_gridletters").val(gridArrayJSON);
       };
 
       WordSearch.prototype.onMousedown = function(item) {
@@ -740,6 +708,20 @@
           this.settings.words.indexOf(words[0]) > -1 ||
           this.settings.words.indexOf(words[1]) > -1
         ) {
+          const timeNow = performance.now();
+          const elapsed = ((timeNow - ws_startTime) / 1000).toFixed(2);
+          ws_foundTimes.push(elapsed);
+          document.getElementById('ws_foundtimes').value = ws_foundTimes.join(',');
+          
+          const foundWord = this.settings.words.indexOf(words[0]) > -1 ? words[0] : words[1];
+          const foundInput = document.getElementById('ws_found');
+          let currentFound = foundInput.value ? foundInput.value.split(',') : [];
+          
+          if (!currentFound.includes(foundWord)) {
+            currentFound.push(foundWord);
+            foundInput.value = currentFound.join(',');
+          }
+
           for (var i = 0; i < selected.length; i++) {
             var row = selected[i].row + 1,
                 col = selected[i].col + 1;
@@ -760,6 +742,7 @@
               if (wordListItems[i].innerHTML.indexOf("<del>") === -1) {
                 wordListItems[i].innerHTML = "<del>" + wordListItems[i].innerHTML + "</del>";
                 this.solved++;
+                parent.parent.solvedCount == this.solved;
                 $(".ws_title").html(
                   "Found " + this.solved + " out of " + this.settings.words.length + " words so far"
                 );
@@ -812,11 +795,6 @@
         const canvasSize = 30;
         const gridSize   = this.settings.gridSize;
         const wrapEl     = this.wrapEl;
-
-        // 1) Log the “snapshot” of the entire this.instance’s puzzle
-        for (let r = 0; r < Math.min(5, this.thisPuzzleMatrix.length); r++) {
-          console.log('  row ' + r + ':', this.thisPuzzleMatrix[r].slice(0, 5).join(''));
-        }
 
         // 2) Restore *every* letter from this.instance’s saved puzzle back into this.matrix
         for (let r = 0; r < gridSize; r++) {
@@ -878,41 +856,24 @@
         }
       };
 
-      // ─── INSTANTIATE TWO PUZZLES: ONE CORRUPTED (ws-area_c), ONE REAL (ws-area_r) ───────────────────
-      // 
-      //  • #ws-area_r uses debug: true → places words + fills + copies to thisPuzzleMatrix + skips corrupt
-      //  • #ws-area_c uses debug: false → places words + fills + corrupts + draws
-      // 
-      var realInstance = document.querySelector("#ws-area_r").wordSearch({ debug: true });
-      document.querySelector("#ws-area_r").__wordsearchInstance = realInstance;
-      // Hide the real solution on startup:
-      document.getElementById('ws-area_r').style.display = 'none';
-
-      var corruptInstance = document.querySelector("#ws-area_c").wordSearch({ debug: false });
-      document.querySelector("#ws-area_c").__wordsearchInstance = corruptInstance;
+      var corruptInstance = document.querySelector("#ws-area").wordSearch({
+        debug: false,
+        realWords: realWords
+      });
+      document.querySelector("#ws-area").__wordsearchInstance = corruptInstance;
 
     })(); // END IIFE
   } // END createWordsearch()
 
-Phase.set_timer(function(){createWordsearch()},1);
-
-// // --- delayed “Get A Clue” button -------------------------------------------
-//   const clueBtn  = document.getElementById('clueBtn');
-//   const delay_ms = 9 * 1000;   // 90 seconds
-
-//   // show the button after the delay
-//   setTimeout(() => {
-//     clueBtn.style.display = 'inline-block';
-//   }, delay_ms);
-
-//   // when the user takes a clue, remove the button forever
-//   clueBtn.addEventListener('click', () => {
-//     clueBtn.style.display = 'none';
-//   });
+Phase.set_timer(function(){
+  ws_startTime = performance.now();
+  ws_foundTimes = [];
+  createWordsearch();
+},1);
 
   const clueBtn   = document.getElementById('clueBtn');
-  const delay_ms  = 90 * 1000;               // 90 seconds
-  const gridSize  = 30;                      // WordSearch grid is 30×30
+  const delay_ms  = (task_time_limit / 2) * 1000;
+  const gridSize  = 30;                      
 
   /* ----------  reveal the button after the delay ---------- */
   setTimeout(() => {
@@ -948,8 +909,8 @@ function showHintBox () {
   box.style.top    = startRow * cellSize - inset + 'px';
   box.style.left   = startCol * cellSize - inset + 'px';
 
-  /* add to the visible grid (#ws-area_c) */
-  document.getElementById('ws-area_c').appendChild(box);
+  /* add to the visible grid (#ws-area) */
+  document.getElementById('ws-area').appendChild(box);
 
   /* fade → clear */
   setTimeout(() => { box.style.opacity = '0'; }, 1500);

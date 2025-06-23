@@ -60,7 +60,7 @@
     /*display:none;*/
   }
 </style>
-<input type="hidden" name="humour_vas" id="humour_vas" />
+<input type="hidden" name="sleep_vas" id="sleep_vas" />
 <button id="zoomOut" tabindex="-1"></button>
 <button id="zoomIn" tabindex="-1"></button>
 <div id="container">
@@ -82,7 +82,7 @@
         
   slider.oninput = function() {
     output.innerHTML = this.value;
-    document.getElementById("humour_vas").value = slider.value;
+    document.getElementById("sleep_vas").value = slider.value;
     $("#proceed_btn").prop("disabled", false);
     $("#tooltip").hide();
   }

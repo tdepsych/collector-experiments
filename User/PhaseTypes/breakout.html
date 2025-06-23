@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
 	<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
   <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
 	<style>
@@ -63,11 +60,9 @@
   }
 </style>
 
-</head>
-<body>
-  <input type="hidden" id="breakout_score" name="breakout_score" value=""/>
-  <button id="zoomOut" tabindex="-1"></button>
-  <button id="zoomIn" tabindex="-1"></button>
+<input type="hidden" id="breakout_score" name="breakout_score" value=""/>
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
   
 <div id="container">
 	<h2><span><b>Breakout</b></span></h2><br>
@@ -79,6 +74,13 @@
 	 </div>
 </div>
 <script>
+
+  var task_time_limit = ({{max_time}} *1000 )- 1;
+  Phase.set_timer(function(){
+    Phase.submit()
+  },task_time_limit);
+  
+  
   const canvas = document.querySelector("canvas");
   const ctx = canvas.getContext("2d");
   const width = canvas.width;
@@ -438,5 +440,4 @@
   
   setup();
 </script>
-</body>
-</html>
+

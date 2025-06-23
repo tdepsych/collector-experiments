@@ -1,5 +1,5 @@
 item_name,text,type,answers,optional,values,
-Instructions,"<h2><span>Demographic Information</span></h2><br><br>
+Instructions,"<h2><span><b>Demographic Information</b></span></h2><br><br>
 <span id=""instruc"">Please could you help us better understand the diversity and inclusivity of our participants (and thus how well our data is applicable to the general population) by completing the questions below. <br><br>Questions 1-5 are optional, you do not have to answer if you wish (please select ""Prefer not to say"", if that is the case). You are required, however, to answer questions 6, as we need to know whether you are completing the study for SONA credit or an Amazon gift voucher to ensure we compensate you correctly.</span><br/><br/>",instruct,,,,
 Age,"1. Please enter your age (in years)<br><span class=""minor""><em>(the input only accepts numbers e.g., 21)</em></span>",number,,Yes,,
 Gender,2. I identify as a?,radio,Man|Woman|Non-Binary|Trans|In a way not listed|Prefer not to say,No,1|2|3|4|5|0,
