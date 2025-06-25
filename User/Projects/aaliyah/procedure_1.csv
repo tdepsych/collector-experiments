@@ -26,7 +26,7 @@ When you are ready, please start 'Start Questionnaires' below",,
 <br><br>
 The next game is a word search, which will be displayed on the next screen. 
 <br><br>
-On the next screen, a grid of letters will appear. There are 10 familiar words about household items that you would have encountered before, hidden in the word search. Words can appear horizontally, vertically or diagonally and are displayed as a list on the right of the grid. 
+On the next screen, a grid of letters will appear. <b>There are 10 familiar words about household items that you would have encountered before, hidden in the word search</b>. Words can appear horizontally, vertically or diagonally and are displayed as a list on the right of the grid. 
 <br><br>
 When you think you’ve found a word in the grid, click and drag over the letters using the mouse to create a yellow line. If the selected letters are correct, the line will turn green, and the word is removed from the list on the right of the grid. If the letters selected are not correct, the line will turn red and disappear. At the top of the screen, the number of words found is displayed.
 <br><br>
@@ -36,15 +36,9 @@ If you have located less than half the words by when the countdown timer reaches
 <br><br>
 To start the wordsearch, please click the blue start button below. Good luck and have fun!",,
 0,afw_wordsearch,,300,"'Chair,Table,Spoon,Plate,Towel,Soap,Brush,Light,Clock,Pillow'",,,ws1,,,,
-0,task_bookend,,user,Start Questionnaires,,,,Post-game measures,"<b>Thank you for completing the word search.</b>
+0,afw_ws_feedback,,user,Start Questionnaires,,,,Post-game measures,"<b>Thank you for completing the word search.</b>
 <br><br>
-Unfortunately, you only managed to find <strong id = ""solvedCount"">X</strong> out of 10 words. Please complete these questionnaires regarding the level of frustration and attention you felt towards the word search.
-
-<script>
-  setTimeout(function() {
-document.getElementById(""solvedCount"").innerText = parent.parent.solvedCount;
-  }, 0);;
-</script>",,
+Unfortunately, you only managed to find <span id = ""solvedCount""><b>X</b></span> out of 10 words. Please complete these questionnaires regarding the level of frustration and attention you felt towards the word search.",,
 0,tde_survey,post-task_attention_scale.csv,user,,,q2,,,,,
 0,tde_survey,state_frustration_scale.csv,user,,,q2,,,,,
 0,task_bookend,,user,Start Tetris,,,,Tetris Instructions,"<b>Thank you for completing the questionnaires. </b>
@@ -76,7 +70,7 @@ If you have located less than half the words by when the countdown timer reaches
 <br><br>
 To start the wordsearch, please click the blue start button below. Good luck and have fun!",,
 0,afw_wordsearch,,300,"'Dorsal,Alveoli,Scapula,Suture,Dyspnea,Pyrexia,Hallux,Keloid,Trachea,Thymus,Anemia,Biopsy,Fibroid'",,,ws2,,,,
-0,task_bookend,,user,Start Questionnaires,,,,Post-game measures,"<b>Thank you for completing the word search.</b><br><br>Unfortunately, you only managed to find <strong id = ""solvedCount"">X</strong> out of 10 words. Please complete these questionnaires regarding the level of frustration and attention you felt towards the word search.
+0,afw_ws_feedback,,user,Start Questionnaires,,,,Post-game measures,"<b>Thank you for completing the word search.</b><br><br>Unfortunately, you only managed to find <strong id = ""solvedCount"">X</strong> out of 10 words. Please complete these questionnaires regarding the level of frustration and attention you felt towards the word search.
 <script>
   setTimeout(function() {
   document.getElementById(""solvedCount"").innerText = parent.parent.solvedCount;

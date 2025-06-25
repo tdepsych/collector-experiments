@@ -1,0 +1,16 @@
+<!--'afw_ws_feedback' PhaseType-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <h2><span style="font-weight:bold;">{{task_title}}</span></h2><br>
+  <p>{{task_body_text}}</p>
+  <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()" >{{text}}</button>
+</div>
+<script>
+  Phase.set_timer(function() {
+    var score = parent.parent.solvedCount;
+    $("#solvedCount").text(score);
+  },5);
+</script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

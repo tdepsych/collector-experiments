@@ -12,14 +12,15 @@
 <style>
     /* Put any page-specific CSS here */
     #container {
-        text-align: center;
-        margin-top: 40px;
+      text-align: center;
+      margin-top: 40px;
     }
 
     iframe {
-        width: 1070px;
-        height: 600px;
-        border: none;
+      width: 1070px;
+      height: 600px;
+      border: none;
+      margin: 0 auto;
     }
     #proceed_button {
       display: none;
@@ -60,6 +61,7 @@
         // 0 means the video ended
         if (event.data === YT.PlayerState.ENDED) {
             document.getElementById('proceed_button').style.display = 'inline-block';
+            document.getElementById('player').style.display = 'none';
         }
     }
 </script>

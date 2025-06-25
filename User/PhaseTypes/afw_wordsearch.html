@@ -214,6 +214,7 @@
   }
 
 </style>
+<input type="hidden" name="ws_wordlist" id="ws_wordlist" value=""/>
 <input type="hidden" name="ws_gridletters" id="ws_gridletters" value=""/>
 <input type="hidden" name="ws_found" id="ws_found" value=""/>
 <input type="hidden" name="ws_foundtimes" id="ws_foundtimes" value=""/>
@@ -324,6 +325,9 @@
       li.innerText = grid_stimuli[w].trim().toUpperCase();
       wordListContainer.appendChild(li);
     }
+    
+    // Save visible word list as CSV string to hidden input
+    document.getElementById("ws_wordlist").value = grid_stimuli.map(w => w.trim().toUpperCase()).join(',');
 
     // ─── POLYFILL: Math.rangeInt(min, max) ───────────────────────────────────────────────────────
     if (typeof Math.rangeInt !== 'function') {
@@ -622,7 +626,7 @@
             divEl.appendChild(cvEl);
           }
         }
-
+        
         var gridArrayJSON = JSON.stringify(gridArray);
         $("#ws_gridletters").val(gridArrayJSON);
       };
@@ -742,7 +746,7 @@
               if (wordListItems[i].innerHTML.indexOf("<del>") === -1) {
                 wordListItems[i].innerHTML = "<del>" + wordListItems[i].innerHTML + "</del>";
                 this.solved++;
-                parent.parent.solvedCount == this.solved;
+                parent.parent.solvedCount = this.solved;
                 $(".ws_title").html(
                   "Found " + this.solved + " out of " + this.settings.words.length + " words so far"
                 );
