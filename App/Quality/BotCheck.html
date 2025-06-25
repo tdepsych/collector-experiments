@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!-- CSS -->
+<style>
+    body, html {
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .card {
+        width: 35vw;
+    }
+
+    .bot-check-grid img {
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+        margin: 5px;
+    }
+
+    .bot-check-grid img.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+
+    .card-footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: height 0.3s ease; /* Smooth transition when expanding */
+        min-height: 65px;
+    }
+
+    .bot-check-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        justify-content: center;
+        justify-items: center;
+    }
+
+    #instruction {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+</style>
+
+<!-- HTML -->
+<body>
+
+    <div class="card">
+        <div class="card-header text-center text-primary">
+            <h2>Bot Check</h2>
+        </div>
+        <div class="card-body">
+            <div id="instruction" class="text-center mb-3">Please click on the orange fruit below</div>
+            <div class="bot-check-grid"><!-- Images inserted here --></div>
+        </div>
+        <div class="card-footer">
+            <button id="successButton" class="btn btn-primary" style="display:none;">Continue</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const images = [
+            {src: 'Quality/assets/01.jpg', isFruit: false},
+            {src: 'Quality/assets/02.jpg', isFruit: false},
+            {src: 'Quality/assets/03.jpg', isFruit: true},
+            {src: 'Quality/assets/04.jpg', isFruit: false},
+            {src: 'Quality/assets/05.jpg', isFruit: false},
+            {src: 'Quality/assets/06.jpg', isFruit: false},
+            {src: 'Quality/assets/07.jpg', isFruit: false},
+            {src: 'Quality/assets/08.jpg', isFruit: false},
+            {src: 'Quality/assets/09.jpg', isFruit: false}
+        ];
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function renderImages() {
+            const shuffledImages = shuffle([...images]);
+            const gridContainer = $('.bot-check-grid');
+            gridContainer.empty();
+            shuffledImages.forEach(image => {
+                gridContainer.append(`<img src="${image.src}" data-is-fruit="${image.isFruit}">`);
+            });
+        }
+
+        $(document).on('click', '.bot-check-grid img', function() {
+            const isFruit = $(this).data('isFruit');
+            const instruction = $('#instruction');
+            const successButton = $('#successButton');
+
+            if (isFruit) {
+                instruction.html('<b>Correct! Please proceed when ready</b>').removeClass("text-danger").addClass("text-success");
+                successButton.show();
+                // Disable all images and reduce opacity of incorrect ones
+                $('.bot-check-grid img').not(this).addClass('disabled');
+            } else {
+                instruction.html('<b>Sorry, that was wrong, please try again. You need to click the Orange.</b>').removeClass("text-success").addClass("text-danger");
+                successButton.hide();
+                renderImages();
+            }
+        });
+
+        $('#successButton').click(function() {
+            Phase.submit();
+        });
+
+        renderImages();
+    </script>
+</body>

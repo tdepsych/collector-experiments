@@ -708,7 +708,7 @@ function process_question(row, row_no) {
             .css("width", row_ques_perc)
             .html(row["text"])
             .prop("id", survey_prepend + row["item_name"].toLowerCase().replace(" ", "_") + "_question")[0]
-            .outerHTML + $("<td>").html("<b>"+question_td+"</b>")[0].outerHTML;
+            .outerHTML + $("<td>").html(question_td)[0].outerHTML;
       } else {    
         var row_html =
           $("<tr>")
@@ -1382,11 +1382,11 @@ function write(type, row) {
     if (typeof row["btn_width"] === "undefined") {
       row["btn_width"] = "auto";
     }
-    if (typeof row["side_width"] === "undefined") {
-      var side_width = "auto";
-    }
     if (typeof row["btn_font_size"] === "undefined") {
       row["btn_font_size"] = "auto";
+    }
+    if (typeof row["side_width"] === "undefined") {
+      var side_width = "auto";
     }
 
     // create and build these elements
@@ -1401,7 +1401,7 @@ function write(type, row) {
           .addClass("text-primary")
           // .html("<b>" + this_side + "</b>");
           .html(this_side);
-          return this_span[0].outerHTML;
+        return this_span[0].outerHTML;
       });
     } else {
       side_text = ["", ""];

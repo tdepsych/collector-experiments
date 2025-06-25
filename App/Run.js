@@ -127,13 +127,11 @@ Project = {
     // $("#experiment_progress").css("width",(100 * project_json.phase_no) / (project_json.parsed_proc.length - 1) + "%");
 
     for (var i = 0; i < project_json.inputs.length; i++) {
-      if ($("input[name='" + project_json.inputs[i].name + "']:checked").length === 0
-      ) {
+      if ( $("input[name='" + project_json.inputs[i].name + "']:checked").length === 0 ) {
         phase_inputs[project_json.inputs[i].name] = project_json.inputs[i].value;
       } else {
         if (project_json.inputs[i].checked) {
-          phase_inputs[project_json.inputs[i].name] =
-            project_json.inputs[i].value;
+          phase_inputs[project_json.inputs[i].name] = project_json.inputs[i].value;
         }
       }
     }
@@ -581,8 +579,6 @@ Project = {
         console.log("They want to go to phase: " + go_to_info)  
       } 
       console.log("Jumping to phase: " + go_to_info)
-      // parent.parent.project_json.inputs = jQuery("[name]");
-      console.log("Inputs: " + parent.parent.project_json.inputs)
       Project.finish_phase(go_to_info);
     }
   },
@@ -1140,52 +1136,111 @@ function insert_start() {
       },
     ]);
   } else {
+
     /*
      * These quality checks are in reverse order
      */
 
-    if (typeof project_json.this_condition.audio_visual !== "undefined" && project_json.this_condition.audio_visual.toLowerCase() === "no") {
-      //skip this
-    } else if (typeof project_json.this_condition.audio_visual !== "undefined" && project_json.this_condition.audio_visual.toLowerCase() === "audio") {
-      parent.parent.audio_visual = "audio";
-      this_proc = add_to_start(this_proc, "quality_audio_visual");
-    } else if (typeof project_json.this_condition.audio_visual !== "undefined" && project_json.this_condition.audio_visual.toLowerCase() === "video") {
-      parent.parent.audio_visual = "video";
-      this_proc = add_to_start(this_proc, "quality_audio_visual");
-    } else {
-      parent.parent.audio_visual = "both";
-      this_proc = add_to_start(this_proc, "quality_audio_visual");
-    }
 
-    if (typeof project_json.this_condition.zoom_check !== "undefined" && project_json.this_condition.zoom_check.toLowerCase() === "no") {
-      //skip this
-    } else {
-      this_proc = add_to_start(this_proc, "quality_calibration_zoom");
-    }
+    var qualityChecks = project_json.this_condition.quality_checks;
+    var qualityChecksArray = qualityChecks.split(',');
 
-    if (typeof project_json.this_condition.details_warning !== "undefined" && project_json.this_condition.details_warning.toLowerCase() === "no") {
-      //skip this
-    } else {
-      this_proc = add_to_start(this_proc, "quality_details_warning");
-    }
 
-    if (typeof project_json.this_condition.age_check !== "undefined" && project_json.this_condition.age_check.toLowerCase() === "no") {
-      //skip this
-    } else {
-      this_proc = add_to_start(this_proc, "quality_age_check");
-    }
+    // Define the desired order of checks
+    var orderedChecks = ['sensitive_data', 'participant_commitment', 'age_check', 'avc_audio', 'avc_video', 'avc_both', 'bot_check', 'zoom_level'];
 
-    this_proc = add_to_start(this_proc, "quality_participant_commitment");
+    // Iterate over the orderedChecks array
+    $.each(orderedChecks, function(index, check) {
+        if (qualityChecksArray.includes(check)) {
+            switch (check) {
+                case 'bot_check':
+                    this_proc = add_to_start(this_proc, "quality_bot_check");
+                    break;
+                case 'avc_audio':
+                    parent.parent.audio_visual = "audio";
+                    this_proc = add_to_start(this_proc, "quality_audio_visual");
+                    break;
+                case 'avc_video':
+                    parent.parent.audio_visual = "video";
+                    this_proc = add_to_start(this_proc, "quality_audio_visual");
+                    break;
+                case 'avc_both':
+                    parent.parent.audio_visual = "both";
+                    this_proc = add_to_start(this_proc, "quality_audio_visual");
+                    break;
+                case 'zoom_level':
+                    this_proc = add_to_start(this_proc, "quality_calibration_zoom");
+                    break;
+                case 'sensitive_data':
+                    this_proc = add_to_start(this_proc, "quality_details_warning");
+                    break;
+                case 'age_check':
+                    this_proc = add_to_start(this_proc, "quality_age_check");
+                    break;
+                case 'participant_commitment':
+                    this_proc = add_to_start(this_proc, "quality_participant_commitment");
+                    break;
+                default:
+                    console.log("No specific action for " + check);
+            }
+        }
+    });
 
-    // Adjust this so that it pulls in information from the "start message" field to populate the text if needed
-    if (typeof project_json.this_condition.welcome !== "undefined" && project_json.this_condition.welcome.toLowerCase() === "no") {
-      //skip this
-    } else {
+    // Start with the welcome message
+    if (typeof project_json.this_condition.welcome !== 'undefined') {
       parent.parent.welcome_message = project_json.this_condition.welcome;
-      this_proc = add_to_start(this_proc, "quality_welcome_message");
+      this_proc = add_to_start(this_proc, "quality_welcome_message");   
     }
-    
 
+
+
+    // if (typeof project_json.this_condition.audio_visual !== "undefined" && project_json.this_condition.audio_visual.toLowerCase() === "no") {
+    //   //skip this
+    // } else if (typeof project_json.this_condition.audio_visual !== "undefined" && project_json.this_condition.audio_visual.toLowerCase() === "audio") {
+    //   parent.parent.audio_visual = "audio";
+    //   this_proc = add_to_start(this_proc, "quality_audio_visual");
+    // } else if (typeof project_json.this_condition.audio_visual !== "undefined" && project_json.this_condition.audio_visual.toLowerCase() === "video") {
+    //   parent.parent.audio_visual = "video";
+    //   this_proc = add_to_start(this_proc, "quality_audio_visual");
+    // } else {
+    //   parent.parent.audio_visual = "both";
+    //   this_proc = add_to_start(this_proc, "quality_audio_visual");
+    // }
+
+    // if (typeof project_json.this_condition.bot_check !== "undefined" && project_json.this_condition.bot_check.toLowerCase() === "no") {
+    //   //skip this
+    // } else {
+    //   this_proc = add_to_start(this_proc, "quality_bot_check");
+    // }
+
+    // if (typeof project_json.this_condition.zoom_check !== "undefined" && project_json.this_condition.zoom_check.toLowerCase() === "no") {
+    //   //skip this
+    // } else {
+    //   this_proc = add_to_start(this_proc, "quality_calibration_zoom");
+    // }
+
+    // if (typeof project_json.this_condition.details_warning !== "undefined" && project_json.this_condition.details_warning.toLowerCase() === "no") {
+    //   //skip this
+    // } else {
+    //   this_proc = add_to_start(this_proc, "quality_details_warning");
+    // }
+
+    // if (typeof project_json.this_condition.age_check !== "undefined" && project_json.this_condition.age_check.toLowerCase() === "no") {
+    //   //skip this
+    // } else {
+    //   this_proc = add_to_start(this_proc, "quality_age_check");
+    // }
+
+    // this_proc = add_to_start(this_proc, "quality_participant_commitment");
+
+    // // Adjust this so that it pulls in information from the "start message" field to populate the text if needed
+    // if (typeof project_json.this_condition.welcome !== "undefined" && project_json.this_condition.welcome.toLowerCase() === "no") {
+    //   //skip this
+    // } else {
+    //   parent.parent.welcome_message = project_json.this_condition.welcome;
+    //   this_proc = add_to_start(this_proc, "quality_welcome_message");
+    // }
+    
     /*
      * Load the code for the quality checks that will
      * occur at the start and end of the experiment
@@ -1195,6 +1250,10 @@ function insert_start() {
       {
         url: "Quality/AgeCheck.html",
         name: "quality_age_check",
+      },
+      {
+        url: "Quality/BotCheck.html",
+        name: "quality_bot_check",
       },
       {
         url: "Quality/AudioVisual.html",
@@ -1338,7 +1397,7 @@ function parse_sheets() {
   }
 
   function counterbalance(action) {
-    // NOTE: There's a copy of this as 'Phase.Counterbalance' that allows you to reset things if needed.
+    // NOTE: There's a copy of this as 'Phase.Counterbalance' that allows you to reset things if needed (i.e., if someone tries with the wrong browser is allows you to reset the coutnerbalancing system).
     phpFileURL = project_json.this_condition.counterbalance;
     $.ajax({
         type: 'POST',
@@ -1356,8 +1415,8 @@ function parse_sheets() {
         error: function(response) {
           console.log("Location Response: " + response);
           bootbox.alert("An error has occured with the counterbalancing system, please contact the researcher before continuing.")
-          proc_sheet_name = project_json.this_condition.procedure.toLowerCase().replace(".csv", "") + ".csv";
-          switch_platform();
+           proc_sheet_name = project_json.this_condition.procedure.toLowerCase().replace(".csv", "") + ".csv";
+           switch_platform();
         }
     });
   }
