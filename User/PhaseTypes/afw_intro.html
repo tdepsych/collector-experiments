@@ -1,5 +1,4 @@
 <!--'uor_cover' PhaseType (UoR logo fadein). Subtitle is set from the "text" field of the procedure sheet -->
-<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/uor_cover_zoom_in.css">
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <script src="../../collector-experiments/User/Assets/Global/js/detect_mobile.js"></script>
 <style>
@@ -46,6 +45,8 @@
     width: 100%!important;
   }
 </style>
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
 <div id="container">
   <p id="oops">WELCOME!</p>
   <p id="sub_head">Thank you for taking part in our study</p><br>
@@ -94,4 +95,5 @@
   // This is creating a global count value. I needed it in my MSc for something, but just leaving it here as it might be useful
   parent.parent.global_count = 1;
 </script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
 </html>
