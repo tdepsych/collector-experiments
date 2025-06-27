@@ -250,7 +250,7 @@
   var task_time_limit = '{{max_time}}';
   var progress_time   = task_time_limit + 's';
   
-  var task_time_limit = ({{max_time}} *1000 )- 1;
+  var task_time_limit = ({{max_time}} * 1000 )- 1;
   Phase.set_timer(function(){
     Phase.submit()
   },task_time_limit);
@@ -876,11 +876,11 @@ Phase.set_timer(function(){
 },1);
 
   const clueBtn   = document.getElementById('clueBtn');
-  const delay_ms  = ({{max_time}} / 2) * 1000;
+  const delay_ms  = task_time_limit / 2;
   const gridSize  = 30;                      
 
   /* ----------  reveal the button after the delay ---------- */
-  setTimeout(() => {
+  Phase.set_timer(function() {
     clueBtn.style.visibility = 'visible';
     clueBtn.style.opacity    = '1';
   }, delay_ms);
