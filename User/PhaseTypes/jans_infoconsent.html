@@ -1,4 +1,4 @@
-<!-- 'jans_info_consent' PhaseType. -->
+<!-- 'jans_infoconsent' PhaseType. -->
 <!--
 ---development---
 [
@@ -162,8 +162,8 @@
     padding-left: 10px;
   }
   .optional_item {
-    opacity: .85;
-    color: lightslategrey;
+    opacity: 1.0;
+    color: black;
   }
   .optional_item:hover {
     opacity: 1.0!important;
@@ -180,7 +180,7 @@
     <!-- This is the Information Sheet -->
     <!-- ----------------------------- -->
         
-    <div class="tab">
+        <div class="tab">
       <img id="uorLogo" src="../../collector-experiments/User/Assets/Global/img/uor.svg" />
       <br>
       School of Psychology and Clinical Language Sciences,<br>Whitenights, Reading, RG6 6AL
@@ -200,8 +200,7 @@
       The study comprises a single, online testing session that takes just over <b>50 minutes</b> to complete and must be completed in one sitting - you cannot pause or restart the study once you start. Procedurally, you will be asked to rate 120 different words on 6 separate rating scales by providing a score for each scale from 1 to 9 by clicking on the appropriate response number based on your opinion.You will also be required to select what category you feel the word you are rating best fits into. The words will be presented in four blocks of 30 words, and you will be allowed a break between each block should you wish. <b>Please note, that within the 120 words you must rate, 83 are ‘swearwords’ by which we mean they may be considered taboo/offensive</b>. After you have rated all 120 words, you will be required to complete two questionnaires: : one measuring verbal aggressiveness, one measuring trait anger, and one measuring different personality traits before completing a short demographics questionnaire that also includes two items: one asking how religious you consider yourself and the other how out of control you feel when saying a swearword out loud in response to pain/frustration. Once you’ve have provided these responses you have completed the experimental procedure and will be debriefed to the study’s aims. We are collecting basic demographic information to monitor the diversity and inclusivity of those who take part in this study as one aim of this study is to increase the generalisability of our knowledge about how people perceive different types of words.
       <br><br>
       <b>Who can participate in this study and are there any benefits to taking part?</b><br>
-      Anyone over the age of 18 years may participate in this study. <b>If you are under 18 years old, please withdraw from the study before starting.</b> If you are a University of Reading psychology student, recruited through the SONA recruitment system, you will earn 1 credit for your participation. However, if you were not recruited through the SONA system you will be entered into a draw (made in at the start of October) to win a £75 Amazon gift voucher.
-
+      You can participate in this study if you are over 18 years old and a native English speaker. This is defined as someone born in, or having moved to before the age of 2 years old, a country where English is the first language. <b>If you do not meet either of these requirements, please withdraw from the study before starting.</b> If you are a University of Reading psychology student, recruited through the SONA recruitment system, you can earn 1 credit upon completion of the study. However, if you were not recruited through the SONA system you will be entered into a draw (made once all data collection has finished) to win one of three, £75 Amazon gift vouchers.
       <br><br>
       <b>Are there any risks or disadvantages to taking part?</b><br>
       This study is investigating how people perceive different swearwords across several different scales and how this may be influenced by our individual differences. As a result, the procedure does involve reading and thinking about 83 words that can be considered swearwords. This list of 83 swearwords, however, does not include any ethnic or racial slurs. 
@@ -255,7 +254,7 @@
           
       <h5><b>CONSENT FORM</b></h5>
       Supervisors: Prof. Philip Beaman (c.p.beaman@reading.ac.uk - 0118 378 7637)<br/>
-      Experimenters: Chris Dobson (c.g.dobson@pgr.reading.ac.uk)
+      Experimenters: Christopher Dobson (c.g.dobson@pgr.reading.ac.uk)
       <br/><br/>
       Please read the following, and tick the box preceding it, to confirm it has been read and you agree to it. If you do not agree with any of the statements, please withdraw from the study by closing your browser window and let the experimenter know (using the contact details above).
       <div id="consentForm">
@@ -263,23 +262,23 @@
           <!--Check Boxes-->
           <label id="radioLabelHolder">
             <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c1_voluntary" id="c1_voluntary" value=""/>
-            <span class="radioLabel">I understand my participation is entirely voluntary and that I have the right to withdraw from the study at any time without giving a reason by simply closing my browser window.</span>
+            <span class="radioLabel">I understand participation is entirely voluntary and that I have the right to withdraw from the study at any time, without detriment, by simply closing my browser window.</span>
           </label>
           <label id="radioLabelHolder">
             <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c2_readinfo" id="c2_readinfo" value=""/>
-            <span class="radioLabel">I have read the information sheet regarding the project: <em>{{text}}</em> and understand the experimental procedure - especially that it involves rating 120 words of which 83 are considered 'swearwords'</span>
+            <span class="radioLabel">I have read the information sheet regarding the project: <em>{{text}}</em> and understand the experimental procedure – <u>especially that it involves rating 120 words of which 83 are considered 'swear words' some people may considered offensive (e.g., c**t).</u></span>
           </label>
           <label id="radioLabelHolder">
             <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c3_askedquestions" id="c3_askedquestions" value=""/>
-            <span class="radioLabel">I confirm that I have contacted the researchers prior to this study to ask any questions that I may have about the study, and these have been answered to my satisfaction.</span>
+            <span class="radioLabel">I confirm that I have contacted the researchers prior to starting this study to ask any questions that I may have about the study, and that these have been answered to my satisfaction.</span>
           </label>
           <label id="radioLabelHolder">
             <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c4_data" id="c4_data" value=""/>
-            <span class="radioLabel">I understand what information will be collected about me, what it will be used for, who it may be shared with, how it will be kept safe, and my rights in relation to my data.</span>
+            <span class="radioLabel">I understand what information is collected about me, how it will be used in relation to the study, how it will be kept safe, and my rights in relation to my data.</span>
           </label>
           <label id="radioLabelHolder">
             <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c5_anonymousdata" id="c5_anonymousdata" value=""/>
-            <span class="radioLabel">I understand that the data collected from me in this study will be preserved and made available in anonymised form, so that they can be consulted and re-used by others.</span>
+            <span class="radioLabel">I understand that the data collected as part of this study will be preserved and made openly available in an anonymized form, so that they can be consulted and re-used by others.</span>
           </label>
           <label id="radioLabelHolder">
             <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c6_downloadinfo" id="c6_downloadinfo" value=""/>
@@ -293,16 +292,11 @@
             <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c7_over18" id="c7_over18" value=""/>
             <span class="radioLabel">I confirm that I am over the age of 18.</span>
           </label>
-          <label id="radioLabelHolder">
-            <!--<input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c8_nativeenglish" id="c8_nativeenglish" value="N/A"/>-->
-            <input type="hidden" class="option-input radio consent pptConsent" name="consent_pii_c8_nativeenglish" id="c8_nativeenglish" value="N/A"/>
-            <!--<span class="radioLabel">I confirm that I am a native English speaker. <br><span style="font-size:14px; color:#808080;"><em>(defined as someone born in a native English speaking country (e.g., the UK or USA), or moved there before the age of 2)</em></span>-->
-            <!--</span>-->
-          </label>
-          <label id="radioLabelHolder" class="optional_item">
-            <input type="checkbox" class="option-input radio optional_item_checkbox" name="consent_pii_c9_future_studies" id="c9_future_studies" value="No"/>
-            <span class="radioLabel">Please tick this box if you are happy to be contacted by the researchers about future studies they conduct (optional).</span>
-          </label>
+          <!--<label id="radioLabelHolder">-->
+          <!--  <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c8_nativeenglish" id="c8_nativeenglish" value=""/>-->
+          <!--  <span class="radioLabel">I confirm that I am a native English speaker. <br><span style="font-size:14px; color:#000;"><em>(defined as someone born in a native English speaking country (e.g., the UK or USA), or moved there before the age of 2)</em></span>-->
+          <!--  </span>-->
+          <!--</label>-->
           <label id="radioLabelHolder">
             <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_informedconsent" id="informedconsent" value=""/>
             <span class="radioLabel">Finally, please confirm that you understand that by clicking <b>Consent & Start</b> (which begins the study) your are providing <b>informed consent</b> to take part in this study.</span>
@@ -314,10 +308,14 @@
             <div class="textInput_gridItems"><input type="text" class="textInput" name="consent_pii_participant_name" id="participant_nameInput" value="" placeholder="Please enter your full name"/></div>
             <div class="textInput_gridItems"><input type="email" class="textInput" name="consent_pii_participant_email" id="participant_emailInput" value="" placeholder="Please enter your email address" /></div>
           </div>
+          <label id="radioLabelHolder" class="optional_item">
+            <input type="checkbox" class="option-input radio optional_item_checkbox" name="consent_pii_c9_future_studies" id="c9_future_studies" value="No"/>
+            <span class="radioLabel">Please tick this box if you are happy to be contacted by the researchers about future studies they conduct (optional).</span>
+          </label>
         </div>
       </div>
       <hr>
-      This study has been reviewed by the School Research Ethics Committee and has been given a favourable ethical opinion for conduct.<br>(2025-014-PB; expiry date: 17/09/2027)
+      This study has been reviewed by the School Research Ethics Committee and has been given a favourable ethical opinion for conduct.<br>(2024-014-PB; expiry date: 17/09/2027)
       <br/><br/>
       Thank you for taking part in our study.
       <br/><br/>
