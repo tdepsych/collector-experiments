@@ -1287,11 +1287,11 @@
       ],
       [
         "Sex",
-        "2. What is your biological sex?",
+        "2. I identify as a?",
         "radio",
-        "Male|Female|Prefer not to say",
+        "Man|Woman|Non-Binary|Trans|In a way not listed|Prefer not to say",
         "No",
-        "1|2|0",
+        "1|2|3|4|5|0",
         ""
       ],
       [

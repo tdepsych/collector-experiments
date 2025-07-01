@@ -1860,11 +1860,11 @@
             ],
             [
               "Sex",
-              "2. What is your biological sex?",
+              "2. I identify as a?",
               "radio",
-              "Male|Female|Prefer not to say",
+              "Man|Woman|Non-Binary|Trans|In a way not listed|Prefer not to say",
               "No",
-              "1|2|0",
+              "1|2|3|4|5|0",
               ""
             ],
             [
@@ -4921,11 +4921,11 @@
         ],
         [
           "Sex",
-          "2. What is your biological sex?",
+          "2. I identify as a?",
           "radio",
-          "Male|Female|Prefer not to say",
+          "Man|Woman|Non-Binary|Trans|In a way not listed|Prefer not to say",
           "No",
-          "1|2|0",
+          "1|2|3|4|5|0",
           ""
         ],
         [
@@ -6962,11 +6962,11 @@
         ],
         [
           "Sex",
-          "2. What is your biological sex?",
+          "2. I identify as a?",
           "radio",
-          "Male|Female|Prefer not to say",
+          "Man|Woman|Non-Binary|Trans|In a way not listed|Prefer not to say",
           "No",
-          "1|2|0",
+          "1|2|3|4|5|0",
           "",
           ""
         ],
@@ -6974,9 +6974,9 @@
           "Ethnicity",
           "3. I identify my ethnicity as:",
           "radio",
-          "White|Mixed/Multiple|Asian|Black/African/Caribbean|Chinese|Other|Prefer not to say",
+          "White|Mixed/Multiple|Asian|Black/African/Caribbean|Chinese|Arab|Other|Prefer not to say",
           "No",
-          "1|2|3|4|5|6|0",
+          "1|2|3|4|5|6|7|0",
           "",
           ""
         ],
