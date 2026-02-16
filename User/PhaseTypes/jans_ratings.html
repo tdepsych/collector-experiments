@@ -229,7 +229,7 @@
      ******************** */
   
   #likert {
-    --likert-rows: 6;
+    --likert-rows: 2;
     display: inline-grid;
     max-width: 900px;
     margin-top: 10px;
@@ -281,8 +281,8 @@
     transform: translateY(35px);
     background: rgb(63, 151, 246);
     height: 2px;
-    /*width: 70%;*/
-    width: 750px;
+    width: 10%;
+    /*width: 750px;*/
     margin: 0 auto;
   }
  .word_highlight {
@@ -445,15 +445,15 @@
   </div>
   <!--Category question - not shuffled-->
     <div class="word_item">
-      <p id="q8Label"><b>Category:</b> Based on <b>your interpretation</b> of the the word <span class="word_highlight">{{word}}</span>, please select the <b>category</b> you feel it best fits into.<br><span style="font-size: 12pt; font-style: italic;opacity:0.7;">Note: If you interpret {{word}} as being <u>socially acceptable</u> to people in general, please select 'Non-Taboo' even if another category applies.</span></p>
+      <p id="q8Label"><b>Swear word:</b> Based on <b>your interpretation</b> of the the word <span class="word_highlight">{{word}}</span>, do you consider the word <span class="word_highlight">{{word}}</span> to be a swear word?</p>
         <div id="likert-line"></div>
         <div id="likert">
-          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="1"/><span class="jcat_1 jcat">Religious</span></label>
-          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="2"/><span class="jcat_2 jcat">Sexual</span></label>
-          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="3"/><span class="jcat_2 jcat">Body</span></label>
-          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="4"/><span class="jcat_2 jcat">Slur</span></label>
-          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="6"/><span class="jcat_2 jcat">Other</span></label>
-          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="5"/><span class="jcat_2 jcat">Non-Taboo</span></label>
+          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="7"/><span class="jcat_1 jcat">Yes</span></label>
+          <!--<label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="2"/><span class="jcat_2 jcat">Sexual</span></label>-->
+          <!--<label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="3"/><span class="jcat_2 jcat">Body</span></label>-->
+          <!--<label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="4"/><span class="jcat_2 jcat">Slur</span></label>-->
+          <!--<label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="6"/><span class="jcat_2 jcat">Swear word</span></label>-->
+          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="5"/><span class="jcat_2 jcat">No</span></label>
             <input type="hidden" id="jcat_response" name="jcat" class="responseValues" value="0"/>
         </div>
         <br>

@@ -1,5 +1,13 @@
+	<!--
+  ---development---
+  [
+  {'max_time':'30'}
+  ]
+  ---development---
+  -->
 	<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
   <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
+  
 	<style>
 	  #collector_phase_timer {
       display: none;
@@ -75,7 +83,9 @@
 </div>
 <script>
 
-  var task_time_limit = ({{max_time}} *1000 )- 1;
+  var progressbar_limit = ('{{max_time}}');
+  var task_time_limit = ('{{max_time}}' * 1000 );
+  
   Phase.set_timer(function(){
     Phase.submit()
   },task_time_limit);
@@ -181,7 +191,7 @@
   
   // Example: start a 60-second progress bar
   Phase.set_timer(function(){
-    createProgressbar('progressbar1', 180, function () {
+    createProgressbar('progressbar1', progressbar_limit, function () {
       console.log("Progress bar finished!");
     });
   },1);

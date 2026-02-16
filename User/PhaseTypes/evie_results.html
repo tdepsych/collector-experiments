@@ -1,0 +1,439 @@
+<!-- 'tp_demo' PhaseType. -->
+
+<!DOCTYPE html>
+</html>
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/radio_buttons.css">
+<style>
+  /********************/
+  /* STLYING THE TABS */
+  /********************/
+      
+  /* This clears all formatting from the buttons to begin */
+  button, input[type="submit"], input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
+  #proceed_button {
+    margin: 20px auto;
+    color: #FFF;
+    background-color: #006599;
+    border-color: #006599;
+    font-weight: 400;
+    /*line-height: 1.5;*/
+    text-align: center;
+    vertical-align: middle;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+  }
+  
+  #container > h3 {
+    text-align: center;
+  }
+
+  /* Style the input fields */
+  input {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #aaaaaa;
+  }
+
+  .radioLabelHolder {
+    padding-bottom: 2px;
+    transform: translate(0px, 7px);
+    display: flex;
+    cursor: pointer;
+  }
+
+  .ageInput{
+    border-radius: 10px;
+    border-color: #3f97f6;
+    width:50%;
+  }
+  
+  /* ---------------------------- */
+  /* Styled Radio Button Boxes    */
+  /* ---------------------------- */
+  
+  .radioBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border: 1px solid #aaaaaa;
+    border-radius: 10px;
+    cursor: pointer;
+    min-width: 180px;
+    text-align: center;
+    transition: all 0.2s ease;
+    background: #fff;
+  }
+  
+  .radioBox:hover {
+    border-color: #3f97f6;
+  }
+  
+  .radioBox input[type="radio"] {
+    display: none;
+  }
+  
+  .radioBox.selected {
+    border-color: #3f97f6;
+    background: #eaf4ff;
+  }
+
+
+</style>
+<button id="zoomOut" class="zoomBtn" tabindex="-1"></button>
+<button id="zoomIn" class="zoomBtn" tabindex="-1"></button>
+
+<div id="container">
+  <h2><span>Participant Results</span></h2><br>
+    <p>Once the participant has completed all the experimental tasks and been debriefed, complete this form to input their experimental data into REDCap. You need to ensure that you click 'Save' at the bottom so that Collector sends the data to REDCap.
+  <br><br><hr><br>
+  
+  <div style="display:flex; gap:40px; flex-wrap:wrap; align-items:flex-start;">
+
+    <!-- Experimenter -->
+    <div style="flex:1; min-width:260px;">
+      <p class="text-primary req-label" data-q="q1" style="margin-bottom:10px;text-align:left;">
+        Experimenter Name
+      </p>
+      <select 
+        id="experimenter" 
+        name="experimenter"
+        style="
+          width:100%;
+          padding:10px;
+          border-radius:10px;
+          border:1px solid #3f97f6;
+        ">
+        <option value="">-- Select --</option>
+        <option value="Evie">Evie</option>
+        <option value="Chris">Chris</option>
+        <option value="Rich">Rich</option>
+      </select>
+    </div>
+  
+    <!-- Participant ID -->
+    <div style="flex:1; min-width:260px;">
+      <p class="text-primary req-label" data-q="q2" style="margin-bottom:10px; text-align:left;">Participant ID</p>
+      <input type="number" id="participant_id" name="participant_id" placeholder="Enter participant ID" style="width:100%; padding:10px; border-radius:10px; border:1px solid #3f97f6;" />
+    </div>
+  
+  </div>
+
+  <br/><hr/><br/>
+
+  <!-- - - - - - - - - -->
+  <!-- 30 SECOND SWEAR -->
+  <!-- - - - - - - - - -->
+
+  <h3 class="text-primary" style="margin:0 0 10px 0;">30 Second Swear</h3>
+
+  <div style="text-align:left; margin-bottom:16px;">
+    <p class="text-primary req-label" style="margin-bottom:10px; width:100%;" data-q="q30s_swear">Swear</p>
+  
+    <div style="display:flex; gap:12px; align-items:center; width:100%; max-width:520px;">
+      <select id="swear_30_word" name="swear_30_word" style="flex:1; padding:10px; border:1px solid #aaaaaa; border-radius:10px;">
+        <option value="">-- Select word --</option>
+        <option value="Fuck">Fuck</option>
+        <option value="Shit">Shit</option>
+      </select>
+  
+      <input type="number" id="swear_30_time" name="swear_30_time" placeholder="Time (s)" style="width:160px; padding:10px; border:1px solid #aaaaaa; border-radius:10px;" min="0">
+    </div>
+  </div>
+  
+  <div style="text-align:left;">
+    <p class="text-primary req-label" style="margin-bottom:10px; width:100%;" data-q="q30s_neutral">Neutral</p>
+  
+    <div style="display:flex; gap:12px; align-items:center; width:100%; max-width:520px;">
+      <select id="neutral_30_word" name="neutral_30_word" style="flex:1; padding:10px; border:1px solid #aaaaaa; border-radius:10px;">
+        <option value="">-- Select word --</option>
+        <option value="Shop">Shop</option>
+        <option value="Flat">Flat</option>
+      </select>
+  
+      <input type="number" id="neutral_30_time" name="neutral_30_time" placeholder="Time (s)" style="width:160px; padding:10px; border:1px solid #aaaaaa; border-radius:10px;" min="0">
+    </div>
+  </div>
+
+  <br><hr><br>
+
+  <!-- - - - - - - - - - -->
+  <!-- COLD PRESSOR TEST -->
+  <!-- - - - - - - - - - -->
+
+  <h3 class="text-primary" style="margin:0 0 10px 0;">Cold Pressor</h3>
+  
+  <div style="text-align:left; margin-bottom:16px;">
+    <p class="text-primary req-label" style="margin-bottom:10px; width:100%;" data-q="qcpt_swear">Swear</p>
+  
+    <div style="display:flex; gap:12px; align-items:center; width:100%; max-width:760px; flex-wrap:wrap;">
+      <input type="text" id="cpt_swear_word" name="cpt_swear_word" placeholder="Auto-filled word" readonly
+        style="width:220px; padding:10px; border:1px solid #aaaaaa; border-radius:10px; background:#f5f5f5;">
+  
+      <input type="number" id="cpt_swear_actual" name="cpt_swear_actual" placeholder="Actual CPT time (s)"
+        style="width:240px; padding:10px; border:1px solid #aaaaaa; border-radius:10px;" min="0">
+  
+      <input type="number" id="cpt_swear_participant" name="cpt_swear_participant" placeholder="Participant CPT guess (s)"
+        style="width:240px; padding:10px; border:1px solid #aaaaaa; border-radius:10px;" min="0">
+    </div>
+  </div>
+  
+  <!-- Swear VAS Row -->
+  <div style="text-align:left; margin-top:10px;">
+    <div style="display:flex; gap:12px; align-items:center; width:100%; max-width:760px; flex-wrap:wrap;">
+      <div style="width:220px; font-weight:500;"></div>
+      <input type="number" id="cpt_swear_intensity" name="cpt_swear_intensity"placeholder="VAS intensity score" style="width:240px; padding:10px; border:1px solid #aaaaaa; border-radius:10px;" min="0" max="10">
+      <input type="number" id="cpt_swear_unpleasantness" name="cpt_swear_unpleasantness"placeholder="VAS unpleasantness score"style="width:240px; padding:10px; border:1px solid #aaaaaa; border-radius:10px;" min="0" max="10">
+    </div>
+  
+    <div style="text-align:left;">
+      <p class="text-primary req-label" style="margin-bottom:10px; width:100%;" data-q="qcpt_neutral">Neutral</p>
+    
+      <div style="display:flex; gap:12px; align-items:center; width:100%; max-width:760px; flex-wrap:wrap;">
+        <input type="text" id="cpt_neutral_word" name="cpt_neutral_word" placeholder="Auto-filled word" readonly
+          style="width:220px; padding:10px; border:1px solid #aaaaaa; border-radius:10px; background:#f5f5f5;">
+    
+        <input type="number" id="cpt_neutral_actual" name="cpt_neutral_actual" placeholder="Actual CPT time (s)" style="width:240px; padding:10px; border:1px solid #aaaaaa; border-radius:10px;" min="0">
+    
+        <input type="number" id="cpt_neutral_participant" name="cpt_neutral_participant" placeholder="Participant CPT guess (s)" style="width:240px; padding:10px; border:1px solid #aaaaaa; border-radius:10px;" min="0" >
+      </div>
+    </div>
+    
+    <!-- Neutral VAS Row -->
+    <div style="text-align:left; margin-top:10px;">
+      <div style="display:flex; gap:12px; align-items:center; width:100%; max-width:760px; flex-wrap:wrap;">
+        <div style="width:220px; font-weight:500;"></div>
+        <input type="number" id="cpt_neutral_intensity" name="cpt_neutral_intensity"placeholder="VAS intensity score" style="width:240px; padding:10px; border:1px solid #aaaaaa; border-radius:10px;" min="0" max="10">
+        <input type="number" id="cpt_neutral_unpleasantness" name="cpt_neutral_unpleasantness"placeholder="VAS unpleasantness score"style="width:240px; padding:10px; border:1px solid #aaaaaa; border-radius:10px;" min="0" max="10">
+      </div>
+    </div>
+  </div>
+    
+  <br><hr><br>
+    
+    <!-- - - - - - - -->
+    <!-- TASK ORDER  -->
+    <!-- - - - - - - -->
+    
+    <h3 class="text-primary" style="margin:0 0 10px 0;">Task Order</h3>
+    
+    <!-- Overall task order -->
+    <div style="text-align:left; margin-bottom:18px;">
+      <p class="text-primary req-label" style="margin-bottom:10px; width:100%;" data-q="q_order_tasks">
+        Which behavioural task was completed first?
+      </p>
+    
+      <div style="display:flex; gap:18px; flex-wrap:wrap;">
+        <label class="radioBox">
+          <input type="radio" name="order_tasks" value="ignore">
+          30 Second Swear
+        </label>
+      
+        <label class="radioBox">
+          <input type="radio" name="order_tasks" value="ignore">
+          Cold Pressor Test
+        </label>
+      </div>
+    </div>
+    
+    <!-- 30s swear word order -->
+    <div style="text-align:left; margin-bottom:18px;">
+      <p class="text-primary req-label" style="margin-bottom:10px; width:100%;" data-q="q_order_30s">
+        In the 30 Second Swear task, what word was vocalised first?
+      </p>
+    
+       <div style="display:flex; gap:18px; flex-wrap:wrap;">
+          <label class="radioBox">
+            <input type="radio" name="order_30s" value="ignore">
+            Swear Word
+          </label>
+        
+          <label class="radioBox">
+            <input type="radio" name="order_30s" value="ignore">
+            Neutral Word
+          </label>
+        </div>
+    </div>
+    
+    <!-- CPT word order -->
+    <div style="text-align:left;">
+      <p class="text-primary req-label" style="margin-bottom:10px; width:100%;" data-q="q_order_cpt">
+        In the Cold Pressor task, what word was vocalised first?
+      </p>
+    
+      <div style="display:flex; gap:18px; flex-wrap:wrap;">
+        <label class="radioBox">
+          <input type="radio" name="order_cpt" value="ignore">
+          Swear Word
+        </label>
+      
+        <label class="radioBox">
+          <input type="radio" name="order_cpt" value="ignore">
+          Neutral Word
+        </label>
+      </div>
+    </div>
+  
+    <br><hr><br>
+    
+    <!-- - - - - - - -->
+    <!-- FIELD NOTES -->
+    <!-- - - - - - - -->
+    
+    <h3 class="text-primary" style="margin:0 0 10px 0;">Field Notes</h3>
+    
+    <div style="text-align:left;">
+      <p class="text-primary" style="margin-bottom:10px; width:100%;">Notes (optional)</p>
+      <textarea id="experimenter_notes" name="experimenter_notes" rows="5" placeholder="Enter any relevant observations, deviations, or comments here..." style="width:100%; max-width:800px; padding:12px; border:1px solid #aaaaaa; border-radius:10px; resize:vertical; "></textarea>
+    </div>
+    
+    <br><hr><br>
+    
+    <!-- - - - - - - - - -->
+    <!-- CONTINUE BUTTON -->
+    <!-- - - - - - - - - -->
+    
+    <button class="btn btn-primary" id="proceed_button">Save Data</button>
+</div>
+
+
+</div>
+<input type="hidden" id="order_tasks_value" name="order_tasks_value" value=""/>
+<input type="hidden" id="order_30s_value" name="order_30s_value" value=""/>
+<input type="hidden" id="order_cpt_value" name="order_cpt_value" value=""/>
+
+<input type="hidden" id="swear_30_word_repetitions" name="swear_30_word_repetitions" value="0"/>
+<input type="hidden" id="neutral_30_word_repetitions" name="neutral_30_word_repetitions" value="0"/>
+<input type="hidden" id="cpt_swear_word_repetitions" name="cpt_swear_word_repetitions" value="0"/>
+<input type="hidden" id="cpt_neutral_word_repetitions" name="cpt_neutral_word_repetitions" value="0"/>
+
+<!-- --------------------------------- -->
+<!-- Only Javascript beyond this point -->
+<!-- --------------------------------- -->
+<script>
+
+function getOppositeSwear(word) {
+    if (word === "Fuck") return "Shit";
+    if (word === "Shit") return "Fuck";
+    return "";
+  }
+
+  function getOppositeNeutral(word) {
+    if (word === "Shop") return "Flat";
+    if (word === "Flat") return "Shop";
+    return "";
+  }
+
+  function updateCPTWords() {
+    const swear30 = $("#swear_30_word").val();
+    const neutral30 = $("#neutral_30_word").val();
+
+    $("#cpt_swear_word").val(getOppositeSwear(swear30));
+    $("#cpt_neutral_word").val(getOppositeNeutral(neutral30));
+  }
+
+  // Update CPT auto-filled fields whenever 30s selections change
+  $(document).on("change", "#swear_30_word, #neutral_30_word", function () {
+    updateCPTWords();
+  });
+
+  $('#proceed_button').on('click', function(event) {
+  event.preventDefault();
+
+  let allValid = true;
+
+  // Clear previous highlights
+  $('p.req-label').removeClass('text-danger');
+
+  // Each rule: check one or more fields, highlight one prompt if any are missing
+  const rules = [
+    { q: 'q1', fields: ['#experimenter'] },
+    { q: 'q2', fields: ['#participant_id'] },
+
+    { q: 'q30s_swear', fields: ['#swear_30_word', '#swear_30_time'] },
+    { q: 'q30s_neutral', fields: ['#neutral_30_word', '#neutral_30_time'] },
+
+    // CPT words are auto-filled, but still must be present (ensures 30s selections were made)
+    { q: 'qcpt_swear', fields: ['#cpt_swear_word', '#cpt_swear_actual', '#cpt_swear_participant'] },
+    { q: 'qcpt_neutral', fields: ['#cpt_neutral_word', '#cpt_neutral_actual', '#cpt_neutral_participant'] },
+    
+    // Task and word order
+    { q: 'q_order_tasks', fields: ['#order_tasks_value'] },
+    { q: 'q_order_30s', fields: ['#order_30s_value'] },
+    { q: 'q_order_cpt', fields: ['#order_cpt_value'] },
+  ];
+
+  rules.forEach(rule => {
+    const missing = rule.fields.some(sel => {
+      const v = ($(sel).val() ?? '').toString().trim();
+      return v === '';
+    });
+
+    if (missing) {
+      allValid = false;
+      $(`p.req-label[data-q="${rule.q}"]`).addClass('text-danger');
+    }
+  });
+
+  if (!allValid) {
+    bootbox.alert(
+      "<b>Please ensure that all fields have been completed.</b><br><br>Any section missing a response has been highlighted in red."
+    );
+    return;
+  }
+
+  // Everything complete
+  Phase.submit();
+});
+
+  // Store radio selections into hidden fields (safe for REDCap/Collector)
+  $(document).on('change', 'input[name="order_tasks"]', function () {
+    $('#order_tasks_value').val($(this).val());
+  });
+  
+  $(document).on('change', 'input[name="order_30s"]', function () {
+    $('#order_30s_value').val($(this).val());
+  });
+  
+  $(document).on('change', 'input[name="order_cpt"]', function () {
+    $('#order_cpt_value').val($(this).val());
+  });
+  
+  // Toggle selected styling
+  $(document).on('change', 'input[type="radio"]', function () {
+    const name = $(this).attr('name');
+    $(`input[name="${name}"]`).closest('.radioBox').removeClass('selected');
+    $(this).closest('.radioBox').addClass('selected');
+  });
+  
+  // Ensuring the number fields cannot be negative
+  $(document).on('input', 'input[type="number"]', function () {
+    if (this.value < 0) {
+      this.value = 0;
+    }
+  });
+  
+  // Clamp VAS scores to range 0–10
+  $(document).on('input', 
+    '#cpt_swear_intensity, #cpt_swear_unpleasantness, #cpt_neutral_intensity, #cpt_neutral_unpleasantness', 
+    function () {
+      let value = parseFloat(this.value);
+  
+      if (isNaN(value)) return;
+  
+      if (value < 0) this.value = 0;
+      if (value > 10) this.value = 10;
+  });
+
+</script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
