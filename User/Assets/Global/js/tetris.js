@@ -80,7 +80,26 @@ var canvasTetris = function(parentNode) {
 		this.context.strokeRect(53, 113, 152, 74);
 
 		this.context.fillStyle = "#3d6597";
-		this.context.fillText(game.pauseText[gameTextNum].text, 130 - game.pauseText[gameTextNum].halfWidth, 155);
+		// this.context.fillText(game.pauseText[gameTextNum].text, 130 - game.pauseText[gameTextNum].halfWidth, 155);
+
+		if (Array.isArray(game.pauseText[gameTextNum].text)) {
+		this.context.fillText(
+			game.pauseText[gameTextNum].text[0],
+			130 - game.pauseText[gameTextNum].halfWidth[0],
+			145
+		);
+		this.context.fillText(
+			game.pauseText[gameTextNum].text[1],
+			130 - game.pauseText[gameTextNum].halfWidth[1],
+			170
+		);
+	} else {
+		this.context.fillText(
+			game.pauseText[gameTextNum].text,
+			130 - game.pauseText[gameTextNum].halfWidth,
+			155
+		);
+	}
 
 		this.context.strokeStyle = "#ffffff";
 	};
@@ -417,7 +436,7 @@ var canvasTetris = function(parentNode) {
 			text: "Paused",
 			halfWidth: 0
 		}, {
-			text: "Game over!",
+			text: ["GAME OVER!", "Click to Restart!"],
 			halfWidth: 0
 		}],
 		blocks: [],
@@ -445,8 +464,17 @@ var canvasTetris = function(parentNode) {
 		canvas.context = canvas.node.getContext("2d");
 		canvas.context.font = "bold 18px Arial";
 
+		// for (var i = 0; i < this.pauseText.length; i++) {
+		// 	this.pauseText[i].halfWidth = Math.round(canvas.context.measureText(this.pauseText[i].text).width / 2);
+		// }
 		for (var i = 0; i < this.pauseText.length; i++) {
-			this.pauseText[i].halfWidth = Math.round(canvas.context.measureText(this.pauseText[i].text).width / 2);
+			if (Array.isArray(this.pauseText[i].text)) {
+				this.pauseText[i].halfWidth = this.pauseText[i].text.map(t =>
+					Math.round(canvas.context.measureText(t).width / 2)
+				);
+			} else {
+				this.pauseText[i].halfWidth = Math.round(canvas.context.measureText(this.pauseText[i].text).width / 2);
+			}
 		}
 		this.score.halfWidth = Math.round(canvas.context.measureText(0).width / 2);
 
@@ -542,10 +570,9 @@ var canvasTetris = function(parentNode) {
 		var oldScore = this.score.amount;
 		var newScore = oldScore + scoreToAdd;
 		this.setScore(newScore);
-		var tetrisScore = newScore;
-		// $("#tetrisScore").val(tetrisScore);
-		document.getElementById('tetris_score').value = tetrisScore;
-		console.log("Score: "+ tetrisScore)
+
+		game.updateMaxScoreField(newScore);
+
 		if (game.speed > 100 && (Math.floor(newScore / 1000) > Math.floor(oldScore / 1000))) {
 			game.speed -= 100;
 			clearInterval(this.timer);
@@ -647,6 +674,21 @@ var canvasTetris = function(parentNode) {
 			}
 		}
 	};
+
+	game.updateMaxScoreField = function(scoreValue) {
+		var scoreField = document.getElementById('tetris_score');
+		if (!scoreField) return;
+
+		var existingScore = parseInt(scoreField.value, 10);
+		if (isNaN(existingScore)) {
+			existingScore = 0;
+		}
+
+		if (scoreValue > existingScore) {
+			scoreField.value = scoreValue;
+			console.log("Max score: " + scoreField.value);
+		}
+	}
 
 	game.setGame();
 };
