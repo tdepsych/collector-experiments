@@ -177,18 +177,14 @@
   $(function () {
     var el = document.getElementById("pacman");
 
-    if (
-      Modernizr.canvas &&
-      Modernizr.localstorage &&
-      Modernizr.audio &&
-      (Modernizr.audio.ogg || Modernizr.audio.mp3)
-    ) {
+    if (Modernizr.canvas) {
       window.setTimeout(function () {
-        PACMAN.init(el, "https://raw.githubusercontent.com/daleharvey/pacman/master/");
+        // PACMAN.init(el, "https://raw.githubusercontent.com/daleharvey/pacman/master/");
+        PACMAN.init(el);
       }, 0);
     } else {
       el.innerHTML =
-        "Sorry, this game needs a browser with canvas, audio, and localStorage support.";
+        "Sorry, this game needs a browser with canva support.";
     }
   });
 </script>

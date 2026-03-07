@@ -484,7 +484,7 @@ Pacman.User = function (game, map) {
             return;
         }
 
-        ctx.fillStyle = "#fb3e05";
+        ctx.fillStyle = "#4A70A0";
         ctx.beginPath();        
         ctx.moveTo(((position.x/10) * size) + half, 
                    ((position.y/10) * size) + half);
