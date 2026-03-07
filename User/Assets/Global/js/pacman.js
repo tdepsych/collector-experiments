@@ -19,6 +19,7 @@ var NONE        = 4,
     COUNTDOWN   = 8,
     EATEN_PAUSE = 9,
     DYING       = 10,
+    pacmanMaxScore = 0;
     Pacman      = {};
 
 Pacman.FPS = 30;
@@ -292,20 +293,15 @@ Pacman.User = function (game, map) {
     keyMap[KEY.ARROW_DOWN]  = DOWN;
 
     function addScore(nScore) { 
-		score += nScore;
+        score += nScore;
+        if (game.updateHighestScore) {
+            game.updateHighestScore(score);
+        }
 
-		var scoreInput = document.getElementById("pacman_score");
-		if (scoreInput) {
-			var savedScore = parseInt(scoreInput.value, 10) || 0;
-			if (score > savedScore) {
-				scoreInput.value = score;
-			}
-		}
-
-		if (score >= 10000 && score - nScore < 10000) { 
-			lives += 1;
-		}
-	};
+        if (score >= 10000 && score - nScore < 10000) { 
+            lives += 1;
+        }
+    };
 
     function theScore() { 
         return score;
@@ -488,7 +484,7 @@ Pacman.User = function (game, map) {
             return;
         }
 
-        ctx.fillStyle = "#fdb735ff";
+        ctx.fillStyle = "#fb3e05";
         ctx.beginPath();        
         ctx.moveTo(((position.x/10) * size) + half, 
                    ((position.y/10) * size) + half);
@@ -505,7 +501,7 @@ Pacman.User = function (game, map) {
         var s     = map.blockSize, 
             angle = calcAngle(direction, position);
 
-        ctx.fillStyle = "#FFFF00";
+        ctx.fillStyle = "#FBBC05";
 
         ctx.beginPath();        
 
@@ -798,6 +794,7 @@ var PACMAN = (function () {
         timer        = null,
         map          = null,
         user         = null,
+        highestScore = 0,
         stored       = null;
 
     function getTick() { 
@@ -1087,8 +1084,18 @@ var PACMAN = (function () {
 		};
         map   = new Pacman.Map(blockSize);
         user  = new Pacman.User({ 
-            "completedLevel" : completedLevel, 
-            "eatenPill"      : eatenPill 
+            "completedLevel"     : completedLevel, 
+            "eatenPill"          : eatenPill,
+            "updateHighestScore": function(score) {
+
+                if (score > highestScore) {
+                    highestScore = score;
+                    var scoreInput = document.getElementById("pacman_score");
+                    if (scoreInput) {
+                        scoreInput.value = highestScore;
+                    }
+                } 
+            }
         }, map);
 
         for (i = 0, len = ghostSpecs.length; i < len; i += 1) {

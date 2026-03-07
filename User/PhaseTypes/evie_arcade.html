@@ -1,0 +1,21 @@
+<!--'task_bookend' PhaseType-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  @font-face {
+    font-family: 'Honk';
+    src: url('../../collector-experiments/User/Assets/Fonts/Honk.woff') format('woff');
+  }
+    #title {
+    font-size: 65px!important;
+    font-family: Honk!important;
+    color: #4A70A0!important;
+  }
+</style>
+<button id="zoomOut" tabindex="-1"></button>
+<button id="zoomIn" tabindex="-1"></button>
+<div id="container">
+  <h2 id="title"><span style="font-weight:bold;">{{task_title}}</span></h2><br>
+  <p>{{task_body_text}}</p>
+  <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()" >{{text}}</button>
+</div>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

@@ -9,6 +9,15 @@
   <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
   
 	<style>
+	  @font-face {
+      font-family: 'Honk';
+      src: url('../../collector-experiments/User/Assets/Fonts/Honk.woff') format('woff');
+    }
+      #title {
+      font-size: 65px!important;
+      font-family: Honk!important;
+      color: #4A70A0!important;
+    }
 	  #collector_phase_timer {
       display: none;
     }
@@ -73,7 +82,7 @@
 <button id="zoomIn" tabindex="-1"></button>
   
 <div id="container">
-	<h2><span><b>Breakout</b></span></h2><br>
+	<h2 id="title"><span><b>Breakout</b></span></h2><br>
 	<p>The idea of this game is that you use the paddle (controlled with the keyboard) to bounce the ball up and down, scoring points for each block you burst. Try to score as many points as possible. Good luck!</p>
   <canvas id="game_area" width="500" height="500"></canvas>
   <div class="description">

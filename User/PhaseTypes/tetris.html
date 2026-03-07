@@ -2,6 +2,15 @@
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
 <script src="../../collector-experiments/User/Assets/Global/js/tetris.js"></script>
 <style>
+  @font-face {
+    font-family: 'Honk';
+    src: url('../../collector-experiments/User/Assets/Fonts/Honk.woff') format('woff');
+  }
+    #title {
+    font-size: 65px!important;
+    font-family: Honk!important;
+    color: #4A70A0!important;
+  }
   #collector_phase_timer {
     display: none;
   }
@@ -65,7 +74,7 @@
 <button id="zoomOut" tabindex="-1"></button>
 <button id="zoomIn" tabindex="-1"></button>
 <div id="container">
-	<h2><span><b>Tetris</b></span></h2><br>
+	<h2 id="title"><span><b>Tetris</b></span></h2><br>
 	<p>Try to arrange the falling blocks into complete rows to score points. You can pause the game by pressing 'P' but the countdown timer will continue and cannot be paused. The game speed increases every 1000 points scored. Good luck!</p>
 	<div id="canvasTetris"></div>
 	 <div class="description">
