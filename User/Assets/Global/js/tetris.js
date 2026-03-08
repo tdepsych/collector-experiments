@@ -430,13 +430,14 @@ var canvasTetris = function(parentNode) {
 		timer: null,
 		paused: false,
 		pauseText: [{
-			text: "Click to Start!",
+			// text: "Click to Start!",
+			text: ["Press SPACE", "to Start!"],
 			halfWidth: 0
 		}, {
 			text: "Paused",
 			halfWidth: 0
 		}, {
-			text: ["GAME OVER!", "Click to Restart!"],
+			text: ["GAME OVER!", "Press SPACE"],
 			halfWidth: 0
 		}],
 		blocks: [],
@@ -491,7 +492,13 @@ var canvasTetris = function(parentNode) {
 
 		canvas.node.focus();
 
-		canvas.node.addEventListener("click", game.resetGame, false);
+		// canvas.node.addEventListener("click", game.resetGame, false);
+		canvas.node.addEventListener("keydown", function(e){
+			if (e.keyCode === 32) { // Spacebar
+				e.preventDefault();
+				game.resetGame();
+			}
+		}, false);
 	};
 
 	game.resetGame = function() {
@@ -615,7 +622,13 @@ var canvasTetris = function(parentNode) {
 				}
 				setTimeout(arguments.callee, 20);
 			} else {
-				canvas.node.addEventListener("click", game.resetGame, false);
+				// canvas.node.addEventListener("click", game.resetGame, false);
+				canvas.node.addEventListener("keydown", function(e){
+					if (e.keyCode === 32) {
+						e.preventDefault();
+						game.resetGame();
+					}
+				}, false);
 			}
 		})();
 	};
