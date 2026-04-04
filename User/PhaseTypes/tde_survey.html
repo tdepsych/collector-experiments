@@ -287,11 +287,19 @@ input[type="number"] {
 </div>
 <span id="scales_span"></span>
 <script>
+  var notes = "{{notes}}";
   current_survey = "{{survey}}";
   setTimeout(function(){ 
     var word = "{{task_body_text}}";
     $('#word').text(word);
   },1000);
+  
+  if (notes == "mobile") {
+    $('#zoomIn').hide();
+    $('#zoomOut').hide();
+  } else {
+    // Do nothing
+  }
 </script>
 <script src="../Default/DefaultPhaseTypes/survey_white.js"></script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

@@ -1,0 +1,127 @@
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+
+<style>
+  @font-face {
+    font-family: 'Montserrat-ExtraLight';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-ExtraLight.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Montserrat-ExtraBold';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-ExtraBold.woff') format('woff');
+  }
+  @font-face {
+    font-family: 'Montserrat-BlackItalic';
+    src: url('../../collector-experiments/User/Assets/Fonts/Montserrat-BlackItalic.woff') format('woff');
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body, html {
+    background: #FFF;
+    overflow-x: hidden;
+  }
+
+  #container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  #welcome_img {
+    display: block;
+    margin: 0 auto 20px;
+    width: clamp(120px, 40vw, 320px);
+    height: auto;
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @media (max-width: 480px) {
+    #welcome_img {
+      width: 60vw;
+      margin-bottom: 16px;
+    }
+  }
+
+  #oops {
+    font-size: clamp(42px, 10vw, 120px) !important;
+    line-height: 1.1;
+    font-family: Montserrat-BlackItalic !important;
+    /*background-image: url(../../collector-experiments/User/Assets/Global/img/mind.jpg);
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-position: 50% 40%;*/
+    color: #000;
+    margin: 0 auto 20px;
+    display: block !important;
+    width: auto !important;
+    max-width: none !important;
+    overflow: visible !important;
+    white-space: nowrap;
+    padding: 0 12px;
+  }
+
+  #sub_head {
+    font-size: clamp(18px, 3.5vw, 26px) !important;
+    font-family: Montserrat-ExtraBold !important;
+    margin-bottom: 20px;
+  }
+
+  #body_text {
+    font-family: Montserrat-ExtraLight !important;
+    font-weight: 600 !important;
+    font-size: clamp(14px, 2.5vw, 18px) !important;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  #proceed_button {
+    font-size: 16px;
+    padding: 12px 24px;
+    min-height: 48px;
+  }
+
+  @media (max-width: 480px) {
+    #container {
+      padding: 30px 16px;
+    }
+
+    #oops {
+      font-size: 56px !important;
+    }
+
+    #body_text {
+      line-height: 1.5;
+    }
+  }
+</style>
+
+<div id="container">
+  <img id="welcome_img" src="../../collector-experiments/User/Assets/Jans/rudy.jpg" alt="Welcome image">
+  <p id="oops">WELCOME!</p>
+
+  <p id="sub_head">
+    Thank you for taking part in our study
+  </p>
+  <br>
+  <p id="body_text">
+    Thank you for your interest in our study. Please click the button below to load the study information sheet and consent form that you need to complete before you begin.
+    <br><br>
+    Please be aware: you should complete this study in a quiet environment, away from distractions. It takes around 35 minutes to complete and you cannot pause or restart the study once you have started.
+  </p>
+
+  <button class="btn btn-outline-primary" id="proceed_button" onclick="Phase.submit()">
+    <b>CLICK TO START</b>
+  </button>
+</div>

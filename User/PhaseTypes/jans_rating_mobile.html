@@ -1,0 +1,777 @@
+<!--
+---development---
+[
+{'word':'ace'}
+]
+---development---
+-->
+<!-- it can help to add a description between the --'s of what this code does -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/radio_buttons.css">
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  #container {
+    margin-top: 5%;
+    width: min(92%, 900px) !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #container p {
+    text-align: center;
+    width: 100% !important;
+    line-height: 1.5;
+  }
+
+  #proceed_button {
+    margin-bottom: 50px !important;
+    transform: translateX(-15px) !important;
+  }
+
+  hr {
+    transform: none;
+    margin: 24px 0;
+  }
+
+  #endRadio:after {
+    display: none;
+  }
+
+  #uppercase {
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .radio:hover {
+    background-color: #a7d4ef !important;
+    cursor: pointer;
+  }
+
+  .radio:focus,
+  .jcat:focus {
+    background-color: #a7d4ef !important;
+    color: #FFF;
+  }
+
+  .option-input:checked::after {
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    animation: none !important;
+    content: '';
+    z-index: 100;
+  }
+
+  .response1 {
+    background: #FFF !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/one.svg) !important;
+  }
+  .response1:hover {
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/one.svg) !important;
+  }
+  .response1:checked {
+    background: #3f97f6 !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/one.svg) !important;
+  }
+
+  .response2 {
+    background: #FFF !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/two.svg) !important;
+  }
+  .response2:hover {
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/two.svg) !important;
+  }
+  .response2:checked {
+    background: #3f97f6 !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/two.svg) !important;
+  }
+
+  .response3 {
+    background: #FFF !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/three.svg) !important;
+  }
+  .response3:hover {
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/three.svg) !important;
+  }
+  .response3:checked {
+    background: #3f97f6 !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/three.svg) !important;
+  }
+
+  .response4 {
+    background: #FFF !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/four.svg) !important;
+  }
+  .response4:hover {
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/four.svg) !important;
+  }
+  .response4:checked {
+    background: #3f97f6 !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/four.svg) !important;
+  }
+
+  .response5 {
+    background: #FFF !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/five.svg) !important;
+  }
+  .response5:hover {
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/five.svg) !important;
+  }
+  .response5:checked {
+    background: #3f97f6 !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/five.svg) !important;
+  }
+
+  .response6 {
+    background: #FFF !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/six.svg) !important;
+  }
+  .response6:hover {
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/six.svg) !important;
+  }
+  .response6:checked {
+    background: #3f97f6 !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/six.svg) !important;
+  }
+
+  .response7 {
+    background: #FFF !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/seven.svg) !important;
+  }
+  .response7:hover {
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/seven.svg) !important;
+  }
+  .response7:checked {
+    background: #3f97f6 !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/seven.svg) !important;
+  }
+
+  .response8 {
+    background: #FFF !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/eight.svg) !important;
+  }
+  .response8:hover {
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/eight.svg) !important;
+  }
+  .response8:checked {
+    background: #3f97f6 !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/eight.svg) !important;
+  }
+
+  .response9 {
+    background: #FFF !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/nine.svg) !important;
+  }
+  .response9:hover {
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/nine.svg) !important;
+  }
+  .response9:checked {
+    background: #3f97f6 !important;
+    background-image: url(../../collector-experiments/User/Assets/Global/img/radio_numbers/checked/nine.svg) !important;
+  }
+
+  /* Keep your original number sizing */
+  .option-input {
+    background-size: 10px !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    transform: scale(1.5) !important;
+  }
+
+  .option-input:checked,
+  .option-input:hover {
+    background-size: 10px !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+  }
+
+  /* Connector line between buttons */
+  .option-input:after {
+    display: block;
+    content: " ";
+    position: absolute !important;
+    bottom: 8px;
+    background: rgb(63, 151, 246);
+    height: 1px;
+    width: 30px;
+    right: -30px;
+    pointer-events: none;
+  }
+
+  /* =========================
+     SCALE LAYOUT
+     Works with either id or class
+     ========================= */
+
+  #checkboxes,
+  .checkboxes {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 645px;
+    transform: none;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    align-items: start;
+    justify-items: center;
+    row-gap: 14px;
+    column-gap: 0;
+  }
+
+  #checkboxes > input[type="radio"],
+  .checkboxes > input[type="radio"] {
+    margin: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  #checkboxes > br,
+  .checkboxes > br,
+  #checkboxes > .responseValues,
+  .checkboxes > .responseValues {
+    display: none;
+  }
+
+  #anchorTable,
+  .anchorTable {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin-top: 6px;
+    transform: none;
+    display: block;
+  }
+
+  #anchorTable .minor,
+  .anchorTable .minor {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    width: 100%;
+    align-items: start;
+  }
+
+  .leftAlign3,
+  .centerAlign3,
+  .rightAlign3,
+  .leftAlign2,
+  .rightAlign2 {
+    font-size: 13.5px;
+    line-height: 1.35;
+    padding-right: 0;
+    width: auto;
+  }
+
+  .leftAlign3 {
+    grid-column: 1 / 3;
+    text-align: left;
+  }
+
+  .centerAlign3 {
+    grid-column: 4 / 7;
+    text-align: center;
+  }
+
+  .rightAlign3 {
+    grid-column: 8 / 10;
+    text-align: right;
+  }
+
+  .leftAlign2 {
+    grid-column: 1 / 4;
+    text-align: left;
+  }
+
+  .rightAlign2 {
+    grid-column: 7 / 10;
+    text-align: right;
+  }
+
+  /* ********************
+     LIKERT SCALE STYLING
+     ******************** */
+
+  #likert {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(90px, 160px));
+    justify-content: center;
+    column-gap: 12px;
+    row-gap: 12px;
+    width: 100%;
+    max-width: 360px;
+    margin: 10px auto 0;
+    color: #3f97f6;
+  }
+  
+  #likert input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .jcat_container {
+    display: block;
+    width: 100%;
+  }
+  
+  .jcat_1, .jcat_2 {
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 10px;
+    border: #3f97f6 solid 2px;
+    background: #ffffff;
+    transition: background .2s ease-in-out;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  @media (max-width: 768px) {
+    #likert {
+      /*grid-template-columns: 1fr;*/
+      justify-items: center;
+    }
+  
+    .jcat_1, .jcat_2 {
+      width: 160px;
+    }
+  }
+
+  #likert input:checked + span {
+    border: #3f97f6 solid 2px;
+    background: #3f97f6;
+    color: #ffffff;
+  }
+
+  #likert span:hover {
+    background: #a7d4ef;
+    color: #ffffff;
+    cursor: pointer;
+  }
+
+  #likert-line {
+    content: " ";
+    position: relative;
+    z-index: -800;
+    transform: none;
+    background: rgb(63, 151, 246);
+    height: 2px;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .word_highlight {
+    color: #3f97f6;
+    font-weight: bold;
+  }
+
+  /* =========================
+     MOBILE
+     ========================= */
+
+  @media (max-width: 768px) {
+    #container {
+      width: 96% !important;
+      margin-top: 20px;
+    }
+
+    #container p {
+      font-size: 15px;
+    }
+
+    #checkboxes,
+    .checkboxes {
+      max-width: 100%;
+    }
+
+    .option-input {
+      transform: scale(1.25) !important;
+    }
+
+    .option-input:after {
+      width: 18px;
+      right: -18px;
+    }
+
+    .leftAlign3,
+    .centerAlign3,
+    .rightAlign3,
+    .leftAlign2,
+    .rightAlign2 {
+      font-size: 12px;
+    }
+
+    #likert {
+      /*grid-template-columns: 1fr;*/
+    }
+
+    #proceed_button {
+      transform: none !important;
+      width: 100%;
+      max-width: 420px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #container p {
+      font-size: 14px;
+    }
+
+    .option-input {
+      transform: scale(1.1) !important;
+    }
+
+    .option-input:after {
+      width: 10px;
+      right: -10px;
+    }
+
+    .leftAlign3,
+    .centerAlign3,
+    .rightAlign3,
+    .leftAlign2,
+    .rightAlign2 {
+      font-size: 11px;
+      line-height: 1.3;
+    }
+  }
+</style>
+<div id="container">
+  <h2><span id="uppercase">Word Rating: {{word}}</span></h2>
+  <br>
+  <p>Read the scales carefully before you start rating the word!</p>
+  <br>
+  <!--<form>-->
+  <div id="items">
+    <div class="word_item">
+      <p id="q1Label"><b>Personal use:</b> How often do <b>YOU</b> use the word <span class="word_highlight">{{word}}</span> in any way - speaking or writing? Give a 1–9 rating:</p>
+      <div class="checkboxes">
+        <input type="radio" name="juse" class="option-input response1 radio juse" value="1">
+        <input type="radio" name="juse" class="option-input response2 radio juse" value="2">
+        <input type="radio" name="juse" class="option-input response3 radio juse" value="3">
+        <input type="radio" name="juse" class="option-input response4 radio juse" value="4">
+        <input type="radio" name="juse" class="option-input response5 radio juse" value="5">
+        <input type="radio" name="juse" class="option-input response6 radio juse" value="6">
+        <input type="radio" name="juse" class="option-input response7 radio juse" value="7">
+        <input type="radio" name="juse" class="option-input response8 radio juse" value="8">
+        <input type="radio" name="juse" class="option-input response9 radio juse" id="endRadio" value="9">
+        <input type="hidden" id="juse_response" name="juse" class="responseValues" value="0"/>
+        <br>
+        <section id="anchorTable">
+          <div class="minor">
+            <div class="leftAlign3">I never use '{{word}}'</div>
+            <div class="centerAlign3">I sometimes use '{{word}}'</div>
+            <div class="rightAlign3">I use '{{word}}' all the time</div>
+          </div>
+        </section>
+      </div>
+      <hr>
+    </div>
+    <div class="word_item">
+      <p id="q2Label"><b>Familiarity:</b> How often do you <b>encounter</b> the word <span class="word_highlight">{{word}}</span>? For example, you may hear it used in a conversation, on the radio, in a movie or on TV, or you may read the word in a magazine, book, on the Internet, etc. Give a 1–9 rating:</p>
+      <div class="checkboxes">
+        <input type="radio" name="jfamilairty" class="option-input response1 radio jfamilairty" value="1">
+        <input type="radio" name="jfamilairty" class="option-input response2 radio jfamilairty" value="2">
+        <input type="radio" name="jfamilairty" class="option-input response3 radio jfamilairty" value="3">
+        <input type="radio" name="jfamilairty" class="option-input response4 radio jfamilairty" value="4">
+        <input type="radio" name="jfamilairty" class="option-input response5 radio jfamilairty" value="5">
+        <input type="radio" name="jfamilairty" class="option-input response6 radio jfamilairty" value="6">
+        <input type="radio" name="jfamilairty" class="option-input response7 radio jfamilairty" value="7">
+        <input type="radio" name="jfamilairty" class="option-input response8 radio jfamilairty" value="8">
+        <input type="radio" name="jfamilairty" class="option-input response9 radio jfamilairty" id="endRadio" value="9">
+        <input type="hidden" id="jfamilairty_response" name="jfamilairty" class="responseValues" value="0"/>
+        <br>
+        <section id="anchorTable">
+          <div class="minor">
+            <div class="leftAlign3">I never encounter '{{word}}'</div>
+            <div class="centerAlign3">I sometimes encounter '{{word}}'</div>
+            <div class="rightAlign3">I encounter '{{word}}' all the time</div>
+          </div>
+        </section>
+      </div>
+      <hr>
+    </div>
+    <div class="word_item">
+      <p id="q3Label"><b>Offensiveness:</b> How offensive is the word <span class="word_highlight">{{word}}</span> to <b>YOU</b>? Give a 1–9 rating:</p>
+      <div class="checkboxes">
+        <input type="radio" name="joffense" class="option-input response1 radio joffense" value="1">
+        <input type="radio" name="joffense" class="option-input response2 radio joffense" value="2">
+        <input type="radio" name="joffense" class="option-input response3 radio joffense" value="3">
+        <input type="radio" name="joffense" class="option-input response4 radio joffense" value="4">
+        <input type="radio" name="joffense" class="option-input response5 radio joffense" value="5">
+        <input type="radio" name="joffense" class="option-input response6 radio joffense" value="6">
+        <input type="radio" name="joffense" class="option-input response7 radio joffense" value="7">
+        <input type="radio" name="joffense" class="option-input response8 radio joffense" value="8">
+        <input type="radio" name="joffense" class="option-input response9 radio joffense" id="endRadio" value="9">
+        <input type="hidden" id="joffense_response" name="joffense" class="responseValues" value="0"/>
+        <br>
+        <section id="anchorTable">
+          <div class="minor">
+            <div class="leftAlign2">I am not at all offended by '{{word}}'</div>
+            <div class="rightAlign2">'{{word}}' is very offensive to me</div>
+          </div>
+        </section>
+      </div>
+      <hr>
+    </div>
+    <div class="word_item">
+      <p id="q4Label"><b>Tabooness:</b> How taboo or <b>socially unacceptable</b>  is the word <span class="word_highlight">{{word}}</span> to <b>people in general</b>? Imagine the word being used at work, in a classroom, at a religious service, at a cocktail party, with friends, with family, etc. Give a 1–9 rating:</p>
+      <div class="checkboxes">
+        <input type="radio" name="jtaboo" class="option-input response1 radio jtaboo" value="1">
+        <input type="radio" name="jtaboo" class="option-input response2 radio jtaboo" value="2">
+        <input type="radio" name="jtaboo" class="option-input response3 radio jtaboo" value="3">
+        <input type="radio" name="jtaboo" class="option-input response4 radio jtaboo" value="4">
+        <input type="radio" name="jtaboo" class="option-input response5 radio jtaboo" value="5">
+        <input type="radio" name="jtaboo" class="option-input response6 radio jtaboo" value="6">
+        <input type="radio" name="jtaboo" class="option-input response7 radio jtaboo" value="7">
+        <input type="radio" name="jtaboo" class="option-input response8 radio jtaboo" value="8">
+        <input type="radio" name="jtaboo" class="option-input response9 radio jtaboo" id="endRadio" value="9">
+        <input type="hidden" id="jtaboo_response" name="jtaboo" class="responseValues" value="0"/>
+        <br>
+        <section id="anchorTable">
+          <div class="minor">
+            <div class="leftAlign3">Not at all taboo</div>
+            <div class="centerAlign3">Medium taboo</div>
+            <div class="rightAlign3">Very taboo</div>
+          </div>
+        </section>
+      </div>
+      <hr>
+    </div>
+    <div class="word_item">
+      <p id="q6Label"><b>Arousal:</b> How exciting is the word <span class="word_highlight">{{word}}</span>? Consider how much the word <b>grabs your attention</b> when you hear it spoken or see it written. Give a 1–9 rating:</p>
+      <div class="checkboxes">
+        <input type="radio" name="jarousal" class="option-input response1 radio jarousal" value="1">
+        <input type="radio" name="jarousal" class="option-input response2 radio jarousal" value="2">
+        <input type="radio" name="jarousal" class="option-input response3 radio jarousal" value="3">
+        <input type="radio" name="jarousal" class="option-input response4 radio jarousal" value="4">
+        <input type="radio" name="jarousal" class="option-input response5 radio jarousal" value="5">
+        <input type="radio" name="jarousal" class="option-input response6 radio jarousal" value="6">
+        <input type="radio" name="jarousal" class="option-input response7 radio jarousal" value="7">
+        <input type="radio" name="jarousal" class="option-input response8 radio jarousal" value="8">
+        <input type="radio" name="jarousal" class="option-input response9 radio jarousal" id="endRadio" value="9">
+        <input type="hidden" id="jarousal_response" name="jarousal" class="responseValues" value="0"/>
+        <br>
+        <section id="anchorTable">
+          <div class="minor">
+            <div class="leftAlign3">Not arousing at all</div>
+            <div class="centerAlign3">Medium arousing</div>
+            <div class="rightAlign3">Very arousing</div>
+          </div>
+        </section>
+      </div>
+      <hr>
+    </div>
+    <div class="word_item">
+      <p id="q7Label"><b>Vocalisability:</b> How likely are <b>YOU</b> to say the word <span class="word_highlight">{{word}}</span> out loud <b>in response to pain or frustration</b>? For example, if you stubbed your toe on a table. Give a rating 1-9:</p>
+      <div class="checkboxes">
+        <input type="radio" name="jq7" class="option-input response1 radio jq7" value="1">
+        <input type="radio" name="jq7" class="option-input response2 radio jq7" value="2">
+        <input type="radio" name="jq7" class="option-input response3 radio jq7" value="3">
+        <input type="radio" name="jq7" class="option-input response4 radio jq7" value="4">
+        <input type="radio" name="jq7" class="option-input response5 radio jq7" value="5">
+        <input type="radio" name="jq7" class="option-input response6 radio jq7" value="6">
+        <input type="radio" name="jq7" class="option-input response7 radio jq7" value="7">
+        <input type="radio" name="jq7" class="option-input response8 radio jq7" value="8">
+        <input type="radio" name="jq7" class="option-input response9 radio jq7" id="endRadio" value="9">
+        <input type="hidden" id="jq7_response" name="jq7" class="responseValues" value="0"/>
+        <br>
+        <section id="anchorTable">
+          <div class="minor">
+            <div class="leftAlign3">I would not say '{{word}}'</div>
+            <div class="centerAlign3">I might say '{{word}}'</div>
+            <div class="rightAlign3">I would say '{{word}}'</div>
+          </div>
+        </section>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <!--Category question - not shuffled-->
+    <div class="word_item">
+      <p id="q8Label"><b>Swear word:</b> Based on <b>your interpretation</b> of the the word <span class="word_highlight">{{word}}</span>, do you consider the word <span class="word_highlight">{{word}}</span> to be a swear word?</p>
+        <div id="likert">
+          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="7"/><span class="jcat_1 jcat">Yes</span></label>
+          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="5"/><span class="jcat_2 jcat">No</span></label>
+            <input type="hidden" id="jcat_response" name="jcat" class="responseValues" value="0"/>
+        </div>
+        <br>
+      <hr>
+    </div>
+  <!--</form>-->
+  <button class="btn btn-primary" id="proceed_button">Next Word</button>
+</div>
+<script>
+
+  function appropriate_message(this_message) {
+    bootbox.alert(this_message);
+  }
+  
+  var score1 = null;
+  var score2 = null;
+  var score3 = null;
+  var score4 = null;
+  var score5 = null;
+  var score6 = null;
+  var score7 = null;
+  
+  $('#container').on('change', function() {
+    // This stores all the response values back into their inputs so Collector adds them to the data
+    $('#juse_response').val($('.juse:checked').val());
+    $('#jfamilairty_response').val($('.jfamilairty:checked').val());
+    $('#joffense_response').val($('.joffense:checked').val());
+    $('#jtaboo_response').val($('.jtaboo:checked').val());
+    // $('#jq5_response').val($('.jq5:checked').val());
+    $('#jarousal_response').val($('.jarousal:checked').val());
+    $('#jq7_response').val($('.jq7:checked').val());
+    $('#jcat_response').val($('.jcat:checked').val());
+
+    // This assigns the response values to variables so we can validate the form by checking if they are "null"
+    score1 = $('.juse:checked').val();
+    score2 = $('.jfamilairty:checked').val();
+    score3 = $('.joffense:checked').val();
+    score4 = $('.jtaboo:checked').val();
+    score5 = $('.jarousal:checked').val();
+    score6 = $('.jq7:checked').val();
+    score7 = $('.jcat:checked').val();
+  });
+  
+  // This sets a global variable which we +1 every submission to allow us to count completed trials
+    if (parent.parent.blockCount == null) {
+      parent.parent.blockCount = 1;
+      console.log("First Trial: "+parent.parent.blockCount);
+      $("h2 span").text($("h2 span").text().replace("Rating", "Rating 1"));
+    } else {
+      parent.parent.blockCount = parent.parent.blockCount;
+      $("h2 span").text($("h2 span").text().replace("Rating", "Rating "+parent.parent.blockCount));
+      console.log("Subequent Trial: "+parent.parent.blockCount);
+    }
+    parent.parent.blockCount++
+    
+  // This swaps the submission button text when we reach the last word in the block
+  if (parent.parent.blockCount == 31 || parent.parent.blockCount == 61 || parent.parent.blockCount == 91 || parent.parent.blockCount == 121) {
+    $('#proceed_button').html("End Block");
+  }
+
+  // -------------- //
+  // SUBMIT ACTIONS //
+  // -------------- //
+  
+  $('.option-input, .jcat').on('change', function() {
+    $('#q1Label').css('color', $('.juse:checked').length ? 'green' : '');
+    $('#q2Label').css('color', $('.jfamilairty:checked').length ? 'green' : '');
+    $('#q3Label').css('color', $('.joffense:checked').length ? 'green' : '');
+    $('#q4Label').css('color', $('.jtaboo:checked').length ? 'green' : '');
+    $('#q6Label').css('color', $('.jarousal:checked').length ? 'green' : '');
+    $('#q7Label').css('color', $('.jq7:checked').length ? 'green' : '');
+    $('#q8Label').css('color', $('.jcat:checked').length ? 'green' : '');
+  });
+  
+  $('#proceed_button').click(function() {
+    
+    // First we validate the form by checking we have complete responses. If there are null values, we alert the user and change the relevant text red. Else, we move to the next word
+    if (score1 == null || score2 == null || score3 ==null || score4 == null || score5 == null || score6 == null || score7 == null) {
+      appropriate_message("<b>Missing responses</b><br>Sorry, you have missed one or more questions, these are now highlighted in red. Please fill in all the questions");
+        if (score1 == null) { $('#q1Label').css('color','red');} else {$('#q1Label').css('color','green');}
+        if (score2 == null) { $('#q2Label').css('color','red');} else {$('#q2Label').css('color','green');}
+        if (score3 == null) { $('#q3Label').css('color','red');} else {$('#q3Label').css('color','green');}
+        if (score4 == null) { $('#q4Label').css('color','red');} else {$('#q4Label').css('color','green');}
+        if (score5 == null) { $('#q6Label').css('color','red');} else {$('#q6Label').css('color','green');}
+        if (score6 == null) { $('#q7Label').css('color','red');} else {$('#q7Label').css('color','green');}
+        if (score7 == null) { $('#q8Label').css('color','red');} else {$('#q8Label').css('color','green');}
+    } else {
+      Phase.submit(); 
+    }
+  });
+  
+  // ------------------ //
+  // SHUFFLE ITEM ORDER //
+  // ------------------ //
+  
+  // Function to extract the required DIVs, make them into an array, shuffle that array (via the second function) and then insert the output into the HTML
+  function shuffle() {
+    var container = document.getElementById("items");
+    var elementsArray = Array.prototype.slice.call(container.getElementsByClassName('word_item'));
+  	elementsArray.forEach(function(element){
+    	container.removeChild(element);
+    });
+    shuffleArray(elementsArray);
+    elementsArray.forEach(function(element){
+      container.appendChild(element);
+    });
+  }
+
+  function shuffle_category() {
+    var container = document.getElementById("likert");
+    var elementsArray = Array.prototype.slice.call(container.getElementsByClassName('jcat_container'));
+    console.log(elementsArray);
+    shuffleArray(elementsArray);
+    elementsArray.forEach(function(element){
+      container.appendChild(element);
+    });
+  }
+
+  // Function to shuffle the array created in shuffle() - you can ignore
+  function shuffleArray(array) {
+      for (var i = array.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var temp = array[i];
+          array[i] = array[j];
+          array[j] = temp;
+      }
+      return array;
+  };
+
+  // Call to run the shuffle() function as soon as the page loads.
+  document.addEventListener("DOMContentLoaded", function() {
+    shuffle();
+    // shuffle_category();
+  });
+
+  
+  // ---------------------- //
+  // LIKERT BUTTON FOCUSING //
+  // ---------------------- //
+  
+  // Functions to focus, blur, or select buttons as required.
+  function Likert_focus() {
+    $('.jcat_1').css({'background':"#a7d4ef", 'color':'#FFFFFF'});
+  };
+  function Likert_blur() {
+    $('.jcat_1').css({'background':"#FFFFFF", 'color':'#3f97f6'});
+  };
+  function Likert_select() {
+    $('.jcat_1').css({'background':"#3f97f6", 'color':'#FFFFFF'});
+  };
+  
+  // Empty variables for storing the value of the Likert for conditional formatting below
+  var jcat_val;
+  
+  $('.jcat').focus(function() {
+    setTimeout(function(){
+      jcat_val = $('#jcat_response').val();
+      if (jcat_val != 0) {
+        if (jcat_val != 0) {
+          if (jcat_val == 1) {
+            Likert_select(); // If the Likert value is 1 (i.e., the first category) make the button selected
+          } else {
+            Likert_blur(); // If the Likert value above 1 (i.e., anything but the first category) blur the focused/selected button
+          }
+        } else {
+          //do nothing if the value is 0 as we've tabbed to it without setting a value and so need to show it's focued
+        }
+      } else {
+        Likert_focus(); // If the Likert value is 0 (i.e., it's not yet set) show the button is focused by not selected
+      }
+    },100); // Delay running this for 100ms after focusing on the Likert to give time for the likert response value to update if needed
+  });
+
+</script>
+<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

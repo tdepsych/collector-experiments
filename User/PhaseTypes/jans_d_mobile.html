@@ -1,0 +1,141 @@
+<!--'jans_debrief' PhaseType-->
+<!--
+---development---
+[
+{'text':'Re-examining taboo, emotionally valenced, and emotionally neutral word norms'}
+]
+---development---
+-->
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  #container {
+    width: min(96%, 980px) !important;
+    margin: 0 auto;
+    padding: 20px 14px 36px;
+    text-align: center;
+    font-size: clamp(14px, 2.2vw, 18px);
+    line-height: 1.65;
+  }
+
+  #uorLogo {
+    display: block;
+    margin: 0 auto 12px;
+    width: clamp(140px, 26vw, 240px);
+    height: auto;
+  }
+
+  h5 {
+    font-size: clamp(18px, 2.8vw, 24px);
+    margin: 10px 0 14px;
+    text-align: center;
+  }
+
+  hr {
+    margin: 16px 0;
+  }
+
+  .minor {
+    font-size: clamp(12px, 1.9vw, 14px);
+    line-height: 1.5;
+  }
+
+  #endButton {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    min-height: 46px;
+    padding: 10px 20px;
+    font-size: clamp(14px, 2vw, 16px);
+  }
+
+  a {
+    word-break: break-word;
+  }
+
+  @media (max-width: 768px) {
+    #container {
+      width: 96% !important;
+      padding: 16px 12px 28px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    #endButton {
+      width: 100%;
+      max-width: 320px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #container {
+      width: 98% !important;
+      padding: 14px 10px 24px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    h5 {
+      font-size: 18px;
+    }
+
+    .minor {
+      font-size: 12px;
+    }
+  }
+</style>
+<body>
+  <div id="container">
+    <img id="uorLogo" src="../../collector-experiments/User/Assets/Global/img/uor.svg" />
+    <br>
+    School of Psychology and Clinical Language Sciences,<br>Whitenights, Reading, RG6 6AL
+    <br/>
+    <hr>
+    <span style="color:red;"> 
+      <b>Study: {{text}}</b>
+    </span>
+    <hr>
+    <h5><b>DEBRIEF SHEET</b></h5>
+    Supervisors: Prof. Philip Beaman (c.p.beaman@reading.ac.uk - 0118 378 7637) & Dr Rich Harrison (rich.harrison@reading.ac.uk)<br/>
+    Experimenter: Chris Dobson (c.g.dobson@pgr.reading.ac.uk)
+    <br/><br/>
+    <b>Thank your for taking part in our study</b>
+    <br/>
+   This study was investigating how people perceive swear words across several different scales and how this may be influenced by our demographic differences. The reason for this was to update an extend an American study, conducted over 15 years ago (Janschewitz, 2008). The original study by Janschewitz had been conducted on the West coast of America, using a sample of 80 US college students, who rated 120 American English focused swear words as part of a much larger study. As a result, while the results published from that study were a good guide to how people perceive swear words, full generalisability of the results to British English speakers was not possible, due to the differences in what is/isn’t considered a swear word across the two languages. For example, a swear word like “fanny” translates very differently in British English, compared to American English while other swear words that are considered offensive/taboo in America may not even register in Britain and vice-versa. There is, however, a lot of overlap in the words considered ‘swear words’ between the two language bases and, therefore, beyond looking at how the participants within our sample have rated each word we have selected/tested, we are also interested to see whether the correlations between rating scales originally reported by Janschewitz still hold both in direction and strength.
+   <br/><br/>
+   You also completed a single item, self-report question regarding how religious you are. This matches a question originally included by Janschewitz, however, we added the single item, self-report question regarding how out of control you feel when vocalising a swearword in response to pain/frustration. This is because previous research has shown that there is a gender split in how out of control men and women feel when swearing and we are interested to see whether this holds for swearing within a specific context, where people often swear out loud, as the original finding was just based on people’s general perception of swearing in day-to-day life.
+    <br/><br/>
+    <b>Amazon Gift Voucher Draw</b><br>
+    Every participant who takes part in the study will be automatically entered into the draw to win one of three £75 Amazon gift vouchers. The draw will be made at the end of data collection and the winners emailed by the experimenter.
+    <br><br>
+    <b>Reminder: What will happen to my data/how will it be protected?</b><br>
+    Your data will be kept anonymous, confidential, and securely stored, with only your anonymous ID identifying it. The final dataset collected from this study will be preserved and made available in anonymised form, so that data can be re-used by others. Your individual consent form will be kept for 5 years after the completion of this study. Finally, if you agreed to be contacted about future studies whilst consenting to take part, you may remove this agreement at any point in the future by emailing Prof. Phil Beaman – c.p.beaman@reading.ac.uk. 
+    <br><br>
+    <i>This study was reviewed by the School Research Ethics Committee and given a favourable ethical opinion for conduct 2024-014-PB; expiry date: 17/09/2027).</i>
+    <br/><br/>
+    Once again, thank you for your participation.
+    <br/><br/>
+    <b>Prof. Philip Beaman, Dr Rich Harrison, and Chris Dobson</b>
+    <hr>
+    <span class ="minor">
+      Please click the following links if you  wish to download the <a href="../../collector-experiments/User/Assets/Jans/information_sheet.pdf" download="Participant Information Sheet">participant information sheet <span id="pdfImg"></span></a> or the study <a href="../../collector-experiments/User/Assets/Jans/debrief_sheet.pdf" download="Study Debrief Sheet">debrief sheet <span id="pdfImg"></span></a>
+    </span>
+    <hr>
+  <div>
+    <button class="btn btn-primary" id="endButton">Finish Study</button>
+  </div>
+  <script>
+    // if (parent.parent.sona) {
+    var initial_url = document.location.href;
+    if (initial_url.includes("sona")) {
+    // if (parent.parent.sona) {
+      $("#endButton").attr("onclick","Phase.add_response({main_complete: 2});Phase.submit();").html("Finish Study & Collect Credit");
+    } else {
+      //$("#endButton").attr("onclick","Phase.add_response({main_complete: 2});Phase.go_to(16);");
+      $("#endButton").attr("onclick","Phase.submit();");
+    }
+    
+  </script>
+</body>
