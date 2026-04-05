@@ -121,7 +121,36 @@
     Please be aware: you should complete this study in a quiet environment, away from distractions. It takes around 35 minutes to complete and you cannot pause or restart the study once you have started.
   </p>
 
-  <button class="btn btn-outline-primary" id="proceed_button" onclick="Phase.submit()">
+  <button class="btn btn-outline-primary" id="proceed_button">
     <b>CLICK TO START</b>
   </button>
 </div>
+<script>
+  async function enterFullscreenAndStart() {
+    var elem = document.documentElement;
+
+    try {
+      if (!document.fullscreenElement) {
+        if (elem.requestFullscreen) {
+          await elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+          await elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+          await elem.msRequestFullscreen();
+        }
+      }
+    } catch (err) {
+      console.log("Fullscreen request failed:", err);
+    }
+
+    // small delay improves reliability
+    setTimeout(function () {
+      Phase.submit();
+    }, 250);
+  }
+
+  // jQuery click handler
+  $(document).on('click', '#proceed_button', function () {
+    enterFullscreenAndStart();
+  });
+</script>
