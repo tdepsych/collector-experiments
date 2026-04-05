@@ -126,31 +126,30 @@
   </button>
 </div>
 <script>
-  async function enterFullscreenAndStart() {
-    var elem = document.documentElement;
-
+  $(document).on('click', '#proceed_button', function () {
     try {
-      if (!document.fullscreenElement) {
-        if (elem.requestFullscreen) {
-          await elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) {
-          await elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-          await elem.msRequestFullscreen();
+      parent.parent.requestFullScreen(parent.parent.document.documentElement);
+      console.log("Requested fullscreen on parent.parent document");
+    } catch (err1) {
+      console.log("parent.parent fullscreen failed:", err1);
+
+      try {
+        parent.requestFullScreen(parent.document.documentElement);
+        console.log("Requested fullscreen on parent document");
+      } catch (err2) {
+        console.log("parent fullscreen failed:", err2);
+
+        try {
+          requestFullScreen(document.documentElement);
+          console.log("Requested fullscreen on current iframe document");
+        } catch (err3) {
+          console.log("iframe fullscreen failed:", err3);
         }
       }
-    } catch (err) {
-      console.log("Fullscreen request failed:", err);
     }
 
-    // small delay improves reliability
     setTimeout(function () {
       Phase.submit();
-    }, 250);
-  }
-
-  // jQuery click handler
-  $(document).on('click', '#proceed_button', function () {
-    enterFullscreenAndStart();
+    }, 300);
   });
 </script>
