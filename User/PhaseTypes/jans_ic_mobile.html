@@ -10,9 +10,60 @@
 </html>
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/radio_buttons.css">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Fonts/fonts.css">
 <style>
   * {
     box-sizing: border-box;
+  }
+  
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    height: auto !important;
+    max-height: none !important;
+    font-family: Montserrat-ExtraLight !important;
+    font-weight: 600 !important;
+  }
+  
+  #container {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: auto !important;
+    max-height: none !important;
+    width: min(96%, 980px) !important;
+    margin: 0 auto;
+    padding: 20px 14px 36px;
+    font-size: clamp(14px, 2.2vw, 18px);
+    line-height: 1.65;
+    font-family: Montserrat-ExtraLight !important;
+    font-weight: 600 !important;
+  }
+  
+  #regForm {
+    width: 100%;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+  
+  .tab {
+    display: none;
+    width: 100%;
+    font-size: clamp(14px, 2.2vw, 18px);
+    line-height: 1.65;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+    font-family: Montserrat-ExtraLight !important;
+    font-weight: 600 !important;
+  }
+  
+  #container,
+  #regForm,
+  .tab {
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   /********************/
@@ -29,33 +80,18 @@
     outline: inherit;
   }
 
-  #container {
-    width: min(96%, 980px) !important;
-    margin: 0 auto;
-    padding: 20px 14px 36px;
-    font-size: clamp(14px, 2.2vw, 18px);
-    line-height: 1.65;
-  }
-
-  #regForm {
-    width: 100%;
-  }
-
-  .tab {
-    display: none;
-    width: 100%;
-    font-size: clamp(14px, 2.2vw, 18px);
-    line-height: 1.65;
-  }
-
   .tab h5 {
     font-size: clamp(18px, 2.8vw, 24px);
     margin: 10px 0 14px;
     text-align: center;
+    font-family: 'Montserrat-ExtraBold', sans-serif;
+    font-weight: normal;
   }
 
-  .tab b {
-    font-weight: 700;
+  .tab b,
+  .tab strong {
+    font-family: 'Montserrat-ExtraBold', sans-serif;
+    font-weight: normal;
   }
 
   .tab em {
@@ -64,8 +100,8 @@
 
   #uorLogo {
     display: block;
-    margin: 0 auto 12px;
-    width: clamp(140px, 26vw, 240px);
+    margin: 0 auto 16px;
+    width: clamp(180px, 50vw, 320px);
     height: auto;
   }
 
@@ -76,6 +112,20 @@
   .minor {
     font-size: clamp(12px, 1.9vw, 14px);
     line-height: 1.5;
+    font-family: Montserrat-ExtraLight !important;
+    font-weight: 600 !important;
+  }
+
+  .study-title {
+    color: red;
+    font-family: 'Montserrat-Black', sans-serif;
+    font-weight: normal;
+    letter-spacing: 0.2px;
+  }
+
+  .intro-meta {
+    font-family: Montserrat-ExtraLight !important;
+    font-weight: 600 !important;
   }
 
   #proceed_button, #prevBtn, #nextBtn {
@@ -91,6 +141,7 @@
     border-radius: .25rem;
     min-height: 44px;
     display: inline-block;
+    font-family: 'Montserrat-ExtraBold', sans-serif;
   }
 
   #prevBtn:hover, #nextBtn:hover, #nextBtn.submitBtn_active:hover {
@@ -112,6 +163,8 @@
     width: 100%;
     border: 1px solid #aaaaaa;
     font-size: clamp(14px, 2vw, 16px);
+    font-family: Montserrat-ExtraLight !important;
+    font-weight: 600 !important;
   }
 
   input.invalid {
@@ -149,8 +202,10 @@
   .tooltipHidden {
     visibility: hidden;
     position: absolute;
-    display: inline-block;
-    width: 500px;
+    display: block;
+    width: min(615px, 82vw);
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .tooltipCon .tooltiptext {
@@ -168,6 +223,8 @@
     transform: translateX(-50%);
     font-size: clamp(12px, 1.9vw, 14px);
     line-height: 1.45;
+    font-family: Montserrat-ExtraLight !important;
+    font-weight: 600 !important;
   }
 
   .tooltipCon:hover .tooltiptext {
@@ -212,6 +269,8 @@
     font-size: clamp(14px, 2.2vw, 17px);
     line-height: 1.6;
     display: block;
+    font-family: Montserrat-ExtraLight !important;
+    font-weight: 600 !important;
   }
 
   .textInput {
@@ -225,9 +284,11 @@
     clear: both;
     margin: 14px 0 18px 0 !important;
     font-size: clamp(14px, 2.1vw, 16px);
-    line-height: 1.6;
+    line-height: 1.2;
     white-space: normal;
     text-align: left;
+    font-family: Montserrat-ExtraLight !important;
+    font-weight: 600 !important;
   }
 
   #textInputs {
@@ -328,6 +389,10 @@
       padding: .55rem .85rem;
       font-size: 14px;
     }
+
+    #uorLogo {
+      width: 65vw;
+    }
   }
 </style>
 <!--The hidden inputs shouldn't be needed as it's not multisession tracking-->
@@ -343,17 +408,15 @@
       <br>
       School of Psychology and Clinical Language Sciences,<br>Whitenights, Reading, RG6 6AL
       <br/>
-      <hr>
-      <span style="color:red;"> 
-        <b>Study: {{text}}</b>
-      </span>
-      <hr>
-      <h5><b>STUDY INFORMATION SHEET</b></h5>
+      <div class="soft-divider"></div>
+      <span style="color:red;"><b>{{text}}</b></span>
+      <div class="soft-divider"></div><br>
+      <h5><b>Participant Information Sheet</b></h5>
       Supervisors: Prof. Philip Beaman (c.p.beaman@reading.ac.uk - 0118 378 7637)<br/>
       Experimenters: Chris Dobson (c.g.dobson@pgr.reading.ac.uk)
       <br/><br/>
-      We would be grateful if you could assist us by participating in our study <br><em>‘{{text}}’</em>.
-      <br><br>
+      Before starting the study, please read the following information. If you have any questions, you may email the researchers above before starting. Once you have read the information sheet, you will be asked to complete a short consent form to confirm you are happy to take part.
+      <br><br><br>
       <b>What will I be asked to do?</b><br>
       The study comprises a single, online testing session that takes around <b>35 minutes</b> to complete. It must be completed in one sitting, you cannot pause or restart the study once you start. Procedurally, you will be asked to rate 120 different words on 6 separate rating scales, providing a score for each scale from 1 to 9 by clicking on the appropriate response number based on your opinion. You will also be required to say whether you consider the word you are rating is a swear word or not. The words will be presented in four blocks of 30 words, and you will be allowed a break between each block should you wish. <b>Please note, that within the 120 words you must rate, 83 are ‘swear words’ by which we mean they may be considered socially taboo and/or offensive</b>. Before you start making your ratings, you will complete a short demographics questionnaire that also includes questions about how religious you consider yourself and how out of control you feel when saying a swear word out loud in response to pain and/or frustration. Once you have completed the experimental procedure (just outlined) you will be debriefed to the study’s aims. We are collecting basic demographic information to monitor the diversity and inclusivity of those who take part in this study, as one of its aims is to increase the generalisability of our knowledge about how different people perceive different types of words.
       <br><br>
@@ -388,9 +451,9 @@
       Thank you for taking part in our study.
       <br/><br/>
       <b>Prof. Philip Beaman and Christopher Dobson</b>
-      <hr>
+      <div class="soft-divider"></div>
       <span class ="minor">A copy of the study information, presented above, can be downloaded from within the debreif sheet at the end of the experiment.</span>
-      <hr>
+      <div class="soft-divider"></div>
     </div>
         
     <!-- ------------------------ -->
@@ -404,11 +467,9 @@
       <br>
       School of Psychology and Clinical Language Sciences,<br>Whitenights, Reading, RG6 6AL
       <br/>
-      <hr>
-      <span style="color:red;"> 
-        <b>Study: {{text}}</b>
-      </span>
-      <hr>
+      <div class="soft-divider"></div>
+        <span style="color:red;"><b>Study: {{text}}</b></span>
+      <div class="soft-divider"></div>
           
       <h5><b>CONSENT FORM</b></h5>
       Supervisors: Prof. Philip Beaman (c.p.beaman@reading.ac.uk - 0118 378 7637)<br/>
@@ -472,7 +533,7 @@
           </label>
         </div>
       </div>
-      <hr>
+      <div class="soft-divider"></div>
       This study has been reviewed by the School Research Ethics Committee and has been given a favourable ethical opinion for conduct.<br>(2024-014-PB; expiry date: 17/09/2027)
       <br/><br/>
       Thank you for taking part in our study.

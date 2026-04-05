@@ -139,6 +139,14 @@ hr {
   transform: translateY(3px);
 }
 
+.soft-divider {
+  border: none;
+  height: 1px;
+  background: rgba(0,0,0,0.08);
+  margin: 28px auto;
+  width: 80%;
+}
+
 /*******************/
 /* DEBRIEF BUTTONS */
 /*******************/

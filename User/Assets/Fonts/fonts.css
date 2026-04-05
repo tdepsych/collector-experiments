@@ -1,0 +1,58 @@
+/* ===================== */
+/* MONTSERRAT FAMILY     */
+/* ===================== */
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('Montserrat-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Montserrat-ExtraLight';
+  src: url('Montserrat-ExtraLight.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Montserrat-Light';
+  src: url('Montserrat-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Montserrat-ExtraBold';
+  src: url('Montserrat-ExtraBold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Montserrat-Black';
+  src: url('Montserrat-Black.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Montserrat-BlackItalic';
+  src: url('Montserrat-BlackItalic.woff') format('woff');
+}
+
+
+/* ===================== */
+/* LIBRE BASKERVILLE     */
+/* ===================== */
+
+@font-face {
+  font-family: 'LibreBaskerville';
+  src: url('LibreBaskerville-Regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'LibreBaskerville-Bold';
+  src: url('LibreBaskerville-Bold.woff') format('woff');
+}
+
+
+/* ===================== */
+/* HONK (DISPLAY FONT)   */
+/* ===================== */
+
+@font-face {
+  font-family: 'Honk';
+  src: url('Honk.woff') format('woff');
+}

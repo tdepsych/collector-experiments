@@ -1,7 +1,111 @@
 <!--'task_bookend' PhaseType-->
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Fonts/fonts.css">
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    background: #FFF;
+    overflow-x: hidden;
+  }
+
+  #container {
+    width: 100%;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 20px 32px;
+    text-align: center;
+  }
+
+  #task_heading {
+    font-family: 'Montserrat-ExtraBold', sans-serif !important;
+    font-size: clamp(28px, 6vw, 52px);
+    line-height: 1.15;
+    color: #000;
+    margin: 0 auto 22px;
+    padding: 0;
+    border: none !important;
+    box-shadow: none !important;
+    background: none !important;
+    text-decoration: none !important;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  #task_heading::before,
+  #task_heading::after {
+    content: none !important;
+    display: none !important;
+    border: none !important;
+  }
+
+  #task_body {
+    font-family: Montserrat-ExtraLight !important;
+    font-weight: 600 !important;
+    font-size: clamp(14px, 2.5vw, 18px);
+    line-height: 1.6;
+    color: #000;
+    margin: 0 auto 30px;
+    max-width: 720px;
+  }
+
+  #proceed_button {
+    display: inline-block;
+    font-size: clamp(14px, 2vw, 16px);
+    padding: 12px 24px;
+    min-height: 48px;
+    width: fit-content;
+    max-width: 90%;
+    font-family: 'Montserrat-ExtraBold', sans-serif !important;
+    letter-spacing: 0.3px;
+  }
+
+  @media (max-width: 768px) {
+    #container {
+      padding: 32px 18px 28px;
+    }
+
+    #task_heading {
+      font-size: clamp(24px, 7vw, 40px);
+      margin-bottom: 18px;
+    }
+
+    #task_body {
+      font-size: 15px;
+      line-height: 1.55;
+      margin-bottom: 26px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #container {
+      padding: 28px 16px 24px;
+    }
+
+    #task_heading {
+      font-size: clamp(22px, 8vw, 32px);
+      line-height: 1.2;
+    }
+
+    #task_body {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    #proceed_button {
+      width: auto;
+      max-width: 100%;
+    }
+  }
+</style>
+
 <div id="container">
-  <h2><span style="font-weight:bold;">{{task_title}}</span></h2><br>
-  <p>{{task_body_text}}</p>
-  <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()" >{{text}}</button>
+  <div id="task_heading">{{task_title}}</div>
+  <p id="task_body">{{task_body_text}}</p>
+  <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()">{{text}}</button>
 </div>
