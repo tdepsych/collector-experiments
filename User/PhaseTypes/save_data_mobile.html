@@ -1,0 +1,143 @@
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Fonts/fonts.css">
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    min-height: 100vh;
+    margin: 0;
+    font-family: Montserrat-ExtraLight !important;
+    font-weight: 600 !important;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #container {
+    width: min(96%, 980px) !important;
+    max-height: 100%;
+    margin: 0 auto;
+    padding: 20px 14px 36px;
+    text-align: center;
+    font-size: clamp(14px, 2.2vw, 18px);
+    line-height: 1.65;
+    font-family: Montserrat-ExtraLight !important;
+    font-weight: 600 !important;
+  }
+
+  #task_heading {
+    font-family: 'Montserrat-ExtraBold', sans-serif !important;
+    font-size: clamp(22px, 5vw, 34px);
+    line-height: 1.2;
+    margin: 0 auto 16px;
+    border: none !important;
+    box-shadow: none !important;
+    background: none !important;
+    text-decoration: none !important;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  #task_heading::before,
+  #task_heading::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  #container p {
+    font-family: Montserrat-ExtraLight !important;
+    font-weight: 600 !important;
+    font-size: clamp(14px, 2.2vw, 18px);
+    line-height: 1.6;
+    margin: 0 auto 20px;
+    max-width: 720px;
+  }
+
+  .soft-divider {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    margin: 16px 0;
+    width: 100%;
+  }
+
+  #Save {
+    margin: 20px auto;
+    color: #FFF;
+    background-color: #006599;
+    border-color: #006599;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    padding: .55rem 1rem;
+    font-size: clamp(14px, 2vw, 16px);
+    border-radius: .25rem;
+    min-height: 44px;
+    display: inline-block;
+    font-family: 'Montserrat-ExtraBold', sans-serif;
+    letter-spacing: 0.3px;
+  }
+
+  #Save:hover {
+    background-color: #275fda;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      display: block;
+    }
+  
+    #container {
+      width: 96% !important;
+      padding: 16px 12px 28px;
+      font-size: 15px;
+    }
+  
+    #Save {
+      min-width: 110px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #container {
+      width: 98% !important;
+      padding: 14px 10px 24px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    #Save {
+      padding: .55rem .85rem;
+      font-size: 14px;
+      width: 100%;
+      max-width: 320px;
+    }
+  }
+</style>
+
+<div id="container">
+  <div id="task_heading">{{task_title}}</div>
+  <p>{{task_body_text}}</p>
+  <button class="btn btn-primary" id="Save">{{text}}</button>
+</div>
+
+<script>
+  $("#Save").click(function() {
+    Phase.add_response({
+      main_complete: 2
+    });
+    
+    e = $.Event("keydown");
+    e.which = 83; // S
+    e.ctrlKey = true; // CTRL
+    $(document).trigger(e);
+  });
+</script>

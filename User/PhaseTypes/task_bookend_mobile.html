@@ -44,10 +44,19 @@
     border: none !important;
   }
 
-  #task_body {
+/*  #task_body {
     font-family: Montserrat-ExtraLight !important;
     font-weight: 600 !important;
     font-size: clamp(14px, 2.5vw, 18px);
+    line-height: 1.6;
+    color: #000;
+    margin: 0 auto 30px;
+    max-width: 720px;
+  }*/
+  #task_body {
+    font-family: Montserrat-ExtraLight !important;
+    font-weight: 600 !important;
+    font-size: clamp(12px, 3.5vw, 17px);
     line-height: 1.6;
     color: #000;
     margin: 0 auto 30px;
@@ -75,11 +84,11 @@
       margin-bottom: 18px;
     }
 
-    #task_body {
+/*    #task_body {
       font-size: 15px;
       line-height: 1.55;
       margin-bottom: 26px;
-    }
+    }*/
   }
 
   @media (max-width: 480px) {
@@ -92,10 +101,10 @@
       line-height: 1.2;
     }
 
-    #task_body {
-      font-size: 14px;
-      line-height: 1.5;
-    }
+    /*#task_body {*/
+    /*  font-size: 12px;*/
+    /*  line-height: 1.5;*/
+    /*}*/
 
     #proceed_button {
       width: auto;
@@ -106,6 +115,6 @@
 
 <div id="container">
   <div id="task_heading">{{task_title}}</div>
-  <p id="task_body">{{task_body_text}}</p>
+  <div id="task_body">{{task_body_text}}</div>
   <button class="btn btn-primary" id="proceed_button" onclick="Phase.submit()">{{text}}</button>
 </div>

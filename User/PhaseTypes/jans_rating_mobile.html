@@ -9,28 +9,100 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/radio_buttons.css">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Fonts/fonts.css">
 <style>
   * {
     box-sizing: border-box;
   }
 
+  html, body {
+    font-family: 'Montserrat-ExtraLight', sans-serif;
+    font-weight: 600;
+  }
+  
   #container {
     margin-top: 5%;
     width: min(92%, 900px) !important;
     margin-left: auto;
     margin-right: auto;
   }
-
+  
   #container p {
+    font-family: inherit;
+    font-weight: inherit;
     text-align: center;
     width: 100% !important;
     line-height: 1.5;
   }
-
-  #proceed_button {
-    margin-bottom: 50px !important;
-    transform: translateX(-15px) !important;
+  
+  #task_heading {
+    font-family: 'Montserrat-ExtraBold', sans-serif !important;
+    font-size: clamp(24px, 5vw, 40px);
+    line-height: 1.15;
+    color: #000;
+    margin: 0 auto 22px;
+    padding: 0;
+    border: none !important;
+    box-shadow: none !important;
+    background: none !important;
+    text-decoration: none !important;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    text-transform: uppercase;
   }
+  
+  #task_heading::before,
+  #task_heading::after {
+    content: none !important;
+    display: none !important;
+  }
+  
+  #q1Label b,
+  #q2Label b,
+  #q3Label b,
+  #q4Label b,
+  #q6Label b,
+  #q7Label b,
+  #q8Label b {
+    font-family: 'Montserrat-ExtraBold', sans-serif;
+    font-weight: normal;
+  }
+  
+  .word_highlight {
+    color: #3f97f6;
+    font-family: 'Montserrat-ExtraBold', sans-serif;
+    font-weight: normal;
+  }
+  
+  .leftAlign3,
+  .centerAlign3,
+  .rightAlign3,
+  .leftAlign2,
+  .rightAlign2,
+  .minor {
+    font-family: inherit;
+    font-weight: inherit;
+  }
+  
+  .jcat_1,
+  .jcat_2 {
+    font-family: 'Montserrat-ExtraBold', sans-serif !important;
+    font-weight: normal;
+  }
+  
+  #proceed_button {
+    margin: 24px auto 50px !important;
+    transform: none !important;
+    display: block;
+    min-height: 48px;
+    padding: 12px 24px;
+    font-size: clamp(14px, 2vw, 16px);
+    width: fit-content;
+    max-width: 90%;
+    font-family: 'Montserrat-ExtraBold', sans-serif !important;
+    letter-spacing: 0.3px;
+  }
+
 
   hr {
     transform: none;
@@ -41,10 +113,7 @@
     display: none;
   }
 
-  #uppercase {
-    text-transform: uppercase;
-    font-weight: bold;
-  }
+
 
   .radio:hover {
     background-color: #a7d4ef !important;
@@ -175,6 +244,7 @@
 
   /* Keep your original number sizing */
   .option-input {
+    position: relative !important;
     background-size: 10px !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -392,10 +462,10 @@
       transform: scale(1.25) !important;
     }
 
-    .option-input:after {
+/*    .option-input:after {
       width: 18px;
       right: -18px;
-    }
+    }*/
 
     .leftAlign3,
     .centerAlign3,
@@ -411,8 +481,8 @@
 
     #proceed_button {
       transform: none !important;
-      width: 100%;
-      max-width: 420px;
+      width: auto;
+      max-width: 90%;
       display: block;
       margin-left: auto;
       margin-right: auto;
@@ -428,10 +498,10 @@
       transform: scale(1.1) !important;
     }
 
-    .option-input:after {
+/*    .option-input:after {
       width: 10px;
       right: -10px;
-    }
+    }*/
 
     .leftAlign3,
     .centerAlign3,
@@ -444,7 +514,7 @@
   }
 </style>
 <div id="container">
-  <h2><span id="uppercase">Word Rating: {{word}}</span></h2>
+  <div id="task_heading">Word Rating: {{word}}</div>
   <br>
   <p>Read the scales carefully before you start rating the word!</p>
   <br>
@@ -472,7 +542,7 @@
           </div>
         </section>
       </div>
-      <hr>
+      <div class="soft-divider"></div>
     </div>
     <div class="word_item">
       <p id="q2Label"><b>Familiarity:</b> How often do you <b>encounter</b> the word <span class="word_highlight">{{word}}</span>? For example, you may hear it used in a conversation, on the radio, in a movie or on TV, or you may read the word in a magazine, book, on the Internet, etc. Give a 1–9 rating:</p>
@@ -496,7 +566,7 @@
           </div>
         </section>
       </div>
-      <hr>
+      <div class="soft-divider"></div>
     </div>
     <div class="word_item">
       <p id="q3Label"><b>Offensiveness:</b> How offensive is the word <span class="word_highlight">{{word}}</span> to <b>YOU</b>? Give a 1–9 rating:</p>
@@ -519,7 +589,7 @@
           </div>
         </section>
       </div>
-      <hr>
+      <div class="soft-divider"></div>
     </div>
     <div class="word_item">
       <p id="q4Label"><b>Tabooness:</b> How taboo or <b>socially unacceptable</b>  is the word <span class="word_highlight">{{word}}</span> to <b>people in general</b>? Imagine the word being used at work, in a classroom, at a religious service, at a cocktail party, with friends, with family, etc. Give a 1–9 rating:</p>
@@ -543,7 +613,7 @@
           </div>
         </section>
       </div>
-      <hr>
+      <div class="soft-divider"></div>
     </div>
     <div class="word_item">
       <p id="q6Label"><b>Arousal:</b> How exciting is the word <span class="word_highlight">{{word}}</span>? Consider how much the word <b>grabs your attention</b> when you hear it spoken or see it written. Give a 1–9 rating:</p>
@@ -567,7 +637,7 @@
           </div>
         </section>
       </div>
-      <hr>
+      <div class="soft-divider"></div>
     </div>
     <div class="word_item">
       <p id="q7Label"><b>Vocalisability:</b> How likely are <b>YOU</b> to say the word <span class="word_highlight">{{word}}</span> out loud <b>in response to pain or frustration</b>? For example, if you stubbed your toe on a table. Give a rating 1-9:</p>
@@ -591,19 +661,19 @@
           </div>
         </section>
       </div>
-      <hr>
+      <div class="soft-divider"></div>
     </div>
   </div>
   <!--Category question - not shuffled-->
     <div class="word_item">
       <p id="q8Label"><b>Swear word:</b> Based on <b>your interpretation</b> of the the word <span class="word_highlight">{{word}}</span>, do you consider the word <span class="word_highlight">{{word}}</span> to be a swear word?</p>
         <div id="likert">
-          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="7"/><span class="jcat_1 jcat">Yes</span></label>
-          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="5"/><span class="jcat_2 jcat">No</span></label>
+          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="swear"/><span class="jcat_1 jcat">Yes</span></label>
+          <label class="jcat_container"><input name="jcat" type="radio" class="jcat" value="non-swear"/><span class="jcat_2 jcat">No</span></label>
             <input type="hidden" id="jcat_response" name="jcat" class="responseValues" value="0"/>
         </div>
         <br>
-      <hr>
+      <div class="soft-divider"></div>
     </div>
   <!--</form>-->
   <button class="btn btn-primary" id="proceed_button">Next Word</button>
@@ -664,7 +734,7 @@
   // SUBMIT ACTIONS //
   // -------------- //
   
-  $('.option-input, .jcat').on('change', function() {
+/*  $('.option-input, .jcat').on('change', function() {
     $('#q1Label').css('color', $('.juse:checked').length ? 'green' : '');
     $('#q2Label').css('color', $('.jfamilairty:checked').length ? 'green' : '');
     $('#q3Label').css('color', $('.joffense:checked').length ? 'green' : '');
@@ -673,7 +743,7 @@
     $('#q7Label').css('color', $('.jq7:checked').length ? 'green' : '');
     $('#q8Label').css('color', $('.jcat:checked').length ? 'green' : '');
   });
-  
+  */
   $('#proceed_button').click(function() {
     
     // First we validate the form by checking we have complete responses. If there are null values, we alert the user and change the relevant text red. Else, we move to the next word
@@ -740,38 +810,59 @@
   // LIKERT BUTTON FOCUSING //
   // ---------------------- //
   
-  // Functions to focus, blur, or select buttons as required.
   function Likert_focus() {
-    $('.jcat_1').css({'background':"#a7d4ef", 'color':'#FFFFFF'});
-  };
-  function Likert_blur() {
-    $('.jcat_1').css({'background':"#FFFFFF", 'color':'#3f97f6'});
-  };
-  function Likert_select() {
-    $('.jcat_1').css({'background':"#3f97f6", 'color':'#FFFFFF'});
-  };
+    if (!$('input[name="jcat"]:checked').length) {
+      $('.jcat_1, .jcat_2').css({
+        'background': '#FFFFFF',
+        'color': '#3f97f6'
+      });
+    }
+  }
   
-  // Empty variables for storing the value of the Likert for conditional formatting below
-  var jcat_val;
+  function Likert_blur() {
+    $('.jcat_1, .jcat_2').css({
+      'background': '#FFFFFF',
+      'color': '#3f97f6'
+    });
+  }
+  
+  function Likert_select() {
+    var jcat_val = $('#jcat_response').val();
+  
+    $('.jcat_1, .jcat_2').css({
+      'background': '#FFFFFF',
+      'color': '#3f97f6'
+    });
+  
+    if (jcat_val === 'swear') {
+      $('.jcat_1').css({
+        'background': '#3f97f6',
+        'color': '#FFFFFF'
+      });
+    } else if (jcat_val === 'non-swear') {
+      $('.jcat_2').css({
+        'background': '#3f97f6',
+        'color': '#FFFFFF'
+      });
+    }
+  }
   
   $('.jcat').focus(function() {
-    setTimeout(function(){
-      jcat_val = $('#jcat_response').val();
-      if (jcat_val != 0) {
-        if (jcat_val != 0) {
-          if (jcat_val == 1) {
-            Likert_select(); // If the Likert value is 1 (i.e., the first category) make the button selected
-          } else {
-            Likert_blur(); // If the Likert value above 1 (i.e., anything but the first category) blur the focused/selected button
-          }
-        } else {
-          //do nothing if the value is 0 as we've tabbed to it without setting a value and so need to show it's focued
-        }
+    setTimeout(function() {
+      var jcat_val = $('#jcat_response').val();
+  
+      if (jcat_val === 'Swear' || jcat_val === 'Non-Swear') {
+        Likert_select();
       } else {
-        Likert_focus(); // If the Likert value is 0 (i.e., it's not yet set) show the button is focused by not selected
+        Likert_focus();
       }
-    },100); // Delay running this for 100ms after focusing on the Likert to give time for the likert response value to update if needed
+    }, 100);
+  });
+  
+  $('.jcat').change(function() {
+    setTimeout(function() {
+      Likert_select();
+    }, 10);
   });
 
 </script>
-<script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

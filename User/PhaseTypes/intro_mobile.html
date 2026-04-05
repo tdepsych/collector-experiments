@@ -127,7 +127,7 @@
   </button>
 </div>
 <script>
-  $(document).on('click', '#proceed_button', function () {
+  function requestStudyFullscreen() {
     try {
       parent.parent.requestFullScreen(parent.parent.document.documentElement);
       console.log("Requested fullscreen on parent.parent document");
@@ -148,9 +148,31 @@
         }
       }
     }
+  }
 
+  $(document).ready(function () {
     setTimeout(function () {
-      Phase.submit();
-    }, 300);
+      bootbox.dialog({
+        title: "Full screen required",
+        message: "We need you to run the study in full screen mode. Please click below to enter full screen mode before continuing.",
+        closeButton: false,
+        centerVertical: true,
+        backdrop: 'static',
+        onEscape: false,
+        buttons: {
+          fullscreen: {
+            label: "Enter Full Screen",
+            className: "btn-primary",
+            callback: function () {
+              requestStudyFullscreen();
+            }
+          }
+        }
+      });
+    }, 200);
+  });
+
+  $(document).on('click', '#proceed_button', function () {
+    Phase.submit();
   });
 </script>

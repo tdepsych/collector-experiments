@@ -1,0 +1,506 @@
+<!--tde_survey (v2) this is a sheet for restyling Collector surveys to remove the green standard look-->
+<!DOCTYPE html>
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/radio_buttons.css">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Fonts/fonts.css">
+
+<style>
+/********************/
+/* STYLING THE PAGE */
+/********************/
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #FFF;
+  overflow-x: hidden;
+  font-family: 'Montserrat-ExtraLight', sans-serif;
+  font-weight: 600;
+  transform-origin: center center;
+}
+
+/* * * * * * * * * */
+/*  ROOT ELEMENTS  */
+/* * * * * * * * * */
+
+body {
+  display: block;
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  border: none !important;
+  box-shadow: none !important;
+  background: none !important;
+  text-decoration: none !important;
+}
+
+h2::before,
+h2::after {
+  content: none !important;
+  display: none !important;
+}
+
+h2 {
+  width: 100%;
+  text-align: center;
+  margin: 0 0 18px;
+  padding: 0;
+  font-family: 'Montserrat-ExtraBold', sans-serif !important;
+  font-size: clamp(22px, 5vw, 34px);
+  line-height: 1.2;
+  color: #000;
+}
+
+h2 span {
+  background: none !important;
+  padding: 0 !important;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  color: #000000;
+  opacity: 0.12;
+  margin: 20px 0;
+}
+
+td {
+  padding: 10px;
+  vertical-align: top;
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+input[type="number"] {
+  width: min(240px, 100%);
+}
+
+/* * * * * * * * * */
+/*      IDs        */
+/* * * * * * * * * */
+
+#survey_container {
+  width: min(96%, 980px) !important;
+  margin: 0 auto;
+  padding: 28px 14px 30px;
+  max-height: none;
+  overflow-x: hidden;
+}
+
+#survey_outline {
+  width: 100%;
+}
+
+#survey_buttons {
+  margin-top: 22px;
+  text-align: center;
+}
+
+#container {
+  width: 100% !important;
+  max-height: none;
+}
+
+#container p {
+  width: 100%;
+  font-size: clamp(14px, 2.4vw, 18px);
+  margin: 0 auto 14px;
+  text-align: left;
+  line-height: 1.6;
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+#previous_button {
+  display: none;
+  margin-right: 15px;
+}
+
+#proceed_button,
+#previous_button {
+  min-width: 110px;
+  min-height: 46px;
+  padding: 10px 20px;
+  font-family: 'Montserrat-ExtraBold', sans-serif !important;
+  font-size: clamp(14px, 2vw, 16px);
+  letter-spacing: 0.2px;
+}
+
+#survey_tabs {
+  padding: 20px 0;
+}
+
+#this_survey_id {
+  padding: 20px;
+  display: none;
+}
+
+/* ========================= */
+/* QUESTION (BOLD HEADINGS)  */
+/* ========================= */
+
+#survey_container p strong,
+#survey_container p b,
+#survey_container .text-primary {
+  font-family: 'Montserrat-ExtraBold', sans-serif !important;
+  font-weight: 800 !important;
+}
+
+/* ========================= */
+/* OPTION TEXT (NORMAL)      */
+/* ========================= */
+
+.custom-control-label,
+.custom-control-label *,
+.checkboxes label,
+.checkboxes label *,
+.checkboxes_h label,
+.checkboxes_h label * {
+  font-family: 'Montserrat-ExtraLight', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+/* * * * * * * * * */
+/*     CLASSES     */
+/* * * * * * * * * */
+
+.bootbox-alert {
+  top: 40vh !important;
+}
+
+.bootbox-close-button {
+  display: none;
+}
+
+.container {
+  width: min({{text}}vw, 100%);
+  max-height: none;
+}
+
+.custom-control-label {
+  cursor: pointer;
+  transform: translateY(-5px);
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+.div_padding p {
+  padding-bottom: 32px !important;
+}
+
+.feedback_span_multiple {
+  display: none;
+  margin: 10px;
+}
+
+.feedback_span_single {
+  display: none;
+  padding: 10px;
+}
+
+.form-control {
+  border-color: #3f97f6 !important;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+.likert_table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.likert_table td {
+  padding: 4px;
+  text-align: center;
+}
+
+.likert_table td:hover {
+  color: blue;
+}
+
+.minor {
+  font-size: 12px;
+  font-style: italic;
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+.score_total {
+  display: none;
+}
+
+.show_tab {
+  margin: 5px;
+}
+
+.table_break {
+  width: 100%;
+  height: 0px;
+  overflow: auto;
+}
+
+.table_break_tabs {
+  width: min(60%, 100%) !important;
+  margin: 0 auto !important;
+}
+
+.text-primary {
+  text-align: left;
+  font-family: 'Montserrat-ExtraBold', sans-serif !important;
+}
+
+/* * * * * * * * * * * * *
+   STYLING THE RADIO BUTTONS
+   * * * * * * * * * * * * */
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 13.33333px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  transition: all 0.15s ease-out 0s;
+  background: #FFF;
+  border: 1px solid #3f97f6;
+  border-radius: 15px !important;
+  color: #fff;
+  cursor: pointer;
+  float: left;
+  margin-right: 0.5rem;
+  outline: none;
+  z-index: 1000;
+}
+
+.option-input.radio:hover {
+  background-color: #a7d4ef;
+  cursor: pointer;
+}
+
+.option-input.radio:focus {
+  background-color: #a7d4ef;
+}
+
+.option-input.radio:checked {
+  background: #3f97f6;
+  background-image: url(../Default/DefaultPhaseTypes/checked.svg);
+  background-size: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: default;
+}
+
+.option-input:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  content: '';
+  position: relative;
+  z-index: 100;
+}
+
+.option-input.radio {
+  transform: translateY(-12px) !important;
+}
+
+/* * * * * * * * * * * * *
+   STYLING THE CHECKBOXES
+   * * * * * * * * * * * * */
+
+.checkboxes {
+  text-align: left;
+  margin-top: 5px;
+}
+
+.checkboxes_h {
+  text-align: left;
+  margin-top: -5px;
+  margin-left: -10px;
+}
+
+.custom-checkbox .custom-control-input {
+  position: absolute;
+  opacity: 0;
+}
+
+.custom-checkbox .custom-control-input + label::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  border: 1px solid #3f97f6;
+  border-radius: 15%;
+  margin-right: 10px;
+  vertical-align: middle;
+  transform: translateY(-2px);
+}
+
+.custom-checkbox .custom-control-input:checked + label::before {
+  background-color: #3f97f6;
+  background-image: url('../Default/DefaultPhaseTypes/checked.svg');
+  background-size: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-color: #3f97f6;
+  transform: translateY(-2px);
+}
+
+.custom-checkbox label {
+  position: relative;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+.custom-checkbox .custom-control-input + label {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  user-select: none;
+}
+
+/*
+* by Bora Alp Arat at https://stackoverflow.com/questions/21684101/css-vertical-scrollbar-padding-left-right-in-ul-possible
+*/
+::-webkit-scrollbar {
+  width: 14px;
+  height: 18px;
+}
+
+::-webkit-scrollbar-thumb {
+  height: 6px;
+  border: 4px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  -webkit-border-radius: 7px;
+  background-color: rgba(0, 102, 153, 0.5);
+  -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05),
+    inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #006688;
+}
+
+@keyframes click-wave {
+  0% {
+    height: 40px;
+    width: 40px;
+    opacity: 0.35;
+    position: relative;
+  }
+  100% {
+    height: 200px;
+    width: 200px;
+    margin-left: -80px;
+    margin-top: -80px;
+    opacity: 0;
+  }
+}
+
+/* * * * * * * * * */
+/*    MOBILE       */
+/* * * * * * * * * */
+
+@media (max-width: 768px) {
+  #survey_container {
+    width: 96% !important;
+    padding: 20px 12px 24px;
+  }
+
+  #container p {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  td {
+    padding: 8px;
+  }
+
+  .table_break_tabs {
+    width: 100% !important;
+  }
+
+  #proceed_button,
+  #previous_button {
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  #survey_container {
+    width: 98% !important;
+    padding: 16px 10px 20px;
+  }
+
+  h2 {
+    font-size: clamp(20px, 7vw, 28px);
+  }
+
+  #container p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  td {
+    padding: 6px;
+  }
+
+  .option-input {
+    transform: translateY(-8px) scale(0.95) !important;
+  }
+
+  #proceed_button,
+  #previous_button {
+    font-size: 14px;
+    padding: 10px 16px;
+    min-width: 92px;
+  }
+}
+</style>
+
+
+<div id="survey_container" class="container">
+  <div id="survey_outline"></div>
+  <div id="survey_buttons">
+    <button class="btn btn-outline-primary" id="previous_button">Previous Page</button>
+    <button class="btn btn-primary" id="proceed_button">Proceed</button>
+  </div>
+</div>
+
+<span id="scales_span"></span>
+
+<script>
+  var notes = "{{notes}}";
+  current_survey = "{{survey}}";
+
+  setTimeout(function(){ 
+    var word = "{{task_body_text}}";
+    $('#word').text(word);
+  },1000);
+  
+  if (notes == "mobile") {
+    $('#zoomIn').hide();
+    $('#zoomOut').hide();
+  }
+</script>
+
+<script src="../Default/DefaultPhaseTypes/survey_white.js"></script>

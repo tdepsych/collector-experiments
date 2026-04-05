@@ -1,4 +1,4 @@
-<!-- 'jans_infoconsent' PhaseType. -->
+<!--'jans_debrief' PhaseType-->
 <!--
 ---development---
 [
@@ -6,11 +6,9 @@
 ]
 ---development---
 -->
-<!DOCTYPE html>
-</html>
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
-<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/radio_buttons.css">
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Fonts/fonts.css">
+
 <style>
   * {
     box-sizing: border-box;
@@ -38,63 +36,22 @@
     line-height: 1.65;
     font-family: Montserrat-ExtraLight !important;
     font-weight: 600 !important;
-  }
-  
-  #regForm {
-    width: 100%;
-    overflow: visible !important;
-    height: auto !important;
-    max-height: none !important;
-  }
-  
-  .tab {
-    display: none;
-    width: 100%;
-    font-size: clamp(14px, 2.2vw, 18px);
-    line-height: 1.65;
-    overflow: visible !important;
-    height: auto !important;
-    max-height: none !important;
-    font-family: Montserrat-ExtraLight !important;
-    font-weight: 600 !important;
+    text-align: center;
   }
   
   #container,
-  #regForm,
-  .tab {
+  #container * {
     max-width: 100%;
-    overflow-x: hidden;
   }
 
-  /********************/
-  /* STYLING THE TABS */
-  /********************/
-
-  button, input[type="submit"], input[type="reset"] {
-    background: none;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-  }
-
-  .tab h5 {
-    font-size: clamp(18px, 2.8vw, 24px);
-    margin: 10px 0 14px;
-    text-align: center;
+  #container b,
+  #container strong {
     font-family: 'Montserrat-ExtraBold', sans-serif;
     font-weight: normal;
   }
 
-  .tab b,
-  .tab strong {
-    font-family: 'Montserrat-ExtraBold', sans-serif;
-    font-weight: normal;
-  }
-
-  .tab em {
+  #container em,
+  #container i {
     font-style: italic;
   }
 
@@ -105,8 +62,12 @@
     height: auto;
   }
 
-  hr {
-    margin: 16px 0;
+  h5 {
+    font-size: clamp(18px, 2.8vw, 24px);
+    margin: 10px 0 14px;
+    text-align: center;
+    font-family: 'Montserrat-ExtraBold', sans-serif;
+    font-weight: normal;
   }
 
   .minor {
@@ -123,12 +84,14 @@
     letter-spacing: 0.2px;
   }
 
-  .intro-meta {
-    font-family: Montserrat-ExtraLight !important;
-    font-weight: 600 !important;
+  .soft-divider {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    margin: 16px 0;
+    width: 100%;
   }
 
-  #proceed_button, #prevBtn, #nextBtn {
+  #endButton {
     margin: 20px auto;
     color: #FFF;
     background-color: #006599;
@@ -144,214 +107,23 @@
     font-family: 'Montserrat-ExtraBold', sans-serif;
   }
 
-  #prevBtn:hover, #nextBtn:hover, #nextBtn.submitBtn_active:hover {
+  #endButton:hover {
     background-color: #275fda;
   }
 
-  #nextBtn.submitBtn {
-    pointer-events: none;
-    background-color: #a1d4ee;
-    border-color: #a1d4ee;
+  a {
+    word-break: break-word;
   }
 
-  #nextBtn.submitBtn_active {
-    background-color: #006599;
-  }
-
-  input {
-    padding: 10px;
-    width: 100%;
-    border: 1px solid #aaaaaa;
-    font-size: clamp(14px, 2vw, 16px);
-    font-family: Montserrat-ExtraLight !important;
-    font-weight: 600 !important;
-  }
-
-  input.invalid {
-    background-color: #ffdddd;
-  }
-
-  .step {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbbbbb;
-    border: none;
-    border-radius: 50%;
-    display: none;
-    opacity: 0.5;
-  }
-
-  .step.active {
-    opacity: 1;
-  }
-
-  .step.finish {
-    background-color: #04AA6D;
-  }
-
-  /* ******************* */
-  /* CONSENT BTN MESSAGE */
-  /* ******************* */
-
-  .tooltipCon {
-    position: relative;
-    display: inline-block;
-  }
-
-  .tooltipHidden {
-    visibility: hidden;
-    position: absolute;
-    display: block;
-    width: min(615px, 82vw);
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .tooltipCon .tooltiptext {
-    visibility: hidden;
-    width: min(615px, 82vw);
-    background-color: #006599;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 10px;
-    position: absolute;
-    z-index: 1;
-    bottom: 45px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: clamp(12px, 1.9vw, 14px);
-    line-height: 1.45;
-    font-family: Montserrat-ExtraLight !important;
-    font-weight: 600 !important;
-  }
-
-  .tooltipCon:hover .tooltiptext {
-    visibility: visible;
-  }
-
-  .tooltipCon .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #006599 transparent transparent transparent;
-  }
-
-  /* *********************** */
-  /* ADDITIONAL FORM STYLING */
-  /* *********************** */
-
-  #radioLabelHolder {
-    padding-bottom: 16px;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    transform: none;
-  }
-
-  .checkboxes {
-    text-align: left;
-    margin-top: 24px;
-    margin-bottom: 0;
-  }
-
-  #consentForm {
-    display: block;
-    margin-top: 15px;
-  }
-
-  .radioLabel {
-    font-size: clamp(14px, 2.2vw, 17px);
-    line-height: 1.6;
-    display: block;
-    font-family: Montserrat-ExtraLight !important;
-    font-weight: 600 !important;
-  }
-
-  .textInput {
-    border-radius: 10px;
-    border-color: #3f97f6;
-  }
-
-  #textLabel {
-    display: block;
-    width: 100%;
-    clear: both;
-    margin: 14px 0 18px 0 !important;
-    font-size: clamp(14px, 2.1vw, 16px);
-    line-height: 1.2;
-    white-space: normal;
-    text-align: left;
-    font-family: Montserrat-ExtraLight !important;
-    font-weight: 600 !important;
-  }
-
-  #textInputs {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin: 15px 0 25px 0;
-    clear: both;
-  }
-
-  .textInput_gridItems {
-    padding-bottom: 0;
-    padding-right: 0;
-  }
-
-  .textInput_gridItems span {
-    display: flex;
-    justify-content: flex-start;
-    height: 100%;
-    align-items: center;
-    padding-left: 10px;
-  }
-
-  .optional_item {
-    opacity: 1.0;
-    color: black;
-  }
-
-  .optional_item:hover {
-    opacity: 1.0 !important;
-    color: black !important;
-  }
-
-  /* Bottom button row */
-  #regForm > div:last-child {
-    text-align: center;
-    margin-top: 18px;
-  }
-
-  /* Mobile */
   @media (max-width: 768px) {
     #container {
       width: 96% !important;
       padding: 16px 12px 28px;
       font-size: 15px;
-    }
-
-    .tab {
-      font-size: 15px;
       line-height: 1.6;
     }
 
-    #textInputs {
-      grid-template-columns: 1fr;
-    }
-
-    .tooltipCon .tooltiptext {
-      width: min(92vw, 420px);
-      bottom: 50px;
-    }
-
-    #prevBtn, #nextBtn {
+    #endButton {
       min-width: 110px;
     }
   }
@@ -360,383 +132,87 @@
     #container {
       width: 98% !important;
       padding: 14px 10px 24px;
-    }
-
-    .tab {
       font-size: 14px;
       line-height: 1.55;
     }
 
-    .tab h5 {
+    h5 {
       font-size: 18px;
     }
 
-    .radioLabel {
-      font-size: 14px;
-    }
-
-    #radioLabelHolder {
-      gap: 10px;
-      padding-bottom: 14px;
-    }
-
-    .tooltipCon .tooltiptext {
-      width: min(94vw, 340px);
+    .minor {
       font-size: 12px;
-    }
-
-    #prevBtn, #nextBtn {
-      padding: .55rem .85rem;
-      font-size: 14px;
     }
 
     #uorLogo {
       width: 65vw;
     }
+
+    #endButton {
+      padding: .55rem .85rem;
+      font-size: 14px;
+      width: 100%;
+      max-width: 320px;
+    }
   }
 </style>
-<!--The hidden inputs shouldn't be needed as it's not multisession tracking-->
-<div id="container">
-  <form id="regForm" action="">
-    
-    <!-- ----------------------------- -->
-    <!-- This is the Information Sheet -->
-    <!-- ----------------------------- -->
-        
-        <div class="tab">
-      <img id="uorLogo" src="../../collector-experiments/User/Assets/Global/img/uor.svg" />
-      <br>
-      School of Psychology and Clinical Language Sciences,<br>Whitenights, Reading, RG6 6AL
-      <br/>
-      <div class="soft-divider"></div>
-      <span style="color:red;"><b>{{text}}</b></span>
-      <div class="soft-divider"></div><br>
-      <h5><b>Participant Information Sheet</b></h5>
-      Supervisors: Prof. Philip Beaman (c.p.beaman@reading.ac.uk - 0118 378 7637)<br/>
-      Experimenters: Chris Dobson (c.g.dobson@pgr.reading.ac.uk)
-      <br/><br/>
-      Before starting the study, please read the following information. If you have any questions, you may email the researchers above before starting. Once you have read the information sheet, you will be asked to complete a short consent form to confirm you are happy to take part.
-      <br><br><br>
-      <b>What will I be asked to do?</b><br>
-      The study comprises a single, online testing session that takes around <b>35 minutes</b> to complete. It must be completed in one sitting, you cannot pause or restart the study once you start. Procedurally, you will be asked to rate 120 different words on 6 separate rating scales, providing a score for each scale from 1 to 9 by clicking on the appropriate response number based on your opinion. You will also be required to say whether you consider the word you are rating is a swear word or not. The words will be presented in four blocks of 30 words, and you will be allowed a break between each block should you wish. <b>Please note, that within the 120 words you must rate, 83 are ‘swear words’ by which we mean they may be considered socially taboo and/or offensive</b>. Before you start making your ratings, you will complete a short demographics questionnaire that also includes questions about how religious you consider yourself and how out of control you feel when saying a swear word out loud in response to pain and/or frustration. Once you have completed the experimental procedure (just outlined) you will be debriefed to the study’s aims. We are collecting basic demographic information to monitor the diversity and inclusivity of those who take part in this study, as one of its aims is to increase the generalisability of our knowledge about how different people perceive different types of words.
-      <br><br>
-      <b>Who can participate in this study and are there any benefits to taking part?</b><br>
-      You can participate in this study if you are over 18 years old. Please do not complete this study if you are under 18 years old. If you are a University of Reading psychology student, recruited through the SONA recruitment system, you can earn 1 credit upon completion of the study. However, if you were not recruited through the SONA system you will be entered into a draw to win one of three, £75 Amazon gift vouchers.
-      <br><br>
-      <b>Are there any risks or disadvantages to taking part?</b><br>
-      This study is investigating how people perceive different swear words across several different scales and how this may be influenced by our demographic differences. As a result, the procedure does involve reading and thinking about 83 words that can be considered swear words. This list of 83 swearwords, however, does not include any ethnic or racial slurs. 
-      <br><br>
-      Due to the need to display each word on screen while you make your ratings, we would advise that you complete the study alone, in a quiet, private space. Furthermore, if you are uncomfortable with swearing or swear words in general, we would advise you do not take part in the study.
-      <br><br>
-      <b>What will happen to my data/how will it be protected?</b><br>
-      Your data will be kept anonymous, confidential, and securely stored, with only a random ID identifying it. The final dataset collected from this study will be preserved and made available in anonymised form, so that data can be re-used by others. This dataset will contain the descriptive statistics (means and standard deviations) for each word across the six rating scales, as well as the total individual difference questionnaire scores and demographic information of each participant. No personally identifiable information will be contained within this dataset.
-      <br><br>
-      <b>Who can I contact about data privacy and storage?</b><br>
-      The organisation responsible for protection of your personal information is the University of Reading (the Data Controller). Queries regarding data protection and your rights should be directed to the University Data Protection Officer at imps@reading.ac.uk, or in writing to: University of Reading, Information Management & Policy Services, Whiteknights House, Pepper Lane, Whiteknights, Reading , RG6 6UR.
-      <br><br>
-      The University of Reading collects, analyses, uses, shares, and retains personal data for the purposes of research in the public interest. Under data protection law we are required to inform you that this use of the personal data we may hold about you is on the lawful basis of being a public task in the public interest and where it is necessary for scientific or historical research purposes. If you withdraw from a research study, which processes your personal data, dependant on the stage of withdrawal, we may still rely on this lawful basis to continue using your data if your withdrawal would be of significant detriment to the research study aims. We will always have in place appropriate safeguards to protect your personal data.
-      <br><br>
-      As part of consenting to take part in this study, you will be asked if you are happy to be contacted about future research. This is entirely optional; you can still take part in the study even if you do not wish to be contacted in the future about other studies. Additionally, if you agree to be contacted but later change your mind, you can be removed from the list by emailing the study supervisor – Prof. Philip Beaman (c.p.beaman@reading.ac.uk).
-      <br><br>
-      You have certain rights under data protection law which are: (1) To withdraw your consent, for example if you opted in to be added to a participant register; (2) To access your personal data or ask for a copy; (3) To rectify inaccuracies in personal data that we hold about you; (4) To be forgotten, that is your details to be removed from systems that we use to process your personal data; (5) To restrict uses of your data; (6) To object to uses of your data, for example retention after you have withdrawn from a study.
-      <br><br>
-      Some restrictions apply to the above rights where data is collected and used for research purposes. You can find out more about your rights on the website of the Information Commissioners Office (ICO) at https://ico.org.uk. You also have a right to complain the ICO if you are unhappy with how your data has been handled. Please contact the University Data Protection Officer in the first instance.
-      <br><br>
-      <b>Who has reviewed this study? </b><br>
-      This application has been reviewed by the School of Psychology and Clinical Language Sciences Research Ethics Committee and given a favourable ethical opinion for conduct (2024-014-PB; expiry date: 17/09/2027).
-      <br><br>
-      <b>Where can I get more information/who I can contact about this study?</b><br>
-      If you have any questions or concerns about the study, please contact Christopher Dobson – c.g.dobson@pgr.reading.ac.uk – before continuing. Please only start your participation in this study once all your questions have been answered to your satisfaction.
-      <br/><br/>
-      Thank you for taking part in our study.
-      <br/><br/>
-      <b>Prof. Philip Beaman and Christopher Dobson</b>
-      <div class="soft-divider"></div>
-      <span class ="minor">A copy of the study information, presented above, can be downloaded from within the debreif sheet at the end of the experiment.</span>
-      <div class="soft-divider"></div>
-    </div>
-        
-    <!-- ------------------------ -->
-    <!-- This is the Consent Form -->
-    <!-- ------------------------ -->
-        
-    <div class="tab">
-      <input type="hidden" name="consent_pii_participant_name" id="participant_name" value=""/>
-      <input type="hidden" name="consent_pii_participant_email" id="participant_email" value=""/>
-      <img id="uorLogo" src="../../collector-experiments/User/Assets/Global/img/uor.svg" />
-      <br>
-      School of Psychology and Clinical Language Sciences,<br>Whitenights, Reading, RG6 6AL
-      <br/>
-      <div class="soft-divider"></div>
-        <span style="color:red;"><b>Study: {{text}}</b></span>
-      <div class="soft-divider"></div>
-          
-      <h5><b>CONSENT FORM</b></h5>
-      Supervisors: Prof. Philip Beaman (c.p.beaman@reading.ac.uk - 0118 378 7637)<br/>
-      Experimenters: Christopher Dobson (c.g.dobson@pgr.reading.ac.uk)
-      <br/><br/>
-      Please read the following, and tick the box preceding it, to confirm it has been read and you agree to it. If you do not agree with any of the statements, please withdraw from the study by closing your browser window and let the experimenter know (using the contact details above).
-      <div id="consentForm">
-        <div class="checkboxes">
-          <!--Check Boxes-->
-          <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c1_voluntary" id="c1_voluntary" value=""/>
-            <span class="radioLabel">I understand participation is entirely voluntary and that I have the right to withdraw from the study at any time, without detriment, by simply closing my browser window.</span>
-          </label>
-          <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c2_readinfo" id="c2_readinfo" value=""/>
-            <span class="radioLabel">I have read the information sheet regarding the project: <em>{{text}}</em> and understand the experimental procedure – <u>especially that it involves rating 120 words of which 83 are considered 'swear words' some people may considered offensive (e.g., c**t).</u></span>
-          </label>
-          <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c3_askedquestions" id="c3_askedquestions" value=""/>
-            <span class="radioLabel">I confirm that I have contacted the researchers prior to starting this study to ask any questions that I may have about the study, and that these have been answered to my satisfaction.</span>
-          </label>
-          <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c4_data" id="c4_data" value=""/>
-            <span class="radioLabel">I understand what information is collected about me, how it will be used in relation to the study, how it will be kept safe, and my rights in relation to my data.</span>
-          </label>
-          <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c5_anonymousdata" id="c5_anonymousdata" value=""/>
-            <span class="radioLabel">I understand that the data collected as part of this study will be preserved and made openly available in an anonymized form, so that they can be consulted and re-used by others.</span>
-          </label>
-          <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c6_downloadinfo" id="c6_downloadinfo" value=""/>
-            <span class="radioLabel">I understand that I can download copies of the ‘Study Information Sheet’, as well as this ‘Consent Form’, on the study’s debrief page, or by emailing the experimenter listed above at any time.</span>
-          </label>
-          <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consentCheck" />
-            <span class="radioLabel">To confirm that you are reading each item before agreeing, please leave this unticked.</span>
-          </label>
-          <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c7_over18" id="c7_over18" value=""/>
-            <span class="radioLabel">I confirm that I am over the age of 18.</span>
-          </label>
-          <!--<label id="radioLabelHolder">-->
-          <!--  <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_c8_nativeenglish" id="c8_nativeenglish" value=""/>-->
-          <!--  <span class="radioLabel">I confirm that I am a native English speaker. <br><span style="font-size:14px; color:#000;"><em>(defined as someone born in a native English speaking country (e.g., the UK or USA), or moved there before the age of 2)</em></span>-->
-          <!--  </span>-->
-          <!--</label>-->
-          <label id="radioLabelHolder">
-            <input type="checkbox" class="option-input radio consent pptConsent" name="consent_pii_informedconsent" id="informedconsent" value=""/>
-            <span class="radioLabel">Finally, please confirm that you understand that by clicking <b>Consent & Start</b> (which begins the study) your are providing <b>informed consent</b> to take part in this study.</span>
-          </label>
-          <!--Text Inputs-->
-          <br><br>
-          <label id="textLabel" style="margin-left: 65px; margin-top: -20px;">Please enter your name and email address in the boxes below. These are required so we can link the consent agreement above to you and are stored separately to all experimental data, ensuring your anonymity. They are also not included in any data made available once the study has been completed.</label>
-          <div id="textInputs">
-            <div class="textInput_gridItems"><input type="text" class="textInput" name="consent_pii_participant_name" id="participant_nameInput" value="" placeholder="Please enter your full name"/></div>
-            <div class="textInput_gridItems"><input type="email" class="textInput" name="consent_pii_participant_email" id="participant_emailInput" value="" placeholder="Please enter your email address" /></div>
-          </div>
-          <label id="radioLabelHolder" class="optional_item">
-            <input type="checkbox" class="option-input radio optional_item_checkbox" name="consent_pii_c9_future_studies" id="c9_future_studies" value="No"/>
-            <span class="radioLabel">Please tick this box if you are happy to be contacted by the researchers about future studies they conduct (optional).</span>
-          </label>
-        </div>
-      </div>
-      <div class="soft-divider"></div>
-      This study has been reviewed by the School Research Ethics Committee and has been given a favourable ethical opinion for conduct.<br>(2024-014-PB; expiry date: 17/09/2027)
-      <br/><br/>
-      Thank you for taking part in our study.
-      <br/><br/>
-      <b>Prof. Philip Beaman and Christopher Dobson</b>
-      <br/><br/>
-    </div>
-    <!-- --------------------------------- -->
-    <!-- This is the Previous/Next Buttons -->
-    <!-- --------------------------------- -->
+
+<body>
+  <div id="container">
+    <img id="uorLogo" src="../../collector-experiments/User/Assets/Global/img/uor.svg" />
+    <br>
+    School of Psychology and Clinical Language Sciences,<br>Whitenights, Reading, RG6 6AL
+    <br/>
+    <div class="soft-divider"></div>
+    <span class="study-title"><b>{{text}}</b></span>
+    <div class="soft-divider"></div>
+
+    <h5><b>DEBRIEF SHEET</b></h5>
+    Supervisor: Prof. Philip Beaman (c.p.beaman@reading.ac.uk - 0118 378 7637)<br/>
+    Experimenter: Chris Dobson (c.g.dobson@pgr.reading.ac.uk)
+    <br/><br/>
+
+    <b>Thank your for taking part in our study</b>
+    <br/>
+    This study was investigating how people perceive swear words across several different scales and how this may be influenced by our demographic differences. The reason for this was to update an extend an American study, conducted over 15 years ago (Janschewitz, 2008). The original study by Janschewitz had been conducted on the West coast of America, using a sample of 80 US college students, who rated 120 American English focused swear words as part of a much larger study. As a result, while the results published from that study were a good guide to how people perceive swear words, full generalisability of the results to British English speakers was not possible, due to the differences in what is/isn’t considered a swear word across the two languages. For example, a swear word like “fanny” translates very differently in British English, compared to American English while other swear words that are considered offensive/taboo in America may not even register in Britain and vice-versa. There is, however, a lot of overlap in the words considered ‘swear words’ between the two language bases and, therefore, beyond looking at how the participants within our sample have rated each word we have selected/tested, we are also interested to see whether the correlations between rating scales originally reported by Janschewitz still hold both in direction and strength.
+    <br/><br/>
+
+    You also completed a single item, self-report question regarding how religious you are. This matches a question originally included by Janschewitz, however, we added the single item, self-report question regarding how out of control you feel when vocalising a swearword in response to pain/frustration. This is because previous research has shown that there is a gender split in how out of control men and women feel when swearing and we are interested to see whether this holds for swearing within a specific context, where people often swear out loud, as the original finding was just based on people’s general perception of swearing in day-to-day life.
+    <br/><br/>
+
+    <b>Amazon Gift Voucher Draw</b><br>
+    Every participant who takes part in the study will be automatically entered into the draw to win one of three £75 Amazon gift vouchers. The draw will be made at the end of data collection and the winners emailed by the experimenter.
+    <br><br>
+
+    <b>Reminder: What will happen to my data/how will it be protected?</b><br>
+    Your data will be kept anonymous, confidential, and securely stored, with only your anonymous ID identifying it. The final dataset collected from this study will be preserved and made available in anonymised form, so that data can be re-used by others. Your individual consent form will be kept for 5 years after the completion of this study. Finally, if you agreed to be contacted about future studies whilst consenting to take part, you may remove this agreement at any point in the future by emailing Prof. Phil Beaman – c.p.beaman@reading.ac.uk.
+    <br><br>
+
+    <i>This study was reviewed by the School Research Ethics Committee and given a favourable ethical opinion for conduct 2024-014-PB; expiry date: 17/09/2027).</i>
+    <br/><br/>
+
+    Once again, thank you for your participation.
+    <br/><br/>
+
+    <b>Prof. Philip Beaman and Chris Dobson</b>
+
+    <div class="soft-divider"></div>
+    <span class="minor">
+      Please click the following links if you wish to download the <a href="../../collector-experiments/User/Assets/Jans/information_sheet.pdf" download="Participant Information Sheet">participant information sheet <span id="pdfImg"></span></a> or the study <a href="../../collector-experiments/User/Assets/Jans/debrief_sheet.pdf" download="Study Debrief Sheet">debrief sheet <span id="pdfImg"></span></a>
+    </span>
+    <div class="soft-divider"></div>
+
     <div>
-      <span class="step"></span>
-      <span class="step"></span>
-      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-      <!--Tool tip -->
-      <div id="tooltipCon" class="tooltipCon">
-        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
-        <span id="tooltiptext" class="tooltipHidden">Sorry. You can only start the experiment once you have ticked all the boxes above<br/><em>(indicating your happy and consenting to participate in this study)</em></span>
-      </div>
+      <button class="btn btn-primary" id="endButton">Finish Study</button>
     </div>
-  </form>
-</div>
-<!-- --------------------------------- -->
-<!-- Only Javascript beyond this point -->
-<!-- --------------------------------- -->
-<script>
-  var email_validated = false;
-  var name_entered = false;
-  
-  // ===================== //
-  // SETUP & VALIDATE TABS //
-  // ===================== //
-  
-  // Current tab is set to be the first tab (0)
-  var currentTab = 0; 
-  
-  // Display the current tab
-  showTab(currentTab); 
-        
-  function showTab(n) {
-  // This function will display the specified tab of the form...
-  
-  var tab = $('.tab');
-  tab[n].style.display = "block";
-  //... and fix the Previous/Next buttons:
-  if (n == 0) {
-    document.getElementById("prevBtn").style.display = "none";
-  } else {
-    document.getElementById("prevBtn").style.display = "inline";
-  }
-  if (n == (tab.length - 1)) {
-    $('#nextBtn').html("Consent & Start");
-    $('#nextBtn').attr("class", "submitBtn");
-    $('#tooltiptext').attr("class", "tooltiptext");
-  } else {
-    $('#nextBtn').html("  Next  ")
-    $('#nextBtn').attr("class", "submitBtn_active");
-  }
-  
-  //... and run a function that will display the correct step indicator:
-  fixStepIndicator(n)
-  }
-        
-  // This function will figure out which tab to display
-  function nextPrev(n) {
-    var tab = $(".tab");                              // Create a variable 
-    if (n == 1 && !validateForm()) return false;    // Exit the function if any field in the current tab is invalid:
-      tab[currentTab].style.display = "none";         // Hide the current tab:
-      currentTab = currentTab + n;                  // Increase or decrease the current tab by 1:
-      if (currentTab >= tab.length) {                 // if you have reached the end of the form...
-        Phase.submit()                              // ... so the form gets submitted:
-      }
-    showTab(currentTab);                            // Otherwise, display the correct tab:
-  }
-  
-  //Clear and reset form if participant clicks to go back to Info Sheet
-  $("#prevBtn").click(function() {
-    $('.consent,.consentCheck,.optional_item_checkbox').prop("checked", false);
-    $('.optional_item').css("color","lightslategrey").css('opacity','0.85');
-    $('#participant_nameInput, #participant_emailInput').val("");
-    $("#tooltiptext").attr("class", "tooltipHidden");
-  });
-    
-  // Scroll Back To Top
-  $("#nextBtn, #prevBtn").click(function() {
-    $(window).scrollTop(0);
-  });
-    
-  function validateForm() {
-    // This function deals with validation of the form fields
-    var tab, tabInput, i, valid = true;
-    tab = $(".tab");
-    tabInput = tab[currentTab].getElementsByTagName("input");
-    
-    // A loop that checks every input field in the current tab:
-    for (i = 0; i < tabInput.length; i++) {
-      // If a field is empty...
-      if ($("input").hasClass("required") && tabInput[i].value == "") {
-        // add an "invalid" class to the field:
-        tabInput[i].className += " invalid";
-        // and set the current valid status to false
-        valid = false;
-      }
-    }
-    // If the valid status is true, mark the step as finished and valid:
-    if (valid) {
-      $(".step")[currentTab].className += " finish";
-    }
-    return valid; // return the valid status
-  }
-        
-  function fixStepIndicator(n) {
-    // This function removes the "active" class of all steps...
-    var i, step = $(".step");
-    for (i = 0; i < step.length; i++) {
-      step[i].className = step[i].className.replace(" active", "");
-    }
-    //... and adds the "active" class on the current step:
-    step[n].className += " active";
-  }
-  
-  // ========================= //
-  // VALIDATE THE CONSENT FORM //
-  // ========================= //
-  
-  function validateConsent() {
-    if ($('#c10_future_studies').is(':checked')) {
-      $('#c10_future_studies').val("Yes");
-    }
-    
-    // Assign the particpant's ID and testing sessions numbers to variables
-    $('#uniqueid').val(parent.parent.pptID);
-    $('#participant_name').val($('#participant_nameInput').val());
-    $('#participant_email').val($('#participant_emailInput').val())
-    
-    // This checks that ppts haven't clicked the attention mistake and disables the nextBtn
-    if ($('.consentCheck').is(':checked')) {
-      $("#tooltiptext").attr("class", "tooltiptext");
-      $("#nextBtn").attr("class", "submitBtn");
-      $("#tooltiptext").html("Please read each item carefully before accepting (ticking)<br><em>(Currently, you have incorrectly ticked an item)</em>");
-    
-      // This checks if all the consent items are checked and if so, activates the nextBtn to submit the form  
-    } else if( $('.consent:checked').length == $('.consent').length && name_entered && email_validated ) {
-      $('.pptConsent').val('Yes');
-      $("#nextBtn").attr("class", "submitBtn_active");
-      $("#tooltiptext").attr("class", "tooltipHidden");
-    
-      // This checks whether the number of consented items is less than the total number of consent items and disables the nextBtn if so  
-    } else if ($('.consent:checked').length < $('.consent').length || name_entered == false || email_validated == false) {
-      $("#tooltiptext").attr("class", "tooltiptext");
-      $("#nextBtn").attr("class", "submitBtn");
-    
-      // This just keeps the tool tip  
+  </div>
+
+  <script>
+    var initial_url = document.location.href;
+    if (initial_url.includes("sona")) {
+      $("#endButton").attr("onclick","Phase.add_response({main_complete: 2});Phase.submit();").html("Finish Study & Collect Credit");
     } else {
-      $("#tooltiptext").html("Sorry. You can only start the experiment once you have ticked all the boxes and entered your name/email above<br/><em>(indicating your happy and consenting to participate in this study)</em>");
+      $("#endButton").attr("onclick","Phase.submit();");
     }
-   
-      // Change the font colour of the optional item if they tick it
-    if ($('#c9_future_studies:checked').length == 1) {
-      $('.optional_item').css("color","black").css('opacity','1.0');
-    } else {
-      $('.optional_item').css("color","lightslategrey").css('opacity','0.85');
-    }
-  }
-  
-  // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-  // Validate on tick change
-  // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-  $("#consentForm").change(function() {
-    validateConsent();
-  });
-  
-  // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-  // Validate on text change
-  // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-  $("#participant_emailInput").on("keydown", function(){
-      setTimeout(() => {
-          var emailField = $("#participant_emailInput").val();
-          console.log(emailField);
-          // Check for valid email format and no spaces
-          if( /(.+)@(.+){2,}\.(.+){2,}/.test(emailField) && !/\s/.test(emailField) ){
-              email_validated = true;
-              validateConsent();
-          } else {
-              email_validated = false;
-              validateConsent();
-          }
-      }, 10);
-  });
-  
-    $("#participant_nameInput").on("keydown", function(){
-    setTimeout(() => {
-      var pptName = $("#participant_nameInput").val();
-      console.log(pptName)
-      if(pptName != ""){
-        console.log("NAME ENTERED")
-        name_entered = true;
-        validateConsent();
-      } else {
-        console.log("NO NAME ENTERED")
-        name_entered = false;
-        validateConsent();
-      }
-    }, "10");
-  });
-</script>
+  </script>
+</body>
