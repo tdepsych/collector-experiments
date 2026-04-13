@@ -124,7 +124,7 @@
     <!-- Participant ID -->
     <div style="flex:1; min-width:260px;">
       <p class="text-primary req-label" data-q="q2" style="margin-bottom:10px; text-align:left;">Participant ID</p>
-      <input type="number" id="participant_id" name="participant_id" placeholder="Enter participant ID" style="width:100%; padding:10px; border-radius:10px; border:1px solid #3f97f6;" />
+      <input type="number" id="ppt_id" name="ppt_id" placeholder="Enter participant ID" style="width:100%; padding:10px; border-radius:10px; border:1px solid #3f97f6;" />
     </div>
   
   </div>
@@ -235,12 +235,12 @@
     
       <div style="display:flex; gap:18px; flex-wrap:wrap;">
         <label class="radioBox">
-          <input type="radio" name="order_tasks" value="ignore">
+          <input type="radio" name="order_tasks" value="30s_swear">
           30 Second Swear
         </label>
       
         <label class="radioBox">
-          <input type="radio" name="order_tasks" value="ignore">
+          <input type="radio" name="order_tasks" value="cpt">
           Cold Pressor Test
         </label>
       </div>
@@ -254,12 +254,12 @@
     
        <div style="display:flex; gap:18px; flex-wrap:wrap;">
           <label class="radioBox">
-            <input type="radio" name="order_30s" value="ignore">
+            <input type="radio" name="order_30s" value="swear_word">
             Swear Word
           </label>
         
           <label class="radioBox">
-            <input type="radio" name="order_30s" value="ignore">
+            <input type="radio" name="order_30s" value="neutral_word">
             Neutral Word
           </label>
         </div>
@@ -273,12 +273,12 @@
     
       <div style="display:flex; gap:18px; flex-wrap:wrap;">
         <label class="radioBox">
-          <input type="radio" name="order_cpt" value="ignore">
+          <input type="radio" name="order_cpt" value="swear_word">
           Swear Word
         </label>
       
         <label class="radioBox">
-          <input type="radio" name="order_cpt" value="ignore">
+          <input type="radio" name="order_cpt" value="neutral_word">
           Neutral Word
         </label>
       </div>
@@ -358,7 +358,7 @@ function getOppositeSwear(word) {
   // Each rule: check one or more fields, highlight one prompt if any are missing
   const rules = [
     { q: 'q1', fields: ['#experimenter'] },
-    { q: 'q2', fields: ['#participant_id'] },
+    { q: 'q2', fields: ['#ppt_id'] },
 
     { q: 'q30s_swear', fields: ['#swear_30_word', '#swear_30_time'] },
     { q: 'q30s_neutral', fields: ['#neutral_30_word', '#neutral_30_time'] },
