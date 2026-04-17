@@ -1,4 +1,4 @@
-<!--tde_survey (v2) this is a sheet for restyling Collector surveys to remove the green standard look-->
+<!--tde_survey_mobile. This is a responsive mobile friendly survey -->
 <!DOCTYPE html>
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/radio_buttons.css">
@@ -248,7 +248,8 @@ input[type="number"] {
 }
 
 .table_break_tabs {
-  width: min(60%, 100%) !important;
+  width: 100% !important;
+  max-width: 100% !important;
   margin: 0 auto !important;
 }
 
@@ -475,6 +476,71 @@ input[type="number"] {
     min-width: 92px;
   }
 }
+
+/* ========================================= */
+/* COLLECTOR LIKERT - 5 EQUAL BUTTONS        */
+/* ========================================= */
+
+[id^="table"] .btn-group.btn-group-toggle {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+[id^="table"] .btn-group.btn-group-toggle > label.btn,
+[id^="table"] .btn-group.btn-group-toggle > label.btn.btn-outline-primary,
+[id^="table"] label[for^="likert_"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  flex: unset !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  min-height: 64px !important;
+  padding: 8px 6px !important;
+
+  text-align: center !important;
+  white-space: normal !important;
+  overflow-wrap: break-word !important;
+  word-break: normal !important;
+  hyphens: auto !important;
+
+  font-size: 11px !important;
+  line-height: 1.15 !important;
+
+  font-family: 'Montserrat-ExtraLight', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+/* cancel the previous "last button full width" rule */
+[id^="table"] .btn-group.btn-group-toggle > label.btn:last-child,
+[id^="table"] label[for^="likert_"]:last-child {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  flex: unset !important;
+}
+
+/* slightly larger on tablets/desktops */
+@media (min-width: 769px) {
+  [id^="table"] .btn-group.btn-group-toggle > label.btn,
+  [id^="table"] .btn-group.btn-group-toggle > label.btn.btn-outline-primary,
+  [id^="table"] label[for^="likert_"] {
+    min-height: 60px !important;
+    font-size: 16px !important;
+    line-height: 1.2 !important;
+    padding: 10px 8px !important;
+    font-family: 'Montserrat-ExtraLight', sans-serif !important;
+    font-weight: 600 !important;
+  }
+}
 </style>
 
 
@@ -496,11 +562,7 @@ input[type="number"] {
     var word = "{{task_body_text}}";
     $('#word').text(word);
   },1000);
-  
-  if (notes == "mobile") {
-    $('#zoomIn').hide();
-    $('#zoomOut').hide();
-  }
+
 </script>
 
 <script src="../Default/DefaultPhaseTypes/survey_white.js"></script>

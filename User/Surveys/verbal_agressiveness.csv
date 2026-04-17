@@ -1,5 +1,6 @@
 item_name,text,type,answers,optional,values,side_by_side,btn_width,score:ver_agg,
-Instructions,<h2><span>Verbal Aggressiveness Scale</span></h2><br><br><h6><b>INSTRUCTIONS: </b> This questionnaire is concerned with how we try to get people to comply with our wishes. Please select from the options beneath each statement to indicate how often each statement is true for you personally when you try to influence other persons</h6><br/><br/>,instruct,,,,,,,
+Instructions,"<h2><span>Verbal Aggressiveness Scale</span></h2>
+<span id=""instruc""><b>INSTRUCTIONS: </b>This questionnaire is concerned with how we try to get people to comply with our wishes. Please select from the options beneath each statement to indicate how often each statement is true for you personally when you try to influence other persons</span><br/><br/>",instruct,,,,,,,
 ver_agg_1,"1. When individuals are very stubborn, I use insults to soften their stubbornness.",likert,Almost Never True|Rarely True|Occasionally True|Often True|Almost Always True," No",1|2|3|4|5,no,175px,1,
 ver_agg_2,"2. When people refuse to do a task I know is important, without good reason, I tell them they are unreasonable.",likert,Almost Never True|Rarely True|Occasionally True|Often True|Almost Always True,No,1|2|3|4|5,no,175px,1,
 ver_agg_3,"3. If individuals I am trying to influence really deserve it, I attack their character.",likert,Almost Never True|Rarely True|Occasionally True|Often True|Almost Always True,No,1|2|3|4|5,no,175px,1,
