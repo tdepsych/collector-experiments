@@ -1,6 +1,6 @@
 item,phasetype,survey,max_time,text,notes,shuffle_1,task_title,task_body_text,weight,
 0,offline,,user,,,off,STUDY TEMPORARILY OFFLINE,We're really sorry but the study isn't available at the moment. The program used to run this study has had an update which has broken the data storage within this study. We are very sorry that you cannot complete the study at this time.,0,
-0,intro_mobile,,user,Welcome,,off,,,0,
+0,intro_mobile,,user,Welcome,,off,,,,
 0,jans_ic_mobile,,user,"Re-examining taboo, emotionally valenced, and emotionally neutral word norms",,off,,,0,
 0,task_bookend_mobile,,user,Start,,off,Demographics,"Before you begin rating words, we just need you to complete a basic demographics questionnaire. This is so we can better understand who has taken part in our study and will allow us to analyses how different demographic details change how people perceive swear words.<br><br>When you are ready, please press <b>Start</b> to begin.",0,
 0,tde_survey_mobile,jans_demo.csv,user,50,,off,,,0,
