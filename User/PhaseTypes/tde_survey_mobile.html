@@ -12,7 +12,6 @@
 * {
   box-sizing: border-box;
 }
-
 html, body {
   width: 100%;
   min-height: 100%;
@@ -481,9 +480,18 @@ input[type="number"] {
 /* COLLECTOR LIKERT - 5 EQUAL BUTTONS        */
 /* ========================================= */
 
-[id^="table"] .btn-group.btn-group-toggle {
+/*[id^="table"] .btn-group.btn-group-toggle {
   display: grid !important;
   grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}*/
+
+[id^="table"] .btn-group.btn-group-toggle {
+  display: grid !important;
+  grid-auto-flow: column !important;
+  grid-auto-columns: 1fr !important;
   width: 100% !important;
   max-width: 100% !important;
   overflow: hidden !important;
@@ -562,6 +570,21 @@ input[type="number"] {
     var word = "{{task_body_text}}";
     $('#word').text(word);
   },1000);
+  
+  $(document).on('click', '#proceed_button, #previous_button', function () {
+    setTimeout(function () {
+      $({ scrollTop: document.body.scrollTop }).animate(
+        { scrollTop: 0 },
+        {
+          duration: 300,
+          step: function (now) {
+            document.body.scrollTop = now;
+            document.documentElement.scrollTop = now;
+          }
+        }
+      );
+    }, 150);
+  });
 
 </script>
 

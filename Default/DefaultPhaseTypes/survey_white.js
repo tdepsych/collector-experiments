@@ -238,7 +238,8 @@ $("#previous_button").on("click", function () {
   $(".table_break#table" + next_table_no).show();
   $('.table_break#table'+ next_table_no).addClass("table_break_tabs");
   $('.table_break#table'+ current_table_no).removeClass("table_break_tabs");
-  $(window).scrollTop(0);      
+  // $(window).scrollTop(0);
+  scrollSurveyToTop(this);      
   $("#proceed_button").text("Next Page");
   show_previous_button();
 });
@@ -328,7 +329,8 @@ $("#proceed_button").on("click", function () {
           $(".table_break#table" + next_table_no).show(0);
           $('.table_break#table'+ next_table_no).addClass("table_break_tabs");
           $('.table_break#table'+ current_table_no).removeClass("table_break_tabs");
-          $(window).scrollTop(0);
+          //$(window).scrollTop(0);
+          scrollSurveyToTop(this);
       } else {
           if (typeof Phase !== "undefined") {
             Phase.submit();
@@ -355,7 +357,8 @@ $("#proceed_button").on("click", function () {
             $(".table_break#table" + next_table_no).show(0);
             $('.table_break#table'+ next_table_no).addClass("table_break_tabs");
             $('.table_break#table'+ current_table_no).removeClass("table_break_tabs");
-            $(window).scrollTop(0);
+            //$(window).scrollTop(0);
+            scrollSurveyToTop(this);
           }
         } else {
           if (typeof Phase !== "undefined") {
@@ -1017,6 +1020,24 @@ function reveal_answers(this_element) {
       $(this_element).html("Show Feedback").addClass("btn-outline-info").removeClass("btn-info");
     }
   }
+}
+
+function scrollSurveyToTop(clickedButton) { // NOTE: This isn't working - 17/04/2026
+  if (clickedButton && clickedButton.blur) {
+    clickedButton.blur();
+  }
+
+  if (document.activeElement && document.activeElement.blur) {
+    document.activeElement.blur();
+  }
+
+  setTimeout(function () {
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        document.body.scrollTop = 0;
+      });
+    });
+  }, 0);
 }
 
 function show_block(block_name){
