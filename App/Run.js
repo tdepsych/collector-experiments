@@ -74,6 +74,7 @@ Project = {
     "insert_start",
     "insert_end_checks",
     "shuffle_start_exp",
+    "resume_checkpoint", // {CGD} This is part of my attempt to get Collector to be able to resume
     "buffer_phases",
     "process_welcome",
   ],
@@ -703,7 +704,8 @@ Project = {
           }
         }, parseFloat(max_time) * 1000);
       }
-      participant_backup();
+      // participant_backup();
+      save_resume_checkpoint();
 
       var this_timeout = project_json.time_outs.filter(function (row) {
         return parseFloat(row.phase_no) === parseFloat(project_json.phase_no);
@@ -797,6 +799,79 @@ function create_project_json_variables() {
   }
 
   Project.activate_pipe();
+}
+
+// {CGD - this is new, part of the ability to resume a study}
+function resume_checkpoint() {
+  const saved = window.localStorage.getItem("collector_resume");
+
+  if (!saved || Project.get_vars.platform === "preview") {
+    Project.activate_pipe();
+    return;
+  }
+
+  let checkpoint;
+  try {
+    checkpoint = JSON.parse(saved);
+  } catch (e) {
+    window.localStorage.removeItem("collector_resume");
+    Project.activate_pipe();
+    return;
+  }
+
+  const sameStudy =
+    checkpoint.location === Project.get_vars.location &&
+    checkpoint.condition_name === Project.get_vars.name;
+
+  if (!sameStudy) {
+    Project.activate_pipe();
+    return;
+  }
+
+  bootbox.dialog({
+    title: "Resume or Restart?",
+    message: "It looks like you already started this study. Would you like to resume where you left off or restart from the beginning?",
+    buttons: {
+      resume: {
+        label: "Resume",
+        className: "btn-primary",
+        callback: function () {
+          project_json.responses = checkpoint.responses || [];
+          project_json.parsed_proc = checkpoint.parsed_proc || project_json.parsed_proc;
+          project_json.parsed_stim = checkpoint.parsed_stim || project_json.parsed_stim;
+          project_json.this_condition = checkpoint.this_condition || project_json.this_condition;
+
+          project_json.phase_no = checkpoint.phase_no || 0;
+          project_json.post_no = checkpoint.post_no || 0;
+          project_json.resuming = true;
+
+          $("#participant_code").val(checkpoint.participant_code || "");
+          $("#completion_code").val(checkpoint.completion_code || "");
+          $("#prehashed_code").val(checkpoint.prehashed_code || "");
+
+          Project.activate_pipe();
+        }
+      },
+      restart: {
+        label: "Restart",
+        className: "btn-danger",
+        callback: function () {
+          window.localStorage.removeItem("collector_resume");
+          window.localStorage.removeItem("username");
+          window.localStorage.removeItem("completion_code");
+          window.localStorage.removeItem("prehashed_code");
+          Project.activate_pipe();
+        }
+      },
+      cancel: {
+        label: "Cancel",
+        className: "btn-secondary",
+        callback: function () {
+          // do nothing
+        }
+      }
+    }
+  });
 }
 
 function detect_exe() {
@@ -944,6 +1019,7 @@ function final_phase() {
               //$("#participant_country").show();
               //$("#participant_country").load("ParticipantCountry.html");
               window.localStorage.removeItem("project_json");
+              window.localStorage.removeItem("collector_resume"); // {CGD - resuming}
               window.localStorage.removeItem("username");
               window.localStorage.removeItem("completion_code");
               window.localStorage.removeItem("prehashed_code");
@@ -975,6 +1051,7 @@ function final_phase() {
         precrypted_data(project_json, "What do you want to save this file as?");
       });
       window.localStorage.removeItem("project_json");
+      window.localStorage.removeItem("collector_resume"); // {CGD - resuming}
       window.localStorage.removeItem("username");
       window.localStorage.removeItem("completion_code");
       window.localStorage.removeItem("prehashed_code");
@@ -1566,8 +1643,29 @@ function parse_current_proc() {
   Project.activate_pipe();
 }
 
-function participant_backup() {
-  window.localStorage.setItem("project_json", JSON.stringify(project_json));
+// function participant_backup() {
+//   window.localStorage.setItem("project_json", JSON.stringify(project_json));
+//   window.localStorage.setItem("username", $("#participant_code").val());
+// }
+
+// {CGD - I commented out the backup fuction above so I can use my new function below to make the study resume}
+function save_resume_checkpoint() {
+  const checkpoint = {
+    version: 1,
+    location: Project.get_vars.location,
+    condition_name: Project.get_vars.name,
+    participant_code: $("#participant_code").val(),
+    completion_code: $("#completion_code").val(),
+    prehashed_code: $("#prehashed_code").val(),
+    phase_no: project_json.phase_no,
+    post_no: project_json.post_no,
+    responses: project_json.responses || [],
+    parsed_proc: project_json.parsed_proc || [],
+    parsed_stim: project_json.parsed_stim || [],
+    this_condition: project_json.this_condition || {}
+  };
+
+  window.localStorage.setItem("collector_resume", JSON.stringify(checkpoint));
   window.localStorage.setItem("username", $("#participant_code").val());
 }
 
@@ -1665,6 +1763,15 @@ function precrypted_data(decrypted_data, message) {
 }
 
 function process_welcome() {
+  // {CGD - added the if below as part of the resuming}
+  if (project_json.resuming === true) {
+    $("#welcome_div").hide();
+    $("#post_welcome").show();
+    $("#project_div").show();
+    Project.start_post();
+    return;
+  }
+
   if (document.getElementById("loading_project_json") !== null) {
     /*
      * skip participant id? (and thus start_message)
