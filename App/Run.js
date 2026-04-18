@@ -1762,13 +1762,55 @@ function precrypted_data(decrypted_data, message) {
   }
 }
 
+// {CGD - resuming}
+function start_resumed_phase_when_ready(attempt_no) {
+  if (typeof attempt_no === "undefined") {
+    attempt_no = 0;
+  }
+
+  var phase_iframe = $("#phase" + project_json.phase_no);
+  var post_iframe;
+
+  try {
+    post_iframe = phase_iframe
+      .contents()
+      .children()
+      .find("iframe")
+      .filter(function (element) {
+        return element === project_json.post_no;
+      })[0];
+  } catch (error) {
+    post_iframe = undefined;
+  }
+
+  if (
+    typeof post_iframe !== "undefined" &&
+    post_iframe.contentWindow &&
+    post_iframe.contentWindow.document &&
+    post_iframe.contentWindow.document.readyState === "complete"
+  ) {
+    Project.start_post();
+    return;
+  }
+
+  if (attempt_no > 100) {
+    // fallback after ~5 seconds
+    Project.start_post();
+    return;
+  }
+
+  setTimeout(function () {
+    start_resumed_phase_when_ready(attempt_no + 1);
+  }, 50);
+}
+
 function process_welcome() {
   // {CGD - added the if below as part of the resuming}
   if (project_json.resuming === true) {
     $("#welcome_div").hide();
     $("#post_welcome").show();
     $("#project_div").show();
-    Project.start_post();
+    start_resumed_phase_when_ready();
     return;
   }
 
