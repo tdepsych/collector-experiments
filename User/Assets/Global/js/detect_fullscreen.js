@@ -1,39 +1,49 @@
 // Script for detecting if a page is in full screen and asking the user to enter fullscreen if it's not
-    function getGuardWindow() {
-    try {
-      if (parent.parent) {
-        return parent.parent;
-      }
-    } catch (e) {}
+function isAppleMobile() {
+  var ua = navigator.userAgent || "";
+  var platform = navigator.platform || "";
+  var maxTouchPoints = navigator.maxTouchPoints || 0;
 
-    try {
-      if (parent) {
-        return parent;
-      }
-    } catch (e) {}
+  return /iPhone|iPod/.test(ua) ||
+         /iPad/.test(ua) ||
+         (/Mac/.test(platform) && maxTouchPoints > 1);
+}
 
-    return window;
-  }
+function getGuardWindow() {
+  try {
+    if (parent.parent) {
+      return parent.parent;
+    }
+  } catch (e) {}
 
-  function getCandidateDocs() {
-    var docs = [];
-    try { docs.push(parent.parent.document); } catch (e) {}
-    try { docs.push(parent.document); } catch (e) {}
-    docs.push(document);
+  try {
+    if (parent) {
+      return parent;
+    }
+  } catch (e) {}
 
-    return docs.filter((doc, i) => docs.indexOf(doc) === i);
-  }
+  return window;
+}
 
-  function getFullscreenElement(doc) {
-    if (!doc) return null;
-    return (
-      doc.fullscreenElement ||
-      doc.webkitFullscreenElement ||
-      doc.mozFullScreenElement ||
-      doc.msFullscreenElement ||
-      null
-    );
-  }
+function getCandidateDocs() {
+  var docs = [];
+  try { docs.push(parent.parent.document); } catch (e) {}
+  try { docs.push(parent.document); } catch (e) {}
+  docs.push(document);
+
+  return docs.filter((doc, i) => docs.indexOf(doc) === i);
+}
+
+function getFullscreenElement(doc) {
+  if (!doc) return null;
+  return (
+    doc.fullscreenElement ||
+    doc.webkitFullscreenElement ||
+    doc.mozFullScreenElement ||
+    doc.msFullscreenElement ||
+    null
+  );
+}
 
 function isStudyFullscreen() {
   var docs = getCandidateDocs();
@@ -102,10 +112,6 @@ function isStudyFullscreen() {
   return false;
 }
 
-function isIPhone() {
-  return /iPhone/.test(navigator.userAgent || "");
-}
-
 function requestFullscreenOnElement(el) {
   try {
     if (el.requestFullscreen) return el.requestFullscreen();
@@ -118,27 +124,15 @@ function requestFullscreenOnElement(el) {
 }
 
 function requestStudyFullscreen() {
-  var thisBootbox = getBootboxContext();
-
-  if (isIPhone()) {
-    thisBootbox.alert({
-      title: "Full screen not available on this device",
-      message:
-        "iPhones do not reliably support true fullscreen mode for this type of study.<br><br>" +
-        "Please use a desktop, laptop, tablet, or another supported device if possible."
-    });
-    return;
-  }
-
   try {
-    if (parent.parent && parent.parent.document && parent.parent.document.documentElement) {
+    if (parent.parent?.document?.documentElement) {
       requestFullscreenOnElement(parent.parent.document.documentElement);
       return;
     }
   } catch (e) {}
 
   try {
-    if (parent && parent.document && parent.document.documentElement) {
+    if (parent?.document?.documentElement) {
       requestFullscreenOnElement(parent.document.documentElement);
       return;
     }
@@ -205,6 +199,11 @@ $(document).ready(function () {
   var guardWindow = getGuardWindow();
 
   setTimeout(function () {
+    if (isAppleMobile()) {
+      guardWindow.fullscreenPromptOpen = false;
+      return;
+    }
+
     if (!isStudyFullscreen()) {
       showFullscreenPrompt();
     } else {
