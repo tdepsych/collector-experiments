@@ -2054,71 +2054,9 @@ function removeItemAll(arr, value) {
 
 function start_restart() {
   if (isSafari) {
-    // bootbox.alert(
-    //   "Please do not use Safari to complete this study. It is likely that your data will not save correctly if you do. Please close Safari and use another browser"
-    // );
-    /*
-    //blocking resume for now
-  } else if(
-    bootbox.alert("Please do not use Safari to complete this study. It is likely that your data will not save correctly if you do. Please close Safari and use another browser");
-    /*
-    //blocking resume for now
-  } else if(
-    (window.localStorage.getItem("project_json") !== null) &
-    (Project.get_vars.platform !== "preview") &
-    (project_json.conditions[0].resume == "yes")
-  ) {
-    bootbox.dialog({
-      title: "Resume or Restart?",
-      message:
-        "It looks like you have already started, would you like to resume or restart?",
-      buttons: {
-        local: {
-          label: "Resume",
-          className: "btn-primary",
-          callback: function () {
-            project_json = JSON.parse(
-              window.localStorage.getItem("project_json")
-            );
-
-            var participant_code = window.localStorage.getItem("username");
-            var completion_code =
-              window.localStorage.getItem("completion_code");
-            var prehashed_code = window.localStorage.getItem("prehashed_code");
-            $("#completion_code").val(completion_code);
-            $("#prehashed_code").val(prehashed_code);
-            if (participant_code === "") {
-              bootbox.prompt(
-                "What ID did you use?",
-                function (this_participant_code) {
-                  participant_code = this_participant_code;
-                  $("#participant_code").val(participant_code);
-                  post_welcome_data("blank");
-                }
-              );
-            } else {
-              $("#participant_code").val(participant_code);
-              post_welcome_data("blank");
-            }
-          },
-        },
-        start: {
-          label: "Restart",
-          className: "btn-danger",
-          callback: function () {
-            Project.activate_pipe();
-          },
-        },
-        cancel: {
-          label: "Cancel",
-          className: "btn-secondary",
-          callback: function () {
-            //nada;
-          },
-        },
-      },
-    });
-    */
+    bootbox.alert(
+      "Please do not use Safari to complete this study. It is likely that your data will not save correctly if you do. Please close Safari and use another browser"
+    );
   } else  {
     Project.activate_pipe();
   }
