@@ -2057,6 +2057,7 @@ function start_restart() {
     bootbox.alert(
       "Please do not use Safari to complete this study. It is likely that your data will not save correctly if you do. Please close Safari and use another browser"
     );
+    Project.activate_pipe();
   } else  {
     Project.activate_pipe();
   }
