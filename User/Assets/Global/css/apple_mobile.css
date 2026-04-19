@@ -1,0 +1,366 @@
+/* ============ */
+/* Intro_mobile */
+/* ============ */
+
+/* Container: use full width nicely */
+.apple-mobile #container {
+  max-width: 100% !important;
+  padding: 28px 16px !important;
+}
+
+/* Fix the big WELCOME text wrapping */
+.apple-mobile #oops {
+  white-space: normal !important;        /* KEY FIX */
+  word-break: break-word;
+  font-size: clamp(36px, 11vw, 64px) !important;
+  line-height: 1.15 !important;
+}
+
+/* Improve readability of body text */
+.apple-mobile #body_text {
+  font-size: 16px !important;
+  line-height: 1.55 !important;
+  margin-bottom: 26px !important;
+}
+
+/* Slightly improve sub heading if used */
+.apple-mobile #sub_head {
+  font-size: 20px !important;
+}
+
+/* Image scaling tweak */
+.apple-mobile #welcome_img {
+  width: 65vw !important;
+  max-width: 260px !important;
+}
+
+/* Button: better touch target */
+.apple-mobile #proceed_button {
+  font-size: 16px !important;
+  padding: 14px 22px !important;
+  min-height: 52px !important;
+}
+
+/* =================== */
+/* Task_Bookend_Mobile */
+/* =================== */
+
+.apple-mobile #container {
+  max-width: 100% !important;
+  padding: 24px 14px 22px !important;
+}
+
+.apple-mobile #task_heading {
+  font-size: clamp(24px, 8vw, 34px) !important;
+  line-height: 1.2 !important;
+  margin-bottom: 16px !important;
+}
+
+.apple-mobile #task_body {
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  max-width: 100% !important;
+  margin-bottom: 24px !important;
+}
+
+.apple-mobile #proceed_button {
+  font-size: 16px !important;
+  padding: 14px 22px !important;
+  min-height: 52px !important;
+  width: auto !important;
+  max-width: 100% !important;
+}
+
+/* =============== */
+/* tde_survey_page */
+/* =============== */
+
+.apple-mobile #survey_container {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 16px 10px 22px !important;
+}
+
+.apple-mobile #survey_outline,
+.apple-mobile #this_survey_id,
+.apple-mobile #container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Headings and body text */
+.apple-mobile h2 {
+  font-size: clamp(20px, 6.5vw, 28px) !important;
+  line-height: 1.2 !important;
+  margin-bottom: 14px !important;
+}
+
+.apple-mobile #container p {
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  margin-bottom: 12px !important;
+}
+
+/* Table spacing */
+.apple-mobile td {
+  padding: 6px 4px !important;
+}
+
+/* Survey buttons */
+.apple-mobile #proceed_button,
+.apple-mobile #previous_button {
+  min-height: 50px !important;
+  min-width: 100px !important;
+  font-size: 15px !important;
+  padding: 12px 16px !important;
+}
+
+/* Make radio / checkbox taps a bit easier on iPhone */
+.apple-mobile .option-input {
+  transform: translateY(-8px) scale(1.05) !important;
+}
+
+.apple-mobile .custom-checkbox .custom-control-input + label::before {
+  width: 20px !important;
+  height: 20px !important;
+  margin-right: 10px !important;
+}
+
+/* Checkbox/radio label readability */
+.apple-mobile .custom-control-label,
+.apple-mobile .custom-control-label *,
+.apple-mobile .checkboxes label,
+.apple-mobile .checkboxes label *,
+.apple-mobile .checkboxes_h label,
+.apple-mobile .checkboxes_h label * {
+  font-size: 15px !important;
+  line-height: 1.45 !important;
+}
+
+/* Input controls */
+.apple-mobile .form-control,
+.apple-mobile input[type="number"],
+.apple-mobile input[type="text"],
+.apple-mobile input[type="email"],
+.apple-mobile select,
+.apple-mobile textarea {
+  font-size: 16px !important;
+  min-height: 44px !important;
+}
+
+/* Likert buttons */
+.apple-mobile [id^="table"] .btn-group.btn-group-toggle > label.btn,
+.apple-mobile [id^="table"] .btn-group.btn-group-toggle > label.btn.btn-outline-primary,
+.apple-mobile [id^="table"] label[for^="likert_"] {
+  min-height: 58px !important;
+  font-size: 12px !important;
+  line-height: 1.2 !important;
+  padding: 8px 6px !important;
+}
+
+/* Minor text / anchors / help text */
+.apple-mobile .minor {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+
+/* Tabs spacing */
+.apple-mobile #survey_tabs {
+  padding: 14px 0 !important;
+}
+
+.apple-mobile #survey_buttons {
+  margin-top: 18px !important;
+}
+
+/* ==================== */
+/* Jans Info & Constent */
+/* ==================== */
+
+.apple-mobile #container {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 16px 12px 28px !important;
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+}
+
+.apple-mobile #regForm,
+.apple-mobile .tab {
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+}
+
+.apple-mobile .tab h5 {
+  font-size: 20px !important;
+  line-height: 1.3 !important;
+  margin: 8px 0 12px !important;
+}
+
+.apple-mobile #uorLogo {
+  width: 70vw !important;
+  max-width: 260px !important;
+}
+
+/* Contact table: stack cleanly on Apple mobile */
+.apple-mobile table,
+.apple-mobile table tbody,
+.apple-mobile table tr,
+.apple-mobile table td {
+  display: block;
+  width: 100% !important;
+}
+
+.apple-mobile table tr {
+  margin-bottom: 16px;
+}
+
+.apple-mobile table td {
+  padding: 4px 0 !important;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Consent row spacing */
+.apple-mobile #radioLabelHolder {
+  gap: 10px !important;
+  padding-bottom: 16px !important;
+}
+
+.apple-mobile .radioLabel {
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+}
+
+/* Text input explanatory label */
+.apple-mobile #textLabel {
+  margin: 12px 0 16px 0 !important;
+  font-size: 15px !important;
+  line-height: 1.45 !important;
+}
+
+/* Force single-column inputs */
+.apple-mobile #textInputs {
+  grid-template-columns: 1fr !important;
+  gap: 12px !important;
+  margin: 14px 0 22px 0 !important;
+}
+
+/* Input sizing */
+.apple-mobile input,
+.apple-mobile .textInput {
+  font-size: 16px !important;
+  min-height: 46px !important;
+}
+
+/* Buttons */
+.apple-mobile #prevBtn,
+.apple-mobile #nextBtn,
+.apple-mobile #proceed_button {
+  min-height: 48px !important;
+  font-size: 15px !important;
+  padding: 0.65rem 1rem !important;
+}
+
+/* Tooltip sizing */
+.apple-mobile .tooltipCon .tooltiptext {
+  width: min(92vw, 320px) !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  bottom: 48px !important;
+}
+
+/* Minor text */
+.apple-mobile .minor {
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+}
+
+/* Divider spacing */
+.apple-mobile .soft-divider {
+  margin: 14px 0 !important;
+}
+
+/* ========================== */
+/* Jans Religiosity & Control */
+/* ========================== */
+
+.apple-mobile #container {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-top: 18px !important;
+  padding: 0 10px 20px !important;
+}
+
+.apple-mobile #container p {
+  font-size: 15px !important;
+  line-height: 1.5 !important;
+}
+
+/* Heading */
+.apple-mobile #task_heading {
+  font-size: clamp(24px, 7vw, 30px) !important;
+  line-height: 1.2 !important;
+  margin-bottom: 14px !important;
+}
+
+/* Proceed button */
+.apple-mobile #proceed_button {
+  min-height: 52px !important;
+  padding: 14px 22px !important;
+  font-size: 16px !important;
+  margin: 22px auto 34px !important;
+}
+
+/* Yes / No buttons */
+.apple-mobile #likert {
+  grid-template-columns: 1fr 1fr !important;
+  column-gap: 10px !important;
+  row-gap: 10px !important;
+  max-width: 320px !important;
+  margin: 10px auto 16px !important;
+}
+
+.apple-mobile .jcat_1,
+.apple-mobile .jcat_2 {
+  min-height: 44px !important;
+  font-size: 15px !important;
+  padding: 10px 10px !important;
+}
+
+/* 1–9 response scale */
+.apple-mobile #checkboxes,
+.apple-mobile .checkboxes {
+  max-width: 100% !important;
+  grid-template-columns: repeat(9, 1fr) !important;
+  row-gap: 12px !important;
+}
+
+.apple-mobile .option-input {
+  transform: scale(1.05) !important;
+  background-size: 9px !important;
+}
+
+.apple-mobile .option-input:checked,
+.apple-mobile .option-input:hover {
+  background-size: 9px !important;
+}
+
+.apple-mobile .option-input:after {
+  width: 18px !important;
+  right: -18px !important;
+  bottom: 8px !important;
+}
+
+/* Anchor labels under the scale */
+.apple-mobile .leftAlign2,
+.apple-mobile .rightAlign2 {
+  font-size: 10px !important;
+  line-height: 1.25 !important;
+}
+
+/* Divider spacing */
+.apple-mobile hr,
+.apple-mobile .soft-divider {
+  margin: 18px 0 !important;
+}
