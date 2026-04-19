@@ -2055,7 +2055,8 @@ function removeItemAll(arr, value) {
 function start_restart() {
   if (isSafari) {
     bootbox.alert(
-      "Please do not use Safari to complete this study. It is likely that your data will not save correctly if you do. Please close Safari and use another browser"
+      //"Please do not use Safari to complete this study. It is likely that your data will not save correctly if you do. Please close Safari and use another browser"
+      "Please be aware that Apple devices are more restrictive on how they allow us to display the study and you may need to zoom in and out from time to time to click buttons and make responses."
     );
     Project.activate_pipe();
   } else  {
