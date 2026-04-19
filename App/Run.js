@@ -15,7 +15,12 @@ var download_data_text = '<div id="card_container" style="width:100%;height:100%
 '</div>'
 
 // This needs to be a global variable or Phase.add_response() cannot use it
-parent.parent.start_date_time = new Date().toLocaleDateString("en-US").replaceAll("/","_") +"_" +new Date().toLocaleTimeString().replaceAll(":","_");
+//parent.parent.start_date_time = new Date().toLocaleDateString("en-US").replaceAll("/","_") +"_" +new Date().toLocaleTimeString().replaceAll(":","_");
+
+if (typeof parent.parent.start_date_time === "undefined" || parent.parent.start_date_time === "") {
+  parent.parent.start_date_time = new Date().toLocaleDateString("en-US").replaceAll("/", "_") + "_" + new Date().toLocaleTimeString().replaceAll(":", "_");
+}
+
 /*
  * Objects
  */
@@ -845,6 +850,8 @@ function resume_checkpoint() {
           project_json.post_no = checkpoint.post_no || 0;
           project_json.resuming = true;
 
+          parent.parent.start_date_time = checkpoint.start_date_time || parent.parent.start_date_time;
+
           $("#participant_code").val(checkpoint.participant_code || "");
           $("#completion_code").val(checkpoint.completion_code || "");
           $("#prehashed_code").val(checkpoint.prehashed_code || "");
@@ -862,14 +869,14 @@ function resume_checkpoint() {
           window.localStorage.removeItem("prehashed_code");
           Project.activate_pipe();
         }
-      },
-      cancel: {
-        label: "Cancel",
-        className: "btn-secondary",
-        callback: function () {
-          // do nothing
-        }
-      }
+      } //,
+      // cancel: {
+      //   label: "Cancel",
+      //   className: "btn-secondary",
+      //   callback: function () {
+      //     // do nothing
+      //   }
+      // }
     }
   });
 }
@@ -1657,6 +1664,7 @@ function save_resume_checkpoint() {
     participant_code: $("#participant_code").val(),
     completion_code: $("#completion_code").val(),
     prehashed_code: $("#prehashed_code").val(),
+    start_date_time: parent.parent.start_date_time,
     phase_no: project_json.phase_no,
     post_no: project_json.post_no,
     responses: project_json.responses || [],
