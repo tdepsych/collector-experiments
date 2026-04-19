@@ -102,97 +102,113 @@ function isStudyFullscreen() {
   return false;
 }
 
-  function requestFullscreenOnElement(el) {
-    try {
-      if (el.requestFullscreen) return el.requestFullscreen();
-      if (el.webkitRequestFullscreen) return el.webkitRequestFullscreen();
-      if (el.mozRequestFullScreen) return el.mozRequestFullScreen();
-      if (el.msRequestFullscreen) return el.msRequestFullscreen();
-    } catch (e) {
-      console.log("Fullscreen request failed:", e);
-    }
+function isIPhone() {
+  return /iPhone/.test(navigator.userAgent || "");
+}
+
+function requestFullscreenOnElement(el) {
+  try {
+    if (el.requestFullscreen) return el.requestFullscreen();
+    if (el.webkitRequestFullscreen) return el.webkitRequestFullscreen();
+    if (el.mozRequestFullScreen) return el.mozRequestFullScreen();
+    if (el.msRequestFullscreen) return el.msRequestFullscreen();
+  } catch (e) {
+    console.log("Fullscreen request failed:", e);
+  }
+}
+
+function requestStudyFullscreen() {
+  var thisBootbox = getBootboxContext();
+
+  if (isIPhone()) {
+    thisBootbox.alert({
+      title: "Full screen not available on this device",
+      message:
+        "iPhones do not reliably support true fullscreen mode for this type of study.<br><br>" +
+        "Please use a desktop, laptop, tablet, or another supported device if possible."
+    });
+    return;
   }
 
-  function requestStudyFullscreen() {
-    try {
-      if (parent.parent?.document?.documentElement) {
-        requestFullscreenOnElement(parent.parent.document.documentElement);
-        return;
-      }
-    } catch (e) {}
-
-    try {
-      if (parent?.document?.documentElement) {
-        requestFullscreenOnElement(parent.document.documentElement);
-        return;
-      }
-    } catch (e) {}
-
-    requestFullscreenOnElement(document.documentElement);
-  }
-
-  function getBootboxContext() {
-    try {
-      if (parent.parent && parent.parent.bootbox) {
-        return parent.parent.bootbox;
-      }
-    } catch (e) {}
-
-    try {
-      if (parent && parent.bootbox) {
-        return parent.bootbox;
-      }
-    } catch (e) {}
-
-    return bootbox;
-  }
-
-  function showFullscreenPrompt() {
-    var thisBootbox = getBootboxContext();
-    var guardWindow = getGuardWindow();
-
-    if (guardWindow.fullscreenPromptOpen === true) {
+  try {
+    if (parent.parent && parent.parent.document && parent.parent.document.documentElement) {
+      requestFullscreenOnElement(parent.parent.document.documentElement);
       return;
     }
+  } catch (e) {}
 
-    guardWindow.fullscreenPromptOpen = true;
+  try {
+    if (parent && parent.document && parent.document.documentElement) {
+      requestFullscreenOnElement(parent.document.documentElement);
+      return;
+    }
+  } catch (e) {}
 
-    thisBootbox.dialog({
-      title: "Full screen recommended",
-      message:
-        "To ensure the study looks as intended, please run this study in full screen mode.",
-      closeButton: false,
-      centerVertical: true,
-      backdrop: "static",
-      onEscape: false,
-      buttons: {
-        fullscreen: {
-          label: "Enter Full Screen",
-          className: "btn-primary",
-          callback: function () {
-            requestStudyFullscreen();
-            guardWindow.fullscreenPromptOpen = false;
-          }
-        }//,
-        // continue: {
-        //   label: "Continue anyway",
-        //   className: "btn-secondary",
-        //   callback: function () {
-        //     guardWindow.fullscreenPromptOpen = false;
-        //   }
-        // }
-      }
-    });
+  requestFullscreenOnElement(document.documentElement);
+}
+
+function getBootboxContext() {
+  try {
+    if (parent.parent && parent.parent.bootbox) {
+      return parent.parent.bootbox;
+    }
+  } catch (e) {}
+
+  try {
+    if (parent && parent.bootbox) {
+      return parent.bootbox;
+    }
+  } catch (e) {}
+
+  return bootbox;
+}
+
+function showFullscreenPrompt() {
+  var thisBootbox = getBootboxContext();
+  var guardWindow = getGuardWindow();
+
+  if (guardWindow.fullscreenPromptOpen === true) {
+    return;
   }
 
-  $(document).ready(function () {
-    var guardWindow = getGuardWindow();
+  guardWindow.fullscreenPromptOpen = true;
 
-    setTimeout(function () {
-      if (!isStudyFullscreen()) {
-        showFullscreenPrompt();
-      } else {
-        guardWindow.fullscreenPromptOpen = false;
-      }
-    }, 250);
+  thisBootbox.dialog({
+    title: "Full screen recommended",
+    message:
+      "To ensure the study looks as intended, please run this study in full screen mode.",
+    closeButton: false,
+    centerVertical: true,
+    backdrop: "static",
+    onEscape: false,
+    buttons: {
+      fullscreen: {
+        label: "Enter Full Screen",
+        className: "btn-primary",
+        callback: function () {
+          requestStudyFullscreen();
+          guardWindow.fullscreenPromptOpen = false;
+        }
+      }//,
+      // continue: {
+      //   label: "Continue anyway",
+      //   className: "btn-secondary",
+      //   callback: function () {
+      //     guardWindow.fullscreenPromptOpen = false;
+      //   }
+      // }
+    }
   });
+}
+
+$(document).ready(function () {
+  var guardWindow = getGuardWindow();
+
+  setTimeout(function () {
+    if (!isStudyFullscreen()) {
+      showFullscreenPrompt();
+    } else {
+      guardWindow.fullscreenPromptOpen = false;
+    }
+  }, 250);
+});
