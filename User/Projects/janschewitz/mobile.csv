@@ -17,7 +17,7 @@ item,phasetype,survey,max_time,text,notes,shuffle_1,task_title,task_body_text,we
 0,tde_survey_mobile,bfi_jans.csv,user,60,,Questionnaire,,,,
 0,tde_survey_mobile,trait_anger.csv,user,60,,Questionnaire,,,,
 0,tde_survey_mobile,verbal_agressiveness.csv,user,60,,Questionnaire,,,,
-0,upload_data,,12,,Uploading REDCap Markers,off,,,,
+0,upload_data,,user,,Uploading REDCap Markers,off,,,,
 0,jans_d_mobile,,user,"Re-examining taboo, emotionally valenced, and
   emotionally neutral word norms",Sona,off,,,,
 0,save_data_mobile,,user,Save your data,,off,💾 Please Save Your Data 💾,"<br>Thank you for completing the study, we really do appreciate you taking the time to do so.<br><br>Before you close your browser, can we just ask you to save your data. All you need to do is click the button below. This will ensure that, as this study was run online, if there were any issues with your data uploading to the server we can use the saved file to manually add your data to the final dataset, ensuring your time wasn't wasted and/or the results of our study impacted (and you get to see what a raw data file actually looks like!). If you haven't heard from us within one month, feel free to delete the data from your computer as it means everything uploaded correctly.",,
