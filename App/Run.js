@@ -415,7 +415,7 @@ Project = {
           redcap_repeat_instrument: "main",
           redcap_repeat_instance: previous_main_instance,
           redcap_is_latest: 0,
-          participant_email_main: " "
+          participant_email_main: ""
         };
 
         redcap_post(
