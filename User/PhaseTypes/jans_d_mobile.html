@@ -114,7 +114,8 @@
   }
 
   a {
-    word-break: break-word;
+    word-break: normal;
+    overflow-wrap: normal;
   }
 
   @media (max-width: 768px) {
@@ -157,6 +158,50 @@
       max-width: 320px;
     }
   }
+  
+  /* ----------------------- */
+  /* Contact Details Styling */
+  /* ----------------------- */
+  
+  .contact-table {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    table-layout: auto;
+  }
+  
+  .contact-table td {
+    padding: 4px 10px 4px 0;
+    vertical-align: top;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  
+  .contact-table a {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+  
+  /* Mobile fix */
+  @media (max-width: 600px) {
+    .contact-table,
+    .contact-table tbody,
+    .contact-table tr,
+    .contact-table td {
+      display: block;
+      width: 100%;
+    }
+  
+    .contact-table tr {
+      margin-bottom: 12px;
+    }
+  
+    .contact-table td {
+      padding: 2px 0;
+    }
+  }
+  
 </style>
 
 <body>
@@ -171,32 +216,34 @@
     <br>
     <h5><b>DEBRIEF SHEET</b></h5>
       <br>
-      <table style="width:100%; max-width:800px; margin:auto; border-collapse:collapse;">
-        <tr>
-          <td style="width:200px; vertical-align:top;"><strong>Supervisors</strong></td>
-          </tr><tr>
-          <td style="width:200px;">
-            Prof. Philip Beaman<br>
-            Dr Rich Harrison
-          </td>
-          <td style="width:225px;">
-            <a href="mailto:c.p.beaman@reading.ac.uk">c.p.beaman@reading.ac.uk</a><br>
-            <a href="mailto:rich.harrison@reading.ac.uk">rich.harrison@reading.ac.uk</a>
-          </td>
-          <td style="width:200px;vertical-align:top">0118 378 7637</td>
-        </tr>
-        <tr>
-          <td style="vertical-align:top;"><strong>Experimenter</strong></td>
-          </tr><tr>
-          <td style="vertical-align:top;">
-            Chris Dobson
-          </td>
-          <td style="vertical-align:top;;">
-            <a href="mailto:c.g.dobson@pgr.reading.ac.uk">c.g.dobson@pgr.reading.ac.uk</a>
-          </td>
-          <td></td>
-        </tr>
-      </table>
+<table class="contact-table">
+  <tr>
+    <td><strong>Supervisors</strong></td>
+  </tr>
+  <tr>
+    <td>
+      Prof. Philip Beaman<br>
+      Dr Rich Harrison
+    </td>
+    <td>
+      <a href="mailto:c.p.beaman@reading.ac.uk">c.p.beaman@reading.ac.uk</a><br>
+      <a href="mailto:rich.harrison@reading.ac.uk">rich.harrison@reading.ac.uk</a>
+    </td>
+    <td>0118 378 7637</td>
+  </tr>
+  <tr>
+    <td><strong>Experimenter</strong></td>
+  </tr>
+  <tr>
+    <td>
+      Chris Dobson
+    </td>
+    <td>
+      <a href="mailto:c.g.dobson@pgr.reading.ac.uk">c.g.dobson@pgr.reading.ac.uk</a>
+    </td>
+    <td></td>
+  </tr>
+</table>
     <br/>
     <b>Thank your for taking part in our study</b>
     <br/><br>
