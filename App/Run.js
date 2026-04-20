@@ -293,6 +293,12 @@ Project = {
             response_data["condition_" + condition_item] = project_json.this_condition[condition_item];
           });
         }
+
+        if (typeof response_data["consent_pii_participant_email"] !== "undefined" &&
+            response_data["consent_pii_participant_email"] !== "") {
+          project_json.participant_email_main = response_data["consent_pii_participant_email"];
+        }
+
         if (parent.parent.redcap_instrument === "main") {
           const now = new Date();
 
@@ -305,6 +311,11 @@ Project = {
             String(now.getSeconds()).padStart(2, "0");
 
           response_data["redcap_is_latest"] = 1;
+
+          if (typeof project_json.participant_email_main !== "undefined" &&
+              project_json.participant_email_main !== "") {
+            response_data["participant_email_main"] = project_json.participant_email_main;
+          }
         }
 
         console.log("REDcap Instrument: " + parent.parent.redcap_instrument)
@@ -909,6 +920,8 @@ function resume_checkpoint() {
 
           project_json.last_main_repeat_instance = checkpoint.last_main_repeat_instance || null;
           parent.parent.project_json.repeat_no = checkpoint.repeat_no || null;
+
+          project_json.participant_email_main = checkpoint.participant_email_main || "";
 
           Project.activate_pipe();
         }
@@ -1726,7 +1739,8 @@ function save_resume_checkpoint() {
     parsed_stim: project_json.parsed_stim || [],
     this_condition: project_json.this_condition || {},
     last_main_repeat_instance: project_json.last_main_repeat_instance || null,
-    repeat_no: parent.parent.project_json.repeat_no || null
+    repeat_no: parent.parent.project_json.repeat_no || null,
+    participant_email_main: project_json.participant_email_main || ""
   };
 
   window.localStorage.setItem("collector_resume", JSON.stringify(checkpoint));
