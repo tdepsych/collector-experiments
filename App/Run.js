@@ -308,7 +308,8 @@ Project = {
         }
 
         console.log("REDcap Instrument: " + parent.parent.redcap_instrument)
-      var phase_responses = project_json.responses[project_json.responses.length-1];
+      // var phase_responses = project_json.responses[project_json.responses.length-1];
+      var phase_responses = response_data; // {CGD - I don't trust this change, commented out the line above and replaced it with that based on ChatGPT recommendation}
 
       console.log("phase_responses");
       var this_location = project_json.location.split("/")[0].replaceAll("-","") + "_" + project_json.location.split("/")[1].replaceAll("-","");
@@ -343,6 +344,15 @@ Project = {
       }
       
       clean_phase_responses['redcap_repeat_instrument'] = parent.parent.redcap_instrument;
+
+      var previous_main_instance = null;
+
+      if (parent.parent.redcap_instrument === "main") {
+        if (typeof project_json.last_main_repeat_instance !== "undefined") {
+          previous_main_instance = project_json.last_main_repeat_instance;
+        }
+      }
+
       if (parent.parent.redcap_instrument != "main") {
         var field_name = parent.parent.redcap_instrument;
         clean_phase_responses[field_name +'_complete'] = 2;
@@ -387,6 +397,29 @@ Project = {
         clean_phase_responses,
         0
       );
+
+      if (parent.parent.redcap_instrument === "main" && previous_main_instance !== null) {
+        var previous_update = {
+          record_id: clean_phase_responses.record_id,
+          redcap_repeat_instrument: "main",
+          redcap_repeat_instance: previous_main_instance,
+          redcap_is_latest: 0
+        };
+
+        redcap_post(
+          project_json.this_condition.redcap_url,
+          previous_update,
+          0
+        );
+      }
+
+      if (parent.parent.redcap_instrument === "main") {
+        project_json.last_main_repeat_instance = clean_phase_responses['redcap_repeat_instance'];
+      }
+
+
+
+
       /*
       Object.keys(phase_responses).forEach(function(old_key){
 
@@ -869,10 +902,13 @@ function resume_checkpoint() {
           project_json.resuming = true;
 
           parent.parent.start_date_time = checkpoint.start_date_time || parent.parent.start_date_time;
-
+          
           $("#participant_code").val(checkpoint.participant_code || "");
           $("#completion_code").val(checkpoint.completion_code || "");
           $("#prehashed_code").val(checkpoint.prehashed_code || "");
+
+          project_json.last_main_repeat_instance = checkpoint.last_main_repeat_instance || null;
+          parent.parent.project_json.repeat_no = checkpoint.repeat_no || null;
 
           Project.activate_pipe();
         }
@@ -1688,7 +1724,9 @@ function save_resume_checkpoint() {
     responses: project_json.responses || [],
     parsed_proc: project_json.parsed_proc || [],
     parsed_stim: project_json.parsed_stim || [],
-    this_condition: project_json.this_condition || {}
+    this_condition: project_json.this_condition || {},
+    last_main_repeat_instance: project_json.last_main_repeat_instance || null,
+    repeat_no: parent.parent.project_json.repeat_no || null
   };
 
   window.localStorage.setItem("collector_resume", JSON.stringify(checkpoint));
