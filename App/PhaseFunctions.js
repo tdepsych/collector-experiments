@@ -178,21 +178,71 @@ if (typeof Phase !== "undefined") {
     parent.parent.go_to_active = true;
     parent.parent.Project.go_to(new_phase_no);
   };
-  Phase.redcap_markers = function(){
-    console.log("redcap repeat no: " + parent.parent.project_json.repeat_no)
-    redcap_marker_update = true;
-    var redcap_instances = parseInt(parent.parent.project_json.repeat_no) + parseInt(parent.parent.project_json.this_condition.buffer);
-    console.log("redcap instances: "+redcap_instances)
-    // var redcap_safety = parent.parent.project_json.phase_no * 2;
-    var redcap_safety = redcap_instances * 2;
-    for (var i = 0; i <= redcap_instances; i++) {
-      if (i === redcap_safety) { console.log("!!! For Loop Break Activated !!!");break; }
-      parent.parent.project_json.repeat_no = i;
+  // Phase.redcap_markers = function(){
+  //   console.log("redcap repeat no: " + parent.parent.project_json.repeat_no)
+  //   redcap_marker_update = true;
+  //   var redcap_instances = parseInt(parent.parent.project_json.repeat_no) + parseInt(parent.parent.project_json.this_condition.buffer);
+  //   console.log("redcap instances: "+redcap_instances)
+  //   // var redcap_safety = parent.parent.project_json.phase_no * 2;
+  //   var redcap_safety = redcap_instances * 2;
+  //   for (var i = 0; i <= redcap_instances; i++) {
+  //     if (i === redcap_safety) { console.log("!!! For Loop Break Activated !!!");break; }
+  //     parent.parent.project_json.repeat_no = i;
+  //     Phase.add_response({
+  //       main_complete: 2
+  //     });
+  //   }
+  // };
+
+  Phase.redcap_markers = function () {
+
+    var original_repeat_no = parseInt(parent.parent.project_json.repeat_no, 10);
+
+    // Absolute safety cap (prevents REDCap nuking)
+    var HARD_CAP = 300; 
+
+    var max_instance = Math.min(original_repeat_no - 1, HARD_CAP);
+
+    console.log("Marking instances 0 to " + max_instance);
+
+    if (isNaN(max_instance) || max_instance < 0) {
+      Phase.submit();
+      return;
+    }
+
+    var counter = 0;
+
+    function mark_instance(instance_no) {
+
+      // HARD STOP SAFETY
+      if (counter > HARD_CAP) {
+        console.log("!!! SAFETY STOP TRIGGERED !!!");
+        Phase.submit();
+        return;
+      }
+
+      if (instance_no > max_instance) {
+        console.log("Finished marking instances.");
+        Phase.submit();
+        return;
+      }
+
+      counter++;
+
+      parent.parent.project_json.repeat_no = instance_no;
+
       Phase.add_response({
         main_complete: 2
       });
+
+      setTimeout(function () {
+        mark_instance(instance_no + 1);
+      }, 150);
     }
+
+    mark_instance(0);
   };
+
   Phase.set = function (this_name, this_content) {
     if (typeof parent.parent.project_json.study_vars == "undefined") {
       parent.parent.project_json.study_vars = {};
