@@ -414,7 +414,8 @@ Project = {
           record_id: clean_phase_responses.record_id,
           redcap_repeat_instrument: "main",
           redcap_repeat_instance: previous_main_instance,
-          redcap_is_latest: 0
+          redcap_is_latest: 0,
+          participant_email_main: ""
         };
 
         redcap_post(
