@@ -865,7 +865,12 @@ var PACMAN = (function () {
 
     function keyDown(e) {
         if (e.keyCode === KEY.SPACEBAR) {
-            startNewGame();
+            if (state === WAITING) {
+                startNewGame();
+            }
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
         } else if (e.keyCode === KEY.P && state === PAUSE) {
             audio.resume();
             map.draw(ctx);
