@@ -193,22 +193,6 @@ Project = {
     response_data[post_string + "_time"]     = new Date().toLocaleTimeString();
     response_data[post_string + "_timezone"] = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-
-    const now = new Date();
-
-    // REDCap-friendly datetime
-    response_data["redcap_instance_timestamp"] =
-      now.getFullYear() + "-" +
-      String(now.getMonth() + 1).padStart(2, "0") + "-" +
-      String(now.getDate()).padStart(2, "0") + " " +
-      String(now.getHours()).padStart(2, "0") + ":" +
-      String(now.getMinutes()).padStart(2, "0") + ":" +
-      String(now.getSeconds()).padStart(2, "0");
-
-    // Mark this as the latest instance
-    response_data["redcap_is_latest"] = 1;
-
-
     response_data[post_string + "_phase_end_ms"] = phase_end_ms;
     response_data[post_string + "_rt_ms"] = phase_end_ms - response_data[post_string + "_phase_start_ms"];
     response_data[post_string + "_phase_end_date"] = new Date(parseInt(phase_end_ms, 10)).toString("MM/dd/yy HH:mm:ss");
@@ -308,8 +292,21 @@ Project = {
           Object.keys(project_json.this_condition).forEach(function (condition_item) {
             response_data["condition_" + condition_item] = project_json.this_condition[condition_item];
           });
-          
         }
+        if (parent.parent.redcap_instrument === "main") {
+          const now = new Date();
+
+          response_data["redcap_instance_timestamp"] =
+            now.getFullYear() + "-" +
+            String(now.getMonth() + 1).padStart(2, "0") + "-" +
+            String(now.getDate()).padStart(2, "0") + " " +
+            String(now.getHours()).padStart(2, "0") + ":" +
+            String(now.getMinutes()).padStart(2, "0") + ":" +
+            String(now.getSeconds()).padStart(2, "0");
+
+          response_data["redcap_is_latest"] = 1;
+        }
+
         console.log("REDcap Instrument: " + parent.parent.redcap_instrument)
       var phase_responses = project_json.responses[project_json.responses.length-1];
 
@@ -326,6 +323,11 @@ Project = {
         clean_phase_responses[old_key] = phase_responses[old_key];
       });
       
+      if (parent.parent.redcap_instrument !== "main") {
+        delete(clean_phase_responses["redcap_instance_timestamp"]);
+        delete(clean_phase_responses["redcap_is_latest"]);
+      }
+
       parent.parent.main_remove_fields.forEach(adjust_redcap_array)
         function adjust_redcap_array(field) {
           delete(clean_phase_responses[field]);
@@ -385,22 +387,6 @@ Project = {
         clean_phase_responses,
         0
       );
-
-      // Reset previous instance's latest flag
-      if (parent.parent.redcap_instrument === "main" && parent.parent.project_json.repeat_no > 1) {
-        var previous_instance_update = {
-          record_id: clean_phase_responses.record_id,
-          redcap_repeat_instrument: "main",
-          redcap_repeat_instance: parent.parent.project_json.repeat_no - 1,
-          redcap_is_latest: 0
-        };
-
-        redcap_post(
-          project_json.this_condition.redcap_url,
-          previous_instance_update,
-          0
-        );
-      }
       /*
       Object.keys(phase_responses).forEach(function(old_key){
 
