@@ -193,6 +193,22 @@ Project = {
     response_data[post_string + "_time"]     = new Date().toLocaleTimeString();
     response_data[post_string + "_timezone"] = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
+
+    const now = new Date();
+
+    // REDCap-friendly datetime
+    response_data["redcap_instance_timestamp"] =
+      now.getFullYear() + "-" +
+      String(now.getMonth() + 1).padStart(2, "0") + "-" +
+      String(now.getDate()).padStart(2, "0") + " " +
+      String(now.getHours()).padStart(2, "0") + ":" +
+      String(now.getMinutes()).padStart(2, "0") + ":" +
+      String(now.getSeconds()).padStart(2, "0");
+
+    // Mark this as the latest instance
+    response_data["redcap_is_latest"] = 1;
+
+
     response_data[post_string + "_phase_end_ms"] = phase_end_ms;
     response_data[post_string + "_rt_ms"] = phase_end_ms - response_data[post_string + "_phase_start_ms"];
     response_data[post_string + "_phase_end_date"] = new Date(parseInt(phase_end_ms, 10)).toString("MM/dd/yy HH:mm:ss");
@@ -369,6 +385,22 @@ Project = {
         clean_phase_responses,
         0
       );
+
+      // Reset previous instance's latest flag
+      if (parent.parent.redcap_instrument === "main" && parent.parent.project_json.repeat_no > 1) {
+        var previous_instance_update = {
+          record_id: clean_phase_responses.record_id,
+          redcap_repeat_instrument: "main",
+          redcap_repeat_instance: parent.parent.project_json.repeat_no - 1,
+          redcap_is_latest: 0
+        };
+
+        redcap_post(
+          project_json.this_condition.redcap_url,
+          previous_instance_update,
+          0
+        );
+      }
       /*
       Object.keys(phase_responses).forEach(function(old_key){
 
