@@ -417,7 +417,7 @@ var canvasTetris = function(parentNode) {
 			text: "Paused",
 			halfWidth: 0
 		}, {
-			text: "Game over!",
+			text: "Click to Restart!",
 			halfWidth: 0
 		}],
 		blocks: [],
