@@ -13,13 +13,12 @@
   -webkit-text-size-adjust: 100% !important;
 }
 
-.apple-mobile #container {
-  width: 100vw !important;
-  max-width: 100vw !important;
-  min-height: 100dvh !important;
-  margin: 0 auto !important;
-  padding: 64px 28px 36px !important;
-  text-align: center !important;
+/* Prevent iPhone Safari from zooming/repositioning when inputs receive focus */
+.apple-mobile input,
+.apple-mobile select,
+.apple-mobile textarea,
+.apple-mobile button {
+  font-size: 16px !important;
 }
 
 .apple-mobile #welcome_img {
@@ -45,13 +44,13 @@
   text-align: center !important;
 }
 
-.apple-mobile #proceed_button {
+/* .apple-mobile #proceed_button {
   font-size: clamp(18px, 4.8vw, 24px) !important;
   padding: 18px 34px !important;
   min-height: 64px !important;
   min-width: 240px !important;
   max-width: 90vw !important;
-}
+} */
 
 /* ================================ */
 /* APPLE MOBILE: SURVEY PAGE SPACING */
@@ -60,16 +59,23 @@
 .apple-mobile #survey_container {
   width: 100% !important;
   max-width: 100% !important;
-
-  /* Pull content down below iPhone status/notch area */
   padding-top: calc(env(safe-area-inset-top) + 44px) !important;
-
-  /* Give text a little breathing room from the edges */
-  padding-left: 18px !important;
-  padding-right: 18px !important;
-  padding-bottom: calc(env(safe-area-inset-bottom) + 28px) !important;
-
+  padding-left: 22px !important;
+  padding-right: 22px !important;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 110px) !important;
   overflow-x: hidden !important;
+}
+
+.apple-mobile #survey_container table,
+.apple-mobile #survey_container tbody,
+.apple-mobile #survey_container tr,
+.apple-mobile #survey_container td {
+  max-width: 100% !important;
+}
+
+.apple-mobile #survey_container td {
+  padding-left: 6px !important;
+  padding-right: 6px !important;
 }
 
 /* Keep generated survey content inside the padded area */
@@ -104,21 +110,7 @@
 /* APPLE MOBILE: RELIGIOSITY + CONTROL PAGE     */
 /* ============================================ */
 
-.apple-mobile #container {
-  width: 100% !important;
-  max-width: 100% !important;
 
-  /* Push content below iPhone status/notch area */
-  margin-top: 0 !important;
-  padding-top: calc(env(safe-area-inset-top) + 48px) !important;
-
-  /* Breathing room at sides */
-  padding-left: 18px !important;
-  padding-right: 18px !important;
-
-  /* Keep bottom button above Safari toolbar */
-  padding-bottom: calc(env(safe-area-inset-bottom) + 90px) !important;
-}
 
 .apple-mobile #task_heading {
   margin-top: 0 !important;
