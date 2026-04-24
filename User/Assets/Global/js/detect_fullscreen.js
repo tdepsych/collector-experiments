@@ -198,10 +198,10 @@ function showFullscreenPrompt() {
 $(document).ready(function () {
   var guardWindow = getGuardWindow();
 
-  // if (isAppleMobile()) {
-  //   document.documentElement.classList.add("apple-mobile");
-  //   document.body.classList.add("apple-mobile");
-  // }
+  if (isAppleMobile()) {
+    document.documentElement.classList.add("apple-mobile");
+    document.body.classList.add("apple-mobile");
+  }
 
   setTimeout(function () {
     if (isAppleMobile()) {
