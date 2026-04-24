@@ -107,24 +107,22 @@
 .apple-mobile #container {
   width: 100% !important;
   max-width: 100% !important;
-
-  /* Push content below iPhone status/notch area */
   margin-top: 0 !important;
-  padding-top: calc(env(safe-area-inset-top) + 48px) !important;
 
-  /* Breathing room at sides */
+  /* fixed test value */
+  padding-top: 90px !important;
+
   padding-left: 18px !important;
   padding-right: 18px !important;
-
-  /* Keep bottom button above Safari toolbar */
-  padding-bottom: calc(env(safe-area-inset-bottom) + 90px) !important;
+  padding-bottom: 120px !important;
 }
 
 .apple-mobile #task_heading {
+  display: block !important;
   margin-top: 0 !important;
   margin-bottom: 14px !important;
 }
 
 .apple-mobile #proceed_button {
-  margin-bottom: calc(env(safe-area-inset-bottom) + 80px) !important;
+  margin-bottom: 100px !important;
 }
