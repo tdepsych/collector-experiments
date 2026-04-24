@@ -110,7 +110,15 @@
 /* APPLE MOBILE: RELIGIOSITY + CONTROL PAGE     */
 /* ============================================ */
 
+.apple-mobile #control_followup {
+  margin-top: 18px !important;
+}
 
+.apple-mobile #container {
+  overflow-y: auto !important;
+  min-height: auto !important;
+  padding-bottom: 150px !important;
+}
 
 .apple-mobile #task_heading {
   margin-top: 0 !important;

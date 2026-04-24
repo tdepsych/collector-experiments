@@ -538,8 +538,13 @@
       $('#control_followup').hide();
     } else if (controlIntro === 'yes') {
       $('#control_followup').show();
-      score1 = $('.jcontrol:checked').val();
-      $('#jcontrol_response').val($('.jcontrol:checked').val());
+    
+      if (typeof isAppleMobile === "function" && isAppleMobile()) {
+        setTimeout(forceAppleScrollTop, 50);
+      }
+    
+      score1 = $('.jcontrol:checked').val() || null;
+      $('#jcontrol_response').val($('.jcontrol:checked').val() || '');
     } else {
       score1 = null;
       $('#jcontrol_response').val('');
@@ -561,6 +566,11 @@
       $('#control_followup').hide();
     } else if (controlIntro === 'yes') {
       $('#control_followup').show();
+    
+      if (typeof isAppleMobile === "function" && isAppleMobile()) {
+        setTimeout(forceAppleScrollTop, 50);
+      }
+    
       score1 = $('.jcontrol:checked').val() || null;
       $('#jcontrol_response').val($('.jcontrol:checked').val() || '');
     } else {
@@ -660,14 +670,14 @@
     } catch (e) {}
   }
   
-document.addEventListener("DOMContentLoaded", function() {
-  shuffle();
-
-  if (typeof isAppleMobile === "function" && isAppleMobile()) {
-    setTimeout(forceAppleScrollTop, 100);
-    setTimeout(forceAppleScrollTop, 400);
-    setTimeout(forceAppleScrollTop, 900);
-  }
-});
+  document.addEventListener("DOMContentLoaded", function() {
+    shuffle();
+  
+    if (typeof isAppleMobile === "function" && isAppleMobile()) {
+      setTimeout(forceAppleScrollTop, 100);
+      setTimeout(forceAppleScrollTop, 400);
+      setTimeout(forceAppleScrollTop, 900);
+    }
+  });
 
 </script>
