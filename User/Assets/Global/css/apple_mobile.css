@@ -52,3 +52,50 @@
   min-width: 240px !important;
   max-width: 90vw !important;
 }
+
+/* ================================ */
+/* APPLE MOBILE: SURVEY PAGE SPACING */
+/* ================================ */
+
+.apple-mobile #survey_container {
+  width: 100% !important;
+  max-width: 100% !important;
+
+  /* Pull content down below iPhone status/notch area */
+  padding-top: calc(env(safe-area-inset-top) + 44px) !important;
+
+  /* Give text a little breathing room from the edges */
+  padding-left: 18px !important;
+  padding-right: 18px !important;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 28px) !important;
+
+  overflow-x: hidden !important;
+}
+
+/* Keep generated survey content inside the padded area */
+.apple-mobile #survey_outline,
+.apple-mobile #this_survey_id,
+.apple-mobile .table_break,
+.apple-mobile .table_break_tabs {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Make top headings less likely to be clipped */
+.apple-mobile h2 {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Make survey question text sit comfortably inside the page */
+.apple-mobile #container p,
+.apple-mobile #survey_container p,
+.apple-mobile #survey_container .text-primary {
+  padding-left: 2px !important;
+  padding-right: 2px !important;
+}
+
+/* Keep bottom buttons clear of Safari bottom bar */
+.apple-mobile #survey_buttons {
+  padding-bottom: calc(env(safe-area-inset-bottom) + 20px) !important;
+}
