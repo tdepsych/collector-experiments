@@ -643,42 +643,31 @@
   };
   
   function forceAppleScrollTop() {
-    if (typeof isAppleMobile === "function" && isAppleMobile()) {
-      setTimeout(function () {
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-      }, 300);
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   
-      setTimeout(function () {
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-      }, 800);
-    }
+    try {
+      parent.window.scrollTo(0, 0);
+      parent.document.documentElement.scrollTop = 0;
+      parent.document.body.scrollTop = 0;
+    } catch (e) {}
+  
+    try {
+      parent.parent.window.scrollTo(0, 0);
+      parent.parent.document.documentElement.scrollTop = 0;
+      parent.parent.document.body.scrollTop = 0;
+    } catch (e) {}
   }
   
-  document.addEventListener("DOMContentLoaded", function() {
-    shuffle();
-    forceAppleScrollTop();
-  });
+document.addEventListener("DOMContentLoaded", function() {
+  shuffle();
 
-  // Call to run the shuffle() function as soon as the page loads.
-  document.addEventListener("DOMContentLoaded", function() {
-    shuffle();
-  
-    if (typeof isAppleMobile === "function" && isAppleMobile()) {
-      setTimeout(function () {
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-      }, 300);
-  
-      setTimeout(function () {
-        window.scrollTo(0, 0);
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-      }, 800);
-    }
-  });
+  if (typeof isAppleMobile === "function" && isAppleMobile()) {
+    setTimeout(forceAppleScrollTop, 100);
+    setTimeout(forceAppleScrollTop, 400);
+    setTimeout(forceAppleScrollTop, 900);
+  }
+});
+
 </script>
