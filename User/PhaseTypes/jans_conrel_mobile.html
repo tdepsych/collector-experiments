@@ -7,6 +7,7 @@
 -->
 <!-- it can help to add a description between the --'s of what this code does -->
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/global_css.css">
+<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/apple_mobile.css">
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/radio_buttons.css">
 <link rel="stylesheet" href="../../collector-experiments/User/Assets/Fonts/fonts.css">
 <script src="../../collector-experiments/User/Assets/Global/js/detect_fullscreen.js"></script>
@@ -437,7 +438,6 @@
   
   
 </style>
-<link rel="stylesheet" href="../../collector-experiments/User/Assets/Global/css/apple_mobile.css">
 <div id="container">
   <div id="task_heading">{{task_title}}</div>
   <br><p>{{task_body_text}}</p><br>
@@ -641,11 +641,44 @@
       }
       return array;
   };
+  
+  function forceAppleScrollTop() {
+    if (typeof isAppleMobile === "function" && isAppleMobile()) {
+      setTimeout(function () {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 300);
+  
+      setTimeout(function () {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 800);
+    }
+  }
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    shuffle();
+    forceAppleScrollTop();
+  });
 
   // Call to run the shuffle() function as soon as the page loads.
   document.addEventListener("DOMContentLoaded", function() {
     shuffle();
-    // shuffle_category();
+  
+    if (typeof isAppleMobile === "function" && isAppleMobile()) {
+      setTimeout(function () {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 300);
+  
+      setTimeout(function () {
+        window.scrollTo(0, 0);
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }, 800);
+    }
   });
-
 </script>
