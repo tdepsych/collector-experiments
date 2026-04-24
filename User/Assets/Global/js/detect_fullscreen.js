@@ -201,18 +201,23 @@ $(document).ready(function () {
   if (isAppleMobile()) {
     document.documentElement.classList.add("apple-mobile");
     document.body.classList.add("apple-mobile");
+
+    setTimeout(function () {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+
+      try {
+        parent.window.scrollTo(0, 0);
+        parent.document.documentElement.scrollTop = 0;
+        parent.document.body.scrollTop = 0;
+      } catch (e) {}
+
+      try {
+        parent.parent.window.scrollTo(0, 0);
+        parent.parent.document.documentElement.scrollTop = 0;
+        parent.parent.document.body.scrollTop = 0;
+      } catch (e) {}
+    }, 250);
   }
-
-  setTimeout(function () {
-    if (isAppleMobile()) {
-      guardWindow.fullscreenPromptOpen = false;
-      return;
-    }
-
-    if (!isStudyFullscreen()) {
-      showFullscreenPrompt();
-    } else {
-      guardWindow.fullscreenPromptOpen = false;
-    }
-  }, 250);
 });
