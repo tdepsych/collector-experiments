@@ -218,6 +218,6 @@ $(document).ready(function () {
         parent.parent.document.documentElement.scrollTop = 0;
         parent.parent.document.body.scrollTop = 0;
       } catch (e) {}
-    }, 250);
+    }, 500);
   }
 });
