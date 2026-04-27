@@ -1359,7 +1359,7 @@ function write(type, row) {
       .attr("hide_blocks",'');
       this_html += this_input[0].outerHTML;
   } else if (type === "instruct") {
-    this_html += "<tr><td colspan='2' block_name hide_block>" + row["text"] + "</td></tr>";
+      this_html += "<tr><td colspan='2'>" + row["text"] + "</td></tr>";
   } else if (type === "jumbled") {
     var this_td = $("<td>");
     this_td.attr("colspan", 2);
