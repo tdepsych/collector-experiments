@@ -896,13 +896,25 @@ function resume_checkpoint() {
     return;
   }
 
-  bootbox.dialog({
+    bootbox.dialog({
     title: "Resume or Restart?",
     message: "It looks like you already started this study. Would you like to resume where you left off or restart from the beginning?",
+    className: "resume-restart-dialog",
     buttons: {
+        restart: {
+        label: "Restart",
+        className: "btn-outline-danger",
+        callback: function () {
+          window.localStorage.removeItem("collector_resume");
+          window.localStorage.removeItem("username");
+          window.localStorage.removeItem("completion_code");
+          window.localStorage.removeItem("prehashed_code");
+          Project.activate_pipe();
+        }
+      },
       resume: {
-        label: "Resume",
-        className: "btn-primary",
+        label: 'Resume',
+        className: "btn-success",
         callback: function () {
           project_json.responses = checkpoint.responses || [];
           project_json.parsed_proc = checkpoint.parsed_proc || project_json.parsed_proc;
@@ -926,25 +938,7 @@ function resume_checkpoint() {
 
           Project.activate_pipe();
         }
-      },
-      restart: {
-        label: "Restart",
-        className: "btn-danger",
-        callback: function () {
-          window.localStorage.removeItem("collector_resume");
-          window.localStorage.removeItem("username");
-          window.localStorage.removeItem("completion_code");
-          window.localStorage.removeItem("prehashed_code");
-          Project.activate_pipe();
-        }
-      } //,
-      // cancel: {
-      //   label: "Cancel",
-      //   className: "btn-secondary",
-      //   callback: function () {
-      //     // do nothing
-      //   }
-      // }
+      }
     }
   });
 }

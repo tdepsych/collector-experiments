@@ -55,6 +55,30 @@
   #post_welcome {
     display: none;
   }
+  .resume-restart-dialog .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Bootstrap's clearfix elements can interfere with flex positioning */
+  .resume-restart-dialog .modal-footer::before,
+  .resume-restart-dialog .modal-footer::after {
+    display: none;
+  }
+
+  .resume-restart-dialog .modal-footer .btn {
+    float: none;
+    margin: 0;
+  }
+
+  .resume-restart-dialog .modal-footer [data-bb-handler="restart"] {
+    order: 2;
+  }
+
+  .resume-restart-dialog .modal-footer [data-bb-handler="resume"] {
+    order: 1;
+  }
 </style>
 
 <div id="post_welcome">
