@@ -762,9 +762,9 @@
   // ========================= //
   
   function validateConsent() {
-    if ($('#c10_future_studies').is(':checked')) {
-      $('#c10_future_studies').val("Yes");
-    }
+    $('#c9_future_studies').val(
+      $('#c9_future_studies').is(':checked') ? 'Yes' : 'No'
+    );
     
     // Assign the particpant's ID and testing sessions numbers to variables
     $('#uniqueid').val(parent.parent.pptID);
