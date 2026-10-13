@@ -27,6 +27,11 @@
   #response_neg, #response_pos {
     width: 115px;
   }
+  .response-hint {
+    font-size: 12pt;
+    color: #666;
+    margin-top: 6px;
+  }
 </style>
 <input type="hidden" name="category_rating" id="category_rating" />
 <button id="zoomOut" tabindex="-1"></button>
@@ -34,34 +39,103 @@
 <div id="container">
   <h2><span>Category Ratings</span></h2><br>
   <p>
-    This task simply requires you to state whether you consider a word to be a socially unacceptable (i.e., a swear word) or not. You shouldn't spend long thinking about your decision but rather go with your first reaction. To make your rating, please click the corresponding button below. You will automatically move to the next word when you click a button.
+    This task simply requires you to state whether you consider a word to be socially unacceptable (i.e., a swear word) or not. You shouldn't spend long thinking about your decision but rather go with your first reaction. Respond by clicking Yes or No, or by pressing L for Yes or S for No. You will automatically move to the next word when you respond.
     <br><br>
     <b>Do you consider the following word to be a swear word?<br><br><span id="word">{{visual}}</span></b>
   </p>
   <br><br>
-  <button id="response_no" class="btn btn-outline-primary btn-lg me-3">No</button>
-  <button id="response_yes" class="btn btn-outline-primary btn-lg">Yes</button>
+  <div class="d-flex justify-content-center gap-4">
+    <div class="text-center">
+      <button type="button" id="response_no" class="btn btn-outline-primary btn-lg">No</button>
+      <div class="response-hint">(or press S)</div>
+    </div>
+    <div class="text-center">
+      <button type="button" id="response_yes" class="btn btn-outline-primary btn-lg">Yes</button>
+      <div class="response-hint">(or press L)</div>
+    </div>
+  </div>
   <span id="thanks" style="display:none;">Thank you for making your rating</span>
 </div>
 <script>
-  $('#response_no').click(function(){
-    $('#category_rating').val('non-swear');
-    $('#response_no, #response_yes').fadeOut(250, function() {
+  var responseSubmitted = false;
+  var keyboardDocuments = [document];
+
+  try {
+    if (window.parent !== window) {
+      keyboardDocuments.push(window.parent.document);
+    }
+
+    if (window.top !== window && window.top !== window.parent) {
+      keyboardDocuments.push(window.top.document);
+    }
+  } catch (error) {
+    console.warn("Parent keyboard access unavailable:", error);
+  }
+
+  function isCurrentPhase() {
+    try {
+      return Number(window.parent.parent.project_json.phase_no) ===
+        Number(Phase.phase_no);
+    } catch (error) {
+      return true;
+    }
+  }
+
+  function removeKeyboardListeners() {
+    keyboardDocuments.forEach(function(keyboardDocument) {
+      keyboardDocument.removeEventListener(
+        'keydown',
+        handleKeyboardResponse
+      );
+    });
+  }
+
+  function submitCategoryRating(value) {
+    if (responseSubmitted || !isCurrentPhase()) return;
+
+    responseSubmitted = true;
+    removeKeyboardListeners();
+    $('#category_rating').val(value);
+
+    $('#response_no, #response_yes, .response-hint').fadeOut(250, function() {
       $('#thanks').show();
     });
-    setTimeout(function(){
-      Phase.submit();  
-    },750);
+
+    setTimeout(function() {
+      Phase.submit();
+    }, 750);
+  }
+
+  function handleKeyboardResponse(e) {
+    if (e.ctrlKey || e.metaKey || e.altKey || e.repeat) return;
+
+    var key = (
+      e.key ||
+      String.fromCharCode(e.which || e.keyCode)
+    ).toLowerCase();
+
+    if (key === 's') {
+      submitCategoryRating('non-swear');
+    } else if (key === 'l') {
+      submitCategoryRating('swear');
+    }
+  }
+
+  $('#response_no').click(function() {
+    submitCategoryRating('non-swear');
   });
-  
-  $('#response_yes').click(function(){
-    $('#category_rating').val('swear');
-    $('#response_no, #response_yes').fadeOut(250, function() {
-      $('#thanks').show();
-    });
-    setTimeout(function(){
-      Phase.submit();  
-    },750);
+
+  $('#response_yes').click(function() {
+    submitCategoryRating('swear');
   });
+
+  keyboardDocuments.forEach(function(keyboardDocument) {
+    keyboardDocument.addEventListener(
+      'keydown',
+      handleKeyboardResponse
+    );
+  });
+
+  window.addEventListener('unload', removeKeyboardListeners);
 </script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>

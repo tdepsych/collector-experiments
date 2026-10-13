@@ -6,41 +6,65 @@ item,phasetype,survey,max_time,text,notes,shuffle_1,shuffle_2,task_title,task_bo
 0,tp_multimedia,,user,,,off,off,,,,
 0,zoom_check,,user,,,off,off,,,,
 0,tp_infoconsent_s2,,user,Curse Words and the Clock: How Expletives Alter Our Sense of Time,,off,off,,,,
-0,tp_demo,,user,50,,off,off,,,,
+0,tde_survey,tp_demo.csv,user,50,,off,off,,,,
 0,offline,,user,,,off,off,YOU CANNOT CONTINUE,"We're really sorry but the study is only recruiting native English speakers.<br><br>As you indicated that you are not a native English speaker we cannot allow you to continue.<br><br>To end the experiment, simply close your browser window.",,
-0,task_bookend,,user,Start,,off,off,Time Perception,"<p>This study is investigation how people's perception of the passing of time changes within a situation.
-<br><br>Within the next task, you will initially see a cross in the centre of the screen to direct your gaze. The cross will be replaced by either a written word, a spoken word, or both togehter. Regardless of how the stimuli is presented, they will last for either 1.5 seconds (a long period) or 0.5 seconds (a short period). The stimuli will only be one of these two options. When the stimuli ends, you will be presented with two response buttons.<br><br><b>All you have to do is state whether the stimuli you heard lasted for a long (1.5 seconds) or short (0.5 seconds) period of time.</b><br><br>The buttons below allow you to play a tone that lasts for either 0.5 or 1.5 seconds to give you an idea of how long each is, please click a button below if you wish.<br><br><button id=""response_short"" class=""btn btn-outline-primary btn-sm me-3"">Short</button><button id=""response_long"" class=""btn btn-outline-primary btn-sm"">Long</button><br><br>You will first complete a number of training trials designed to teach you the difference between a long and short audio tone. These trials do not include swear words.<br><br>When you are ready to start, please press 'Start' below.</p>
+0,task_bookend,,user,Start,,off,off,Time Perception,"<p>This study is investigating how people's perception of the passing of time changes within a situation.
+<br><br>
+Within the next task, you will initially see a cross in the centre of the screen to direct your gaze. The cross will be replaced by either a written word, a spoken word, or both together. Regardless of how the stimulus is presented, it will last for either 1.5 seconds (a long period) or 0.5 seconds (a short period). The stimulus will only be one of these two durations. When the stimulus ends, you will be presented with two response buttons.
+<br><br>
+<b>All you have to do is indicate whether the stimulus you saw and/or heard lasted for a long (1.5 seconds) or short (0.5 seconds) period of time. You can respond by clicking the appropriate button on the screen or by pressing the S key for Short or the L key for Long on your keyboard.</b>
+<br><br>
+The buttons below allow you to play a tone that lasts for either 0.5 or 1.5 seconds to give you an idea of how long each is. Please click a button below if you wish.
+<br><br>
+<button id=""response_short"" class=""btn btn-outline-primary btn-sm me-3"">Short</button>
+<button id=""response_long"" class=""btn btn-outline-primary btn-sm"">Long</button>
+<br><br>
+You will first complete a number of training trials designed to teach you the difference between a long and short duration. These trials do not include swear words.
+<br><br>
+When you are ready to start, please press 'Start' below.
+</p><br>
 <script>
-$(document).ready(function() {
-  // Define the audio source.
-  var audioSrc = ""../../collector-experiments/User/Assets/timeperception/audio/200.mp3"";
-  // Preload the audio by creating a template audio element.
-  var audioTemplate = new Audio(audioSrc);
-  audioTemplate.preload = ""auto"";    audioTemplate.load();
-  // When the ""Short"" button is clicked, play the audio for 400ms.
-  $(""#response_short"").on(""click"", function() {      
-    // Clone the preloaded audio element so that it's ready to play immediately.
-    var audio = audioTemplate.cloneNode(true);      
-    audio.play();
-    setTimeout(function() {
-      audio.pause();
-      audio.currentTime = 0;
-    }, 400);
+  $(document).ready(function() {
+    // Define the audio source.
+    var audioSrc = ""../../collector-experiments/User/Assets/timeperception/audio/200.mp3"";
+    
+    // Preload the audio by creating a template audio element.
+    var audioTemplate = new Audio(audioSrc);
+    audioTemplate.preload = ""auto"";
+    audioTemplate.load();
+    
+    // When the ""Short"" button is clicked, play the audio for 400ms.
+    $(""#response_short"").on(""click"", function() {
+      // Clone the preloaded audio element so that it's ready to play immediately.
+      var audio = audioTemplate.cloneNode(true);
+      audio.play();
+      setTimeout(function() {
+        audio.pause();
+        audio.currentTime = 0;
+      }, 400);
+    });
+    
+    // When the ""Long"" button is clicked, play the audio for 1600ms.
+    $(""#response_long"").on(""click"", function() {
+      var audio = audioTemplate.cloneNode(true);
+      audio.play();
+      setTimeout(function() {
+        audio.pause();
+        audio.currentTime = 0;
+      }, 1600);
+    });
   });
-  // When the ""Long"" button is clicked, play the audio for 1600ms.
-  $(""#response_long"").on(""click"", function() {      
-    var audio = audioTemplate.cloneNode(true);      
-    audio.play();      
-    setTimeout(function() {        
-      audio.pause();
-      audio.currentTime = 0;
-    }, 1600);
-  });
-});
 </script>",,
 527 to 566,tp_training_s2,,user,,,Training,off,,,,
 0,task_bookend,,user,Start,,off,off,End of training trials,"<p>You are about to start the main experimental trials which do include swear words.
-<br><br><b>These trials work in the same way as the training trials you have just completed. However, the length the stimuli word(s) are presented for now differs in length.<br> <br><br>Rather than deciding whether the stimuli word you see/hear was simply 'long' or 'short' in duration, you now must decide if the word was closer to the 'long' or to the 'short' tone you heard during the previous training phase. If you think it was closer to the 0.5 second 'short' stimuli, click the 'Short' button or if you think it was closer to the 1.5 seconds 'long' stimuli, click the 'Long' button.</b><br><br>As a reminder: you will initially see a cross in the centre of the screen (which you should focus on). The cross will disappear and you may see a written word, hear a spoken word or hear and say a set of words.  When the stimuli word(s) have been presented you will be given the two response buttons (short and long).<br><br>The task is broken up into several blocks and you will be given a break between blocks. When you are ready to start the experimental trials, please click 'Start' below.</p>",,
+<br><br>
+Each trial works in the same way as the training trials you have just completed. However, rather than just having stimuli presented for a 'short' or 'long' period of time, the stimuli word(s) are now presented for differing lengths of time between those original 'short' and 'long' times.
+<br><br>
+All you have to do is decide whether the stimuli word(s) you see/hear are closer in length to the 'short' or 'long' stimuli tone you heard during the previous training triaks. If you think it was closer to the 'short' stimuli, click the 'Short' button (or press the S key on your keyboard). If you think it was closer to the 'long' stimuli, click the 'Long' button (or press the L key on your keyboard).
+<br><br>
+As a reminder: you will initially see a cross in the centre of the screen (which you should focus on). The cross will disappear and you may see a written word, hear a spoken word or hear and see a two words at the same time. When the stimuli word(s) have been presented you will be asked to make your response.
+<br><br>
+The task is broken up into several blocks and you will be given a break between blocks. When you are ready to start the experimental trials, please click 'Start' below.</p>",,
 2 to 132,tp_maintask_s2,,user,,,Experiment,Block 1,,,,
 0,task_bookend,,user,Continue,,off,off,Time For A Break,"<p>Thank you for completing the first block, you may now have a short break if you wish. Please do not change to a different screen or look at your phone though. When you are ready to start the next block please press <b>Continue</b> below.</p>",,
 133 to 264,tp_maintask_s2,,user,,,Experiment,Block 2,,,,

@@ -39,6 +39,12 @@
   .no_mouse{
     cursor: none;
   }
+  .response-hint {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 12pt;
+    color: #666;
+    margin-top: 6px;
+  }
 </style>
 <body class="no_mouse">
   <input type='hidden' id='response' name='response'/>
@@ -56,8 +62,16 @@
   <div id="response_options" class="text-center">
       <p>Did the audio tone last for a short (0.5 seconds) or long (1.5 seconds) length of time?</p>
       <br><br>
-      <button id="response_short" class="btn btn-outline-primary btn-lg me-3">Short</button>
-      <button id="response_long" class="btn btn-outline-primary btn-lg">Long</button>
+      <div class="d-flex justify-content-center gap-4">
+          <div class="text-center">
+              <button id="response_short" class="btn btn-outline-primary btn-lg">Short</button>
+              <div class="response-hint">(or press S)</div>
+          </div>
+          <div class="text-center">
+              <button id="response_long" class="btn btn-outline-primary btn-lg">Long</button>
+              <div class="response-hint">(or press L)</div>
+          </div>
+      </div>
 </div>
 
   <!--JAVASCRIPT-->
@@ -67,12 +81,41 @@
     var audio_time = '{{delay}}';
 
     var baselineTime;
-    var sync_issue = false;  // Optional: timing check
+    var sync_issue = false;  // Flag for timing or audio errors
+    var audio_issue = false;
     var expectedTimes = {};
+
+    function flagAudioIssue(audioName, error) {
+        audio_issue = true;
+        sync_issue = true;
+        $("#sync-issue").val("1");
+        console.warn(audioName + " failed to play:", error);
+    }
+
+    function playTrialAudio(audioElement, audioName) {
+        var playPromise;
+
+        try {
+            playPromise = audioElement.play();
+        } catch (error) {
+            flagAudioIssue(audioName, error);
+            return;
+        }
+
+        if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(function(error) {
+                flagAudioIssue(audioName, error);
+            });
+        }
+    }
+
+    $('#stimuli_audio').on('error', function() {
+        flagAudioIssue(this.id, this.error || "Unknown media error");
+    });
 
     Phase.set_timer(function () {
         baselineTime = Date.now();
-        $("#sync-issue").val("0");
+        $("#sync-issue").val(audio_issue ? "1" : "0");
     }, 0);
 
     var runtime = 500;
@@ -82,17 +125,12 @@
       $('#stimuli_text').html("");
     }
 
-    // If visual is control, empty the stimulus text
-    if (visual === "Control") {
-        $('#stimuli_text').html("");
-    }
-
     // Show the stimulus and play the audio
     Phase.set_timer(function () {
         $('#fixation').hide();
         $('#stimuli_text').show();
         if (audio !== "control") {
-            $('#stimuli_audio')[0].play();
+            playTrialAudio($('#stimuli_audio')[0], 'Stimulus audio');
         }
         expectedTimes.bookend1Start = Date.now();
     }, runtime);
@@ -107,36 +145,101 @@
 
     runtime += 25;
 
+    // Track whether responses are available
+    var responseEnabled = false;
+    var responseSubmitted = false;
+
     // Show response buttons
     Phase.set_timer(function () {
         $('body').removeClass('no_mouse');
         $('#response_options').show();
         checkSync(); // Optional sync check
+        responseEnabled = true;
     }, runtime);
 
-    // Response buttons
-    $('#response_short').click(function () {
-        $('#response').val('short');
+    // Handle responses from buttons or keyboard
+    function submitResponse(answer) {
+        if (!responseEnabled || responseSubmitted) return;
+
+        responseSubmitted = true;
+        responseEnabled = false;
+
+        $('#response').val(answer);
+
+        // Remove this trial's keyboard listeners before submitting
+        removeKeyboardListeners();
+
         Phase.submit();
+    }
+
+    // Button responses
+    $('#response_short').click(function () {
+        submitResponse('short');
     });
 
     $('#response_long').click(function () {
-        $('#response').val('long');
-        Phase.submit();
+        submitResponse('long');
     });
+
+    // Keyboard responses can originate in any level of Collector's nested iframes
+    var keyboardDocuments = [document];
+
+    try {
+        if (window.parent !== window) {
+            keyboardDocuments.push(window.parent.document);
+        }
+
+        if (window.top !== window && window.top !== window.parent) {
+            keyboardDocuments.push(window.top.document);
+        }
+    } catch (error) {
+        console.warn("Parent keyboard access unavailable:", error);
+    }
+
+    function handleKeyboardResponse(e) {
+        if (!responseEnabled || responseSubmitted) return;
+        if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+        var key = (
+            e.key ||
+            String.fromCharCode(e.which || e.keyCode)
+        ).toLowerCase();
+
+        if (key === 's') {
+            submitResponse('short');
+        } else if (key === 'l') {
+            submitResponse('long');
+        }
+    }
+
+    function removeKeyboardListeners() {
+        keyboardDocuments.forEach(function(keyboardDocument) {
+            keyboardDocument.removeEventListener(
+                'keydown',
+                handleKeyboardResponse
+            );
+        });
+    }
+
+    keyboardDocuments.forEach(function(keyboardDocument) {
+        keyboardDocument.addEventListener(
+            'keydown',
+            handleKeyboardResponse
+        );
+    });
+
+    window.addEventListener('unload', removeKeyboardListeners);
 
     // Optional timing check (now simplified)
     function checkSync() {
         let errorMessages = [];
 
-        let expectedBookend1Start = baselineTime + 500;
-        let expectedBookend1End = expectedBookend1Start + Number(audio_time) + 50;
+        // Check the stimulus duration actually experienced during the trial
+        let actualStimulusDuration =
+            expectedTimes.bookend1End - expectedTimes.bookend1Start;
 
-        if (Math.abs(expectedTimes.bookend1Start - expectedBookend1Start) > 50) {
-            errorMessages.push("Bookend 1 timing mismatch.");
-        }
-        if (Math.abs(expectedTimes.bookend1End - expectedBookend1End) > 50) {
-            errorMessages.push("Bookend 1 end timing mismatch.");
+        if (Math.abs(actualStimulusDuration - (Number(audio_time) + 50)) > 50) {
+            errorMessages.push("Stimulus duration mismatch.");
         }
 
         if (errorMessages.length > 0) {

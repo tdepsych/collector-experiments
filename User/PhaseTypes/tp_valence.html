@@ -34,7 +34,7 @@
 <div id="container">
   <h2><span>Valence Ratings</span></h2><br>
   <p>
-    This task simply requires you to rate, on a scale from 0-9, how positive or negative you consider a word to be. You shouldn't spend long thinking about your rating but rather go with your first reaction. To make your rating, please click the corresponding button below. You will automatically move to the next word when you make your rating.
+    This task simply requires you to rate, on a scale from 0-9, how positive or negative you consider a word to be. You shouldn't spend long thinking about your rating but rather go with your first reaction. To make your rating, click the corresponding button or press the corresponding number key. You will automatically move to the next word when you make your rating.
     <br><br>
     <b>Please click the number that corresponds to how positive or negative you consider the word...<br><br><span id="word">{{visual}}</span></b>
   </p>
@@ -58,8 +58,44 @@
   <span id="thanks" style="display:none;">Thank you for making your rating</span>
 </div>
 <script>
-$('.btn-group .btn').click(function () {
-  const value = $(this).text();
+var responseSubmitted = false;
+var keyboardDocuments = [document];
+
+try {
+  if (window.parent !== window) {
+    keyboardDocuments.push(window.parent.document);
+  }
+
+  if (window.top !== window && window.top !== window.parent) {
+    keyboardDocuments.push(window.top.document);
+  }
+} catch (error) {
+  console.warn("Parent keyboard access unavailable:", error);
+}
+
+function isCurrentPhase() {
+  try {
+    return Number(window.parent.parent.project_json.phase_no) ===
+      Number(Phase.phase_no);
+  } catch (error) {
+    return true;
+  }
+}
+
+function removeKeyboardListeners() {
+  keyboardDocuments.forEach(function (keyboardDocument) {
+    keyboardDocument.removeEventListener(
+      'keydown',
+      handleKeyboardResponse
+    );
+  });
+}
+
+function submitValenceRating(value) {
+  if (responseSubmitted || !isCurrentPhase()) return;
+
+  responseSubmitted = true;
+  removeKeyboardListeners();
   $('#valence_rating').val(value);
 
   $('.btn-group .btn, .anchor').fadeOut(250, function () {
@@ -69,6 +105,29 @@ $('.btn-group .btn').click(function () {
   setTimeout(function () {
     Phase.submit();
   }, 750);
+}
+
+function handleKeyboardResponse(e) {
+  if (e.ctrlKey || e.metaKey || e.altKey || e.repeat) return;
+
+  var key = e.key || String.fromCharCode(e.which || e.keyCode);
+
+  if (/^[0-9]$/.test(key)) {
+    submitValenceRating(key);
+  }
+}
+
+$('.btn-group .btn').click(function () {
+  submitValenceRating($(this).text());
 });
+
+keyboardDocuments.forEach(function (keyboardDocument) {
+  keyboardDocument.addEventListener(
+    'keydown',
+    handleKeyboardResponse
+  );
+});
+
+window.addEventListener('unload', removeKeyboardListeners);
 </script>
 <script src="../../collector-experiments/User/Assets/Global/js/zoom_script.js"></script>
