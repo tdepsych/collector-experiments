@@ -6,7 +6,7 @@ item,phasetype,survey,max_time,text,notes,shuffle_1,shuffle_2,task_title,task_bo
 0,tp_multimedia,,user,,,off,off,,,,
 0,zoom_check,,user,,,off,off,,,,
 0,tp_infoconsent_s2,,user,Curse Words and the Clock: How Expletives Alter Our Sense of Time,,off,off,,,,
-0,tde_survey,tp_demo.csv,user,50,,off,off,,,,
+0,tp_demo,,user,50,,off,off,,,,
 0,offline,,user,,,off,off,YOU CANNOT CONTINUE,"We're really sorry but the study is only recruiting native English speakers.<br><br>As you indicated that you are not a native English speaker we cannot allow you to continue.<br><br>To end the experiment, simply close your browser window.",,
 0,task_bookend,,user,Start,,off,off,Time Perception,"<p>This study is investigating how people's perception of the passing of time changes within a situation.
 <br><br>

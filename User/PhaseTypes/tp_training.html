@@ -82,6 +82,25 @@
     var visual = '{{visual}}';
     var audio_time = '{{audio_time}}';
     var delay = '{{delay}}';
+    
+    var audio_output_latency_ms = 0;
+
+    try {
+        audio_output_latency_ms =
+            Number(Phase.get('audio_output_latency_ms')) || 0;
+    } catch (error) {
+        console.warn('No saved audio output latency was available:', error);
+    }
+
+    audio_output_latency_ms = Math.min(
+        Math.max(audio_output_latency_ms, 0),
+        300
+    );
+    
+    console.log(
+        'Training audio output latency compensation:',
+        audio_output_latency_ms + 'ms'
+    );
 
     var baselineTime;
     var sync_issue = false;  // Flag for timing or audio errors
@@ -122,51 +141,73 @@
     }, 0);
 
     var runtime = Number(500);
+    var bookend1AudioRuntime = runtime;
+    var delayAudioStartRuntime;
+    var delayAudioEndRuntime;
 
     if (visual == "Control") {
         $('#stimuli_text').html("");
     }
 
-    // Hide the fixation cross and display the first bookend stimuli
+    // Begin the first bookend audio before its visual presentation so that
+    // estimated audio output latency is absorbed before the visual appears.
     Phase.set_timer(function() {
-        $('#fixation').hide();
-        $('#stimuli_text').show();
         if (audio !== "control") {
             playTrialAudio($('#stimuli_audio')[0], 'First stimulus audio');
         }
-        expectedTimes.bookend1Start = Date.now();  // Store expected start time
-    }, runtime);
+    }, bookend1AudioRuntime);
 
-    // Update runtime to include audio duration
-    runtime += Number(audio_time) + 525;
+    Phase.set_timer(function() {
+        $('#fixation').hide();
+        $('#stimuli_text').show();
+        expectedTimes.bookend1Start = Date.now();
+    }, bookend1AudioRuntime + audio_output_latency_ms);
 
-    // Hide bookend stimuli and play delay tone
+    delayAudioStartRuntime =
+        bookend1AudioRuntime + Number(audio_time) + 525;
+
+    // Begin the tone before changing the visual display.
+    Phase.set_timer(function() {
+        playTrialAudio($('#delay_audio')[0], 'Delay tone');
+    }, delayAudioStartRuntime);
+
     Phase.set_timer(function() {
         $('#stimuli_text').hide();
         $('#delay_text').show();
-        playTrialAudio($('#delay_audio')[0], 'Delay tone');
         expectedTimes.delayStart = Date.now();
-    }, runtime);
+    }, delayAudioStartRuntime + audio_output_latency_ms);
 
-    // Update runtime to include delay duration
-    runtime += Number(delay);
+    delayAudioEndRuntime =
+        delayAudioStartRuntime + Number(delay);
 
-    // Stop delay tone and hide visual dash
+    // Stop the tone at its requested duration.
+    Phase.set_timer(function() {
+        $('#delay_audio')[0].pause();
+        $('#delay_audio')[0].currentTime = 0;
+    }, delayAudioEndRuntime);
+
+    // Begin the repeated audio after the original 25ms transition.
+    Phase.set_timer(function() {
+        if (audio !== "control_m" && audio !== "control_f") {
+            playTrialAudio(
+                $('#stimuli_audio')[0],
+                'Repeated stimulus audio'
+            );
+        }
+    }, delayAudioEndRuntime + 25);
+
+    // Delay the visual transitions until the corresponding audio is
+    // estimated to have reached the participant.
     Phase.set_timer(function() {
         $('#delay_text').hide();
-        $('#delay_audio')[0].pause();
-        $('#delay_audio')[0].currentTime = 0; // Ensure reset
         expectedTimes.delayEnd = Date.now();
-    }, runtime);
+    }, delayAudioEndRuntime + audio_output_latency_ms);
 
-    runtime += 25; // Small buffer for smoother transition
+    runtime =
+        delayAudioEndRuntime + audio_output_latency_ms + 25;
 
-    // Redisplay bookend stimuli
     Phase.set_timer(function() {
         $('#stimuli_text').show();
-        if (audio !== "control_m" && audio !== "control_f") {
-            playTrialAudio($('#stimuli_audio')[0], 'Repeated stimulus audio');
-        }
         expectedTimes.bookend2Start = Date.now();
     }, runtime);
 

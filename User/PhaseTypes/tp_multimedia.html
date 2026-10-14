@@ -183,6 +183,53 @@
           }
       })(window.navigator.userAgent.toLowerCase());
 
+      let audioLatencyContext = null;
+      let audioTestSource = null;
+
+      function prepareAudioLatencyMeasurement(audioElement) {
+          const AudioContextClass =
+              window.AudioContext || window.webkitAudioContext;
+
+          if (!AudioContextClass) {
+              Phase.set('audio_output_latency_ms', 0);
+              return;
+          }
+
+          if (audioLatencyContext === null) {
+              audioLatencyContext = new AudioContextClass();
+              audioTestSource =
+                  audioLatencyContext.createMediaElementSource(audioElement);
+              audioTestSource.connect(audioLatencyContext.destination);
+          }
+
+          audioLatencyContext.resume().then(function() {
+              saveAudioOutputLatency();
+          }).catch(function(error) {
+              Phase.set('audio_output_latency_ms', 0);
+              console.warn(
+                  'Could not initialise audio latency measurement:',
+                  error
+              );
+          });
+      }
+
+      function saveAudioOutputLatency() {
+          let latencyMs = 0;
+
+          if (
+              audioLatencyContext !== null &&
+              Number.isFinite(Number(audioLatencyContext.outputLatency))
+          ) {
+              latencyMs = Math.max(
+                  0,
+                  Math.round(Number(audioLatencyContext.outputLatency) * 1000)
+              );
+          }
+
+          Phase.set('audio_output_latency_ms', latencyMs);
+          console.log('Estimated audio output latency:', latencyMs + 'ms');
+      }
+      
       let currentTab = null; // Track the current tab (audio or video)
       
       // Function to update the instructions based on selected browser for audio settings
@@ -248,9 +295,10 @@
         $('#tab2').addClass('show active');
         $('#startBtn').hide();
         
-        const audio = $('#audio_test');
-        audio[0].play();
-        audio[0].play().catch(error => {
+        const audio = $('#audio_test')[0];
+        prepareAudioLatencyMeasurement(audio);
+        audio.currentTime = 0;
+        audio.play().catch(error => {
             console.error('Audio playback failed:', error);
         });
         
@@ -320,9 +368,10 @@
         currentTab = 'audio';
         $('#audioText').text('Playing audio test...');
         $('#audioImg, .scaled').show();
-        const audio = $('#audio_test');
-        audio[0].play();
-        audio[0].play().catch(error => {
+        const audio = $('#audio_test')[0];
+        prepareAudioLatencyMeasurement(audio);
+        audio.currentTime = 0;
+        audio.play().catch(error => {
             console.error('Audio playback failed:', error);
         });
 
@@ -343,7 +392,8 @@
 
       // Handle Start Experiment button on Tab 6
       $("#startExperimentBtn").click(function () {
-          Phase.submit()
+          saveAudioOutputLatency();
+          Phase.submit();
       });
 
       // Initialize with the start button visible on Tab 1
