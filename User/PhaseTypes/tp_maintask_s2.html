@@ -76,6 +76,25 @@
     var audio = '{{audio}}';
     var visual = '{{visual}}';
     var audio_time = '{{delay}}';
+    
+    var audio_output_latency_ms = 0;
+
+    try {
+        audio_output_latency_ms =
+            Number(Phase.get('audio_output_latency_ms')) || 0;
+    } catch (error) {
+        console.warn('No saved audio output latency was available:', error);
+    }
+
+    audio_output_latency_ms = Math.min(
+        Math.max(audio_output_latency_ms, 0),
+        300
+    );
+
+    console.log(
+        'S2 main-task audio output latency compensation:',
+        audio_output_latency_ms + 'ms'
+    );
 
     var baselineTime;
     var sync_issue = false;  // Flag for timing or audio errors
@@ -116,20 +135,28 @@
     }, 0);
 
     var runtime = Number(500);
+    var stimulusAudioRuntime = runtime;
     
     // Remove the written text from control trials
     if (visual == "Control") {
       $('#stimuli_text').html("");
     }
 
-    // Display initial visual stimulus
+    // Begin the audio before displaying the visual stimulus so that
+    // estimated audio output latency is absorbed before the visual appears.
     Phase.set_timer(function() {
-        $('#fixation').hide();
-        $('#stimuli_text').show();
         if (audio !== "control") {
             playTrialAudio($('#stimuli_audio')[0], 'Stimulus audio');
         }
-        expectedTimes.bookend1Start = Date.now();  // Optional: tracking timing
+    }, stimulusAudioRuntime);
+
+    runtime =
+        stimulusAudioRuntime + audio_output_latency_ms;
+
+    Phase.set_timer(function() {
+        $('#fixation').hide();
+        $('#stimuli_text').show();
+        expectedTimes.bookend1Start = Date.now();
     }, runtime);
 
     // Duration of audio + short buffer
