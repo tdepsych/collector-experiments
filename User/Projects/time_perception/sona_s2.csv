@@ -56,6 +56,31 @@ When you are ready to start, please press 'Start' below.
   });
 </script>",,
 527 to 566,tp_training_s2,,user,,,Training,off,,,,
+0,task_bookend,,user,Repeat Training,,off,off,Training needs to be repeated,"<p>
+  Sorry, you answered 75% or fewer of the training trials correctly. This means that you will need to complete the training again before you can start the experimental trials.<br><br>To restart the training trials simply click the button below which will take you back to the initial instructions.
+</p>
+<script>
+  $(function() {
+    $('#proceed_button').removeAttr('onclick').off('click').on('click', function() {
+      var procedure = parent.parent.project_json.parsed_proc;
+      var currentPhase = Number(Phase.phase_no);       
+      var trainingStart = -1;           
+      for (var phaseIndex = currentPhase - 1; phaseIndex >= 0; phaseIndex--) {
+        var phaseType = String(procedure[phaseIndex].phasetype).toLowerCase();
+        if (phaseType === 'tp_training_s2') {
+          trainingStart = phaseIndex;
+        } else if (trainingStart !== -1) {
+          break;
+        }
+      }
+      if (trainingStart === -1) {         
+        alert('The training trials could not be located. Please contact the researcher.');
+        return;
+      }       
+      Phase.go_to(trainingStart);
+    });
+  });
+</script>",,
 0,task_bookend,,user,Start,,off,off,End of training trials,"<p>You are about to start the main experimental trials which do include swear words.
 <br><br>
 Each trial works in the same way as the training trials you have just completed. However, rather than just having stimuli presented for a 'short' or 'long' period of time, the stimuli word(s) are now presented for differing lengths of time between those original 'short' and 'long' times.

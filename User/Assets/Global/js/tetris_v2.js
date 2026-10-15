@@ -428,6 +428,7 @@ var canvasTetris = function(parentNode) {
 		},
 		speed: 0,
 		timer: null,
+		gameOverAnimationTimer: null,
 		paused: false,
 		pauseText: [{
 			// text: "Click to Start!",
@@ -448,6 +449,12 @@ var canvasTetris = function(parentNode) {
 
 	game.xStart = Math.floor((game.cols - game.nextSide) / 2);
 	game.yStart = -game.nextSide;
+	game.startOnSpace = function(e) {
+		if (e.keyCode === 32) {
+			e.preventDefault();
+			game.resetGame();
+		}
+	};
 
 	game.setGame = function() {
 		parentNode.className += " tetris";
@@ -492,20 +499,18 @@ var canvasTetris = function(parentNode) {
 
 		canvas.node.focus();
 
-		// canvas.node.addEventListener("click", game.resetGame, false);
-		canvas.node.addEventListener("keydown", function(e){
-			if (e.keyCode === 32) { // Spacebar
-				e.preventDefault();
-				game.resetGame();
-			}
-		}, false);
+		document.addEventListener("keydown", game.startOnSpace, false);
 	};
 
 	game.resetGame = function() {
-		canvas.node.removeEventListener("click", game.resetGame, false);
+		document.removeEventListener("keydown", game.startOnSpace, false);
+		clearTimeout(game.gameOverAnimationTimer);
+		game.gameOverAnimationTimer = null;
+
 		canvas.node.addEventListener("keydown", game.keyPress, false);
 		canvas.node.addEventListener("focus", game.focus, false);
 		canvas.node.addEventListener("blur", game.blur, false);
+		canvas.node.focus();
 		$(".tetrisCanvas").css("cursor", "none")
 
 		game.setScore(0);
@@ -603,34 +608,35 @@ var canvasTetris = function(parentNode) {
 		canvas.node.removeEventListener("focus", game.focus, false);
 		canvas.node.removeEventListener("blur", game.blur, false);
 		game.animateGameOver();
+		document.addEventListener("keydown", game.startOnSpace, false);
 		$(".tetrisCanvas").css("cursor", "pointer")
 	};
 
 	game.animateGameOver = function() {
 		var i = game.rows - 1;
 		var j = 0;
-		(function() {
-			if (i >= 0) {
-				game.blocks[i][j] = 1;
-				canvas.draw();
-				canvas.drawPause(2);
-				if ((j + 1) < game.cols) {
-					j++;
-				} else {
-					j = 0;
-					i--;
-				}
-				setTimeout(arguments.callee, 20);
-			} else {
-				// canvas.node.addEventListener("click", game.resetGame, false);
-				canvas.node.addEventListener("keydown", function(e){
-					if (e.keyCode === 32) {
-						e.preventDefault();
-						game.resetGame();
-					}
-				}, false);
+
+		function fillNextCell() {
+			if (i < 0) {
+				game.gameOverAnimationTimer = null;
+				return;
 			}
-		})();
+
+			game.blocks[i][j] = 1;
+			canvas.draw();
+			canvas.drawPause(2);
+
+			if ((j + 1) < game.cols) {
+				j++;
+			} else {
+				j = 0;
+				i--;
+			}
+
+			game.gameOverAnimationTimer = setTimeout(fillNextCell, 20);
+		}
+
+		fillNextCell();
 	};
 
 	game.pause = function() {

@@ -48,6 +48,9 @@
 </style>
 <body class="no_mouse">
   <input type='hidden' id='response' name='response'/>
+  <input type="hidden" id="training_correct" name="training_correct"/>
+  <input type="hidden" id="training_accuracy" name="training_accuracy"/>
+  <input type="hidden" id="training_attempts" name="training_attempts"/>
   <input type="hidden" id="sync-issue" name="sync_issue" value="0">
   
   <!--HTML-->
@@ -73,12 +76,59 @@
           </div>
       </div>
 </div>
+<div id="training_feedback" class="h2 fw-bold text-center" style="display: none;" aria-live="polite"></div>
 
-  <!--JAVASCRIPT-->
+<!--JAVASCRIPT-->
 <script>
     var audio = '{{audio}}';
     var visual = '{{visual}}';
     var audio_time = '{{delay}}';
+    var trainingCorrectKey = 'tp_training_s2_correct_count';
+    var trainingTrialKey = 'tp_training_s2_trial_count';
+    var trainingAttemptKey = 'tp_training_s2_attempt_count';
+
+    function getTrainingCount(key) {
+        var studyVars = parent.parent.project_json.study_vars;
+
+        if (
+            typeof studyVars === 'undefined' ||
+            typeof studyVars[key] === 'undefined'
+        ) {
+            return 0;
+        }
+
+        return Number(studyVars[key]) || 0;
+    }
+
+    function isFinalTrainingTrial() {
+        var currentPhase = Number(Phase.phase_no);
+        var nextPhase =
+            parent.parent.project_json.parsed_proc[currentPhase + 1];
+
+        return !nextPhase ||
+            String(nextPhase.phasetype).toLowerCase() !==
+                'tp_training_s2';
+    }
+
+    function finishTrainingResponse(correctCount, trialCount) {
+        var accuracy = (correctCount / trialCount) * 100;
+
+        $('#training_accuracy').val(accuracy);
+
+        if (!isFinalTrainingTrial()) {
+            Phase.submit();
+            return;
+        }
+
+        Phase.set(trainingCorrectKey, 0);
+        Phase.set(trainingTrialKey, 0);
+
+        if (accuracy > 75) {
+            Phase.go_to('+2');
+        } else {
+            Phase.submit();
+        }
+    }
     var audio_output_latency_ms = 0;
 
     try {
@@ -190,12 +240,48 @@
         responseSubmitted = true;
         responseEnabled = false;
 
-        $('#response').val(answer);
+        var correctAnswer =
+            Number(audio_time) === 400 ? 'short' : 'long';
 
-        // Remove this trial's keyboard listeners before submitting
+        var isCorrect = answer === correctAnswer;
+        var previousTrialCount =
+            getTrainingCount(trainingTrialKey);
+        var attemptCount =
+            getTrainingCount(trainingAttemptKey);
+
+        if (previousTrialCount === 0) {
+            attemptCount++;
+            Phase.set(trainingAttemptKey, attemptCount);
+        }
+
+        var correctCount =
+            getTrainingCount(trainingCorrectKey) + (isCorrect ? 1 : 0);
+        var trialCount = previousTrialCount + 1;
+
+        Phase.set(trainingCorrectKey, correctCount);
+        Phase.set(trainingTrialKey, trialCount);
+
+        $('#response').val(answer);
+        $('#training_correct').val(isCorrect ? '1' : '0');
+        $('#training_attempts').val(attemptCount);
+        $('#training_accuracy').val(
+            (correctCount / trialCount) * 100
+        );
+
+        // Remove this trial's keyboard listeners before showing feedback
         removeKeyboardListeners();
 
-        Phase.submit();
+        $('#response_options').hide();
+
+        $('#training_feedback')
+            .removeClass('text-success text-danger')
+            .addClass(isCorrect ? 'text-success' : 'text-danger')
+            .text(isCorrect ? 'Correct' : 'Incorrect')
+            .show()
+            .delay(300)
+            .fadeOut(200, function() {
+                finishTrainingResponse(correctCount, trialCount);
+            });
     }
 
     // Button responses
