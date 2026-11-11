@@ -230,6 +230,11 @@ Project = {
           project_json.phase_no = parseFloat(go_to_info) - 1;
           // project_json.phase_no = parseFloat(go_to_info);
           project_json.post_no = 0;
+
+          // Remove previously buffered phases and their queued timers before rebuilding the buffer around the new destination.
+          $("#project_div .phase_iframe").remove();
+          project_json.time_outs = [];
+
           setTimeout(function () {
             var combined_phase_buffer = 
               parseFloat(project_json.this_condition.buffer) + 
