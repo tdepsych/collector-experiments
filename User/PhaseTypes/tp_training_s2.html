@@ -63,7 +63,7 @@
   <p id="delay_text">—</p>
   
   <div id="response_options" class="text-center">
-      <p>Did the audio tone last for a short (0.5 seconds) or long (1.5 seconds) length of time?</p>
+      <p>Were the word(s) presented for a short (0.5 second) or long (1.5 second) period of time?</p>
       <br><br>
       <div class="d-flex justify-content-center gap-4">
           <div class="text-center">
@@ -138,10 +138,9 @@
         console.warn('No saved audio output latency was available:', error);
     }
 
-    audio_output_latency_ms = Math.min(
-        Math.max(audio_output_latency_ms, 0),
-        300
-    );
+    audio_output_latency_ms = Number.isFinite(audio_output_latency_ms)
+        ? Math.max(audio_output_latency_ms, 0)
+        : 0;
 
     console.log(
         'S2 training audio output latency compensation:',

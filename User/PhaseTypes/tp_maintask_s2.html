@@ -57,7 +57,7 @@
   <audio id="stimuli_audio" src="../../collector-experiments/User/Assets/timeperception/audio/main_s2/{{audio}}_{{voice}}_{{delay}}.mp3"></audio>
   
   <div id="response_options" class="text-center">
-      <p>Was the audio tone closer in length to the short (0.5 second) or long (1.5 second) tone you heard during the training trials?</p>
+      <p>Were the word(s) closer in length to the short (0.5 second) or long (1.5 second) word presentation(s) during the training trials?</p>
       <br><br>
       <div class="d-flex justify-content-center gap-4">
           <div class="text-center">
@@ -86,10 +86,9 @@
         console.warn('No saved audio output latency was available:', error);
     }
 
-    audio_output_latency_ms = Math.min(
-        Math.max(audio_output_latency_ms, 0),
-        300
-    );
+    audio_output_latency_ms = Number.isFinite(audio_output_latency_ms)
+        ? Math.max(audio_output_latency_ms, 0)
+        : 0;
 
     console.log(
         'S2 main-task audio output latency compensation:',
@@ -169,6 +168,10 @@
     }, runtime);
 
     runtime += 25;
+
+    if (audio.toLowerCase() !== "control") {
+        runtime += 250;
+    }
 
     // Track whether responses are available
     var responseEnabled = false;

@@ -140,10 +140,9 @@
         console.warn('No saved audio output latency was available:', error);
     }
 
-    audio_output_latency_ms = Math.min(
-        Math.max(audio_output_latency_ms, 0),
-        300
-    );
+    audio_output_latency_ms = Number.isFinite(audio_output_latency_ms)
+        ? Math.max(audio_output_latency_ms, 0)
+        : 0;
     
     console.log(
         'Training audio output latency compensation:',
