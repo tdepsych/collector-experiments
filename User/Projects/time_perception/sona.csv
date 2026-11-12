@@ -102,7 +102,7 @@ The task is broken up into several blocks and you will be given a break between 
 0,task_bookend,,user,Continue,,off,off,End of Valence Ratings,"<p>Thank you for completing the valence ratings. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",,0,
 567 to 622,tp_arousal,,user,,,Arousal,off,,,,0,
 0,task_bookend,,user,Continue,,off,off,End of Arousal Ratings,"<p>Thank you for completing the arousal ratings. When you are ready, please press <b>Next</b> to move to the next task in the study.</p>",,0,
-567 to 622,tp_category,,user,,,Category,off,,,,,
+567 to 622,tp_category,,user,,,Category,off,,,on,,
 0,tp_dataquality,,user,,,off,off,Audio Level Check,Thank you for making the previous ratings. We now just need to record the audio level you used during the study so that we can control for any effect of different audio levels between participants from affecting our results. To run this check simply click the button below.,,,
 0,upload_data,,12,,Uploading REDCap Markers,off,off,,,,,
 0,tp_debrief,,user,Curse Words and the Clock: How Expletives Alter Our Sense of Time,,off,off,,,,,
