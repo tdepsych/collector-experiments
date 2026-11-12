@@ -32,6 +32,7 @@
     "post_0_window_inner_width",
     "procedure",
     "progress_bar",
+    "trial_progress",
     "redcap_url",
     "repeat",
     "repository",
