@@ -483,42 +483,14 @@
   // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
   // Validate on tick change
   // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-  $("#consentForm").change(function() {
+  $("#consentForm").on("input change", function() {
+    var emailField = $("#participant_emailInput").val();
+    var pptName = $("#participant_nameInput").val();
+
+    name_entered = pptName !== "";
+    email_validated = /(.+)@(.+){2,}\.(.+){2,}/.test(emailField) && !/\s/.test(emailField);
+
     validateConsent();
-  });
-  
-  // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-  // Validate on text change
-  // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-  $("#participant_emailInput").on("keydown", function(){
-      setTimeout(() => {
-          var emailField = $("#participant_emailInput").val();
-          console.log(emailField);
-          // Check for valid email format and no spaces
-          if( /(.+)@(.+){2,}\.(.+){2,}/.test(emailField) && !/\s/.test(emailField) ){
-              email_validated = true;
-              validateConsent();
-          } else {
-              email_validated = false;
-              validateConsent();
-          }
-      }, 10);
-  });
-  
-    $("#participant_nameInput").on("keydown", function(){
-    setTimeout(() => {
-      var pptName = $("#participant_nameInput").val();
-      console.log(pptName)
-      if(pptName != ""){
-        console.log("NAME ENTERED")
-        name_entered = true;
-        validateConsent();
-      } else {
-        console.log("NO NAME ENTERED")
-        name_entered = false;
-        validateConsent();
-      }
-    }, "10");
   });
 </script>
 <script src="https://www.swearingscience.co.uk/timeperception/js/zoom_script.js"></script>
