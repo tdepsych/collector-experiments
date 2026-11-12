@@ -657,6 +657,82 @@ Project = {
     }
   },
 
+  update_task_block_progress: function () {
+    var currentPhase = Number(project_json.phase_no);
+    var procedure = project_json.parsed_proc;
+    var currentRow = procedure[currentPhase];
+    var phaseType = currentRow
+      ? String(currentRow.phasetype).toLowerCase()
+      : "";
+    var trialProgressEnabled = currentRow &&
+      String(currentRow.trial_progress || "")
+        .trim()
+        .toLowerCase() === "on";
+    var progressBar = $("#task_block_progress_bar");
+    var progressFill = $("#task_block_progress");
+
+    if (!trialProgressEnabled) {
+      progressBar.hide();
+      return;
+    }
+
+    var blockStart = currentPhase;
+    var blockEnd = currentPhase;
+
+    function belongsToCurrentBlock(row) {
+      return row &&
+        String(row.phasetype).toLowerCase() === phaseType &&
+        String(row.trial_progress || "")
+          .trim()
+          .toLowerCase() === "on";
+    }
+
+    while (
+      blockStart > 0 &&
+      belongsToCurrentBlock(procedure[blockStart - 1])
+    ) {
+      blockStart--;
+    }
+
+    while (
+      blockEnd < procedure.length - 1 &&
+      belongsToCurrentBlock(procedure[blockEnd + 1])
+    ) {
+      blockEnd++;
+    }
+
+    var trialNumber = currentPhase - blockStart + 1;
+    var totalTrials = blockEnd - blockStart + 1;
+    var progressPercentage = totalTrials > 1
+      ? ((trialNumber - 1) / (totalTrials - 1)) * 100
+      : 100;
+    var blockKey = phaseType + ":" + blockStart;
+    var previousBlockKey =
+      progressBar.attr("data-block-key");
+    var previousPhase =
+      Number(progressBar.attr("data-phase"));
+    var shouldAnimate =
+      previousBlockKey === blockKey &&
+      Number.isFinite(previousPhase) &&
+      currentPhase > previousPhase;
+
+    progressBar
+      .attr("data-block-key", blockKey)
+      .attr("data-phase", currentPhase)
+      .attr(
+        "aria-valuenow",
+        Math.round(progressPercentage)
+      )
+      .css("display", "flex");
+
+    progressFill.css({
+      transition: shouldAnimate
+        ? "width 300ms ease-out"
+        : "none",
+      width: progressPercentage + "%"
+    });
+  },
+
   start_post: function (go_to_info) {
     // use the phase_progress column 
     
@@ -682,6 +758,8 @@ Project = {
       $("#experiment_progress").css("width",(100 * project_json.parsed_proc[project_json.phase_no].phase_progress) + "%");
 
     }
+
+    Project.update_task_block_progress();
 
     if (typeof go_to_info !== "undefined") {
       project_json.phase_no = project_json.phase_no;
