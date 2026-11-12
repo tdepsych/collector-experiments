@@ -24,7 +24,7 @@ When you are ready to start, please press 'Start' below.</p>
 <script>
   $(document).ready(function() {
     // Define the audio source.
-    var audioSrc = ""../../collector-experiments/User/Assets/timeperception/audio/200.mp3"";
+    var audioSrc = ""https://www.swearingscience.co.uk/timeperception/audio/200.mp3"";
     
     // Preload the audio by creating a template audio element.
     var audioTemplate = new Audio(audioSrc);
